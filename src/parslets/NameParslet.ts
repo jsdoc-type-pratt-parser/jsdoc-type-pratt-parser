@@ -14,12 +14,13 @@ export class NameParslet implements PrefixParslet {
     }
 
     parse(parser: Parser): ParseResult {
+        const token = parser.getToken();
         if (!parser.consume('Identifier')) {
             parser.consume('Module');
         }
         return {
             type: 'NAME',
-            name: parser.getToken().text
+            name: token.text
         };
     }
 }

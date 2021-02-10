@@ -58,12 +58,12 @@ export class Parser {
     }
 
     getPrefixParslet() {
-        return this.prefixParslets.find(p => p.accepts(this.token.type, this.peek().type));
+        return this.prefixParslets.find(p => p.accepts(this.getToken().type, this.peek().type));
     }
 
     getInfixParslet(precedence: number) {
         return this.infixParslets.find(p => {
-            return p.getPrecedence() > precedence && p.accepts(this.token.type, this.peek().type)
+            return p.getPrecedence() > precedence && p.accepts(this.getToken().type, this.peek().type)
         });
     }
 
