@@ -8,7 +8,11 @@ export type ParseResult =
     | AllResult
     | UnknownResult
     | FunctionResult
-    | RecordResult;
+    | RecordResult
+    | ModuleResult
+    | PropertyPathResult;
+
+export type ParseResultType = ParseResult["type"] | FieldResult["type"];
 
 export type ModifiableResult = {
     optional?: boolean;
@@ -70,4 +74,14 @@ export type FieldResult = ModifiableResult & {
 export type RecordResult = ModifiableResult & {
     type: 'RECORD',
     fields: FieldResult[]
+}
+
+export type ModuleResult = ModifiableResult & {
+    type: 'MODULE',
+    path: string
+}
+
+export type PropertyPathResult = ModifiableResult & {
+    type: 'PROPERTY_PATH',
+    path: string[]
 }

@@ -12,6 +12,8 @@ import { OptionalParslet } from './parslets/OptionalParslet';
 import { FunctionParslet } from './parslets/FunctionParslet';
 import { RecordParslet } from './parslets/RecordParslet';
 import { NullableParslet, PostfixNullableParslet } from './parslets/NullableParslets';
+import { PropertyPathParslet } from './parslets/PropertyPathParslet';
+import { ModuleParslet } from './parslets/ModuleParslet';
 
 type ParserMode = 'jsdoc'|'typescript'|'closure'; // TODO
 
@@ -44,7 +46,8 @@ export class Parser {
             new StringValueParslet(),
             new VariadicParslet(),
             new FunctionParslet(),
-            new RecordParslet()
+            new RecordParslet(),
+            new ModuleParslet()
         ];
         this.prefixParslets.sort((a, b) => b.getPrecedence() - a.getPrecedence())
 
@@ -52,7 +55,8 @@ export class Parser {
             new GenericParslet(),
             new UnenclosedUnionParslet(),
             new OptionalParslet(),
-            new PostfixNullableParslet()
+            new PostfixNullableParslet(),
+            new PropertyPathParslet()
         ]
         this.infixParslets.sort((a, b) => b.getPrecedence() - a.getPrecedence());
     }

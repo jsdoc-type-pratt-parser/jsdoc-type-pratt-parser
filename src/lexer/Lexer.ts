@@ -82,30 +82,10 @@ const identifierRule: Rule = text => {
     if (value == null) {
         return null;
     }
-    let result = value;
-    text = text.slice(value.length);
-    while (text[0] === '.') {
-        text = text.slice(1);
-        value = getIdentifier(text);
-        if (value === null) {
-            value = getQuoted(text);
-        }
-        if (value === null) {
-            value = getNumber(text);
-        }
-        if (text[0] === '<') {
-            break;
-        }
-        if (value === null) {
-            throw new Error('Unexpected \'.\'. No valid property found.');
-        }
-        result += '.' + value;
-        text = text.slice(value.length);
-    }
 
     return {
         type: 'Identifier',
-        text: result
+        text: value
     };
 };
 
@@ -123,26 +103,6 @@ function makeKeyWordRule(type: TokenType): Rule {
             text: type
         };
     }
-}
-
-const moduleRegex = /[a-zA-Z_\-0-9~/@:]/;
-const moduleRule: Rule = text => {
-    if (!text.startsWith('module:')) {
-        return null;
-    }
-    let position = 7;
-    let char;
-    do {
-        char = text[position];
-        if (!moduleRegex.test(char)) {
-            break;
-        }
-        position++;
-    } while (position < text.length);
-    return {
-        type: 'Module',
-        text: text.slice(0, position)
-    };
 }
 
 const stringValueRule: Rule = text => {
@@ -196,12 +156,16 @@ const rules = [
     makePunctuationRule(':'),
     makePunctuationRule('...'),
     makePunctuationRule('.'),
+    makePunctuationRule('#'),
+    makePunctuationRule('~'),
+    makePunctuationRule('/'),
+    makePunctuationRule('@'),
     makeKeyWordRule('undefined'),
     makeKeyWordRule('null'),
     makeKeyWordRule('function'),
     makeKeyWordRule('this'),
     makeKeyWordRule('new'),
-    moduleRule,
+    makeKeyWordRule('module'),
     identifierRule,
     stringValueRule,
     numberRule

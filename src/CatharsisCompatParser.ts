@@ -1,17 +1,5 @@
 import { Parser } from './Parser';
-
-const TypeMap: { [key: string]: string } = {
-    'ALL': 'AllLiteral',
-    'FIELD': 'FieldType',
-    'FUNCTION': 'FunctionType',
-    'NAME': 'NameExpression',
-    'NULL': 'NullLiteral',
-    'RECORD': 'RecordType',
-    'GENERIC': 'TypeApplication',
-    'UNION': 'TypeUnion',
-    'UNDEFINED': 'UndefinedLiteral',
-    'UNKNOWN': 'UnknownLiteral'
-};
+import { ParseResultType } from './ParseResult';
 
 const reservedWords = [
     'null',
@@ -78,30 +66,77 @@ export class CatharsisCompatParser {
     }
 
     static transformResult(object: any) {
-        if (object !== undefined) {
-            if (Array.isArray(object)) {
-                for (const item of object) {
-                    CatharsisCompatParser.transformResult(item);
-                }
-            } else {
-                if (object.type === 'NAME') {
-                    if (reservedWords.includes(object.name)) {
-                        object.reservedWord = true;
-                    }
-                }
-                object.type = TypeMap[object.type];
+        if (object === undefined) {
+            return;
+        }
+
+        if (Array.isArray(object)) {
+            for (const item of object) {
+                CatharsisCompatParser.transformResult(item);
+            }
+            return object;
+        }
+
+        switch (object.type as ParseResultType) {
+            case 'ALL':
+                object.type = 'AllLiteral';
+                break;
+            case 'NULL':
+                object.type = 'NullLiteral';
+                break;
+            case 'STRING_VALUE':
+                object.type = 'NameExpression';
+                CatharsisCompatParser.renameProperty(object, 'value', 'name');
+                object.name = '\'' + object.name + '\'';
+                break;
+            case 'UNDEFINED':
+                object.type = 'UndefinedLiteral';
+                break;
+            case 'UNKNOWN':
+                object.type = 'UnknownLiteral';
+                break;
+            case 'FUNCTION':
+                object.type = 'FunctionType';
                 CatharsisCompatParser.renameProperty(object, 'parameters', 'params', true);
                 CatharsisCompatParser.renameProperty(object, 'returnType', 'result', true);
                 CatharsisCompatParser.renameProperty(object, 'thisType', 'this', true);
                 CatharsisCompatParser.renameProperty(object, 'newType', 'new', true);
+                break;
+            case 'GENERIC':
+                object.type = 'TypeApplication';
                 CatharsisCompatParser.renameProperty(object, 'objects', 'applications', true);
                 CatharsisCompatParser.renameProperty(object, 'subject', 'expression', true);
+                break;
+            case 'MODULE':
+                object.type = 'NameExpression';
+                CatharsisCompatParser.renameProperty(object, 'path', 'name');
+                break;
+            case 'NAME':
+                object.type = 'NameExpression';
+                if (reservedWords.includes(object.name)) {
+                    object.reservedWord = true;
+                }
+                break;
+            case 'RECORD':
+                object.type = 'RecordType';
                 CatharsisCompatParser.transformResult(object.fields);
+                break;
+            case 'UNION':
+                object.type = 'TypeUnion';
                 CatharsisCompatParser.transformResult(object.elements);
+                break;
+            case 'FIELD':
+                object.type = 'FieldType';
                 CatharsisCompatParser.transformResult(object.key);
                 CatharsisCompatParser.transformResult(object.value);
-            }
+                break;
+            case 'PROPERTY_PATH':
+                object.type = 'NameExpression';
+                object.name = object.path.join('.');
+                delete object.path;
+                break;
         }
+
         return object;
     }
 

@@ -6,7 +6,7 @@ import { Precedence } from './Precedence';
 
 export class NameParslet implements PrefixParslet {
     accepts(type: TokenType): boolean {
-        return type === 'Identifier' || type === 'Module';
+        return type === 'Identifier';
     }
 
     getPrecedence(): number {
@@ -15,9 +15,7 @@ export class NameParslet implements PrefixParslet {
 
     parse(parser: Parser): ParseResult {
         const token = parser.getToken();
-        if (!parser.consume('Identifier')) {
-            parser.consume('Module');
-        }
+        parser.consume('Identifier');
         return {
             type: 'NAME',
             name: token.text

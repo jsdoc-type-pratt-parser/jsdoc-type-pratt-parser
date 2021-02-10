@@ -15,14 +15,18 @@ export type TokenType =
     '=' |
     ':' |
     '.' |
+    '@' |
+    '#' |
+    '~' |
+    '/' |
     '...' |
     'null' |
     'undefined' |
     'function' |
     'this' |
     'new' |
+    'module' |
     'Start' |
-    'Module' |
     'Identifier' |
     'StringValue' |
     'Number' |
