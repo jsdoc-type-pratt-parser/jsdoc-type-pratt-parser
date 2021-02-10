@@ -1,6 +1,8 @@
 export type TokenType =
     '(' |
     ')' |
+    '[' |
+    ']' |
     '{' |
     '}' |
     '|' |
@@ -23,7 +25,7 @@ export type TokenType =
     'Module' |
     'Identifier' |
     'StringValue' |
-    'Unknown';
+    'EOF';
 
 export type Token = {
     type: TokenType;

@@ -4,8 +4,11 @@ import { Parser } from '../Parser';
 import { ParseResult } from '../ParseResult';
 
 export class SpecialTypesParslet implements PrefixParslet {
-    accepts(type: TokenType): boolean {
-        return type === 'null' || type === 'undefined' || type === '*' || type === 'Unknown';
+    accepts(type: TokenType, next: TokenType): boolean {
+        if (type === '?') {
+            return next === 'EOF' || next === '|' || next === ',' || next === ')' || next === '>';
+        }
+        return type === 'null' || type === 'undefined' || type === '*';
     }
 
     parse(parser: Parser, token: Token): ParseResult {
@@ -25,8 +28,8 @@ export class SpecialTypesParslet implements PrefixParslet {
                 return {
                     type: 'ALL'
                 }
-            case 'Unknown':
-                parser.consume('Unknown');
+            case '?':
+                parser.consume('?');
                 return {
                     type: 'UNKNOWN'
                 }

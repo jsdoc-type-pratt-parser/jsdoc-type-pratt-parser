@@ -10,7 +10,11 @@ export class VariadicParslet implements PrefixParslet {
 
     parse(parser: Parser, token: Token): ParseResult {
         parser.consume('...');
+        let shouldClose = parser.consume('[');
         const value = parser.parseType();
+        if (shouldClose && !parser.consume(']')) {
+            throw new Error('Unterminated variadic type. Missing \']\'');
+        }
         value.repeatable = true;
         return value;
     }

@@ -3,7 +3,7 @@ import { Parser } from '../Parser';
 import { ParseResult } from '../ParseResult';
 
 export interface Parslet {
-    accepts(type: TokenType): boolean;
+    accepts(type: TokenType, next: TokenType): boolean;
 }
 
 export interface PrefixParslet extends Parslet {

@@ -156,22 +156,24 @@ const stringValueRule: Rule = text => {
     };
 };
 
-const unknownRule: Rule = text => {
-    if (text[0] === '?' && (text[1] === undefined || text[1] === '|' || text[1] === ',')) {
-        return {
-            type: 'Unknown',
-            text: '?'
-        }
+const eofRule: Rule = text => {
+    if (text.length > 0) {
+        return null;
     }
-    return null;
+    return {
+        type: 'EOF',
+        text: ''
+    }
 }
 
 const rules = [
-    unknownRule,
+    eofRule,
     makePunctuationRule('('),
     makePunctuationRule(')'),
     makePunctuationRule('{'),
     makePunctuationRule('}'),
+    makePunctuationRule('['),
+    makePunctuationRule(']'),
     makePunctuationRule('|'),
     makePunctuationRule('<'),
     makePunctuationRule('>'),

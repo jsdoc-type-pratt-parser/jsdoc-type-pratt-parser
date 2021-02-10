@@ -31,6 +31,7 @@ export class Parser {
         type: 'Start',
         text: ''
     }
+    private nextToken: Token|undefined;
 
     constructor(text: string, config?: ParserOptions) {
         this.mode = config?.mode ?? 'jsdoc';
@@ -38,14 +39,14 @@ export class Parser {
 
         this.prefixParslets = [
             new NameParslet(),
+            new SpecialTypesParslet(),
             new StringValueParslet(),
             new VariadicParslet(),
             new NullableParslet(),
             new NonNullableParslet(),
             new FunctionParslet(),
             new UnionParslet(),
-            new RecordParslet(),
-            new SpecialTypesParslet()
+            new RecordParslet()
         ];
 
         this.infixParslets = [
@@ -60,7 +61,7 @@ export class Parser {
     public parseType(seperatorToken?: TokenType): ParseResult {
         this.consume('Start');
 
-        const pParslet = this.prefixParslets.find(p => p.accepts(this.token.type));
+        const pParslet = this.prefixParslets.find(p => p.accepts(this.token.type, this.peek().type));
 
         if (!pParslet) {
             throw new Error('No parslet found for token: ' + this.token.text);
@@ -72,10 +73,10 @@ export class Parser {
             return result;
         }
 
-        let iParslet = this.infixParslets.find(p => p.accepts(this.token.type));
+        let iParslet = this.infixParslets.find(p => p.accepts(this.token.type, this.peek().type));
         while (iParslet) {
             result = iParslet.parse(this, result, this.token);
-            iParslet = this.infixParslets.find(p => p.accepts(this.token.type));
+            iParslet = this.infixParslets.find(p => p.accepts(this.token.type, this.peek().type));
         }
 
         return result;
@@ -93,7 +94,23 @@ export class Parser {
         if (this.token.type !== type) {
             return false;
         }
-        this.token = this.lexer.nextToken();
+        if (this.nextToken !== undefined) {
+            this.token = this.nextToken;
+            this.nextToken = undefined;
+        } else {
+            this.token = this.lexer.nextToken();
+        }
         return true;
+    }
+
+    public getTokenText(): string {
+        return this.token.text;
+    }
+
+    public peek(): Token {
+        if (this.nextToken === undefined) {
+            this.nextToken = this.lexer.nextToken();
+        }
+        return this.nextToken;
     }
 }
