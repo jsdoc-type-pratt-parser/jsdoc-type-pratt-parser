@@ -13,7 +13,7 @@ export class GenericParslet implements Parslet {
         return Precedence.POSTFIX;
     }
 
-    parse(parser: Parser, left: ParseResult, token: Token): ParseResult {
+    parse(parser: Parser, left: ParseResult): ParseResult {
         parser.consume('.');
         parser.consume('<');
 

@@ -13,11 +13,11 @@ export class StringValueParslet implements PrefixParslet {
         return Precedence.PREFIX;
     }
 
-    parse(parser: Parser, token: Token): ParseResult {
+    parse(parser: Parser): ParseResult {
         parser.consume('StringValue');
         return {
             type: 'STRING_VALUE',
-            value: token.text.slice(1, -1)
+            value: parser.getToken().text.slice(1, -1)
         };
     }
 

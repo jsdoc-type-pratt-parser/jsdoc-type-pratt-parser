@@ -13,7 +13,7 @@ export class NullableParslet implements PrefixParslet {
         return Precedence.PREFIX;
     }
 
-    parse(parser: Parser, token: Token): ParseResult {
+    parse(parser: Parser): ParseResult {
         let nullable = parser.consume('?');
         if (!nullable) {
             parser.consume('!');
@@ -36,7 +36,7 @@ export class PostfixNullableParslet implements InfixParslet {
         return Precedence.POSTFIX;
     }
 
-    parse(parser: Parser, left: ParseResult, token: Token): ParseResult {
+    parse(parser: Parser, left: ParseResult): ParseResult {
         let nullable = parser.consume('?');
         if (!nullable) {
             parser.consume('!');

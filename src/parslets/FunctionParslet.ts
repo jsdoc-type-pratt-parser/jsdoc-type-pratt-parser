@@ -13,7 +13,7 @@ export class FunctionParslet implements PrefixParslet {
         return Precedence.PREFIX;
     }
 
-    parse(parser: Parser, token: Token): ParseResult {
+    parse(parser: Parser): ParseResult {
         parser.consume('function');
 
         if (!parser.consume('(')) {

@@ -73,15 +73,15 @@ export class Parser {
         const pParslet = this.getPrefixParslet();
 
         if (!pParslet) {
-            throw new Error('No parslet found for token: ' + this.token.text);
+            throw new Error('No parslet found for token: ' + this.getToken().text);
         }
 
-        let result = pParslet.parse(this, this.token);
+        let result = pParslet.parse(this);
 
         let iParslet = this.getInfixParslet(precedence);
 
         while (iParslet !== undefined) {
-            result = iParslet.parse(this, result, this.token);
+            result = iParslet.parse(this, result);
             iParslet = this.getInfixParslet(precedence);
         }
 
@@ -101,8 +101,8 @@ export class Parser {
         return true;
     }
 
-    public getTokenText(): string {
-        return this.token.text;
+    public getToken(): Token {
+        return this.token;
     }
 
     public peek(): Token {

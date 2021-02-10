@@ -8,9 +8,9 @@ export interface Parslet {
 }
 
 export interface PrefixParslet extends Parslet {
-    parse(parser: Parser, token: Token): ParseResult;
+    parse(parser: Parser): ParseResult;
 }
 
 export interface InfixParslet extends Parslet {
-    parse(parser: Parser, left: ParseResult, token: Token): ParseResult;
+    parse(parser: Parser, left: ParseResult): ParseResult;
 }

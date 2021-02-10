@@ -166,6 +166,17 @@ const eofRule: Rule = text => {
     }
 }
 
+const numberRule: Rule = text => {
+    const value = getNumber(text);
+    if (value === null) {
+        return null;
+    }
+    return {
+        type: 'Number',
+        text: value
+    }
+}
+
 const rules = [
     eofRule,
     makePunctuationRule('('),
@@ -192,7 +203,8 @@ const rules = [
     makeKeyWordRule('new'),
     moduleRule,
     identifierRule,
-    stringValueRule
+    stringValueRule,
+    numberRule
 ];
 
 export class Lexer {

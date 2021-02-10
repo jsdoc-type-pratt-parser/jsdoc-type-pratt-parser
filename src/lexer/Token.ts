@@ -25,6 +25,7 @@ export type TokenType =
     'Module' |
     'Identifier' |
     'StringValue' |
+    'Number' |
     'EOF';
 
 export type Token = {

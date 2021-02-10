@@ -1,6 +1,6 @@
 import { Parser } from './Parser';
 
-const TypeMap: {[key:string]: string} = {
+const TypeMap: { [key: string]: string } = {
     'ALL': 'AllLiteral',
     'FIELD': 'FieldType',
     'FUNCTION': 'FunctionType',
@@ -11,7 +11,46 @@ const TypeMap: {[key:string]: string} = {
     'UNION': 'TypeUnion',
     'UNDEFINED': 'UndefinedLiteral',
     'UNKNOWN': 'UnknownLiteral'
-}
+};
+
+const reservedWords = [
+    'null',
+    'true',
+    'false',
+    'break',
+    'case',
+    'catch',
+    'class',
+    'const',
+    'continue',
+    'debugger',
+    'default',
+    'delete',
+    'do',
+    'else',
+    'export',
+    'extends',
+    'finally',
+    'for',
+    'function',
+    'if',
+    'import',
+    'in',
+    'instanceof',
+    'new',
+    'return',
+    'super',
+    'switch',
+    'this',
+    'throw',
+    'try',
+    'typeof',
+    'var',
+    'void',
+    'while',
+    'with',
+    'yield'
+];
 
 export class CatharsisCompatParser {
     private parser: Parser;
@@ -45,6 +84,11 @@ export class CatharsisCompatParser {
                     CatharsisCompatParser.transformResult(item);
                 }
             } else {
+                if (object.type === 'NAME') {
+                    if (reservedWords.includes(object.name)) {
+                        object.reservedWord = true;
+                    }
+                }
                 object.type = TypeMap[object.type];
                 CatharsisCompatParser.renameProperty(object, 'parameters', 'params', true);
                 CatharsisCompatParser.renameProperty(object, 'returnType', 'result', true);

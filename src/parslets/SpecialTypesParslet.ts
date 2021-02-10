@@ -16,8 +16,8 @@ export class SpecialTypesParslet implements PrefixParslet {
         return Precedence.SPECIAL_TYPES;
     }
 
-    parse(parser: Parser, token: Token): ParseResult {
-        switch (token.type) {
+    parse(parser: Parser): ParseResult {
+        switch (parser.getToken().type) {
             case 'null':
                 parser.consume('null');
                 return {
@@ -39,7 +39,7 @@ export class SpecialTypesParslet implements PrefixParslet {
                     type: 'UNKNOWN'
                 }
             default:
-                throw new Error('Unacceptable token: ' + token.text);
+                throw new Error('Unacceptable token: ' + parser.getToken().text);
         }
     }
 

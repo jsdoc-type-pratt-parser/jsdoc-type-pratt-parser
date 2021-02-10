@@ -13,7 +13,7 @@ export class OptionalParslet implements InfixParslet {
         return Precedence.POSTFIX;
     }
 
-    parse(parser: Parser, left: ParseResult, token: Token): ParseResult {
+    parse(parser: Parser, left: ParseResult): ParseResult {
         parser.consume('=');
         left.optional = true;
         return left;

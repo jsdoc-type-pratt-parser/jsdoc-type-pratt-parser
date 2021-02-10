@@ -1,7 +1,7 @@
 import { PrefixParslet } from './Parslet';
 import { Token, TokenType } from '../lexer/Token';
 import { Parser } from '../Parser';
-import { ParseResult, RecordResult } from '../ParseResult';
+import { NameResult, ParseResult, RecordResult } from '../ParseResult';
 import { Precedence } from './Precedence';
 
 export class RecordParslet implements PrefixParslet {
@@ -13,7 +13,7 @@ export class RecordParslet implements PrefixParslet {
         return Precedence.PREFIX;
     }
 
-    parse(parser: Parser, token: Token): ParseResult {
+    parse(parser: Parser): ParseResult {
         parser.consume('{');
         const result: RecordResult = {
             type: 'RECORD',
@@ -22,11 +22,22 @@ export class RecordParslet implements PrefixParslet {
 
         if (!parser.consume('}')) {
             do {
-                const key = parser.parseType();
-                if (key.type !== 'NAME') {
-                    throw new Error('key of a record field must be a name expression');
+                let key: NameResult;
+                const token = parser.getToken();
+                if (token.type === 'Number') {
+                    key = {
+                        type: 'NAME',
+                        name: token.text
+                    }
+                    parser.consume('Number');
+                } else {
+                    const result = parser.parseType();
+                    if (result.type !== 'NAME' ) {
+                        throw new Error('key of a record field must be a name or number expression');
+                    }
+                    key = result;
                 }
-                // TODO: what about dots and special chars?
+
                 let value;
                 if (parser.consume(':')) {
                     value = parser.parseType();

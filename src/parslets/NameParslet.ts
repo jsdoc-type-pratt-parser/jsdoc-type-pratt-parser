@@ -13,13 +13,13 @@ export class NameParslet implements PrefixParslet {
         return Precedence.PREFIX;
     }
 
-    parse(parser: Parser, token: Token): ParseResult {
+    parse(parser: Parser): ParseResult {
         if (!parser.consume('Identifier')) {
             parser.consume('Module');
         }
         return {
             type: 'NAME',
-            name: token.text
+            name: parser.getToken().text
         };
     }
 }

@@ -13,7 +13,7 @@ export class VariadicParslet implements PrefixParslet {
         return Precedence.PREFIX;
     }
 
-    parse(parser: Parser, token: Token): ParseResult {
+    parse(parser: Parser): ParseResult {
         parser.consume('...');
         let shouldClose = parser.consume('[');
         const value = parser.parseType(Precedence.PREFIX);

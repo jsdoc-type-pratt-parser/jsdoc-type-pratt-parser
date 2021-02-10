@@ -13,7 +13,7 @@ export class EnclosedUnionParslet implements PrefixParslet {
         return Precedence.PREFIX;
     }
 
-    parse(parser: Parser, token: Token): ParseResult {
+    parse(parser: Parser): ParseResult {
         parser.consume('(');
 
         const elements = [];
@@ -40,7 +40,7 @@ export class UnenclosedUnionParslet implements InfixParslet {
         return Precedence.UNENCLOSED_UNION;
     }
 
-    parse(parser: Parser, left: ParseResult, token: Token): ParseResult {
+    parse(parser: Parser, left: ParseResult): ParseResult {
         parser.consume('|')
 
         const elements = [];
