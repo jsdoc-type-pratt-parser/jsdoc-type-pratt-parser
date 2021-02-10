@@ -7,9 +7,10 @@
     "test": "test"
   },
   "scripts": {
-    "test": "npm run lint && npm run test:spec",
+    "test": "npm run typecheck && npm run lint && npm run test:spec",
     "test:spec": "mocha -r ts-node/register test/**/*.spec.ts",
     "lint": "ts-standard",
+    "typecheck": "tsc --noEmit",
     "build": "tsc --build src"
   },
   "author": "Simon Seyock",
