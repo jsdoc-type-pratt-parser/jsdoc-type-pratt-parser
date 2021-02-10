@@ -4,15 +4,14 @@ import { NameParslet } from './parslets/NameParslet';
 import { InfixParslet, PrefixParslet } from './parslets/Parslet';
 import { GenericParslet } from './parslets/GenericParslet';
 import { ParseResult } from './ParseResult';
-import { UnenclosedUnionParslet, UnionParslet } from './parslets/UnionParslet';
+import { UnenclosedUnionParslet, EnclosedUnionParslet } from './parslets/UnionParslets';
 import { StringValueParslet } from './parslets/StringValueParslet';
 import { VariadicParslet } from './parslets/VariadicParslet';
 import { SpecialTypesParslet } from './parslets/SpecialTypesParslet';
 import { OptionalParslet } from './parslets/OptionalParslet';
 import { FunctionParslet } from './parslets/FunctionParslet';
 import { RecordParslet } from './parslets/RecordParslet';
-import { NullableParslet, PostfixNullableParslet } from './parslets/NullableParslet';
-import { NonNullableParslet, PostfixNonNullableParslet } from './parslets/NonNullableParslet';
+import { NullableParslet, PostfixNullableParslet } from './parslets/NullableParslets';
 
 type ParserMode = 'jsdoc'|'typescript'|'closure'; // TODO
 
@@ -38,30 +37,40 @@ export class Parser {
         this.lexer = new Lexer(text);
 
         this.prefixParslets = [
+            new EnclosedUnionParslet(),
             new NameParslet(),
             new SpecialTypesParslet(),
+            new NullableParslet(),
             new StringValueParslet(),
             new VariadicParslet(),
-            new NullableParslet(),
-            new NonNullableParslet(),
             new FunctionParslet(),
-            new UnionParslet(),
             new RecordParslet()
         ];
+        this.prefixParslets.sort((a, b) => b.getPrecedence() - a.getPrecedence())
 
         this.infixParslets = [
             new GenericParslet(),
             new UnenclosedUnionParslet(),
             new OptionalParslet(),
-            new PostfixNullableParslet(),
-            new PostfixNonNullableParslet()
+            new PostfixNullableParslet()
         ]
+        this.infixParslets.sort((a, b) => b.getPrecedence() - a.getPrecedence());
     }
 
-    public parseType(seperatorToken?: TokenType): ParseResult {
+    getPrefixParslet() {
+        return this.prefixParslets.find(p => p.accepts(this.token.type, this.peek().type));
+    }
+
+    getInfixParslet(precedence: number) {
+        return this.infixParslets.find(p => {
+            return p.getPrecedence() > precedence && p.accepts(this.token.type, this.peek().type)
+        });
+    }
+
+    public parseType(precedence: number = 0): ParseResult {
         this.consume('Start');
 
-        const pParslet = this.prefixParslets.find(p => p.accepts(this.token.type, this.peek().type));
+        const pParslet = this.getPrefixParslet();
 
         if (!pParslet) {
             throw new Error('No parslet found for token: ' + this.token.text);
@@ -69,25 +78,14 @@ export class Parser {
 
         let result = pParslet.parse(this, this.token);
 
-        if (this.token.type === seperatorToken) {
-            return result;
-        }
+        let iParslet = this.getInfixParslet(precedence);
 
-        let iParslet = this.infixParslets.find(p => p.accepts(this.token.type, this.peek().type));
-        while (iParslet) {
+        while (iParslet !== undefined) {
             result = iParslet.parse(this, result, this.token);
-            iParslet = this.infixParslets.find(p => p.accepts(this.token.type, this.peek().type));
+            iParslet = this.getInfixParslet(precedence);
         }
 
         return result;
-    }
-
-    public parseTypeList(seperatorToken: TokenType): ParseResult[] {
-        const objects = [];
-        do {
-            objects.push(this.parseType(seperatorToken));
-        } while (this.consume(seperatorToken));
-        return objects;
     }
 
     public consume(type: TokenType): boolean {

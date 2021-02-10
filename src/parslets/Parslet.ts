@@ -4,6 +4,7 @@ import { ParseResult } from '../ParseResult';
 
 export interface Parslet {
     accepts(type: TokenType, next: TokenType): boolean;
+    getPrecedence(): number;
 }
 
 export interface PrefixParslet extends Parslet {

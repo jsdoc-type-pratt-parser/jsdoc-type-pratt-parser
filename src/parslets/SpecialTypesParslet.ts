@@ -2,6 +2,7 @@ import { PrefixParslet } from './Parslet';
 import { Token, TokenType } from '../lexer/Token';
 import { Parser } from '../Parser';
 import { ParseResult } from '../ParseResult';
+import { Precedence } from './Precedence';
 
 export class SpecialTypesParslet implements PrefixParslet {
     accepts(type: TokenType, next: TokenType): boolean {
@@ -9,6 +10,10 @@ export class SpecialTypesParslet implements PrefixParslet {
             return next === 'EOF' || next === '|' || next === ',' || next === ')' || next === '>';
         }
         return type === 'null' || type === 'undefined' || type === '*';
+    }
+
+    getPrecedence(): number {
+        return Precedence.SPECIAL_TYPES;
     }
 
     parse(parser: Parser, token: Token): ParseResult {

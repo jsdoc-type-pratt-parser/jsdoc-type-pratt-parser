@@ -2,14 +2,26 @@ import { Parser } from '../Parser';
 import { ParseResult } from '../ParseResult';
 import { Token, TokenType } from '../lexer/Token';
 import { Parslet } from './Parslet';
+import { Precedence } from './Precedence';
 
 export class GenericParslet implements Parslet {
+    accepts(type: TokenType, next: TokenType): boolean {
+        return type === '<' || (type === '.' && next === '<');
+    }
+
+    getPrecedence(): number {
+        return Precedence.POSTFIX;
+    }
+
     parse(parser: Parser, left: ParseResult, token: Token): ParseResult {
         parser.consume('.');
-        if(!parser.consume('<')) {
-            throw new Error('After \'.\' must follow a \'<\'');
-        }
-        const objects = parser.parseTypeList(',');
+        parser.consume('<');
+
+        const objects = [];
+        do {
+            objects.push(parser.parseType());
+        } while (parser.consume(','));
+
         if (!parser.consume('>')) {
             throw new Error('Unterminated generic parameter list');
         }
@@ -19,9 +31,5 @@ export class GenericParslet implements Parslet {
             subject: left,
             objects
         }
-    }
-
-    accepts(type: TokenType): boolean {
-        return type === '<' || type === '.';
     }
 }

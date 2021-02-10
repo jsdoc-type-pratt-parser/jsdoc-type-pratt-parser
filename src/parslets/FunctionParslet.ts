@@ -2,10 +2,15 @@ import { PrefixParslet } from './Parslet';
 import { Token, TokenType } from '../lexer/Token';
 import { Parser } from '../Parser';
 import { FunctionResult, ParseResult } from '../ParseResult';
+import { Precedence } from './Precedence';
 
 export class FunctionParslet implements PrefixParslet {
     accepts(type: TokenType): boolean {
         return type === 'function';
+    }
+
+    getPrecedence(): number {
+        return Precedence.PREFIX;
     }
 
     parse(parser: Parser, token: Token): ParseResult {
@@ -39,7 +44,11 @@ export class FunctionParslet implements PrefixParslet {
             }
 
             if (continueList) {
-                result.parameters = parser.parseTypeList(',');
+                const parameters = [];
+                do {
+                    parameters.push(parser.parseType());
+                } while (parser.consume(','));
+                result.parameters = parameters;
             }
 
             if (!parser.consume(')')) {
