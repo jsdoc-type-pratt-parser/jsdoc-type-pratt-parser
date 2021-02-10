@@ -5,7 +5,7 @@ import { ParseResult } from '../ParseResult';
 
 export class SpecialTypesParslet implements PrefixParslet {
     accepts(type: TokenType): boolean {
-        return type === 'null' || type === 'undefined' || type === '*' || type === '?';
+        return type === 'null' || type === 'undefined' || type === '*' || type === 'Unknown';
     }
 
     parse(parser: Parser, token: Token): ParseResult {
@@ -25,8 +25,8 @@ export class SpecialTypesParslet implements PrefixParslet {
                 return {
                     type: 'ALL'
                 }
-            case '?':
-                parser.consume('?');
+            case 'Unknown':
+                parser.consume('Unknown');
                 return {
                     type: 'UNKNOWN'
                 }

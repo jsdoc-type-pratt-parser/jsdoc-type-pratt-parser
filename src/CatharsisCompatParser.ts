@@ -40,16 +40,23 @@ export class CatharsisCompatParser {
 
     static transformResult(object: any) {
         if (object !== undefined) {
-            object.type = TypeMap[object.type];
-            CatharsisCompatParser.renameProperty(object, 'parameters', 'params', true);
-            CatharsisCompatParser.renameProperty(object, 'returnType', 'result', true);
-            CatharsisCompatParser.renameProperty(object, 'thisType', 'this', true);
-            CatharsisCompatParser.renameProperty(object, 'newType', 'new', true);
-            CatharsisCompatParser.renameProperty(object, 'objects', 'applications', true);
-            CatharsisCompatParser.renameProperty(object, 'subject', 'expression', true);
-            CatharsisCompatParser.transformResult(object.fields);
-            CatharsisCompatParser.transformResult(object.key);
-            CatharsisCompatParser.transformResult(object.value);
+            if (Array.isArray(object)) {
+                for (const item of object) {
+                    CatharsisCompatParser.transformResult(item);
+                }
+            } else {
+                object.type = TypeMap[object.type];
+                CatharsisCompatParser.renameProperty(object, 'parameters', 'params', true);
+                CatharsisCompatParser.renameProperty(object, 'returnType', 'result', true);
+                CatharsisCompatParser.renameProperty(object, 'thisType', 'this', true);
+                CatharsisCompatParser.renameProperty(object, 'newType', 'new', true);
+                CatharsisCompatParser.renameProperty(object, 'objects', 'applications', true);
+                CatharsisCompatParser.renameProperty(object, 'subject', 'expression', true);
+                CatharsisCompatParser.transformResult(object.fields);
+                CatharsisCompatParser.transformResult(object.elements);
+                CatharsisCompatParser.transformResult(object.key);
+                CatharsisCompatParser.transformResult(object.value);
+            }
         }
         return object;
     }

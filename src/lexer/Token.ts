@@ -22,7 +22,8 @@ export type TokenType =
     'Start' |
     'Module' |
     'Identifier' |
-    'StringValue';
+    'StringValue' |
+    'Unknown';
 
 export type Token = {
     type: TokenType;

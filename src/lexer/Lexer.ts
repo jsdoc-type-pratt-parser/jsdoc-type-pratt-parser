@@ -125,7 +125,7 @@ function makeKeyWordRule(type: TokenType): Rule {
     }
 }
 
-const moduleRegex = /[a-zA-Z_\-0-9/@:]/;
+const moduleRegex = /[a-zA-Z_\-0-9~/@:]/;
 const moduleRule: Rule = text => {
     if (!text.startsWith('module:')) {
         return null;
@@ -156,7 +156,18 @@ const stringValueRule: Rule = text => {
     };
 };
 
+const unknownRule: Rule = text => {
+    if (text[0] === '?' && (text[1] === undefined || text[1] === '|' || text[1] === ',')) {
+        return {
+            type: 'Unknown',
+            text: '?'
+        }
+    }
+    return null;
+}
+
 const rules = [
+    unknownRule,
     makePunctuationRule('('),
     makePunctuationRule(')'),
     makePunctuationRule('{'),

@@ -65,7 +65,7 @@ describe('lexer', () => {
                 text: '|'
             },
             {
-                type: 'Identifier',
+                type: 'undefined',
                 text: 'undefined'
             }
         ];
