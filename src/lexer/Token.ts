@@ -30,9 +30,9 @@ export type TokenType =
     'Identifier' |
     'StringValue' |
     'Number' |
-    'EOF';
+    'EOF'
 
-export type Token = {
-    type: TokenType;
-    text: string;
-};
+export interface Token {
+  type: TokenType
+  text: string
+}
