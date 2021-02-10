@@ -115,8 +115,7 @@ function makeKeyWordRule(type: TokenType): Rule {
             return null
         }
         const prepends = text[type.length];
-        // TODO: when can ':' be part of identifier ('module:') and when not? Maybe not task of the lexer?
-        if (prepends !== undefined && identifierContinueRegex.test(prepends) || prepends === ':') {
+        if (prepends !== undefined && identifierContinueRegex.test(prepends)) {
             return null;
         }
         return {

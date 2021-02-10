@@ -1,0 +1,3 @@
+[submodule "submodules/catharsis"]
+	path = submodules/catharsis
+	url = git@github.com:hegemonic/catharsis.git
