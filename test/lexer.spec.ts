@@ -10,11 +10,13 @@ describe('lexer', () => {
       text: 'sometype'
     }
 
-    const lexer = new Lexer(typeString)
-    const token = lexer.nextToken()
+    const lexer = new Lexer()
+    lexer.lex(typeString)
+    const token = lexer.token()
+    lexer.advance()
 
     expect(token).to.deep.equal(expected)
-    expect(lexer.isFinished()).to.equal(true)
+    expect(lexer.token().type).to.equal('EOF')
   })
 
   it('should parse a complex expression', () => {
@@ -70,12 +72,14 @@ describe('lexer', () => {
       }
     ]
 
-    const lexer = new Lexer(typeString)
+    const lexer = new Lexer()
+    lexer.lex(typeString)
 
-    while (!lexer.isFinished()) {
-      const nextToken = lexer.nextToken()
+    while (lexer.token().type !== 'EOF') {
+      const nextToken = lexer.token()
       const nextExpected = expected.shift()
       expect(nextToken).to.deep.equal(nextExpected)
+      lexer.advance()
     }
 
     expect(expected.length).to.equal(0)

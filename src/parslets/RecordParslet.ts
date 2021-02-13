@@ -1,6 +1,6 @@
 import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
-import { Parser } from '../Parser'
+import { ParserEngine } from '../ParserEngine'
 import { NameResult, ParseResult, RecordResult } from '../ParseResult'
 import { Precedence } from './Precedence'
 
@@ -13,7 +13,7 @@ export class RecordParslet implements PrefixParslet {
     return Precedence.PREFIX
   }
 
-  parse (parser: Parser): ParseResult {
+  parse (parser: ParserEngine): ParseResult {
     parser.consume('{')
     const result: RecordResult = {
       type: 'RECORD',

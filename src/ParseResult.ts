@@ -23,6 +23,7 @@ export interface ModifiableResult {
 export type NameResult = ModifiableResult & {
   type: 'NAME'
   name: string
+  reservedWord?: boolean
 }
 
 export type UnionResult = ModifiableResult & {

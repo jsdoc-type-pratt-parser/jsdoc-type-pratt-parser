@@ -1,5 +1,5 @@
 import { TokenType } from '../lexer/Token'
-import { Parser } from '../Parser'
+import { ParserEngine } from '../ParserEngine'
 import { ParseResult } from '../ParseResult'
 
 export interface Parslet {
@@ -8,9 +8,9 @@ export interface Parslet {
 }
 
 export interface PrefixParslet extends Parslet {
-  parse: (parser: Parser) => ParseResult
+  parse: (parser: ParserEngine) => ParseResult
 }
 
 export interface InfixParslet extends Parslet {
-  parse: (parser: Parser, left: ParseResult) => ParseResult
+  parse: (parser: ParserEngine, left: ParseResult) => ParseResult
 }

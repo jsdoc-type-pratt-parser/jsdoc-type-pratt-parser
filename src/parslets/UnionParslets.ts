@@ -1,5 +1,5 @@
 import { InfixParslet, PrefixParslet } from './Parslet'
-import { Parser } from '../Parser'
+import { ParserEngine } from '../ParserEngine'
 import { ParseResult } from '../ParseResult'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from './Precedence'
@@ -13,7 +13,7 @@ export class EnclosedUnionParslet implements PrefixParslet {
     return Precedence.PREFIX
   }
 
-  parse (parser: Parser): ParseResult {
+  parse (parser: ParserEngine): ParseResult {
     parser.consume('(')
 
     const elements = []
@@ -40,7 +40,7 @@ export class UnenclosedUnionParslet implements InfixParslet {
     return Precedence.UNENCLOSED_UNION
   }
 
-  parse (parser: Parser, left: ParseResult): ParseResult {
+  parse (parser: ParserEngine, left: ParseResult): ParseResult {
     parser.consume('|')
 
     const elements = []

@@ -1,6 +1,6 @@
 import { InfixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
-import { Parser } from '../Parser'
+import { ParserEngine } from '../ParserEngine'
 import { ParseResult } from '../ParseResult'
 import { Precedence } from './Precedence'
 
@@ -13,7 +13,7 @@ export class OptionalParslet implements InfixParslet {
     return Precedence.POSTFIX
   }
 
-  parse (parser: Parser, left: ParseResult): ParseResult {
+  parse (parser: ParserEngine, left: ParseResult): ParseResult {
     parser.consume('=')
     left.optional = true
     return left

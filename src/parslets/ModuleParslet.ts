@@ -1,7 +1,7 @@
 import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from './Precedence'
-import { Parser } from '../Parser'
+import { ParserEngine } from '../ParserEngine'
 import { ParseResult } from '../ParseResult'
 
 export class ModuleParslet implements PrefixParslet {
@@ -13,7 +13,7 @@ export class ModuleParslet implements PrefixParslet {
     return Precedence.PREFIX
   }
 
-  parse (parser: Parser): ParseResult {
+  parse (parser: ParserEngine): ParseResult {
     parser.consume('module')
     if (!parser.consume(':')) {
       throw new Error('module needs to have a \':\' afterwards.')

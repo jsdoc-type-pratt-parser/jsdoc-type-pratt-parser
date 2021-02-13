@@ -1,6 +1,6 @@
 import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
-import { Parser } from '../Parser'
+import { ParserEngine } from '../ParserEngine'
 import { FunctionResult, ParseResult } from '../ParseResult'
 import { Precedence } from './Precedence'
 
@@ -13,7 +13,7 @@ export class FunctionParslet implements PrefixParslet {
     return Precedence.PREFIX
   }
 
-  parse (parser: Parser): ParseResult {
+  parse (parser: ParserEngine): ParseResult {
     parser.consume('function')
 
     if (!parser.consume('(')) {

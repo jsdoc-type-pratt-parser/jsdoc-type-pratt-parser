@@ -1,4 +1,4 @@
-import { Parser } from '../Parser'
+import { ParserEngine } from '../ParserEngine'
 import { ParseResult } from '../ParseResult'
 import { TokenType } from '../lexer/Token'
 import { Parslet } from './Parslet'
@@ -13,7 +13,7 @@ export class GenericParslet implements Parslet {
     return Precedence.POSTFIX
   }
 
-  parse (parser: Parser, left: ParseResult): ParseResult {
+  parse (parser: ParserEngine, left: ParseResult): ParseResult {
     parser.consume('.')
     parser.consume('<')
 

@@ -1,22 +1,20 @@
 import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
-import { Parser } from '../Parser'
+import { ParserEngine } from '../ParserEngine'
 import { ParseResult } from '../ParseResult'
 import { Precedence } from './Precedence'
+import { isQuestionMarkUnknownType } from './isQuestionMarkUnkownType'
 
 export class SpecialTypesParslet implements PrefixParslet {
   accepts (type: TokenType, next: TokenType): boolean {
-    if (type === '?') {
-      return next === 'EOF' || next === '|' || next === ',' || next === ')' || next === '>'
-    }
-    return type === 'null' || type === 'undefined' || type === '*'
+    return (type === '?' && isQuestionMarkUnknownType(next)) || type === 'null' || type === 'undefined' || type === '*'
   }
 
   getPrecedence (): number {
     return Precedence.SPECIAL_TYPES
   }
 
-  parse (parser: Parser): ParseResult {
+  parse (parser: ParserEngine): ParseResult {
     switch (parser.getToken().type) {
       case 'null':
         parser.consume('null')

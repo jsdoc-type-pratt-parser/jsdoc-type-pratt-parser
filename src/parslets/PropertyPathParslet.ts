@@ -1,7 +1,7 @@
 import { InfixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from './Precedence'
-import { Parser } from '../Parser'
+import { ParserEngine } from '../ParserEngine'
 import { ParseResult } from '../ParseResult'
 
 export class PropertyPathParslet implements InfixParslet {
@@ -13,7 +13,7 @@ export class PropertyPathParslet implements InfixParslet {
     return Precedence.PROPERTY_PATH
   }
 
-  parse (parser: Parser, left: ParseResult): ParseResult {
+  parse (parser: ParserEngine, left: ParseResult): ParseResult {
     if (left.type !== 'NAME') {
       throw new Error('First element of property path needs to be a name')
     }
@@ -28,7 +28,7 @@ export class PropertyPathParslet implements InfixParslet {
       }
       path.push(token.text)
       parser.consume(token.type)
-      next = parser.peek()
+      next = parser.peekToken()
     } while (next.type !== '<' && parser.consume('.'))
     return {
       type: 'PROPERTY_PATH',

@@ -172,17 +172,41 @@ const rules = [
 ]
 
 export class Lexer {
-  private text: string
+  private text: string = ''
+  private current: Token | undefined
+  private next: Token | undefined
 
-  constructor (text: string) {
+  lex (text: string): void {
     this.text = text
+    this.current = undefined
+    this.next = undefined
+    this.advance()
   }
 
-  isFinished (): boolean {
-    return this.text === ''
+  token (): Token {
+    if (this.current === undefined) {
+      throw new Error('Lexer not lexing')
+    }
+    return this.current
   }
 
-  nextToken (): Token {
+  peek (): Token {
+    if (this.next === undefined) {
+      this.next = this.read()
+    }
+    return this.next
+  }
+
+  advance (): void {
+    if (this.next !== undefined) {
+      this.current = this.next
+      this.next = undefined
+      return
+    }
+    this.current = this.read()
+  }
+
+  private read (): Token {
     for (const rule of rules) {
       const token = rule(this.text)
       if (token !== null) {

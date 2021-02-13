@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import 'mocha'
-import { Parser } from '../src/Parser'
 import { ParseResult } from '../src/ParseResult'
+import { Parser } from '../src/Parser'
 
 describe('basics', () => {
   it('should parse names', () => {
@@ -10,8 +10,9 @@ describe('basics', () => {
       type: 'NAME',
       name: 'sometype'
     }
-    const parser = new Parser(typeString)
-    expect(parser.parseType()).to.deep.equal(expected)
+    const parser = new Parser()
+    const result = parser.parse(typeString)
+    expect(result).to.deep.equal(expected)
   })
 
   it('should parse a complex expression', () => {
@@ -40,13 +41,9 @@ describe('basics', () => {
               ]
             }
           ]
-          // "meta": {
-          //     "syntax": "ANGLE_BRACKET"
-          // }
         },
         {
           type: 'STRING_VALUE',
-          // "quoteStyle": "single",
           value: 'test'
         },
         {
@@ -55,8 +52,8 @@ describe('basics', () => {
       ]
     }
 
-    const parser = new Parser(typeString)
-    const result = parser.parseType()
+    const parser = new Parser()
+    const result = parser.parse(typeString)
     expect(result).to.deep.equal(expected)
   })
 })
