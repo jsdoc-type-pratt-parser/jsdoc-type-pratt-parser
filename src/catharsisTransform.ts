@@ -1,5 +1,8 @@
 import { FieldResult, ModifiableResult, ParseResult } from './ParseResult'
 
+/**
+ * @internal
+ */
 export type CatharsisParseResult =
   CatharsisNameResult
   | CatharsisUnionResult
@@ -11,41 +14,68 @@ export type CatharsisParseResult =
   | CatharsisFunctionResult
   | CatharsisRecordResult
 
+/**
+ * @internal
+ */
 export type CatharsisParseResultType = CatharsisParseResult['type'] | CatharsisFieldResult['type']
 
+/**
+ * @internal
+ */
 export type CatharsisNameResult = ModifiableResult & {
   type: 'NameExpression'
   name: string
   reservedWord?: boolean
 }
 
+/**
+ * @internal
+ */
 export type CatharsisUnionResult = ModifiableResult & {
   type: 'TypeUnion'
   elements: CatharsisParseResult[]
 }
 
+/**
+ * @internal
+ */
 export type CatharsisGenericResult = ModifiableResult & {
   type: 'TypeApplication'
   expression: CatharsisParseResult
   applications: CatharsisParseResult[]
 }
 
+/**
+ * @internal
+ */
 export type CatharsisNullResult = ModifiableResult & {
   type: 'NullLiteral'
 }
 
+/**
+ * @internal
+ */
 export type CatharsisUndefinedResult = ModifiableResult & {
   type: 'UndefinedLiteral'
 }
 
+/**
+ * @internal
+ */
 export type CatharsisAllResult = ModifiableResult & {
   type: 'AllLiteral'
 }
 
+/**
+ * @internal
+ */
 export type CatharsisUnknownResult = ModifiableResult & {
   type: 'UnknownLiteral'
 }
 
+/**
+ * @internal
+ */
 export type CatharsisFunctionResult = ModifiableResult & {
   type: 'FunctionType'
   params: CatharsisParseResult[]
@@ -54,19 +84,25 @@ export type CatharsisFunctionResult = ModifiableResult & {
   new?: CatharsisParseResult
 }
 
+/**
+ * @internal
+ */
 export type CatharsisFieldResult = ModifiableResult & {
   type: 'FieldType'
   key: CatharsisNameResult
   value: CatharsisParseResult | undefined
 }
 
+/**
+ * @internal
+ */
 export type CatharsisRecordResult = ModifiableResult & {
   type: 'RecordType'
   fields: CatharsisFieldResult[]
 }
 
 /**
- * @public
+ * @internal
  */
 export function catharsisTransform (object: ParseResult|FieldResult): CatharsisParseResult {
   const newObject: any = Object.assign({}, object)
