@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Parser tester</title>
+    <script src="lib/jsdoc-type-pratt-parser/index.js"></script>
+    <style>
+        html, body, .container {
+            width: 100%;
+            height: 100%;
+        }
+        .container {
+            display: grid;
+            grid: 1fr / 1fr 1fr;
+        }
+
+        #input {
+            width: calc(100% - 2em);
+            height: 5em;
+        }
+
+        #output {
+            width: calc(100% - 2em);
+            height: calc(100% - 2em);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="col-1">
+        <select id="mode">
+            <option value="closure" selected>Google Closue</option>
+            <option value="jsdoc">JsDoc</option>
+        </select>
+        <br />
+        <textarea id="input"></textarea>
+        <br />
+        <button id="parse">Parse</button>
+    </div>
+    <div class="col-2">
+        <textarea id="output"></textarea>
+    </div>
+</div>
+
+<script>
+    var modeSelect = document.querySelector('#mode')
+    var input = document.querySelector('#input')
+    var button = document.querySelector('#parse')
+    var output = document.querySelector('#output')
+
+    button.addEventListener('click', function () {
+        var mode = modeSelect.querySelector('option[selected]').value
+        var parser = new jtpp.Parser({
+            mode: mode
+        })
+        try {
+            var result = parser.parse(input.value)
+            output.value = JSON.stringify(result, null, 2)
+        } catch (e) {
+            output.value = e.toString()
+        }
+    })
+</script>
+</body>
+</html>
