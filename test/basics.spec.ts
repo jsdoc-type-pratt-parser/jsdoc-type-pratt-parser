@@ -44,7 +44,8 @@ describe('basics', () => {
         },
         {
           type: 'STRING_VALUE',
-          value: 'test'
+          value: 'test',
+          quote: '\''
         },
         {
           type: 'UNDEFINED'

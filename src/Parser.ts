@@ -1,8 +1,9 @@
 import { ParserEngine } from './ParserEngine'
 import { closureGrammar } from './grammars/closureGrammar'
 import { ParseResult } from './ParseResult'
+import { jsdocGrammar } from './grammars/jsdocGrammar'
 
-type ParserMode = 'closure'
+type ParserMode = 'closure' | 'jsdoc'
 
 interface ParserOptions {
   mode?: ParserMode
@@ -17,6 +18,10 @@ export class Parser {
     switch (mode) {
       case 'closure':
         this.engine = new ParserEngine(closureGrammar)
+        break
+      case 'jsdoc':
+        this.engine = new ParserEngine(jsdocGrammar)
+        break
     }
   }
 

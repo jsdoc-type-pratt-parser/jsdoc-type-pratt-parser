@@ -11,7 +11,7 @@
     "test:spec": "mocha -r ts-node/register test/**/*.spec.ts",
     "lint": "ts-standard",
     "typecheck": "tsc --noEmit",
-    "build": "tsc --build src"
+    "build": "tsc"
   },
   "author": "Simon Seyock",
   "license": "MIT",
@@ -23,6 +23,7 @@
     "@types/lodash": "^4.14.168",
     "@types/mocha": "^8.2.0",
     "chai": "^4.3.0",
+    "jsdoctypeparser": "^9.0.0",
     "lodash": "^4.17.20",
     "mocha": "^8.2.1",
     "ts-node": "^9.1.1",

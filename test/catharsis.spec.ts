@@ -87,7 +87,7 @@ describe('passes the catharsis union-type tests', () => {
   }
 })
 
-describe('passes the catharsis codetag tests', () => {
+xdescribe('passes the catharsis codetag tests', () => {
   for (const fixture of codetag) {
     it(fixture.description, () => {
       const parser = new Parser()
@@ -110,7 +110,9 @@ describe('passes the catharsis html tests', () => {
 describe('passes the catharsis jsdoc tests', () => {
   for (const fixture of jsdoc) {
     it(fixture.description, () => {
-      const parser = new Parser()
+      const parser = new Parser({
+        mode: 'jsdoc'
+      })
       const result = catharsisTransform(parser.parse(fixture.expression))
       expect(result).to.deep.equal(fixture.parsed)
     })

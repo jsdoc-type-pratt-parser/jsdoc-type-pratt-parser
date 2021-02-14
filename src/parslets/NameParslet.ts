@@ -44,8 +44,8 @@ const reservedWords = [
 ]
 
 export class NameParslet implements PrefixParslet {
-  accepts (type: TokenType): boolean {
-    return type === 'Identifier'
+  accepts (type: TokenType, next: TokenType): boolean {
+    return type === 'Identifier' || type === 'this' || type === 'new'
   }
 
   getPrecedence (): number {
@@ -54,7 +54,7 @@ export class NameParslet implements PrefixParslet {
 
   parse (parser: ParserEngine): ParseResult {
     const token = parser.getToken()
-    parser.consume('Identifier')
+    parser.consume('Identifier') || parser.consume('this') || parser.consume('new')
     const result: NameResult = {
       type: 'NAME',
       name: token.text

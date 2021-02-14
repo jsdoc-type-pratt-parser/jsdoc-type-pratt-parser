@@ -78,7 +78,8 @@ export function catharsisTransform (object: ParseResult|FieldResult): CatharsisP
     case 'STRING_VALUE':
       newObject.type = 'NameExpression'
       delete newObject.value
-      newObject.name = `'${object.value}'`
+      delete newObject.quote
+      newObject.name = `${object.quote}${object.value}${object.quote}`
       break
     case 'UNDEFINED':
       newObject.type = 'UndefinedLiteral'
@@ -137,6 +138,11 @@ export function catharsisTransform (object: ParseResult|FieldResult): CatharsisP
       newObject.type = 'NameExpression'
       delete newObject.path
       newObject.name = object.path.join('.')
+      break
+    case 'SYMBOL':
+      newObject.type = 'NameExpression'
+      delete newObject.value
+      newObject.name = `${object.name}(${object.value ?? ''})`
       break
   }
 

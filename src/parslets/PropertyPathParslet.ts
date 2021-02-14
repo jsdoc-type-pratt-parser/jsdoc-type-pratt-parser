@@ -6,11 +6,11 @@ import { ParseResult } from '../ParseResult'
 
 export class PropertyPathParslet implements InfixParslet {
   accepts (type: TokenType, next: TokenType): boolean {
-    return type === '.'
+    return type === '.' && next !== '<'
   }
 
   getPrecedence (): number {
-    return Precedence.PROPERTY_PATH
+    return Precedence.POSTFIX
   }
 
   parse (parser: ParserEngine, left: ParseResult): ParseResult {

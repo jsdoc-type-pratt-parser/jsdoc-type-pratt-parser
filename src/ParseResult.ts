@@ -1,16 +1,17 @@
 export type ParseResult =
-    NameResult
-    | UnionResult
-    | GenericResult
-    | StringValueResult
-    | NullResult
-    | UndefinedResult
-    | AllResult
-    | UnknownResult
-    | FunctionResult
-    | RecordResult
-    | ModuleResult
-    | PropertyPathResult
+  NameResult
+  | UnionResult
+  | GenericResult
+  | StringValueResult
+  | NullResult
+  | UndefinedResult
+  | AllResult
+  | UnknownResult
+  | FunctionResult
+  | RecordResult
+  | ModuleResult
+  | PropertyPathResult
+  | SymbolResult
 
 export type ParseResultType = ParseResult['type'] | FieldResult['type']
 
@@ -40,6 +41,7 @@ export type GenericResult = ModifiableResult & {
 export type StringValueResult = ModifiableResult & {
   type: 'STRING_VALUE'
   value: string
+  quote: string
 }
 
 export type NullResult = ModifiableResult & {
@@ -85,4 +87,15 @@ export type ModuleResult = ModifiableResult & {
 export type PropertyPathResult = ModifiableResult & {
   type: 'PROPERTY_PATH'
   path: string[]
+}
+
+export type NumberResult = ModifiableResult & {
+  type: 'NUMBER'
+  value: number
+}
+
+export type SymbolResult = ModifiableResult & {
+  type: 'SYMBOL'
+  name: string
+  value?: string
 }
