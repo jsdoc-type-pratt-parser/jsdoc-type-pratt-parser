@@ -52,11 +52,15 @@ export class ParserEngine {
   }
 
   public tryParseType (precedence: number): NonTerminalResult | undefined {
-    const pParslet = this.getPrefixParslet()
-    if (pParslet === undefined) {
-      return undefined
+    try {
+      return this.parseType(precedence)
+    } catch (e) {
+      if (e instanceof NoParsletFoundError) {
+        return undefined
+      } else {
+        throw e
+      }
     }
-    return pParslet.parse(this)
   }
 
   public parseType (precedence: number): ParseResult {
@@ -64,11 +68,13 @@ export class ParserEngine {
   }
 
   public parseNonTerminalType (precedence: number): NonTerminalResult {
-    let result = this.tryParseType(precedence)
+    const pParslet = this.getPrefixParslet()
 
-    if (result === undefined) {
+    if (pParslet === undefined) {
       throw new NoParsletFoundError(this.getToken())
     }
+
+    let result = pParslet.parse(this)
 
     let iParslet = this.getInfixParslet(precedence)
 

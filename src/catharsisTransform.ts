@@ -1,4 +1,4 @@
-import { FieldResult, ModifiableResult, ParseResult } from './ParseResult'
+import { ModifiableResult, NonTerminalResult } from './ParseResult'
 
 /**
  * @internal
@@ -104,7 +104,7 @@ export type CatharsisRecordResult = ModifiableResult & {
 /**
  * @internal
  */
-export function catharsisTransform (object: ParseResult|FieldResult): CatharsisParseResult {
+export function catharsisTransform (object: NonTerminalResult): CatharsisParseResult {
   const newObject: any = Object.assign({}, object)
   switch (object.type) {
     case 'ALL':
@@ -165,7 +165,7 @@ export function catharsisTransform (object: ParseResult|FieldResult): CatharsisP
       newObject.type = 'TypeUnion'
       newObject.elements = object.elements.map(catharsisTransform)
       break
-    case 'FIELD':
+    case 'KEY_VALUE':
       newObject.type = 'FieldType'
       newObject.key = catharsisTransform(object.key)
       if (object.value !== undefined) {

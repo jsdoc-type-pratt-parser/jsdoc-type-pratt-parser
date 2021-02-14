@@ -18,8 +18,9 @@ export type ParseResult =
 
 export type NonTerminalResult =
   ParseResult
-  | FieldResult
+  | KeyValueResult
   | NumberResult
+  | ParameterList
 
 export interface ModifiableResult {
   optional?: boolean
@@ -74,15 +75,15 @@ export type FunctionResult = ModifiableResult & {
   newType?: ParseResult
 }
 
-export type FieldResult = ModifiableResult & {
-  type: 'FIELD'
-  key: NameResult
-  value: ParseResult | undefined
+export type KeyValueResult = ModifiableResult & {
+  type: 'KEY_VALUE'
+  key: ParseResult
+  value: ParseResult
 }
 
 export type RecordResult = ModifiableResult & {
   type: 'RECORD'
-  fields: FieldResult[]
+  fields: Array<KeyValueResult|ParseResult|NumberResult>
 }
 
 export type ModuleResult = ModifiableResult & {
@@ -120,4 +121,9 @@ export type KeyOfResult = ModifiableResult & {
 export type ImportResult = ModifiableResult & {
   type: 'IMPORT'
   path: StringValueResult
+}
+
+export interface ParameterList {
+  type: 'PARAMETER_LIST'
+  elements: Array<KeyValueResult|ParseResult>
 }
