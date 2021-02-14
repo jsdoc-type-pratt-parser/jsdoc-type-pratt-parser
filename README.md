@@ -1,16 +1,22 @@
-This project is parser for jsdoc types. It is heavily inspired by http://journal.stuffwithstuff.com/2011/03/19/pratt-parsers-expression-parsing-made-easy/, https://github.com/hegemonic/catharsis and  https://github.com/jsdoctypeparser/jsdoctypeparser.
+This project is parser for jsdoc types. It is heavily inspired by http://journal.stuffwithstuff.com/2011/03/19/pratt-parsers-expression-parsing-made-easy/, https://github.com/hegemonic/catharsis and https://github.com/jsdoctypeparser/jsdoctypeparser.
 
 Live Demo
 ---------
 
 Simple live demo can be found at: https://simonseyock.github.io/jsdoc-type-pratt-parser/
 
-Catharsis Tests
----------------
+Tests Status
+------------
 
-This parser runs all tests of https://github.com/hegemonic/catharsis. The current status is:
+This parser runs most tests of https://github.com/hegemonic/catharsis and also some of the typescript tests of https://github.com/jsdoctypeparser/jsdoctypeparser
+
+The current status is:
 
 ```
+  basics
+    ✓ should parse names
+    ✓ should parse a complex expression
+
   passes the catharsis basic tests
     ✓ boolean
     ✓ object
@@ -163,6 +169,15 @@ This parser runs all tests of https://github.com/hegemonic/catharsis. The curren
   passes the catharsis linkcss tests
     ✓ type application
     ✓ name expression for a class within a module
+
+  lexer
+    ✓ should lex name
+    ✓ should parse a complex expression
+
+
+  124 passing (77ms)
+  4 pending
+  9 failing
 ```
 
 Getting started

@@ -177,6 +177,7 @@ export function catharsisTransform (object: ParseResult|FieldResult): CatharsisP
       if (object.left.type !== 'NAME') {
         throw new Error('Other left types than \'NAME\' are not supported for catharsis compat mode')
       }
+      delete newObject.left
       delete newObject.path
       newObject.name = object.left.name + '.' + object.path.join('.')
       break

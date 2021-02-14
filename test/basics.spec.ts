@@ -53,7 +53,9 @@ describe('basics', () => {
       ]
     }
 
-    const parser = new Parser()
+    const parser = new Parser({
+      mode: 'typescript'
+    })
     const result = parser.parse(typeString)
     expect(result).to.deep.equal(expected)
   })

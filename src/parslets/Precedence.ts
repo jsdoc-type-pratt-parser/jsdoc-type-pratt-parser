@@ -1,6 +1,7 @@
 // higher precedence = higher importance
 export enum Precedence {
-  UNION = 1,
+  PARENTHESIS = 1,
+  UNION,
   PREFIX,
   POSTFIX,
   KEY_OF_TYPE_OF,

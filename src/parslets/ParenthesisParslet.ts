@@ -10,12 +10,12 @@ export class ParenthesisParslet implements PrefixParslet {
   }
 
   getPrecedence (): number {
-    return Precedence.PREFIX
+    return Precedence.PARENTHESIS
   }
 
   parse (parser: ParserEngine): ParseResult {
     parser.consume('(')
-    const result = parser.parseType(Precedence.PREFIX)
+    const result = parser.parseType(Precedence.PARENTHESIS)
     if (!parser.consume(')')) {
       throw new Error('Unterminated parenthesis')
     }
