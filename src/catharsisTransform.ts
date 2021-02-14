@@ -65,6 +65,9 @@ export type CatharsisRecordResult = ModifiableResult & {
   fields: CatharsisFieldResult[]
 }
 
+/**
+ * @public
+ */
 export function catharsisTransform (object: ParseResult|FieldResult): CatharsisParseResult {
   const newObject: any = Object.assign({}, object)
   switch (object.type) {
