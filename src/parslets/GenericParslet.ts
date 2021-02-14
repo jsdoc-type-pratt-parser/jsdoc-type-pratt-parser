@@ -1,8 +1,9 @@
 import { ParserEngine } from '../ParserEngine'
-import { ParseResult } from '../ParseResult'
+import { NonTerminalResult, ParseResult } from '../ParseResult'
 import { TokenType } from '../lexer/Token'
 import { Parslet } from './Parslet'
 import { Precedence } from './Precedence'
+import { assertTerminal } from '../assertTerminal'
 
 export class GenericParslet implements Parslet {
   accepts (type: TokenType, next: TokenType): boolean {
@@ -13,7 +14,7 @@ export class GenericParslet implements Parslet {
     return Precedence.POSTFIX
   }
 
-  parse (parser: ParserEngine, left: ParseResult): ParseResult {
+  parse (parser: ParserEngine, left: NonTerminalResult): ParseResult {
     parser.consume('.')
     parser.consume('<')
 
@@ -28,7 +29,7 @@ export class GenericParslet implements Parslet {
 
     return {
       type: 'GENERIC',
-      subject: left,
+      subject: assertTerminal(left),
       objects
     }
   }

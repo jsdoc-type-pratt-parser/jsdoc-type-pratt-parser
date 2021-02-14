@@ -16,7 +16,10 @@ export type ParseResult =
   | KeyOfResult
   | ImportResult
 
-export type ParseResultType = ParseResult['type'] | FieldResult['type']
+export type NonTerminalResult =
+  ParseResult
+  | FieldResult
+  | NumberResult
 
 export interface ModifiableResult {
   optional?: boolean

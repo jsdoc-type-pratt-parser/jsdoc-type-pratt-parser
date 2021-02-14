@@ -1,6 +1,6 @@
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
-import { ParseResult } from '../ParseResult'
+import { NonTerminalResult } from '../ParseResult'
 
 export interface Parslet {
   accepts: (type: TokenType, next: TokenType) => boolean
@@ -8,9 +8,9 @@ export interface Parslet {
 }
 
 export interface PrefixParslet extends Parslet {
-  parse: (parser: ParserEngine) => ParseResult
+  parse: (parser: ParserEngine) => NonTerminalResult
 }
 
 export interface InfixParslet extends Parslet {
-  parse: (parser: ParserEngine, left: ParseResult) => ParseResult
+  parse: (parser: ParserEngine, left: NonTerminalResult) => NonTerminalResult
 }

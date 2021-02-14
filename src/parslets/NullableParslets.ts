@@ -1,9 +1,10 @@
 import { InfixParslet, PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
-import { ParseResult } from '../ParseResult'
+import { NonTerminalResult, ParseResult } from '../ParseResult'
 import { Precedence } from './Precedence'
 import { isQuestionMarkUnknownType } from './isQuestionMarkUnkownType'
+import { assertTerminal } from '../assertTerminal'
 
 export class NullableParslet implements PrefixParslet {
   accepts (type: TokenType, next: TokenType): boolean {
@@ -37,7 +38,7 @@ export class PostfixNullableParslet implements InfixParslet {
     return Precedence.POSTFIX
   }
 
-  parse (parser: ParserEngine, left: ParseResult): ParseResult {
+  parse (parser: ParserEngine, left: NonTerminalResult): ParseResult {
     const nullable = parser.consume('?')
     if (!nullable) {
       parser.consume('!')
@@ -46,6 +47,6 @@ export class PostfixNullableParslet implements InfixParslet {
       throw new Error('Multiple nullable modifiers on same type')
     }
     left.nullable = nullable
-    return left
+    return assertTerminal(left)
   }
 }

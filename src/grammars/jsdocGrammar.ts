@@ -3,7 +3,7 @@ import { SymbolParslet } from '../parslets/SymbolParslet'
 import { ClassPathParslet } from '../parslets/ClassPathParslet'
 import { ArrayBracketsParslet } from '../parslets/ArrayBracketsParslet'
 import { baseGrammar } from './baseGrammar'
-import {StringValueParslet} from "../parslets/StringValueParslet";
+import { StringValueParslet } from '../parslets/StringValueParslet'
 
 export const jsdocGrammar: Grammar = () => {
   const {
@@ -14,7 +14,7 @@ export const jsdocGrammar: Grammar = () => {
   return {
     prefixParslets: [
       ...prefixParslets,
-      new StringValueParslet(),
+      new StringValueParslet()
     ],
     infixParslets: [
       ...infixParslets,

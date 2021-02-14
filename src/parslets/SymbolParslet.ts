@@ -1,7 +1,7 @@
 import { InfixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
-import { ParseResult, SymbolResult } from '../ParseResult'
+import { NonTerminalResult, ParseResult, SymbolResult } from '../ParseResult'
 import { Precedence } from './Precedence'
 
 export class SymbolParslet implements InfixParslet {
@@ -13,7 +13,7 @@ export class SymbolParslet implements InfixParslet {
     return Precedence.POSTFIX
   }
 
-  parse (parser: ParserEngine, left: ParseResult): ParseResult {
+  parse (parser: ParserEngine, left: NonTerminalResult): ParseResult {
     if (left.type !== 'NAME') {
       throw new Error('Symbol expects a name on the left side. (Reacting on \'(\')')
     }

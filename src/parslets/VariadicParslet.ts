@@ -1,8 +1,9 @@
 import { InfixParslet, PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
-import { ParseResult } from '../ParseResult'
+import { NonTerminalResult, ParseResult } from '../ParseResult'
 import { Precedence } from './Precedence'
+import { assertTerminal } from '../assertTerminal'
 
 export class VariadicParslet implements PrefixParslet {
   accepts (type: TokenType): boolean {
@@ -34,9 +35,9 @@ export class PostfixVariadicParslet implements InfixParslet {
     return Precedence.POSTFIX
   }
 
-  parse (parser: ParserEngine, left: ParseResult): ParseResult {
+  parse (parser: ParserEngine, left: NonTerminalResult): ParseResult {
     parser.consume('...')
     left.repeatable = true
-    return left
+    return assertTerminal(left)
   }
 }

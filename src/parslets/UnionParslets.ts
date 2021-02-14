@@ -1,8 +1,9 @@
 import { InfixParslet } from './Parslet'
 import { ParserEngine } from '../ParserEngine'
-import { ParseResult } from '../ParseResult'
+import { NonTerminalResult, ParseResult } from '../ParseResult'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from './Precedence'
+import { assertTerminal } from '../assertTerminal'
 
 export class UnenclosedUnionParslet implements InfixParslet {
   accepts (type: TokenType): boolean {
@@ -13,7 +14,7 @@ export class UnenclosedUnionParslet implements InfixParslet {
     return Precedence.UNION
   }
 
-  parse (parser: ParserEngine, left: ParseResult): ParseResult {
+  parse (parser: ParserEngine, left: NonTerminalResult): ParseResult {
     parser.consume('|')
 
     const elements = []
@@ -23,7 +24,7 @@ export class UnenclosedUnionParslet implements InfixParslet {
 
     return {
       type: 'UNION',
-      elements: [left, ...elements]
+      elements: [assertTerminal(left), ...elements]
     }
   }
 }

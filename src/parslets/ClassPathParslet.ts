@@ -1,7 +1,7 @@
 import { InfixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
-import { ParseResult } from '../ParseResult'
+import { NonTerminalResult, ParseResult } from '../ParseResult'
 import { Precedence } from './Precedence'
 
 export class ClassPathParslet implements InfixParslet {
@@ -13,7 +13,7 @@ export class ClassPathParslet implements InfixParslet {
     return Precedence.POSTFIX
   }
 
-  parse (parser: ParserEngine, left: ParseResult): ParseResult {
+  parse (parser: ParserEngine, left: NonTerminalResult): ParseResult {
     if (left.type !== 'NAME') {
       throw new Error('All elements of class path have to be identifiers')
     }

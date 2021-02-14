@@ -2,7 +2,8 @@ import { InfixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from './Precedence'
 import { ParserEngine } from '../ParserEngine'
-import { ParseResult } from '../ParseResult'
+import { NonTerminalResult, ParseResult } from '../ParseResult'
+import { assertTerminal } from '../assertTerminal'
 
 export class PropertyPathParslet implements InfixParslet {
   accepts (type: TokenType, next: TokenType): boolean {
@@ -13,7 +14,7 @@ export class PropertyPathParslet implements InfixParslet {
     return Precedence.POSTFIX
   }
 
-  parse (parser: ParserEngine, left: ParseResult): ParseResult {
+  parse (parser: ParserEngine, left: NonTerminalResult): ParseResult {
     parser.consume('.')
     const path = []
     const allowed: TokenType[] = ['Identifier', 'Number', 'StringValue']
@@ -29,7 +30,7 @@ export class PropertyPathParslet implements InfixParslet {
     } while (next.type !== '<' && parser.consume('.'))
     return {
       type: 'PROPERTY_PATH',
-      left,
+      left: assertTerminal(left),
       path
     }
   }

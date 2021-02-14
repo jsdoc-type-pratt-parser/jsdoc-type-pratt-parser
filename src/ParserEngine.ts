@@ -1,15 +1,15 @@
 import { Token, TokenType } from './lexer/Token'
 import { Lexer } from './lexer/Lexer'
 import { InfixParslet, PrefixParslet } from './parslets/Parslet'
-import { ParseResult } from './ParseResult'
+import { NonTerminalResult, ParseResult } from './ParseResult'
 import { Grammar } from './grammars/Grammar'
+import { assertTerminal } from './assertTerminal'
 
-class NoParsletFound extends Error {
+class NoParsletFoundError extends Error {
   constructor (token: Token) {
     super(`No parslet found for token: '${token.type}' with value '${token.text}'`)
 
-    // Set the prototype explicitly.
-    Object.setPrototypeOf(this, NoParsletFound.prototype)
+    Object.setPrototypeOf(this, NoParsletFoundError.prototype)
   }
 }
 
@@ -51,26 +51,24 @@ export class ParserEngine {
     })
   }
 
-  public tryParseType (precedence: number): ParseResult | undefined {
-    try {
-      return this.parseType(precedence)
-    } catch (e) {
-      if (e instanceof NoParsletFound) {
-        return undefined
-      } else {
-        throw e
-      }
+  public tryParseType (precedence: number): NonTerminalResult | undefined {
+    const pParslet = this.getPrefixParslet()
+    if (pParslet === undefined) {
+      return undefined
     }
+    return pParslet.parse(this)
   }
 
   public parseType (precedence: number): ParseResult {
-    const pParslet = this.getPrefixParslet()
+    return assertTerminal(this.parseNonTerminalType(precedence))
+  }
 
-    if (pParslet === undefined) {
-      throw new NoParsletFound(this.getToken())
+  public parseNonTerminalType (precedence: number): NonTerminalResult {
+    let result = this.tryParseType(precedence)
+
+    if (result === undefined) {
+      throw new NoParsletFoundError(this.getToken())
     }
-
-    let result = pParslet.parse(this)
 
     let iParslet = this.getInfixParslet(precedence)
 

@@ -1,8 +1,9 @@
 import { InfixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
-import { ParseResult } from '../ParseResult'
+import { NonTerminalResult, ParseResult } from '../ParseResult'
 import { Precedence } from './Precedence'
+import { assertTerminal } from '../assertTerminal'
 
 export class ArrayBracketsParslet implements InfixParslet {
   accepts (type: TokenType, next: TokenType): boolean {
@@ -13,7 +14,7 @@ export class ArrayBracketsParslet implements InfixParslet {
     return Precedence.ARRAY_BRACKETS
   }
 
-  parse (parser: ParserEngine, left: ParseResult): ParseResult {
+  parse (parser: ParserEngine, left: NonTerminalResult): ParseResult {
     parser.consume('[')
     parser.consume(']')
     return {
@@ -23,7 +24,7 @@ export class ArrayBracketsParslet implements InfixParslet {
         name: 'Array'
       },
       objects: [
-        left
+        assertTerminal(left)
       ]
     }
   }
