@@ -58,15 +58,21 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<a href="#tester" id="tester" style="color: inherit; text-decoration: none;">
-					<h2>Tester</h2>
+				<p>This project is parser for jsdoc types. It is heavily inspired by <a href="http://journal.stuffwithstuff.com/2011/03/19/pratt-parsers-expression-parsing-made-easy/">http://journal.stuffwithstuff.com/2011/03/19/pratt-parsers-expression-parsing-made-easy/</a>, <a href="https://github.com/hegemonic/catharsis">https://github.com/hegemonic/catharsis</a> and <a href="https://github.com/jsdoctypeparser/jsdoctypeparser">https://github.com/jsdoctypeparser/jsdoctypeparser</a>.</p>
+				<a href="#live-demo" id="live-demo" style="color: inherit; text-decoration: none;">
+					<h2>Live Demo</h2>
 				</a>
-				<p>Simple tester can be found at: <a href="https://simonseyock.github.io/jsdoc-type-pratt-parser/">https://simonseyock.github.io/jsdoc-type-pratt-parser/</a></p>
-				<a href="#catharsis-tests" id="catharsis-tests" style="color: inherit; text-decoration: none;">
-					<h2>Catharsis Tests</h2>
+				<p>Simple live demo can be found at: <a href="https://simonseyock.github.io/jsdoc-type-pratt-parser/">https://simonseyock.github.io/jsdoc-type-pratt-parser/</a></p>
+				<a href="#tests-status" id="tests-status" style="color: inherit; text-decoration: none;">
+					<h2>Tests Status</h2>
 				</a>
-				<p>This parser runs all tests of <a href="https://github.com/hegemonic/catharsis">https://github.com/hegemonic/catharsis</a>. The current status is:</p>
-				<pre><code><span style="color: #000000">  </span><span style="color: #001080">passes</span><span style="color: #000000"> </span><span style="color: #001080">the</span><span style="color: #000000"> </span><span style="color: #001080">catharsis</span><span style="color: #000000"> </span><span style="color: #001080">basic</span><span style="color: #000000"> </span><span style="color: #001080">tests</span>
+				<p>This parser runs most tests of <a href="https://github.com/hegemonic/catharsis">https://github.com/hegemonic/catharsis</a> and also some of the typescript tests of <a href="https://github.com/jsdoctypeparser/jsdoctypeparser">https://github.com/jsdoctypeparser/jsdoctypeparser</a></p>
+				<p>The current status is:</p>
+				<pre><code><span style="color: #000000">  </span><span style="color: #001080">basics</span>
+<span style="color: #000000">    ✓ </span><span style="color: #001080">should</span><span style="color: #000000"> </span><span style="color: #001080">parse</span><span style="color: #000000"> </span><span style="color: #001080">names</span>
+<span style="color: #000000">    ✓ </span><span style="color: #001080">should</span><span style="color: #000000"> </span><span style="color: #001080">parse</span><span style="color: #000000"> </span><span style="color: #001080">a</span><span style="color: #000000"> </span><span style="color: #001080">complex</span><span style="color: #000000"> </span><span style="color: #001080">expression</span>
+
+<span style="color: #000000">  </span><span style="color: #001080">passes</span><span style="color: #000000"> </span><span style="color: #001080">the</span><span style="color: #000000"> </span><span style="color: #001080">catharsis</span><span style="color: #000000"> </span><span style="color: #001080">basic</span><span style="color: #000000"> </span><span style="color: #001080">tests</span>
 <span style="color: #000000">    ✓ </span><span style="color: #001080">boolean</span>
 <span style="color: #000000">    ✓ </span><span style="color: #001080">object</span>
 <span style="color: #000000">    ✓ </span><span style="color: #001080">object</span><span style="color: #000000"> </span><span style="color: #AF00DB">with</span><span style="color: #000000"> </span><span style="color: #001080">properties</span>
@@ -218,9 +224,18 @@
 <span style="color: #000000">  </span><span style="color: #795E26">passes</span><span style="color: #000000"> </span><span style="color: #795E26">the</span><span style="color: #000000"> </span><span style="color: #795E26">catharsis</span><span style="color: #000000"> </span><span style="color: #795E26">linkcss</span><span style="color: #000000"> </span><span style="color: #795E26">tests</span>
 <span style="color: #000000">    ✓ </span><span style="color: #795E26">type</span><span style="color: #000000"> </span><span style="color: #795E26">application</span>
 <span style="color: #000000">    ✓ </span><span style="color: #795E26">name</span><span style="color: #000000"> </span><span style="color: #795E26">expression</span><span style="color: #000000"> </span><span style="color: #795E26">for</span><span style="color: #000000"> </span><span style="color: #795E26">a</span><span style="color: #000000"> </span><span style="color: #795E26">class</span><span style="color: #000000"> </span><span style="color: #795E26">within</span><span style="color: #000000"> </span><span style="color: #795E26">a</span><span style="color: #000000"> </span><span style="color: #795E26">module</span>
+
+<span style="color: #000000">  </span><span style="color: #795E26">lexer</span>
+<span style="color: #000000">    ✓ </span><span style="color: #795E26">should</span><span style="color: #000000"> </span><span style="color: #795E26">lex</span><span style="color: #000000"> </span><span style="color: #795E26">name</span>
+<span style="color: #000000">    ✓ </span><span style="color: #795E26">should</span><span style="color: #000000"> </span><span style="color: #795E26">parse</span><span style="color: #000000"> </span><span style="color: #795E26">a</span><span style="color: #000000"> </span><span style="color: #795E26">complex</span><span style="color: #000000"> </span><span style="color: #795E26">expression</span>
+
+
+<span style="color: #000000">  124 </span><span style="color: #795E26">passing</span><span style="color: #000000"> (77ms)</span>
+<span style="color: #000000">  4 </span><span style="color: #795E26">pending</span>
+<span style="color: #000000">  9 </span><span style="color: #795E26">failing</span>
 </code></pre>
-				<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
-					<h2>Documentation</h2>
+				<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
+					<h2>Getting started</h2>
 				</a>
 				<p>The usage is not perfect for now as it is not published as a package for now. Dependening on your needs you might want to run <code>npm run build</code> before using. An <code>index.js</code> in umd format will be built. All exports from <code>index.ts</code> should be available. </p>
 				<pre><code><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Parser</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;src/index&#039;</span>
@@ -240,205 +255,10 @@
 
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">result</span><span style="color: #000000"> = </span><span style="color: #795E26">catharsisTransform</span><span style="color: #000000">(</span><span style="color: #001080">parser</span><span style="color: #000000">.</span><span style="color: #795E26">parse</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;myType.&lt;string&gt;&#039;</span><span style="color: #000000">))</span>
 </code></pre>
-				<p>The types of the interfaces look like this:</p>
-				<pre><code class="language-ts">
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">AllResult</span><span style="color: #000000"> = </span><span style="color: #267F99">ModifiableResult</span><span style="color: #000000"> &amp; {</span>
-<span style="color: #000000">    </span><span style="color: #001080">type</span><span style="color: #000000">: </span><span style="color: #A31515">&#039;ALL&#039;</span><span style="color: #000000">;</span>
-<span style="color: #000000">};</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">CatharsisAllResult</span><span style="color: #000000"> = </span><span style="color: #267F99">ModifiableResult</span><span style="color: #000000"> &amp; {</span>
-<span style="color: #000000">    </span><span style="color: #001080">type</span><span style="color: #000000">: </span><span style="color: #A31515">&#039;AllLiteral&#039;</span><span style="color: #000000">;</span>
-<span style="color: #000000">};</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">CatharsisFieldResult</span><span style="color: #000000"> = </span><span style="color: #267F99">ModifiableResult</span><span style="color: #000000"> &amp; {</span>
-<span style="color: #000000">    </span><span style="color: #001080">type</span><span style="color: #000000">: </span><span style="color: #A31515">&#039;FieldType&#039;</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #001080">key</span><span style="color: #000000">: </span><span style="color: #267F99">CatharsisNameResult</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #001080">value</span><span style="color: #000000">: </span><span style="color: #267F99">CatharsisParseResult</span><span style="color: #000000"> | </span><span style="color: #267F99">undefined</span><span style="color: #000000">;</span>
-<span style="color: #000000">};</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">CatharsisFunctionResult</span><span style="color: #000000"> = </span><span style="color: #267F99">ModifiableResult</span><span style="color: #000000"> &amp; {</span>
-<span style="color: #000000">    </span><span style="color: #001080">type</span><span style="color: #000000">: </span><span style="color: #A31515">&#039;FunctionType&#039;</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #001080">params</span><span style="color: #000000">: </span><span style="color: #267F99">CatharsisParseResult</span><span style="color: #000000">[];</span>
-<span style="color: #000000">    </span><span style="color: #001080">result</span><span style="color: #000000">?: </span><span style="color: #267F99">CatharsisParseResult</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #001080">this</span><span style="color: #000000">?: </span><span style="color: #267F99">CatharsisParseResult</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #001080">new</span><span style="color: #000000">?: </span><span style="color: #267F99">CatharsisParseResult</span><span style="color: #000000">;</span>
-<span style="color: #000000">};</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">CatharsisGenericResult</span><span style="color: #000000"> = </span><span style="color: #267F99">ModifiableResult</span><span style="color: #000000"> &amp; {</span>
-<span style="color: #000000">    </span><span style="color: #001080">type</span><span style="color: #000000">: </span><span style="color: #A31515">&#039;TypeApplication&#039;</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #001080">expression</span><span style="color: #000000">: </span><span style="color: #267F99">CatharsisParseResult</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #001080">applications</span><span style="color: #000000">: </span><span style="color: #267F99">CatharsisParseResult</span><span style="color: #000000">[];</span>
-<span style="color: #000000">};</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">CatharsisNameResult</span><span style="color: #000000"> = </span><span style="color: #267F99">ModifiableResult</span><span style="color: #000000"> &amp; {</span>
-<span style="color: #000000">    </span><span style="color: #001080">type</span><span style="color: #000000">: </span><span style="color: #A31515">&#039;NameExpression&#039;</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #001080">name</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #001080">reservedWord</span><span style="color: #000000">?: </span><span style="color: #267F99">boolean</span><span style="color: #000000">;</span>
-<span style="color: #000000">};</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">CatharsisNullResult</span><span style="color: #000000"> = </span><span style="color: #267F99">ModifiableResult</span><span style="color: #000000"> &amp; {</span>
-<span style="color: #000000">    </span><span style="color: #001080">type</span><span style="color: #000000">: </span><span style="color: #A31515">&#039;NullLiteral&#039;</span><span style="color: #000000">;</span>
-<span style="color: #000000">};</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">CatharsisParseResult</span><span style="color: #000000"> = </span><span style="color: #267F99">CatharsisNameResult</span><span style="color: #000000"> | </span><span style="color: #267F99">CatharsisUnionResult</span><span style="color: #000000"> | </span><span style="color: #267F99">CatharsisGenericResult</span><span style="color: #000000"> | </span><span style="color: #267F99">CatharsisNullResult</span><span style="color: #000000"> | </span><span style="color: #267F99">CatharsisUndefinedResult</span><span style="color: #000000"> | </span><span style="color: #267F99">CatharsisAllResult</span><span style="color: #000000"> | </span><span style="color: #267F99">CatharsisUnknownResult</span><span style="color: #000000"> | </span><span style="color: #267F99">CatharsisFunctionResult</span><span style="color: #000000"> | </span><span style="color: #267F99">CatharsisRecordResult</span><span style="color: #000000">;</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">CatharsisParseResultType</span><span style="color: #000000"> = </span><span style="color: #267F99">CatharsisParseResult</span><span style="color: #000000">[</span><span style="color: #A31515">&#039;type&#039;</span><span style="color: #000000">] | </span><span style="color: #267F99">CatharsisFieldResult</span><span style="color: #000000">[</span><span style="color: #A31515">&#039;type&#039;</span><span style="color: #000000">];</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">CatharsisRecordResult</span><span style="color: #000000"> = </span><span style="color: #267F99">ModifiableResult</span><span style="color: #000000"> &amp; {</span>
-<span style="color: #000000">    </span><span style="color: #001080">type</span><span style="color: #000000">: </span><span style="color: #A31515">&#039;RecordType&#039;</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #001080">fields</span><span style="color: #000000">: </span><span style="color: #267F99">CatharsisFieldResult</span><span style="color: #000000">[];</span>
-<span style="color: #000000">};</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">catharsisTransform</span><span style="color: #000000">(</span><span style="color: #001080">object</span><span style="color: #000000">: </span><span style="color: #267F99">ParseResult</span><span style="color: #000000"> | </span><span style="color: #267F99">FieldResult</span><span style="color: #000000">): </span><span style="color: #267F99">CatharsisParseResult</span><span style="color: #000000">;</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">CatharsisUndefinedResult</span><span style="color: #000000"> = </span><span style="color: #267F99">ModifiableResult</span><span style="color: #000000"> &amp; {</span>
-<span style="color: #000000">    </span><span style="color: #001080">type</span><span style="color: #000000">: </span><span style="color: #A31515">&#039;UndefinedLiteral&#039;</span><span style="color: #000000">;</span>
-<span style="color: #000000">};</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">CatharsisUnionResult</span><span style="color: #000000"> = </span><span style="color: #267F99">ModifiableResult</span><span style="color: #000000"> &amp; {</span>
-<span style="color: #000000">    </span><span style="color: #001080">type</span><span style="color: #000000">: </span><span style="color: #A31515">&#039;TypeUnion&#039;</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #001080">elements</span><span style="color: #000000">: </span><span style="color: #267F99">CatharsisParseResult</span><span style="color: #000000">[];</span>
-<span style="color: #000000">};</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">CatharsisUnknownResult</span><span style="color: #000000"> = </span><span style="color: #267F99">ModifiableResult</span><span style="color: #000000"> &amp; {</span>
-<span style="color: #000000">    </span><span style="color: #001080">type</span><span style="color: #000000">: </span><span style="color: #A31515">&#039;UnknownLiteral&#039;</span><span style="color: #000000">;</span>
-<span style="color: #000000">};</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">FieldResult</span><span style="color: #000000"> = </span><span style="color: #267F99">ModifiableResult</span><span style="color: #000000"> &amp; {</span>
-<span style="color: #000000">    </span><span style="color: #001080">type</span><span style="color: #000000">: </span><span style="color: #A31515">&#039;FIELD&#039;</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #001080">key</span><span style="color: #000000">: </span><span style="color: #267F99">NameResult</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #001080">value</span><span style="color: #000000">: </span><span style="color: #267F99">ParseResult</span><span style="color: #000000"> | </span><span style="color: #267F99">undefined</span><span style="color: #000000">;</span>
-<span style="color: #000000">};</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">FunctionResult</span><span style="color: #000000"> = </span><span style="color: #267F99">ModifiableResult</span><span style="color: #000000"> &amp; {</span>
-<span style="color: #000000">    </span><span style="color: #001080">type</span><span style="color: #000000">: </span><span style="color: #A31515">&#039;FUNCTION&#039;</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #001080">parameters</span><span style="color: #000000">: </span><span style="color: #267F99">ParseResult</span><span style="color: #000000">[];</span>
-<span style="color: #000000">    </span><span style="color: #001080">returnType</span><span style="color: #000000">?: </span><span style="color: #267F99">ParseResult</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #001080">thisType</span><span style="color: #000000">?: </span><span style="color: #267F99">ParseResult</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #001080">newType</span><span style="color: #000000">?: </span><span style="color: #267F99">ParseResult</span><span style="color: #000000">;</span>
-<span style="color: #000000">};</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">GenericResult</span><span style="color: #000000"> = </span><span style="color: #267F99">ModifiableResult</span><span style="color: #000000"> &amp; {</span>
-<span style="color: #000000">    </span><span style="color: #001080">type</span><span style="color: #000000">: </span><span style="color: #A31515">&#039;GENERIC&#039;</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #001080">subject</span><span style="color: #000000">: </span><span style="color: #267F99">ParseResult</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #001080">objects</span><span style="color: #000000">: </span><span style="color: #267F99">ParseResult</span><span style="color: #000000">[];</span>
-<span style="color: #000000">};</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">interface</span><span style="color: #000000"> </span><span style="color: #267F99">ModifiableResult</span><span style="color: #000000"> {</span>
-<span style="color: #000000">    </span><span style="color: #008000">// (undocumented)</span>
-<span style="color: #000000">    </span><span style="color: #001080">nullable</span><span style="color: #000000">?: </span><span style="color: #267F99">boolean</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #008000">// (undocumented)</span>
-<span style="color: #000000">    </span><span style="color: #001080">optional</span><span style="color: #000000">?: </span><span style="color: #267F99">boolean</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #008000">// (undocumented)</span>
-<span style="color: #000000">    </span><span style="color: #001080">repeatable</span><span style="color: #000000">?: </span><span style="color: #267F99">boolean</span><span style="color: #000000">;</span>
-<span style="color: #000000">}</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">ModuleResult</span><span style="color: #000000"> = </span><span style="color: #267F99">ModifiableResult</span><span style="color: #000000"> &amp; {</span>
-<span style="color: #000000">    </span><span style="color: #001080">type</span><span style="color: #000000">: </span><span style="color: #A31515">&#039;MODULE&#039;</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #001080">path</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">;</span>
-<span style="color: #000000">};</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">NameResult</span><span style="color: #000000"> = </span><span style="color: #267F99">ModifiableResult</span><span style="color: #000000"> &amp; {</span>
-<span style="color: #000000">    </span><span style="color: #001080">type</span><span style="color: #000000">: </span><span style="color: #A31515">&#039;NAME&#039;</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #001080">name</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #001080">reservedWord</span><span style="color: #000000">?: </span><span style="color: #267F99">boolean</span><span style="color: #000000">;</span>
-<span style="color: #000000">};</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">NullResult</span><span style="color: #000000"> = </span><span style="color: #267F99">ModifiableResult</span><span style="color: #000000"> &amp; {</span>
-<span style="color: #000000">    </span><span style="color: #001080">type</span><span style="color: #000000">: </span><span style="color: #A31515">&#039;NULL&#039;</span><span style="color: #000000">;</span>
-<span style="color: #000000">};</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">NumberResult</span><span style="color: #000000"> = </span><span style="color: #267F99">ModifiableResult</span><span style="color: #000000"> &amp; {</span>
-<span style="color: #000000">    </span><span style="color: #001080">type</span><span style="color: #000000">: </span><span style="color: #A31515">&#039;NUMBER&#039;</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #001080">value</span><span style="color: #000000">: </span><span style="color: #267F99">number</span><span style="color: #000000">;</span>
-<span style="color: #000000">};</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">class</span><span style="color: #000000"> </span><span style="color: #267F99">Parser</span><span style="color: #000000"> {</span>
-<span style="color: #000000">    </span><span style="color: #0000FF">constructor</span><span style="color: #000000">({ </span><span style="color: #001080">mode</span><span style="color: #000000"> }?: </span><span style="color: #267F99">ParserOptions</span><span style="color: #000000">);</span>
-<span style="color: #000000">    </span><span style="color: #008000">// (undocumented)</span>
-<span style="color: #000000">    </span><span style="color: #795E26">parse</span><span style="color: #000000">(</span><span style="color: #001080">text</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">): </span><span style="color: #267F99">ParseResult</span><span style="color: #000000">;</span>
-<span style="color: #000000">}</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">ParseResult</span><span style="color: #000000"> = </span><span style="color: #267F99">NameResult</span><span style="color: #000000"> | </span><span style="color: #267F99">UnionResult</span><span style="color: #000000"> | </span><span style="color: #267F99">GenericResult</span><span style="color: #000000"> | </span><span style="color: #267F99">StringValueResult</span><span style="color: #000000"> | </span><span style="color: #267F99">NullResult</span><span style="color: #000000"> | </span><span style="color: #267F99">UndefinedResult</span><span style="color: #000000"> | </span><span style="color: #267F99">AllResult</span><span style="color: #000000"> | </span><span style="color: #267F99">UnknownResult</span><span style="color: #000000"> | </span><span style="color: #267F99">FunctionResult</span><span style="color: #000000"> | </span><span style="color: #267F99">RecordResult</span><span style="color: #000000"> | </span><span style="color: #267F99">ModuleResult</span><span style="color: #000000"> | </span><span style="color: #267F99">PropertyPathResult</span><span style="color: #000000"> | </span><span style="color: #267F99">SymbolResult</span><span style="color: #000000">;</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">ParseResultType</span><span style="color: #000000"> = </span><span style="color: #267F99">ParseResult</span><span style="color: #000000">[</span><span style="color: #A31515">&#039;type&#039;</span><span style="color: #000000">] | </span><span style="color: #267F99">FieldResult</span><span style="color: #000000">[</span><span style="color: #A31515">&#039;type&#039;</span><span style="color: #000000">];</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">ParserMode</span><span style="color: #000000"> = </span><span style="color: #A31515">&#039;closure&#039;</span><span style="color: #000000"> | </span><span style="color: #A31515">&#039;jsdoc&#039;</span><span style="color: #000000">;</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">interface</span><span style="color: #000000"> </span><span style="color: #267F99">ParserOptions</span><span style="color: #000000"> {</span>
-<span style="color: #000000">    </span><span style="color: #008000">// (undocumented)</span>
-<span style="color: #000000">    </span><span style="color: #001080">mode</span><span style="color: #000000">?: </span><span style="color: #267F99">ParserMode</span><span style="color: #000000">;</span>
-<span style="color: #000000">}</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">PropertyPathResult</span><span style="color: #000000"> = </span><span style="color: #267F99">ModifiableResult</span><span style="color: #000000"> &amp; {</span>
-<span style="color: #000000">    </span><span style="color: #001080">type</span><span style="color: #000000">: </span><span style="color: #A31515">&#039;PROPERTY_PATH&#039;</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #001080">path</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">[];</span>
-<span style="color: #000000">};</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">RecordResult</span><span style="color: #000000"> = </span><span style="color: #267F99">ModifiableResult</span><span style="color: #000000"> &amp; {</span>
-<span style="color: #000000">    </span><span style="color: #001080">type</span><span style="color: #000000">: </span><span style="color: #A31515">&#039;RECORD&#039;</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #001080">fields</span><span style="color: #000000">: </span><span style="color: #267F99">FieldResult</span><span style="color: #000000">[];</span>
-<span style="color: #000000">};</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">StringValueResult</span><span style="color: #000000"> = </span><span style="color: #267F99">ModifiableResult</span><span style="color: #000000"> &amp; {</span>
-<span style="color: #000000">    </span><span style="color: #001080">type</span><span style="color: #000000">: </span><span style="color: #A31515">&#039;STRING_VALUE&#039;</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #001080">value</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #001080">quote</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">;</span>
-<span style="color: #000000">};</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">SymbolResult</span><span style="color: #000000"> = </span><span style="color: #267F99">ModifiableResult</span><span style="color: #000000"> &amp; {</span>
-<span style="color: #000000">    </span><span style="color: #001080">type</span><span style="color: #000000">: </span><span style="color: #A31515">&#039;SYMBOL&#039;</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #001080">name</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #001080">value</span><span style="color: #000000">?: </span><span style="color: #267F99">string</span><span style="color: #000000">;</span>
-<span style="color: #000000">};</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">UndefinedResult</span><span style="color: #000000"> = </span><span style="color: #267F99">ModifiableResult</span><span style="color: #000000"> &amp; {</span>
-<span style="color: #000000">    </span><span style="color: #001080">type</span><span style="color: #000000">: </span><span style="color: #A31515">&#039;UNDEFINED&#039;</span><span style="color: #000000">;</span>
-<span style="color: #000000">};</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">UnionResult</span><span style="color: #000000"> = </span><span style="color: #267F99">ModifiableResult</span><span style="color: #000000"> &amp; {</span>
-<span style="color: #000000">    </span><span style="color: #001080">type</span><span style="color: #000000">: </span><span style="color: #A31515">&#039;UNION&#039;</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #001080">elements</span><span style="color: #000000">: </span><span style="color: #267F99">ParseResult</span><span style="color: #000000">[];</span>
-<span style="color: #000000">};</span>
-
-<span style="color: #008000">// @public (undocumented)</span>
-<span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">UnknownResult</span><span style="color: #000000"> = </span><span style="color: #267F99">ModifiableResult</span><span style="color: #000000"> &amp; {</span>
-<span style="color: #000000">    </span><span style="color: #001080">type</span><span style="color: #000000">: </span><span style="color: #A31515">&#039;UNKNOWN&#039;</span><span style="color: #000000">;</span>
-<span style="color: #000000">};</span>
-</code></pre>
+				<a href="#api-documentation" id="api-documentation" style="color: inherit; text-decoration: none;">
+					<h2>API Documentation</h2>
+				</a>
+				<p>A simple api doc can be found here: <a href="https://simonseyock.github.io/jsdoc-type-pratt-parser/docs/">https://simonseyock.github.io/jsdoc-type-pratt-parser/docs/</a></p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -509,6 +329,12 @@
 						<a href="modules.html#genericresult" class="tsd-kind-icon">Generic<wbr>Result</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#importresult" class="tsd-kind-icon">Import<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#keyofresult" class="tsd-kind-icon">Key<wbr>OfResult</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
 						<a href="modules.html#moduleresult" class="tsd-kind-icon">Module<wbr>Result</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
@@ -540,6 +366,9 @@
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="modules.html#symbolresult" class="tsd-kind-icon">Symbol<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#typeofresult" class="tsd-kind-icon">Type<wbr>OfResult</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="modules.html#undefinedresult" class="tsd-kind-icon">Undefined<wbr>Result</a>
