@@ -1,12 +1,12 @@
 import {PrefixParslet} from "./Parslet";
 import {TokenType} from "../lexer/Token";
 import {ParserEngine} from "../ParserEngine";
-import {ParseResult, TypeOfResult} from "../ParseResult";
+import {KeyOfResult, ParseResult, TypeOfResult} from "../ParseResult";
 import {Precedence} from "./Precedence";
 
-export class TypeOfParslet implements PrefixParslet {
+export class KeyOfParslet implements PrefixParslet {
   accepts (type: TokenType, next: TokenType): boolean {
-    return type === 'typeof';
+    return type === 'keyof';
   }
 
   getPrecedence (): number {
@@ -14,9 +14,9 @@ export class TypeOfParslet implements PrefixParslet {
   }
 
   parse (parser: ParserEngine): ParseResult {
-    parser.consume('typeof')
-    const result: TypeOfResult = {
-      type: 'TYPE_OF'
+    parser.consume('keyof')
+    const result: KeyOfResult = {
+      type: 'KEY_OF'
     }
     const value = parser.tryParseType(Precedence.KEY_OF_TYPE_OF)
     if (value) {

@@ -1,4 +1,4 @@
-import { PrefixParslet } from './Parslet'
+import {InfixParslet, PrefixParslet} from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
 import { ParseResult } from '../ParseResult'
@@ -22,5 +22,21 @@ export class VariadicParslet implements PrefixParslet {
     }
     value.repeatable = true
     return value
+  }
+}
+
+export class PostfixVariadicParslet implements InfixParslet {
+  accepts (type: TokenType): boolean {
+    return type === '...'
+  }
+
+  getPrecedence (): number {
+    return Precedence.POSTFIX
+  }
+
+  parse (parser: ParserEngine, left: ParseResult): ParseResult {
+    parser.consume('...')
+    left.repeatable = true
+    return left
   }
 }

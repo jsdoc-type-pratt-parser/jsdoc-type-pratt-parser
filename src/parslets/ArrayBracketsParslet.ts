@@ -10,7 +10,7 @@ export class ArrayBracketsParslet implements InfixParslet {
   }
 
   getPrecedence (): number {
-    return Precedence.POSTFIX
+    return Precedence.ARRAY_BRACKETS
   }
 
   parse (parser: ParserEngine, left: ParseResult): ParseResult {

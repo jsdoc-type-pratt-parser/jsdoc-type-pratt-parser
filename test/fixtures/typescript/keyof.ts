@@ -1,11 +1,11 @@
 import {Fixture} from '../Fixture'
 
-export const typeOfFixtures: Fixture[] = [
+export const keyofFixtures: Fixture[] = [
   {
-    description: 'typeof name',
-    input: 'typeof A',
+    description: 'keyof name',
+    input: 'keyof A',
     expected: {
-      type: 'TYPE_OF',
+      type: 'KEY_OF',
       value: {
         type: 'NAME',
         name: 'A'
@@ -13,15 +13,15 @@ export const typeOfFixtures: Fixture[] = [
     }
   },
   {
-    description: 'typeof',
-    input: 'typeof',
+    description: 'keyof',
+    input: 'keyof',
     expected: {
-      type: 'TYPE_OF'
+      type: 'KEY_OF'
     }
   },
   {
-    description: 'generic with typeof',
-    input: 'X<typeof>',
+    description: 'generic with keyof',
+    input: 'X<keyof>',
     expected: {
       type: 'GENERIC',
       subject: {
@@ -29,13 +29,13 @@ export const typeOfFixtures: Fixture[] = [
         name: 'X'
       },
       objects: [{
-        type: 'TYPE_OF'
+        type: 'KEY_OF'
       }]
     }
   },
   {
-    description: 'generic with typeof name',
-    input: 'X<typeof A>',
+    description: 'generic with keyof name',
+    input: 'X<keyof A>',
     expected: {
       type: 'GENERIC',
       subject: {
@@ -43,7 +43,7 @@ export const typeOfFixtures: Fixture[] = [
         name: 'X'
       },
       objects: [{
-        type: 'TYPE_OF',
+        type: 'KEY_OF',
         value: {
           type: 'NAME',
           name: 'A'
@@ -52,12 +52,12 @@ export const typeOfFixtures: Fixture[] = [
     }
   },
   {
-    description: 'generic typeof name in parenthesis',
-    input: '(typeof X)<A>',
+    description: 'generic keyof name in parenthesis',
+    input: '(keyof X)<A>',
     expected: {
       type: 'GENERIC',
       subject: {
-        type: 'TYPE_OF',
+        type: 'KEY_OF',
         value: {
           type: 'NAME',
           name: 'X'
@@ -72,10 +72,10 @@ export const typeOfFixtures: Fixture[] = [
     }
   },
   {
-    description: 'typeof name in parenthesis',
-    input: '(typeof A)',
+    description: 'keyof name in parenthesis',
+    input: '(keyof A)',
     expected: {
-      type: 'TYPE_OF',
+      type: 'KEY_OF',
       value: {
         type: 'NAME',
         name: 'A'
@@ -83,10 +83,10 @@ export const typeOfFixtures: Fixture[] = [
     }
   },
   {
-    description: 'repeatable typeof name',
-    input: '...typeof A',
+    description: 'repeatable keyof name',
+    input: '...keyof A',
     expected: {
-      type: 'TYPE_OF',
+      type: 'KEY_OF',
       repeatable: true,
       value: {
         type: 'NAME',
@@ -95,10 +95,10 @@ export const typeOfFixtures: Fixture[] = [
     }
   },
   {
-    description: 'postfix repeatable typeof name',
-    input: 'typeof A...',
+    description: 'postfix repeatable keyof name',
+    input: 'keyof A...',
     expected: {
-      type: 'TYPE_OF',
+      type: 'KEY_OF',
       repeatable: true,
       value: {
         type: 'NAME',
@@ -107,13 +107,13 @@ export const typeOfFixtures: Fixture[] = [
     }
   },
   {
-    description: 'union typeof name',
-    input: 'typeof A | number',
+    description: 'union keyof name',
+    input: 'keyof A | number',
     expected: {
       type: 'UNION',
       elements: [
         {
-          type: 'TYPE_OF',
+          type: 'KEY_OF',
           value: {
             type: 'NAME',
             name: 'A'
@@ -127,8 +127,8 @@ export const typeOfFixtures: Fixture[] = [
     }
   },
   {
-    description: 'union with typeof name',
-    input: 'number | typeof A',
+    description: 'union with keyof name',
+    input: 'number | keyof A',
     expected: {
       type: 'UNION',
       elements: [
@@ -137,7 +137,7 @@ export const typeOfFixtures: Fixture[] = [
           name: 'number'
         },
         {
-          type: 'TYPE_OF',
+          type: 'KEY_OF',
           value: {
             type: 'NAME',
             name: 'A'
@@ -147,10 +147,10 @@ export const typeOfFixtures: Fixture[] = [
     }
   },
   {
-    description: 'typeof array',
-    input: 'typeof N[]',
+    description: 'keyof array',
+    input: 'keyof N[]',
     expected: {
-      type: 'TYPE_OF',
+      type: 'KEY_OF',
       value: {
         type: 'GENERIC',
         subject: {
@@ -167,13 +167,13 @@ export const typeOfFixtures: Fixture[] = [
     }
   },
   {
-    description: 'typeof as function parameter',
-    input: 'function(typeof A)',
+    description: 'keyof as function parameter',
+    input: 'function(keyof A)',
     expected: {
       type: 'FUNCTION',
       parameters: [
         {
-          type: 'TYPE_OF',
+          type: 'KEY_OF',
           value: {
             type: "NAME",
             name: 'A'
@@ -183,13 +183,13 @@ export const typeOfFixtures: Fixture[] = [
     }
   },
   {
-    description: 'typeof as first function parameter',
-    input: 'function(typeof A, number)',
+    description: 'keyof as first function parameter',
+    input: 'function(keyof A, number)',
     expected: {
       type: 'FUNCTION',
       parameters: [
         {
-          type: 'TYPE_OF',
+          type: 'KEY_OF',
           value: {
             type: "NAME",
             name: 'A'
@@ -203,8 +203,8 @@ export const typeOfFixtures: Fixture[] = [
     }
   },
   {
-    description: 'typeof as second function parameter',
-    input: 'function(number, typeof A)',
+    description: 'keyof as second function parameter',
+    input: 'function(number, keyof A)',
     expected: {
       type: 'FUNCTION',
       parameters: [
@@ -213,7 +213,7 @@ export const typeOfFixtures: Fixture[] = [
           name: 'number'
         },
         {
-          type: 'TYPE_OF',
+          type: 'KEY_OF',
           value: {
             type: "NAME",
             name: 'A'
@@ -223,13 +223,13 @@ export const typeOfFixtures: Fixture[] = [
     }
   },
   {
-    description: 'typeof as return of function',
-    input: 'function(): typeof A',
+    description: 'keyof as return of function',
+    input: 'function(): keyof A',
     expected: {
       type: 'FUNCTION',
       parameters: [],
       returnType: {
-        type: 'TYPE_OF',
+        type: 'KEY_OF',
         value: {
           type: "NAME",
           name: 'A'

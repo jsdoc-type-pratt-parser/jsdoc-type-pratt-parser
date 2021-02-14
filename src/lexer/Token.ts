@@ -27,7 +27,7 @@ export type TokenType =
   'new' |
   'module' |
   'typeof' |
-  'Start' |
+  'keyof' |
   'Identifier' |
   'StringValue' |
   'Number' |

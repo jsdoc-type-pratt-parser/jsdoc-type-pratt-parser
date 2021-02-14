@@ -1,7 +1,9 @@
-Tester
-------
+This project is parser for jsdoc types. It is heavily inspired by http://journal.stuffwithstuff.com/2011/03/19/pratt-parsers-expression-parsing-made-easy/, https://github.com/hegemonic/catharsis and  https://github.com/jsdoctypeparser/jsdoctypeparser.
 
-Simple tester can be found at: https://simonseyock.github.io/jsdoc-type-pratt-parser/
+Live Demo
+---------
+
+Simple live demo can be found at: https://simonseyock.github.io/jsdoc-type-pratt-parser/
 
 Catharsis Tests
 ---------------

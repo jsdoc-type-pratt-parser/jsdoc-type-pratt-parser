@@ -167,6 +167,7 @@ const rules = [
   makeKeyWordRule('new'),
   makeKeyWordRule('module'),
   makeKeyWordRule('typeof'),
+  makeKeyWordRule('keyof'),
   identifierRule,
   stringValueRule,
   numberRule
