@@ -12,6 +12,7 @@ export type ParseResult =
   | ModuleResult
   | PropertyPathResult
   | SymbolResult
+  | TypeOfResult
 
 export type ParseResultType = ParseResult['type'] | FieldResult['type']
 
@@ -98,4 +99,9 @@ export type SymbolResult = ModifiableResult & {
   type: 'SYMBOL'
   name: string
   value?: string
+}
+
+export type TypeOfResult = ModifiableResult & {
+  type: 'TYPE_OF'
+  value?: ParseResult
 }

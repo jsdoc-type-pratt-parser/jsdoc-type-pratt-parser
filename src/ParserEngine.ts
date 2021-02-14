@@ -4,6 +4,15 @@ import { InfixParslet, PrefixParslet } from './parslets/Parslet'
 import { ParseResult } from './ParseResult'
 import { Grammar } from './grammars/Grammar'
 
+class NoParsletFound extends Error {
+  constructor(token: Token) {
+    super(`No parslet found for token: '${token.type}' with value '${token.text}'`);
+
+    // Set the prototype explicitly.
+    Object.setPrototypeOf(this, NoParsletFound.prototype);
+  }
+}
+
 export class ParserEngine {
   private readonly prefixParslets: PrefixParslet[]
   private readonly infixParslets: InfixParslet[]
@@ -25,7 +34,7 @@ export class ParserEngine {
 
   parseText (text: string): ParseResult {
     this.lexer.lex(text)
-    const result = this.parseType()
+    const result = this.parseType(0)
     if (!this.consume('EOF')) {
       throw new Error(`Unexpected early end of parse. Next token: '${this.getToken().text}'`)
     }
@@ -42,11 +51,23 @@ export class ParserEngine {
     })
   }
 
-  public parseType (precedence: number = 0): ParseResult {
+  public tryParseType (precedence: number): ParseResult | undefined {
+    try {
+      return this.parseType(precedence)
+    } catch (e) {
+      if (e instanceof NoParsletFound) {
+        return undefined
+      } else {
+        throw e
+      }
+    }
+  }
+
+  public parseType (precedence: number): ParseResult {
     const pParslet = this.getPrefixParslet()
 
     if (pParslet === undefined) {
-      throw new Error(`No parslet found for token: '${this.getToken().type}' with value '${this.getToken().text}'`)
+      throw new NoParsletFound(this.getToken())
     }
 
     let result = pParslet.parse(this)

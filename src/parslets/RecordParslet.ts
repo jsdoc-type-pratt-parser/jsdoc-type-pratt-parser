@@ -31,7 +31,7 @@ export class RecordParslet implements PrefixParslet {
           }
           parser.consume('Number')
         } else {
-          const result = parser.parseType()
+          const result = parser.parseType(Precedence.PREFIX)
           if (result.type !== 'NAME') {
             throw new Error('key of a record field must be a name or number expression')
           }
@@ -40,7 +40,7 @@ export class RecordParslet implements PrefixParslet {
 
         let value
         if (parser.consume(':')) {
-          value = parser.parseType()
+          value = parser.parseType(Precedence.PREFIX)
         }
 
         result.fields.push({

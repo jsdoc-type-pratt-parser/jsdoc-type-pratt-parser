@@ -1,22 +1,21 @@
 import { Grammar } from './Grammar'
-import { closureGrammar } from './closureGrammar'
-import { SymbolParslet } from '../parslets/SymbolParslet'
-import { ClassPathParslet } from '../parslets/ClassPathParslet'
 import { ArrayBracketsParslet } from '../parslets/ArrayBracketsParslet'
 import {baseGrammar} from "./baseGrammar";
+import {TypeOfParslet} from "../parslets/TypeOfParslet";
 
-export const jsdocGrammar: Grammar = () => {
+export const typescriptGrammar: Grammar = () => {
   const {
     prefixParslets,
     infixParslets
   } = baseGrammar()
 
   return {
-    prefixParslets: prefixParslets,
+    prefixParslets: [
+      ...prefixParslets,
+      new TypeOfParslet()
+    ],
     infixParslets: [
       ...infixParslets,
-      new SymbolParslet(),
-      new ClassPathParslet(),
       new ArrayBracketsParslet()
     ]
   }

@@ -2,8 +2,9 @@ import { ParserEngine } from './ParserEngine'
 import { closureGrammar } from './grammars/closureGrammar'
 import { ParseResult } from './ParseResult'
 import { jsdocGrammar } from './grammars/jsdocGrammar'
+import {typescriptGrammar} from "./grammars/typescriptGrammar";
 
-export type ParserMode = 'closure' | 'jsdoc'
+export type ParserMode = 'closure' | 'jsdoc' | 'typescript'
 
 export interface ParserOptions {
   mode?: ParserMode
@@ -25,6 +26,8 @@ export class Parser {
       case 'jsdoc':
         this.engine = new ParserEngine(jsdocGrammar)
         break
+      case "typescript":
+        this.engine = new ParserEngine(typescriptGrammar)
     }
   }
 

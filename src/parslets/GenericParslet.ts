@@ -19,7 +19,7 @@ export class GenericParslet implements Parslet {
 
     const objects = []
     do {
-      objects.push(parser.parseType())
+      objects.push(parser.parseType(Precedence.PREFIX))
     } while (parser.consume(','))
 
     if (!parser.consume('>')) {

@@ -31,7 +31,7 @@ export class FunctionParslet implements PrefixParslet {
         if (!parser.consume(':')) {
           throw new Error('new keyword must be followed by \':\'')
         }
-        result.newType = parser.parseType()
+        result.newType = parser.parseType(Precedence.PREFIX)
         continueList = parser.consume(',')
       }
 
@@ -39,14 +39,14 @@ export class FunctionParslet implements PrefixParslet {
         if (!parser.consume(':')) {
           throw new Error('this keyword must be followed by \':\'')
         }
-        result.thisType = parser.parseType()
+        result.thisType = parser.parseType(Precedence.PREFIX)
         continueList = parser.consume(',')
       }
 
       if (continueList) {
         const parameters = []
         do {
-          parameters.push(parser.parseType())
+          parameters.push(parser.parseType(Precedence.PREFIX))
         } while (parser.consume(','))
         result.parameters = parameters
       }
@@ -57,7 +57,7 @@ export class FunctionParslet implements PrefixParslet {
     }
 
     if (parser.consume(':')) {
-      result.returnType = parser.parseType()
+      result.returnType = parser.parseType(Precedence.PREFIX)
     }
     return result
   }
