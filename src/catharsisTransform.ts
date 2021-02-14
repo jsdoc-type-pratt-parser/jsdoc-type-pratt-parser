@@ -1,5 +1,4 @@
 import { FieldResult, ModifiableResult, ParseResult } from './ParseResult'
-import _ from 'lodash'
 
 export type CatharsisParseResult =
   CatharsisNameResult
@@ -67,7 +66,7 @@ export type CatharsisRecordResult = ModifiableResult & {
 }
 
 export function catharsisTransform (object: ParseResult|FieldResult): CatharsisParseResult {
-  const newObject: any = _.clone(object)
+  const newObject: any = Object.assign({}, object)
   switch (object.type) {
     case 'ALL':
       newObject.type = 'AllLiteral'
