@@ -1,4 +1,4 @@
-import {InfixParslet, PrefixParslet} from './Parslet'
+import { InfixParslet, PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
 import { ParseResult } from '../ParseResult'

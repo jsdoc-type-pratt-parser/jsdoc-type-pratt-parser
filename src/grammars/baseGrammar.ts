@@ -10,7 +10,7 @@ import { ModuleParslet } from '../parslets/ModuleParslet'
 import { GenericParslet } from '../parslets/GenericParslet'
 import { OptionalParslet } from '../parslets/OptionalParslet'
 import { PropertyPathParslet } from '../parslets/PropertyPathParslet'
-import {ParenthesisParslet} from "../parslets/ParenthesisParslet";
+import { ParenthesisParslet } from '../parslets/ParenthesisParslet'
 
 export const baseGrammar: Grammar = () => {
   return {

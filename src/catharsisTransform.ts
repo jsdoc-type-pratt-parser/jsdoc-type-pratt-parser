@@ -174,8 +174,11 @@ export function catharsisTransform (object: ParseResult|FieldResult): CatharsisP
       break
     case 'PROPERTY_PATH':
       newObject.type = 'NameExpression'
+      if (object.left.type !== 'NAME') {
+        throw new Error('Other left types than \'NAME\' are not supported for catharsis compat mode')
+      }
       delete newObject.path
-      newObject.name = object.path.join('.')
+      newObject.name = object.left.name + '.' + object.path.join('.')
       break
     case 'SYMBOL':
       newObject.type = 'NameExpression'

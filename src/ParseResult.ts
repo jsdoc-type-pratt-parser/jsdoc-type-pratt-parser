@@ -14,6 +14,7 @@ export type ParseResult =
   | SymbolResult
   | TypeOfResult
   | KeyOfResult
+  | ImportResult
 
 export type ParseResultType = ParseResult['type'] | FieldResult['type']
 
@@ -88,6 +89,7 @@ export type ModuleResult = ModifiableResult & {
 
 export type PropertyPathResult = ModifiableResult & {
   type: 'PROPERTY_PATH'
+  left: ParseResult
   path: string[]
 }
 
@@ -110,4 +112,9 @@ export type TypeOfResult = ModifiableResult & {
 export type KeyOfResult = ModifiableResult & {
   type: 'KEY_OF'
   value?: ParseResult
+}
+
+export type ImportResult = ModifiableResult & {
+  type: 'IMPORT'
+  path: StringValueResult
 }

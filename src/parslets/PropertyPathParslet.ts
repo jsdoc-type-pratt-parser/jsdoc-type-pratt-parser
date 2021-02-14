@@ -14,11 +14,8 @@ export class PropertyPathParslet implements InfixParslet {
   }
 
   parse (parser: ParserEngine, left: ParseResult): ParseResult {
-    if (left.type !== 'NAME') {
-      throw new Error('First element of property path needs to be a name')
-    }
-    const path = [left.name]
     parser.consume('.')
+    const path = []
     const allowed: TokenType[] = ['Identifier', 'Number', 'StringValue']
     let next
     do {
@@ -32,6 +29,7 @@ export class PropertyPathParslet implements InfixParslet {
     } while (next.type !== '<' && parser.consume('.'))
     return {
       type: 'PROPERTY_PATH',
+      left,
       path
     }
   }

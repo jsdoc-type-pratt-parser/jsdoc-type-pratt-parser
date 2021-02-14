@@ -28,6 +28,7 @@ export type TokenType =
   'module' |
   'typeof' |
   'keyof' |
+  'import' |
   'Identifier' |
   'StringValue' |
   'Number' |

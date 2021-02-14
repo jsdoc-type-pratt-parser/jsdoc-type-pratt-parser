@@ -1,4 +1,4 @@
-import {Fixture} from '../Fixture'
+import { Fixture } from '../Fixture'
 
 export const typeOfFixtures: Fixture[] = [
   {
@@ -175,7 +175,7 @@ export const typeOfFixtures: Fixture[] = [
         {
           type: 'TYPE_OF',
           value: {
-            type: "NAME",
+            type: 'NAME',
             name: 'A'
           }
         }
@@ -191,7 +191,7 @@ export const typeOfFixtures: Fixture[] = [
         {
           type: 'TYPE_OF',
           value: {
-            type: "NAME",
+            type: 'NAME',
             name: 'A'
           }
         },
@@ -215,7 +215,7 @@ export const typeOfFixtures: Fixture[] = [
         {
           type: 'TYPE_OF',
           value: {
-            type: "NAME",
+            type: 'NAME',
             name: 'A'
           }
         }
@@ -231,7 +231,7 @@ export const typeOfFixtures: Fixture[] = [
       returnType: {
         type: 'TYPE_OF',
         value: {
-          type: "NAME",
+          type: 'NAME',
           name: 'A'
         }
       }

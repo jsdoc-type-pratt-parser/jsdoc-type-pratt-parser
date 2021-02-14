@@ -168,6 +168,7 @@ const rules = [
   makeKeyWordRule('module'),
   makeKeyWordRule('typeof'),
   makeKeyWordRule('keyof'),
+  makeKeyWordRule('import'),
   identifierRule,
   stringValueRule,
   numberRule

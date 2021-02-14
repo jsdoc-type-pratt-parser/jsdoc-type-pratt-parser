@@ -5,11 +5,11 @@ import { ParseResult } from './ParseResult'
 import { Grammar } from './grammars/Grammar'
 
 class NoParsletFound extends Error {
-  constructor(token: Token) {
-    super(`No parslet found for token: '${token.type}' with value '${token.text}'`);
+  constructor (token: Token) {
+    super(`No parslet found for token: '${token.type}' with value '${token.text}'`)
 
     // Set the prototype explicitly.
-    Object.setPrototypeOf(this, NoParsletFound.prototype);
+    Object.setPrototypeOf(this, NoParsletFound.prototype)
   }
 }
 
