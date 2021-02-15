@@ -50,7 +50,7 @@
     var output = document.querySelector('#output')
 
     button.addEventListener('click', function () {
-        var mode = modeSelect.querySelector('option[selected]').value
+        var mode = Array.from(modeSelect.querySelectorAll('option')).find(o => o.selected).value
         var parser = new jtpp.Parser({
             mode: mode
         })
