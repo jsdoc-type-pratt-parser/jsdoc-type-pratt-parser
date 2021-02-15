@@ -12,6 +12,7 @@ import { OptionalParslet } from '../parslets/OptionalParslet'
 import { PropertyPathParslet } from '../parslets/PropertyPathParslet'
 import { ParenthesisParslet } from '../parslets/ParenthesisParslet'
 import { KeyValueParslet } from '../parslets/KeyValueParslet'
+import { NumberParslet } from '../parslets/NumberParslet'
 
 export const baseGrammar: Grammar = () => {
   return {
@@ -22,11 +23,12 @@ export const baseGrammar: Grammar = () => {
       new VariadicParslet(),
       new FunctionParslet(),
       new RecordParslet(),
-      new KeyValueParslet(),
       new ModuleParslet(),
+      new NumberParslet(),
       new ParenthesisParslet()
     ],
     infixParslets: [
+      new KeyValueParslet(),
       new GenericParslet(),
       new UnenclosedUnionParslet(),
       new OptionalParslet(),

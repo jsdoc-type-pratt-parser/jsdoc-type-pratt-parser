@@ -9,7 +9,7 @@ class NonTerminalResultError extends Error {
 }
 
 export function assertTerminal (result: NonTerminalResult): ParseResult {
-  if (result.type === 'FIELD' || result.type === 'NUMBER') {
+  if (result.type === 'KEY_VALUE' || result.type === 'NUMBER' || result.type === 'PARAMETER_LIST') {
     throw new NonTerminalResultError(result)
   }
   return result

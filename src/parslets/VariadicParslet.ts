@@ -37,7 +37,8 @@ export class PostfixVariadicParslet implements InfixParslet {
 
   parse (parser: ParserEngine, left: NonTerminalResult): ParseResult {
     parser.consume('...')
-    left.repeatable = true
-    return assertTerminal(left)
+    const result = assertTerminal(left)
+    result.repeatable = true
+    return result
   }
 }

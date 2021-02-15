@@ -16,7 +16,8 @@ export class OptionalParslet implements InfixParslet {
 
   parse (parser: ParserEngine, left: NonTerminalResult): ParseResult {
     parser.consume('=')
-    left.optional = true
-    return assertTerminal(left)
+    const result = assertTerminal(left)
+    result.optional = true
+    return result
   }
 }

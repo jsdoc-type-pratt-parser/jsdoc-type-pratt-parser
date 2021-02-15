@@ -157,9 +157,24 @@ export function catharsisTransform (object: NonTerminalResult): CatharsisParseRe
     case 'NAME':
       newObject.type = 'NameExpression'
       break
+    case 'NUMBER':
+      newObject.type = 'NameExpression'
+      delete newObject.value
+      newObject.name = object.value.toString(10)
+      break
     case 'RECORD':
       newObject.type = 'RecordType'
-      newObject.fields = object.fields.map(catharsisTransform)
+      newObject.fields = object.fields.map(field => {
+        if (field.type !== 'KEY_VALUE') {
+          return {
+            type: 'FieldType',
+            key: catharsisTransform(field),
+            value: undefined
+          }
+        } else {
+          return catharsisTransform(field)
+        }
+      })
       break
     case 'UNION':
       newObject.type = 'TypeUnion'

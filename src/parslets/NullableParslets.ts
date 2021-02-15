@@ -43,10 +43,11 @@ export class PostfixNullableParslet implements InfixParslet {
     if (!nullable) {
       parser.consume('!')
     }
-    if (left.nullable !== undefined) {
+    const result = assertTerminal(left)
+    if (result.nullable !== undefined) {
       throw new Error('Multiple nullable modifiers on same type')
     }
-    left.nullable = nullable
+    result.nullable = nullable
     return assertTerminal(left)
   }
 }

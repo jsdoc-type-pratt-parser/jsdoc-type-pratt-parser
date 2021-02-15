@@ -11,15 +11,15 @@ export class KeyValueParslet implements InfixParslet {
   }
 
   getPrecedence (): number {
-    return Precedence.POSTFIX
+    return Precedence.KEY_VALUE
   }
 
   parse (parser: ParserEngine, left: NonTerminalResult): NonTerminalResult {
     parser.consume(':')
-    const value = parser.parseType(Precedence.POSTFIX)
+    const value = parser.parseType(Precedence.KEY_VALUE)
     return {
       type: 'KEY_VALUE',
-      key: assertTerminal(left),
+      key: left.type === 'NUMBER' ? left : assertTerminal(left),
       value: value
     }
   }

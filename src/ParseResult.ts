@@ -77,7 +77,7 @@ export type FunctionResult = ModifiableResult & {
 
 export type KeyValueResult = ModifiableResult & {
   type: 'KEY_VALUE'
-  key: ParseResult
+  key: ParseResult|NumberResult
   value: ParseResult
 }
 
