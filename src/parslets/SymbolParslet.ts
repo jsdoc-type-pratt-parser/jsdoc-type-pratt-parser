@@ -10,7 +10,7 @@ export class SymbolParslet implements InfixParslet {
   }
 
   getPrecedence (): number {
-    return Precedence.POSTFIX
+    return Precedence.SYMBOL
   }
 
   parse (parser: ParserEngine, left: NonTerminalResult): ParseResult {
@@ -22,13 +22,17 @@ export class SymbolParslet implements InfixParslet {
       type: 'SYMBOL',
       name: left.name
     }
-    const token = parser.getToken()
-    if (parser.consume('Number') || parser.consume('Identifier')) {
-      result.value = token.text
-    }
     if (!parser.consume(')')) {
-      throw new Error('Symbol does not end after name')
+      const next = parser.parseNonTerminalType(Precedence.SYMBOL)
+      if (next.type !== 'NUMBER' && next.type !== 'NAME') {
+        throw new Error('Symbol value must be a number or a name')
+      }
+      result.value = next
+      if (!parser.consume(')')) {
+        throw new Error('Symbol does not end after value')
+      }
     }
+
     return result
   }
 }

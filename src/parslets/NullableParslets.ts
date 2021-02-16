@@ -12,7 +12,7 @@ export class NullableParslet implements PrefixParslet {
   }
 
   getPrecedence (): number {
-    return Precedence.PREFIX
+    return Precedence.NULLABLE
   }
 
   parse (parser: ParserEngine): ParseResult {
@@ -20,7 +20,7 @@ export class NullableParslet implements PrefixParslet {
     if (!nullable) {
       parser.consume('!')
     }
-    const value = parser.parseType(Precedence.PREFIX)
+    const value = parser.parseType(Precedence.NULLABLE)
     if (value.nullable !== undefined) {
       throw new Error('Multiple nullable modifiers on same type')
     }
@@ -35,7 +35,7 @@ export class PostfixNullableParslet implements InfixParslet {
   }
 
   getPrecedence (): number {
-    return Precedence.POSTFIX
+    return Precedence.NULLABLE
   }
 
   parse (parser: ParserEngine, left: NonTerminalResult): ParseResult {

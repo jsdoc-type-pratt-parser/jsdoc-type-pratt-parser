@@ -11,7 +11,7 @@ export class OptionalParslet implements InfixParslet {
   }
 
   getPrecedence (): number {
-    return Precedence.POSTFIX
+    return Precedence.OPTIONAL
   }
 
   parse (parser: ParserEngine, left: NonTerminalResult): ParseResult {

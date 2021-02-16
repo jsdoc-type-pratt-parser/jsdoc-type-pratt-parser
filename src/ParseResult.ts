@@ -69,10 +69,8 @@ export type UnknownResult = ModifiableResult & {
 
 export type FunctionResult = ModifiableResult & {
   type: 'FUNCTION'
-  parameters: ParseResult[]
+  parameters: Array<ParseResult|KeyValueResult>
   returnType?: ParseResult
-  thisType?: ParseResult
-  newType?: ParseResult
 }
 
 export type KeyValueResult = ModifiableResult & {
@@ -105,7 +103,7 @@ export type NumberResult = ModifiableResult & {
 export type SymbolResult = ModifiableResult & {
   type: 'SYMBOL'
   name: string
-  value?: string
+  value?: NumberResult | NameResult
 }
 
 export type TypeOfResult = ModifiableResult & {

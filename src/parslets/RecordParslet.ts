@@ -10,7 +10,7 @@ export class RecordParslet implements PrefixParslet {
   }
 
   getPrecedence (): number {
-    return Precedence.PREFIX
+    return Precedence.RECORD
   }
 
   parse (parser: ParserEngine): ParseResult {
@@ -22,7 +22,7 @@ export class RecordParslet implements PrefixParslet {
 
     if (!parser.consume('}')) {
       do {
-        const field = parser.parseNonTerminalType(Precedence.PREFIX)
+        const field = parser.parseNonTerminalType(Precedence.RECORD)
         if (field.type !== 'NAME' && field.type !== 'NUMBER' && field.type !== 'KEY_VALUE') {
           throw new Error('records may only contain \'NAME\', \'NUMBER\' or \'KEY_VALUE\' fields.')
         }

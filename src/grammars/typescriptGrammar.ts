@@ -6,6 +6,7 @@ import { PostfixVariadicParslet } from '../parslets/VariadicParslet'
 import { KeyOfParslet } from '../parslets/KeyOfParslet'
 import { ImportParslet } from '../parslets/ImportParslet'
 import { StringValueParslet } from '../parslets/StringValueParslet'
+import {FunctionParslet} from "../parslets/FunctionParslet";
 
 export const typescriptGrammar: Grammar = () => {
   const {
@@ -16,6 +17,9 @@ export const typescriptGrammar: Grammar = () => {
   return {
     prefixParslets: [
       ...prefixParslets,
+      new FunctionParslet({
+        allowWithoutParenthesis:false
+      }),
       new TypeOfParslet(),
       new KeyOfParslet(),
       new ImportParslet(),

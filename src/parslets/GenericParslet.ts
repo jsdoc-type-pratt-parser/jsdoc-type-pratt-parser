@@ -11,7 +11,7 @@ export class GenericParslet implements Parslet {
   }
 
   getPrecedence (): number {
-    return Precedence.POSTFIX
+    return Precedence.GENERIC
   }
 
   parse (parser: ParserEngine, left: NonTerminalResult): ParseResult {
@@ -20,7 +20,7 @@ export class GenericParslet implements Parslet {
 
     const objects = []
     do {
-      objects.push(parser.parseType(Precedence.PREFIX))
+      objects.push(parser.parseType(Precedence.GENERIC))
     } while (parser.consume(','))
 
     if (!parser.consume('>')) {

@@ -11,7 +11,7 @@ export class PropertyPathParslet implements InfixParslet {
   }
 
   getPrecedence (): number {
-    return Precedence.POSTFIX
+    return Precedence.PROPERTY_PATH
   }
 
   parse (parser: ParserEngine, left: NonTerminalResult): ParseResult {

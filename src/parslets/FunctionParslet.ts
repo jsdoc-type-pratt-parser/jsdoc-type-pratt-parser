@@ -3,20 +3,33 @@ import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
 import { FunctionResult, ParseResult } from '../ParseResult'
 import { Precedence } from './Precedence'
+import {assertTerminal} from "../assertTerminal";
+
+type FunctionParsletOptions = {
+  allowWithoutParenthesis: boolean
+}
 
 export class FunctionParslet implements PrefixParslet {
+  private allowWithoutParenthesis: boolean;
+
+  constructor ({ allowWithoutParenthesis }: FunctionParsletOptions) {
+    this.allowWithoutParenthesis = allowWithoutParenthesis;
+  }
+
   accepts (type: TokenType): boolean {
     return type === 'function'
   }
 
   getPrecedence (): number {
-    return Precedence.PREFIX
+    return Precedence.PARENTHESIS
   }
 
   parse (parser: ParserEngine): ParseResult {
     parser.consume('function')
 
-    if (!parser.consume('(')) {
+    const withoutParenthesis = !parser.consume('(')
+
+    if (!this.allowWithoutParenthesis && withoutParenthesis) {
       throw new Error('function is missing parameter list')
     }
     const result: FunctionResult = {
@@ -24,41 +37,25 @@ export class FunctionParslet implements PrefixParslet {
       parameters: []
     }
 
-    if (!parser.consume(')')) {
-      let continueList = true
-
-      if (continueList && parser.consume('new')) {
-        if (!parser.consume(':')) {
-          throw new Error('new keyword must be followed by \':\'')
-        }
-        result.newType = parser.parseType(Precedence.PREFIX)
-        continueList = parser.consume(',')
-      }
-
-      if (continueList && parser.consume('this')) {
-        if (!parser.consume(':')) {
-          throw new Error('this keyword must be followed by \':\'')
-        }
-        result.thisType = parser.parseType(Precedence.PREFIX)
-        continueList = parser.consume(',')
-      }
-
-      if (continueList) {
-        const parameters = []
-        do {
-          parameters.push(parser.parseType(Precedence.PREFIX))
-        } while (parser.consume(','))
-        result.parameters = parameters
-      }
-
+    if (!withoutParenthesis ) {
       if (!parser.consume(')')) {
-        throw new Error('function parameter list is not terminated')
+        const value = parser.parseNonTerminalType(Precedence.PARENTHESIS)
+        if (value.type === 'PARAMETER_LIST') {
+          result.parameters = value.elements
+        } else {
+          result.parameters = [value.type === 'KEY_VALUE' ? value : assertTerminal(value)]
+        }
+
+        if (!parser.consume(')')) {
+          throw new Error('function parameter list is not terminated')
+        }
+      }
+
+      if (parser.consume(':')) {
+        result.returnType = parser.parseType(Precedence.PREFIX)
       }
     }
 
-    if (parser.consume(':')) {
-      result.returnType = parser.parseType(Precedence.PREFIX)
-    }
     return result
   }
 }

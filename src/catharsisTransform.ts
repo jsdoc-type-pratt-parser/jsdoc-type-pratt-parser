@@ -128,18 +128,22 @@ export function catharsisTransform (object: NonTerminalResult): CatharsisParseRe
     case 'FUNCTION':
       newObject.type = 'FunctionType'
       delete newObject.parameters
-      newObject.params = object.parameters.map(catharsisTransform)
+      newObject.params = object.parameters.filter(p => {
+        if (p.type === 'KEY_VALUE' && p.key.type === 'NAME') {
+          if (p.key.name === 'this') {
+            newObject.this = catharsisTransform(p.value)
+            return false
+          }
+          if (p.key.name === 'new') {
+            newObject.new = catharsisTransform(p.value)
+            return false
+          }
+        }
+        return true
+      }).map(catharsisTransform)
       if (object.returnType !== undefined) {
         delete newObject.returnType
         newObject.result = catharsisTransform(object.returnType)
-      }
-      if (object.thisType !== undefined) {
-        delete newObject.thisType
-        newObject.this = catharsisTransform(object.thisType)
-      }
-      if (object.newType !== undefined) {
-        delete newObject.newType
-        newObject.new = catharsisTransform(object.newType)
       }
       break
     case 'GENERIC':
@@ -199,7 +203,16 @@ export function catharsisTransform (object: NonTerminalResult): CatharsisParseRe
     case 'SYMBOL':
       newObject.type = 'NameExpression'
       delete newObject.value
-      newObject.name = `${object.name}(${object.value ?? ''})`
+      let value = ''
+      if (object.value?.repeatable) {
+        value = '...'
+      }
+      if (object.value?.type === 'NAME') {
+        value += object.value.name
+      } else if (object.value?.type === 'NUMBER') {
+        value += object.value.value.toString(10)
+      }
+      newObject.name = `${object.name}(${value})`
       break
   }
 
