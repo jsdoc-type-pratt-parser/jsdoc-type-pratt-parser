@@ -1,14 +1,16 @@
 // higher precedence = higher importance
 export enum Precedence {
-  PARENTHESIS = 1,
+  ALL,
+  PARAMETER_LIST,
+  PARENTHESIS,
   UNION,
   PREFIX,
   POSTFIX,
-  PARAMETER_LIST,
   RECORD,
   SYMBOL,
   OPTIONAL,
   NULLABLE,
+  ARROW,
   KEY_VALUE,
   GENERIC,
   PROPERTY_PATH,

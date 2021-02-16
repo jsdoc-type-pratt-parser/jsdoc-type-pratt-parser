@@ -9,11 +9,11 @@ export class StringValueParslet implements PrefixParslet {
     return type === 'StringValue'
   }
 
-  getPrecedence (): number {
+  getPrecedence (): Precedence {
     return Precedence.PREFIX
   }
 
-  parse (parser: ParserEngine): ParseResult {
+  parsePrefix (parser: ParserEngine): ParseResult {
     const token = parser.getToken()
     parser.consume('StringValue')
     return {

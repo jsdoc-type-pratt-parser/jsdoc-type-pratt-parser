@@ -106,6 +106,7 @@ export type CatharsisRecordResult = ModifiableResult & {
  */
 export function catharsisTransform (object: NonTerminalResult): CatharsisParseResult {
   const newObject: any = Object.assign({}, object)
+  let value
   switch (object.type) {
     case 'ALL':
       newObject.type = 'AllLiteral'
@@ -203,8 +204,8 @@ export function catharsisTransform (object: NonTerminalResult): CatharsisParseRe
     case 'SYMBOL':
       newObject.type = 'NameExpression'
       delete newObject.value
-      let value = ''
-      if (object.value?.repeatable) {
+      value = ''
+      if (object.value?.repeatable === true) {
         value = '...'
       }
       if (object.value?.type === 'NAME') {

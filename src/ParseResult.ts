@@ -15,6 +15,7 @@ export type ParseResult =
   | TypeOfResult
   | KeyOfResult
   | ImportResult
+  | ArrowResult
 
 export type NonTerminalResult =
   ParseResult
@@ -71,6 +72,13 @@ export type FunctionResult = ModifiableResult & {
   type: 'FUNCTION'
   parameters: Array<ParseResult|KeyValueResult>
   returnType?: ParseResult
+}
+
+export type ArrowResult = ModifiableResult & {
+  type: 'FUNCTION'
+  parameters: KeyValueResult[]
+  returnType?: ParseResult
+  arrow: true
 }
 
 export type KeyValueResult = ModifiableResult & {

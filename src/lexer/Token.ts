@@ -22,6 +22,7 @@ export type TokenType =
   '...' |
   'null' |
   'undefined' |
+  'void' |
   'function' |
   'this' |
   'new' |

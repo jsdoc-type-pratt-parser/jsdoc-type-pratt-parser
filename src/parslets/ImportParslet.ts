@@ -9,11 +9,11 @@ export class ImportParslet implements PrefixParslet {
     return type === 'import'
   }
 
-  getPrecedence (): number {
+  getPrecedence (): Precedence {
     return Precedence.PREFIX
   }
 
-  parse (parser: ParserEngine): ParseResult {
+  parsePrefix (parser: ParserEngine): ParseResult {
     parser.consume('import')
     if (!parser.consume('(')) {
       throw new Error('Missing parenthesis after import keyword')

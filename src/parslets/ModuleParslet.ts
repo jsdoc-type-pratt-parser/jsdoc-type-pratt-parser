@@ -9,11 +9,11 @@ export class ModuleParslet implements PrefixParslet {
     return type === 'module'
   }
 
-  getPrecedence (): number {
+  getPrecedence (): Precedence {
     return Precedence.PREFIX
   }
 
-  parse (parser: ParserEngine): ParseResult {
+  parsePrefix (parser: ParserEngine): ParseResult {
     parser.consume('module')
     if (!parser.consume(':')) {
       throw new Error('module needs to have a \':\' afterwards.')

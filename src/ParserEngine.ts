@@ -4,6 +4,7 @@ import { InfixParslet, PrefixParslet } from './parslets/Parslet'
 import { NonTerminalResult, ParseResult } from './ParseResult'
 import { Grammar } from './grammars/Grammar'
 import { assertTerminal } from './assertTerminal'
+import { Precedence } from './parslets/Precedence'
 
 class NoParsletFoundError extends Error {
   constructor (token: Token) {
@@ -34,7 +35,7 @@ export class ParserEngine {
 
   parseText (text: string): ParseResult {
     this.lexer.lex(text)
-    const result = this.parseType(0)
+    const result = this.parseType(Precedence.ALL)
     if (!this.consume('EOF')) {
       throw new Error(`Unexpected early end of parse. Next token: '${this.getToken().text}'`)
     }
@@ -45,13 +46,13 @@ export class ParserEngine {
     return this.prefixParslets.find(p => p.accepts(this.getToken().type, this.peekToken().type))
   }
 
-  getInfixParslet (precedence: number): InfixParslet | undefined {
+  getInfixParslet (precedence: Precedence): InfixParslet | undefined {
     return this.infixParslets.find(p => {
       return p.getPrecedence() > precedence && p.accepts(this.getToken().type, this.peekToken().type)
     })
   }
 
-  public tryParseType (precedence: number): NonTerminalResult | undefined {
+  public tryParseType (precedence: Precedence): NonTerminalResult | undefined {
     try {
       return this.parseType(precedence)
     } catch (e) {
@@ -63,23 +64,23 @@ export class ParserEngine {
     }
   }
 
-  public parseType (precedence: number): ParseResult {
+  public parseType (precedence: Precedence): ParseResult {
     return assertTerminal(this.parseNonTerminalType(precedence))
   }
 
-  public parseNonTerminalType (precedence: number): NonTerminalResult {
+  public parseNonTerminalType (precedence: Precedence): NonTerminalResult {
     const pParslet = this.getPrefixParslet()
 
     if (pParslet === undefined) {
       throw new NoParsletFoundError(this.getToken())
     }
 
-    let result = pParslet.parse(this)
+    let result = pParslet.parsePrefix(this)
 
     let iParslet = this.getInfixParslet(precedence)
 
     while (iParslet !== undefined) {
-      result = iParslet.parse(this, result)
+      result = iParslet.parseInfix(this, result)
       iParslet = this.getInfixParslet(precedence)
     }
 
@@ -100,5 +101,9 @@ export class ParserEngine {
 
   public peekToken (): Token {
     return this.lexer.peek()
+  }
+
+  public previousToken (): Token | undefined {
+    return this.lexer.last()
   }
 }

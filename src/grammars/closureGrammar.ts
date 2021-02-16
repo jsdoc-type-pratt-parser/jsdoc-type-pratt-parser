@@ -1,6 +1,6 @@
 import { Grammar } from './Grammar'
 import { baseGrammar } from './baseGrammar'
-import {FunctionParslet} from "../parslets/FunctionParslet";
+import { FunctionParslet } from '../parslets/FunctionParslet'
 
 export const closureGrammar: Grammar = () => {
   const {

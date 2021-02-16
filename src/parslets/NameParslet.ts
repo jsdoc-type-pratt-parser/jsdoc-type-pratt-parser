@@ -48,11 +48,11 @@ export class NameParslet implements PrefixParslet {
     return type === 'Identifier' || type === 'this' || type === 'new'
   }
 
-  getPrecedence (): number {
+  getPrecedence (): Precedence {
     return Precedence.PREFIX
   }
 
-  parse (parser: ParserEngine): ParseResult {
+  parsePrefix (parser: ParserEngine): ParseResult {
     const token = parser.getToken()
     parser.consume('Identifier') || parser.consume('this') || parser.consume('new')
     const result: NameResult = {

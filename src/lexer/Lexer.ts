@@ -162,6 +162,7 @@ const rules = [
   makePunctuationRule('@'),
   makeKeyWordRule('undefined'),
   makeKeyWordRule('null'),
+  makeKeyWordRule('void'),
   makeKeyWordRule('function'),
   makeKeyWordRule('this'),
   makeKeyWordRule('new'),
@@ -176,8 +177,10 @@ const rules = [
 
 export class Lexer {
   private text: string = ''
+
   private current: Token | undefined
   private next: Token | undefined
+  private previous: Token | undefined
 
   lex (text: string): void {
     this.text = text
@@ -200,7 +203,12 @@ export class Lexer {
     return this.next
   }
 
+  last (): Token | undefined {
+    return this.previous
+  }
+
   advance (): void {
+    this.previous = this.current
     if (this.next !== undefined) {
       this.current = this.next
       this.next = undefined

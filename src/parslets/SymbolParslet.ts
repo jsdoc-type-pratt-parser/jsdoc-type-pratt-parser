@@ -9,11 +9,11 @@ export class SymbolParslet implements InfixParslet {
     return type === '('
   }
 
-  getPrecedence (): number {
+  getPrecedence (): Precedence {
     return Precedence.SYMBOL
   }
 
-  parse (parser: ParserEngine, left: NonTerminalResult): ParseResult {
+  parseInfix (parser: ParserEngine, left: NonTerminalResult): ParseResult {
     if (left.type !== 'NAME') {
       throw new Error('Symbol expects a name on the left side. (Reacting on \'(\')')
     }

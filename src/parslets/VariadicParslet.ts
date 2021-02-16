@@ -5,16 +5,16 @@ import { NonTerminalResult, ParseResult } from '../ParseResult'
 import { Precedence } from './Precedence'
 import { assertTerminal } from '../assertTerminal'
 
-export class VariadicParslet implements PrefixParslet {
+export class VariadicParslet implements PrefixParslet, InfixParslet {
   accepts (type: TokenType): boolean {
     return type === '...'
   }
 
-  getPrecedence (): number {
+  getPrecedence (): Precedence {
     return Precedence.PREFIX
   }
 
-  parse (parser: ParserEngine): ParseResult {
+  parsePrefix (parser: ParserEngine): ParseResult {
     parser.consume('...')
     const shouldClose = parser.consume('[')
     const value = parser.parseType(Precedence.PREFIX)
@@ -24,18 +24,8 @@ export class VariadicParslet implements PrefixParslet {
     value.repeatable = true
     return value
   }
-}
 
-export class PostfixVariadicParslet implements InfixParslet {
-  accepts (type: TokenType): boolean {
-    return type === '...'
-  }
-
-  getPrecedence (): number {
-    return Precedence.POSTFIX
-  }
-
-  parse (parser: ParserEngine, left: NonTerminalResult): ParseResult {
+  parseInfix (parser: ParserEngine, left: NonTerminalResult): ParseResult {
     parser.consume('...')
     const result = assertTerminal(left)
     result.repeatable = true

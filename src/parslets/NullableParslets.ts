@@ -6,20 +6,17 @@ import { Precedence } from './Precedence'
 import { isQuestionMarkUnknownType } from './isQuestionMarkUnkownType'
 import { assertTerminal } from '../assertTerminal'
 
-export class NullableParslet implements PrefixParslet {
+export class NullablePrefixParslet implements PrefixParslet {
   accepts (type: TokenType, next: TokenType): boolean {
     return (type === '?' && !isQuestionMarkUnknownType(next)) || type === '!'
   }
 
-  getPrecedence (): number {
+  getPrecedence (): Precedence {
     return Precedence.NULLABLE
   }
 
-  parse (parser: ParserEngine): ParseResult {
-    const nullable = parser.consume('?')
-    if (!nullable) {
-      parser.consume('!')
-    }
+  parsePrefix (parser: ParserEngine): ParseResult {
+    const nullable = parser.consume('?') || !parser.consume('!')
     const value = parser.parseType(Precedence.NULLABLE)
     if (value.nullable !== undefined) {
       throw new Error('Multiple nullable modifiers on same type')
@@ -29,25 +26,22 @@ export class NullableParslet implements PrefixParslet {
   }
 }
 
-export class PostfixNullableParslet implements InfixParslet {
-  accepts (type: TokenType): boolean {
+export class NullableInfixParslet implements InfixParslet {
+  accepts (type: TokenType, next: TokenType): boolean {
     return type === '?' || type === '!'
   }
 
-  getPrecedence (): number {
+  getPrecedence (): Precedence {
     return Precedence.NULLABLE
   }
 
-  parse (parser: ParserEngine, left: NonTerminalResult): ParseResult {
-    const nullable = parser.consume('?')
-    if (!nullable) {
-      parser.consume('!')
-    }
-    const result = assertTerminal(left)
-    if (result.nullable !== undefined) {
+  parseInfix (parser: ParserEngine, left: NonTerminalResult): ParseResult {
+    const nullable = parser.consume('?') || !parser.consume('!')
+    const value = assertTerminal(left)
+    if (value.nullable !== undefined) {
       throw new Error('Multiple nullable modifiers on same type')
     }
-    result.nullable = nullable
-    return assertTerminal(left)
+    value.nullable = nullable
+    return value
   }
 }

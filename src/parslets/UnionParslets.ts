@@ -10,11 +10,11 @@ export class UnenclosedUnionParslet implements InfixParslet {
     return type === '|'
   }
 
-  getPrecedence (): number {
+  getPrecedence (): Precedence {
     return Precedence.UNION
   }
 
-  parse (parser: ParserEngine, left: NonTerminalResult): ParseResult {
+  parseInfix (parser: ParserEngine, left: NonTerminalResult): ParseResult {
     parser.consume('|')
 
     const elements = []

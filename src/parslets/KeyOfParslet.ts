@@ -10,11 +10,11 @@ export class KeyOfParslet implements PrefixParslet {
     return type === 'keyof'
   }
 
-  getPrecedence (): number {
+  getPrecedence (): Precedence {
     return Precedence.KEY_OF_TYPE_OF
   }
 
-  parse (parser: ParserEngine): ParseResult {
+  parsePrefix (parser: ParserEngine): ParseResult {
     parser.consume('keyof')
     const result: KeyOfResult = {
       type: 'KEY_OF'

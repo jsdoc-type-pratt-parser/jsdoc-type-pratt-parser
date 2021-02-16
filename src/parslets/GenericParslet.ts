@@ -1,26 +1,26 @@
 import { ParserEngine } from '../ParserEngine'
 import { NonTerminalResult, ParseResult } from '../ParseResult'
 import { TokenType } from '../lexer/Token'
-import { Parslet } from './Parslet'
+import { InfixParslet } from './Parslet'
 import { Precedence } from './Precedence'
 import { assertTerminal } from '../assertTerminal'
 
-export class GenericParslet implements Parslet {
+export class GenericParslet implements InfixParslet {
   accepts (type: TokenType, next: TokenType): boolean {
     return type === '<' || (type === '.' && next === '<')
   }
 
-  getPrecedence (): number {
+  getPrecedence (): Precedence {
     return Precedence.GENERIC
   }
 
-  parse (parser: ParserEngine, left: NonTerminalResult): ParseResult {
+  parseInfix (parser: ParserEngine, left: NonTerminalResult): ParseResult {
     parser.consume('.')
     parser.consume('<')
 
     const objects = []
     do {
-      objects.push(parser.parseType(Precedence.GENERIC))
+      objects.push(parser.parseType(Precedence.PARAMETER_LIST))
     } while (parser.consume(','))
 
     if (!parser.consume('>')) {

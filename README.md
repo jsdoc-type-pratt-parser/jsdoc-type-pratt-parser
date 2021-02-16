@@ -148,19 +148,19 @@ The current status is:
     ✓ name expression enclosed in single quotes
     ✓ name expression partially enclosed in double quotes
     ✓ name expression partially enclosed in single quotes
-    1) identifier with a repeatable param that is not enclosed in brackets
+    ✓ identifier with a repeatable param that is not enclosed in brackets
     ✓ type application with no period
-    2) Jsdoc Toolkit 2-style array notation for an array of strings
-    3) Jsdoc Toolkit 2-style array notation for an array of functions
-    4) Jsdoc Toolkit 2-style nested array (two levels)
-    5) Jsdoc Toolkit 2-style nested array (three levels)
-    6) record type with a property that uses a type application as a key
-    7) record type with a property that uses a type union as a key
+    ✓ Jsdoc Toolkit 2-style array notation for an array of strings
+    ✓ Jsdoc Toolkit 2-style array notation for an array of functions
+    ✓ Jsdoc Toolkit 2-style nested array (two levels)
+    ✓ Jsdoc Toolkit 2-style nested array (three levels)
+    ✓ record type with a property that uses a type application as a key
+    ✓ record type with a property that uses a type union as a key
     ✓ record type with a property name that starts with a literal
     ✓ record type with a property that contains a function with no preceding space
-    8) function type with no trailing pathentheses
+    ✓ function type with no trailing pathentheses
     ✓ standard function type (should still parse if JSDoc expressions are allowed)
-    9) type union with no parentheses, a repeatable param, and a JSDoc-style array
+    ✓ type union with no parentheses, a repeatable param, and a JSDoc-style array
 
   passes the catharsis link tests
     ✓ type application
@@ -174,10 +174,65 @@ The current status is:
     ✓ should lex name
     ✓ should parse a complex expression
 
+  TypeScript TypeOf
+    ✓ typeof name
+    ✓ typeof
+    ✓ generic with typeof
+    ✓ generic with typeof name
+    ✓ generic typeof name in parenthesis
+    ✓ typeof name in parenthesis
+    ✓ repeatable typeof name
+    ✓ postfix repeatable typeof name
+    ✓ union typeof name
+    ✓ union with typeof name
+    ✓ typeof array
+    ✓ typeof as function parameter
+    ✓ typeof as first function parameter
+    ✓ typeof as second function parameter
+    ✓ typeof as return of function
 
-  124 passing (77ms)
+  TypeScript KeyOf
+    ✓ keyof name
+    ✓ keyof
+    ✓ generic with keyof
+    ✓ generic with keyof name
+    ✓ generic keyof name in parenthesis
+    ✓ keyof name in parenthesis
+    ✓ repeatable keyof name
+    ✓ postfix repeatable keyof name
+    ✓ union keyof name
+    ✓ union with keyof name
+    ✓ keyof array
+    ✓ keyof as function parameter
+    ✓ keyof as first function parameter
+    ✓ keyof as second function parameter
+    ✓ keyof as return of function
+
+  TypeScript import
+    ✓ import "x"
+    ✓ import "./x"
+    ✓ import "../x"
+    ✓ import a named export
+    ✓ import 2-level named export
+    ✓ import 2-level named export as generic
+
+  TypeScript arrow functions
+    ✓ arrow with special any type
+    ✓ arrow with one parameter and return type
+    ✓ arrow with multiple parameters and a return type
+    ✓ arrow without parameter and return type
+    ✓ function with arrow as return type
+    ✓ function with arrow as parameter
+    1) arrow function parameter list with trailing comma
+    ✓ arrow as generic type
+    ✓ arrow returning void
+    ✓ arrow returning arrow
+    ✓ arrow returning arrow with paramters
+
+
+  179 passing (49ms)
   4 pending
-  9 failing
+  1 failing
 ```
 
 Getting started

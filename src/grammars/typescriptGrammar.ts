@@ -2,11 +2,15 @@ import { Grammar } from './Grammar'
 import { ArrayBracketsParslet } from '../parslets/ArrayBracketsParslet'
 import { baseGrammar } from './baseGrammar'
 import { TypeOfParslet } from '../parslets/TypeOfParslet'
-import { PostfixVariadicParslet } from '../parslets/VariadicParslet'
 import { KeyOfParslet } from '../parslets/KeyOfParslet'
 import { ImportParslet } from '../parslets/ImportParslet'
 import { StringValueParslet } from '../parslets/StringValueParslet'
-import {FunctionParslet} from "../parslets/FunctionParslet";
+import { FunctionParslet } from '../parslets/FunctionParslet'
+import { VariadicParslet } from '../parslets/VariadicParslet'
+import {
+  ArrowFunctionWithoutParametersParslet,
+  ArrowFunctionWithParametersParslet
+} from '../parslets/ArrowFunctionParslet'
 
 export const typescriptGrammar: Grammar = () => {
   const {
@@ -18,17 +22,19 @@ export const typescriptGrammar: Grammar = () => {
     prefixParslets: [
       ...prefixParslets,
       new FunctionParslet({
-        allowWithoutParenthesis:false
+        allowWithoutParenthesis: false
       }),
       new TypeOfParslet(),
       new KeyOfParslet(),
       new ImportParslet(),
-      new StringValueParslet()
+      new StringValueParslet(),
+      new ArrowFunctionWithoutParametersParslet()
     ],
     infixParslets: [
       ...infixParslets,
       new ArrayBracketsParslet(),
-      new PostfixVariadicParslet()
+      new VariadicParslet(),
+      new ArrowFunctionWithParametersParslet()
     ]
   }
 }

@@ -1,16 +1,17 @@
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
 import { NonTerminalResult } from '../ParseResult'
+import { Precedence } from './Precedence'
 
 export interface Parslet {
   accepts: (type: TokenType, next: TokenType) => boolean
-  getPrecedence: () => number
+  getPrecedence: () => Precedence
 }
 
 export interface PrefixParslet extends Parslet {
-  parse: (parser: ParserEngine) => NonTerminalResult
+  parsePrefix: (parser: ParserEngine) => NonTerminalResult
 }
 
 export interface InfixParslet extends Parslet {
-  parse: (parser: ParserEngine, left: NonTerminalResult) => NonTerminalResult
+  parseInfix: (parser: ParserEngine, left: NonTerminalResult) => NonTerminalResult
 }

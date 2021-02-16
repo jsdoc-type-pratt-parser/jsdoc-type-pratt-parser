@@ -6,15 +6,15 @@ import { Precedence } from './Precedence'
 import { assertTerminal } from '../assertTerminal'
 
 export class OptionalParslet implements InfixParslet {
-  accepts (type: TokenType): boolean {
-    return type === '='
+  accepts (type: TokenType, next: TokenType): boolean {
+    return type === '=' && next !== '>'
   }
 
-  getPrecedence (): number {
+  getPrecedence (): Precedence {
     return Precedence.OPTIONAL
   }
 
-  parse (parser: ParserEngine, left: NonTerminalResult): ParseResult {
+  parseInfix (parser: ParserEngine, left: NonTerminalResult): ParseResult {
     parser.consume('=')
     const result = assertTerminal(left)
     result.optional = true

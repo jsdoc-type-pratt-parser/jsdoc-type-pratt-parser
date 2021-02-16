@@ -1,20 +1,20 @@
-import {InfixParslet} from "./Parslet";
-import {TokenType} from "../lexer/Token";
-import {ParserEngine} from "../ParserEngine";
-import {KeyValueResult, NonTerminalResult, ParseResult} from "../ParseResult";
-import {Precedence} from "./Precedence";
-import {assertTerminal} from "../assertTerminal";
+import { InfixParslet } from './Parslet'
+import { TokenType } from '../lexer/Token'
+import { ParserEngine } from '../ParserEngine'
+import { KeyValueResult, NonTerminalResult, ParseResult } from '../ParseResult'
+import { Precedence } from './Precedence'
+import { assertTerminal } from '../assertTerminal'
 
 export class ParameterListParslet implements InfixParslet {
   accepts (type: TokenType, next: TokenType): boolean {
-    return type === ',';
+    return type === ','
   }
 
-  getPrecedence (): number {
-    return Precedence.PARAMETER_LIST;
+  getPrecedence (): Precedence {
+    return Precedence.PARAMETER_LIST
   }
 
-  parse (parser: ParserEngine, left: NonTerminalResult): NonTerminalResult {
+  parseInfix (parser: ParserEngine, left: NonTerminalResult): NonTerminalResult {
     const elements: Array<ParseResult|KeyValueResult> = [
       left.type === 'KEY_VALUE' ? left : assertTerminal(left)
     ]
@@ -28,5 +28,4 @@ export class ParameterListParslet implements InfixParslet {
       elements
     }
   }
-
 }

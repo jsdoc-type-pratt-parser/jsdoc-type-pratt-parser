@@ -10,11 +10,11 @@ export class ArrayBracketsParslet implements InfixParslet {
     return type === '[' && next === ']'
   }
 
-  getPrecedence (): number {
+  getPrecedence (): Precedence {
     return Precedence.ARRAY_BRACKETS
   }
 
-  parse (parser: ParserEngine, left: NonTerminalResult): ParseResult {
+  parseInfix (parser: ParserEngine, left: NonTerminalResult): ParseResult {
     parser.consume('[')
     parser.consume(']')
     return {

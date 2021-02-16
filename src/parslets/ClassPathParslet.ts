@@ -9,11 +9,11 @@ export class ClassPathParslet implements InfixParslet {
     return type === '#' || type === '~'
   }
 
-  getPrecedence (): number {
+  getPrecedence (): Precedence {
     return Precedence.POSTFIX
   }
 
-  parse (parser: ParserEngine, left: NonTerminalResult): ParseResult {
+  parseInfix (parser: ParserEngine, left: NonTerminalResult): ParseResult {
     if (left.type !== 'NAME') {
       throw new Error('All elements of class path have to be identifiers')
     }

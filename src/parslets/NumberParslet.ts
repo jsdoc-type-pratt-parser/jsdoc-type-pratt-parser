@@ -9,11 +9,11 @@ export class NumberParslet implements PrefixParslet {
     return type === 'Number'
   }
 
-  getPrecedence (): number {
+  getPrecedence (): Precedence {
     return Precedence.PREFIX
   }
 
-  parse (parser: ParserEngine): NonTerminalResult {
+  parsePrefix (parser: ParserEngine): NonTerminalResult {
     const token = parser.getToken()
     parser.consume('Number')
     return {

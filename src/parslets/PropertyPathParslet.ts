@@ -10,11 +10,11 @@ export class PropertyPathParslet implements InfixParslet {
     return type === '.' && next !== '<'
   }
 
-  getPrecedence (): number {
+  getPrecedence (): Precedence {
     return Precedence.PROPERTY_PATH
   }
 
-  parse (parser: ParserEngine, left: NonTerminalResult): ParseResult {
+  parseInfix (parser: ParserEngine, left: NonTerminalResult): ParseResult {
     parser.consume('.')
     const path = []
     const allowed: TokenType[] = ['Identifier', 'Number', 'StringValue']

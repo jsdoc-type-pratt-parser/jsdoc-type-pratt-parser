@@ -3,28 +3,28 @@ import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
 import { FunctionResult, ParseResult } from '../ParseResult'
 import { Precedence } from './Precedence'
-import {assertTerminal} from "../assertTerminal";
+import { assertTerminal } from '../assertTerminal'
 
-type FunctionParsletOptions = {
+interface FunctionParsletOptions {
   allowWithoutParenthesis: boolean
 }
 
 export class FunctionParslet implements PrefixParslet {
-  private allowWithoutParenthesis: boolean;
+  private readonly allowWithoutParenthesis: boolean
 
   constructor ({ allowWithoutParenthesis }: FunctionParsletOptions) {
-    this.allowWithoutParenthesis = allowWithoutParenthesis;
+    this.allowWithoutParenthesis = allowWithoutParenthesis
   }
 
   accepts (type: TokenType): boolean {
     return type === 'function'
   }
 
-  getPrecedence (): number {
+  getPrecedence (): Precedence {
     return Precedence.PARENTHESIS
   }
 
-  parse (parser: ParserEngine): ParseResult {
+  parsePrefix (parser: ParserEngine): ParseResult {
     parser.consume('function')
 
     const withoutParenthesis = !parser.consume('(')
@@ -37,9 +37,9 @@ export class FunctionParslet implements PrefixParslet {
       parameters: []
     }
 
-    if (!withoutParenthesis ) {
+    if (!withoutParenthesis) {
       if (!parser.consume(')')) {
-        const value = parser.parseNonTerminalType(Precedence.PARENTHESIS)
+        const value = parser.parseNonTerminalType(Precedence.ALL)
         if (value.type === 'PARAMETER_LIST') {
           result.parameters = value.elements
         } else {
@@ -51,7 +51,7 @@ export class FunctionParslet implements PrefixParslet {
         }
       }
 
-      if (parser.consume(':')) {
+      if (parser.consume(':') && !parser.consume('void')) {
         result.returnType = parser.parseType(Precedence.PREFIX)
       }
     }

@@ -9,11 +9,11 @@ export class RecordParslet implements PrefixParslet {
     return type === '{'
   }
 
-  getPrecedence (): number {
+  getPrecedence (): Precedence {
     return Precedence.RECORD
   }
 
-  parse (parser: ParserEngine): ParseResult {
+  parsePrefix (parser: ParserEngine): ParseResult {
     parser.consume('{')
     const result: RecordResult = {
       type: 'RECORD',

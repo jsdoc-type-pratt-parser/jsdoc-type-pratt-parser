@@ -10,11 +10,11 @@ export class SpecialTypesParslet implements PrefixParslet {
     return (type === '?' && isQuestionMarkUnknownType(next)) || type === 'null' || type === 'undefined' || type === '*'
   }
 
-  getPrecedence (): number {
+  getPrecedence (): Precedence {
     return Precedence.SPECIAL_TYPES
   }
 
-  parse (parser: ParserEngine): ParseResult {
+  parsePrefix (parser: ParserEngine): ParseResult {
     switch (parser.getToken().type) {
       case 'null':
         parser.consume('null')

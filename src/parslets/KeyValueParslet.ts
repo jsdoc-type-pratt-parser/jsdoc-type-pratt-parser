@@ -10,11 +10,11 @@ export class KeyValueParslet implements InfixParslet {
     return type === ':'
   }
 
-  getPrecedence (): number {
+  getPrecedence (): Precedence {
     return Precedence.KEY_VALUE
   }
 
-  parse (parser: ParserEngine, left: NonTerminalResult): NonTerminalResult {
+  parseInfix (parser: ParserEngine, left: NonTerminalResult): NonTerminalResult {
     parser.consume(':')
     const value = parser.parseType(Precedence.KEY_VALUE)
     return {
