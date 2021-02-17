@@ -5,6 +5,38 @@ Live Demo
 
 Simple live demo can be found at: https://simonseyock.github.io/jsdoc-type-pratt-parser/
 
+Getting started
+---------------
+
+The usage is not perfect for now as it is not published as a package for now. Dependening on your needs you might want to run `npm run build` before using. An `index.js` in umd format will be built. All exports from `index.ts` should be available. 
+
+```
+import { Parser } from 'src/index'
+
+const parser = new Parser({
+  mode: 'closure'
+})
+
+const result = parser.parse('myType.<string>')
+```
+
+Catharsis compat mode:
+
+```
+import { Parser, catharsisTransform } from 'src/index'
+
+const parser = new Parser({
+  mode: 'closure'
+})
+
+const result = catharsisTransform(parser.parse('myType.<string>'))
+```
+
+Available Grammars
+------------------
+
+At the moment there are 3 modes supported: 'jsdoc', 'closure', 'typescipt' where 'jsdoc' is a superset of 'closure'
+
 Tests Status
 ------------
 
@@ -233,33 +265,6 @@ basics
   178 passing (57ms)
   4 pending
   2 failing
-```
-
-Getting started
----------------
-
-The usage is not perfect for now as it is not published as a package for now. Dependening on your needs you might want to run `npm run build` before using. An `index.js` in umd format will be built. All exports from `index.ts` should be available. 
-
-```
-import { Parser } from 'src/index'
-
-const parser = new Parser({
-  mode: 'closure'
-})
-
-const result = parser.parse('myType.<string>')
-```
-
-Catharsis compat mode:
-
-```
-import { Parser, catharsisTransform } from 'src/index'
-
-const parser = new Parser({
-  mode: 'closure'
-})
-
-const result = catharsisTransform(parser.parse('myType.<string>'))
 ```
 
 API Documentation

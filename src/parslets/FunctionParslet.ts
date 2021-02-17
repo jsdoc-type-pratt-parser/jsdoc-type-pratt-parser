@@ -6,21 +6,21 @@ import { Precedence } from './Precedence'
 import { BaseFunctionParslet } from './BaseFunctionParslet'
 
 export interface FunctionParsletOptions {
-  allowNamedParameters: boolean | string[]
-  allowUnnamedParameters: boolean
+  allowNamedParameters?: string[]
   allowWithoutParenthesis: boolean
+  allowNoReturnType: boolean
 }
 
 export class FunctionParslet extends BaseFunctionParslet implements PrefixParslet {
   private readonly allowWithoutParenthesis: boolean
-  private readonly allowNamedParameters: boolean | string[]
-  private readonly allowUnnamedParameters: boolean
+  private readonly allowNamedParameters?: string[]
+  private readonly allowNoReturnType: boolean
 
   constructor (options: FunctionParsletOptions) {
     super()
     this.allowWithoutParenthesis = options.allowWithoutParenthesis
     this.allowNamedParameters = options.allowNamedParameters
-    this.allowUnnamedParameters = options.allowUnnamedParameters
+    this.allowNoReturnType = options.allowNoReturnType
   }
 
   accepts (type: TokenType): boolean {
@@ -47,15 +47,10 @@ export class FunctionParslet extends BaseFunctionParslet implements PrefixParsle
     if (hasParenthesis) {
       if (!parser.consume(')')) {
         const value = parser.parseNonTerminalType(Precedence.ALL)
-        if (this.allowUnnamedParameters && this.allowNamedParameters !== false) {
-          result.parameters = this.getParameters(value)
-        } else if (this.allowNamedParameters === false) {
-          result.parameters = this.getUnnamedParameters(value)
-        } else if (!this.allowUnnamedParameters) {
+        if (this.allowNamedParameters === undefined) {
           result.parameters = this.getNamedParameters(value)
-        }
-
-        if (Array.isArray(this.allowNamedParameters)) {
+        } else {
+          result.parameters = this.getUnnamedParameters(value)
           for (const p of result.parameters) {
             if (p.type === 'KEY_VALUE' && !this.allowNamedParameters.includes(p.key.name)) {
               throw new Error(`only allowed named parameters are ${this.allowNamedParameters.join(',')} but got ${p.type}`)
@@ -68,8 +63,14 @@ export class FunctionParslet extends BaseFunctionParslet implements PrefixParsle
         }
       }
 
-      if (parser.consume(':') && !parser.consume('void')) {
-        result.returnType = parser.parseType(Precedence.PREFIX)
+      if (parser.consume(':')) {
+        if (!parser.consume('void')) {
+          result.returnType = parser.parseType(Precedence.PREFIX)
+        }
+      } else {
+        if (!this.allowNoReturnType) {
+          throw new Error('function is missing return type')
+        }
       }
     }
 

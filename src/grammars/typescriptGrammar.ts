@@ -21,16 +21,15 @@ export const typescriptGrammar: Grammar = () => {
   return {
     prefixParslets: [
       ...prefixParslets,
-      new FunctionParslet({
-        allowWithoutParenthesis: false,
-        allowNamedParameters: true,
-        allowUnnamedParameters: true
-      }),
       new TypeOfParslet(),
       new KeyOfParslet(),
       new ImportParslet(),
       new StringValueParslet(),
-      new ArrowFunctionWithoutParametersParslet()
+      new ArrowFunctionWithoutParametersParslet(),
+      new FunctionParslet({
+        allowWithoutParenthesis: true,
+        allowNoReturnType: false
+      })
     ],
     infixParslets: [
       ...infixParslets,
