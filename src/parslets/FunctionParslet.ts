@@ -3,17 +3,24 @@ import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
 import { FunctionResult, ParseResult } from '../ParseResult'
 import { Precedence } from './Precedence'
-import { assertTerminal } from '../assertTerminal'
+import { BaseFunctionParslet } from './BaseFunctionParslet'
 
-interface FunctionParsletOptions {
+export interface FunctionParsletOptions {
+  allowNamedParameters: boolean | string[]
+  allowUnnamedParameters: boolean
   allowWithoutParenthesis: boolean
 }
 
-export class FunctionParslet implements PrefixParslet {
+export class FunctionParslet extends BaseFunctionParslet implements PrefixParslet {
   private readonly allowWithoutParenthesis: boolean
+  private readonly allowNamedParameters: boolean | string[]
+  private readonly allowUnnamedParameters: boolean
 
-  constructor ({ allowWithoutParenthesis }: FunctionParsletOptions) {
-    this.allowWithoutParenthesis = allowWithoutParenthesis
+  constructor (options: FunctionParsletOptions) {
+    super()
+    this.allowWithoutParenthesis = options.allowWithoutParenthesis
+    this.allowNamedParameters = options.allowNamedParameters
+    this.allowUnnamedParameters = options.allowUnnamedParameters
   }
 
   accepts (type: TokenType): boolean {
@@ -21,15 +28,15 @@ export class FunctionParslet implements PrefixParslet {
   }
 
   getPrecedence (): Precedence {
-    return Precedence.PARENTHESIS
+    return Precedence.FUNCTION
   }
 
   parsePrefix (parser: ParserEngine): ParseResult {
     parser.consume('function')
 
-    const withoutParenthesis = !parser.consume('(')
+    const hasParenthesis = parser.consume('(')
 
-    if (!this.allowWithoutParenthesis && withoutParenthesis) {
+    if (!this.allowWithoutParenthesis && !hasParenthesis) {
       throw new Error('function is missing parameter list')
     }
     const result: FunctionResult = {
@@ -37,13 +44,23 @@ export class FunctionParslet implements PrefixParslet {
       parameters: []
     }
 
-    if (!withoutParenthesis) {
+    if (hasParenthesis) {
       if (!parser.consume(')')) {
         const value = parser.parseNonTerminalType(Precedence.ALL)
-        if (value.type === 'PARAMETER_LIST') {
-          result.parameters = value.elements
-        } else {
-          result.parameters = [value.type === 'KEY_VALUE' ? value : assertTerminal(value)]
+        if (this.allowUnnamedParameters && this.allowNamedParameters !== false) {
+          result.parameters = this.getParameters(value)
+        } else if (this.allowNamedParameters === false) {
+          result.parameters = this.getUnnamedParameters(value)
+        } else if (!this.allowUnnamedParameters) {
+          result.parameters = this.getNamedParameters(value)
+        }
+
+        if (Array.isArray(this.allowNamedParameters)) {
+          for (const p of result.parameters) {
+            if (p.type === 'KEY_VALUE' && !this.allowNamedParameters.includes(p.key.name)) {
+              throw new Error(`only allowed named parameters are ${this.allowNamedParameters.join(',')} but got ${p.type}`)
+            }
+          }
         }
 
         if (!parser.consume(')')) {

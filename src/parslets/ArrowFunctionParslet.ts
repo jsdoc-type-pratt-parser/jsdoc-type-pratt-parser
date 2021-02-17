@@ -2,7 +2,8 @@ import { InfixParslet, PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from './Precedence'
 import { ParserEngine } from '../ParserEngine'
-import { ArrowResult, KeyValueResult, NonTerminalResult } from '../ParseResult'
+import { ArrowResult, NonTerminalResult } from '../ParseResult'
+import { BaseFunctionParslet } from './BaseFunctionParslet'
 
 export class ArrowFunctionWithoutParametersParslet implements PrefixParslet {
   accepts (type: TokenType, next: TokenType): boolean {
@@ -32,7 +33,7 @@ export class ArrowFunctionWithoutParametersParslet implements PrefixParslet {
   }
 }
 
-export class ArrowFunctionWithParametersParslet implements InfixParslet {
+export class ArrowFunctionWithParametersParslet extends BaseFunctionParslet implements InfixParslet {
   accepts (type: TokenType, next: TokenType): boolean {
     return type === '=' && next === '>'
   }
@@ -47,20 +48,9 @@ export class ArrowFunctionWithParametersParslet implements InfixParslet {
     }
     parser.consume('=')
     parser.consume('>')
-    let parameters
-    if (left.type === 'PARAMETER_LIST') {
-      if (left.elements.some(e => e.type !== 'KEY_VALUE')) {
-        throw new Error('Arrow syntax expects all parameters to be key value pairs')
-      }
-      parameters = left.elements as KeyValueResult[]
-    } else if (left.type === 'KEY_VALUE') {
-      parameters = [left]
-    } else {
-      throw new Error('Arrow syntax expects all parameters to be key value pairs')
-    }
     const result: ArrowResult = {
       type: 'FUNCTION',
-      parameters,
+      parameters: this.getNamedParameters(left),
       arrow: true
     }
     if (!parser.consume('void')) {

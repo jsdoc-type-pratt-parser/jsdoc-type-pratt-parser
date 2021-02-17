@@ -3,7 +3,7 @@ import { ParserEngine } from '../ParserEngine'
 import { NonTerminalResult, ParseResult } from '../ParseResult'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from './Precedence'
-import { assertTerminal } from '../assertTerminal'
+import { assertTerminal } from '../assertTypes'
 
 export class UnenclosedUnionParslet implements InfixParslet {
   accepts (type: TokenType): boolean {

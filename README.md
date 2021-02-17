@@ -13,7 +13,7 @@ This parser runs most tests of https://github.com/hegemonic/catharsis and also s
 The current status is:
 
 ```
-  basics
+basics
     ✓ should parse names
     ✓ should parse a complex expression
 
@@ -159,7 +159,7 @@ The current status is:
     ✓ record type with a property name that starts with a literal
     ✓ record type with a property that contains a function with no preceding space
     ✓ function type with no trailing pathentheses
-    ✓ standard function type (should still parse if JSDoc expressions are allowed)
+    1) standard function type (should still parse if JSDoc expressions are allowed)
     ✓ type union with no parentheses, a repeatable param, and a JSDoc-style array
 
   passes the catharsis link tests
@@ -223,16 +223,16 @@ The current status is:
     ✓ arrow without parameter and return type
     ✓ function with arrow as return type
     ✓ function with arrow as parameter
-    1) arrow function parameter list with trailing comma
+    2) arrow function parameter list with trailing comma
     ✓ arrow as generic type
     ✓ arrow returning void
     ✓ arrow returning arrow
     ✓ arrow returning arrow with paramters
 
 
-  179 passing (49ms)
+  178 passing (57ms)
   4 pending
-  1 failing
+  2 failing
 ```
 
 Getting started

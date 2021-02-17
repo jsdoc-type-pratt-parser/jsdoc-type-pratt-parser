@@ -22,7 +22,9 @@ export const typescriptGrammar: Grammar = () => {
     prefixParslets: [
       ...prefixParslets,
       new FunctionParslet({
-        allowWithoutParenthesis: false
+        allowWithoutParenthesis: false,
+        allowNamedParameters: true,
+        allowUnnamedParameters: true
       }),
       new TypeOfParslet(),
       new KeyOfParslet(),

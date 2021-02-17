@@ -3,7 +3,7 @@ import { TokenType } from '../lexer/Token'
 import { Precedence } from './Precedence'
 import { ParserEngine } from '../ParserEngine'
 import { NonTerminalResult } from '../ParseResult'
-import { assertTerminal } from '../assertTerminal'
+import { assertTerminal } from '../assertTypes'
 
 export class KeyValueParslet implements InfixParslet {
   accepts (type: TokenType, next: TokenType): boolean {

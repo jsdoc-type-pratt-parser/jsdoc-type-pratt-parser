@@ -16,10 +16,11 @@ export type ParseResult =
   | KeyOfResult
   | ImportResult
   | ArrowResult
+  | TupleResult
 
 export type NonTerminalResult =
   ParseResult
-  | KeyValueResult
+  | KeyValueResult<ParseResult | NameResult | NumberResult>
   | NumberResult
   | ParameterList
 
@@ -70,7 +71,7 @@ export type UnknownResult = ModifiableResult & {
 
 export type FunctionResult = ModifiableResult & {
   type: 'FUNCTION'
-  parameters: Array<ParseResult|KeyValueResult>
+  parameters: Array<ParseResult | KeyValueResult>
   returnType?: ParseResult
 }
 
@@ -81,15 +82,15 @@ export type ArrowResult = ModifiableResult & {
   arrow: true
 }
 
-export type KeyValueResult = ModifiableResult & {
+export type KeyValueResult<KeyType = NameResult> = ModifiableResult & {
   type: 'KEY_VALUE'
-  key: ParseResult|NumberResult
+  key: KeyType
   value: ParseResult
 }
 
 export type RecordResult = ModifiableResult & {
   type: 'RECORD'
-  fields: Array<KeyValueResult|ParseResult|NumberResult>
+  fields: Array<KeyValueResult<ParseResult | NumberResult> | ParseResult | NumberResult>
 }
 
 export type ModuleResult = ModifiableResult & {
@@ -131,5 +132,10 @@ export type ImportResult = ModifiableResult & {
 
 export interface ParameterList {
   type: 'PARAMETER_LIST'
-  elements: Array<KeyValueResult|ParseResult>
+  elements: Array<KeyValueResult | ParseResult>
+}
+
+export type TupleResult = ModifiableResult & {
+  type: 'TUPLE'
+  elements: ParseResult[]
 }

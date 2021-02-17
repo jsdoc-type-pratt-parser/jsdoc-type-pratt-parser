@@ -12,7 +12,9 @@ export const closureGrammar: Grammar = () => {
     prefixParslets: [
       ...prefixParslets,
       new FunctionParslet({
-        allowWithoutParenthesis: false
+        allowWithoutParenthesis: true,
+        allowUnnamedParameters: true,
+        allowNamedParameters: ['this', 'new']
       })
     ],
     infixParslets

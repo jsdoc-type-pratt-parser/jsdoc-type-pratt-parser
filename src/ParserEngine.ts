@@ -3,7 +3,7 @@ import { Lexer } from './lexer/Lexer'
 import { InfixParslet, PrefixParslet } from './parslets/Parslet'
 import { NonTerminalResult, ParseResult } from './ParseResult'
 import { Grammar } from './grammars/Grammar'
-import { assertTerminal } from './assertTerminal'
+import { assertTerminal } from './assertTypes'
 import { Precedence } from './parslets/Precedence'
 
 class NoParsletFoundError extends Error {
@@ -18,7 +18,7 @@ export class ParserEngine {
   private readonly prefixParslets: PrefixParslet[]
   private readonly infixParslets: InfixParslet[]
 
-  private readonly lexer: Lexer
+  private lexer: Lexer
 
   constructor (grammar: Grammar) {
     this.lexer = new Lexer()
@@ -53,10 +53,12 @@ export class ParserEngine {
   }
 
   public tryParseType (precedence: Precedence): NonTerminalResult | undefined {
+    const preserve = this.lexer.clone()
     try {
       return this.parseType(precedence)
     } catch (e) {
       if (e instanceof NoParsletFoundError) {
+        this.lexer = preserve
         return undefined
       } else {
         throw e

@@ -10,6 +10,7 @@ export enum Precedence {
   SYMBOL,
   OPTIONAL,
   NULLABLE,
+  FUNCTION,
   ARROW,
   KEY_VALUE,
   GENERIC,

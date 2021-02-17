@@ -30,7 +30,9 @@ import linkcss from '../submodules/catharsis/test/specs/linkcss/linkcss.js'
 describe('passes the catharsis basic tests', () => {
   for (const fixture of basic) {
     it(fixture.description, () => {
-      const parser = new Parser()
+      const parser = new Parser({
+        mode: 'closure'
+      })
       const result = catharsisTransform(parser.parse(fixture.expression))
       expect(result).to.deep.equal(fixture.parsed)
     })
@@ -40,7 +42,9 @@ describe('passes the catharsis basic tests', () => {
 describe('passes the catharsis function-type tests', () => {
   for (const fixture of functionType) {
     it(fixture.description, () => {
-      const parser = new Parser()
+      const parser = new Parser({
+        mode: 'closure'
+      })
       const result = catharsisTransform(parser.parse(fixture.expression))
       expect(result).to.deep.equal(fixture.parsed)
     })
@@ -50,7 +54,9 @@ describe('passes the catharsis function-type tests', () => {
 describe('passes the catharsis nullable tests', () => {
   for (const fixture of nullable) {
     it(fixture.description, () => {
-      const parser = new Parser()
+      const parser = new Parser({
+        mode: 'closure'
+      })
       const result = catharsisTransform(parser.parse(fixture.expression))
       expect(result).to.deep.equal(fixture.parsed)
     })
@@ -60,7 +66,9 @@ describe('passes the catharsis nullable tests', () => {
 describe('passes the catharsis record-type tests', () => {
   for (const fixture of recordType) {
     it(fixture.description, () => {
-      const parser = new Parser()
+      const parser = new Parser({
+        mode: 'closure'
+      })
       const result = catharsisTransform(parser.parse(fixture.expression))
       expect(result).to.deep.equal(fixture.parsed)
     })
@@ -70,7 +78,9 @@ describe('passes the catharsis record-type tests', () => {
 describe('passes the catharsis type-application tests', () => {
   for (const fixture of typeApplication) {
     it(fixture.description, () => {
-      const parser = new Parser()
+      const parser = new Parser({
+        mode: 'closure'
+      })
       const result = catharsisTransform(parser.parse(fixture.expression))
       expect(result).to.deep.equal(fixture.parsed)
     })
@@ -80,7 +90,9 @@ describe('passes the catharsis type-application tests', () => {
 describe('passes the catharsis union-type tests', () => {
   for (const fixture of typeUnion) {
     it(fixture.description, () => {
-      const parser = new Parser()
+      const parser = new Parser({
+        mode: 'closure'
+      })
       const result = catharsisTransform(parser.parse(fixture.expression))
       expect(result).to.deep.equal(fixture.parsed)
     })

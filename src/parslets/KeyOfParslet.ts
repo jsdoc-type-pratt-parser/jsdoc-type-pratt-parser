@@ -3,7 +3,7 @@ import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
 import { KeyOfResult, ParseResult } from '../ParseResult'
 import { Precedence } from './Precedence'
-import { assertTerminal } from '../assertTerminal'
+import { assertTerminal } from '../assertTypes'
 
 export class KeyOfParslet implements PrefixParslet {
   accepts (type: TokenType, next: TokenType): boolean {

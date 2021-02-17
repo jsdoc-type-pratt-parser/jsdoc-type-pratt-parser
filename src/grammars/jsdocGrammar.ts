@@ -16,7 +16,9 @@ export const jsdocGrammar: Grammar = () => {
     prefixParslets: [
       ...prefixParslets,
       new FunctionParslet({
-        allowWithoutParenthesis: true
+        allowWithoutParenthesis: true,
+        allowNamedParameters: false,
+        allowUnnamedParameters: true
       }),
       new StringValueParslet()
     ],

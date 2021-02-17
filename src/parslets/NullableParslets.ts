@@ -4,7 +4,7 @@ import { ParserEngine } from '../ParserEngine'
 import { NonTerminalResult, ParseResult } from '../ParseResult'
 import { Precedence } from './Precedence'
 import { isQuestionMarkUnknownType } from './isQuestionMarkUnkownType'
-import { assertTerminal } from '../assertTerminal'
+import { assertTerminal } from '../assertTypes'
 
 export class NullablePrefixParslet implements PrefixParslet {
   accepts (type: TokenType, next: TokenType): boolean {

@@ -27,7 +27,9 @@ export const baseGrammar: Grammar = () => {
       new ParenthesisParslet()
     ],
     infixParslets: [
-      new ParameterListParslet(),
+      new ParameterListParslet({
+        allowTrailingComma: false
+      }),
       new PropertyPathParslet(),
       new KeyValueParslet(),
       new GenericParslet(),
