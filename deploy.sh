@@ -7,8 +7,8 @@ npm run lint
 npm run build
 npm run apidoc
 
-cp build/index.js pages/lib/jsdoc-type-pratt-parser/
-cp -r build/docs pages/
+cp dist/index.js pages/lib/jsdoc-type-pratt-parser/
+cp -r docs pages/
 
 cd pages
 git add --all

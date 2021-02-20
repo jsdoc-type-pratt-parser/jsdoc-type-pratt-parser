@@ -4,7 +4,7 @@ import typescript from '@rollup/plugin-typescript'
 export default {
   input: 'src/index.ts',
   output: {
-    dir: 'build',
+    dir: 'dist',
     format: 'umd',
     name: 'jtpp'
   },
