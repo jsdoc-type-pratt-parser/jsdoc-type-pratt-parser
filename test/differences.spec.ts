@@ -1,8 +1,7 @@
 import { expect } from 'chai'
 import 'mocha'
-import {miscDiffs} from "./fixtures/differences/misc";
-import {Parser, ParserMode} from "../src";
-
+import { miscDiffs } from './fixtures/differences/misc'
+import { Parser, ParseResult, ParserMode } from '../src'
 
 describe('Differences between modes should be recognized', () => {
   for (const fixture of miscDiffs) {
@@ -13,7 +12,7 @@ describe('Differences between modes should be recognized', () => {
           mode
         })
         const message = `parsing '${fixture.input}' in mode: '${mode}'`
-        const parse = () => parser.parse(fixture.input)
+        const parse = (): ParseResult => parser.parse(fixture.input)
         if (fixture.modes[mode]) {
           expect(parse, message).to.not.throw()
         } else {

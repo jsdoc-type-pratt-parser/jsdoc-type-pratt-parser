@@ -1,4 +1,4 @@
-import {KeyValueResult, NameResult, NonTerminalResult, ParseResult} from './ParseResult'
+import { KeyValueResult, NameResult, NonTerminalResult, ParseResult } from './ParseResult'
 
 class UnexpectedTypeError extends Error {
   constructor (result: NonTerminalResult) {

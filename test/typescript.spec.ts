@@ -2,55 +2,42 @@ import { expect } from 'chai'
 import 'mocha'
 
 import { typeOfFixtures } from './fixtures/typescript/typeof'
-import { Parser } from '../src'
+import { Parser, ParseResult } from '../src'
 import { keyofFixtures } from './fixtures/typescript/keyof'
 import { importFixtures } from './fixtures/typescript/import'
 import { arrowFunctionFixtures } from './fixtures/typescript/arrow-function'
+import { Fixture } from './fixtures/Fixture'
 
-describe('TypeScript TypeOf', () => {
-  for (const fixture of typeOfFixtures) {
+function runFixtures (fixtures: Fixture[]): void {
+  for (const fixture of fixtures) {
     it(fixture.description, () => {
       const parser = new Parser({
         mode: 'typescript'
       })
-      const result = parser.parse(fixture.input)
-      expect(result).to.deep.equal(fixture.expected)
+      if ('shouldFail' in fixture) {
+        const parse = (): ParseResult => parser.parse(fixture.input)
+        const message = `input: '${fixture.input}'`
+        expect(parse, message).to.throw()
+      } else {
+        const result = parser.parse(fixture.input)
+        expect(result).to.deep.equal(fixture.expected)
+      }
     })
   }
+}
+
+describe('TypeScript TypeOf', () => {
+  runFixtures(typeOfFixtures)
 })
 
 describe('TypeScript KeyOf', () => {
-  for (const fixture of keyofFixtures) {
-    it(fixture.description, () => {
-      const parser = new Parser({
-        mode: 'typescript'
-      })
-      const result = parser.parse(fixture.input)
-      expect(result).to.deep.equal(fixture.expected)
-    })
-  }
+  runFixtures(keyofFixtures)
 })
 
 describe('TypeScript import', () => {
-  for (const fixture of importFixtures) {
-    it(fixture.description, () => {
-      const parser = new Parser({
-        mode: 'typescript'
-      })
-      const result = parser.parse(fixture.input)
-      expect(result).to.deep.equal(fixture.expected)
-    })
-  }
+  runFixtures(importFixtures)
 })
 
 describe('TypeScript arrow functions', () => {
-  for (const fixture of arrowFunctionFixtures) {
-    it(fixture.description, () => {
-      const parser = new Parser({
-        mode: 'typescript'
-      })
-      const result = parser.parse(fixture.input)
-      expect(result).to.deep.equal(fixture.expected)
-    })
-  }
+  runFixtures(arrowFunctionFixtures)
 })

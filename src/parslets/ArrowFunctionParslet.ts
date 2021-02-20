@@ -4,7 +4,7 @@ import { Precedence } from './Precedence'
 import { ParserEngine } from '../ParserEngine'
 import { ArrowResult, NonTerminalResult } from '../ParseResult'
 import { BaseFunctionParslet } from './BaseFunctionParslet'
-import {assertNamedKeyValueOrName} from "../assertTypes";
+import { assertNamedKeyValueOrName } from '../assertTypes'
 
 export class ArrowFunctionWithoutParametersParslet implements PrefixParslet {
   accepts (type: TokenType, next: TokenType): boolean {

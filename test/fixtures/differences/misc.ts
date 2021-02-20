@@ -1,4 +1,4 @@
-import {DiffFixture} from "../Fixture";
+import { DiffFixture } from '../Fixture'
 
 export const miscDiffs: DiffFixture[] = [
   {
