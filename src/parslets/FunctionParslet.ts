@@ -48,9 +48,9 @@ export class FunctionParslet extends BaseFunctionParslet implements PrefixParsle
       if (!parser.consume(')')) {
         const value = parser.parseNonTerminalType(Precedence.ALL)
         if (this.allowNamedParameters === undefined) {
-          result.parameters = this.getNamedParameters(value)
-        } else {
           result.parameters = this.getUnnamedParameters(value)
+        } else {
+          result.parameters = this.getParameters(value)
           for (const p of result.parameters) {
             if (p.type === 'KEY_VALUE' && !this.allowNamedParameters.includes(p.key.name)) {
               throw new Error(`only allowed named parameters are ${this.allowNamedParameters.join(',')} but got ${p.type}`)

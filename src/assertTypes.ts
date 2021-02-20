@@ -1,4 +1,4 @@
-import { KeyValueResult, NonTerminalResult, ParseResult } from './ParseResult'
+import {KeyValueResult, NameResult, NonTerminalResult, ParseResult} from './ParseResult'
 
 class UnexpectedTypeError extends Error {
   constructor (result: NonTerminalResult) {
@@ -23,4 +23,16 @@ export function assertNamedKeyValueOrTerminal (result: NonTerminalResult): KeyVa
     return result as KeyValueResult
   }
   return assertTerminal(result)
+}
+
+export function assertNamedKeyValueOrName (result: NonTerminalResult): KeyValueResult | NameResult {
+  if (result.type === 'KEY_VALUE') {
+    if (result.key.type !== 'NAME') {
+      throw new UnexpectedTypeError(result)
+    }
+    return result as KeyValueResult
+  } else if (result.type !== 'NAME') {
+    throw new UnexpectedTypeError(result)
+  }
+  return result
 }

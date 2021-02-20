@@ -4,17 +4,22 @@ import { ClassPathParslet } from '../parslets/ClassPathParslet'
 import { ArrayBracketsParslet } from '../parslets/ArrayBracketsParslet'
 import { StringValueParslet } from '../parslets/StringValueParslet'
 import { FunctionParslet } from '../parslets/FunctionParslet'
-import {closureGrammar} from "./closureGrammar";
+import {baseGrammar} from "./baseGrammar";
 
 export const jsdocGrammar: Grammar = () => {
   const {
     prefixParslets,
     infixParslets
-  } = closureGrammar()
+  } = baseGrammar()
 
   return {
     prefixParslets: [
       ...prefixParslets,
+      new FunctionParslet({
+        allowWithoutParenthesis: true,
+        allowNamedParameters: ['this', 'new'],
+        allowNoReturnType: true
+      }),
       new StringValueParslet()
     ],
     infixParslets: [

@@ -77,7 +77,7 @@ export type FunctionResult = ModifiableResult & {
 
 export type ArrowResult = ModifiableResult & {
   type: 'FUNCTION'
-  parameters: KeyValueResult[]
+  parameters: Array<NameResult | KeyValueResult>
   returnType?: ParseResult
   arrow: true
 }

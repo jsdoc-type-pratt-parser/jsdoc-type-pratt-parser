@@ -2,6 +2,15 @@ import {DiffFixture} from "../Fixture";
 
 export const miscDiffs: DiffFixture[] = [
   {
+    description: 'function without parenthesis',
+    input: 'function',
+    modes: {
+      closure: false,
+      jsdoc: true,
+      typescript: false
+    }
+  },
+  {
     description: 'function without return type',
     input: 'function()',
     modes: {

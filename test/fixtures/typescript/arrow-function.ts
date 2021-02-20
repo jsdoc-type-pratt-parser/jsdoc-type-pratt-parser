@@ -221,7 +221,7 @@ export const arrowFunctionFixtures: Fixture[] = [
     }
   },
   {
-    description: 'arrow returning arrow with paramters',
+    description: 'arrow returning arrow with parameters',
     input: '(a: number) => (b: string) => boolean',
     expected: {
       type: 'FUNCTION',
@@ -261,6 +261,25 @@ export const arrowFunctionFixtures: Fixture[] = [
         }
       }
     }
+  },
+  {
+    description: 'arrow with unnamed parameters',
+    input: '(number) => void',
+    expected: {
+      type: 'FUNCTION',
+      arrow: true,
+      parameters: [
+        {
+          type: 'NAME',
+          name: 'number'
+        }
+      ]
+    }
+  },
+  {
+    description: 'arrow with unnamed parameters that are not names should fail',
+    input: '(Array<string>) => void',
+    shouldFail: true
   }
 ]
 

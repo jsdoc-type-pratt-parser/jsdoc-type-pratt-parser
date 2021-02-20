@@ -4,6 +4,7 @@ import { Precedence } from './Precedence'
 import { ParserEngine } from '../ParserEngine'
 import { ArrowResult, NonTerminalResult } from '../ParseResult'
 import { BaseFunctionParslet } from './BaseFunctionParslet'
+import {assertNamedKeyValueOrName} from "../assertTypes";
 
 export class ArrowFunctionWithoutParametersParslet implements PrefixParslet {
   accepts (type: TokenType, next: TokenType): boolean {
@@ -50,7 +51,7 @@ export class ArrowFunctionWithParametersParslet extends BaseFunctionParslet impl
     parser.consume('>')
     const result: ArrowResult = {
       type: 'FUNCTION',
-      parameters: this.getNamedParameters(left),
+      parameters: this.getParameters(left).map(assertNamedKeyValueOrName),
       arrow: true
     }
     if (!parser.consume('void')) {

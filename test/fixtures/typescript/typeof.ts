@@ -167,8 +167,13 @@ export const typeOfFixtures: Fixture[] = [
     }
   },
   {
-    description: 'typeof as function parameter',
+    description: 'typeof as function parameter without return type should fail',
     input: 'function(typeof A)',
+    shouldFail: true
+  },
+  {
+    description: 'typeof as function parameter',
+    input: 'function(typeof A): void',
     expected: {
       type: 'FUNCTION',
       parameters: [
@@ -184,7 +189,7 @@ export const typeOfFixtures: Fixture[] = [
   },
   {
     description: 'typeof as first function parameter',
-    input: 'function(typeof A, number)',
+    input: 'function(typeof A, number): void',
     expected: {
       type: 'FUNCTION',
       parameters: [
@@ -204,7 +209,7 @@ export const typeOfFixtures: Fixture[] = [
   },
   {
     description: 'typeof as second function parameter',
-    input: 'function(number, typeof A)',
+    input: 'function(number, typeof A): void',
     expected: {
       type: 'FUNCTION',
       parameters: [

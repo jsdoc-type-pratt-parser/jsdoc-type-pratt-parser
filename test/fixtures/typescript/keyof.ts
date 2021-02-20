@@ -167,8 +167,13 @@ export const keyofFixtures: Fixture[] = [
     }
   },
   {
-    description: 'keyof as function parameter',
+    description: 'keyof as function parameter without return should fail',
     input: 'function(keyof A)',
+    shouldFail: true
+  },
+  {
+    description: 'keyof as function parameter',
+    input: 'function(keyof A): void',
     expected: {
       type: 'FUNCTION',
       parameters: [
@@ -184,7 +189,7 @@ export const keyofFixtures: Fixture[] = [
   },
   {
     description: 'keyof as first function parameter',
-    input: 'function(keyof A, number)',
+    input: 'function(keyof A, number): void',
     expected: {
       type: 'FUNCTION',
       parameters: [
@@ -204,7 +209,7 @@ export const keyofFixtures: Fixture[] = [
   },
   {
     description: 'keyof as second function parameter',
-    input: 'function(number, keyof A)',
+    input: 'function(number, keyof A): void',
     expected: {
       type: 'FUNCTION',
       parameters: [
