@@ -59,6 +59,7 @@ export const tupleFixtures: Fixture[] = [
         },
         {
           type: 'NAME',
+          reservedWord: true,
           name: 'with'
         },
         {
@@ -80,6 +81,7 @@ export const tupleFixtures: Fixture[] = [
         },
         {
           type: 'NAME',
+          reservedWord: true,
           name: 'with'
         },
         {
@@ -148,7 +150,8 @@ export const tupleFixtures: Fixture[] = [
         },
         {
           type: 'NAME',
-          name: 'with'
+          name: 'with',
+          reservedWord: true
         },
         {
           type: 'TYPE_OF',
@@ -172,7 +175,8 @@ export const tupleFixtures: Fixture[] = [
         },
         {
           type: 'NAME',
-          name: 'with'
+          name: 'with',
+          reservedWord: true
         },
         {
           type: 'KEY_OF',
@@ -196,7 +200,8 @@ export const tupleFixtures: Fixture[] = [
         },
         {
           type: 'NAME',
-          name: 'with'
+          name: 'with',
+          reservedWord: true
         },
         {
           type: 'TYPE_OF',

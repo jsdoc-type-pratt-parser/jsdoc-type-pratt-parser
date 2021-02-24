@@ -6,11 +6,19 @@ import { Grammar } from './grammars/Grammar'
 import { assertTerminal } from './assertTypes'
 import { Precedence } from './parslets/Precedence'
 
-class NoParsletFoundError extends Error {
+export class NoParsletFoundError extends Error {
+  private token: Token
+
   constructor (token: Token) {
     super(`No parslet found for token: '${token.type}' with value '${token.text}'`)
 
+    this.token = token
+
     Object.setPrototypeOf(this, NoParsletFoundError.prototype)
+  }
+
+  getToken() {
+    return this.token
   }
 }
 

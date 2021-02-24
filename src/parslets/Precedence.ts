@@ -6,6 +6,7 @@ export enum Precedence {
   UNION,
   PREFIX,
   POSTFIX,
+  TUPLE,
   RECORD,
   SYMBOL,
   OPTIONAL,

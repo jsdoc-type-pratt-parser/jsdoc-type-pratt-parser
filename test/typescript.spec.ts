@@ -1,12 +1,13 @@
 import { expect } from 'chai'
 import 'mocha'
 
-import { typeOfFixtures } from './fixtures/typescript/typeof'
 import { Parser, ParseResult } from '../src'
+import { Fixture } from './fixtures/Fixture'
+import { tupleFixtures } from './fixtures/typescript/tuple'
+import { typeOfFixtures } from './fixtures/typescript/typeof'
 import { keyofFixtures } from './fixtures/typescript/keyof'
 import { importFixtures } from './fixtures/typescript/import'
 import { arrowFunctionFixtures } from './fixtures/typescript/arrow-function'
-import { Fixture } from './fixtures/Fixture'
 
 function runFixtures (fixtures: Fixture[]): void {
   for (const fixture of fixtures) {
@@ -40,4 +41,8 @@ describe('TypeScript import', () => {
 
 describe('TypeScript arrow functions', () => {
   runFixtures(arrowFunctionFixtures)
+})
+
+describe('TypeScript tuples', () => {
+  runFixtures(tupleFixtures)
 })

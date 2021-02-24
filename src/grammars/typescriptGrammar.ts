@@ -1,3 +1,4 @@
+import { TupleParslet } from '../parslets/TupleParslet'
 import { Grammar } from './Grammar'
 import { ArrayBracketsParslet } from '../parslets/ArrayBracketsParslet'
 import { baseGrammar } from './baseGrammar'
@@ -27,9 +28,10 @@ export const typescriptGrammar: Grammar = () => {
       new StringValueParslet(),
       new ArrowFunctionWithoutParametersParslet(),
       new FunctionParslet({
-        allowWithoutParenthesis: true,
+        allowWithoutParenthesis: false,
         allowNoReturnType: false
-      })
+      }),
+      new TupleParslet()
     ],
     infixParslets: [
       ...infixParslets,

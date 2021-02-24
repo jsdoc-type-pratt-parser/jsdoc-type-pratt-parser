@@ -1,6 +1,6 @@
 import { InfixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
-import { ParserEngine } from '../ParserEngine'
+import { NoParsletFoundError, ParserEngine } from '../ParserEngine'
 import { KeyValueResult, NonTerminalResult, ParseResult } from '../ParseResult'
 import { Precedence } from './Precedence'
 import { assertNamedKeyValueOrTerminal } from '../assertTypes'
@@ -10,7 +10,7 @@ interface ParameterListParsletOptions {
 }
 
 export class ParameterListParslet implements InfixParslet {
-  private readonly allowTrailingComma: boolean // TODO
+  private readonly allowTrailingComma: boolean
 
   constructor (option: ParameterListParsletOptions) {
     this.allowTrailingComma = option.allowTrailingComma
@@ -30,8 +30,16 @@ export class ParameterListParslet implements InfixParslet {
     ]
     parser.consume(',')
     do {
-      const next = parser.parseNonTerminalType(Precedence.PARAMETER_LIST)
-      elements.push(assertNamedKeyValueOrTerminal(next))
+      try {
+        const next = parser.parseNonTerminalType(Precedence.PARAMETER_LIST)
+        elements.push(assertNamedKeyValueOrTerminal(next))
+      } catch (e) {
+        if (this.allowTrailingComma && e instanceof NoParsletFoundError) {
+          break
+        } else {
+          throw e
+        }
+      }
     } while (parser.consume(','))
     return {
       type: 'PARAMETER_LIST',

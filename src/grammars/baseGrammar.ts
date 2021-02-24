@@ -28,7 +28,7 @@ export const baseGrammar: Grammar = () => {
     ],
     infixParslets: [
       new ParameterListParslet({
-        allowTrailingComma: false
+        allowTrailingComma: true
       }),
       new PropertyPathParslet(),
       new KeyValueParslet(),
