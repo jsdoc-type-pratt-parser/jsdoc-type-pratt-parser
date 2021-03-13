@@ -1,6 +1,8 @@
 import { expect } from 'chai'
 import 'mocha'
 
+import { parse as catharsisParse } from 'catharsis'
+
 import { Parser, ParserMode } from '../src/Parser'
 
 import { Fixture } from './fixtures/Fixture'
@@ -12,7 +14,7 @@ import { recordFixtures } from './fixtures/catharsis/record-type'
 import { genericFixtures } from './fixtures/catharsis/type-application'
 import { unionFixtures } from './fixtures/catharsis/type-union'
 import { jsdocFixtures } from './fixtures/catharsis/jsdoc'
-import { ParseResult } from '../src'
+import { catharsisTransform, ParseResult } from '../src'
 
 function runFixtures (fixtures: Fixture[], mode: ParserMode = 'closure'): void {
   for (const fixture of fixtures) {
@@ -27,6 +29,10 @@ function runFixtures (fixtures: Fixture[], mode: ParserMode = 'closure'): void {
       } else {
         const result = parser.parse(fixture.input)
         expect(result).to.deep.equal(fixture.expected)
+
+        const catharsisResult = catharsisParse(fixture.input)
+        const transformed = catharsisTransform(result)
+        expect(transformed).to.deep.equal(catharsisResult)
       }
     })
   }

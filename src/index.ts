@@ -5,4 +5,4 @@
 
 export * from './Parser'
 export * from './ParseResult'
-export * from './catharsisTransform'
+export * from './transforms/catharsisTransform'

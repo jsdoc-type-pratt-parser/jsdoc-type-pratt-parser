@@ -14,7 +14,7 @@ export const keyofFixtures: Fixture[] = [
   },
   {
     description: 'keyof',
-    input: 'keyof',
+    input: 'keyof', // is this really valid input?
     expected: {
       type: 'KEY_OF'
     }

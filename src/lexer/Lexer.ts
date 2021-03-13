@@ -218,10 +218,11 @@ export class Lexer {
   }
 
   private read (): Token {
+    const text = this.text.trim()
     for (const rule of rules) {
-      const token = rule(this.text)
+      const token = rule(text)
       if (token !== null) {
-        this.text = this.text.slice(token.text.length).trim()
+        this.text = text.slice(token.text.length)
         return token
       }
     }
