@@ -8,7 +8,7 @@ import { assertTerminal } from '../assertTypes'
 
 export class NullablePrefixParslet implements PrefixParslet {
   accepts (type: TokenType, next: TokenType): boolean {
-    return (type === '?' && !isQuestionMarkUnknownType(next)) || type === '!'
+    return type === '?' && !isQuestionMarkUnknownType(next)
   }
 
   getPrecedence (): Precedence {
@@ -16,19 +16,20 @@ export class NullablePrefixParslet implements PrefixParslet {
   }
 
   parsePrefix (parser: ParserEngine): ParseResult {
-    const nullable = parser.consume('?') || !parser.consume('!')
-    const value = parser.parseType(Precedence.NULLABLE)
-    if (value.nullable !== undefined) {
-      throw new Error('Multiple nullable modifiers on same type')
+    parser.consume('?')
+    return {
+      type: 'NULLABLE',
+      element: parser.parseType(Precedence.NULLABLE),
+      meta: {
+        position: 'PREFIX'
+      }
     }
-    value.nullable = nullable
-    return value
   }
 }
 
 export class NullableInfixParslet implements InfixParslet {
   accepts (type: TokenType, next: TokenType): boolean {
-    return type === '?' || type === '!'
+    return type === '?'
   }
 
   getPrecedence (): Precedence {
@@ -36,12 +37,13 @@ export class NullableInfixParslet implements InfixParslet {
   }
 
   parseInfix (parser: ParserEngine, left: NonTerminalResult): ParseResult {
-    const nullable = parser.consume('?') || !parser.consume('!')
-    const value = assertTerminal(left)
-    if (value.nullable !== undefined) {
-      throw new Error('Multiple nullable modifiers on same type')
+    parser.consume('?')
+    return {
+      type: 'NULLABLE',
+      element: assertTerminal(left),
+      meta: {
+        position: 'SUFFIX'
+      }
     }
-    value.nullable = nullable
-    return value
   }
 }

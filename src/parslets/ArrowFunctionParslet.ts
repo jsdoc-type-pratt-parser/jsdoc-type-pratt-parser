@@ -2,7 +2,7 @@ import { InfixParslet, PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from './Precedence'
 import { ParserEngine } from '../ParserEngine'
-import { ArrowResult, NonTerminalResult } from '../ParseResult'
+import { FunctionResult, NonTerminalResult } from '../ParseResult'
 import { BaseFunctionParslet } from './BaseFunctionParslet'
 import { assertNamedKeyValueOrName } from '../assertTypes'
 
@@ -15,16 +15,18 @@ export class ArrowFunctionWithoutParametersParslet implements PrefixParslet {
     return Precedence.ARROW
   }
 
-  parsePrefix (parser: ParserEngine): ArrowResult {
+  parsePrefix (parser: ParserEngine): FunctionResult {
     parser.consume('(')
     parser.consume(')')
-    if (!parser.consume('=') || !parser.consume('>')) {
+    if (!parser.consume('=>')) {
       throw new Error('Unexpected empty parenthesis. Expected \'=>\' afterwards.')
     }
-    const result: ArrowResult = {
+    const result: FunctionResult = {
       type: 'FUNCTION',
       parameters: [],
-      arrow: true
+      meta: {
+        arrow: true
+      }
     }
     if (!parser.consume('void')) {
       const right = parser.parseType(Precedence.ALL)
@@ -36,23 +38,24 @@ export class ArrowFunctionWithoutParametersParslet implements PrefixParslet {
 
 export class ArrowFunctionWithParametersParslet extends BaseFunctionParslet implements InfixParslet {
   accepts (type: TokenType, next: TokenType): boolean {
-    return type === '=' && next === '>'
+    return type === '=>'
   }
 
   getPrecedence (): Precedence {
     return Precedence.ARROW
   }
 
-  parseInfix (parser: ParserEngine, left: NonTerminalResult): ArrowResult {
+  parseInfix (parser: ParserEngine, left: NonTerminalResult): FunctionResult {
     if (parser.previousToken()?.type !== ')') {
       throw new Error('Unexpected Arrow. Expected parenthesis before.')
     }
-    parser.consume('=')
-    parser.consume('>')
-    const result: ArrowResult = {
+    parser.consume('=>')
+    const result: FunctionResult = {
       type: 'FUNCTION',
       parameters: this.getParameters(left).map(assertNamedKeyValueOrName),
-      arrow: true
+      meta: {
+        arrow: true
+      }
     }
     if (!parser.consume('void')) {
       const right = parser.parseType(Precedence.ALL)

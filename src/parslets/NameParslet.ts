@@ -57,10 +57,10 @@ export class NameParslet implements PrefixParslet {
     parser.consume('Identifier') || parser.consume('this') || parser.consume('new')
     const result: NameResult = {
       type: 'NAME',
-      name: token.text
-    }
-    if (reservedWords.includes(token.text)) {
-      result.reservedWord = true
+      name: token.text,
+      meta: {
+        reservedWord: reservedWords.includes(token.text)
+      }
     }
     return result
   }

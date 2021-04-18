@@ -9,12 +9,22 @@ export const genericFixtures: Fixture[] = [
       objects: [
         {
           type: 'NAME',
-          name: 'string'
+          name: 'string',
+          meta: {
+            reservedWord: false
+          }
         }
       ],
       subject: {
         type: 'NAME',
-        name: 'Array'
+        name: 'Array',
+        meta: {
+          reservedWord: false
+        }
+      },
+      meta: {
+        dot: false,
+        brackets: '<>'
       }
     }
   },
@@ -26,12 +36,22 @@ export const genericFixtures: Fixture[] = [
       objects: [
         {
           type: 'NAME',
-          name: 'string'
+          name: 'string',
+          meta: {
+            reservedWord: false
+          }
         }
       ],
       subject: {
         type: 'NAME',
-        name: 'Array'
+        name: 'Array',
+        meta: {
+          reservedWord: false
+        }
+      },
+      meta: {
+        dot: true,
+        brackets: '<>'
       }
     }
   },
@@ -39,17 +59,33 @@ export const genericFixtures: Fixture[] = [
     description: 'repeatable array of strings',
     input: '...Array.<string>',
     expected: {
-      type: 'GENERIC',
-      repeatable: true,
-      objects: [
-        {
+      type: 'VARIADIC',
+      element: {
+        type: 'GENERIC',
+        objects: [
+          {
+            type: 'NAME',
+            name: 'string',
+            meta: {
+              reservedWord: false
+            }
+          }
+        ],
+        subject: {
           type: 'NAME',
-          name: 'string'
+          name: 'Array',
+          meta: {
+            reservedWord: false
+          }
+        },
+        meta: {
+          dot: true,
+          brackets: '<>'
         }
-      ],
-      subject: {
-        type: 'NAME',
-        name: 'Array'
+      },
+      meta: {
+        squareBrackets: false,
+        position: 'PREFIX'
       }
     }
   },
@@ -61,16 +97,29 @@ export const genericFixtures: Fixture[] = [
       objects: [
         {
           type: 'NAME',
-          name: 'string'
+          name: 'string',
+          meta: {
+            reservedWord: false
+          }
         },
         {
           type: 'NAME',
-          name: 'number'
+          name: 'number',
+          meta: {
+            reservedWord: false
+          }
         }
       ],
       subject: {
         type: 'NAME',
-        name: 'Object'
+        name: 'Object',
+        meta: {
+          reservedWord: false
+        }
+      },
+      meta: {
+        dot: true,
+        brackets: '<>'
       }
     }
   },
@@ -88,7 +137,10 @@ export const genericFixtures: Fixture[] = [
               elements: [
                 {
                   type: 'NAME',
-                  name: 'boolean'
+                  name: 'boolean',
+                  meta: {
+                    reservedWord: false
+                  }
                 },
                 {
                   type: 'RECORD',
@@ -97,11 +149,17 @@ export const genericFixtures: Fixture[] = [
                       type: 'KEY_VALUE',
                       key: {
                         type: 'NAME',
-                        name: 'myKey'
+                        name: 'myKey',
+                        meta: {
+                          reservedWord: false
+                        }
                       },
                       value: {
                         type: 'NAME',
-                        name: 'Error'
+                        name: 'Error',
+                        meta: {
+                          reservedWord: false
+                        }
                       }
                     }
                   ]
@@ -111,7 +169,14 @@ export const genericFixtures: Fixture[] = [
           ],
           subject: {
             type: 'NAME',
-            name: 'Array'
+            name: 'Array',
+            meta: {
+              reservedWord: false
+            }
+          },
+          meta: {
+            dot: true,
+            brackets: '<>'
           }
         },
         {
@@ -119,11 +184,17 @@ export const genericFixtures: Fixture[] = [
           elements: [
             {
               type: 'NAME',
-              name: 'boolean'
+              name: 'boolean',
+              meta: {
+                reservedWord: false
+              }
             },
             {
               type: 'NAME',
-              name: 'string'
+              name: 'string',
+              meta: {
+                reservedWord: false
+              }
             },
             {
               type: 'FUNCTION',
@@ -132,18 +203,29 @@ export const genericFixtures: Fixture[] = [
                   type: 'KEY_VALUE',
                   key: {
                     type: 'NAME',
-                    reservedWord: true,
-                    name: 'new'
+                    name: 'new',
+                    meta: {
+                      reservedWord: true
+                    }
                   },
                   value: {
                     type: 'NAME',
-                    name: 'foo'
+                    name: 'foo',
+                    meta: {
+                      reservedWord: false
+                    }
                   }
                 }
               ],
               returnType: {
                 type: 'NAME',
-                name: 'string'
+                name: 'string',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              meta: {
+                arrow: false
               }
             }
           ]
@@ -151,7 +233,14 @@ export const genericFixtures: Fixture[] = [
       ],
       subject: {
         type: 'NAME',
-        name: 'Object'
+        name: 'Object',
+        meta: {
+          reservedWord: false
+        }
+      },
+      meta: {
+        dot: true,
+        brackets: '<>'
       }
     }
   },
@@ -166,14 +255,24 @@ export const genericFixtures: Fixture[] = [
           fields: [
             {
               type: 'NAME',
-              name: 'length'
+              name: 'length',
+              meta: {
+                reservedWord: false
+              }
             }
           ]
         }
       ],
       subject: {
         type: 'NAME',
-        name: 'Array'
+        name: 'Array',
+        meta: {
+          reservedWord: false
+        }
+      },
+      meta: {
+        dot: true,
+        brackets: '<>'
       }
     }
   },
@@ -189,7 +288,14 @@ export const genericFixtures: Fixture[] = [
       ],
       subject: {
         type: 'NAME',
-        name: 'Array'
+        name: 'Array',
+        meta: {
+          reservedWord: false
+        }
+      },
+      meta: {
+        dot: true,
+        brackets: '<>'
       }
     }
   },
@@ -201,12 +307,22 @@ export const genericFixtures: Fixture[] = [
       objects: [
         {
           type: 'NAME',
-          name: 'string'
+          name: 'string',
+          meta: {
+            reservedWord: false
+          }
         }
       ],
       subject: {
         type: 'NAME',
-        name: 'Promise'
+        name: 'Promise',
+        meta: {
+          reservedWord: false
+        }
+      },
+      meta: {
+        dot: true,
+        brackets: '<>'
       }
     }
   },
@@ -218,18 +334,28 @@ export const genericFixtures: Fixture[] = [
       objects: [
         {
           type: 'NAME',
-          name: 'string'
+          name: 'string',
+          meta: {
+            reservedWord: false
+          }
         }
       ],
       subject: {
         left: {
           name: 'foo',
-          type: 'NAME'
+          type: 'NAME',
+          meta: {
+            reservedWord: false
+          }
         },
         path: [
           'Promise'
         ],
         type: 'PROPERTY_PATH'
+      },
+      meta: {
+        dot: true,
+        brackets: '<>'
       }
     }
   }

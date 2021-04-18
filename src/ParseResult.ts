@@ -15,8 +15,11 @@ export type ParseResult =
   | TypeOfResult
   | KeyOfResult
   | ImportResult
-  | ArrowResult
   | TupleResult
+  | OptionalResult<ParseResult>
+  | NullableResult<ParseResult>
+  | NotNullableResult<ParseResult>
+  | VariadicResult<ParseResult>
 
 export type NonTerminalResult =
   ParseResult
@@ -24,108 +27,139 @@ export type NonTerminalResult =
   | NumberResult
   | ParameterList
 
-export interface ModifiableResult {
-  optional?: boolean
-  nullable?: boolean
-  repeatable?: boolean
+export interface OptionalResult<T extends ParseResult> {
+  type: 'OPTIONAL'
+  element: T
+  meta: {
+    position: 'PREFIX' | 'SUFFIX'
+  }
 }
 
-export type NameResult = ModifiableResult & {
+export interface NullableResult<T extends ParseResult> {
+  type: 'NULLABLE'
+  element: T
+  meta: {
+    position: 'PREFIX' | 'SUFFIX'
+  }
+}
+
+export interface NotNullableResult<T extends ParseResult> {
+  type: 'NOT_NULLABLE'
+  element: T
+  meta: {
+    position: 'PREFIX' | 'SUFFIX'
+  }
+}
+
+export interface VariadicResult<T extends ParseResult> {
+  type: 'VARIADIC'
+  element?: T
+  meta: {
+    position: 'PREFIX' | 'SUFFIX' | 'ONLY_DOTS'
+    squareBrackets: boolean
+  }
+}
+
+export interface NameResult {
   type: 'NAME'
   name: string
-  reservedWord?: boolean
+  meta: {
+    reservedWord: boolean
+  }
 }
 
-export type UnionResult = ModifiableResult & {
+export interface UnionResult {
   type: 'UNION'
   elements: ParseResult[]
 }
 
-export type GenericResult = ModifiableResult & {
+export interface GenericResult {
   type: 'GENERIC'
   subject: ParseResult
   objects: ParseResult[]
+  meta: {
+    brackets: '<>' | '[]'
+    dot: boolean
+  }
 }
 
-export type StringValueResult = ModifiableResult & {
+export interface StringValueResult {
   type: 'STRING_VALUE'
   value: string
-  quote: string
+  meta: {
+    quote: '\'' | '"'
+  }
 }
 
-export type NullResult = ModifiableResult & {
+export interface NullResult {
   type: 'NULL'
 }
 
-export type UndefinedResult = ModifiableResult & {
+export interface UndefinedResult {
   type: 'UNDEFINED'
 }
 
-export type AllResult = ModifiableResult & {
+export interface AllResult {
   type: 'ALL'
 }
 
-export type UnknownResult = ModifiableResult & {
+export interface UnknownResult {
   type: 'UNKNOWN'
 }
 
-export type FunctionResult = ModifiableResult & {
+export interface FunctionResult {
   type: 'FUNCTION'
   parameters: Array<ParseResult | KeyValueResult>
   returnType?: ParseResult
+  meta: {
+    arrow: boolean
+  }
 }
 
-export type ArrowResult = ModifiableResult & {
-  type: 'FUNCTION'
-  parameters: Array<NameResult | KeyValueResult>
-  returnType?: ParseResult
-  arrow: true
-}
-
-export type KeyValueResult<KeyType = NameResult> = ModifiableResult & {
+export interface KeyValueResult<KeyType = NameResult> {
   type: 'KEY_VALUE'
   key: KeyType
   value: ParseResult
 }
 
-export type RecordResult = ModifiableResult & {
+export interface RecordResult {
   type: 'RECORD'
   fields: Array<KeyValueResult<ParseResult | NumberResult> | ParseResult | NumberResult>
 }
 
-export type ModuleResult = ModifiableResult & {
+export interface ModuleResult {
   type: 'MODULE'
   path: string
 }
 
-export type PropertyPathResult = ModifiableResult & {
+export interface PropertyPathResult {
   type: 'PROPERTY_PATH'
   left: ParseResult
   path: string[]
 }
 
-export type NumberResult = ModifiableResult & {
+export interface NumberResult {
   type: 'NUMBER'
   value: number
 }
 
-export type SymbolResult = ModifiableResult & {
+export interface SymbolResult {
   type: 'SYMBOL'
   name: string
-  value?: NumberResult | NameResult
+  value?: NumberResult | NameResult | VariadicResult<NameResult>
 }
 
-export type TypeOfResult = ModifiableResult & {
+export interface TypeOfResult {
   type: 'TYPE_OF'
   value?: ParseResult
 }
 
-export type KeyOfResult = ModifiableResult & {
+export interface KeyOfResult {
   type: 'KEY_OF'
   value?: ParseResult
 }
 
-export type ImportResult = ModifiableResult & {
+export interface ImportResult {
   type: 'IMPORT'
   path: StringValueResult
 }
@@ -135,7 +169,7 @@ export interface ParameterList {
   elements: Array<KeyValueResult | ParseResult>
 }
 
-export type TupleResult = ModifiableResult & {
+export interface TupleResult {
   type: 'TUPLE'
   elements: ParseResult[]
 }

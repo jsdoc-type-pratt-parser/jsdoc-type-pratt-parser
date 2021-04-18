@@ -19,7 +19,9 @@ export class StringValueParslet implements PrefixParslet {
     return {
       type: 'STRING_VALUE',
       value: token.text.slice(1, -1),
-      quote: token.text[0]
+      meta: {
+        quote: token.text[0] as '\'' | '"'
+      }
     }
   }
 }

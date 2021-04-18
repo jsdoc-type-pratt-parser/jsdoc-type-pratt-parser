@@ -6,7 +6,10 @@ export const jsdocFixtures: Fixture[] = [
     input: 'functional',
     expected: {
       type: 'NAME',
-      name: 'functional'
+      name: 'functional',
+      meta: {
+        reservedWord: false
+      }
     }
   },
   {
@@ -14,7 +17,10 @@ export const jsdocFixtures: Fixture[] = [
     input: 'MyClass#myMember',
     expected: {
       type: 'NAME',
-      name: 'MyClass#myMember'
+      name: 'MyClass#myMember',
+      meta: {
+        reservedWord: false
+      }
     }
   },
   {
@@ -22,7 +28,10 @@ export const jsdocFixtures: Fixture[] = [
     input: 'MyClass~myMember',
     expected: {
       type: 'NAME',
-      name: 'MyClass~myMember'
+      name: 'MyClass~myMember',
+      meta: {
+        reservedWord: false
+      }
     }
   },
   {
@@ -30,7 +39,10 @@ export const jsdocFixtures: Fixture[] = [
     input: 'MyClass#myMember#yourMember~theirMember',
     expected: {
       type: 'NAME',
-      name: 'MyClass#myMember#yourMember~theirMember'
+      name: 'MyClass#myMember#yourMember~theirMember',
+      meta: {
+        reservedWord: false
+      }
     }
   },
   {
@@ -55,7 +67,9 @@ export const jsdocFixtures: Fixture[] = [
     expected: {
       type: 'NAME',
       name: 'this',
-      reservedWord: true
+      meta: {
+        reservedWord: true
+      }
     }
   },
   {
@@ -98,7 +112,10 @@ export const jsdocFixtures: Fixture[] = [
       type: 'SYMBOL',
       value: {
         name: 'a',
-        type: 'NAME'
+        type: 'NAME',
+        meta: {
+          reservedWord: false
+        }
       }
     }
   },
@@ -110,7 +127,10 @@ export const jsdocFixtures: Fixture[] = [
       type: 'SYMBOL',
       value: {
         name: 'abcde',
-        type: 'NAME'
+        type: 'NAME',
+        meta: {
+          reservedWord: false
+        }
       }
     }
   },
@@ -118,18 +138,22 @@ export const jsdocFixtures: Fixture[] = [
     description: 'name expression enclosed in double quotes',
     input: '"foo.bar.baz"',
     expected: {
-      quote: '"',
       type: 'STRING_VALUE',
-      value: 'foo.bar.baz'
+      value: 'foo.bar.baz',
+      meta: {
+        quote: '"'
+      }
     }
   },
   {
     description: 'name expression enclosed in single quotes',
     input: "'foo.bar.baz'",
     expected: {
-      quote: "'",
       type: 'STRING_VALUE',
-      value: 'foo.bar.baz'
+      value: 'foo.bar.baz',
+      meta: {
+        quote: '\''
+      }
     }
   },
   {
@@ -138,7 +162,10 @@ export const jsdocFixtures: Fixture[] = [
     expected: {
       left: {
         name: 'foo',
-        type: 'NAME'
+        type: 'NAME',
+        meta: {
+          reservedWord: false
+        }
       },
       path: [
         '"bar.baz"',
@@ -153,7 +180,10 @@ export const jsdocFixtures: Fixture[] = [
     expected: {
       left: {
         name: 'foo',
-        type: 'NAME'
+        type: 'NAME',
+        meta: {
+          reservedWord: false
+        }
       },
       path: [
         "'bar.baz'",
@@ -169,9 +199,18 @@ export const jsdocFixtures: Fixture[] = [
       name: 'MyClass',
       type: 'SYMBOL',
       value: {
-        name: 'foo',
-        repeatable: true,
-        type: 'NAME'
+        type: 'VARIADIC',
+        element: {
+          name: 'foo',
+          type: 'NAME',
+          meta: {
+            reservedWord: false
+          }
+        },
+        meta: {
+          squareBrackets: false,
+          position: 'PREFIX'
+        }
       }
     }
   },
@@ -183,12 +222,22 @@ export const jsdocFixtures: Fixture[] = [
       objects: [
         {
           type: 'NAME',
-          name: 'string'
+          name: 'string',
+          meta: {
+            reservedWord: false
+          }
         }
       ],
       subject: {
         type: 'NAME',
-        name: 'Array'
+        name: 'Array',
+        meta: {
+          reservedWord: false
+        }
+      },
+      meta: {
+        brackets: '<>',
+        dot: false
       }
     }
   },
@@ -200,12 +249,22 @@ export const jsdocFixtures: Fixture[] = [
       objects: [
         {
           type: 'NAME',
-          name: 'string'
+          name: 'string',
+          meta: {
+            reservedWord: false
+          }
         }
       ],
       subject: {
         type: 'NAME',
-        name: 'Array'
+        name: 'Array',
+        meta: {
+          reservedWord: false
+        }
+      },
+      meta: {
+        brackets: '[]',
+        dot: false
       }
     }
   },
@@ -217,12 +276,22 @@ export const jsdocFixtures: Fixture[] = [
       objects: [
         {
           type: 'FUNCTION',
-          parameters: []
+          parameters: [],
+          meta: {
+            arrow: false
+          }
         }
       ],
       subject: {
         type: 'NAME',
-        name: 'Array'
+        name: 'Array',
+        meta: {
+          reservedWord: false
+        }
+      },
+      meta: {
+        brackets: '[]',
+        dot: false
       }
     }
   },
@@ -237,18 +306,35 @@ export const jsdocFixtures: Fixture[] = [
           objects: [
             {
               type: 'NAME',
-              name: 'number'
+              name: 'number',
+              meta: {
+                reservedWord: false
+              }
             }
           ],
           subject: {
             type: 'NAME',
-            name: 'Array'
+            name: 'Array',
+            meta: {
+              reservedWord: false
+            }
+          },
+          meta: {
+            brackets: '[]',
+            dot: false
           }
         }
       ],
       subject: {
         type: 'NAME',
-        name: 'Array'
+        name: 'Array',
+        meta: {
+          reservedWord: false
+        }
+      },
+      meta: {
+        brackets: '[]',
+        dot: false
       }
     }
   },
@@ -266,24 +352,48 @@ export const jsdocFixtures: Fixture[] = [
               objects: [
                 {
                   type: 'NAME',
-                  name: 'number'
+                  name: 'number',
+                  meta: {
+                    reservedWord: false
+                  }
                 }
               ],
               subject: {
                 type: 'NAME',
-                name: 'Array'
+                name: 'Array',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              meta: {
+                brackets: '[]',
+                dot: false
               }
             }
           ],
           subject: {
             type: 'NAME',
-            name: 'Array'
+            name: 'Array',
+            meta: {
+              reservedWord: false
+            }
+          },
+          meta: {
+            brackets: '[]',
+            dot: false
           }
         }
       ],
       subject: {
         type: 'NAME',
-        name: 'Array'
+        name: 'Array',
+        meta: {
+          reservedWord: false
+        }
+      },
+      meta: {
+        brackets: '[]',
+        dot: false
       }
     }
   },
@@ -300,17 +410,30 @@ export const jsdocFixtures: Fixture[] = [
             objects: [
               {
                 type: 'NAME',
-                name: 'string'
+                name: 'string',
+                meta: {
+                  reservedWord: false
+                }
               }
             ],
             subject: {
               type: 'NAME',
-              name: 'Array'
+              name: 'Array',
+              meta: {
+                reservedWord: false
+              }
+            },
+            meta: {
+              brackets: '<>',
+              dot: true
             }
           },
           value: {
             type: 'NAME',
-            name: 'number'
+            name: 'number',
+            meta: {
+              reservedWord: false
+            }
           }
         }
       ]
@@ -329,21 +452,33 @@ export const jsdocFixtures: Fixture[] = [
             elements: [
               {
                 type: 'NAME',
-                name: 'number'
+                name: 'number',
+                meta: {
+                  reservedWord: false
+                }
               },
               {
                 type: 'NAME',
-                name: 'boolean'
+                name: 'boolean',
+                meta: {
+                  reservedWord: false
+                }
               },
               {
                 type: 'NAME',
-                name: 'string'
+                name: 'string',
+                meta: {
+                  reservedWord: false
+                }
               }
             ]
           },
           value: {
             type: 'NAME',
-            name: 'number'
+            name: 'number',
+            meta: {
+              reservedWord: false
+            }
           }
         }
       ]
@@ -359,14 +494,20 @@ export const jsdocFixtures: Fixture[] = [
           type: 'KEY_VALUE',
           key: {
             type: 'NAME',
-            name: 'undefinedHTML'
+            name: 'undefinedHTML',
+            meta: {
+              reservedWord: false
+            }
           },
           value: {
             type: 'UNION',
             elements: [
               {
                 type: 'NAME',
-                name: 'string'
+                name: 'string',
+                meta: {
+                  reservedWord: false
+                }
               },
               {
                 type: 'UNDEFINED'
@@ -387,11 +528,17 @@ export const jsdocFixtures: Fixture[] = [
           type: 'KEY_VALUE',
           key: {
             type: 'NAME',
-            name: 'foo'
+            name: 'foo',
+            meta: {
+              reservedWord: false
+            }
           },
           value: {
             type: 'FUNCTION',
-            parameters: []
+            parameters: [],
+            meta: {
+              arrow: false
+            }
           }
         }
       ]
@@ -402,46 +549,65 @@ export const jsdocFixtures: Fixture[] = [
     input: 'function',
     expected: {
       type: 'FUNCTION',
-      parameters: []
+      parameters: [],
+      meta: {
+        arrow: false
+      }
     }
   },
   {
     description: 'standard function type (should still parse if JSDoc expressions are allowed)',
     input: 'function(this:my.namespace.Class, my.Class)=',
     expected: {
-      type: 'FUNCTION',
-      optional: true,
-      parameters: [
-        {
-          type: 'KEY_VALUE',
-          key: {
-            type: 'NAME',
-            reservedWord: true,
-            name: 'this'
+      type: 'OPTIONAL',
+      element: {
+        type: 'FUNCTION',
+        parameters: [
+          {
+            type: 'KEY_VALUE',
+            key: {
+              type: 'NAME',
+              meta: {
+                reservedWord: true
+              },
+              name: 'this'
+            },
+            value: {
+              left: {
+                name: 'my',
+                type: 'NAME',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              path: [
+                'namespace',
+                'Class'
+              ],
+              type: 'PROPERTY_PATH'
+            }
           },
-          value: {
+          {
             left: {
               name: 'my',
-              type: 'NAME'
+              type: 'NAME',
+              meta: {
+                reservedWord: false
+              }
             },
             path: [
-              'namespace',
               'Class'
             ],
             type: 'PROPERTY_PATH'
           }
-        },
-        {
-          left: {
-            name: 'my',
-            type: 'NAME'
-          },
-          path: [
-            'Class'
-          ],
-          type: 'PROPERTY_PATH'
+        ],
+        meta: {
+          arrow: false
         }
-      ]
+      },
+      meta: {
+        position: 'SUFFIX'
+      }
     }
   },
   {
@@ -451,21 +617,40 @@ export const jsdocFixtures: Fixture[] = [
       type: 'UNION',
       elements: [
         {
-          type: 'NAME',
-          name: 'string',
-          repeatable: true
+          type: 'VARIADIC',
+          element: {
+            type: 'NAME',
+            name: 'string',
+            meta: {
+              reservedWord: false
+            }
+          },
+          meta: {
+            squareBrackets: false,
+            position: 'PREFIX'
+          }
         },
         {
           type: 'GENERIC',
           objects: [
             {
               name: 'string',
-              type: 'NAME'
+              type: 'NAME',
+              meta: {
+                reservedWord: false
+              }
             }
           ],
           subject: {
             type: 'NAME',
-            name: 'Array'
+            name: 'Array',
+            meta: {
+              reservedWord: false
+            }
+          },
+          meta: {
+            brackets: '[]',
+            dot: false
           }
         }
       ]

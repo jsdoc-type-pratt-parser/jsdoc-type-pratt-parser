@@ -19,6 +19,7 @@ export type TokenType =
   '#' |
   '~' |
   '/' |
+  '=>' |
   '...' |
   'null' |
   'undefined' |

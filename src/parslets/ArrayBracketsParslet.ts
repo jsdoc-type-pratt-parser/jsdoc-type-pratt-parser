@@ -21,11 +21,18 @@ export class ArrayBracketsParslet implements InfixParslet {
       type: 'GENERIC',
       subject: {
         type: 'NAME',
-        name: 'Array'
+        name: 'Array',
+        meta: {
+          reservedWord: false
+        }
       },
       objects: [
         assertTerminal(left)
-      ]
+      ],
+      meta: {
+        brackets: '[]',
+        dot: false
+      }
     }
   }
 }

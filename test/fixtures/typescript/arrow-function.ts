@@ -6,13 +6,15 @@ export const arrowFunctionFixtures: Fixture[] = [
     input: '(x: *) => *',
     expected: {
       type: 'FUNCTION',
-      arrow: true,
       parameters: [
         {
           type: 'KEY_VALUE',
           key: {
             type: 'NAME',
-            name: 'x'
+            name: 'x',
+            meta: {
+              reservedWord: false
+            }
           },
           value: {
             type: 'ALL'
@@ -21,6 +23,9 @@ export const arrowFunctionFixtures: Fixture[] = [
       ],
       returnType: {
         type: 'ALL'
+      },
+      meta: {
+        arrow: true
       }
     }
   },
@@ -29,23 +34,34 @@ export const arrowFunctionFixtures: Fixture[] = [
     input: '(x: number) => string',
     expected: {
       type: 'FUNCTION',
-      arrow: true,
       parameters: [
         {
           type: 'KEY_VALUE',
           key: {
             type: 'NAME',
-            name: 'x'
+            name: 'x',
+            meta: {
+              reservedWord: false
+            }
           },
           value: {
             type: 'NAME',
-            name: 'number'
+            name: 'number',
+            meta: {
+              reservedWord: false
+            }
           }
         }
       ],
       returnType: {
         type: 'NAME',
-        name: 'string'
+        name: 'string',
+        meta: {
+          reservedWord: false
+        }
+      },
+      meta: {
+        arrow: true
       }
     }
   },
@@ -54,45 +70,68 @@ export const arrowFunctionFixtures: Fixture[] = [
     input: '(x: number, y: string, z: Class) => string',
     expected: {
       type: 'FUNCTION',
-      arrow: true,
       parameters: [
         {
           type: 'KEY_VALUE',
           key: {
             type: 'NAME',
-            name: 'x'
+            name: 'x',
+            meta: {
+              reservedWord: false
+            }
           },
           value: {
             type: 'NAME',
-            name: 'number'
+            name: 'number',
+            meta: {
+              reservedWord: false
+            }
           }
         },
         {
           type: 'KEY_VALUE',
           key: {
             type: 'NAME',
-            name: 'y'
+            name: 'y',
+            meta: {
+              reservedWord: false
+            }
           },
           value: {
             type: 'NAME',
-            name: 'string'
+            name: 'string',
+            meta: {
+              reservedWord: false
+            }
           }
         },
         {
           type: 'KEY_VALUE',
           key: {
             type: 'NAME',
-            name: 'z'
+            name: 'z',
+            meta: {
+              reservedWord: false
+            }
           },
           value: {
             type: 'NAME',
-            name: 'Class'
+            name: 'Class',
+            meta: {
+              reservedWord: false
+            }
           }
         }
       ],
       returnType: {
         type: 'NAME',
-        name: 'string'
+        name: 'string',
+        meta: {
+          reservedWord: false
+        }
+      },
+      meta: {
+        arrow: true
       }
     }
   },
@@ -101,11 +140,16 @@ export const arrowFunctionFixtures: Fixture[] = [
     input: '() => string',
     expected: {
       type: 'FUNCTION',
-      arrow: true,
       parameters: [],
       returnType: {
         type: 'NAME',
-        name: 'string'
+        name: 'string',
+        meta: {
+          reservedWord: false
+        }
+      },
+      meta: {
+        arrow: true
       }
     }
   },
@@ -117,12 +161,20 @@ export const arrowFunctionFixtures: Fixture[] = [
       parameters: [],
       returnType: {
         type: 'FUNCTION',
-        arrow: true,
         parameters: [],
         returnType: {
           type: 'NAME',
-          name: 'string'
+          name: 'string',
+          meta: {
+            reservedWord: false
+          }
+        },
+        meta: {
+          arrow: true
         }
+      },
+      meta: {
+        arrow: false
       }
     }
   },
@@ -134,14 +186,22 @@ export const arrowFunctionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'FUNCTION',
-          arrow: true,
           parameters: [],
           returnType: {
             type: 'NAME',
-            name: 'string'
+            name: 'string',
+            meta: {
+              reservedWord: false
+            }
+          },
+          meta: {
+            arrow: true
           }
         }
-      ]
+      ],
+      meta: {
+        arrow: false
+      }
     }
   },
   {
@@ -154,25 +214,47 @@ export const arrowFunctionFixtures: Fixture[] = [
           type: 'KEY_VALUE',
           key: {
             type: 'NAME',
-            name: 'arrow'
+            name: 'arrow',
+            meta: {
+              reservedWord: false
+            }
           },
           value: {
             type: 'NAME',
-            name: 'Function'
+            name: 'Function',
+            meta: {
+              reservedWord: false
+            }
           }
         },
         {
           type: 'KEY_VALUE',
           key: {
             type: 'NAME',
-            name: 'with'
+            name: 'with',
+            meta: {
+              reservedWord: true
+            }
           },
           value: {
             type: 'NAME',
-            name: 'TrailingComma'
+            name: 'TrailingComma',
+            meta: {
+              reservedWord: false
+            }
           }
         }
-      ]
+      ],
+      returnType: {
+        type: 'NAME',
+        name: 'string',
+        meta: {
+          reservedWord: false
+        }
+      },
+      meta: {
+        arrow: true
+      }
     }
   },
   {
@@ -182,19 +264,31 @@ export const arrowFunctionFixtures: Fixture[] = [
       type: 'GENERIC',
       subject: {
         type: 'NAME',
-        name: 'X'
+        name: 'X',
+        meta: {
+          reservedWord: false
+        }
       },
       objects: [
         {
           type: 'FUNCTION',
-          arrow: true,
           parameters: [],
           returnType: {
             type: 'NAME',
-            name: 'string'
+            name: 'string',
+            meta: {
+              reservedWord: false
+            }
+          },
+          meta: {
+            arrow: true
           }
         }
-      ]
+      ],
+      meta: {
+        dot: false,
+        brackets: '<>'
+      }
     }
   },
   {
@@ -202,8 +296,10 @@ export const arrowFunctionFixtures: Fixture[] = [
     input: '() => void',
     expected: {
       type: 'FUNCTION',
-      arrow: true,
-      parameters: []
+      parameters: [],
+      meta: {
+        arrow: true
+      }
     }
   },
   {
@@ -211,12 +307,16 @@ export const arrowFunctionFixtures: Fixture[] = [
     input: '() => () => void',
     expected: {
       type: 'FUNCTION',
-      arrow: true,
       parameters: [],
       returnType: {
         type: 'FUNCTION',
-        arrow: true,
-        parameters: []
+        parameters: [],
+        meta: {
+          arrow: true
+        }
+      },
+      meta: {
+        arrow: true
       }
     }
   },
@@ -225,40 +325,59 @@ export const arrowFunctionFixtures: Fixture[] = [
     input: '(a: number) => (b: string) => boolean',
     expected: {
       type: 'FUNCTION',
-      arrow: true,
       parameters: [
         {
           type: 'KEY_VALUE',
           key: {
             type: 'NAME',
-            name: 'a'
+            name: 'a',
+            meta: {
+              reservedWord: false
+            }
           },
           value: {
             type: 'NAME',
-            name: 'number'
+            name: 'number',
+            meta: {
+              reservedWord: false
+            }
           }
         }
       ],
       returnType: {
         type: 'FUNCTION',
-        arrow: true,
         parameters: [
           {
             type: 'KEY_VALUE',
             key: {
               type: 'NAME',
-              name: 'b'
+              name: 'b',
+              meta: {
+                reservedWord: false
+              }
             },
             value: {
               type: 'NAME',
-              name: 'string'
+              name: 'string',
+              meta: {
+                reservedWord: false
+              }
             }
           }
         ],
         returnType: {
           type: 'NAME',
-          name: 'boolean'
+          name: 'boolean',
+          meta: {
+            reservedWord: false
+          }
+        },
+        meta: {
+          arrow: true
         }
+      },
+      meta: {
+        arrow: true
       }
     }
   },
@@ -267,13 +386,18 @@ export const arrowFunctionFixtures: Fixture[] = [
     input: '(number) => void',
     expected: {
       type: 'FUNCTION',
-      arrow: true,
       parameters: [
         {
           type: 'NAME',
-          name: 'number'
+          name: 'number',
+          meta: {
+            reservedWord: false
+          }
         }
-      ]
+      ],
+      meta: {
+        arrow: true
+      }
     }
   },
   {

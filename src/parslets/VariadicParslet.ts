@@ -1,7 +1,7 @@
 import { InfixParslet, PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
-import { NonTerminalResult, ParseResult } from '../ParseResult'
+import { NonTerminalResult, ParseResult, VariadicResult } from '../ParseResult'
 import { Precedence } from './Precedence'
 import { assertTerminal } from '../assertTypes'
 
@@ -14,21 +14,44 @@ export class VariadicParslet implements PrefixParslet, InfixParslet {
     return Precedence.PREFIX
   }
 
-  parsePrefix (parser: ParserEngine): ParseResult {
+  parsePrefix (parser: ParserEngine): VariadicResult<ParseResult> {
     parser.consume('...')
-    const shouldClose = parser.consume('[')
-    const value = parser.parseType(Precedence.PREFIX)
-    if (shouldClose && !parser.consume(']')) {
+
+    const brackets = parser.consume('[')
+    const value = parser.tryParseType(Precedence.PREFIX)
+    if (brackets && !parser.consume(']')) {
       throw new Error('Unterminated variadic type. Missing \']\'')
     }
-    value.repeatable = true
-    return value
+
+    if (value !== undefined) {
+      return {
+        type: 'VARIADIC',
+        element: assertTerminal(value),
+        meta: {
+          position: 'PREFIX',
+          squareBrackets: brackets
+        }
+      }
+    } else {
+      return {
+        type: 'VARIADIC',
+        meta: {
+          position: 'ONLY_DOTS',
+          squareBrackets: false
+        }
+      }
+    }
   }
 
   parseInfix (parser: ParserEngine, left: NonTerminalResult): ParseResult {
     parser.consume('...')
-    const result = assertTerminal(left)
-    result.repeatable = true
-    return result
+    return {
+      type: 'VARIADIC',
+      element: assertTerminal(left),
+      meta: {
+        position: 'SUFFIX',
+        squareBrackets: false
+      }
+    }
   }
 }

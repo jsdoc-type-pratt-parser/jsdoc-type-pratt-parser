@@ -1,4 +1,4 @@
-import { KeyValueResult, NameResult, NonTerminalResult, ParseResult } from './ParseResult'
+import { KeyValueResult, NameResult, NonTerminalResult, NumberResult, ParseResult, VariadicResult } from './ParseResult'
 
 class UnexpectedTypeError extends Error {
   constructor (result: NonTerminalResult) {
@@ -32,6 +32,19 @@ export function assertNamedKeyValueOrName (result: NonTerminalResult): KeyValueR
     }
     return result as KeyValueResult
   } else if (result.type !== 'NAME') {
+    throw new UnexpectedTypeError(result)
+  }
+  return result
+}
+
+export function assertNumberOrVariadicName (result: NonTerminalResult): NumberResult | NameResult | VariadicResult<NameResult> {
+  if (result.type === 'VARIADIC') {
+    if (result.element?.type === 'NAME') {
+      return result as VariadicResult<NameResult>
+    }
+    throw new UnexpectedTypeError(result)
+  }
+  if (result.type !== 'NUMBER' && result.type !== 'NAME') {
     throw new UnexpectedTypeError(result)
   }
   return result

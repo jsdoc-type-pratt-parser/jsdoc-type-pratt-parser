@@ -19,11 +19,17 @@ export const recordFixtures: Fixture[] = [
           type: 'KEY_VALUE',
           key: {
             type: 'NAME',
-            name: 'myNum'
+            name: 'myNum',
+            meta: {
+              reservedWord: false
+            }
           },
           value: {
             type: 'NAME',
-            name: 'number'
+            name: 'number',
+            meta: {
+              reservedWord: false
+            }
           }
         }
       ]
@@ -33,84 +39,129 @@ export const recordFixtures: Fixture[] = [
     description: 'repeatable record type with 1 typed property',
     input: '...{myNum: number}',
     expected: {
-      type: 'RECORD',
-      fields: [
-        {
-          type: 'KEY_VALUE',
-          key: {
-            type: 'NAME',
-            name: 'myNum'
-          },
-          value: {
-            type: 'NAME',
-            name: 'number'
+      type: 'VARIADIC',
+      element: {
+        type: 'RECORD',
+        fields: [
+          {
+            type: 'KEY_VALUE',
+            key: {
+              type: 'NAME',
+              name: 'myNum',
+              meta: {
+                reservedWord: false
+              }
+            },
+            value: {
+              type: 'NAME',
+              name: 'number',
+              meta: {
+                reservedWord: false
+              }
+            }
           }
-        }
-      ],
-      repeatable: true
+        ]
+      },
+      meta: {
+        squareBrackets: false,
+        position: 'PREFIX'
+      }
     }
   },
   {
     description: 'optional record type with 1 typed property',
     input: '{myNum: number}=',
     expected: {
-      type: 'RECORD',
-      fields: [
-        {
-          type: 'KEY_VALUE',
-          key: {
-            type: 'NAME',
-            name: 'myNum'
-          },
-          value: {
-            type: 'NAME',
-            name: 'number'
+      type: 'OPTIONAL',
+      element: {
+        type: 'RECORD',
+        fields: [
+          {
+            type: 'KEY_VALUE',
+            key: {
+              type: 'NAME',
+              name: 'myNum',
+              meta: {
+                reservedWord: false
+              }
+            },
+            value: {
+              type: 'NAME',
+              name: 'number',
+              meta: {
+                reservedWord: false
+              }
+            }
           }
-        }
-      ],
-      optional: true
+        ]
+      },
+      meta: {
+        position: 'SUFFIX'
+      }
     }
   },
   {
     description: 'nullable record type with 1 typed property',
     input: '?{myNum: number}',
     expected: {
-      type: 'RECORD',
-      fields: [
-        {
-          type: 'KEY_VALUE',
-          key: {
-            type: 'NAME',
-            name: 'myNum'
-          },
-          value: {
-            type: 'NAME',
-            name: 'number'
+      type: 'NULLABLE',
+      element: {
+        type: 'RECORD',
+        fields: [
+          {
+            type: 'KEY_VALUE',
+            key: {
+              type: 'NAME',
+              name: 'myNum',
+              meta: {
+                reservedWord: false
+              }
+            },
+            value: {
+              type: 'NAME',
+              name: 'number',
+              meta: {
+                reservedWord: false
+              }
+            }
           }
-        }
-      ],
-      nullable: true
+        ]
+      },
+      meta: {
+        position: 'PREFIX'
+      }
     }
   },
   {
     description: 'non-nullable record type with 1 typed property',
     input: '!{myNum: number}',
     expected: {
-      type: 'RECORD',
-      fields: [
-        {
-          type: 'KEY_VALUE',
-          key: {
-            type: 'NAME',
-            name: 'myNum'
-          },
-          value: {
-            type: 'NAME',
-            name: 'number'
+      type: 'NOT_NULLABLE',
+      element: {
+        type: 'RECORD',
+        fields: [
+          {
+            type: 'KEY_VALUE',
+            key: {
+              type: 'NAME',
+              name: 'myNum',
+              meta: {
+                reservedWord: false
+              }
+            },
+            value: {
+              type: 'NAME',
+              name: 'number',
+              meta: {
+                reservedWord: false
+              }
+            }
           }
-        }
-      ],
-      nullable: false
+        ]
+      },
+      meta: {
+        position: 'PREFIX'
+      }
     }
   },
   {
@@ -123,16 +174,25 @@ export const recordFixtures: Fixture[] = [
           type: 'KEY_VALUE',
           key: {
             type: 'NAME',
-            name: 'myNum'
+            name: 'myNum',
+            meta: {
+              reservedWord: false
+            }
           },
           value: {
             type: 'NAME',
-            name: 'number'
+            name: 'number',
+            meta: {
+              reservedWord: false
+            }
           }
         },
         {
           type: 'NAME',
-          name: 'myObject'
+          name: 'myObject',
+          meta: {
+            reservedWord: false
+          }
         }
       ]
     }
@@ -147,20 +207,33 @@ export const recordFixtures: Fixture[] = [
           type: 'KEY_VALUE',
           key: {
             type: 'NAME',
-            name: 'myArray'
+            name: 'myArray',
+            meta: {
+              reservedWord: false
+            }
           },
           value: {
             type: 'GENERIC',
             subject: {
               type: 'NAME',
-              name: 'Array'
+              name: 'Array',
+              meta: {
+                reservedWord: false
+              }
             },
             objects: [
               {
                 type: 'NAME',
-                name: 'string'
+                name: 'string',
+                meta: {
+                  reservedWord: false
+                }
               }
-            ]
+            ],
+            meta: {
+              dot: true,
+              brackets: '<>'
+            }
           }
         }
       ]
@@ -176,22 +249,34 @@ export const recordFixtures: Fixture[] = [
           type: 'KEY_VALUE',
           key: {
             type: 'NAME',
-            name: 'myKey'
+            name: 'myKey',
+            meta: {
+              reservedWord: false
+            }
           },
           value: {
             type: 'UNION',
             elements: [
               {
                 type: 'NAME',
-                name: 'number'
+                name: 'number',
+                meta: {
+                  reservedWord: false
+                }
               },
               {
                 type: 'NAME',
-                name: 'boolean'
+                name: 'boolean',
+                meta: {
+                  reservedWord: false
+                }
               },
               {
                 type: 'NAME',
-                name: 'string'
+                name: 'string',
+                meta: {
+                  reservedWord: false
+                }
               }
             ]
           }
@@ -210,11 +295,16 @@ export const recordFixtures: Fixture[] = [
           key: {
             type: 'NAME',
             name: 'continue',
-            reservedWord: true
+            meta: {
+              reservedWord: true
+            }
           },
           value: {
             type: 'NAME',
-            name: 'string'
+            name: 'string',
+            meta: {
+              reservedWord: false
+            }
           }
         }
       ]
@@ -231,11 +321,16 @@ export const recordFixtures: Fixture[] = [
           key: {
             type: 'NAME',
             name: 'class',
-            reservedWord: true
+            meta: {
+              reservedWord: true
+            }
           },
           value: {
             type: 'NAME',
-            name: 'string'
+            name: 'string',
+            meta: {
+              reservedWord: false
+            }
           }
         }
       ]
@@ -252,11 +347,16 @@ export const recordFixtures: Fixture[] = [
           key: {
             type: 'NAME',
             name: 'true',
-            reservedWord: true
+            meta: {
+              reservedWord: true
+            }
           },
           value: {
             type: 'NAME',
-            name: 'string'
+            name: 'string',
+            meta: {
+              reservedWord: false
+            }
           }
         }
       ]
@@ -276,7 +376,10 @@ export const recordFixtures: Fixture[] = [
           },
           value: {
             type: 'NAME',
-            name: 'string'
+            name: 'string',
+            meta: {
+              reservedWord: false
+            }
           }
         }
       ]

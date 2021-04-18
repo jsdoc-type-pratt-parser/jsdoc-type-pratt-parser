@@ -9,7 +9,9 @@ export const importFixtures: Fixture[] = [
       path: {
         type: 'STRING_VALUE',
         value: 'x',
-        quote: '"'
+        meta: {
+          quote: '"'
+        }
       }
     }
   },
@@ -21,7 +23,9 @@ export const importFixtures: Fixture[] = [
       path: {
         type: 'STRING_VALUE',
         value: './x',
-        quote: '"'
+        meta: {
+          quote: '"'
+        }
       }
     }
   },
@@ -33,7 +37,9 @@ export const importFixtures: Fixture[] = [
       path: {
         type: 'STRING_VALUE',
         value: '../x',
-        quote: '"'
+        meta: {
+          quote: '"'
+        }
       }
     }
   },
@@ -47,7 +53,9 @@ export const importFixtures: Fixture[] = [
         path: {
           type: 'STRING_VALUE',
           value: 'x',
-          quote: '"'
+          meta: {
+            quote: '"'
+          }
         }
       },
       path: [
@@ -65,7 +73,9 @@ export const importFixtures: Fixture[] = [
         path: {
           type: 'STRING_VALUE',
           value: 'x',
-          quote: '"'
+          meta: {
+            quote: '"'
+          }
         }
       },
       path: [
@@ -86,7 +96,9 @@ export const importFixtures: Fixture[] = [
           path: {
             type: 'STRING_VALUE',
             value: 'x',
-            quote: '"'
+            meta: {
+              quote: '"'
+            }
           }
         },
         path: [
@@ -97,13 +109,23 @@ export const importFixtures: Fixture[] = [
       objects: [
         {
           type: 'NAME',
-          name: 'V'
+          name: 'V',
+          meta: {
+            reservedWord: false
+          }
         },
         {
           type: 'NAME',
-          name: 'W'
+          name: 'W',
+          meta: {
+            reservedWord: false
+          }
         }
-      ]
+      ],
+      meta: {
+        dot: false,
+        brackets: '<>'
+      }
     }
   }
 ]

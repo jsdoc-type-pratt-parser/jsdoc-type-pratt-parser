@@ -2,6 +2,7 @@ import { expect } from 'chai'
 import 'mocha'
 
 import { parse as catharsisParse } from 'catharsis'
+// import { parse as jtpParse } from 'jsdoctypeparser'
 
 import { Parser, ParserMode } from '../src/Parser'
 
@@ -15,6 +16,7 @@ import { genericFixtures } from './fixtures/catharsis/type-application'
 import { unionFixtures } from './fixtures/catharsis/type-union'
 import { jsdocFixtures } from './fixtures/catharsis/jsdoc'
 import { catharsisTransform, ParseResult } from '../src'
+// import { jtpTransform } from '../src/transforms/jtpTransform'
 
 function runFixtures (fixtures: Fixture[], mode: ParserMode = 'closure'): void {
   for (const fixture of fixtures) {
@@ -30,9 +32,21 @@ function runFixtures (fixtures: Fixture[], mode: ParserMode = 'closure'): void {
         const result = parser.parse(fixture.input)
         expect(result).to.deep.equal(fixture.expected)
 
-        const catharsisResult = catharsisParse(fixture.input)
+        let catharsisResult
+        if (mode === 'jsdoc') {
+          catharsisResult = catharsisParse(fixture.input, {
+            jsdoc: true
+          })
+        } else {
+          catharsisResult = catharsisParse(fixture.input)
+        }
+
         const transformed = catharsisTransform(result)
-        expect(transformed).to.deep.equal(catharsisResult)
+        expect(transformed, 'matches the catharsis output').to.deep.equal(catharsisResult)
+
+        // const jtpResult = jtpParse(fixture.input)
+        // const jtpTransformed = jtpTransform(result)
+        // expect(jtpTransformed, 'matches the jsdoctypeparser output').to.deep.equal(jtpResult)
       }
     })
   }

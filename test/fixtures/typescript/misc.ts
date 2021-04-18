@@ -11,12 +11,21 @@ export const miscFixtures: Fixture[] = [
       parameters: [
         {
           type: 'NAME',
-          name: 'TrailingComma'
+          name: 'TrailingComma',
+          meta: {
+            reservedWord: false
+          }
         }
       ],
       returnType: {
         type: 'NAME',
-        name: 'string'
+        name: 'string',
+        meta: {
+          reservedWord: false
+        }
+      },
+      meta: {
+        arrow: false
       }
     }
   }

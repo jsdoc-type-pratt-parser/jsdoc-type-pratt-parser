@@ -7,7 +7,6 @@ import { KeyOfParslet } from '../parslets/KeyOfParslet'
 import { ImportParslet } from '../parslets/ImportParslet'
 import { StringValueParslet } from '../parslets/StringValueParslet'
 import { FunctionParslet } from '../parslets/FunctionParslet'
-import { VariadicParslet } from '../parslets/VariadicParslet'
 import {
   ArrowFunctionWithoutParametersParslet,
   ArrowFunctionWithParametersParslet
@@ -36,7 +35,6 @@ export const typescriptGrammar: Grammar = () => {
     infixParslets: [
       ...infixParslets,
       new ArrayBracketsParslet(),
-      new VariadicParslet(),
       new ArrowFunctionWithParametersParslet()
     ]
   }

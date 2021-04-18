@@ -6,15 +6,15 @@ import { PrefixParslet } from './Parslet'
 import { Precedence } from './Precedence'
 
 export class TupleParslet implements PrefixParslet {
-  accepts (type: TokenType, next: TokenType) : boolean {
+  accepts (type: TokenType, next: TokenType): boolean {
     return type === '['
   }
 
-  getPrecedence () : Precedence {
+  getPrecedence (): Precedence {
     return Precedence.TUPLE
   }
 
-  parsePrefix (parser: ParserEngine) : TupleResult {
+  parsePrefix (parser: ParserEngine): TupleResult {
     parser.consume('[')
     const result: TupleResult = {
       type: 'TUPLE',
@@ -33,5 +33,4 @@ export class TupleParslet implements PrefixParslet {
     }
     return result
   }
-
 }

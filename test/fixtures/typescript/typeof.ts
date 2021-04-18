@@ -8,7 +8,10 @@ export const typeOfFixtures: Fixture[] = [
       type: 'TYPE_OF',
       value: {
         type: 'NAME',
-        name: 'A'
+        name: 'A',
+        meta: {
+          reservedWord: false
+        }
       }
     }
   },
@@ -26,11 +29,18 @@ export const typeOfFixtures: Fixture[] = [
       type: 'GENERIC',
       subject: {
         type: 'NAME',
-        name: 'X'
+        name: 'X',
+        meta: {
+          reservedWord: false
+        }
       },
       objects: [{
         type: 'TYPE_OF'
-      }]
+      }],
+      meta: {
+        dot: false,
+        brackets: '<>'
+      }
     }
   },
   {
@@ -40,15 +50,25 @@ export const typeOfFixtures: Fixture[] = [
       type: 'GENERIC',
       subject: {
         type: 'NAME',
-        name: 'X'
+        name: 'X',
+        meta: {
+          reservedWord: false
+        }
       },
       objects: [{
         type: 'TYPE_OF',
         value: {
           type: 'NAME',
-          name: 'A'
+          name: 'A',
+          meta: {
+            reservedWord: false
+          }
         }
-      }]
+      }],
+      meta: {
+        dot: false,
+        brackets: '<>'
+      }
     }
   },
   {
@@ -60,15 +80,25 @@ export const typeOfFixtures: Fixture[] = [
         type: 'TYPE_OF',
         value: {
           type: 'NAME',
-          name: 'X'
+          name: 'X',
+          meta: {
+            reservedWord: false
+          }
         }
       },
       objects: [
         {
           type: 'NAME',
-          name: 'A'
+          name: 'A',
+          meta: {
+            reservedWord: false
+          }
         }
-      ]
+      ],
+      meta: {
+        dot: false,
+        brackets: '<>'
+      }
     }
   },
   {
@@ -78,7 +108,10 @@ export const typeOfFixtures: Fixture[] = [
       type: 'TYPE_OF',
       value: {
         type: 'NAME',
-        name: 'A'
+        name: 'A',
+        meta: {
+          reservedWord: false
+        }
       }
     }
   },
@@ -86,11 +119,20 @@ export const typeOfFixtures: Fixture[] = [
     description: 'repeatable typeof name',
     input: '...typeof A',
     expected: {
-      type: 'TYPE_OF',
-      repeatable: true,
-      value: {
-        type: 'NAME',
-        name: 'A'
+      type: 'VARIADIC',
+      element: {
+        type: 'TYPE_OF',
+        value: {
+          type: 'NAME',
+          name: 'A',
+          meta: {
+            reservedWord: false
+          }
+        }
+      },
+      meta: {
+        squareBrackets: false,
+        position: 'PREFIX'
       }
     }
   },
@@ -98,11 +140,20 @@ export const typeOfFixtures: Fixture[] = [
     description: 'postfix repeatable typeof name',
     input: 'typeof A...',
     expected: {
-      type: 'TYPE_OF',
-      repeatable: true,
-      value: {
-        type: 'NAME',
-        name: 'A'
+      type: 'VARIADIC',
+      element: {
+        type: 'TYPE_OF',
+        value: {
+          type: 'NAME',
+          name: 'A',
+          meta: {
+            reservedWord: false
+          }
+        }
+      },
+      meta: {
+        squareBrackets: false,
+        position: 'SUFFIX'
       }
     }
   },
@@ -116,12 +167,18 @@ export const typeOfFixtures: Fixture[] = [
           type: 'TYPE_OF',
           value: {
             type: 'NAME',
-            name: 'A'
+            name: 'A',
+            meta: {
+              reservedWord: false
+            }
           }
         },
         {
           type: 'NAME',
-          name: 'number'
+          name: 'number',
+          meta: {
+            reservedWord: false
+          }
         }
       ]
     }
@@ -134,13 +191,19 @@ export const typeOfFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          name: 'number'
+          name: 'number',
+          meta: {
+            reservedWord: false
+          }
         },
         {
           type: 'TYPE_OF',
           value: {
             type: 'NAME',
-            name: 'A'
+            name: 'A',
+            meta: {
+              reservedWord: false
+            }
           }
         }
       ]
@@ -155,14 +218,24 @@ export const typeOfFixtures: Fixture[] = [
         type: 'GENERIC',
         subject: {
           type: 'NAME',
-          name: 'Array'
+          name: 'Array',
+          meta: {
+            reservedWord: false
+          }
         },
         objects: [
           {
             type: 'NAME',
-            name: 'N'
+            name: 'N',
+            meta: {
+              reservedWord: false
+            }
           }
-        ]
+        ],
+        meta: {
+          dot: false,
+          brackets: '[]'
+        }
       }
     }
   },
@@ -181,10 +254,16 @@ export const typeOfFixtures: Fixture[] = [
           type: 'TYPE_OF',
           value: {
             type: 'NAME',
-            name: 'A'
+            name: 'A',
+            meta: {
+              reservedWord: false
+            }
           }
         }
-      ]
+      ],
+      meta: {
+        arrow: false
+      }
     }
   },
   {
@@ -197,14 +276,23 @@ export const typeOfFixtures: Fixture[] = [
           type: 'TYPE_OF',
           value: {
             type: 'NAME',
-            name: 'A'
+            name: 'A',
+            meta: {
+              reservedWord: false
+            }
           }
         },
         {
           type: 'NAME',
-          name: 'number'
+          name: 'number',
+          meta: {
+            reservedWord: false
+          }
         }
-      ]
+      ],
+      meta: {
+        arrow: false
+      }
     }
   },
   {
@@ -215,16 +303,25 @@ export const typeOfFixtures: Fixture[] = [
       parameters: [
         {
           type: 'NAME',
-          name: 'number'
+          name: 'number',
+          meta: {
+            reservedWord: false
+          }
         },
         {
           type: 'TYPE_OF',
           value: {
             type: 'NAME',
-            name: 'A'
+            name: 'A',
+            meta: {
+              reservedWord: false
+            }
           }
         }
-      ]
+      ],
+      meta: {
+        arrow: false
+      }
     }
   },
   {
@@ -237,8 +334,14 @@ export const typeOfFixtures: Fixture[] = [
         type: 'TYPE_OF',
         value: {
           type: 'NAME',
-          name: 'A'
+          name: 'A',
+          meta: {
+            reservedWord: false
+          }
         }
+      },
+      meta: {
+        arrow: false
       }
     }
   }

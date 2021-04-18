@@ -3,6 +3,7 @@ import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
 import { NonTerminalResult, ParseResult, SymbolResult } from '../ParseResult'
 import { Precedence } from './Precedence'
+import { assertNumberOrVariadicName } from '../assertTypes'
 
 export class SymbolParslet implements InfixParslet {
   accepts (type: TokenType): boolean {
@@ -24,10 +25,7 @@ export class SymbolParslet implements InfixParslet {
     }
     if (!parser.consume(')')) {
       const next = parser.parseNonTerminalType(Precedence.SYMBOL)
-      if (next.type !== 'NUMBER' && next.type !== 'NAME') {
-        throw new Error('Symbol value must be a number or a name')
-      }
-      result.value = next
+      result.value = assertNumberOrVariadicName(next)
       if (!parser.consume(')')) {
         throw new Error('Symbol does not end after value')
       }

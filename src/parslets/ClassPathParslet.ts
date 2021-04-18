@@ -29,7 +29,10 @@ export class ClassPathParslet implements InfixParslet {
     }
     return {
       type: 'NAME',
-      name: result
+      name: result,
+      meta: {
+        reservedWord: left.meta.reservedWord
+      }
     }
   }
 }

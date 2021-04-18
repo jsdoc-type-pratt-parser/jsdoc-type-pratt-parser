@@ -14,3 +14,12 @@ export interface DiffFixture {
   }
   input: string
 }
+
+// export interface Fixture {
+//   description: string
+//   modes: ParserMode[]
+//   jtpModes: Array<'jsdoc' | 'closure' | 'typescript' | 'permissive'>
+//   catharsisModes: Array<'jsdoc' | 'closure'>
+//   expected?: ParseResult
+//   input: string
+// }

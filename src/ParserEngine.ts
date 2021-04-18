@@ -1,3 +1,4 @@
+import { EarlyEndOfParseError, NoParsletFoundError } from './errors'
 import { Token, TokenType } from './lexer/Token'
 import { Lexer } from './lexer/Lexer'
 import { InfixParslet, PrefixParslet } from './parslets/Parslet'
@@ -5,22 +6,6 @@ import { NonTerminalResult, ParseResult } from './ParseResult'
 import { Grammar } from './grammars/Grammar'
 import { assertTerminal } from './assertTypes'
 import { Precedence } from './parslets/Precedence'
-
-export class NoParsletFoundError extends Error {
-  private token: Token
-
-  constructor (token: Token) {
-    super(`No parslet found for token: '${token.type}' with value '${token.text}'`)
-
-    this.token = token
-
-    Object.setPrototypeOf(this, NoParsletFoundError.prototype)
-  }
-
-  getToken() {
-    return this.token
-  }
-}
 
 export class ParserEngine {
   private readonly prefixParslets: PrefixParslet[]
@@ -45,7 +30,7 @@ export class ParserEngine {
     this.lexer.lex(text)
     const result = this.parseType(Precedence.ALL)
     if (!this.consume('EOF')) {
-      throw new Error(`Unexpected early end of parse. Next token: '${this.getToken().text}'`)
+      throw new EarlyEndOfParseError(this.getToken())
     }
     return result
   }

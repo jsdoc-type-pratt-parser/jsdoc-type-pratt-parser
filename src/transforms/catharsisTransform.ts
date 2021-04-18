@@ -1,5 +1,11 @@
-import { ModifiableResult, NameResult, NonTerminalResult, ParseResult } from '../ParseResult'
-import { transform, TransformRules } from './transform'
+import { ParseResult } from '../ParseResult'
+import { extractSpecialParams, notAvailableTransform, transform, TransformRules } from './transform'
+
+interface ModifiableResult {
+  optional?: boolean
+  nullable?: boolean
+  repeatable?: boolean
+}
 
 export type CatharsisParseResult =
   CatharsisNameResult
@@ -65,89 +71,106 @@ export type CatharsisRecordResult = ModifiableResult & {
   fields: CatharsisFieldResult[]
 }
 
-function applyModifiers (target: CatharsisParseResult, source: ModifiableResult): CatharsisParseResult {
-  if (source.nullable !== undefined) {
-    target.nullable = source.nullable
-  }
-  if (source.optional !== undefined) {
-    target.optional = source.optional
-  }
-  if (source.repeatable !== undefined) {
-    target.repeatable = source.repeatable
-  }
-  return target
-}
-
 const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
-  'ALL': result => applyModifiers({
+  OPTIONAL: (result, transform) => {
+    const transformed = transform(result.element)
+    transformed.optional = true
+    return transformed
+  },
+
+  NULLABLE: (result, transform) => {
+    const transformed = transform(result.element)
+    transformed.nullable = true
+    return transformed
+  },
+
+  NOT_NULLABLE: (result, transform) => {
+    const transformed = transform(result.element)
+    transformed.nullable = false
+    return transformed
+  },
+
+  VARIADIC: (result, transform) => {
+    if (result.element === undefined) {
+      throw new Error('dots without value are not allowed in catharsis mode')
+    }
+    const transformed = transform(result.element)
+    transformed.repeatable = true
+    return transformed
+  },
+
+  ALL: () => ({
     type: 'AllLiteral'
-  }, result),
+  }),
 
-  'NULL': result => applyModifiers({
+  NULL: () => ({
     type: 'NullLiteral'
-  }, result),
+  }),
 
-  'STRING_VALUE': result => applyModifiers({
+  STRING_VALUE: result => ({
     type: 'NameExpression',
-    name: `${result.quote}${result.value}${result.quote}`
-  }, result),
+    name: `${result.meta.quote}${result.value}${result.meta.quote}`
+  }),
 
-  'UNDEFINED': result => applyModifiers({
+  UNDEFINED: () => ({
     type: 'UndefinedLiteral'
-  }, result),
+  }),
 
-  'UNKNOWN': result => applyModifiers({
+  UNKNOWN: () => ({
     type: 'UnknownLiteral'
-  }, result),
+  }),
 
-  'FUNCTION': (result, transform) => {
+  FUNCTION: (result, transform) => {
+    const params = extractSpecialParams(result)
+
     const transformed: CatharsisFunctionResult = {
       type: 'FunctionType',
-      params: []
+      params: params.params.map(transform)
     }
 
-    for (const param of result.parameters) {
-      if (param.type === 'KEY_VALUE' && param.key.type === 'NAME') {
-        if (param.key.name === 'this') {
-          transformed.this = transform(param.value)
-        }
-        if (param.key.name === 'new') {
-          transformed.new = transform(param.value)
-        }
-      } else {
-        transformed.params.push(transform(param))
-      }
+    if (params.this !== undefined) {
+      transformed.this = transform(params.this)
+    }
+
+    if (params.new !== undefined) {
+      transformed.new = transform(params.new)
     }
 
     if (result.returnType !== undefined) {
       transformed.result = transform(result.returnType)
     }
 
-    return applyModifiers(transformed, result)
+    return transformed
   },
 
-  'GENERIC': (result, transform) => applyModifiers({
+  GENERIC: (result, transform) => ({
     type: 'TypeApplication',
     applications: result.objects.map(o => transform(o)),
     expression: transform(result.subject)
-  }, result),
+  }),
 
-  'MODULE': result => applyModifiers({
+  MODULE: result => ({
     type: 'NameExpression',
     name: result.path
-  }, result),
+  }),
 
-  'NAME': result => applyModifiers({
-    type: 'NameExpression',
-    name: result.name
-  }, result),
+  NAME: result => {
+    const transformed: CatharsisNameResult = {
+      type: 'NameExpression',
+      name: result.name
+    }
+    if (result.meta.reservedWord) {
+      transformed.reservedWord = true
+    }
+    return transformed
+  },
 
-  'NUMBER': result => applyModifiers({
+  NUMBER: result => ({
     type: 'NameExpression',
     name: result.value.toString()
-  }, result),
+  }),
 
-  'RECORD': (result, transform) => {
+  RECORD: (result, transform) => {
     const transformed: CatharsisRecordResult = {
       type: 'RecordType',
       fields: []
@@ -164,51 +187,70 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
       }
     }
 
-    return applyModifiers(transformed, result)
+    return transformed
   },
 
-  'UNION': (result, transform) => applyModifiers({
+  UNION: (result, transform) => ({
     type: 'TypeUnion',
     elements: result.elements.map(e => transform(e))
-  }, result),
+  }),
 
-  'KEY_VALUE': (result, transform) => applyModifiers({
+  KEY_VALUE: (result, transform) => ({
     type: 'FieldType',
     key: transform(result.key),
     value: transform(result.value)
-  }, result),
+  }),
 
-  'PROPERTY_PATH': result => {
+  PROPERTY_PATH: result => {
     if (result.left.type !== 'NAME') {
       // TODO: here a string representations should be used
       throw new Error('Other left types than \'NAME\' are not supported for catharsis compat mode')
     }
 
-    return applyModifiers({
+    return {
       type: 'NameExpression',
       name: result.left.name + '.' + result.path.join('.')
-    }, result)
+    }
   },
 
-  'SYMBOL': result => {
-    let value = result.name + '('
-    if (result.value?.repeatable === true) {
-      value = '...'
+  SYMBOL: result => {
+    let value = ''
+
+    let element = result.value
+    let trailingDots = false
+
+    if (element?.type === 'VARIADIC') {
+      if (element.meta.position === 'PREFIX') {
+        value = '...'
+      } else {
+        trailingDots = true
+      }
+      element = element.element
     }
 
-    if (result.value?.type === 'NAME') {
-      value += result.value.name
-    } else if (result.value?.type === 'NUMBER') {
-      value += result.value.value.toString()
+    if (element?.type === 'NAME') {
+      value += element.name
+    } else if (element?.type === 'NUMBER') {
+      value += element.value.toString()
     }
 
-    return applyModifiers({
+    if (trailingDots) {
+      value += '...'
+    }
+
+    return {
       type: 'NameExpression',
       name: `${result.name}(${value})`
-    }, result)
-  }
+    }
+  },
+
+  IMPORT: notAvailableTransform,
+  KEY_OF: notAvailableTransform,
+  PARAMETER_LIST: notAvailableTransform,
+  TUPLE: notAvailableTransform,
+  TYPE_OF: notAvailableTransform
 }
 
-export function catharsisTransform(result: ParseResult): CatharsisParseResult {
+export function catharsisTransform (result: ParseResult): CatharsisParseResult {
   return transform(catharsisTransformRules, result)
 }

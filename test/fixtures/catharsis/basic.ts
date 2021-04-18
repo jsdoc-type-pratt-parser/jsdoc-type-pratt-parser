@@ -6,7 +6,10 @@ export const basicFixtures: Fixture[] = [
     input: 'boolean',
     expected: {
       type: 'NAME',
-      name: 'boolean'
+      name: 'boolean',
+      meta: {
+        reservedWord: false
+      }
     }
   },
   {
@@ -14,7 +17,10 @@ export const basicFixtures: Fixture[] = [
     input: 'Window',
     expected: {
       type: 'NAME',
-      name: 'Window'
+      name: 'Window',
+      meta: {
+        reservedWord: false
+      }
     }
   },
   {
@@ -23,7 +29,10 @@ export const basicFixtures: Fixture[] = [
     expected: {
       left: {
         name: 'goog',
-        type: 'NAME'
+        type: 'NAME',
+        meta: {
+          reservedWord: false
+        }
       },
       path: [
         'ui',
@@ -38,7 +47,10 @@ export const basicFixtures: Fixture[] = [
     expected: {
       left: {
         name: 'myObj',
-        type: 'NAME'
+        type: 'NAME',
+        meta: {
+          reservedWord: false
+        }
       },
       path: [
         "'myProp'",
@@ -53,7 +65,10 @@ export const basicFixtures: Fixture[] = [
     expected: {
       left: {
         name: 'myObj',
-        type: 'NAME'
+        type: 'NAME',
+        meta: {
+          reservedWord: false
+        }
       },
       path: [
         '"myProp"',
@@ -68,7 +83,10 @@ export const basicFixtures: Fixture[] = [
     expected: {
       left: {
         name: 'myObj',
-        type: 'NAME'
+        type: 'NAME',
+        meta: {
+          reservedWord: false
+        }
       },
       path: [
         '"#weirdProp"',
@@ -83,7 +101,10 @@ export const basicFixtures: Fixture[] = [
     expected: {
       left: {
         name: 'myObj',
-        type: 'NAME'
+        type: 'NAME',
+        meta: {
+          reservedWord: false
+        }
       },
       path: [
         '12345'
@@ -95,27 +116,52 @@ export const basicFixtures: Fixture[] = [
     description: 'variable number of parameters',
     input: '...number',
     expected: {
-      type: 'NAME',
-      name: 'number',
-      repeatable: true
+      type: 'VARIADIC',
+      element: {
+        type: 'NAME',
+        name: 'number',
+        meta: {
+          reservedWord: false
+        }
+      },
+      meta: {
+        squareBrackets: false,
+        position: 'PREFIX'
+      }
     }
   },
   {
     description: 'optional number parameter',
     input: 'number=',
     expected: {
-      type: 'NAME',
-      name: 'number',
-      optional: true
+      type: 'OPTIONAL',
+      element: {
+        type: 'NAME',
+        name: 'number',
+        meta: {
+          reservedWord: false
+        }
+      },
+      meta: {
+        position: 'SUFFIX'
+      }
     }
   },
   {
     description: 'optional Object parameter',
     input: 'Object=',
     expected: {
-      type: 'NAME',
-      name: 'Object',
-      optional: true
+      type: 'OPTIONAL',
+      element: {
+        type: 'NAME',
+        name: 'Object',
+        meta: {
+          reservedWord: false
+        }
+      },
+      meta: {
+        position: 'SUFFIX'
+      }
     }
   },
   {
@@ -129,8 +175,14 @@ export const basicFixtures: Fixture[] = [
     description: 'repeatable null',
     input: '...null',
     expected: {
-      type: 'NULL',
-      repeatable: true
+      type: 'VARIADIC',
+      element: {
+        type: 'NULL'
+      },
+      meta: {
+        position: 'PREFIX',
+        squareBrackets: false
+      }
     }
   },
   {
@@ -144,8 +196,14 @@ export const basicFixtures: Fixture[] = [
     description: 'repeatable undefined',
     input: '...undefined',
     expected: {
-      type: 'UNDEFINED',
-      repeatable: true
+      type: 'VARIADIC',
+      element: {
+        type: 'UNDEFINED'
+      },
+      meta: {
+        position: 'PREFIX',
+        squareBrackets: false
+      }
     }
   },
   {
@@ -159,8 +217,14 @@ export const basicFixtures: Fixture[] = [
     description: 'repeatable all',
     input: '...*',
     expected: {
-      type: 'ALL',
-      repeatable: true
+      type: 'VARIADIC',
+      element: {
+        type: 'ALL'
+      },
+      meta: {
+        position: 'PREFIX',
+        squareBrackets: false
+      }
     }
   },
   {
@@ -174,8 +238,14 @@ export const basicFixtures: Fixture[] = [
     description: 'repeatable unknown',
     input: '...?',
     expected: {
-      type: 'UNKNOWN',
-      repeatable: true
+      type: 'VARIADIC',
+      element: {
+        type: 'UNKNOWN'
+      },
+      meta: {
+        position: 'PREFIX',
+        squareBrackets: false
+      }
     }
   },
   {
@@ -183,7 +253,10 @@ export const basicFixtures: Fixture[] = [
     input: 'forsooth',
     expected: {
       type: 'NAME',
-      name: 'forsooth'
+      name: 'forsooth',
+      meta: {
+        reservedWord: false
+      }
     }
   },
   {
@@ -191,7 +264,10 @@ export const basicFixtures: Fixture[] = [
     input: 'My-1st-Class',
     expected: {
       type: 'NAME',
-      name: 'My-1st-Class'
+      name: 'My-1st-Class',
+      meta: {
+        reservedWord: false
+      }
     }
   },
   {

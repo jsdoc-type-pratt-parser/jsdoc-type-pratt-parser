@@ -5,20 +5,20 @@ import { NonTerminalResult, ParseResult } from '../ParseResult'
 import { Precedence } from './Precedence'
 import { assertTerminal } from '../assertTypes'
 
-export class OptionalParslet implements PrefixParslet, InfixParslet {
+export class NotNullableParslet implements PrefixParslet, InfixParslet {
   accepts (type: TokenType, next: TokenType): boolean {
-    return type === '='
+    return type === '!'
   }
 
   getPrecedence (): Precedence {
-    return Precedence.OPTIONAL
+    return Precedence.NULLABLE
   }
 
   parsePrefix (parser: ParserEngine): ParseResult {
-    parser.consume('=')
+    parser.consume('!')
     return {
-      type: 'OPTIONAL',
-      element: parser.parseType(Precedence.OPTIONAL),
+      type: 'NOT_NULLABLE',
+      element: parser.parseType(Precedence.NULLABLE),
       meta: {
         position: 'PREFIX'
       }
@@ -26,9 +26,9 @@ export class OptionalParslet implements PrefixParslet, InfixParslet {
   }
 
   parseInfix (parser: ParserEngine, left: NonTerminalResult): ParseResult {
-    parser.consume('=')
+    parser.consume('!')
     return {
-      type: 'OPTIONAL',
+      type: 'NOT_NULLABLE',
       element: assertTerminal(left),
       meta: {
         position: 'SUFFIX'

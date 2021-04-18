@@ -9,31 +9,55 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'NAME',
-          name: 'string'
+          name: 'string',
+          meta: {
+            reservedWord: false
+          }
         },
         {
           type: 'NAME',
-          name: 'boolean'
+          name: 'boolean',
+          meta: {
+            reservedWord: false
+          }
         }
-      ]
+      ],
+      meta: {
+        arrow: false
+      }
     }
   },
   {
     description: 'repeatable function with two basic parameters',
     input: '...function(string, boolean)',
     expected: {
-      type: 'FUNCTION',
-      repeatable: true,
-      parameters: [
-        {
-          type: 'NAME',
-          name: 'string'
-        },
-        {
-          type: 'NAME',
-          name: 'boolean'
+      type: 'VARIADIC',
+      element: {
+        type: 'FUNCTION',
+        parameters: [
+          {
+            type: 'NAME',
+            name: 'string',
+            meta: {
+              reservedWord: false
+            }
+          },
+          {
+            type: 'NAME',
+            name: 'boolean',
+            meta: {
+              reservedWord: false
+            }
+          }
+        ],
+        meta: {
+          arrow: false
         }
-      ]
+      },
+      meta: {
+        position: 'PREFIX',
+        squareBrackets: false
+      }
     }
   },
   {
@@ -44,16 +68,28 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'NAME',
-          name: 'string'
+          name: 'string',
+          meta: {
+            reservedWord: false
+          }
         },
         {
           type: 'NAME',
-          name: 'boolean'
+          name: 'boolean',
+          meta: {
+            reservedWord: false
+          }
         }
       ],
       returnType: {
         type: 'NAME',
-        name: 'boolean'
+        name: 'boolean',
+        meta: {
+          reservedWord: false
+        }
+      },
+      meta: {
+        arrow: false
       }
     }
   },
@@ -61,21 +97,39 @@ export const functionFixtures: Fixture[] = [
     description: 'repeatable function with two basic parameters and a return value',
     input: '...function(string, boolean): boolean',
     expected: {
-      type: 'FUNCTION',
-      repeatable: true,
-      parameters: [
-        {
+      type: 'VARIADIC',
+      element: {
+        type: 'FUNCTION',
+        parameters: [
+          {
+            type: 'NAME',
+            name: 'string',
+            meta: {
+              reservedWord: false
+            }
+          },
+          {
+            type: 'NAME',
+            name: 'boolean',
+            meta: {
+              reservedWord: false
+            }
+          }
+        ],
+        returnType: {
           type: 'NAME',
-          name: 'string'
+          name: 'boolean',
+          meta: {
+            reservedWord: false
+          }
         },
-        {
-          type: 'NAME',
-          name: 'boolean'
+        meta: {
+          arrow: false
         }
-      ],
-      returnType: {
-        type: 'NAME',
-        name: 'boolean'
+      },
+      meta: {
+        squareBrackets: false,
+        position: 'PREFIX'
       }
     }
   },
@@ -83,14 +137,25 @@ export const functionFixtures: Fixture[] = [
     description: 'optional function with one basic parameter',
     input: 'function(string)=',
     expected: {
-      type: 'FUNCTION',
-      optional: true,
-      parameters: [
-        {
-          type: 'NAME',
-          name: 'string'
+      type: 'OPTIONAL',
+      element: {
+        type: 'FUNCTION',
+        parameters: [
+          {
+            type: 'NAME',
+            name: 'string',
+            meta: {
+              reservedWord: false
+            }
+          }
+        ],
+        meta: {
+          arrow: false
         }
-      ]
+      },
+      meta: {
+        position: 'SUFFIX'
+      }
     }
   },
   {
@@ -101,7 +166,13 @@ export const functionFixtures: Fixture[] = [
       parameters: [],
       returnType: {
         type: 'NAME',
-        name: 'number'
+        name: 'number',
+        meta: {
+          reservedWord: false
+        }
+      },
+      meta: {
+        arrow: false
       }
     }
   },
@@ -113,14 +184,19 @@ export const functionFixtures: Fixture[] = [
         {
           key: {
             name: 'this',
-            reservedWord: true,
-            type: 'NAME'
+            type: 'NAME',
+            meta: {
+              reservedWord: true
+            }
           },
           type: 'KEY_VALUE',
           value: {
             left: {
               name: 'goog',
-              type: 'NAME'
+              type: 'NAME',
+              meta: {
+                reservedWord: false
+              }
             },
             path: [
               'ui',
@@ -130,7 +206,10 @@ export const functionFixtures: Fixture[] = [
           }
         }
       ],
-      type: 'FUNCTION'
+      type: 'FUNCTION',
+      meta: {
+        arrow: false
+      }
     }
   },
   {
@@ -141,14 +220,19 @@ export const functionFixtures: Fixture[] = [
         {
           key: {
             name: 'this',
-            reservedWord: true,
-            type: 'NAME'
+            type: 'NAME',
+            meta: {
+              reservedWord: true
+            }
           },
           type: 'KEY_VALUE',
           value: {
             left: {
               name: 'goog',
-              type: 'NAME'
+              type: 'NAME',
+              meta: {
+                reservedWord: false
+              }
             },
             path: [
               'ui',
@@ -159,10 +243,16 @@ export const functionFixtures: Fixture[] = [
         },
         {
           name: 'string',
-          type: 'NAME'
+          type: 'NAME',
+          meta: {
+            reservedWord: false
+          }
         }
       ],
-      type: 'FUNCTION'
+      type: 'FUNCTION',
+      meta: {
+        arrow: false
+      }
     }
   },
   {
@@ -176,12 +266,17 @@ export const functionFixtures: Fixture[] = [
           key: {
             type: 'NAME',
             name: 'new',
-            reservedWord: true
+            meta: {
+              reservedWord: true
+            }
           },
           value: {
             left: {
               name: 'goog',
-              type: 'NAME'
+              type: 'NAME',
+              meta: {
+                reservedWord: false
+              }
             },
             path: [
               'ui',
@@ -190,7 +285,10 @@ export const functionFixtures: Fixture[] = [
             type: 'PROPERTY_PATH'
           }
         }
-      ]
+      ],
+      meta: {
+        arrow: false
+      }
     }
   },
   {
@@ -204,12 +302,17 @@ export const functionFixtures: Fixture[] = [
           key: {
             type: 'NAME',
             name: 'new',
-            reservedWord: true
+            meta: {
+              reservedWord: true
+            }
           },
           value: {
             left: {
               name: 'goog',
-              type: 'NAME'
+              type: 'NAME',
+              meta: {
+                reservedWord: false
+              }
             },
             path: [
               'ui',
@@ -220,9 +323,15 @@ export const functionFixtures: Fixture[] = [
         },
         {
           type: 'NAME',
-          name: 'string'
+          name: 'string',
+          meta: {
+            reservedWord: false
+          }
         }
-      ]
+      ],
+      meta: {
+        arrow: false
+      }
     }
   },
   {
@@ -236,12 +345,17 @@ export const functionFixtures: Fixture[] = [
           key: {
             type: 'NAME',
             name: 'new',
-            reservedWord: true
+            meta: {
+              reservedWord: true
+            }
           },
           value: {
             left: {
               name: 'goog',
-              type: 'NAME'
+              type: 'NAME',
+              meta: {
+                reservedWord: false
+              }
             },
             path: [
               'ui',
@@ -254,13 +368,18 @@ export const functionFixtures: Fixture[] = [
           type: 'KEY_VALUE',
           key: {
             type: 'NAME',
-            reservedWord: true,
-            name: 'this'
+            name: 'this',
+            meta: {
+              reservedWord: true
+            }
           },
           value: {
             left: {
               name: 'goog',
-              type: 'NAME'
+              type: 'NAME',
+              meta: {
+                reservedWord: false
+              }
             },
             path: [
               'ui'
@@ -268,7 +387,10 @@ export const functionFixtures: Fixture[] = [
             type: 'PROPERTY_PATH'
           }
         }
-      ]
+      ],
+      meta: {
+        arrow: false
+      }
     }
   },
   {
@@ -279,17 +401,35 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'NAME',
-          name: 'string'
+          name: 'string',
+          meta: {
+            reservedWord: false
+          }
         },
         {
-          type: 'NAME',
-          name: 'number',
-          repeatable: true
+          type: 'VARIADIC',
+          element: {
+            type: 'NAME',
+            name: 'number',
+            meta: {
+              reservedWord: false
+            }
+          },
+          meta: {
+            position: 'PREFIX',
+            squareBrackets: true
+          }
         }
       ],
       returnType: {
         type: 'NAME',
-        name: 'number'
+        name: 'number',
+        meta: {
+          reservedWord: false
+        }
+      },
+      meta: {
+        arrow: false
       }
     }
   },
@@ -300,10 +440,19 @@ export const functionFixtures: Fixture[] = [
       type: 'FUNCTION',
       parameters: [
         {
-          type: 'NULL',
-          repeatable: true
+          type: 'VARIADIC',
+          element: {
+            type: 'NULL'
+          },
+          meta: {
+            squareBrackets: true,
+            position: 'PREFIX'
+          }
         }
-      ]
+      ],
+      meta: {
+        arrow: false
+      }
     }
   },
   {
@@ -313,10 +462,19 @@ export const functionFixtures: Fixture[] = [
       type: 'FUNCTION',
       parameters: [
         {
-          type: 'UNDEFINED',
-          repeatable: true
+          type: 'VARIADIC',
+          element: {
+            type: 'UNDEFINED'
+          },
+          meta: {
+            position: 'PREFIX',
+            squareBrackets: true
+          }
         }
-      ]
+      ],
+      meta: {
+        arrow: false
+      }
     }
   },
   {
@@ -330,33 +488,49 @@ export const functionFixtures: Fixture[] = [
           key: {
             type: 'NAME',
             name: 'new',
-            reservedWord: true
+            meta: {
+              reservedWord: true
+            }
           },
           value: {
             type: 'NAME',
-            name: 'Master'
+            name: 'Master',
+            meta: {
+              reservedWord: false
+            }
           }
         },
         {
           type: 'KEY_VALUE',
           key: {
             type: 'NAME',
-            reservedWord: true,
+            meta: {
+              reservedWord: true
+            },
             name: 'this'
           },
           value: {
             type: 'NAME',
-            name: 'Everyone'
+            name: 'Everyone',
+            meta: {
+              reservedWord: false
+            }
           }
         },
         {
           type: 'NAME',
-          name: 'string'
+          name: 'string',
+          meta: {
+            reservedWord: false
+          }
         },
         {
           left: {
             name: 'goog',
-            type: 'NAME'
+            type: 'NAME',
+            meta: {
+              reservedWord: false
+            }
           },
           path: [
             'ui',
@@ -369,23 +543,48 @@ export const functionFixtures: Fixture[] = [
           objects: [
             {
               type: 'NAME',
-              name: 'Object'
+              name: 'Object',
+              meta: {
+                reservedWord: false
+              }
             }
           ],
           subject: {
             type: 'NAME',
-            name: 'Array'
+            name: 'Array',
+            meta: {
+              reservedWord: false
+            }
+          },
+          meta: {
+            dot: true,
+            brackets: '<>'
           }
         },
         {
-          type: 'NAME',
-          name: 'string',
-          repeatable: true
+          type: 'VARIADIC',
+          element: {
+            type: 'NAME',
+            name: 'string',
+            meta: {
+              reservedWord: false
+            }
+          },
+          meta: {
+            squareBrackets: true,
+            position: 'PREFIX'
+          }
         }
       ],
       returnType: {
         type: 'NAME',
-        name: 'boolean'
+        name: 'boolean',
+        meta: {
+          reservedWord: false
+        }
+      },
+      meta: {
+        arrow: false
       }
     }
   },
@@ -396,11 +595,23 @@ export const functionFixtures: Fixture[] = [
       type: 'FUNCTION',
       parameters: [
         {
-          type: 'NAME',
-          name: 'foo',
-          repeatable: true
+          type: 'VARIADIC',
+          element: {
+            type: 'NAME',
+            name: 'foo',
+            meta: {
+              reservedWord: false
+            }
+          },
+          meta: {
+            position: 'PREFIX',
+            squareBrackets: false
+          }
         }
-      ]
+      ],
+      meta: {
+        arrow: false
+      }
     }
   },
   {
@@ -414,13 +625,22 @@ export const functionFixtures: Fixture[] = [
         elements: [
           {
             type: 'NAME',
-            name: 'number'
+            name: 'number',
+            meta: {
+              reservedWord: false
+            }
           },
           {
             type: 'NAME',
-            name: 'string'
+            name: 'string',
+            meta: {
+              reservedWord: false
+            }
           }
         ]
+      },
+      meta: {
+        arrow: false
       }
     }
   },
@@ -429,7 +649,10 @@ export const functionFixtures: Fixture[] = [
     input: 'function()',
     expected: {
       type: 'FUNCTION',
-      parameters: []
+      parameters: [],
+      meta: {
+        arrow: false
+      }
     }
   },
   {
@@ -439,10 +662,19 @@ export const functionFixtures: Fixture[] = [
       type: 'FUNCTION',
       parameters: [
         {
-          type: 'ALL',
-          repeatable: true
+          type: 'VARIADIC',
+          element: {
+            type: 'ALL'
+          },
+          meta: {
+            squareBrackets: true,
+            position: 'PREFIX'
+          }
         }
-      ]
+      ],
+      meta: {
+        arrow: false
+      }
     }
   },
   {
@@ -455,12 +687,17 @@ export const functionFixtures: Fixture[] = [
           type: 'KEY_VALUE',
           key: {
             type: 'NAME',
-            reservedWord: true,
+            meta: {
+              reservedWord: true
+            },
             name: 'this'
           },
           value: {
             type: 'NAME',
-            name: 'Object'
+            name: 'Object',
+            meta: {
+              reservedWord: false
+            }
           }
         }
       ],
@@ -469,13 +706,22 @@ export const functionFixtures: Fixture[] = [
         elements: [
           {
             type: 'NAME',
-            name: 'number'
+            name: 'number',
+            meta: {
+              reservedWord: false
+            }
           },
           {
             type: 'NAME',
-            name: 'string'
+            name: 'string',
+            meta: {
+              reservedWord: false
+            }
           }
         ]
+      },
+      meta: {
+        arrow: false
       }
     }
   },
@@ -489,7 +735,9 @@ export const functionFixtures: Fixture[] = [
           type: 'KEY_VALUE',
           key: {
             type: 'NAME',
-            reservedWord: true,
+            meta: {
+              reservedWord: true
+            },
             name: 'this'
           },
           value: {
@@ -497,11 +745,17 @@ export const functionFixtures: Fixture[] = [
             elements: [
               {
                 type: 'NAME',
-                name: 'Array'
+                name: 'Array',
+                meta: {
+                  reservedWord: false
+                }
               },
               {
                 type: 'NAME',
-                name: 'Date'
+                name: 'Date',
+                meta: {
+                  reservedWord: false
+                }
               }
             ]
           }
@@ -512,13 +766,22 @@ export const functionFixtures: Fixture[] = [
         elements: [
           {
             type: 'NAME',
-            name: 'number'
+            name: 'number',
+            meta: {
+              reservedWord: false
+            }
           },
           {
             type: 'NAME',
-            name: 'string'
+            name: 'string',
+            meta: {
+              reservedWord: false
+            }
           }
         ]
+      },
+      meta: {
+        arrow: false
       }
     }
   },
@@ -532,22 +795,39 @@ export const functionFixtures: Fixture[] = [
           type: 'KEY_VALUE',
           key: {
             type: 'NAME',
-            reservedWord: true,
+            meta: {
+              reservedWord: true
+            },
             name: 'new'
           },
           value: {
             type: 'NAME',
-            name: 'Array'
+            name: 'Array',
+            meta: {
+              reservedWord: false
+            }
           }
         },
         {
-          type: 'ALL',
-          repeatable: true
+          type: 'VARIADIC',
+          element: {
+            type: 'ALL'
+          },
+          meta: {
+            squareBrackets: true,
+            position: 'PREFIX'
+          }
         }
       ],
       returnType: {
         type: 'NAME',
-        name: 'Array'
+        name: 'Array',
+        meta: {
+          reservedWord: false
+        }
+      },
+      meta: {
+        arrow: false
       }
     }
   },
@@ -561,22 +841,38 @@ export const functionFixtures: Fixture[] = [
           type: 'KEY_VALUE',
           key: {
             type: 'NAME',
-            reservedWord: true,
+            meta: {
+              reservedWord: true
+            },
             name: 'new'
           },
           value: {
             type: 'NAME',
-            name: 'Boolean'
+            name: 'Boolean',
+            meta: {
+              reservedWord: false
+            }
           }
         },
         {
-          type: 'ALL',
-          optional: true
+          type: 'OPTIONAL',
+          element: {
+            type: 'ALL'
+          },
+          meta: {
+            position: 'SUFFIX'
+          }
         }
       ],
       returnType: {
         type: 'NAME',
-        name: 'boolean'
+        name: 'boolean',
+        meta: {
+          reservedWord: false
+        }
+      },
+      meta: {
+        arrow: false
       }
     }
   },
@@ -587,14 +883,29 @@ export const functionFixtures: Fixture[] = [
       type: 'FUNCTION',
       parameters: [
         {
-          type: 'NAME',
-          name: 'number',
-          repeatable: true
+          type: 'VARIADIC',
+          element: {
+            type: 'NAME',
+            name: 'number',
+            meta: {
+              reservedWord: false
+            }
+          },
+          meta: {
+            squareBrackets: true,
+            position: 'PREFIX'
+          }
         }
       ],
       returnType: {
         type: 'NAME',
-        name: 'boolean'
+        name: 'boolean',
+        meta: {
+          reservedWord: false
+        }
+      },
+      meta: {
+        arrow: false
       }
     }
   },
@@ -608,17 +919,25 @@ export const functionFixtures: Fixture[] = [
           type: 'KEY_VALUE',
           key: {
             type: 'NAME',
-            reservedWord: true,
+            meta: {
+              reservedWord: true
+            },
             name: 'this'
           },
           value: {
             type: 'NAME',
-            name: 'Date'
+            name: 'Date',
+            meta: {
+              reservedWord: false
+            }
           }
         },
         {
           type: 'NAME',
-          name: 'number'
+          name: 'number',
+          meta: {
+            reservedWord: false
+          }
         }
       ],
       returnType: {
@@ -626,17 +945,29 @@ export const functionFixtures: Fixture[] = [
         elements: [
           {
             type: 'NAME',
-            name: 'boolean'
+            name: 'boolean',
+            meta: {
+              reservedWord: false
+            }
           },
           {
             type: 'NAME',
-            name: 'number'
+            name: 'number',
+            meta: {
+              reservedWord: false
+            }
           },
           {
             type: 'NAME',
-            name: 'string'
+            name: 'string',
+            meta: {
+              reservedWord: false
+            }
           }
         ]
+      },
+      meta: {
+        arrow: false
       }
     }
   }

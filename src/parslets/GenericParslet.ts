@@ -15,7 +15,7 @@ export class GenericParslet implements InfixParslet {
   }
 
   parseInfix (parser: ParserEngine, left: NonTerminalResult): ParseResult {
-    parser.consume('.')
+    const dot = parser.consume('.')
     parser.consume('<')
 
     const objects = []
@@ -30,7 +30,11 @@ export class GenericParslet implements InfixParslet {
     return {
       type: 'GENERIC',
       subject: assertTerminal(left),
-      objects
+      objects,
+      meta: {
+        brackets: '<>',
+        dot
+      }
     }
   }
 }

@@ -8,7 +8,10 @@ describe('basics', () => {
     const typeString = 'sometype'
     const expected: ParseResult = {
       type: 'NAME',
-      name: 'sometype'
+      name: 'sometype',
+      meta: {
+        reservedWord: false
+      }
     }
     const parser = new Parser()
     const result = parser.parse(typeString)
@@ -24,7 +27,10 @@ describe('basics', () => {
           type: 'GENERIC',
           subject: {
             type: 'NAME',
-            name: 'Array'
+            name: 'Array',
+            meta: {
+              reservedWord: false
+            }
           },
           objects: [
             {
@@ -32,20 +38,32 @@ describe('basics', () => {
               elements: [
                 {
                   type: 'NAME',
-                  name: 'AType'
+                  name: 'AType',
+                  meta: {
+                    reservedWord: false
+                  }
                 },
                 {
                   type: 'NAME',
-                  name: 'OtherType'
+                  name: 'OtherType',
+                  meta: {
+                    reservedWord: false
+                  }
                 }
               ]
             }
-          ]
+          ],
+          meta: {
+            brackets: '<>',
+            dot: false
+          }
         },
         {
           type: 'STRING_VALUE',
           value: 'test',
-          quote: '\''
+          meta: {
+            quote: '\''
+          }
         },
         {
           type: 'UNDEFINED'

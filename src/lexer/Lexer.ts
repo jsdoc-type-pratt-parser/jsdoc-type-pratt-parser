@@ -139,6 +139,7 @@ const numberRule: Rule = text => {
 
 const rules = [
   eofRule,
+  makePunctuationRule('=>'),
   makePunctuationRule('('),
   makePunctuationRule(')'),
   makePunctuationRule('{'),

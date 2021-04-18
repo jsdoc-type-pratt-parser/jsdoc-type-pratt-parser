@@ -9,11 +9,17 @@ export const unionFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          name: 'number'
+          name: 'number',
+          meta: {
+            reservedWord: false
+          }
         },
         {
           type: 'NAME',
-          name: 'boolean'
+          name: 'boolean',
+          meta: {
+            reservedWord: false
+          }
         }
       ]
     }
@@ -22,18 +28,30 @@ export const unionFixtures: Fixture[] = [
     description: 'repeatable union with 2 types (number and boolean)',
     input: '...(number|boolean)',
     expected: {
-      type: 'UNION',
-      elements: [
-        {
-          type: 'NAME',
-          name: 'number'
-        },
-        {
-          type: 'NAME',
-          name: 'boolean'
-        }
-      ],
-      repeatable: true
+      type: 'VARIADIC',
+      element: {
+        type: 'UNION',
+        elements: [
+          {
+            type: 'NAME',
+            name: 'number',
+            meta: {
+              reservedWord: false
+            }
+          },
+          {
+            type: 'NAME',
+            name: 'boolean',
+            meta: {
+              reservedWord: false
+            }
+          }
+        ]
+      },
+      meta: {
+        position: 'PREFIX',
+        squareBrackets: false
+      }
     }
   },
   {
@@ -44,7 +62,10 @@ export const unionFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          name: 'Object'
+          name: 'Object',
+          meta: {
+            reservedWord: false
+          }
         },
         {
           type: 'UNDEFINED'
@@ -60,16 +81,25 @@ export const unionFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          name: 'number'
+          name: 'number',
+          meta: {
+            reservedWord: false
+          }
         },
         {
           type: 'NAME',
-          name: 'Window'
+          name: 'Window',
+          meta: {
+            reservedWord: false
+          }
         },
         {
           left: {
             name: 'goog',
-            type: 'NAME'
+            type: 'NAME',
+            meta: {
+              reservedWord: false
+            }
           },
           path: [
             'ui',
@@ -84,54 +114,87 @@ export const unionFixtures: Fixture[] = [
     description: 'nullable union with 2 types (number and boolean)',
     input: '?(number|boolean)',
     expected: {
-      type: 'UNION',
-      elements: [
-        {
-          type: 'NAME',
-          name: 'number'
-        },
-        {
-          type: 'NAME',
-          name: 'boolean'
-        }
-      ],
-      nullable: true
+      type: 'NULLABLE',
+      element: {
+        type: 'UNION',
+        elements: [
+          {
+            type: 'NAME',
+            name: 'number',
+            meta: {
+              reservedWord: false
+            }
+          },
+          {
+            type: 'NAME',
+            name: 'boolean',
+            meta: {
+              reservedWord: false
+            }
+          }
+        ]
+      },
+      meta: {
+        position: 'PREFIX'
+      }
     }
   },
   {
     description: 'non-nullable union with 2 types (number and boolean)',
     input: '!(number|boolean)',
     expected: {
-      type: 'UNION',
-      elements: [
-        {
-          type: 'NAME',
-          name: 'number'
-        },
-        {
-          type: 'NAME',
-          name: 'boolean'
-        }
-      ],
-      nullable: false
+      type: 'NOT_NULLABLE',
+      element: {
+        type: 'UNION',
+        elements: [
+          {
+            type: 'NAME',
+            name: 'number',
+            meta: {
+              reservedWord: false
+            }
+          },
+          {
+            type: 'NAME',
+            name: 'boolean',
+            meta: {
+              reservedWord: false
+            }
+          }
+        ]
+      },
+      meta: {
+        position: 'PREFIX'
+      }
     }
   },
   {
     description: 'optional union with 2 types (number and boolean)',
     input: '(number|boolean)=',
     expected: {
-      type: 'UNION',
-      elements: [
-        {
-          type: 'NAME',
-          name: 'number'
-        },
-        {
-          type: 'NAME',
-          name: 'boolean'
-        }
-      ],
-      optional: true
+      type: 'OPTIONAL',
+      element: {
+        type: 'UNION',
+        elements: [
+          {
+            type: 'NAME',
+            name: 'number',
+            meta: {
+              reservedWord: false
+            }
+          },
+          {
+            type: 'NAME',
+            name: 'boolean',
+            meta: {
+              reservedWord: false
+            }
+          }
+        ]
+      },
+      meta: {
+        position: 'SUFFIX'
+      }
     }
   },
   {
@@ -142,14 +205,20 @@ export const unionFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          name: 'Array'
+          name: 'Array',
+          meta: {
+            reservedWord: false
+          }
         },
         {
           type: 'GENERIC',
           objects: [
             {
               type: 'NAME',
-              name: 'string'
+              name: 'string',
+              meta: {
+                reservedWord: false
+              }
             },
             {
               type: 'UNKNOWN'
@@ -157,7 +226,14 @@ export const unionFixtures: Fixture[] = [
           ],
           subject: {
             type: 'NAME',
-            name: 'Object'
+            name: 'Object',
+            meta: {
+              reservedWord: false
+            }
+          },
+          meta: {
+            dot: true,
+            brackets: '<>'
           }
         }
       ]
@@ -174,12 +250,22 @@ export const unionFixtures: Fixture[] = [
           objects: [
             {
               type: 'NAME',
-              name: 'string'
+              name: 'string',
+              meta: {
+                reservedWord: false
+              }
             }
           ],
           subject: {
             type: 'NAME',
-            name: 'Array'
+            name: 'Array',
+            meta: {
+              reservedWord: false
+            }
+          },
+          meta: {
+            dot: true,
+            brackets: '<>'
           }
         },
         {
@@ -187,7 +273,10 @@ export const unionFixtures: Fixture[] = [
           objects: [
             {
               type: 'NAME',
-              name: 'string'
+              name: 'string',
+              meta: {
+                reservedWord: false
+              }
             },
             {
               type: 'UNKNOWN'
@@ -195,7 +284,14 @@ export const unionFixtures: Fixture[] = [
           ],
           subject: {
             type: 'NAME',
-            name: 'Object'
+            name: 'Object',
+            meta: {
+              reservedWord: false
+            }
+          },
+          meta: {
+            dot: true,
+            brackets: '<>'
           }
         }
       ]
@@ -209,14 +305,23 @@ export const unionFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          name: 'Error'
+          name: 'Error',
+          meta: {
+            reservedWord: false
+          }
         },
         {
           type: 'FUNCTION',
           parameters: [],
           returnType: {
             type: 'NAME',
-            name: 'Error'
+            name: 'Error',
+            meta: {
+              reservedWord: false
+            }
+          },
+          meta: {
+            arrow: false
           }
         }
       ]
@@ -230,11 +335,17 @@ export const unionFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          name: 'number'
+          name: 'number',
+          meta: {
+            reservedWord: false
+          }
         },
         {
           type: 'NAME',
-          name: 'string'
+          name: 'string',
+          meta: {
+            reservedWord: false
+          }
         }
       ]
     }
@@ -246,14 +357,30 @@ export const unionFixtures: Fixture[] = [
       type: 'UNION',
       elements: [
         {
-          type: 'NAME',
-          name: 'number',
-          nullable: false
+          type: 'NOT_NULLABLE',
+          element: {
+            type: 'NAME',
+            name: 'number',
+            meta: {
+              reservedWord: false
+            }
+          },
+          meta: {
+            position: 'PREFIX'
+          }
         },
         {
-          type: 'NAME',
-          name: 'string',
-          nullable: false
+          type: 'NOT_NULLABLE',
+          element: {
+            type: 'NAME',
+            name: 'string',
+            meta: {
+              reservedWord: false
+            }
+          },
+          meta: {
+            position: 'PREFIX'
+          }
         }
       ]
     }
@@ -262,108 +389,186 @@ export const unionFixtures: Fixture[] = [
     description: 'optional union with multiple types',
     input: '(jQuerySelector|Element|Object|Array.<Element>|jQuery|string|function())=',
     expected: {
-      type: 'UNION',
-      elements: [
-        {
-          type: 'NAME',
-          name: 'jQuerySelector'
-        },
-        {
-          type: 'NAME',
-          name: 'Element'
-        },
-        {
-          type: 'NAME',
-          name: 'Object'
-        },
-        {
-          type: 'GENERIC',
-          objects: [
-            {
-              type: 'NAME',
-              name: 'Element'
-            }
-          ],
-          subject: {
+      type: 'OPTIONAL',
+      element: {
+        type: 'UNION',
+        elements: [
+          {
             type: 'NAME',
-            name: 'Array'
+            name: 'jQuerySelector',
+            meta: {
+              reservedWord: false
+            }
+          },
+          {
+            type: 'NAME',
+            name: 'Element',
+            meta: {
+              reservedWord: false
+            }
+          },
+          {
+            type: 'NAME',
+            name: 'Object',
+            meta: {
+              reservedWord: false
+            }
+          },
+          {
+            type: 'GENERIC',
+            objects: [
+              {
+                type: 'NAME',
+                name: 'Element',
+                meta: {
+                  reservedWord: false
+                }
+              }
+            ],
+            subject: {
+              type: 'NAME',
+              name: 'Array',
+              meta: {
+                reservedWord: false
+              }
+            },
+            meta: {
+              dot: true,
+              brackets: '<>'
+            }
+          },
+          {
+            type: 'NAME',
+            name: 'jQuery',
+            meta: {
+              reservedWord: false
+            }
+          },
+          {
+            type: 'NAME',
+            name: 'string',
+            meta: {
+              reservedWord: false
+            }
+          },
+          {
+            type: 'FUNCTION',
+            parameters: [],
+            meta: {
+              arrow: false
+            }
           }
-        },
-        {
-          type: 'NAME',
-          name: 'jQuery'
-        },
-        {
-          type: 'NAME',
-          name: 'string'
-        },
-        {
-          type: 'FUNCTION',
-          parameters: []
-        }
-      ],
-      optional: true
+        ]
+      },
+      meta: {
+        position: 'SUFFIX'
+      }
+
     }
   },
   {
     description: 'optional union with multiple types, including a nested union type',
     input: '(Element|Object|Document|Object.<string, (string|function(!jQuery.event=))>)=',
     expected: {
-      type: 'UNION',
-      elements: [
-        {
-          type: 'NAME',
-          name: 'Element'
-        },
-        {
-          type: 'NAME',
-          name: 'Object'
-        },
-        {
-          type: 'NAME',
-          name: 'Document'
-        },
-        {
-          type: 'GENERIC',
-          objects: [
-            {
-              type: 'NAME',
-              name: 'string'
-            },
-            {
-              type: 'UNION',
-              elements: [
-                {
-                  type: 'NAME',
-                  name: 'string'
-                },
-                {
-                  type: 'FUNCTION',
-                  parameters: [
-                    {
-                      left: {
-                        name: 'jQuery',
-                        type: 'NAME'
-                      },
-                      nullable: false,
-                      optional: true,
-                      path: [
-                        'event'
-                      ],
-                      type: 'PROPERTY_PATH'
-                    }
-                  ]
-                }
-              ]
-            }
-          ],
-          subject: {
+      type: 'OPTIONAL',
+      element: {
+        type: 'UNION',
+        elements: [
+          {
             type: 'NAME',
-            name: 'Object'
+            name: 'Element',
+            meta: {
+              reservedWord: false
+            }
+          },
+          {
+            type: 'NAME',
+            name: 'Object',
+            meta: {
+              reservedWord: false
+            }
+          },
+          {
+            type: 'NAME',
+            name: 'Document',
+            meta: {
+              reservedWord: false
+            }
+          },
+          {
+            type: 'GENERIC',
+            objects: [
+              {
+                type: 'NAME',
+                name: 'string',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              {
+                type: 'UNION',
+                elements: [
+                  {
+                    type: 'NAME',
+                    name: 'string',
+                    meta: {
+                      reservedWord: false
+                    }
+                  },
+                  {
+                    type: 'FUNCTION',
+                    parameters: [
+                      {
+                        type: 'OPTIONAL',
+                        element: {
+                          type: 'NOT_NULLABLE',
+                          element: {
+                            left: {
+                              name: 'jQuery',
+                              type: 'NAME',
+                              meta: {
+                                reservedWord: false
+                              }
+                            },
+                            path: [
+                              'event'
+                            ],
+                            type: 'PROPERTY_PATH'
+                          },
+                          meta: {
+                            position: 'PREFIX'
+                          }
+                        },
+                        meta: {
+                          position: 'SUFFIX'
+                        }
+                      }
+                    ],
+                    meta: {
+                      arrow: false
+                    }
+                  }
+                ]
+              }
+            ],
+            subject: {
+              type: 'NAME',
+              name: 'Object',
+              meta: {
+                reservedWord: false
+              }
+            },
+            meta: {
+              dot: true,
+              brackets: '<>'
+            }
           }
-        }
-      ],
-      optional: true
+        ]
+
+      },
+      meta: {
+        position: 'SUFFIX'
+      }
     }
   }
 ]
