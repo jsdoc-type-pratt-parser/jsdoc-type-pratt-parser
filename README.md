@@ -10,7 +10,7 @@ Getting started
 
 The usage is not perfect for now as it is not published as a package for now. Dependening on your needs you might want to run `npm run build` before using. An `index.js` in umd format will be built. All exports from `index.ts` should be available. 
 
-```
+```js
 import { Parser } from 'src/index'
 
 const parser = new Parser({
@@ -22,7 +22,7 @@ const result = parser.parse('myType.<string>')
 
 Catharsis compat mode:
 
-```
+```js
 import { Parser, catharsisTransform } from 'src/index'
 
 const parser = new Parser({
