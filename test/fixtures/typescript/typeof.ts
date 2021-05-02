@@ -14,9 +14,9 @@ export const typeOfFixtures: Fixture[] = [
         }
       }
     },
-    modes: ['typescript'],
-    catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    modes: ['typescript', 'closure'],
+    catharsisModes: [], // NOTE: This seems to be a Catharsis error
+    jtpModes: ['typescript', 'closure', 'permissive']
   },
   {
     description: 'typeof',

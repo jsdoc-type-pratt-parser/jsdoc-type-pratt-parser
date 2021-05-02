@@ -160,8 +160,6 @@ const jtpRules: TransformRules<JtpResult> = {
     entries: result.elements.map(transform)
   }),
 
-  PARAMETER_LIST: notAvailableTransform,
-
   KEY_OF: (result, transform) => ({
     type: 'KEY_QUERY',
     value: transform(result)
@@ -228,8 +226,8 @@ const jtpRules: TransformRules<JtpResult> = {
   STRING_VALUE: notAvailableTransform,
   SYMBOL: notAvailableTransform,
   UNION: notAvailableTransform,
-  UNKNOWN: notAvailableTransform
-
+  UNKNOWN: notAvailableTransform,
+  PARAMETER_LIST: notAvailableTransform
 }
 
 export function jtpTransform (result: ParseResult): JtpResult {

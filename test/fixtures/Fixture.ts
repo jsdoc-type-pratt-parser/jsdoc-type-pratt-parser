@@ -27,29 +27,25 @@ function testParser (mode: ParserMode, fixture: Fixture): ParseResult | undefine
   const parser = new Parser({
     mode: mode
   })
-  let result
   if (fixture.modes.includes(mode)) {
     it(`gets parsed in '${mode}' mode`, () => {
-      result = parser.parse(fixture.input)
+      const result = parser.parse(fixture.input)
       expect(result).to.deep.equal(fixture.expected)
     })
+    return parser.parse(fixture.input)
   } else {
     it(`gets not parsed in '${mode}' mode`, () => {
       expect(() => parser.parse(fixture.input)).to.throw()
     })
   }
-  return result
 }
 
 function compareCatharsis (mode: CatharsisMode, result: ParseResult | undefined, fixture: Fixture): void {
   if (fixture.catharsisModes.includes(mode)) {
     it(`gets parsed in '${mode}' mode`, () => {
-      let catharsisResult
-      expect(() => {
-        catharsisResult = catharsisParse(fixture.input, {
-          jsdoc: mode === 'jsdoc'
-        })
-      }, 'gets parsed by catharsis').not.to.throw()
+      const catharsisResult = catharsisParse(fixture.input, {
+        jsdoc: mode === 'jsdoc'
+      })
 
       if (catharsisResult !== undefined && result !== undefined) {
         const transformed = catharsisTransform(result)
@@ -62,7 +58,7 @@ function compareCatharsis (mode: CatharsisMode, result: ParseResult | undefined,
         catharsisParse(fixture.input, {
           jsdoc: mode === 'jsdoc'
         })
-      })
+      }).to.throw()
     })
   }
 }
@@ -70,12 +66,9 @@ function compareCatharsis (mode: CatharsisMode, result: ParseResult | undefined,
 function compareJtp (mode: JtpMode, result: ParseResult | undefined, fixture: Fixture): void {
   if (fixture.jtpModes.includes(mode)) {
     it(`gets parsed in '${mode}' mode`, () => {
-      let jtpResult
-      expect(() => {
-        jtpResult = jtpParse(fixture.input, {
-          mode: mode
-        })
-      }, 'gets parsed by jsdoctypeparser').not.to.throw()
+      const jtpResult = jtpParse(fixture.input, {
+        mode: mode
+      })
 
       if (jtpResult !== undefined && result !== undefined) {
         const transformed = jtpTransform(result)
@@ -88,32 +81,30 @@ function compareJtp (mode: JtpMode, result: ParseResult | undefined, fixture: Fi
         jtpParse(fixture.input, {
           mode: mode
         })
-      })
+      }).to.throw()
     })
   }
 }
 
 export function testFixture (fixture: Fixture): void {
   describe(fixture.description, () => {
-    let result: ParseResult | undefined
-
     describe('is parsed in the expected modes and no others', () => {
       const cResult = testParser('closure', fixture)
       const tResult = testParser('typescript', fixture)
       const fResult = testParser('jsdoc', fixture)
-      result = cResult ?? tResult ?? fResult
-    })
+      const result = cResult ?? tResult ?? fResult
 
-    describe('catharsis produces the same results in the expected modes an no others', () => {
-      compareCatharsis('jsdoc', result, fixture)
-      compareCatharsis('closure', result, fixture)
-    })
+      describe('catharsis produces the same results in the expected modes an no others', () => {
+        compareCatharsis('jsdoc', result, fixture)
+        compareCatharsis('closure', result, fixture)
+      })
 
-    describe('jsdoctypeparser produces the same results in the expected modes an no others', () => {
-      compareJtp('closure', result, fixture)
-      compareJtp('jsdoc', result, fixture)
-      compareJtp('permissive', result, fixture)
-      compareJtp('typescript', result, fixture)
+      describe('jsdoctypeparser produces the same results in the expected modes an no others', () => {
+        compareJtp('closure', result, fixture)
+        compareJtp('jsdoc', result, fixture)
+        compareJtp('permissive', result, fixture)
+        compareJtp('typescript', result, fixture)
+      })
     })
   })
 }
