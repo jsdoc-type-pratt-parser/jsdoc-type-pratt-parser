@@ -9,20 +9,23 @@ export const unionFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          name: 'number',
+          value: 'number',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          name: 'boolean',
+          value: 'boolean',
           meta: {
             reservedWord: false
           }
         }
       ]
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'repeatable union with 2 types (number and boolean)',
@@ -34,14 +37,14 @@ export const unionFixtures: Fixture[] = [
         elements: [
           {
             type: 'NAME',
-            name: 'number',
+            value: 'number',
             meta: {
               reservedWord: false
             }
           },
           {
             type: 'NAME',
-            name: 'boolean',
+            value: 'boolean',
             meta: {
               reservedWord: false
             }
@@ -52,7 +55,10 @@ export const unionFixtures: Fixture[] = [
         position: 'PREFIX',
         squareBrackets: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'union with 2 types (Object and undefined)',
@@ -62,7 +68,7 @@ export const unionFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          name: 'Object',
+          value: 'Object',
           meta: {
             reservedWord: false
           }
@@ -71,7 +77,10 @@ export const unionFixtures: Fixture[] = [
           type: 'UNDEFINED'
         }
       ]
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'union with 3 types (number, Window, and goog.ui.Menu)',
@@ -81,34 +90,37 @@ export const unionFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          name: 'number',
+          value: 'number',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          name: 'Window',
+          value: 'Window',
           meta: {
             reservedWord: false
           }
         },
         {
           left: {
-            name: 'goog',
+            value: 'goog',
             type: 'NAME',
             meta: {
               reservedWord: false
             }
           },
-          path: [
+          value: [
             'ui',
             'Menu'
           ],
-          type: 'PROPERTY_PATH'
+          type: 'NAME_PATH'
         }
       ]
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'nullable union with 2 types (number and boolean)',
@@ -120,14 +132,14 @@ export const unionFixtures: Fixture[] = [
         elements: [
           {
             type: 'NAME',
-            name: 'number',
+            value: 'number',
             meta: {
               reservedWord: false
             }
           },
           {
             type: 'NAME',
-            name: 'boolean',
+            value: 'boolean',
             meta: {
               reservedWord: false
             }
@@ -137,7 +149,10 @@ export const unionFixtures: Fixture[] = [
       meta: {
         position: 'PREFIX'
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'non-nullable union with 2 types (number and boolean)',
@@ -149,14 +164,14 @@ export const unionFixtures: Fixture[] = [
         elements: [
           {
             type: 'NAME',
-            name: 'number',
+            value: 'number',
             meta: {
               reservedWord: false
             }
           },
           {
             type: 'NAME',
-            name: 'boolean',
+            value: 'boolean',
             meta: {
               reservedWord: false
             }
@@ -166,7 +181,10 @@ export const unionFixtures: Fixture[] = [
       meta: {
         position: 'PREFIX'
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'optional union with 2 types (number and boolean)',
@@ -178,14 +196,14 @@ export const unionFixtures: Fixture[] = [
         elements: [
           {
             type: 'NAME',
-            name: 'number',
+            value: 'number',
             meta: {
               reservedWord: false
             }
           },
           {
             type: 'NAME',
-            name: 'boolean',
+            value: 'boolean',
             meta: {
               reservedWord: false
             }
@@ -195,7 +213,10 @@ export const unionFixtures: Fixture[] = [
       meta: {
         position: 'SUFFIX'
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'union with 2 types (array and object with unknown value type)',
@@ -205,17 +226,17 @@ export const unionFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          name: 'Array',
+          value: 'Array',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'GENERIC',
-          objects: [
+          elements: [
             {
               type: 'NAME',
-              name: 'string',
+              value: 'string',
               meta: {
                 reservedWord: false
               }
@@ -224,9 +245,9 @@ export const unionFixtures: Fixture[] = [
               type: 'UNKNOWN'
             }
           ],
-          subject: {
+          left: {
             type: 'NAME',
-            name: 'Object',
+            value: 'Object',
             meta: {
               reservedWord: false
             }
@@ -237,7 +258,10 @@ export const unionFixtures: Fixture[] = [
           }
         }
       ]
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'union with 2 type applications',
@@ -247,18 +271,18 @@ export const unionFixtures: Fixture[] = [
       elements: [
         {
           type: 'GENERIC',
-          objects: [
+          elements: [
             {
               type: 'NAME',
-              name: 'string',
+              value: 'string',
               meta: {
                 reservedWord: false
               }
             }
           ],
-          subject: {
+          left: {
             type: 'NAME',
-            name: 'Array',
+            value: 'Array',
             meta: {
               reservedWord: false
             }
@@ -270,10 +294,10 @@ export const unionFixtures: Fixture[] = [
         },
         {
           type: 'GENERIC',
-          objects: [
+          elements: [
             {
               type: 'NAME',
-              name: 'string',
+              value: 'string',
               meta: {
                 reservedWord: false
               }
@@ -282,9 +306,9 @@ export const unionFixtures: Fixture[] = [
               type: 'UNKNOWN'
             }
           ],
-          subject: {
+          left: {
             type: 'NAME',
-            name: 'Object',
+            value: 'Object',
             meta: {
               reservedWord: false
             }
@@ -295,7 +319,10 @@ export const unionFixtures: Fixture[] = [
           }
         }
       ]
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'union with 2 types (an error, or a function that returns an error)',
@@ -305,7 +332,7 @@ export const unionFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          name: 'Error',
+          value: 'Error',
           meta: {
             reservedWord: false
           }
@@ -315,7 +342,7 @@ export const unionFixtures: Fixture[] = [
           parameters: [],
           returnType: {
             type: 'NAME',
-            name: 'Error',
+            value: 'Error',
             meta: {
               reservedWord: false
             }
@@ -325,7 +352,10 @@ export const unionFixtures: Fixture[] = [
           }
         }
       ]
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'type union with no enclosing parentheses',
@@ -335,20 +365,23 @@ export const unionFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          name: 'number',
+          value: 'number',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          name: 'string',
+          value: 'string',
           meta: {
             reservedWord: false
           }
         }
       ]
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'type union with modifiers and no enclosing parentheses',
@@ -360,7 +393,7 @@ export const unionFixtures: Fixture[] = [
           type: 'NOT_NULLABLE',
           element: {
             type: 'NAME',
-            name: 'number',
+            value: 'number',
             meta: {
               reservedWord: false
             }
@@ -373,7 +406,7 @@ export const unionFixtures: Fixture[] = [
           type: 'NOT_NULLABLE',
           element: {
             type: 'NAME',
-            name: 'string',
+            value: 'string',
             meta: {
               reservedWord: false
             }
@@ -383,7 +416,10 @@ export const unionFixtures: Fixture[] = [
           }
         }
       ]
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'optional union with multiple types',
@@ -395,39 +431,39 @@ export const unionFixtures: Fixture[] = [
         elements: [
           {
             type: 'NAME',
-            name: 'jQuerySelector',
+            value: 'jQuerySelector',
             meta: {
               reservedWord: false
             }
           },
           {
             type: 'NAME',
-            name: 'Element',
+            value: 'Element',
             meta: {
               reservedWord: false
             }
           },
           {
             type: 'NAME',
-            name: 'Object',
+            value: 'Object',
             meta: {
               reservedWord: false
             }
           },
           {
             type: 'GENERIC',
-            objects: [
+            elements: [
               {
                 type: 'NAME',
-                name: 'Element',
+                value: 'Element',
                 meta: {
                   reservedWord: false
                 }
               }
             ],
-            subject: {
+            left: {
               type: 'NAME',
-              name: 'Array',
+              value: 'Array',
               meta: {
                 reservedWord: false
               }
@@ -439,14 +475,14 @@ export const unionFixtures: Fixture[] = [
           },
           {
             type: 'NAME',
-            name: 'jQuery',
+            value: 'jQuery',
             meta: {
               reservedWord: false
             }
           },
           {
             type: 'NAME',
-            name: 'string',
+            value: 'string',
             meta: {
               reservedWord: false
             }
@@ -463,8 +499,10 @@ export const unionFixtures: Fixture[] = [
       meta: {
         position: 'SUFFIX'
       }
-
-    }
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
   },
   {
     description: 'optional union with multiple types, including a nested union type',
@@ -476,31 +514,31 @@ export const unionFixtures: Fixture[] = [
         elements: [
           {
             type: 'NAME',
-            name: 'Element',
+            value: 'Element',
             meta: {
               reservedWord: false
             }
           },
           {
             type: 'NAME',
-            name: 'Object',
+            value: 'Object',
             meta: {
               reservedWord: false
             }
           },
           {
             type: 'NAME',
-            name: 'Document',
+            value: 'Document',
             meta: {
               reservedWord: false
             }
           },
           {
             type: 'GENERIC',
-            objects: [
+            elements: [
               {
                 type: 'NAME',
-                name: 'string',
+                value: 'string',
                 meta: {
                   reservedWord: false
                 }
@@ -510,7 +548,7 @@ export const unionFixtures: Fixture[] = [
                 elements: [
                   {
                     type: 'NAME',
-                    name: 'string',
+                    value: 'string',
                     meta: {
                       reservedWord: false
                     }
@@ -524,16 +562,16 @@ export const unionFixtures: Fixture[] = [
                           type: 'NOT_NULLABLE',
                           element: {
                             left: {
-                              name: 'jQuery',
+                              value: 'jQuery',
                               type: 'NAME',
                               meta: {
                                 reservedWord: false
                               }
                             },
-                            path: [
+                            value: [
                               'event'
                             ],
-                            type: 'PROPERTY_PATH'
+                            type: 'NAME_PATH'
                           },
                           meta: {
                             position: 'PREFIX'
@@ -551,9 +589,9 @@ export const unionFixtures: Fixture[] = [
                 ]
               }
             ],
-            subject: {
+            left: {
               type: 'NAME',
-              name: 'Object',
+              value: 'Object',
               meta: {
                 reservedWord: false
               }
@@ -564,11 +602,13 @@ export const unionFixtures: Fixture[] = [
             }
           }
         ]
-
       },
       meta: {
         position: 'SUFFIX'
       }
-    }
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
   }
 ]

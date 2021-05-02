@@ -29,8 +29,8 @@ export class GenericParslet implements InfixParslet {
 
     return {
       type: 'GENERIC',
-      subject: assertTerminal(left),
-      objects,
+      left: assertTerminal(left),
+      elements: objects,
       meta: {
         brackets: '<>',
         dot

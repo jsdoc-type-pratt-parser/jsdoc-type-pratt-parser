@@ -6,18 +6,18 @@ export const genericFixtures: Fixture[] = [
     input: 'Array<string>',
     expected: {
       type: 'GENERIC',
-      objects: [
+      elements: [
         {
           type: 'NAME',
-          name: 'string',
+          value: 'string',
           meta: {
             reservedWord: false
           }
         }
       ],
-      subject: {
+      left: {
         type: 'NAME',
-        name: 'Array',
+        value: 'Array',
         meta: {
           reservedWord: false
         }
@@ -26,25 +26,28 @@ export const genericFixtures: Fixture[] = [
         dot: false,
         brackets: '<>'
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'array of strings, with a dot separator',
     input: 'Array.<string>',
     expected: {
       type: 'GENERIC',
-      objects: [
+      elements: [
         {
           type: 'NAME',
-          name: 'string',
+          value: 'string',
           meta: {
             reservedWord: false
           }
         }
       ],
-      subject: {
+      left: {
         type: 'NAME',
-        name: 'Array',
+        value: 'Array',
         meta: {
           reservedWord: false
         }
@@ -53,7 +56,10 @@ export const genericFixtures: Fixture[] = [
         dot: true,
         brackets: '<>'
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'repeatable array of strings',
@@ -62,18 +68,18 @@ export const genericFixtures: Fixture[] = [
       type: 'VARIADIC',
       element: {
         type: 'GENERIC',
-        objects: [
+        elements: [
           {
             type: 'NAME',
-            name: 'string',
+            value: 'string',
             meta: {
               reservedWord: false
             }
           }
         ],
-        subject: {
+        left: {
           type: 'NAME',
-          name: 'Array',
+          value: 'Array',
           meta: {
             reservedWord: false
           }
@@ -87,32 +93,35 @@ export const genericFixtures: Fixture[] = [
         squareBrackets: false,
         position: 'PREFIX'
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'object whose properties are strings and property values are numbers',
     input: 'Object.<string, number>',
     expected: {
       type: 'GENERIC',
-      objects: [
+      elements: [
         {
           type: 'NAME',
-          name: 'string',
+          value: 'string',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          name: 'number',
+          value: 'number',
           meta: {
             reservedWord: false
           }
         }
       ],
-      subject: {
+      left: {
         type: 'NAME',
-        name: 'Object',
+        value: 'Object',
         meta: {
           reservedWord: false
         }
@@ -121,23 +130,26 @@ export const genericFixtures: Fixture[] = [
         dot: true,
         brackets: '<>'
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'object whose properties are a type application and property values are a type union',
     input: 'Object.<Array.<(boolean|{myKey: Error})>, (boolean|string|function(new:foo): string)>',
     expected: {
       type: 'GENERIC',
-      objects: [
+      elements: [
         {
           type: 'GENERIC',
-          objects: [
+          elements: [
             {
               type: 'UNION',
               elements: [
                 {
                   type: 'NAME',
-                  name: 'boolean',
+                  value: 'boolean',
                   meta: {
                     reservedWord: false
                   }
@@ -147,16 +159,16 @@ export const genericFixtures: Fixture[] = [
                   fields: [
                     {
                       type: 'KEY_VALUE',
-                      key: {
+                      left: {
                         type: 'NAME',
-                        name: 'myKey',
+                        value: 'myKey',
                         meta: {
                           reservedWord: false
                         }
                       },
-                      value: {
+                      right: {
                         type: 'NAME',
-                        name: 'Error',
+                        value: 'Error',
                         meta: {
                           reservedWord: false
                         }
@@ -167,9 +179,9 @@ export const genericFixtures: Fixture[] = [
               ]
             }
           ],
-          subject: {
+          left: {
             type: 'NAME',
-            name: 'Array',
+            value: 'Array',
             meta: {
               reservedWord: false
             }
@@ -184,14 +196,14 @@ export const genericFixtures: Fixture[] = [
           elements: [
             {
               type: 'NAME',
-              name: 'boolean',
+              value: 'boolean',
               meta: {
                 reservedWord: false
               }
             },
             {
               type: 'NAME',
-              name: 'string',
+              value: 'string',
               meta: {
                 reservedWord: false
               }
@@ -201,16 +213,16 @@ export const genericFixtures: Fixture[] = [
               parameters: [
                 {
                   type: 'KEY_VALUE',
-                  key: {
+                  left: {
                     type: 'NAME',
-                    name: 'new',
+                    value: 'new',
                     meta: {
                       reservedWord: true
                     }
                   },
-                  value: {
+                  element: {
                     type: 'NAME',
-                    name: 'foo',
+                    value: 'foo',
                     meta: {
                       reservedWord: false
                     }
@@ -219,7 +231,7 @@ export const genericFixtures: Fixture[] = [
               ],
               returnType: {
                 type: 'NAME',
-                name: 'string',
+                value: 'string',
                 meta: {
                   reservedWord: false
                 }
@@ -231,9 +243,9 @@ export const genericFixtures: Fixture[] = [
           ]
         }
       ],
-      subject: {
+      left: {
         type: 'NAME',
-        name: 'Object',
+        value: 'Object',
         meta: {
           reservedWord: false
         }
@@ -242,20 +254,23 @@ export const genericFixtures: Fixture[] = [
         dot: true,
         brackets: '<>'
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'array of objects that have a length property',
     input: 'Array.<{length}>',
     expected: {
       type: 'GENERIC',
-      objects: [
+      elements: [
         {
           type: 'RECORD',
           fields: [
             {
               type: 'NAME',
-              name: 'length',
+              value: 'length',
               meta: {
                 reservedWord: false
               }
@@ -263,9 +278,9 @@ export const genericFixtures: Fixture[] = [
           ]
         }
       ],
-      subject: {
+      left: {
         type: 'NAME',
-        name: 'Array',
+        value: 'Array',
         meta: {
           reservedWord: false
         }
@@ -274,21 +289,24 @@ export const genericFixtures: Fixture[] = [
         dot: true,
         brackets: '<>'
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'array of unknown',
     input: 'Array.<?>',
     expected: {
       type: 'GENERIC',
-      objects: [
+      elements: [
         {
           type: 'UNKNOWN'
         }
       ],
-      subject: {
+      left: {
         type: 'NAME',
-        name: 'Array',
+        value: 'Array',
         meta: {
           reservedWord: false
         }
@@ -297,25 +315,28 @@ export const genericFixtures: Fixture[] = [
         dot: true,
         brackets: '<>'
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'Promise containing string',
     input: 'Promise.<string>',
     expected: {
       type: 'GENERIC',
-      objects: [
+      elements: [
         {
           type: 'NAME',
-          name: 'string',
+          value: 'string',
           meta: {
             reservedWord: false
           }
         }
       ],
-      subject: {
+      left: {
         type: 'NAME',
-        name: 'Promise',
+        value: 'Promise',
         meta: {
           reservedWord: false
         }
@@ -324,39 +345,45 @@ export const genericFixtures: Fixture[] = [
         dot: true,
         brackets: '<>'
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'foo.Promise containing string',
     input: 'foo.Promise.<string>',
     expected: {
       type: 'GENERIC',
-      objects: [
+      elements: [
         {
           type: 'NAME',
-          name: 'string',
+          value: 'string',
           meta: {
             reservedWord: false
           }
         }
       ],
-      subject: {
+      left: {
         left: {
-          name: 'foo',
+          value: 'foo',
           type: 'NAME',
           meta: {
             reservedWord: false
           }
         },
-        path: [
+        value: [
           'Promise'
         ],
-        type: 'PROPERTY_PATH'
+        type: 'NAME_PATH'
       },
       meta: {
         dot: true,
         brackets: '<>'
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   }
 ]

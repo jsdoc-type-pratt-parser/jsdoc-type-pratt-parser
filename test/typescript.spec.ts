@@ -1,48 +1,38 @@
-import { expect } from 'chai'
 import 'mocha'
 
-import { Parser, ParseResult } from '../src'
-import { Fixture } from './fixtures/Fixture'
+import { testFixture } from './fixtures/Fixture'
 import { tupleFixtures } from './fixtures/typescript/tuple'
 import { typeOfFixtures } from './fixtures/typescript/typeof'
 import { keyofFixtures } from './fixtures/typescript/keyof'
 import { importFixtures } from './fixtures/typescript/import'
 import { arrowFunctionFixtures } from './fixtures/typescript/arrow-function'
 
-function runFixtures (fixtures: Fixture[]): void {
-  for (const fixture of fixtures) {
-    it(fixture.description, () => {
-      const parser = new Parser({
-        mode: 'typescript'
-      })
-      if ('shouldFail' in fixture) {
-        const parse = (): ParseResult => parser.parse(fixture.input)
-        const message = `input: '${fixture.input}'`
-        expect(parse, message).to.throw()
-      } else {
-        const result = parser.parse(fixture.input)
-        expect(result).to.deep.equal(fixture.expected)
-      }
-    })
-  }
-}
-
 describe('TypeScript TypeOf', () => {
-  runFixtures(typeOfFixtures)
+  for (const fixture of typeOfFixtures) {
+    testFixture(fixture)
+  }
 })
 
 describe('TypeScript KeyOf', () => {
-  runFixtures(keyofFixtures)
+  for (const fixture of keyofFixtures) {
+    testFixture(fixture)
+  }
 })
 
 describe('TypeScript import', () => {
-  runFixtures(importFixtures)
+  for (const fixture of importFixtures) {
+    testFixture(fixture)
+  }
 })
 
 describe('TypeScript arrow functions', () => {
-  runFixtures(arrowFunctionFixtures)
+  for (const fixture of arrowFunctionFixtures) {
+    testFixture(fixture)
+  }
 })
 
 describe('TypeScript tuples', () => {
-  runFixtures(tupleFixtures)
+  for (const fixture of tupleFixtures) {
+    testFixture(fixture)
+  }
 })

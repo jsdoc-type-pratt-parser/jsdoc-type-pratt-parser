@@ -6,111 +6,132 @@ export const basicFixtures: Fixture[] = [
     input: 'boolean',
     expected: {
       type: 'NAME',
-      name: 'boolean',
+      value: 'boolean',
       meta: {
         reservedWord: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'object',
     input: 'Window',
     expected: {
       type: 'NAME',
-      name: 'Window',
+      value: 'Window',
       meta: {
         reservedWord: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'object with properties',
     input: 'goog.ui.Menu',
     expected: {
       left: {
-        name: 'goog',
+        value: 'goog',
         type: 'NAME',
         meta: {
           reservedWord: false
         }
       },
-      path: [
+      value: [
         'ui',
         'Menu'
       ],
-      type: 'PROPERTY_PATH'
-    }
+      type: 'NAME_PATH'
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'object with a single-quoted string-literal property',
     input: "myObj.'myProp'.foo",
     expected: {
       left: {
-        name: 'myObj',
+        value: 'myObj',
         type: 'NAME',
         meta: {
           reservedWord: false
         }
       },
-      path: [
+      value: [
         "'myProp'",
         'foo'
       ],
-      type: 'PROPERTY_PATH'
-    }
+      type: 'NAME_PATH'
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'object with a double-quoted string-literal property',
     input: 'myObj."myProp".foo',
     expected: {
       left: {
-        name: 'myObj',
+        value: 'myObj',
         type: 'NAME',
         meta: {
           reservedWord: false
         }
       },
-      path: [
+      value: [
         '"myProp"',
         'foo'
       ],
-      type: 'PROPERTY_PATH'
-    }
+      type: 'NAME_PATH'
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'object with a string-literal property that includes other punctuation',
     input: 'myObj."#weirdProp".foo',
     expected: {
       left: {
-        name: 'myObj',
+        value: 'myObj',
         type: 'NAME',
         meta: {
           reservedWord: false
         }
       },
-      path: [
+      value: [
         '"#weirdProp"',
         'foo'
       ],
-      type: 'PROPERTY_PATH'
-    }
+      type: 'NAME_PATH'
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'object with a numeric property',
     input: 'myObj.12345',
     expected: {
       left: {
-        name: 'myObj',
+        value: 'myObj',
         type: 'NAME',
         meta: {
           reservedWord: false
         }
       },
-      path: [
+      value: [
         '12345'
       ],
-      type: 'PROPERTY_PATH'
-    }
+      type: 'NAME_PATH'
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: [] // NOTE: This seems to be a JTP error
   },
   {
     description: 'variable number of parameters',
@@ -119,7 +140,7 @@ export const basicFixtures: Fixture[] = [
       type: 'VARIADIC',
       element: {
         type: 'NAME',
-        name: 'number',
+        value: 'number',
         meta: {
           reservedWord: false
         }
@@ -128,7 +149,10 @@ export const basicFixtures: Fixture[] = [
         squareBrackets: false,
         position: 'PREFIX'
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'optional number parameter',
@@ -137,7 +161,7 @@ export const basicFixtures: Fixture[] = [
       type: 'OPTIONAL',
       element: {
         type: 'NAME',
-        name: 'number',
+        value: 'number',
         meta: {
           reservedWord: false
         }
@@ -145,7 +169,10 @@ export const basicFixtures: Fixture[] = [
       meta: {
         position: 'SUFFIX'
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'optional Object parameter',
@@ -154,7 +181,7 @@ export const basicFixtures: Fixture[] = [
       type: 'OPTIONAL',
       element: {
         type: 'NAME',
-        name: 'Object',
+        value: 'Object',
         meta: {
           reservedWord: false
         }
@@ -162,14 +189,20 @@ export const basicFixtures: Fixture[] = [
       meta: {
         position: 'SUFFIX'
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'null',
     input: 'null',
     expected: {
       type: 'NULL'
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'repeatable null',
@@ -183,14 +216,20 @@ export const basicFixtures: Fixture[] = [
         position: 'PREFIX',
         squareBrackets: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'undefined',
     input: 'undefined',
     expected: {
       type: 'UNDEFINED'
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'repeatable undefined',
@@ -204,14 +243,20 @@ export const basicFixtures: Fixture[] = [
         position: 'PREFIX',
         squareBrackets: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'all',
     input: '*',
     expected: {
       type: 'ALL'
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'repeatable all',
@@ -225,14 +270,20 @@ export const basicFixtures: Fixture[] = [
         position: 'PREFIX',
         squareBrackets: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'unknown',
     input: '?',
     expected: {
       type: 'UNKNOWN'
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'repeatable unknown',
@@ -246,36 +297,48 @@ export const basicFixtures: Fixture[] = [
         position: 'PREFIX',
         squareBrackets: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'name that starts with a reserved word',
     input: 'forsooth',
     expected: {
       type: 'NAME',
-      name: 'forsooth',
+      value: 'forsooth',
       meta: {
         reservedWord: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'name that includes a hyphen and a numeral',
     input: 'My-1st-Class',
     expected: {
       type: 'NAME',
-      name: 'My-1st-Class',
+      value: 'My-1st-Class',
       meta: {
         reservedWord: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'name that includes an @ sign',
     input: 'module:@prefix/my-module~myCallback',
     expected: {
-      path: 'module:@prefix/my-module~myCallback',
+      value: 'module:@prefix/my-module~myCallback',
       type: 'MODULE'
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: [] // NOTE: This seems to be a JTP error
   }
 ]

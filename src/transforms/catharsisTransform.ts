@@ -1,4 +1,4 @@
-import { ParseResult } from '../ParseResult'
+import { NamePathResult, NameResult, NumberResult, ParseResult, StringValueResult } from '../ParseResult'
 import { extractSpecialParams, notAvailableTransform, transform, TransformRules } from './transform'
 
 interface ModifiableResult {
@@ -145,19 +145,19 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
 
   GENERIC: (result, transform) => ({
     type: 'TypeApplication',
-    applications: result.objects.map(o => transform(o)),
-    expression: transform(result.subject)
+    applications: result.elements.map(o => transform(o)),
+    expression: transform(result.left)
   }),
 
   MODULE: result => ({
     type: 'NameExpression',
-    name: result.path
+    name: result.value
   }),
 
   NAME: result => {
     const transformed: CatharsisNameResult = {
       type: 'NameExpression',
-      name: result.name
+      name: result.value
     }
     if (result.meta.reservedWord) {
       transformed.reservedWord = true
@@ -197,26 +197,33 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
 
   KEY_VALUE: (result, transform) => ({
     type: 'FieldType',
-    key: transform(result.key),
-    value: transform(result.value)
+    key: transform(result.left),
+    value: transform(result.right)
   }),
 
-  PROPERTY_PATH: result => {
-    if (result.left.type !== 'NAME') {
+  NAME_PATH: (result, transform) => {
+    let left = result.left
+    if (left.type === 'NAME_PATH') {
+      const leftResult = transform(left) as CatharsisNameResult
+      return {
+        type: 'NameExpression',
+        name: leftResult.name + result.meta.type + result.right.value
+      }
+    } else if (result.left.type === 'NAME') {
+      return {
+        type: 'NameExpression',
+        name: result.left.value + result.meta.type + result.right.value
+      }
+    } else {
       // TODO: here a string representations should be used
-      throw new Error('Other left types than \'NAME\' are not supported for catharsis compat mode')
-    }
-
-    return {
-      type: 'NameExpression',
-      name: result.left.name + '.' + result.path.join('.')
+      throw new Error('Other left types than \'NAME\' or \'NAME_PATH\' are not supported for catharsis compat mode')
     }
   },
 
   SYMBOL: result => {
     let value = ''
 
-    let element = result.value
+    let element = result.element
     let trailingDots = false
 
     if (element?.type === 'VARIADIC') {
@@ -229,7 +236,7 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
     }
 
     if (element?.type === 'NAME') {
-      value += element.name
+      value += element.value
     } else if (element?.type === 'NUMBER') {
       value += element.value.toString()
     }
@@ -240,7 +247,7 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
 
     return {
       type: 'NameExpression',
-      name: `${result.name}(${value})`
+      name: `${result.value}(${value})`
     }
   },
 

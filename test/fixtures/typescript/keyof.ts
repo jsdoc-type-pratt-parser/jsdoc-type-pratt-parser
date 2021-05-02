@@ -6,60 +6,69 @@ export const keyofFixtures: Fixture[] = [
     input: 'keyof A',
     expected: {
       type: 'KEY_OF',
-      value: {
+      element: {
         type: 'NAME',
-        name: 'A',
+        value: 'A',
         meta: {
           reservedWord: false
         }
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'keyof',
     input: 'keyof', // is this really valid input?
     expected: {
       type: 'KEY_OF'
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'generic with keyof',
     input: 'X<keyof>',
     expected: {
       type: 'GENERIC',
-      subject: {
+      left: {
         type: 'NAME',
-        name: 'X',
+        value: 'X',
         meta: {
           reservedWord: false
         }
       },
-      objects: [{
+      elements: [{
         type: 'KEY_OF'
       }],
       meta: {
         dot: false,
         brackets: '<>'
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'generic with keyof name',
     input: 'X<keyof A>',
     expected: {
       type: 'GENERIC',
-      subject: {
+      left: {
         type: 'NAME',
-        name: 'X',
+        value: 'X',
         meta: {
           reservedWord: false
         }
       },
-      objects: [{
+      elements: [{
         type: 'KEY_OF',
-        value: {
+        element: {
           type: 'NAME',
-          name: 'A',
+          value: 'A',
           meta: {
             reservedWord: false
           }
@@ -69,27 +78,30 @@ export const keyofFixtures: Fixture[] = [
         dot: false,
         brackets: '<>'
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'generic keyof name in parenthesis',
     input: '(keyof X)<A>',
     expected: {
       type: 'GENERIC',
-      subject: {
+      left: {
         type: 'KEY_OF',
-        value: {
+        element: {
           type: 'NAME',
-          name: 'X',
+          value: 'X',
           meta: {
             reservedWord: false
           }
         }
       },
-      objects: [
+      elements: [
         {
           type: 'NAME',
-          name: 'A',
+          value: 'A',
           meta: {
             reservedWord: false
           }
@@ -99,21 +111,27 @@ export const keyofFixtures: Fixture[] = [
         dot: false,
         brackets: '<>'
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'keyof name in parenthesis',
     input: '(keyof A)',
     expected: {
       type: 'KEY_OF',
-      value: {
+      element: {
         type: 'NAME',
-        name: 'A',
+        value: 'A',
         meta: {
           reservedWord: false
         }
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'repeatable keyof name',
@@ -122,9 +140,9 @@ export const keyofFixtures: Fixture[] = [
       type: 'VARIADIC',
       element: {
         type: 'KEY_OF',
-        value: {
+        element: {
           type: 'NAME',
-          name: 'A',
+          value: 'A',
           meta: {
             reservedWord: false
           }
@@ -134,7 +152,10 @@ export const keyofFixtures: Fixture[] = [
         squareBrackets: false,
         position: 'PREFIX'
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'postfix repeatable keyof name',
@@ -143,9 +164,9 @@ export const keyofFixtures: Fixture[] = [
       type: 'VARIADIC',
       element: {
         type: 'KEY_OF',
-        value: {
+        element: {
           type: 'NAME',
-          name: 'A',
+          value: 'A',
           meta: {
             reservedWord: false
           }
@@ -155,7 +176,10 @@ export const keyofFixtures: Fixture[] = [
         squareBrackets: false,
         position: 'SUFFIX'
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'union keyof name',
@@ -165,9 +189,9 @@ export const keyofFixtures: Fixture[] = [
       elements: [
         {
           type: 'KEY_OF',
-          value: {
+          element: {
             type: 'NAME',
-            name: 'A',
+            value: 'A',
             meta: {
               reservedWord: false
             }
@@ -175,13 +199,16 @@ export const keyofFixtures: Fixture[] = [
         },
         {
           type: 'NAME',
-          name: 'number',
+          value: 'number',
           meta: {
             reservedWord: false
           }
         }
       ]
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'union with keyof name',
@@ -191,42 +218,45 @@ export const keyofFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          name: 'number',
+          value: 'number',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'KEY_OF',
-          value: {
+          element: {
             type: 'NAME',
-            name: 'A',
+            value: 'A',
             meta: {
               reservedWord: false
             }
           }
         }
       ]
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'keyof array',
     input: 'keyof N[]',
     expected: {
       type: 'KEY_OF',
-      value: {
+      element: {
         type: 'GENERIC',
-        subject: {
+        left: {
           type: 'NAME',
-          name: 'Array',
+          value: 'Array',
           meta: {
             reservedWord: false
           }
         },
-        objects: [
+        elements: [
           {
             type: 'NAME',
-            name: 'N',
+            value: 'N',
             meta: {
               reservedWord: false
             }
@@ -237,12 +267,17 @@ export const keyofFixtures: Fixture[] = [
           brackets: '[]'
         }
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'keyof as function parameter without return should fail',
     input: 'function(keyof A)',
-    shouldFail: true
+    modes: [],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'keyof as function parameter',
@@ -252,9 +287,9 @@ export const keyofFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_OF',
-          value: {
+          element: {
             type: 'NAME',
-            name: 'A',
+            value: 'A',
             meta: {
               reservedWord: false
             }
@@ -264,7 +299,10 @@ export const keyofFixtures: Fixture[] = [
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'keyof as first function parameter',
@@ -274,9 +312,9 @@ export const keyofFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_OF',
-          value: {
+          element: {
             type: 'NAME',
-            name: 'A',
+            value: 'A',
             meta: {
               reservedWord: false
             }
@@ -284,7 +322,7 @@ export const keyofFixtures: Fixture[] = [
         },
         {
           type: 'NAME',
-          name: 'number',
+          value: 'number',
           meta: {
             reservedWord: false
           }
@@ -293,7 +331,10 @@ export const keyofFixtures: Fixture[] = [
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'keyof as second function parameter',
@@ -303,16 +344,16 @@ export const keyofFixtures: Fixture[] = [
       parameters: [
         {
           type: 'NAME',
-          name: 'number',
+          value: 'number',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'KEY_OF',
-          value: {
+          element: {
             type: 'NAME',
-            name: 'A',
+            value: 'A',
             meta: {
               reservedWord: false
             }
@@ -322,7 +363,10 @@ export const keyofFixtures: Fixture[] = [
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'keyof as return of function',
@@ -332,9 +376,9 @@ export const keyofFixtures: Fixture[] = [
       parameters: [],
       returnType: {
         type: 'KEY_OF',
-        value: {
+        element: {
           type: 'NAME',
-          name: 'A',
+          value: 'A',
           meta: {
             reservedWord: false
           }
@@ -343,6 +387,9 @@ export const keyofFixtures: Fixture[] = [
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   }
 ]

@@ -6,60 +6,69 @@ export const typeOfFixtures: Fixture[] = [
     input: 'typeof A',
     expected: {
       type: 'TYPE_OF',
-      value: {
+      element: {
         type: 'NAME',
-        name: 'A',
+        value: 'A',
         meta: {
           reservedWord: false
         }
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'typeof',
     input: 'typeof',
     expected: {
       type: 'TYPE_OF'
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'generic with typeof',
     input: 'X<typeof>',
     expected: {
       type: 'GENERIC',
-      subject: {
+      left: {
         type: 'NAME',
-        name: 'X',
+        value: 'X',
         meta: {
           reservedWord: false
         }
       },
-      objects: [{
+      elements: [{
         type: 'TYPE_OF'
       }],
       meta: {
         dot: false,
         brackets: '<>'
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'generic with typeof name',
     input: 'X<typeof A>',
     expected: {
       type: 'GENERIC',
-      subject: {
+      left: {
         type: 'NAME',
-        name: 'X',
+        value: 'X',
         meta: {
           reservedWord: false
         }
       },
-      objects: [{
+      elements: [{
         type: 'TYPE_OF',
-        value: {
+        element: {
           type: 'NAME',
-          name: 'A',
+          value: 'A',
           meta: {
             reservedWord: false
           }
@@ -69,27 +78,30 @@ export const typeOfFixtures: Fixture[] = [
         dot: false,
         brackets: '<>'
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'generic typeof name in parenthesis',
     input: '(typeof X)<A>',
     expected: {
       type: 'GENERIC',
-      subject: {
+      left: {
         type: 'TYPE_OF',
-        value: {
+        element: {
           type: 'NAME',
-          name: 'X',
+          value: 'X',
           meta: {
             reservedWord: false
           }
         }
       },
-      objects: [
+      elements: [
         {
           type: 'NAME',
-          name: 'A',
+          value: 'A',
           meta: {
             reservedWord: false
           }
@@ -99,21 +111,27 @@ export const typeOfFixtures: Fixture[] = [
         dot: false,
         brackets: '<>'
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'typeof name in parenthesis',
     input: '(typeof A)',
     expected: {
       type: 'TYPE_OF',
-      value: {
+      element: {
         type: 'NAME',
-        name: 'A',
+        value: 'A',
         meta: {
           reservedWord: false
         }
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'repeatable typeof name',
@@ -122,9 +140,9 @@ export const typeOfFixtures: Fixture[] = [
       type: 'VARIADIC',
       element: {
         type: 'TYPE_OF',
-        value: {
+        element: {
           type: 'NAME',
-          name: 'A',
+          value: 'A',
           meta: {
             reservedWord: false
           }
@@ -134,7 +152,10 @@ export const typeOfFixtures: Fixture[] = [
         squareBrackets: false,
         position: 'PREFIX'
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'postfix repeatable typeof name',
@@ -143,9 +164,9 @@ export const typeOfFixtures: Fixture[] = [
       type: 'VARIADIC',
       element: {
         type: 'TYPE_OF',
-        value: {
+        element: {
           type: 'NAME',
-          name: 'A',
+          value: 'A',
           meta: {
             reservedWord: false
           }
@@ -155,7 +176,10 @@ export const typeOfFixtures: Fixture[] = [
         squareBrackets: false,
         position: 'SUFFIX'
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'union typeof name',
@@ -165,9 +189,9 @@ export const typeOfFixtures: Fixture[] = [
       elements: [
         {
           type: 'TYPE_OF',
-          value: {
+          element: {
             type: 'NAME',
-            name: 'A',
+            value: 'A',
             meta: {
               reservedWord: false
             }
@@ -175,13 +199,16 @@ export const typeOfFixtures: Fixture[] = [
         },
         {
           type: 'NAME',
-          name: 'number',
+          value: 'r',
           meta: {
             reservedWord: false
           }
         }
       ]
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'union with typeof name',
@@ -191,42 +218,45 @@ export const typeOfFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          name: 'number',
+          value: 'r',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'TYPE_OF',
-          value: {
+          element: {
             type: 'NAME',
-            name: 'A',
+            value: 'A',
             meta: {
               reservedWord: false
             }
           }
         }
       ]
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'typeof array',
     input: 'typeof N[]',
     expected: {
       type: 'TYPE_OF',
-      value: {
+      element: {
         type: 'GENERIC',
-        subject: {
+        left: {
           type: 'NAME',
-          name: 'Array',
+          value: 'y',
           meta: {
             reservedWord: false
           }
         },
-        objects: [
+        elements: [
           {
             type: 'NAME',
-            name: 'N',
+            value: 'N',
             meta: {
               reservedWord: false
             }
@@ -237,12 +267,17 @@ export const typeOfFixtures: Fixture[] = [
           brackets: '[]'
         }
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'typeof as function parameter without return type should fail',
     input: 'function(typeof A)',
-    shouldFail: true
+    modes: [],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'typeof as function parameter',
@@ -252,9 +287,9 @@ export const typeOfFixtures: Fixture[] = [
       parameters: [
         {
           type: 'TYPE_OF',
-          value: {
+          element: {
             type: 'NAME',
-            name: 'A',
+            value: 'A',
             meta: {
               reservedWord: false
             }
@@ -264,7 +299,10 @@ export const typeOfFixtures: Fixture[] = [
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'typeof as first function parameter',
@@ -274,9 +312,9 @@ export const typeOfFixtures: Fixture[] = [
       parameters: [
         {
           type: 'TYPE_OF',
-          value: {
+          element: {
             type: 'NAME',
-            name: 'A',
+            value: 'A',
             meta: {
               reservedWord: false
             }
@@ -284,7 +322,7 @@ export const typeOfFixtures: Fixture[] = [
         },
         {
           type: 'NAME',
-          name: 'number',
+          value: 'r',
           meta: {
             reservedWord: false
           }
@@ -293,7 +331,10 @@ export const typeOfFixtures: Fixture[] = [
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'typeof as second function parameter',
@@ -303,16 +344,16 @@ export const typeOfFixtures: Fixture[] = [
       parameters: [
         {
           type: 'NAME',
-          name: 'number',
+          value: 'r',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'TYPE_OF',
-          value: {
+          element: {
             type: 'NAME',
-            name: 'A',
+            value: 'A',
             meta: {
               reservedWord: false
             }
@@ -322,7 +363,10 @@ export const typeOfFixtures: Fixture[] = [
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'typeof as return of function',
@@ -332,9 +376,9 @@ export const typeOfFixtures: Fixture[] = [
       parameters: [],
       returnType: {
         type: 'TYPE_OF',
-        value: {
+        element: {
           type: 'NAME',
-          name: 'A',
+          value: 'A',
           meta: {
             reservedWord: false
           }
@@ -343,6 +387,9 @@ export const typeOfFixtures: Fixture[] = [
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   }
 ]

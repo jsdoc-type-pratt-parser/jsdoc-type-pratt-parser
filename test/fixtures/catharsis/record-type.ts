@@ -7,7 +7,10 @@ export const recordFixtures: Fixture[] = [
     expected: {
       type: 'RECORD',
       fields: []
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'record type with 1 typed property',
@@ -17,23 +20,26 @@ export const recordFixtures: Fixture[] = [
       fields: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'myNum',
+            value: 'myNum',
             meta: {
               reservedWord: false
             }
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'number',
+            value: 'number',
             meta: {
               reservedWord: false
             }
           }
         }
       ]
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'repeatable record type with 1 typed property',
@@ -45,16 +51,16 @@ export const recordFixtures: Fixture[] = [
         fields: [
           {
             type: 'KEY_VALUE',
-            key: {
+            left: {
               type: 'NAME',
-              name: 'myNum',
+              value: 'myNum',
               meta: {
                 reservedWord: false
               }
             },
-            value: {
+            right: {
               type: 'NAME',
-              name: 'number',
+              value: 'number',
               meta: {
                 reservedWord: false
               }
@@ -66,7 +72,10 @@ export const recordFixtures: Fixture[] = [
         squareBrackets: false,
         position: 'PREFIX'
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'optional record type with 1 typed property',
@@ -78,16 +87,16 @@ export const recordFixtures: Fixture[] = [
         fields: [
           {
             type: 'KEY_VALUE',
-            key: {
+            left: {
               type: 'NAME',
-              name: 'myNum',
+              value: 'myNum',
               meta: {
                 reservedWord: false
               }
             },
-            value: {
+            right: {
               type: 'NAME',
-              name: 'number',
+              value: 'number',
               meta: {
                 reservedWord: false
               }
@@ -98,7 +107,10 @@ export const recordFixtures: Fixture[] = [
       meta: {
         position: 'SUFFIX'
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'nullable record type with 1 typed property',
@@ -110,16 +122,16 @@ export const recordFixtures: Fixture[] = [
         fields: [
           {
             type: 'KEY_VALUE',
-            key: {
+            left: {
               type: 'NAME',
-              name: 'myNum',
+              value: 'myNum',
               meta: {
                 reservedWord: false
               }
             },
-            value: {
+            right: {
               type: 'NAME',
-              name: 'number',
+              value: 'number',
               meta: {
                 reservedWord: false
               }
@@ -130,7 +142,10 @@ export const recordFixtures: Fixture[] = [
       meta: {
         position: 'PREFIX'
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'non-nullable record type with 1 typed property',
@@ -142,16 +157,16 @@ export const recordFixtures: Fixture[] = [
         fields: [
           {
             type: 'KEY_VALUE',
-            key: {
+            left: {
               type: 'NAME',
-              name: 'myNum',
+              value: 'myNum',
               meta: {
                 reservedWord: false
               }
             },
-            value: {
+            right: {
               type: 'NAME',
-              name: 'number',
+              value: 'number',
               meta: {
                 reservedWord: false
               }
@@ -162,7 +177,10 @@ export const recordFixtures: Fixture[] = [
       meta: {
         position: 'PREFIX'
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'record type with 1 typed property and 1 untyped property',
@@ -172,16 +190,16 @@ export const recordFixtures: Fixture[] = [
       fields: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'myNum',
+            value: 'myNum',
             meta: {
               reservedWord: false
             }
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'number',
+            value: 'number',
             meta: {
               reservedWord: false
             }
@@ -189,13 +207,16 @@ export const recordFixtures: Fixture[] = [
         },
         {
           type: 'NAME',
-          name: 'myObject',
+          value: 'myObject',
           meta: {
             reservedWord: false
           }
         }
       ]
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'record type with a property that uses a type application as a value',
@@ -205,26 +226,26 @@ export const recordFixtures: Fixture[] = [
       fields: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'myArray',
+            value: 'myArray',
             meta: {
               reservedWord: false
             }
           },
-          value: {
+          right: {
             type: 'GENERIC',
-            subject: {
+            left: {
               type: 'NAME',
-              name: 'Array',
+              value: 'Array',
               meta: {
                 reservedWord: false
               }
             },
-            objects: [
+            elements: [
               {
                 type: 'NAME',
-                name: 'string',
+                value: 'string',
                 meta: {
                   reservedWord: false
                 }
@@ -237,7 +258,10 @@ export const recordFixtures: Fixture[] = [
           }
         }
       ]
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'record type with a property that uses a type union as a value',
@@ -247,33 +271,33 @@ export const recordFixtures: Fixture[] = [
       fields: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'myKey',
+            value: 'myKey',
             meta: {
               reservedWord: false
             }
           },
-          value: {
+          right: {
             type: 'UNION',
             elements: [
               {
                 type: 'NAME',
-                name: 'number',
+                value: 'number',
                 meta: {
                   reservedWord: false
                 }
               },
               {
                 type: 'NAME',
-                name: 'boolean',
+                value: 'boolean',
                 meta: {
                   reservedWord: false
                 }
               },
               {
                 type: 'NAME',
-                name: 'string',
+                value: 'string',
                 meta: {
                   reservedWord: false
                 }
@@ -282,7 +306,10 @@ export const recordFixtures: Fixture[] = [
           }
         }
       ]
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'record type with a property that uses a JavaScript keyword as a key',
@@ -292,23 +319,26 @@ export const recordFixtures: Fixture[] = [
       fields: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'continue',
+            value: 'continue',
             meta: {
               reservedWord: true
             }
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'string',
+            value: 'string',
             meta: {
               reservedWord: false
             }
           }
         }
       ]
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'record type with a property that uses a JavaScript future reserved word as a key',
@@ -318,23 +348,26 @@ export const recordFixtures: Fixture[] = [
       fields: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'class',
+            value: 'class',
             meta: {
               reservedWord: true
             }
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'string',
+            value: 'string',
             meta: {
               reservedWord: false
             }
           }
         }
       ]
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'record type with a property that uses a string representation of a JavaScript boolean literal as a key',
@@ -344,23 +377,26 @@ export const recordFixtures: Fixture[] = [
       fields: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'true',
+            value: 'true',
             meta: {
               reservedWord: true
             }
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'string',
+            value: 'string',
             meta: {
               reservedWord: false
             }
           }
         }
       ]
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'record type with a property that uses a numeric key',
@@ -370,19 +406,22 @@ export const recordFixtures: Fixture[] = [
       fields: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NUMBER',
             value: 0
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'string',
+            value: 'string',
             meta: {
               reservedWord: false
             }
           }
         }
       ]
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   }
 ]

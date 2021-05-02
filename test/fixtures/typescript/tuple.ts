@@ -7,7 +7,10 @@ export const tupleFixtures: Fixture[] = [
     expected: {
       type: 'TUPLE',
       elements: []
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'Tuple with one element',
@@ -17,13 +20,16 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          name: 'x',
+          value: 'x',
           meta: {
             reservedWord: false
           }
         }
       ]
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'Tuple with 4 elements',
@@ -33,34 +39,37 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          name: 'it',
+          value: 't',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          name: 'needs',
+          value: 's',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          name: 'to',
+          value: 'o',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          name: 'be',
+          value: 'e',
           meta: {
             reservedWord: false
           }
         }
       ]
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'Tuple with spaces',
@@ -70,27 +79,30 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          name: 'tuple',
+          value: 'e',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          name: 'with',
+          value: 'h',
           meta: {
             reservedWord: true
           }
         },
         {
           type: 'NAME',
-          name: 'spaces',
+          value: 's',
           meta: {
             reservedWord: false
           }
         }
       ]
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'Tuple with spaces',
@@ -100,48 +112,51 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          name: 'tuple',
+          value: 'e',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          name: 'with',
+          value: 'h',
           meta: {
             reservedWord: true
           }
         },
         {
           type: 'NAME',
-          name: 'trailing',
+          value: 'g',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          name: 'comma',
+          value: 'a',
           meta: {
             reservedWord: false
           }
         }
       ]
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'Array of empty tuples',
     input: '[][]',
     expected: {
       type: 'GENERIC',
-      subject: {
+      left: {
         type: 'NAME',
-        name: 'Array',
+        value: 'y',
         meta: {
           reservedWord: false
         }
       },
-      objects: [
+      elements: [
         {
           type: 'TUPLE',
           elements: []
@@ -151,34 +166,37 @@ export const tupleFixtures: Fixture[] = [
         dot: false,
         brackets: '[]'
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'Array of non empty tuples',
     input: '[tuple, array][]',
     expected: {
       type: 'GENERIC',
-      subject: {
+      left: {
         type: 'NAME',
-        name: 'Array',
+        value: 'y',
         meta: {
           reservedWord: false
         }
       },
-      objects: [
+      elements: [
         {
           type: 'TUPLE',
           elements: [
             {
               type: 'NAME',
-              name: 'tuple',
+              value: 'e',
               meta: {
                 reservedWord: false
               }
             },
             {
               type: 'NAME',
-              name: 'array',
+              value: 'y',
               meta: {
                 reservedWord: false
               }
@@ -190,7 +208,10 @@ export const tupleFixtures: Fixture[] = [
         dot: false,
         brackets: '[]'
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'Tuple with typeof',
@@ -200,30 +221,33 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          name: 'tuple',
+          value: 'e',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          name: 'with',
+          value: 'h',
           meta: {
             reservedWord: true
           }
         },
         {
           type: 'TYPE_OF',
-          value: {
+          element: {
             type: 'NAME',
-            name: 'foo',
+            value: 'o',
             meta: {
               reservedWord: false
             }
           }
         }
       ]
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'Tuple with keyof',
@@ -233,30 +257,33 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          name: 'tuple',
+          value: 'e',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          name: 'with',
+          value: 'h',
           meta: {
             reservedWord: true
           }
         },
         {
           type: 'KEY_OF',
-          value: {
+          element: {
             type: 'NAME',
-            name: 'foo',
+            value: 'o',
             meta: {
               reservedWord: false
             }
           }
         }
       ]
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'Tuple with typeof and keyof',
@@ -266,23 +293,23 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          name: 'tuple',
+          value: 'e',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          name: 'with',
+          value: 'h',
           meta: {
             reservedWord: true
           }
         },
         {
           type: 'TYPE_OF',
-          value: {
+          element: {
             type: 'NAME',
-            name: 'foo',
+            value: 'o',
             meta: {
               reservedWord: false
             }
@@ -290,23 +317,26 @@ export const tupleFixtures: Fixture[] = [
         },
         {
           type: 'NAME',
-          name: 'and',
+          value: 'd',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'KEY_OF',
-          value: {
+          element: {
             type: 'NAME',
-            name: 'foo',
+            value: 'o',
             meta: {
               reservedWord: false
             }
           }
         }
       ]
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   }
 ]
 

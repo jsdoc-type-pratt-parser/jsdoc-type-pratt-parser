@@ -6,133 +6,169 @@ export const jsdocFixtures: Fixture[] = [
     input: 'functional',
     expected: {
       type: 'NAME',
-      name: 'functional',
+      value: 'functional',
       meta: {
         reservedWord: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'name expression with instance scope punctuation',
     input: 'MyClass#myMember',
     expected: {
       type: 'NAME',
-      name: 'MyClass#myMember',
+      value: 'MyClass#myMember',
       meta: {
         reservedWord: false
       }
-    }
+    },
+    modes: ['jsdoc'],
+    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a Catharsis error
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
   },
   {
     description: 'name expression with inner scope punctuation',
     input: 'MyClass~myMember',
     expected: {
       type: 'NAME',
-      name: 'MyClass~myMember',
+      value: 'MyClass~myMember',
       meta: {
         reservedWord: false
       }
-    }
+    },
+    modes: ['jsdoc'],
+    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a Catharsis error
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
   },
   {
     description: 'name expression with instance and inner scope punctuation',
     input: 'MyClass#myMember#yourMember~theirMember',
     expected: {
       type: 'NAME',
-      name: 'MyClass#myMember#yourMember~theirMember',
+      value: 'MyClass#myMember#yourMember~theirMember',
       meta: {
         reservedWord: false
       }
-    }
+    },
+    modes: ['jsdoc'],
+    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a Catharsis error
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
   },
   {
     description: 'name expression for a class within a module',
     input: 'module:foo/bar/baz~Qux',
     expected: {
-      path: 'module:foo/bar/baz~Qux',
+      value: 'module:foo/bar/baz~Qux',
       type: 'MODULE'
-    }
+    },
+    modes: ['jsdoc'],
+    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a Catharsis error
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
   },
   {
     description: 'name expression for a class within a module with hyphens',
     input: 'module:foo-bar/baz~Qux',
     expected: {
-      path: 'module:foo-bar/baz~Qux',
+      value: 'module:foo-bar/baz~Qux',
       type: 'MODULE'
-    }
+    },
+    modes: ['jsdoc'],
+    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a Catharsis error
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
   },
   {
     description: 'name expression containing a reserved word',
     input: 'this',
     expected: {
       type: 'NAME',
-      name: 'this',
+      value: 'this',
       meta: {
         reservedWord: true
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'name expression for a symbol variation whose name is an empty string',
     input: 'MyClass()',
     expected: {
-      name: 'MyClass',
+      value: 'MyClass',
       type: 'SYMBOL'
-    }
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'name expression for a symbol variation whose name is one numeral',
     input: 'MyClass(2)',
     expected: {
-      name: 'MyClass',
+      value: 'MyClass',
       type: 'SYMBOL',
-      value: {
+      element: {
         type: 'NUMBER',
         value: 2
       }
-    }
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'name expression for a symbol variation whose name is multiple numerals',
     input: 'MyClass(23456)',
     expected: {
-      name: 'MyClass',
+      value: 'MyClass',
       type: 'SYMBOL',
-      value: {
+      element: {
         type: 'NUMBER',
         value: 23456
       }
-    }
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'name expression for a symbol variation whose name is one letter',
     input: 'MyClass(a)',
     expected: {
-      name: 'MyClass',
+      value: 'MyClass',
       type: 'SYMBOL',
-      value: {
-        name: 'a',
+      element: {
+        value: 'a',
         type: 'NAME',
         meta: {
           reservedWord: false
         }
       }
-    }
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'name expression for a symbol variation whose name is multiple letters',
     input: 'MyClass(abcde)',
     expected: {
-      name: 'MyClass',
+      value: 'MyClass',
       type: 'SYMBOL',
-      value: {
-        name: 'abcde',
+      element: {
+        value: 'abcde',
         type: 'NAME',
         meta: {
           reservedWord: false
         }
       }
-    }
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'name expression enclosed in double quotes',
@@ -143,7 +179,10 @@ export const jsdocFixtures: Fixture[] = [
       meta: {
         quote: '"'
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'name expression enclosed in single quotes',
@@ -154,54 +193,63 @@ export const jsdocFixtures: Fixture[] = [
       meta: {
         quote: '\''
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'name expression partially enclosed in double quotes',
     input: 'foo."bar.baz".qux',
     expected: {
       left: {
-        name: 'foo',
+        value: 'foo',
         type: 'NAME',
         meta: {
           reservedWord: false
         }
       },
-      path: [
+      value: [
         '"bar.baz"',
         'qux'
       ],
-      type: 'PROPERTY_PATH'
-    }
+      type: 'NAME_PATH'
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'name expression partially enclosed in single quotes',
     input: "foo.'bar.baz'.qux",
     expected: {
       left: {
-        name: 'foo',
+        value: 'foo',
         type: 'NAME',
         meta: {
           reservedWord: false
         }
       },
-      path: [
+      value: [
         "'bar.baz'",
         'qux'
       ],
-      type: 'PROPERTY_PATH'
-    }
+      type: 'NAME_PATH'
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'identifier with a repeatable param that is not enclosed in brackets',
     input: 'MyClass(...foo)',
     expected: {
-      name: 'MyClass',
+      value: 'MyClass',
       type: 'SYMBOL',
-      value: {
+      element: {
         type: 'VARIADIC',
         element: {
-          name: 'foo',
+          value: 'foo',
           type: 'NAME',
           meta: {
             reservedWord: false
@@ -212,25 +260,28 @@ export const jsdocFixtures: Fixture[] = [
           position: 'PREFIX'
         }
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'type application with no period',
     input: 'Array<string>',
     expected: {
       type: 'GENERIC',
-      objects: [
+      elements: [
         {
           type: 'NAME',
-          name: 'string',
+          value: 'string',
           meta: {
             reservedWord: false
           }
         }
       ],
-      subject: {
+      left: {
         type: 'NAME',
-        name: 'Array',
+        value: 'Array',
         meta: {
           reservedWord: false
         }
@@ -239,25 +290,28 @@ export const jsdocFixtures: Fixture[] = [
         brackets: '<>',
         dot: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'Jsdoc Toolkit 2-style array notation for an array of strings',
     input: 'string[]',
     expected: {
       type: 'GENERIC',
-      objects: [
+      elements: [
         {
           type: 'NAME',
-          name: 'string',
+          value: 'string',
           meta: {
             reservedWord: false
           }
         }
       ],
-      subject: {
+      left: {
         type: 'NAME',
-        name: 'Array',
+        value: 'Array',
         meta: {
           reservedWord: false
         }
@@ -266,14 +320,17 @@ export const jsdocFixtures: Fixture[] = [
         brackets: '[]',
         dot: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'Jsdoc Toolkit 2-style array notation for an array of functions',
     input: 'function[]',
     expected: {
       type: 'GENERIC',
-      objects: [
+      elements: [
         {
           type: 'FUNCTION',
           parameters: [],
@@ -282,9 +339,9 @@ export const jsdocFixtures: Fixture[] = [
           }
         }
       ],
-      subject: {
+      left: {
         type: 'NAME',
-        name: 'Array',
+        value: 'Array',
         meta: {
           reservedWord: false
         }
@@ -293,28 +350,31 @@ export const jsdocFixtures: Fixture[] = [
         brackets: '[]',
         dot: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'Jsdoc Toolkit 2-style nested array (two levels)',
     input: 'number[][]',
     expected: {
       type: 'GENERIC',
-      objects: [
+      elements: [
         {
           type: 'GENERIC',
-          objects: [
+          elements: [
             {
               type: 'NAME',
-              name: 'number',
+              value: 'number',
               meta: {
                 reservedWord: false
               }
             }
           ],
-          subject: {
+          left: {
             type: 'NAME',
-            name: 'Array',
+            value: 'Array',
             meta: {
               reservedWord: false
             }
@@ -325,9 +385,9 @@ export const jsdocFixtures: Fixture[] = [
           }
         }
       ],
-      subject: {
+      left: {
         type: 'NAME',
-        name: 'Array',
+        value: 'Array',
         meta: {
           reservedWord: false
         }
@@ -336,31 +396,34 @@ export const jsdocFixtures: Fixture[] = [
         brackets: '[]',
         dot: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'Jsdoc Toolkit 2-style nested array (three levels)',
     input: 'number[][][]',
     expected: {
       type: 'GENERIC',
-      objects: [
+      elements: [
         {
           type: 'GENERIC',
-          objects: [
+          elements: [
             {
               type: 'GENERIC',
-              objects: [
+              elements: [
                 {
                   type: 'NAME',
-                  name: 'number',
+                  value: 'number',
                   meta: {
                     reservedWord: false
                   }
                 }
               ],
-              subject: {
+              left: {
                 type: 'NAME',
-                name: 'Array',
+                value: 'Array',
                 meta: {
                   reservedWord: false
                 }
@@ -371,9 +434,9 @@ export const jsdocFixtures: Fixture[] = [
               }
             }
           ],
-          subject: {
+          left: {
             type: 'NAME',
-            name: 'Array',
+            value: 'Array',
             meta: {
               reservedWord: false
             }
@@ -384,9 +447,9 @@ export const jsdocFixtures: Fixture[] = [
           }
         }
       ],
-      subject: {
+      left: {
         type: 'NAME',
-        name: 'Array',
+        value: 'Array',
         meta: {
           reservedWord: false
         }
@@ -395,7 +458,10 @@ export const jsdocFixtures: Fixture[] = [
         brackets: '[]',
         dot: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'record type with a property that uses a type application as a key',
@@ -405,20 +471,20 @@ export const jsdocFixtures: Fixture[] = [
       fields: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'GENERIC',
-            objects: [
+            elements: [
               {
                 type: 'NAME',
-                name: 'string',
+                value: 'string',
                 meta: {
                   reservedWord: false
                 }
               }
             ],
-            subject: {
+            left: {
               type: 'NAME',
-              name: 'Array',
+              value: 'Array',
               meta: {
                 reservedWord: false
               }
@@ -428,16 +494,19 @@ export const jsdocFixtures: Fixture[] = [
               dot: true
             }
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'number',
+            value: 'number',
             meta: {
               reservedWord: false
             }
           }
         }
       ]
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'record type with a property that uses a type union as a key',
@@ -447,42 +516,45 @@ export const jsdocFixtures: Fixture[] = [
       fields: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'UNION',
             elements: [
               {
                 type: 'NAME',
-                name: 'number',
+                value: 'number',
                 meta: {
                   reservedWord: false
                 }
               },
               {
                 type: 'NAME',
-                name: 'boolean',
+                value: 'boolean',
                 meta: {
                   reservedWord: false
                 }
               },
               {
                 type: 'NAME',
-                name: 'string',
+                value: 'string',
                 meta: {
                   reservedWord: false
                 }
               }
             ]
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'number',
+            value: 'number',
             meta: {
               reservedWord: false
             }
           }
         }
       ]
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'record type with a property name that starts with a literal',
@@ -492,19 +564,19 @@ export const jsdocFixtures: Fixture[] = [
       fields: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'undefinedHTML',
+            value: 'undefinedHTML',
             meta: {
               reservedWord: false
             }
           },
-          value: {
+          right: {
             type: 'UNION',
             elements: [
               {
                 type: 'NAME',
-                name: 'string',
+                value: 'string',
                 meta: {
                   reservedWord: false
                 }
@@ -516,7 +588,10 @@ export const jsdocFixtures: Fixture[] = [
           }
         }
       ]
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'record type with a property that contains a function with no preceding space',
@@ -526,14 +601,14 @@ export const jsdocFixtures: Fixture[] = [
       fields: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'foo',
+            value: 'foo',
             meta: {
               reservedWord: false
             }
           },
-          value: {
+          right: {
             type: 'FUNCTION',
             parameters: [],
             meta: {
@@ -542,7 +617,10 @@ export const jsdocFixtures: Fixture[] = [
           }
         }
       ]
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'function type with no trailing pathentheses',
@@ -553,7 +631,10 @@ export const jsdocFixtures: Fixture[] = [
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'standard function type (should still parse if JSDoc expressions are allowed)',
@@ -565,40 +646,40 @@ export const jsdocFixtures: Fixture[] = [
         parameters: [
           {
             type: 'KEY_VALUE',
-            key: {
+            left: {
               type: 'NAME',
               meta: {
                 reservedWord: true
               },
-              name: 'this'
+              value: 'this'
             },
-            value: {
+            right: {
               left: {
-                name: 'my',
+                value: 'my',
                 type: 'NAME',
                 meta: {
                   reservedWord: false
                 }
               },
-              path: [
+              value: [
                 'namespace',
                 'Class'
               ],
-              type: 'PROPERTY_PATH'
+              type: 'NAME_PATH'
             }
           },
           {
             left: {
-              name: 'my',
+              value: 'my',
               type: 'NAME',
               meta: {
                 reservedWord: false
               }
             },
-            path: [
+            value: [
               'Class'
             ],
-            type: 'PROPERTY_PATH'
+            type: 'NAME_PATH'
           }
         ],
         meta: {
@@ -608,7 +689,10 @@ export const jsdocFixtures: Fixture[] = [
       meta: {
         position: 'SUFFIX'
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'type union with no parentheses, a repeatable param, and a JSDoc-style array',
@@ -620,7 +704,7 @@ export const jsdocFixtures: Fixture[] = [
           type: 'VARIADIC',
           element: {
             type: 'NAME',
-            name: 'string',
+            value: 'string',
             meta: {
               reservedWord: false
             }
@@ -632,18 +716,18 @@ export const jsdocFixtures: Fixture[] = [
         },
         {
           type: 'GENERIC',
-          objects: [
+          elements: [
             {
-              name: 'string',
+              value: 'string',
               type: 'NAME',
               meta: {
                 reservedWord: false
               }
             }
           ],
-          subject: {
+          left: {
             type: 'NAME',
-            name: 'Array',
+            value: 'Array',
             meta: {
               reservedWord: false
             }
@@ -654,6 +738,9 @@ export const jsdocFixtures: Fixture[] = [
           }
         }
       ]
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   }
 ]

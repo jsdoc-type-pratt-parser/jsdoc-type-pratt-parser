@@ -21,7 +21,7 @@ export class KeyOfParslet implements PrefixParslet {
     }
     const value = parser.tryParseType(Precedence.KEY_OF_TYPE_OF)
     if (value !== undefined) {
-      result.value = assertTerminal(value)
+      result.element = assertTerminal(value)
     }
     return result
   }

@@ -11,6 +11,7 @@ import {
   ArrowFunctionWithoutParametersParslet,
   ArrowFunctionWithParametersParslet
 } from '../parslets/ArrowFunctionParslet'
+import { NamePathParslet } from '../parslets/NamePathParslet'
 
 export const typescriptGrammar: Grammar = () => {
   const {
@@ -28,14 +29,18 @@ export const typescriptGrammar: Grammar = () => {
       new ArrowFunctionWithoutParametersParslet(),
       new FunctionParslet({
         allowWithoutParenthesis: false,
-        allowNoReturnType: false
+        allowNoReturnType: false,
+        allowNamedParameters: ['this', 'new']
       }),
       new TupleParslet()
     ],
     infixParslets: [
       ...infixParslets,
       new ArrayBracketsParslet(),
-      new ArrowFunctionWithParametersParslet()
+      new ArrowFunctionWithParametersParslet(),
+      new NamePathParslet({
+        allowJsdocNamePaths: false
+      })
     ]
   }
 }

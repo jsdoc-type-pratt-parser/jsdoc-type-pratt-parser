@@ -6,7 +6,7 @@ import { VariadicParslet } from '../parslets/VariadicParslet'
 import { RecordParslet } from '../parslets/RecordParslet'
 import { ModuleParslet } from '../parslets/ModuleParslet'
 import { GenericParslet } from '../parslets/GenericParslet'
-import { PropertyPathParslet } from '../parslets/PropertyPathParslet'
+import { NamePathParslet } from '../parslets/NamePathParslet'
 import { ParenthesisParslet } from '../parslets/ParenthesisParslet'
 import { KeyValueParslet } from '../parslets/KeyValueParslet'
 import { NumberParslet } from '../parslets/NumberParslet'
@@ -33,14 +33,12 @@ export const baseGrammar: Grammar = () => {
       new ParameterListParslet({
         allowTrailingComma: true
       }),
-      new PropertyPathParslet(),
       new KeyValueParslet(),
       new GenericParslet(),
       new UnenclosedUnionParslet(),
       new OptionalParslet(),
       new NullableInfixParslet(),
       new NotNullableParslet(),
-      new PropertyPathParslet(),
       new VariadicParslet()
     ]
   }

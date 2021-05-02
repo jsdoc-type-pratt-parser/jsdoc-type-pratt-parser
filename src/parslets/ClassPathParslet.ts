@@ -17,19 +17,19 @@ export class ClassPathParslet implements InfixParslet {
     if (left.type !== 'NAME') {
       throw new Error('All elements of class path have to be identifiers')
     }
-    let result = left.name
+    let result = left.value
     let lastToken = parser.getToken()
     while (parser.consume('#') || parser.consume('~') || parser.consume('/')) {
       const next = parser.parseType(Precedence.POSTFIX)
       if (next.type !== 'NAME') {
         throw new Error('All elements of class path have to be identifiers')
       }
-      result += lastToken.text + next.name
+      result += lastToken.text + next.value
       lastToken = parser.getToken()
     }
     return {
       type: 'NAME',
-      name: result,
+      value: result,
       meta: {
         reservedWord: left.meta.reservedWord
       }

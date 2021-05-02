@@ -1,67 +1,53 @@
-import { DiffFixture } from '../Fixture'
+import { Fixture } from '../Fixture'
 
-export const miscDiffs: DiffFixture[] = [
+export const miscDiffs: Fixture[] = [
   {
     description: 'function without parenthesis',
     input: 'function',
-    modes: {
-      closure: false,
-      jsdoc: true,
-      typescript: false
-    }
+    modes: ['jsdoc'],
+    catharsisModes: ['jsdoc'],
+    jtpModes: ['jsdoc', 'permissive']
   },
   {
     description: 'function without return type',
     input: 'function()',
-    modes: {
-      closure: true,
-      jsdoc: true,
-      typescript: false
-    }
+    modes: ['jsdoc', 'closure'],
+    catharsisModes: ['jsdoc', 'closure'],
+    jtpModes: ['jsdoc', 'closure', 'permissive']
   },
   {
     description: 'arrow function',
     input: '() => void',
-    modes: {
-      closure: false,
-      jsdoc: false,
-      typescript: true
-    }
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'keyof',
     input: 'keyof A',
-    modes: {
-      closure: false,
-      jsdoc: false,
-      typescript: true
-    }
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'typeof',
     input: 'typeof A',
-    modes: {
-      closure: false,
-      jsdoc: false,
-      typescript: true
-    }
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'import',
     input: 'import("x")',
-    modes: {
-      closure: false,
-      jsdoc: false,
-      typescript: true
-    }
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'tuple',
     input: '[a]',
-    modes: {
-      closure: false,
-      jsdoc: false,
-      typescript: true
-    }
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   }
 ]

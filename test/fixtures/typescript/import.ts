@@ -6,51 +6,60 @@ export const importFixtures: Fixture[] = [
     input: 'import("x")',
     expected: {
       type: 'IMPORT',
-      path: {
+      element: {
         type: 'STRING_VALUE',
         value: 'x',
         meta: {
           quote: '"'
         }
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'import "./x"',
     input: 'import("./x")',
     expected: {
       type: 'IMPORT',
-      path: {
+      element: {
         type: 'STRING_VALUE',
         value: './x',
         meta: {
           quote: '"'
         }
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'import "../x"',
     input: 'import("../x")',
     expected: {
       type: 'IMPORT',
-      path: {
+      element: {
         type: 'STRING_VALUE',
         value: '../x',
         meta: {
           quote: '"'
         }
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'import a named export',
     input: 'import("x").T',
     expected: {
-      type: 'PROPERTY_PATH',
+      type: 'NAME_PATH',
       left: {
         type: 'IMPORT',
-        path: {
+        element: {
           type: 'STRING_VALUE',
           value: 'x',
           meta: {
@@ -58,19 +67,22 @@ export const importFixtures: Fixture[] = [
           }
         }
       },
-      path: [
+      value: [
         'T'
       ]
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'import 2-level named export',
     input: 'import("x").T.U',
     expected: {
-      type: 'PROPERTY_PATH',
+      type: 'NAME_PATH',
       left: {
         type: 'IMPORT',
-        path: {
+        element: {
           type: 'STRING_VALUE',
           value: 'x',
           meta: {
@@ -78,22 +90,25 @@ export const importFixtures: Fixture[] = [
           }
         }
       },
-      path: [
+      value: [
         'T',
         'U'
       ]
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   },
   {
     description: 'import 2-level named export as generic',
     input: 'import("x").T.U<V,W>',
     expected: {
       type: 'GENERIC',
-      subject: {
-        type: 'PROPERTY_PATH',
+      left: {
+        type: 'NAME_PATH',
         left: {
           type: 'IMPORT',
-          path: {
+          element: {
             type: 'STRING_VALUE',
             value: 'x',
             meta: {
@@ -101,22 +116,22 @@ export const importFixtures: Fixture[] = [
             }
           }
         },
-        path: [
+        value: [
           'T',
           'U'
         ]
       },
-      objects: [
+      elements: [
         {
           type: 'NAME',
-          name: 'V',
+          value: 'V',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          name: 'W',
+          value: 'W',
           meta: {
             reservedWord: false
           }
@@ -126,6 +141,9 @@ export const importFixtures: Fixture[] = [
         dot: false,
         brackets: '<>'
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   }
 ]

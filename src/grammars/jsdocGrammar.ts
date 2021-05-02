@@ -5,6 +5,7 @@ import { ArrayBracketsParslet } from '../parslets/ArrayBracketsParslet'
 import { StringValueParslet } from '../parslets/StringValueParslet'
 import { FunctionParslet } from '../parslets/FunctionParslet'
 import { baseGrammar } from './baseGrammar'
+import { NamePathParslet } from '../parslets/NamePathParslet'
 
 export const jsdocGrammar: Grammar = () => {
   const {
@@ -26,7 +27,10 @@ export const jsdocGrammar: Grammar = () => {
       ...infixParslets,
       new SymbolParslet(),
       new ClassPathParslet(),
-      new ArrayBracketsParslet()
+      new ArrayBracketsParslet(),
+      new NamePathParslet({
+        allowJsdocNamePaths: true
+      })
     ]
   }
 }

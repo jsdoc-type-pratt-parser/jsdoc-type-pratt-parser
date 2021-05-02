@@ -11,7 +11,7 @@ export const miscFixtures: Fixture[] = [
       parameters: [
         {
           type: 'NAME',
-          name: 'TrailingComma',
+          value: 'TrailingComma',
           meta: {
             reservedWord: false
           }
@@ -19,7 +19,7 @@ export const miscFixtures: Fixture[] = [
       ],
       returnType: {
         type: 'NAME',
-        name: 'string',
+        value: 'string',
         meta: {
           reservedWord: false
         }
@@ -27,6 +27,9 @@ export const miscFixtures: Fixture[] = [
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsisModes: [],
+    jtpModes: ['typescript', 'permissive']
   }
 ]

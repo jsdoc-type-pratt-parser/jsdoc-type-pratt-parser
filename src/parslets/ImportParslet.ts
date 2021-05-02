@@ -27,7 +27,7 @@ export class ImportParslet implements PrefixParslet {
     }
     return {
       type: 'IMPORT',
-      path
+      element: path
     }
   }
 }

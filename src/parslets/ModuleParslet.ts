@@ -19,7 +19,7 @@ export class ModuleParslet implements PrefixParslet {
       throw new Error('module needs to have a \':\' afterwards.')
     }
     let result = 'module:'
-    const allowed: TokenType[] = ['Identifier', '~', '@', '/', '#']
+    const allowed: TokenType[] = ['Identifier', '@', '/']
     let token = parser.getToken()
     while (allowed.includes(token.type)) {
       result += token.text
@@ -28,7 +28,7 @@ export class ModuleParslet implements PrefixParslet {
     }
     return {
       type: 'MODULE',
-      path: result
+      value: result
     }
   }
 }

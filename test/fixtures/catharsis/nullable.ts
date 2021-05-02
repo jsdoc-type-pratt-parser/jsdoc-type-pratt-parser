@@ -8,7 +8,7 @@ export const nullableFixtures: Fixture[] = [
       type: 'NULLABLE',
       element: {
         type: 'NAME',
-        name: 'number',
+        value: 'number',
         meta: {
           reservedWord: false
         }
@@ -16,7 +16,10 @@ export const nullableFixtures: Fixture[] = [
       meta: {
         position: 'PREFIX'
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'postfix nullable number',
@@ -25,7 +28,7 @@ export const nullableFixtures: Fixture[] = [
       type: 'NULLABLE',
       element: {
         type: 'NAME',
-        name: 'number',
+        value: 'number',
         meta: {
           reservedWord: false
         }
@@ -33,7 +36,10 @@ export const nullableFixtures: Fixture[] = [
       meta: {
         position: 'SUFFIX'
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'non-nullable object',
@@ -42,7 +48,7 @@ export const nullableFixtures: Fixture[] = [
       type: 'NOT_NULLABLE',
       element: {
         type: 'NAME',
-        name: 'Object',
+        value: 'Object',
         meta: {
           reservedWord: false
         }
@@ -50,7 +56,10 @@ export const nullableFixtures: Fixture[] = [
       meta: {
         position: 'PREFIX'
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'postfix non-nullable object',
@@ -59,7 +68,7 @@ export const nullableFixtures: Fixture[] = [
       type: 'NOT_NULLABLE',
       element: {
         type: 'NAME',
-        name: 'Object',
+        value: 'Object',
         meta: {
           reservedWord: false
         }
@@ -67,7 +76,10 @@ export const nullableFixtures: Fixture[] = [
       meta: {
         position: 'SUFFIX'
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'repeatable nullable number',
@@ -78,7 +90,7 @@ export const nullableFixtures: Fixture[] = [
         type: 'NULLABLE',
         element: {
           type: 'NAME',
-          name: 'number',
+          value: 'number',
           meta: {
             reservedWord: false
           }
@@ -91,7 +103,10 @@ export const nullableFixtures: Fixture[] = [
         position: 'PREFIX',
         squareBrackets: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'postfix repeatable nullable number',
@@ -102,7 +117,7 @@ export const nullableFixtures: Fixture[] = [
         type: 'NULLABLE',
         element: {
           type: 'NAME',
-          name: 'number',
+          value: 'number',
           meta: {
             reservedWord: false
           }
@@ -115,7 +130,10 @@ export const nullableFixtures: Fixture[] = [
         position: 'PREFIX',
         squareBrackets: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'repeatable non-nullable object',
@@ -126,7 +144,7 @@ export const nullableFixtures: Fixture[] = [
         type: 'NOT_NULLABLE',
         element: {
           type: 'NAME',
-          name: 'Object',
+          value: 'Object',
           meta: {
             reservedWord: false
           }
@@ -139,7 +157,10 @@ export const nullableFixtures: Fixture[] = [
         position: 'PREFIX',
         squareBrackets: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'postfix repeatable non-nullable object',
@@ -150,7 +171,7 @@ export const nullableFixtures: Fixture[] = [
         type: 'NOT_NULLABLE',
         element: {
           type: 'NAME',
-          name: 'Object',
+          value: 'Object',
           meta: {
             reservedWord: false
           }
@@ -163,7 +184,10 @@ export const nullableFixtures: Fixture[] = [
         position: 'PREFIX',
         squareBrackets: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'postfix optional nullable number',
@@ -174,7 +198,7 @@ export const nullableFixtures: Fixture[] = [
         type: 'OPTIONAL',
         element: {
           type: 'NAME',
-          name: 'number',
+          value: 'number',
           meta: {
             reservedWord: false
           }
@@ -186,7 +210,10 @@ export const nullableFixtures: Fixture[] = [
       meta: {
         position: 'SUFFIX'
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: [] // NOTE: This seems to be a JTP error
   },
   {
     description: 'postfix nullable optional number',
@@ -197,7 +224,7 @@ export const nullableFixtures: Fixture[] = [
         type: 'NULLABLE',
         element: {
           type: 'NAME',
-          name: 'number',
+          value: 'number',
           meta: {
             reservedWord: false
           }
@@ -209,7 +236,10 @@ export const nullableFixtures: Fixture[] = [
       meta: {
         position: 'SUFFIX'
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'postfix repeatable nullable optional number',
@@ -222,7 +252,7 @@ export const nullableFixtures: Fixture[] = [
           type: 'NULLABLE',
           element: {
             type: 'NAME',
-            name: 'number',
+            value: 'number',
             meta: {
               reservedWord: false
             }
@@ -239,7 +269,10 @@ export const nullableFixtures: Fixture[] = [
         position: 'PREFIX',
         squareBrackets: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'postfix optional non-nullable object',
@@ -250,7 +283,7 @@ export const nullableFixtures: Fixture[] = [
         type: 'OPTIONAL',
         element: {
           type: 'NAME',
-          name: 'Object',
+          value: 'Object',
           meta: {
             reservedWord: false
           }
@@ -262,7 +295,10 @@ export const nullableFixtures: Fixture[] = [
       meta: {
         position: 'SUFFIX'
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: [] // NOTE: This seems to be a JTP error
   },
   {
     description: 'postfix non-nullable optional object',
@@ -273,7 +309,7 @@ export const nullableFixtures: Fixture[] = [
         type: 'NOT_NULLABLE',
         element: {
           type: 'NAME',
-          name: 'Object',
+          value: 'Object',
           meta: {
             reservedWord: false
           }
@@ -285,7 +321,10 @@ export const nullableFixtures: Fixture[] = [
       meta: {
         position: 'SUFFIX'
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'postfix repeatable non-nullable optional object',
@@ -298,7 +337,7 @@ export const nullableFixtures: Fixture[] = [
           type: 'NOT_NULLABLE',
           element: {
             type: 'NAME',
-            name: 'Object',
+            value: 'Object',
             meta: {
               reservedWord: false
             }
@@ -315,6 +354,9 @@ export const nullableFixtures: Fixture[] = [
         position: 'PREFIX',
         squareBrackets: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   }
 ]

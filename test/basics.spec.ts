@@ -8,7 +8,7 @@ describe('basics', () => {
     const typeString = 'sometype'
     const expected: ParseResult = {
       type: 'NAME',
-      name: 'sometype',
+      value: 'sometype',
       meta: {
         reservedWord: false
       }
@@ -25,27 +25,27 @@ describe('basics', () => {
       elements: [
         {
           type: 'GENERIC',
-          subject: {
+          left: {
             type: 'NAME',
-            name: 'Array',
+            value: 'Array',
             meta: {
               reservedWord: false
             }
           },
-          objects: [
+          elements: [
             {
               type: 'UNION',
               elements: [
                 {
                   type: 'NAME',
-                  name: 'AType',
+                  value: 'AType',
                   meta: {
                     reservedWord: false
                   }
                 },
                 {
                   type: 'NAME',
-                  name: 'OtherType',
+                  value: 'OtherType',
                   meta: {
                     reservedWord: false
                   }

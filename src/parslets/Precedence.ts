@@ -15,7 +15,7 @@ export enum Precedence {
   ARROW,
   KEY_VALUE,
   GENERIC,
-  PROPERTY_PATH,
+  NAME_PATH,
   KEY_OF_TYPE_OF,
   ARRAY_BRACKETS,
   SPECIAL_TYPES

@@ -19,8 +19,8 @@ export class KeyValueParslet implements InfixParslet {
     const value = parser.parseType(Precedence.KEY_VALUE)
     return {
       type: 'KEY_VALUE',
-      key: left.type === 'NUMBER' ? left : assertTerminal(left),
-      value: value
+      left: left.type === 'NUMBER' ? left : assertTerminal(left),
+      right: value
     }
   }
 }

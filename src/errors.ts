@@ -1,4 +1,5 @@
 import { Token } from './lexer/Token'
+import { NonTerminalResult } from './ParseResult'
 
 function tokenToString (token: Token): string {
   if (token.text !== undefined && token.text !== '') {
@@ -37,6 +38,14 @@ export class EarlyEndOfParseError extends Error {
 
   getToken (): Token {
     return this.token
+  }
+}
+
+export class UnexpectedTypeError extends Error {
+  constructor (result: NonTerminalResult) {
+    super(`Unexpected type: '${result.type}'`)
+
+    Object.setPrototypeOf(this, UnexpectedTypeError.prototype)
   }
 }
 

@@ -147,7 +147,7 @@ const jtpRules: TransformRules<JtpResult> = {
 
   NAME: result => ({
     type: 'NAME',
-    name: result.name
+    name: result.value
   }),
 
   TYPE_OF: (result, transform) => ({
@@ -171,8 +171,8 @@ const jtpRules: TransformRules<JtpResult> = {
     type: 'IMPORT',
     path: {
       type: 'STRING_VALUE',
-      quoteStyle: result.path.meta.quote,
-      string: result.path.value
+      quoteStyle: result.element.meta.quote,
+      string: result.element.value
     }
   }),
 
@@ -210,8 +210,8 @@ const jtpRules: TransformRules<JtpResult> = {
 
   GENERIC: (result, transform) => ({
     type: 'GENERIC',
-    subject: transform(result.subject),
-    objects: result.objects.map(transform),
+    subject: transform(result.left),
+    objects: result.elements.map(transform),
     meta: {
       syntax: result.meta.brackets === '[]' ? 'SQUARE_BRACKET' : result.meta.dot ? 'ANGLE_BRACKET_WITH_DOT' : 'ANGLE_BRACKET'
     }
@@ -223,7 +223,7 @@ const jtpRules: TransformRules<JtpResult> = {
   MODULE: notAvailableTransform,
   NULL: notAvailableTransform,
   NUMBER: notAvailableTransform,
-  PROPERTY_PATH: notAvailableTransform,
+  NAME_PATH: notAvailableTransform,
   RECORD: notAvailableTransform,
   STRING_VALUE: notAvailableTransform,
   SYMBOL: notAvailableTransform,

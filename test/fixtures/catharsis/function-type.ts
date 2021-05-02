@@ -9,14 +9,14 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'NAME',
-          name: 'string',
+          value: 'g',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          name: 'boolean',
+          value: 'n',
           meta: {
             reservedWord: false
           }
@@ -25,7 +25,10 @@ export const functionFixtures: Fixture[] = [
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['jsdoc', 'closure'], // typescript does not allow function types without return type
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
   },
   {
     description: 'repeatable function with two basic parameters',
@@ -37,14 +40,14 @@ export const functionFixtures: Fixture[] = [
         parameters: [
           {
             type: 'NAME',
-            name: 'string',
+            value: 'g',
             meta: {
               reservedWord: false
             }
           },
           {
             type: 'NAME',
-            name: 'boolean',
+            value: 'n',
             meta: {
               reservedWord: false
             }
@@ -58,7 +61,10 @@ export const functionFixtures: Fixture[] = [
         position: 'PREFIX',
         squareBrackets: false
       }
-    }
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with two basic parameters and a return value',
@@ -68,14 +74,14 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'NAME',
-          name: 'string',
+          value: 'g',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          name: 'boolean',
+          value: 'n',
           meta: {
             reservedWord: false
           }
@@ -83,7 +89,7 @@ export const functionFixtures: Fixture[] = [
       ],
       returnType: {
         type: 'NAME',
-        name: 'boolean',
+        value: 'n',
         meta: {
           reservedWord: false
         }
@@ -91,7 +97,10 @@ export const functionFixtures: Fixture[] = [
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'repeatable function with two basic parameters and a return value',
@@ -103,14 +112,14 @@ export const functionFixtures: Fixture[] = [
         parameters: [
           {
             type: 'NAME',
-            name: 'string',
+            value: 'g',
             meta: {
               reservedWord: false
             }
           },
           {
             type: 'NAME',
-            name: 'boolean',
+            value: 'n',
             meta: {
               reservedWord: false
             }
@@ -118,7 +127,7 @@ export const functionFixtures: Fixture[] = [
         ],
         returnType: {
           type: 'NAME',
-          name: 'boolean',
+          value: 'n',
           meta: {
             reservedWord: false
           }
@@ -131,7 +140,10 @@ export const functionFixtures: Fixture[] = [
         squareBrackets: false,
         position: 'PREFIX'
       }
-    }
+    },
+    modes: ['jsdoc', 'typescript', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'optional function with one basic parameter',
@@ -143,7 +155,7 @@ export const functionFixtures: Fixture[] = [
         parameters: [
           {
             type: 'NAME',
-            name: 'string',
+            value: 'g',
             meta: {
               reservedWord: false
             }
@@ -156,7 +168,10 @@ export const functionFixtures: Fixture[] = [
       meta: {
         position: 'SUFFIX'
       }
-    }
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with no parameters and a return value',
@@ -166,7 +181,7 @@ export const functionFixtures: Fixture[] = [
       parameters: [],
       returnType: {
         type: 'NAME',
-        name: 'number',
+        value: 'r',
         meta: {
           reservedWord: false
         }
@@ -174,7 +189,10 @@ export const functionFixtures: Fixture[] = [
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'function with a "this" type and no parameters',
@@ -182,27 +200,27 @@ export const functionFixtures: Fixture[] = [
     expected: {
       parameters: [
         {
-          key: {
-            name: 'this',
+          left: {
+            value: 'this',
             type: 'NAME',
             meta: {
               reservedWord: true
             }
           },
           type: 'KEY_VALUE',
-          value: {
+          right: {
             left: {
-              name: 'goog',
+              value: 'g',
               type: 'NAME',
               meta: {
                 reservedWord: false
               }
             },
-            path: [
+            value: [
               'ui',
               'Menu'
             ],
-            type: 'PROPERTY_PATH'
+            type: 'NAME_PATH'
           }
         }
       ],
@@ -210,7 +228,10 @@ export const functionFixtures: Fixture[] = [
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a "this" type and one parameter',
@@ -218,31 +239,31 @@ export const functionFixtures: Fixture[] = [
     expected: {
       parameters: [
         {
-          key: {
-            name: 'this',
+          left: {
+            value: 'this',
             type: 'NAME',
             meta: {
               reservedWord: true
             }
           },
           type: 'KEY_VALUE',
-          value: {
+          right: {
             left: {
-              name: 'goog',
+              value: 'g',
               type: 'NAME',
               meta: {
                 reservedWord: false
               }
             },
-            path: [
+            value: [
               'ui',
               'Menu'
             ],
-            type: 'PROPERTY_PATH'
+            type: 'NAME_PATH'
           }
         },
         {
-          name: 'string',
+          value: 'g',
           type: 'NAME',
           meta: {
             reservedWord: false
@@ -253,7 +274,10 @@ export const functionFixtures: Fixture[] = [
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a "new" type and no parameters',
@@ -263,33 +287,36 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'new',
+            value: 'new',
             meta: {
               reservedWord: true
             }
           },
-          value: {
+          right: {
             left: {
-              name: 'goog',
+              value: 'g',
               type: 'NAME',
               meta: {
                 reservedWord: false
               }
             },
-            path: [
+            value: [
               'ui',
               'Menu'
             ],
-            type: 'PROPERTY_PATH'
+            type: 'NAME_PATH'
           }
         }
       ],
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a "new" type and one parameter',
@@ -299,31 +326,31 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'new',
+            value: 'new',
             meta: {
               reservedWord: true
             }
           },
-          value: {
+          right: {
             left: {
-              name: 'goog',
+              value: 'goog',
               type: 'NAME',
               meta: {
                 reservedWord: false
               }
             },
-            path: [
+            value: [
               'ui',
               'Menu'
             ],
-            type: 'PROPERTY_PATH'
+            type: 'NAME_PATH'
           }
         },
         {
           type: 'NAME',
-          name: 'string',
+          value: 'string',
           meta: {
             reservedWord: false
           }
@@ -332,7 +359,10 @@ export const functionFixtures: Fixture[] = [
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a "new" and "this" type and no parameters',
@@ -342,56 +372,59 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'new',
+            value: 'new',
             meta: {
               reservedWord: true
             }
           },
-          value: {
+          right: {
             left: {
-              name: 'goog',
+              value: 'goog',
               type: 'NAME',
               meta: {
                 reservedWord: false
               }
             },
-            path: [
+            value: [
               'ui',
               'Menu'
             ],
-            type: 'PROPERTY_PATH'
+            type: 'NAME_PATH'
           }
         },
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'this',
+            value: 'this',
             meta: {
               reservedWord: true
             }
           },
-          value: {
+          element: {
             left: {
-              name: 'goog',
+              value: 'goog',
               type: 'NAME',
               meta: {
                 reservedWord: false
               }
             },
-            path: [
+            value: [
               'ui'
             ],
-            type: 'PROPERTY_PATH'
+            type: 'NAME_PATH'
           }
         }
       ],
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: [] // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a fixed parameter, followed by a variable number of parameters, as well as a return value',
@@ -401,7 +434,7 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'NAME',
-          name: 'string',
+          value: 'string',
           meta: {
             reservedWord: false
           }
@@ -410,7 +443,7 @@ export const functionFixtures: Fixture[] = [
           type: 'VARIADIC',
           element: {
             type: 'NAME',
-            name: 'number',
+            value: 'number',
             meta: {
               reservedWord: false
             }
@@ -423,7 +456,7 @@ export const functionFixtures: Fixture[] = [
       ],
       returnType: {
         type: 'NAME',
-        name: 'number',
+        value: 'number',
         meta: {
           reservedWord: false
         }
@@ -431,7 +464,10 @@ export const functionFixtures: Fixture[] = [
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['typescript', 'permissive'] // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a variable number of parameters containing the value `null`',
@@ -453,7 +489,10 @@ export const functionFixtures: Fixture[] = [
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['typescript', 'permissive'] // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a variable number of parameters containing the value `undefined`',
@@ -475,7 +514,10 @@ export const functionFixtures: Fixture[] = [
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['typescript', 'permissive'] // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a variable number of parameters, a "new" type, a "this" type, and a return value',
@@ -485,16 +527,16 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'new',
+            value: 'new',
             meta: {
               reservedWord: true
             }
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'Master',
+            value: 'Master',
             meta: {
               reservedWord: false
             }
@@ -502,16 +544,16 @@ export const functionFixtures: Fixture[] = [
         },
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
             meta: {
               reservedWord: true
             },
-            name: 'this'
+            value: 'this'
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'Everyone',
+            value: 'Everyone',
             meta: {
               reservedWord: false
             }
@@ -519,39 +561,39 @@ export const functionFixtures: Fixture[] = [
         },
         {
           type: 'NAME',
-          name: 'string',
+          value: 'string',
           meta: {
             reservedWord: false
           }
         },
         {
           left: {
-            name: 'goog',
+            value: 'goog',
             type: 'NAME',
             meta: {
               reservedWord: false
             }
           },
-          path: [
+          value: [
             'ui',
             'Menu'
           ],
-          type: 'PROPERTY_PATH'
+          type: 'NAME_PATH'
         },
         {
           type: 'GENERIC',
-          objects: [
+          elements: [
             {
               type: 'NAME',
-              name: 'Object',
+              value: 'Object',
               meta: {
                 reservedWord: false
               }
             }
           ],
-          subject: {
+          left: {
             type: 'NAME',
-            name: 'Array',
+            value: 'Array',
             meta: {
               reservedWord: false
             }
@@ -565,7 +607,7 @@ export const functionFixtures: Fixture[] = [
           type: 'VARIADIC',
           element: {
             type: 'NAME',
-            name: 'string',
+            value: 'string',
             meta: {
               reservedWord: false
             }
@@ -578,7 +620,7 @@ export const functionFixtures: Fixture[] = [
       ],
       returnType: {
         type: 'NAME',
-        name: 'boolean',
+        value: 'boolean',
         meta: {
           reservedWord: false
         }
@@ -586,7 +628,10 @@ export const functionFixtures: Fixture[] = [
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: [] // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a repeatable param that is not enclosed in brackets',
@@ -598,7 +643,7 @@ export const functionFixtures: Fixture[] = [
           type: 'VARIADIC',
           element: {
             type: 'NAME',
-            name: 'foo',
+            value: 'foo',
             meta: {
               reservedWord: false
             }
@@ -612,7 +657,10 @@ export const functionFixtures: Fixture[] = [
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
   },
   {
     description: 'function that returns a type union',
@@ -625,14 +673,14 @@ export const functionFixtures: Fixture[] = [
         elements: [
           {
             type: 'NAME',
-            name: 'number',
+            value: 'number',
             meta: {
               reservedWord: false
             }
           },
           {
             type: 'NAME',
-            name: 'string',
+            value: 'string',
             meta: {
               reservedWord: false
             }
@@ -642,7 +690,10 @@ export const functionFixtures: Fixture[] = [
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'function with no parameters and no return value',
@@ -653,7 +704,10 @@ export const functionFixtures: Fixture[] = [
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a variable number of parameters containing any values',
@@ -675,7 +729,10 @@ export const functionFixtures: Fixture[] = [
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['typescript', 'permissive'] // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a "this" type that returns a type union',
@@ -685,16 +742,16 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
             meta: {
               reservedWord: true
             },
-            name: 'this'
+            value: 'this'
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'Object',
+            value: 'Object',
             meta: {
               reservedWord: false
             }
@@ -706,14 +763,14 @@ export const functionFixtures: Fixture[] = [
         elements: [
           {
             type: 'NAME',
-            name: 'number',
+            value: 'number',
             meta: {
               reservedWord: false
             }
           },
           {
             type: 'NAME',
-            name: 'string',
+            value: 'string',
             meta: {
               reservedWord: false
             }
@@ -723,7 +780,10 @@ export const functionFixtures: Fixture[] = [
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'function with a "this" type that is a type union, and that returns a type union',
@@ -733,26 +793,26 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
             meta: {
               reservedWord: true
             },
-            name: 'this'
+            value: 'this'
           },
-          value: {
+          right: {
             type: 'UNION',
             elements: [
               {
                 type: 'NAME',
-                name: 'Array',
+                value: 'Array',
                 meta: {
                   reservedWord: false
                 }
               },
               {
                 type: 'NAME',
-                name: 'Date',
+                value: 'Date',
                 meta: {
                   reservedWord: false
                 }
@@ -766,14 +826,14 @@ export const functionFixtures: Fixture[] = [
         elements: [
           {
             type: 'NAME',
-            name: 'number',
+            value: 'number',
             meta: {
               reservedWord: false
             }
           },
           {
             type: 'NAME',
-            name: 'string',
+            value: 'string',
             meta: {
               reservedWord: false
             }
@@ -783,7 +843,10 @@ export const functionFixtures: Fixture[] = [
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'function with a "new" type and a variable number of params that accept all types, returning a name expression',
@@ -793,16 +856,16 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
             meta: {
               reservedWord: true
             },
-            name: 'new'
+            value: 'new'
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'Array',
+            value: 'Array',
             meta: {
               reservedWord: false
             }
@@ -821,7 +884,7 @@ export const functionFixtures: Fixture[] = [
       ],
       returnType: {
         type: 'NAME',
-        name: 'Array',
+        value: 'Array',
         meta: {
           reservedWord: false
         }
@@ -829,7 +892,10 @@ export const functionFixtures: Fixture[] = [
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['typescript', 'permissive'] // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a "new" type that accepts an optional parameter of any type, as well as a return value',
@@ -839,16 +905,16 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
             meta: {
               reservedWord: true
             },
-            name: 'new'
+            value: 'new'
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'Boolean',
+            value: 'Boolean',
             meta: {
               reservedWord: false
             }
@@ -866,7 +932,7 @@ export const functionFixtures: Fixture[] = [
       ],
       returnType: {
         type: 'NAME',
-        name: 'boolean',
+        value: 'boolean',
         meta: {
           reservedWord: false
         }
@@ -874,7 +940,10 @@ export const functionFixtures: Fixture[] = [
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   },
   {
     description: 'function with a variable number of parameters and a return value',
@@ -886,7 +955,7 @@ export const functionFixtures: Fixture[] = [
           type: 'VARIADIC',
           element: {
             type: 'NAME',
-            name: 'number',
+            value: 'number',
             meta: {
               reservedWord: false
             }
@@ -899,7 +968,7 @@ export const functionFixtures: Fixture[] = [
       ],
       returnType: {
         type: 'NAME',
-        name: 'boolean',
+        value: 'boolean',
         meta: {
           reservedWord: false
         }
@@ -907,7 +976,10 @@ export const functionFixtures: Fixture[] = [
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['typescript', 'permissive'] // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a "this" type and a parameter that returns a type union',
@@ -917,16 +989,16 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
             meta: {
               reservedWord: true
             },
-            name: 'this'
+            value: 'this'
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'Date',
+            value: 'Date',
             meta: {
               reservedWord: false
             }
@@ -934,7 +1006,7 @@ export const functionFixtures: Fixture[] = [
         },
         {
           type: 'NAME',
-          name: 'number',
+          value: 'number',
           meta: {
             reservedWord: false
           }
@@ -945,21 +1017,21 @@ export const functionFixtures: Fixture[] = [
         elements: [
           {
             type: 'NAME',
-            name: 'boolean',
+            value: 'boolean',
             meta: {
               reservedWord: false
             }
           },
           {
             type: 'NAME',
-            name: 'number',
+            value: 'number',
             meta: {
               reservedWord: false
             }
           },
           {
             type: 'NAME',
-            name: 'string',
+            value: 'string',
             meta: {
               reservedWord: false
             }
@@ -969,6 +1041,9 @@ export const functionFixtures: Fixture[] = [
       meta: {
         arrow: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsisModes: ['closure', 'jsdoc'],
+    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
   }
 ]

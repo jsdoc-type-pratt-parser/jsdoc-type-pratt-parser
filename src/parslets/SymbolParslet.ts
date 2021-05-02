@@ -21,11 +21,11 @@ export class SymbolParslet implements InfixParslet {
     parser.consume('(')
     const result: SymbolResult = {
       type: 'SYMBOL',
-      name: left.name
+      value: left.value
     }
     if (!parser.consume(')')) {
       const next = parser.parseNonTerminalType(Precedence.SYMBOL)
-      result.value = assertNumberOrVariadicName(next)
+      result.element = assertNumberOrVariadicName(next)
       if (!parser.consume(')')) {
         throw new Error('Symbol does not end after value')
       }

@@ -10,7 +10,7 @@ export type ParseResult =
   | FunctionResult
   | RecordResult
   | ModuleResult
-  | PropertyPathResult
+  | NamePathResult
   | SymbolResult
   | TypeOfResult
   | KeyOfResult
@@ -62,7 +62,7 @@ export interface VariadicResult<T extends ParseResult> {
 
 export interface NameResult {
   type: 'NAME'
-  name: string
+  value: string
   meta: {
     reservedWord: boolean
   }
@@ -75,8 +75,8 @@ export interface UnionResult {
 
 export interface GenericResult {
   type: 'GENERIC'
-  subject: ParseResult
-  objects: ParseResult[]
+  left: ParseResult
+  elements: ParseResult[]
   meta: {
     brackets: '<>' | '[]'
     dot: boolean
@@ -118,8 +118,8 @@ export interface FunctionResult {
 
 export interface KeyValueResult<KeyType = NameResult> {
   type: 'KEY_VALUE'
-  key: KeyType
-  value: ParseResult
+  left: KeyType
+  right: ParseResult
 }
 
 export interface RecordResult {
@@ -129,13 +129,16 @@ export interface RecordResult {
 
 export interface ModuleResult {
   type: 'MODULE'
-  path: string
+  value: string
 }
 
-export interface PropertyPathResult {
-  type: 'PROPERTY_PATH'
+export interface NamePathResult {
+  type: 'NAME_PATH'
   left: ParseResult
-  path: string[]
+  right: NameResult | NumberResult | StringValueResult
+  meta: {
+    type: '~' | '#' | '.'
+  }
 }
 
 export interface NumberResult {
@@ -145,23 +148,23 @@ export interface NumberResult {
 
 export interface SymbolResult {
   type: 'SYMBOL'
-  name: string
-  value?: NumberResult | NameResult | VariadicResult<NameResult>
+  value: string
+  element?: NumberResult | NameResult | VariadicResult<NameResult>
 }
 
 export interface TypeOfResult {
   type: 'TYPE_OF'
-  value?: ParseResult
+  element?: ParseResult
 }
 
 export interface KeyOfResult {
   type: 'KEY_OF'
-  value?: ParseResult
+  element?: ParseResult
 }
 
 export interface ImportResult {
   type: 'IMPORT'
-  path: StringValueResult
+  element: StringValueResult
 }
 
 export interface ParameterList {

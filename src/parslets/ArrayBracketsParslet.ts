@@ -19,14 +19,14 @@ export class ArrayBracketsParslet implements InfixParslet {
     parser.consume(']')
     return {
       type: 'GENERIC',
-      subject: {
+      left: {
         type: 'NAME',
-        name: 'Array',
+        value: 'Array',
         meta: {
           reservedWord: false
         }
       },
-      objects: [
+      elements: [
         assertTerminal(left)
       ],
       meta: {
