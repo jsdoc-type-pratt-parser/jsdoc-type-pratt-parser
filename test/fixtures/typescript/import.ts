@@ -67,9 +67,16 @@ export const importFixtures: Fixture[] = [
           }
         }
       },
-      value: [
-        'T'
-      ]
+      right: {
+        type: 'NAME',
+        value: 'T',
+        meta: {
+          reservedWord: false
+        }
+      },
+      meta: {
+        type: '.'
+      }
     },
     modes: ['typescript'],
     catharsisModes: [],
@@ -81,19 +88,38 @@ export const importFixtures: Fixture[] = [
     expected: {
       type: 'NAME_PATH',
       left: {
-        type: 'IMPORT',
-        element: {
-          type: 'STRING_VALUE',
-          value: 'x',
-          meta: {
-            quote: '"'
+        type: 'NAME_PATH',
+        left: {
+          type: 'IMPORT',
+          element: {
+            type: 'STRING_VALUE',
+            value: 'x',
+            meta: {
+              quote: '"'
+            }
           }
+        },
+        right: {
+          type: 'NAME',
+          value: 'T',
+          meta: {
+            reservedWord: false
+          }
+        },
+        meta: {
+          type: '.'
         }
       },
-      value: [
-        'T',
-        'U'
-      ]
+      right: {
+        type: 'NAME',
+        value: 'U',
+        meta: {
+          reservedWord: false
+        }
+      },
+      meta: {
+        type: '.'
+      }
     },
     modes: ['typescript'],
     catharsisModes: [],
@@ -107,19 +133,38 @@ export const importFixtures: Fixture[] = [
       left: {
         type: 'NAME_PATH',
         left: {
-          type: 'IMPORT',
-          element: {
-            type: 'STRING_VALUE',
-            value: 'x',
-            meta: {
-              quote: '"'
+          type: 'NAME_PATH',
+          left: {
+            type: 'IMPORT',
+            element: {
+              type: 'STRING_VALUE',
+              value: 'x',
+              meta: {
+                quote: '"'
+              }
             }
+          },
+          right: {
+            type: 'NAME',
+            value: 'T',
+            meta: {
+              reservedWord: false
+            }
+          },
+          meta: {
+            type: '.'
           }
         },
-        value: [
-          'T',
-          'U'
-        ]
+        right: {
+          type: 'NAME',
+          value: 'U',
+          meta: {
+            reservedWord: false
+          }
+        },
+        meta: {
+          type: '.'
+        }
       },
       elements: [
         {

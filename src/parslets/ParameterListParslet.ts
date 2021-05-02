@@ -42,6 +42,11 @@ export class ParameterListParslet implements InfixParslet {
         }
       }
     } while (parser.consume(','))
+
+    if (elements.length > 0 && elements.slice(0, -1).some(e => e.type === 'VARIADIC')) {
+      throw new Error('Only the last parameter may be a rest parameter')
+    }
+
     return {
       type: 'PARAMETER_LIST',
       elements

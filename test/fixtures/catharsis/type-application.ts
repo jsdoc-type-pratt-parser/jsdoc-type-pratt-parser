@@ -220,7 +220,7 @@ export const genericFixtures: Fixture[] = [
                       reservedWord: true
                     }
                   },
-                  element: {
+                  right: {
                     type: 'NAME',
                     value: 'foo',
                     meta: {
@@ -372,9 +372,16 @@ export const genericFixtures: Fixture[] = [
             reservedWord: false
           }
         },
-        value: [
-          'Promise'
-        ],
+        right: {
+          type: 'NAME',
+          value: 'Promise',
+          meta: {
+            reservedWord: false
+          }
+        },
+        meta: {
+          type: '.'
+        },
         type: 'NAME_PATH'
       },
       meta: {

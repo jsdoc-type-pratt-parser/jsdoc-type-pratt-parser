@@ -5,16 +5,19 @@ import { ParserEngine } from '../ParserEngine'
 import { NonTerminalResult, ParseResult } from '../ParseResult'
 import { assertTerminal } from '../assertTypes'
 import { UnexpectedTypeError } from '../errors'
+import { StringValueParslet } from './StringValueParslet'
 
-type NamePathParsletOptions = {
+interface NamePathParsletOptions {
   allowJsdocNamePaths: boolean
 }
 
 export class NamePathParslet implements InfixParslet {
-  private allowJsdocNamePaths: boolean;
+  private readonly allowJsdocNamePaths: boolean
+  private readonly stringValueParslet: StringValueParslet
 
   constructor (opts: NamePathParsletOptions) {
     this.allowJsdocNamePaths = opts.allowJsdocNamePaths
+    this.stringValueParslet = new StringValueParslet()
   }
 
   accepts (type: TokenType, next: TokenType): boolean {
@@ -26,14 +29,19 @@ export class NamePathParslet implements InfixParslet {
   }
 
   parseInfix (parser: ParserEngine, left: NonTerminalResult): ParseResult {
-    const type = parser.getToken().text as "#" | '~' | '.'
+    const type = parser.getToken().text as '#' | '~' | '.'
 
     parser.consume('.') || parser.consume('~') || parser.consume('#')
 
-    const next = parser.parseNonTerminalType(Precedence.NAME_PATH);
+    let next
 
-    if (next.type !== 'NAME' && next.type !== 'STRING_VALUE' && next.type !== 'NUMBER') {
-      throw new UnexpectedTypeError(next);
+    if (parser.getToken().type === 'StringValue') {
+      next = this.stringValueParslet.parsePrefix(parser)
+    } else {
+      next = parser.parseNonTerminalType(Precedence.NAME_PATH)
+      if (next.type !== 'NAME' && next.type !== 'NUMBER') {
+        throw new UnexpectedTypeError(next)
+      }
     }
 
     return {

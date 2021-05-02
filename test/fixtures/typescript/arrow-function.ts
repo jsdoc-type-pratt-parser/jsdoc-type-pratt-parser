@@ -49,7 +49,7 @@ export const arrowFunctionFixtures: Fixture[] = [
           },
           right: {
             type: 'NAME',
-            value: 'r',
+            value: 'number',
             meta: {
               reservedWord: false
             }
@@ -58,7 +58,7 @@ export const arrowFunctionFixtures: Fixture[] = [
       ],
       returnType: {
         type: 'NAME',
-        value: 'g',
+        value: 'string',
         meta: {
           reservedWord: false
         }
@@ -88,7 +88,7 @@ export const arrowFunctionFixtures: Fixture[] = [
           },
           right: {
             type: 'NAME',
-            value: 'r',
+            value: 'number',
             meta: {
               reservedWord: false
             }
@@ -105,7 +105,7 @@ export const arrowFunctionFixtures: Fixture[] = [
           },
           right: {
             type: 'NAME',
-            value: 'g',
+            value: 'string',
             meta: {
               reservedWord: false
             }
@@ -434,7 +434,7 @@ export const arrowFunctionFixtures: Fixture[] = [
     },
     modes: ['typescript'],
     catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    jtpModes: [] // NOTE: This seems to be a JTP error
   },
   {
     description: 'arrow with unnamed parameters that are not names should fail',

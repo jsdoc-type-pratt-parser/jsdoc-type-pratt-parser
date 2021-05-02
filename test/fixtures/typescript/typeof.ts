@@ -177,9 +177,9 @@ export const typeOfFixtures: Fixture[] = [
         position: 'SUFFIX'
       }
     },
-    modes: ['typescript'],
+    modes: [],
     catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    jtpModes: ['typescript', 'permissive'] // NOTE: This seems to be a JTP error
   },
   {
     description: 'union typeof name',
@@ -199,7 +199,7 @@ export const typeOfFixtures: Fixture[] = [
         },
         {
           type: 'NAME',
-          value: 'r',
+          value: 'number',
           meta: {
             reservedWord: false
           }
@@ -218,7 +218,7 @@ export const typeOfFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          value: 'r',
+          value: 'number',
           meta: {
             reservedWord: false
           }
@@ -248,7 +248,7 @@ export const typeOfFixtures: Fixture[] = [
         type: 'GENERIC',
         left: {
           type: 'NAME',
-          value: 'y',
+          value: 'Array',
           meta: {
             reservedWord: false
           }
@@ -322,7 +322,7 @@ export const typeOfFixtures: Fixture[] = [
         },
         {
           type: 'NAME',
-          value: 'r',
+          value: 'number',
           meta: {
             reservedWord: false
           }
@@ -344,7 +344,7 @@ export const typeOfFixtures: Fixture[] = [
       parameters: [
         {
           type: 'NAME',
-          value: 'r',
+          value: 'number',
           meta: {
             reservedWord: false
           }

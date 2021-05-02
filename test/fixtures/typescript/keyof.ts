@@ -177,9 +177,9 @@ export const keyofFixtures: Fixture[] = [
         position: 'SUFFIX'
       }
     },
-    modes: ['typescript'],
+    modes: [],
     catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    jtpModes: ['typescript', 'permissive'] // NOTE: This seems to be a JTP error
   },
   {
     description: 'union keyof name',

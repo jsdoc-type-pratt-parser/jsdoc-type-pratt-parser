@@ -34,17 +34,36 @@ export const basicFixtures: Fixture[] = [
     input: 'goog.ui.Menu',
     expected: {
       left: {
-        value: 'goog',
+        left: {
+          value: 'goog',
+          type: 'NAME',
+          meta: {
+            reservedWord: false
+          }
+        },
+        right: {
+          type: 'NAME',
+          value: 'ui',
+          meta: {
+            reservedWord: false
+          }
+        },
+        type: 'NAME_PATH',
+        meta: {
+          type: '.'
+        }
+      },
+      right: {
         type: 'NAME',
+        value: 'Menu',
         meta: {
           reservedWord: false
         }
       },
-      value: [
-        'ui',
-        'Menu'
-      ],
-      type: 'NAME_PATH'
+      type: 'NAME_PATH',
+      meta: {
+        type: '.'
+      }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsisModes: ['closure', 'jsdoc'],
@@ -55,17 +74,36 @@ export const basicFixtures: Fixture[] = [
     input: "myObj.'myProp'.foo",
     expected: {
       left: {
-        value: 'myObj',
+        left: {
+          value: 'myObj',
+          type: 'NAME',
+          meta: {
+            reservedWord: false
+          }
+        },
+        right: {
+          type: 'STRING_VALUE',
+          value: 'myProp',
+          meta: {
+            quote: '\''
+          }
+        },
+        type: 'NAME_PATH',
+        meta: {
+          type: '.'
+        }
+      },
+      right: {
         type: 'NAME',
+        value: 'foo',
         meta: {
           reservedWord: false
         }
       },
-      value: [
-        "'myProp'",
-        'foo'
-      ],
-      type: 'NAME_PATH'
+      type: 'NAME_PATH',
+      meta: {
+        type: '.'
+      }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsisModes: ['closure', 'jsdoc'],
@@ -76,17 +114,36 @@ export const basicFixtures: Fixture[] = [
     input: 'myObj."myProp".foo',
     expected: {
       left: {
-        value: 'myObj',
+        left: {
+          value: 'myObj',
+          type: 'NAME',
+          meta: {
+            reservedWord: false
+          }
+        },
+        right: {
+          type: 'STRING_VALUE',
+          value: 'myProp',
+          meta: {
+            quote: '"'
+          }
+        },
+        type: 'NAME_PATH',
+        meta: {
+          type: '.'
+        }
+      },
+      right: {
         type: 'NAME',
+        value: 'foo',
         meta: {
           reservedWord: false
         }
       },
-      value: [
-        '"myProp"',
-        'foo'
-      ],
-      type: 'NAME_PATH'
+      type: 'NAME_PATH',
+      meta: {
+        type: '.'
+      }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsisModes: ['closure', 'jsdoc'],
@@ -97,17 +154,36 @@ export const basicFixtures: Fixture[] = [
     input: 'myObj."#weirdProp".foo',
     expected: {
       left: {
-        value: 'myObj',
+        left: {
+          value: 'myObj',
+          type: 'NAME',
+          meta: {
+            reservedWord: false
+          }
+        },
+        right: {
+          type: 'STRING_VALUE',
+          value: '#weirdProp',
+          meta: {
+            quote: '"'
+          }
+        },
+        type: 'NAME_PATH',
+        meta: {
+          type: '.'
+        }
+      },
+      right: {
         type: 'NAME',
+        value: 'foo',
         meta: {
           reservedWord: false
         }
       },
-      value: [
-        '"#weirdProp"',
-        'foo'
-      ],
-      type: 'NAME_PATH'
+      type: 'NAME_PATH',
+      meta: {
+        type: '.'
+      }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsisModes: ['closure', 'jsdoc'],
@@ -124,10 +200,14 @@ export const basicFixtures: Fixture[] = [
           reservedWord: false
         }
       },
-      value: [
-        '12345'
-      ],
-      type: 'NAME_PATH'
+      right: {
+        type: 'NUMBER',
+        value: 12345
+      },
+      type: 'NAME_PATH',
+      meta: {
+        type: '.'
+      }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsisModes: ['closure', 'jsdoc'],
@@ -334,11 +414,24 @@ export const basicFixtures: Fixture[] = [
     description: 'name that includes an @ sign',
     input: 'module:@prefix/my-module~myCallback',
     expected: {
-      value: 'module:@prefix/my-module~myCallback',
-      type: 'MODULE'
+      type: 'NAME_PATH',
+      left: {
+        value: 'module:@prefix/my-module',
+        type: 'MODULE'
+      },
+      right: {
+        type: 'NAME',
+        value: 'myCallback',
+        meta: {
+          reservedWord: false
+        }
+      },
+      meta: {
+        type: '~'
+      }
     },
-    modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
+    modes: ['jsdoc'],
+    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a Catharsis error
     jtpModes: [] // NOTE: This seems to be a JTP error
   }
 ]

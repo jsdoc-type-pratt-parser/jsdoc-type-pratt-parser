@@ -1,11 +1,13 @@
 import { Grammar } from './Grammar'
 import { SymbolParslet } from '../parslets/SymbolParslet'
-import { ClassPathParslet } from '../parslets/ClassPathParslet'
 import { ArrayBracketsParslet } from '../parslets/ArrayBracketsParslet'
 import { StringValueParslet } from '../parslets/StringValueParslet'
 import { FunctionParslet } from '../parslets/FunctionParslet'
 import { baseGrammar } from './baseGrammar'
 import { NamePathParslet } from '../parslets/NamePathParslet'
+import { KeyValueParslet } from '../parslets/KeyValueParslet'
+import { VariadicParslet } from '../parslets/VariadicParslet'
+import { ModuleParslet } from '../parslets/ModuleParslet'
 
 export const jsdocGrammar: Grammar = () => {
   const {
@@ -21,16 +23,21 @@ export const jsdocGrammar: Grammar = () => {
         allowNamedParameters: ['this', 'new'],
         allowNoReturnType: true
       }),
-      new StringValueParslet()
+      new StringValueParslet(),
+      new ModuleParslet(),
+      new VariadicParslet()
     ],
     infixParslets: [
       ...infixParslets,
       new SymbolParslet(),
-      new ClassPathParslet(),
       new ArrayBracketsParslet(),
       new NamePathParslet({
         allowJsdocNamePaths: true
-      })
+      }),
+      new KeyValueParslet({
+        allowOnlyNameOrNumberProperties: false
+      }),
+      new VariadicParslet()
     ]
   }
 }

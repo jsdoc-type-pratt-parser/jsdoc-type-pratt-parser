@@ -12,6 +12,8 @@ import {
   ArrowFunctionWithParametersParslet
 } from '../parslets/ArrowFunctionParslet'
 import { NamePathParslet } from '../parslets/NamePathParslet'
+import { KeyValueParslet } from '../parslets/KeyValueParslet'
+import { ModuleParslet } from '../parslets/ModuleParslet'
 
 export const typescriptGrammar: Grammar = () => {
   const {
@@ -25,6 +27,7 @@ export const typescriptGrammar: Grammar = () => {
       new TypeOfParslet(),
       new KeyOfParslet(),
       new ImportParslet(),
+      new ModuleParslet(),
       new StringValueParslet(),
       new ArrowFunctionWithoutParametersParslet(),
       new FunctionParslet({
@@ -40,6 +43,9 @@ export const typescriptGrammar: Grammar = () => {
       new ArrowFunctionWithParametersParslet(),
       new NamePathParslet({
         allowJsdocNamePaths: false
+      }),
+      new KeyValueParslet({
+        allowOnlyNameOrNumberProperties: true
       })
     ]
   }

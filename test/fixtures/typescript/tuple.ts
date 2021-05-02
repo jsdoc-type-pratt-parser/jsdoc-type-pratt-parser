@@ -39,28 +39,28 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          value: 't',
+          value: 'it',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          value: 's',
+          value: 'needs',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          value: 'o',
+          value: 'to',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          value: 'e',
+          value: 'be',
           meta: {
             reservedWord: false
           }
@@ -79,21 +79,21 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          value: 'e',
+          value: 'tuple',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          value: 'h',
+          value: 'with',
           meta: {
             reservedWord: true
           }
         },
         {
           type: 'NAME',
-          value: 's',
+          value: 'spaces',
           meta: {
             reservedWord: false
           }
@@ -112,28 +112,28 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          value: 'e',
+          value: 'tuple',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          value: 'h',
+          value: 'with',
           meta: {
             reservedWord: true
           }
         },
         {
           type: 'NAME',
-          value: 'g',
+          value: 'trailing',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          value: 'a',
+          value: 'comma',
           meta: {
             reservedWord: false
           }
@@ -151,7 +151,7 @@ export const tupleFixtures: Fixture[] = [
       type: 'GENERIC',
       left: {
         type: 'NAME',
-        value: 'y',
+        value: 'Array',
         meta: {
           reservedWord: false
         }
@@ -178,7 +178,7 @@ export const tupleFixtures: Fixture[] = [
       type: 'GENERIC',
       left: {
         type: 'NAME',
-        value: 'y',
+        value: 'Array',
         meta: {
           reservedWord: false
         }
@@ -189,14 +189,14 @@ export const tupleFixtures: Fixture[] = [
           elements: [
             {
               type: 'NAME',
-              value: 'e',
+              value: 'tuple',
               meta: {
                 reservedWord: false
               }
             },
             {
               type: 'NAME',
-              value: 'y',
+              value: 'array',
               meta: {
                 reservedWord: false
               }
@@ -221,14 +221,14 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          value: 'e',
+          value: 'tuple',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          value: 'h',
+          value: 'with',
           meta: {
             reservedWord: true
           }
@@ -237,7 +237,7 @@ export const tupleFixtures: Fixture[] = [
           type: 'TYPE_OF',
           element: {
             type: 'NAME',
-            value: 'o',
+            value: 'foo',
             meta: {
               reservedWord: false
             }
@@ -257,14 +257,14 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          value: 'e',
+          value: 'tuple',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          value: 'h',
+          value: 'with',
           meta: {
             reservedWord: true
           }
@@ -273,7 +273,7 @@ export const tupleFixtures: Fixture[] = [
           type: 'KEY_OF',
           element: {
             type: 'NAME',
-            value: 'o',
+            value: 'foo',
             meta: {
               reservedWord: false
             }
@@ -293,14 +293,14 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          value: 'e',
+          value: 'tuple',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          value: 'h',
+          value: 'with',
           meta: {
             reservedWord: true
           }
@@ -309,7 +309,7 @@ export const tupleFixtures: Fixture[] = [
           type: 'TYPE_OF',
           element: {
             type: 'NAME',
-            value: 'o',
+            value: 'foo',
             meta: {
               reservedWord: false
             }
@@ -317,7 +317,7 @@ export const tupleFixtures: Fixture[] = [
         },
         {
           type: 'NAME',
-          value: 'd',
+          value: 'and',
           meta: {
             reservedWord: false
           }
@@ -326,7 +326,7 @@ export const tupleFixtures: Fixture[] = [
           type: 'KEY_OF',
           element: {
             type: 'NAME',
-            value: 'o',
+            value: 'foo',
             meta: {
               reservedWord: false
             }

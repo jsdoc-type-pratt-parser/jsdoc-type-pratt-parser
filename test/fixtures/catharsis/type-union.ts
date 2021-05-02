@@ -104,17 +104,36 @@ export const unionFixtures: Fixture[] = [
         },
         {
           left: {
-            value: 'goog',
+            left: {
+              value: 'goog',
+              type: 'NAME',
+              meta: {
+                reservedWord: false
+              }
+            },
+            right: {
+              type: 'NAME',
+              value: 'ui',
+              meta: {
+                reservedWord: false
+              }
+            },
+            type: 'NAME_PATH',
+            meta: {
+              type: '.'
+            }
+          },
+          right: {
             type: 'NAME',
+            value: 'Menu',
             meta: {
               reservedWord: false
             }
           },
-          value: [
-            'ui',
-            'Menu'
-          ],
-          type: 'NAME_PATH'
+          type: 'NAME_PATH',
+          meta: {
+            type: '.'
+          }
         }
       ]
     },
@@ -568,9 +587,16 @@ export const unionFixtures: Fixture[] = [
                                 reservedWord: false
                               }
                             },
-                            value: [
-                              'event'
-                            ],
+                            right: {
+                              type: 'NAME',
+                              value: 'event',
+                              meta: {
+                                reservedWord: false
+                              }
+                            },
+                            meta: {
+                              type: '.'
+                            },
                             type: 'NAME_PATH'
                           },
                           meta: {

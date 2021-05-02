@@ -1,4 +1,4 @@
-import { NamePathResult, NameResult, NumberResult, ParseResult, StringValueResult } from '../ParseResult'
+import { ParseResult } from '../ParseResult'
 import { extractSpecialParams, notAvailableTransform, transform, TransformRules } from './transform'
 
 interface ModifiableResult {
@@ -202,17 +202,17 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
   }),
 
   NAME_PATH: (result, transform) => {
-    let left = result.left
+    const left = result.left
     if (left.type === 'NAME_PATH') {
       const leftResult = transform(left) as CatharsisNameResult
       return {
         type: 'NameExpression',
-        name: leftResult.name + result.meta.type + result.right.value
+        name: `${leftResult.name}${result.meta.type}${result.right.value}`
       }
-    } else if (result.left.type === 'NAME') {
+    } else if (left.type === 'NAME') {
       return {
         type: 'NameExpression',
-        name: result.left.value + result.meta.type + result.right.value
+        name: `${left.value}${result.meta.type}${result.right.value}`
       }
     } else {
       // TODO: here a string representations should be used

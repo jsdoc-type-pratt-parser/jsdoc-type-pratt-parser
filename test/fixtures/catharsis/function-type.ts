@@ -9,14 +9,14 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'NAME',
-          value: 'g',
+          value: 'string',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          value: 'n',
+          value: 'boolean',
           meta: {
             reservedWord: false
           }
@@ -40,14 +40,14 @@ export const functionFixtures: Fixture[] = [
         parameters: [
           {
             type: 'NAME',
-            value: 'g',
+            value: 'string',
             meta: {
               reservedWord: false
             }
           },
           {
             type: 'NAME',
-            value: 'n',
+            value: 'boolean',
             meta: {
               reservedWord: false
             }
@@ -74,14 +74,14 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'NAME',
-          value: 'g',
+          value: 'string',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          value: 'n',
+          value: 'boolean',
           meta: {
             reservedWord: false
           }
@@ -89,7 +89,7 @@ export const functionFixtures: Fixture[] = [
       ],
       returnType: {
         type: 'NAME',
-        value: 'n',
+        value: 'boolean',
         meta: {
           reservedWord: false
         }
@@ -112,14 +112,14 @@ export const functionFixtures: Fixture[] = [
         parameters: [
           {
             type: 'NAME',
-            value: 'g',
+            value: 'string',
             meta: {
               reservedWord: false
             }
           },
           {
             type: 'NAME',
-            value: 'n',
+            value: 'boolean',
             meta: {
               reservedWord: false
             }
@@ -127,7 +127,7 @@ export const functionFixtures: Fixture[] = [
         ],
         returnType: {
           type: 'NAME',
-          value: 'n',
+          value: 'boolean',
           meta: {
             reservedWord: false
           }
@@ -155,7 +155,7 @@ export const functionFixtures: Fixture[] = [
         parameters: [
           {
             type: 'NAME',
-            value: 'g',
+            value: 'string',
             meta: {
               reservedWord: false
             }
@@ -181,7 +181,7 @@ export const functionFixtures: Fixture[] = [
       parameters: [],
       returnType: {
         type: 'NAME',
-        value: 'r',
+        value: 'number',
         meta: {
           reservedWord: false
         }
@@ -210,17 +210,36 @@ export const functionFixtures: Fixture[] = [
           type: 'KEY_VALUE',
           right: {
             left: {
-              value: 'g',
+              left: {
+                value: 'goog',
+                type: 'NAME',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              right: {
+                type: 'NAME',
+                value: 'ui',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              type: 'NAME_PATH',
+              meta: {
+                type: '.'
+              }
+            },
+            right: {
               type: 'NAME',
+              value: 'Menu',
               meta: {
                 reservedWord: false
               }
             },
-            value: [
-              'ui',
-              'Menu'
-            ],
-            type: 'NAME_PATH'
+            type: 'NAME_PATH',
+            meta: {
+              type: '.'
+            }
           }
         }
       ],
@@ -249,21 +268,40 @@ export const functionFixtures: Fixture[] = [
           type: 'KEY_VALUE',
           right: {
             left: {
-              value: 'g',
+              left: {
+                value: 'goog',
+                type: 'NAME',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              right: {
+                type: 'NAME',
+                value: 'ui',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              type: 'NAME_PATH',
+              meta: {
+                type: '.'
+              }
+            },
+            right: {
               type: 'NAME',
+              value: 'Menu',
               meta: {
                 reservedWord: false
               }
             },
-            value: [
-              'ui',
-              'Menu'
-            ],
-            type: 'NAME_PATH'
+            type: 'NAME_PATH',
+            meta: {
+              type: '.'
+            }
           }
         },
         {
-          value: 'g',
+          value: 'string',
           type: 'NAME',
           meta: {
             reservedWord: false
@@ -296,17 +334,36 @@ export const functionFixtures: Fixture[] = [
           },
           right: {
             left: {
-              value: 'g',
+              left: {
+                value: 'goog',
+                type: 'NAME',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              right: {
+                type: 'NAME',
+                value: 'ui',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              type: 'NAME_PATH',
+              meta: {
+                type: '.'
+              }
+            },
+            right: {
               type: 'NAME',
+              value: 'Menu',
               meta: {
                 reservedWord: false
               }
             },
-            value: [
-              'ui',
-              'Menu'
-            ],
-            type: 'NAME_PATH'
+            type: 'NAME_PATH',
+            meta: {
+              type: '.'
+            }
           }
         }
       ],
@@ -335,17 +392,36 @@ export const functionFixtures: Fixture[] = [
           },
           right: {
             left: {
-              value: 'goog',
+              left: {
+                value: 'goog',
+                type: 'NAME',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              right: {
+                type: 'NAME',
+                value: 'ui',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              type: 'NAME_PATH',
+              meta: {
+                type: '.'
+              }
+            },
+            right: {
               type: 'NAME',
+              value: 'Menu',
               meta: {
                 reservedWord: false
               }
             },
-            value: [
-              'ui',
-              'Menu'
-            ],
-            type: 'NAME_PATH'
+            type: 'NAME_PATH',
+            meta: {
+              type: '.'
+            }
           }
         },
         {
@@ -381,17 +457,36 @@ export const functionFixtures: Fixture[] = [
           },
           right: {
             left: {
-              value: 'goog',
+              left: {
+                value: 'goog',
+                type: 'NAME',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              right: {
+                type: 'NAME',
+                value: 'ui',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              type: 'NAME_PATH',
+              meta: {
+                type: '.'
+              }
+            },
+            right: {
               type: 'NAME',
+              value: 'Menu',
               meta: {
                 reservedWord: false
               }
             },
-            value: [
-              'ui',
-              'Menu'
-            ],
-            type: 'NAME_PATH'
+            type: 'NAME_PATH',
+            meta: {
+              type: '.'
+            }
           }
         },
         {
@@ -403,7 +498,7 @@ export const functionFixtures: Fixture[] = [
               reservedWord: true
             }
           },
-          element: {
+          right: {
             left: {
               value: 'goog',
               type: 'NAME',
@@ -411,10 +506,17 @@ export const functionFixtures: Fixture[] = [
                 reservedWord: false
               }
             },
-            value: [
-              'ui'
-            ],
-            type: 'NAME_PATH'
+            right: {
+              type: 'NAME',
+              value: 'ui',
+              meta: {
+                reservedWord: false
+              }
+            },
+            type: 'NAME_PATH',
+            meta: {
+              type: '.'
+            }
           }
         }
       ],
@@ -568,17 +670,36 @@ export const functionFixtures: Fixture[] = [
         },
         {
           left: {
-            value: 'goog',
+            left: {
+              value: 'goog',
+              type: 'NAME',
+              meta: {
+                reservedWord: false
+              }
+            },
+            right: {
+              type: 'NAME',
+              value: 'ui',
+              meta: {
+                reservedWord: false
+              }
+            },
+            type: 'NAME_PATH',
+            meta: {
+              type: '.'
+            }
+          },
+          right: {
             type: 'NAME',
+            value: 'Menu',
             meta: {
               reservedWord: false
             }
           },
-          value: [
-            'ui',
-            'Menu'
-          ],
-          type: 'NAME_PATH'
+          type: 'NAME_PATH',
+          meta: {
+            type: '.'
+          }
         },
         {
           type: 'GENERIC',

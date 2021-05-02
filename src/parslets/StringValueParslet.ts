@@ -1,7 +1,7 @@
 import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
-import { ParseResult } from '../ParseResult'
+import { StringValueResult } from '../ParseResult'
 import { Precedence } from './Precedence'
 
 export class StringValueParslet implements PrefixParslet {
@@ -13,7 +13,7 @@ export class StringValueParslet implements PrefixParslet {
     return Precedence.PREFIX
   }
 
-  parsePrefix (parser: ParserEngine): ParseResult {
+  parsePrefix (parser: ParserEngine): StringValueResult {
     const token = parser.getToken()
     parser.consume('StringValue')
     return {
