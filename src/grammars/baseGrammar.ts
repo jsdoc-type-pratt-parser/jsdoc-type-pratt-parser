@@ -22,8 +22,7 @@ export const baseGrammar: Grammar = () => {
       new OptionalParslet(),
       new RecordParslet(),
       new NumberParslet(),
-      new ParenthesisParslet(),
-      new VariadicParslet()
+      new ParenthesisParslet()
     ],
     infixParslets: [
       new ParameterListParslet({

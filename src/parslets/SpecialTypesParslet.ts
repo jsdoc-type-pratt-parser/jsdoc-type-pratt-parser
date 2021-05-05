@@ -2,7 +2,7 @@ import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
 import { ParseResult } from '../ParseResult'
-import { Precedence } from './Precedence'
+import { Precedence } from '../Precedence'
 import { isQuestionMarkUnknownType } from './isQuestionMarkUnkownType'
 
 export class SpecialTypesParslet implements PrefixParslet {

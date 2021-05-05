@@ -91,19 +91,19 @@ export function testFixture (fixture: Fixture): void {
     describe('is parsed in the expected modes and no others', () => {
       const cResult = testParser('closure', fixture)
       const tResult = testParser('typescript', fixture)
-      const fResult = testParser('jsdoc', fixture)
-      const result = cResult ?? tResult ?? fResult
+      const jResult = testParser('jsdoc', fixture)
+      const result = cResult ?? tResult ?? jResult
 
       describe('catharsis produces the same results in the expected modes an no others', () => {
-        compareCatharsis('jsdoc', result, fixture)
-        compareCatharsis('closure', result, fixture)
+        compareCatharsis('jsdoc', jResult ?? result, fixture)
+        compareCatharsis('closure', cResult ?? result, fixture)
       })
 
       describe('jsdoctypeparser produces the same results in the expected modes an no others', () => {
-        compareJtp('closure', result, fixture)
-        compareJtp('jsdoc', result, fixture)
+        compareJtp('closure', cResult ?? result, fixture)
+        compareJtp('jsdoc', jResult ?? result, fixture)
+        compareJtp('typescript', tResult ?? result, fixture)
         compareJtp('permissive', result, fixture)
-        compareJtp('typescript', result, fixture)
       })
     })
   })

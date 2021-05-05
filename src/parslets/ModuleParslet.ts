@@ -1,6 +1,6 @@
 import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
-import { Precedence } from './Precedence'
+import { Precedence } from '../Precedence'
 import { ParserEngine } from '../ParserEngine'
 import { ParseResult } from '../ParseResult'
 

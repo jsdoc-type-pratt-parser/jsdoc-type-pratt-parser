@@ -2,7 +2,7 @@ import { InfixParslet, PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
 import { NonTerminalResult, ParseResult } from '../ParseResult'
-import { Precedence } from './Precedence'
+import { Precedence } from '../Precedence'
 import { assertTerminal } from '../assertTypes'
 
 export class NotNullableParslet implements PrefixParslet, InfixParslet {

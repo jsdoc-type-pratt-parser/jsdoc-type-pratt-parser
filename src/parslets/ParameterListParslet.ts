@@ -2,7 +2,7 @@ import { InfixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
 import { KeyValueResult, NonTerminalResult, ParseResult } from '../ParseResult'
-import { Precedence } from './Precedence'
+import { Precedence } from '../Precedence'
 import { assertNamedKeyValueOrTerminal } from '../assertTypes'
 import { NoParsletFoundError } from '../errors'
 

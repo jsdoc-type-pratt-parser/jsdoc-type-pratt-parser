@@ -1,5 +1,5 @@
 import { extractSpecialParams, notAvailableTransform, transform, TransformRules } from './transform'
-import { ParseResult } from '../ParseResult'
+import { NameResult, NumberResult, ParseResult } from '../ParseResult'
 
 export type JtpResult =
   JtpNameResult
@@ -16,6 +16,12 @@ export type JtpResult =
   | JtpUnknownResult
   | JtpFunctionResult
   | JtpGenericResult
+  | JtpRecordEntryResult
+  | JtpRecordResult
+  | JtpMemberResult
+  | JtpUnionResult
+  | JtpParenthesisResult
+  | JtpUnknownResult
 
 export interface JtpNullableResult {
   type: 'NULLABLE'
@@ -71,7 +77,7 @@ export interface JtpTupleResult {
 
 export interface JtpStringValueResult {
   type: 'STRING_VALUE'
-  quoteStyle: string
+  quoteStyle: 'single' | 'double'
   string: string
 }
 
@@ -91,9 +97,9 @@ export interface JtpUnknownResult {
 export interface JtpFunctionResult {
   type: 'FUNCTION' | 'ARROW'
   params: JtpResult[]
-  returns?: JtpResult
-  new?: JtpResult
-  this?: JtpResult
+  returns: JtpResult | null
+  new: JtpResult | null
+  this: JtpResult | null
 }
 
 export interface JtpGenericResult {
@@ -103,6 +109,46 @@ export interface JtpGenericResult {
   meta: {
     syntax: 'ANGLE_BRACKET' | 'ANGLE_BRACKET_WITH_DOT' | 'SQUARE_BRACKET'
   }
+}
+
+export interface JtpRecordEntryResult {
+  type: 'OBJECT_ENTRY'
+  key: string
+  quoteStyle: 'none' | 'single' | 'double'
+  value: JtpResult | null
+  readonly: false
+}
+
+export interface JtpRecordResult {
+  type: 'OBJECT'
+  entries: JtpRecordEntryResult[]
+}
+
+export interface JtpMemberResult {
+  type: 'MEMBER'
+  owner: JtpResult
+  name: string
+  quoteStyle: 'none' | 'single' | 'double'
+  hasEventPrefix: false
+}
+
+export interface JtpUnionResult {
+  type: 'UNION'
+  left: JtpResult
+  right: JtpResult
+}
+
+export interface JtpParenthesisResult {
+  type: 'PARENTHESIS'
+  value: JtpResult
+}
+
+export interface JtpUnknownResult {
+  type: 'UNKNOWN'
+}
+
+function getQuoteStyle(meta: { quote: '\'' | '"' }): 'single' | 'double' {
+  return meta.quote === '\'' ? 'single' : 'double'
 }
 
 const jtpRules: TransformRules<JtpResult> = {
@@ -169,7 +215,7 @@ const jtpRules: TransformRules<JtpResult> = {
     type: 'IMPORT',
     path: {
       type: 'STRING_VALUE',
-      quoteStyle: result.element.meta.quote,
+      quoteStyle: getQuoteStyle(result.element.meta),
       string: result.element.value
     }
   }),
@@ -188,7 +234,10 @@ const jtpRules: TransformRules<JtpResult> = {
 
     const transformed: JtpFunctionResult = {
       type: result.meta.arrow ? 'ARROW' : 'FUNCTION',
-      params: params.params.map(transform)
+      params: params.params.map(transform),
+      new: null,
+      returns: null,
+      this: null
     }
 
     if (params.this !== undefined) {
@@ -215,18 +264,86 @@ const jtpRules: TransformRules<JtpResult> = {
     }
   }),
 
-  // MISSING
+  KEY_VALUE: (result, transform) => {
+    if (result.left.type !== 'NAME') {
+      throw new Error('In JTP mode only name left values are allowed for record entries.')
+    }
+    return {
+      type: 'OBJECT_ENTRY',
+      key: result.left.value,
+      quoteStyle: 'none',
+      value: transform(result.right),
+      readonly: false
+    }
+  },
 
-  KEY_VALUE: notAvailableTransform,
+  OBJECT: (result, transform) => {
+    const entries: JtpRecordEntryResult[] = []
+    for (const field of result.elements) {
+      if (field.type === 'KEY_VALUE') {
+        entries.push(transform(field) as JtpRecordEntryResult)
+      } else {
+        const key = (field as NameResult | NumberResult).value
+        entries.push({
+          type: 'OBJECT_ENTRY',
+          key: `${key}`,
+          quoteStyle: 'none',
+          value: null,
+          readonly: false
+        })
+      }
+    }
+    return {
+      type: 'OBJECT',
+      entries
+    }
+  },
+
+  NAME_PATH: (result, transform) => ({
+    type: 'MEMBER',
+    owner: transform(result.left),
+    name: `${result.right.value}`,
+    quoteStyle: result.right.type === 'STRING_VALUE' ? getQuoteStyle(result.right.meta) : 'none',
+    hasEventPrefix: false
+  }),
+
+  UNION: (result, transform) => {
+    let left: ParseResult | undefined = result.elements.pop() as ParseResult
+    let rightTransformed: JtpResult = transform(result.elements.pop() as ParseResult)
+    do {
+      rightTransformed = {
+        type: 'UNION',
+        left: transform(left),
+        right: rightTransformed
+      }
+      left = result.elements.pop()
+    } while (left !== undefined)
+    return rightTransformed
+  },
+
+  PARENTHESIS: (result, transform) => ({
+    type: 'PARENTHESIS',
+    value: transform(result)
+  }),
+
+  NULL: () => ({
+    type: 'NAME',
+    name: 'null'
+  }),
+
+  UNKNOWN: () => ({
+    type: 'UNKNOWN'
+  }),
+
+  STRING_VALUE: result => ({
+    type: 'STRING_VALUE',
+    quoteStyle: getQuoteStyle(result.meta),
+    string: result.value
+  }),
+
   MODULE: notAvailableTransform,
-  NULL: notAvailableTransform,
   NUMBER: notAvailableTransform,
-  NAME_PATH: notAvailableTransform,
-  RECORD: notAvailableTransform,
-  STRING_VALUE: notAvailableTransform,
   SYMBOL: notAvailableTransform,
-  UNION: notAvailableTransform,
-  UNKNOWN: notAvailableTransform,
   PARAMETER_LIST: notAvailableTransform
 }
 

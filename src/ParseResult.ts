@@ -20,6 +20,7 @@ export type ParseResult =
   | NullableResult<ParseResult>
   | NotNullableResult<ParseResult>
   | VariadicResult<ParseResult>
+  | ParenthesisResult
 
 export type NonTerminalResult =
   ParseResult
@@ -123,8 +124,8 @@ export interface KeyValueResult<KeyType = NameResult> {
 }
 
 export interface RecordResult {
-  type: 'RECORD'
-  fields: Array<KeyValueResult<ParseResult | NumberResult> | ParseResult | NumberResult>
+  type: 'OBJECT'
+  elements: Array<KeyValueResult<ParseResult | NumberResult> | ParseResult | NumberResult>
 }
 
 export interface ModuleResult {
@@ -175,4 +176,9 @@ export interface ParameterList {
 export interface TupleResult {
   type: 'TUPLE'
   elements: ParseResult[]
+}
+
+export interface ParenthesisResult {
+  type: 'PARENTHESIS'
+  element: NonTerminalResult | undefined
 }

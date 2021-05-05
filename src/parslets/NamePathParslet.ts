@@ -1,6 +1,6 @@
 import { InfixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
-import { Precedence } from './Precedence'
+import { Precedence } from '../Precedence'
 import { ParserEngine } from '../ParserEngine'
 import { NonTerminalResult, ParseResult } from '../ParseResult'
 import { assertTerminal } from '../assertTypes'

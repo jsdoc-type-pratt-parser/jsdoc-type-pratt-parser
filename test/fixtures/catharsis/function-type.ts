@@ -567,8 +567,8 @@ export const functionFixtures: Fixture[] = [
         arrow: false
       }
     },
-    modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
+    modes: ['typescript', 'jsdoc'],
+    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a catharsis error
     jtpModes: ['typescript', 'permissive'] // NOTE: This seems to be a JTP error
   },
   {
@@ -592,8 +592,8 @@ export const functionFixtures: Fixture[] = [
         arrow: false
       }
     },
-    modes: ['jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
+    modes: ['jsdoc'],
+    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a catharsis error
     jtpModes: ['typescript', 'permissive'] // NOTE: This seems to be a JTP error
   },
   {
@@ -617,8 +617,8 @@ export const functionFixtures: Fixture[] = [
         arrow: false
       }
     },
-    modes: ['jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
+    modes: ['jsdoc'],
+    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a catharsis error
     jtpModes: ['typescript', 'permissive'] // NOTE: This seems to be a JTP error
   },
   {
@@ -750,8 +750,8 @@ export const functionFixtures: Fixture[] = [
         arrow: false
       }
     },
-    modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
+    modes: ['typescript', 'jsdoc'],
+    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a catharsis error
     jtpModes: [] // NOTE: This seems to be a JTP error
   },
   {
@@ -851,8 +851,8 @@ export const functionFixtures: Fixture[] = [
         arrow: false
       }
     },
-    modes: ['jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
+    modes: ['jsdoc'],
+    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a catharsis error
     jtpModes: ['typescript', 'permissive'] // NOTE: This seems to be a JTP error
   },
   {
@@ -1014,8 +1014,8 @@ export const functionFixtures: Fixture[] = [
         arrow: false
       }
     },
-    modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
+    modes: ['typescript', 'jsdoc'],
+    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a catharsis error
     jtpModes: ['typescript', 'permissive'] // NOTE: This seems to be a JTP error
   },
   {
@@ -1098,8 +1098,8 @@ export const functionFixtures: Fixture[] = [
         arrow: false
       }
     },
-    modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
+    modes: ['typescript', 'jsdoc'],
+    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a catharsis error
     jtpModes: ['typescript', 'permissive'] // NOTE: This seems to be a JTP error
   },
   {

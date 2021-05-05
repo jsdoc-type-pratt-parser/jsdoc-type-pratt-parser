@@ -170,12 +170,12 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
     name: result.value.toString()
   }),
 
-  RECORD: (result, transform) => {
+  OBJECT: (result, transform) => {
     const transformed: CatharsisRecordResult = {
       type: 'RecordType',
       fields: []
     }
-    for (const field of result.fields) {
+    for (const field of result.elements) {
       if (field.type !== 'KEY_VALUE') {
         transformed.fields.push({
           type: 'FieldType',
@@ -203,20 +203,21 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
 
   NAME_PATH: (result, transform) => {
     const left = result.left
+    const rightResult = transform(result.right) as CatharsisNameResult
     if (left.type === 'NAME_PATH') {
       const leftResult = transform(left) as CatharsisNameResult
       return {
         type: 'NameExpression',
-        name: `${leftResult.name}${result.meta.type}${result.right.value}`
+        name: `${leftResult.name}${result.meta.type}${rightResult.name}`
       }
-    } else if (left.type === 'NAME') {
+    } else if (left.type === 'NAME' || left.type === 'MODULE') {
       return {
         type: 'NameExpression',
-        name: `${left.value}${result.meta.type}${result.right.value}`
+        name: `${left.value}${result.meta.type}${rightResult.name}`
       }
     } else {
       // TODO: here a string representations should be used
-      throw new Error('Other left types than \'NAME\' or \'NAME_PATH\' are not supported for catharsis compat mode')
+      throw new Error('Other left types than \'NAME\', \'NAME_PATH\' or \'MODULE\' are not supported for catharsis compat mode')
     }
   },
 
@@ -250,6 +251,8 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
       name: `${result.value}(${value})`
     }
   },
+
+  PARENTHESIS: (result, transform) => transform(result),
 
   IMPORT: notAvailableTransform,
   KEY_OF: notAvailableTransform,

@@ -2,7 +2,7 @@ import { ParserEngine } from '../ParserEngine'
 import { TokenType } from '../lexer/Token'
 import { NameResult, ParseResult } from '../ParseResult'
 import { PrefixParslet } from './Parslet'
-import { Precedence } from './Precedence'
+import { Precedence } from '../Precedence'
 
 const reservedWords = [
   'null',

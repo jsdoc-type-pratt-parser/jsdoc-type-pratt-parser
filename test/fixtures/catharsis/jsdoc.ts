@@ -168,7 +168,7 @@ export const jsdocFixtures: Fixture[] = [
     },
     modes: ['jsdoc'],
     catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a Catharsis error
-    jtpModes: [] // NOTE: This seems to be a JTP error
+    jtpModes: ['closure', 'jsdoc', 'permissive'] // NOTE: This seems to be a JTP error
   },
   {
     description: 'name expression containing a reserved word',
@@ -596,8 +596,8 @@ export const jsdocFixtures: Fixture[] = [
     description: 'record type with a property that uses a type application as a key',
     input: '{Array.<string>: number}',
     expected: {
-      type: 'RECORD',
-      fields: [
+      type: 'OBJECT',
+      elements: [
         {
           type: 'KEY_VALUE',
           left: {
@@ -641,8 +641,8 @@ export const jsdocFixtures: Fixture[] = [
     description: 'record type with a property that uses a type union as a key',
     input: '{(number|boolean|string): number}',
     expected: {
-      type: 'RECORD',
-      fields: [
+      type: 'OBJECT',
+      elements: [
         {
           type: 'KEY_VALUE',
           left: {
@@ -689,8 +689,8 @@ export const jsdocFixtures: Fixture[] = [
     description: 'record type with a property name that starts with a literal',
     input: '{undefinedHTML: (string|undefined)}',
     expected: {
-      type: 'RECORD',
-      fields: [
+      type: 'OBJECT',
+      elements: [
         {
           type: 'KEY_VALUE',
           left: {
@@ -726,8 +726,8 @@ export const jsdocFixtures: Fixture[] = [
     description: 'record type with a property that contains a function with no preceding space',
     input: '{foo:function()}',
     expected: {
-      type: 'RECORD',
-      fields: [
+      type: 'OBJECT',
+      elements: [
         {
           type: 'KEY_VALUE',
           left: {
@@ -896,6 +896,6 @@ export const jsdocFixtures: Fixture[] = [
     },
     modes: ['jsdoc', 'typescript'],
     catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a Catharsis error
-    jtpModes: ['typescript', 'permissive'] // NOTE: This seems to be a JTP error
+    jtpModes: ['jsdoc', 'typescript', 'permissive']
   }
 ]

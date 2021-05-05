@@ -25,7 +25,9 @@ export const jsdocGrammar: Grammar = () => {
       }),
       new StringValueParslet(),
       new ModuleParslet(),
-      new VariadicParslet()
+      new VariadicParslet({
+        allowEnclosingBrackets: true
+      })
     ],
     infixParslets: [
       ...infixParslets,
@@ -37,7 +39,9 @@ export const jsdocGrammar: Grammar = () => {
       new KeyValueParslet({
         allowOnlyNameOrNumberProperties: false
       }),
-      new VariadicParslet()
+      new VariadicParslet({
+        allowEnclosingBrackets: true
+      })
     ]
   }
 }

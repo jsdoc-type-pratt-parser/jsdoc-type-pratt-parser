@@ -2,10 +2,20 @@ import { InfixParslet, PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
 import { NonTerminalResult, ParseResult, VariadicResult } from '../ParseResult'
-import { Precedence } from './Precedence'
+import { Precedence } from '../Precedence'
 import { assertTerminal } from '../assertTypes'
 
+interface VariadicParsletOptions {
+  allowEnclosingBrackets: boolean
+}
+
 export class VariadicParslet implements PrefixParslet, InfixParslet {
+  private readonly allowEnclosingBrackets: boolean
+
+  constructor (opts: VariadicParsletOptions) {
+    this.allowEnclosingBrackets = opts.allowEnclosingBrackets
+  }
+
   accepts (type: TokenType): boolean {
     return type === '...'
   }
@@ -17,7 +27,7 @@ export class VariadicParslet implements PrefixParslet, InfixParslet {
   parsePrefix (parser: ParserEngine): VariadicResult<ParseResult> {
     parser.consume('...')
 
-    const brackets = parser.consume('[')
+    const brackets = this.allowEnclosingBrackets && parser.consume('[')
     const value = parser.tryParseType(Precedence.PREFIX)
     if (brackets && !parser.consume(']')) {
       throw new Error('Unterminated variadic type. Missing \']\'')

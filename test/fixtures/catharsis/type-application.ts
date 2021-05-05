@@ -155,8 +155,8 @@ export const genericFixtures: Fixture[] = [
                   }
                 },
                 {
-                  type: 'RECORD',
-                  fields: [
+                  type: 'OBJECT',
+                  elements: [
                     {
                       type: 'KEY_VALUE',
                       left: {
@@ -266,8 +266,8 @@ export const genericFixtures: Fixture[] = [
       type: 'GENERIC',
       elements: [
         {
-          type: 'RECORD',
-          fields: [
+          type: 'OBJECT',
+          elements: [
             {
               type: 'NAME',
               value: 'length',

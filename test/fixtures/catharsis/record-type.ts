@@ -5,8 +5,8 @@ export const recordFixtures: Fixture[] = [
     description: 'empty record type',
     input: '{}',
     expected: {
-      type: 'RECORD',
-      fields: []
+      type: 'OBJECT',
+      elements: []
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsisModes: ['closure', 'jsdoc'],
@@ -16,8 +16,8 @@ export const recordFixtures: Fixture[] = [
     description: 'record type with 1 typed property',
     input: '{myNum: number}',
     expected: {
-      type: 'RECORD',
-      fields: [
+      type: 'OBJECT',
+      elements: [
         {
           type: 'KEY_VALUE',
           left: {
@@ -47,8 +47,8 @@ export const recordFixtures: Fixture[] = [
     expected: {
       type: 'VARIADIC',
       element: {
-        type: 'RECORD',
-        fields: [
+        type: 'OBJECT',
+        elements: [
           {
             type: 'KEY_VALUE',
             left: {
@@ -83,8 +83,8 @@ export const recordFixtures: Fixture[] = [
     expected: {
       type: 'OPTIONAL',
       element: {
-        type: 'RECORD',
-        fields: [
+        type: 'OBJECT',
+        elements: [
           {
             type: 'KEY_VALUE',
             left: {
@@ -118,8 +118,8 @@ export const recordFixtures: Fixture[] = [
     expected: {
       type: 'NULLABLE',
       element: {
-        type: 'RECORD',
-        fields: [
+        type: 'OBJECT',
+        elements: [
           {
             type: 'KEY_VALUE',
             left: {
@@ -153,8 +153,8 @@ export const recordFixtures: Fixture[] = [
     expected: {
       type: 'NOT_NULLABLE',
       element: {
-        type: 'RECORD',
-        fields: [
+        type: 'OBJECT',
+        elements: [
           {
             type: 'KEY_VALUE',
             left: {
@@ -186,8 +186,8 @@ export const recordFixtures: Fixture[] = [
     description: 'record type with 1 typed property and 1 untyped property',
     input: '{myNum: number, myObject}',
     expected: {
-      type: 'RECORD',
-      fields: [
+      type: 'OBJECT',
+      elements: [
         {
           type: 'KEY_VALUE',
           left: {
@@ -222,8 +222,8 @@ export const recordFixtures: Fixture[] = [
     description: 'record type with a property that uses a type application as a value',
     input: '{myArray: Array.<string>}',
     expected: {
-      type: 'RECORD',
-      fields: [
+      type: 'OBJECT',
+      elements: [
         {
           type: 'KEY_VALUE',
           left: {
@@ -267,8 +267,8 @@ export const recordFixtures: Fixture[] = [
     description: 'record type with a property that uses a type union as a value',
     input: '{myKey: (number|boolean|string)}',
     expected: {
-      type: 'RECORD',
-      fields: [
+      type: 'OBJECT',
+      elements: [
         {
           type: 'KEY_VALUE',
           left: {
@@ -315,8 +315,8 @@ export const recordFixtures: Fixture[] = [
     description: 'record type with a property that uses a JavaScript keyword as a key',
     input: '{continue: string}',
     expected: {
-      type: 'RECORD',
-      fields: [
+      type: 'OBJECT',
+      elements: [
         {
           type: 'KEY_VALUE',
           left: {
@@ -344,8 +344,8 @@ export const recordFixtures: Fixture[] = [
     description: 'record type with a property that uses a JavaScript future reserved word as a key',
     input: '{class: string}',
     expected: {
-      type: 'RECORD',
-      fields: [
+      type: 'OBJECT',
+      elements: [
         {
           type: 'KEY_VALUE',
           left: {
@@ -373,8 +373,8 @@ export const recordFixtures: Fixture[] = [
     description: 'record type with a property that uses a string representation of a JavaScript boolean literal as a key',
     input: '{true: string}',
     expected: {
-      type: 'RECORD',
-      fields: [
+      type: 'OBJECT',
+      elements: [
         {
           type: 'KEY_VALUE',
           left: {
@@ -402,8 +402,8 @@ export const recordFixtures: Fixture[] = [
     description: 'record type with a property that uses a numeric key',
     input: '{0: string}',
     expected: {
-      type: 'RECORD',
-      fields: [
+      type: 'OBJECT',
+      elements: [
         {
           type: 'KEY_VALUE',
           left: {

@@ -4,6 +4,7 @@ import { FunctionParslet } from '../parslets/FunctionParslet'
 import { NamePathParslet } from '../parslets/NamePathParslet'
 import { KeyValueParslet } from '../parslets/KeyValueParslet'
 import { TypeOfParslet } from '../parslets/TypeOfParslet'
+import { VariadicParslet } from '../parslets/VariadicParslet'
 
 export const closureGrammar: Grammar = () => {
   const {
@@ -19,6 +20,9 @@ export const closureGrammar: Grammar = () => {
         allowWithoutParenthesis: false,
         allowNamedParameters: ['this', 'new'],
         allowNoReturnType: true
+      }),
+      new VariadicParslet({
+        allowEnclosingBrackets: false
       })
     ],
     infixParslets: [
