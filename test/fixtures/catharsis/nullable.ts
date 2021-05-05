@@ -18,8 +18,16 @@ export const nullableFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'postfix nullable number',
@@ -38,8 +46,16 @@ export const nullableFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'non-nullable object',
@@ -58,8 +74,16 @@ export const nullableFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'postfix non-nullable object',
@@ -78,8 +102,16 @@ export const nullableFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'repeatable nullable number',
@@ -105,8 +137,16 @@ export const nullableFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'postfix repeatable nullable number',
@@ -132,8 +172,16 @@ export const nullableFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'repeatable non-nullable object',
@@ -159,8 +207,16 @@ export const nullableFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'postfix repeatable non-nullable object',
@@ -186,8 +242,16 @@ export const nullableFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'postfix optional nullable number',
@@ -212,8 +276,16 @@ export const nullableFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: [] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'fail',
+      permissive: 'fail'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'postfix nullable optional number',
@@ -238,8 +310,16 @@ export const nullableFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'postfix repeatable nullable optional number',
@@ -271,8 +351,16 @@ export const nullableFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'postfix optional non-nullable object',
@@ -297,8 +385,16 @@ export const nullableFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: [] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'fail',
+      permissive: 'fail'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'postfix non-nullable optional object',
@@ -323,8 +419,16 @@ export const nullableFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'postfix repeatable non-nullable optional object',
@@ -356,7 +460,15 @@ export const nullableFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   }
 ]

@@ -24,8 +24,16 @@ export const unionFixtures: Fixture[] = [
       ]
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'repeatable union with 2 types (number and boolean)',
@@ -57,8 +65,16 @@ export const unionFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'union with 2 types (Object and undefined)',
@@ -79,8 +95,16 @@ export const unionFixtures: Fixture[] = [
       ]
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'union with 3 types (number, Window, and goog.ui.Menu)',
@@ -138,8 +162,16 @@ export const unionFixtures: Fixture[] = [
       ]
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'nullable union with 2 types (number and boolean)',
@@ -170,8 +202,16 @@ export const unionFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'non-nullable union with 2 types (number and boolean)',
@@ -202,8 +242,16 @@ export const unionFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'optional union with 2 types (number and boolean)',
@@ -234,8 +282,16 @@ export const unionFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'union with 2 types (array and object with unknown value type)',
@@ -279,8 +335,16 @@ export const unionFixtures: Fixture[] = [
       ]
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'union with 2 type applications',
@@ -340,8 +404,16 @@ export const unionFixtures: Fixture[] = [
       ]
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'union with 2 types (an error, or a function that returns an error)',
@@ -373,8 +445,16 @@ export const unionFixtures: Fixture[] = [
       ]
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'type union with no enclosing parentheses',
@@ -399,8 +479,16 @@ export const unionFixtures: Fixture[] = [
       ]
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'type union with modifiers and no enclosing parentheses',
@@ -437,8 +525,16 @@ export const unionFixtures: Fixture[] = [
       ]
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'optional union with multiple types',
@@ -520,8 +616,16 @@ export const unionFixtures: Fixture[] = [
       }
     },
     modes: ['jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'optional union with multiple types, including a nested union type',
@@ -634,7 +738,15 @@ export const unionFixtures: Fixture[] = [
       }
     },
     modes: ['jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   }
 ]

@@ -28,8 +28,16 @@ export const genericFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'array of strings, with a dot separator',
@@ -58,8 +66,16 @@ export const genericFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'repeatable array of strings',
@@ -95,8 +111,16 @@ export const genericFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'object whose properties are strings and property values are numbers',
@@ -132,8 +156,16 @@ export const genericFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'object whose properties are a type application and property values are a type union',
@@ -256,8 +288,16 @@ export const genericFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'array of objects that have a length property',
@@ -291,8 +331,16 @@ export const genericFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'array of unknown',
@@ -317,8 +365,16 @@ export const genericFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'Promise containing string',
@@ -347,8 +403,16 @@ export const genericFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'foo.Promise containing string',
@@ -390,7 +454,15 @@ export const genericFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   }
 ]

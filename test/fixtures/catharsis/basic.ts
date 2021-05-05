@@ -12,8 +12,16 @@ export const basicFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'object',
@@ -26,8 +34,16 @@ export const basicFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'object with properties',
@@ -66,8 +82,16 @@ export const basicFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'object with a single-quoted string-literal property',
@@ -106,8 +130,16 @@ export const basicFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'object with a double-quoted string-literal property',
@@ -146,8 +178,16 @@ export const basicFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'object with a string-literal property that includes other punctuation',
@@ -186,8 +226,16 @@ export const basicFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'object with a numeric property',
@@ -210,8 +258,16 @@ export const basicFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: [] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'fail',
+      permissive: 'fail'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'variable number of parameters',
@@ -231,8 +287,16 @@ export const basicFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'optional number parameter',
@@ -251,8 +315,16 @@ export const basicFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'optional Object parameter',
@@ -271,8 +343,16 @@ export const basicFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'null',
@@ -281,8 +361,16 @@ export const basicFixtures: Fixture[] = [
       type: 'NULL'
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'repeatable null',
@@ -298,8 +386,16 @@ export const basicFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'undefined',
@@ -308,8 +404,16 @@ export const basicFixtures: Fixture[] = [
       type: 'UNDEFINED'
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'repeatable undefined',
@@ -325,8 +429,16 @@ export const basicFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'all',
@@ -335,8 +447,16 @@ export const basicFixtures: Fixture[] = [
       type: 'ALL'
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'repeatable all',
@@ -352,8 +472,16 @@ export const basicFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'unknown',
@@ -362,8 +490,16 @@ export const basicFixtures: Fixture[] = [
       type: 'UNKNOWN'
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'repeatable unknown',
@@ -379,8 +515,16 @@ export const basicFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'name that starts with a reserved word',
@@ -393,8 +537,16 @@ export const basicFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'name that includes a hyphen and a numeral',
@@ -407,8 +559,16 @@ export const basicFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'name that includes an @ sign',
@@ -431,7 +591,15 @@ export const basicFixtures: Fixture[] = [
       }
     },
     modes: ['jsdoc'],
-    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a Catharsis error
-    jtpModes: [] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a Catharsis error
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'fail',
+      permissive: 'fail'
+    } // NOTE: This seems to be a JTP error
   }
 ]

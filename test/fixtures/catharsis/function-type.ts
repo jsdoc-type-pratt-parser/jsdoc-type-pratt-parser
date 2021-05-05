@@ -27,8 +27,16 @@ export const functionFixtures: Fixture[] = [
       }
     },
     modes: ['jsdoc', 'closure'], // typescript does not allow function types without return type
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'repeatable function with two basic parameters',
@@ -63,8 +71,16 @@ export const functionFixtures: Fixture[] = [
       }
     },
     modes: ['jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with two basic parameters and a return value',
@@ -99,8 +115,16 @@ export const functionFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'repeatable function with two basic parameters and a return value',
@@ -142,8 +166,16 @@ export const functionFixtures: Fixture[] = [
       }
     },
     modes: ['jsdoc', 'typescript', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'optional function with one basic parameter',
@@ -170,8 +202,16 @@ export const functionFixtures: Fixture[] = [
       }
     },
     modes: ['jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with no parameters and a return value',
@@ -191,8 +231,16 @@ export const functionFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'function with a "this" type and no parameters',
@@ -249,8 +297,16 @@ export const functionFixtures: Fixture[] = [
       }
     },
     modes: ['jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a "this" type and one parameter',
@@ -314,8 +370,16 @@ export const functionFixtures: Fixture[] = [
       }
     },
     modes: ['jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a "new" type and no parameters',
@@ -372,8 +436,16 @@ export const functionFixtures: Fixture[] = [
       }
     },
     modes: ['jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a "new" type and one parameter',
@@ -437,8 +509,16 @@ export const functionFixtures: Fixture[] = [
       }
     },
     modes: ['jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a "new" and "this" type and no parameters',
@@ -525,8 +605,16 @@ export const functionFixtures: Fixture[] = [
       }
     },
     modes: ['jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: [] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'fail',
+      permissive: 'fail'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a fixed parameter, followed by a variable number of parameters, as well as a return value',
@@ -568,8 +656,16 @@ export const functionFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc'],
-    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a catharsis error
-    jtpModes: ['typescript', 'permissive'] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a catharsis error
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a variable number of parameters containing the value `null`',
@@ -593,8 +689,16 @@ export const functionFixtures: Fixture[] = [
       }
     },
     modes: ['jsdoc'],
-    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a catharsis error
-    jtpModes: ['typescript', 'permissive'] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a catharsis error
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a variable number of parameters containing the value `undefined`',
@@ -618,8 +722,16 @@ export const functionFixtures: Fixture[] = [
       }
     },
     modes: ['jsdoc'],
-    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a catharsis error
-    jtpModes: ['typescript', 'permissive'] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a catharsis error
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a variable number of parameters, a "new" type, a "this" type, and a return value',
@@ -751,8 +863,16 @@ export const functionFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc'],
-    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a catharsis error
-    jtpModes: [] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a catharsis error
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'fail',
+      permissive: 'fail'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a repeatable param that is not enclosed in brackets',
@@ -780,8 +900,16 @@ export const functionFixtures: Fixture[] = [
       }
     },
     modes: ['jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function that returns a type union',
@@ -813,8 +941,16 @@ export const functionFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'function with no parameters and no return value',
@@ -827,8 +963,16 @@ export const functionFixtures: Fixture[] = [
       }
     },
     modes: ['jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a variable number of parameters containing any values',
@@ -852,8 +996,16 @@ export const functionFixtures: Fixture[] = [
       }
     },
     modes: ['jsdoc'],
-    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a catharsis error
-    jtpModes: ['typescript', 'permissive'] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a catharsis error
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a "this" type that returns a type union',
@@ -903,8 +1055,16 @@ export const functionFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'function with a "this" type that is a type union, and that returns a type union',
@@ -966,8 +1126,16 @@ export const functionFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'function with a "new" type and a variable number of params that accept all types, returning a name expression',
@@ -1015,8 +1183,16 @@ export const functionFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc'],
-    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a catharsis error
-    jtpModes: ['typescript', 'permissive'] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a catharsis error
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a "new" type that accepts an optional parameter of any type, as well as a return value',
@@ -1063,8 +1239,16 @@ export const functionFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'function with a variable number of parameters and a return value',
@@ -1099,8 +1283,16 @@ export const functionFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc'],
-    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a catharsis error
-    jtpModes: ['typescript', 'permissive'] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a catharsis error
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a "this" type and a parameter that returns a type union',
@@ -1164,7 +1356,15 @@ export const functionFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   }
 ]

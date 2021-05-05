@@ -9,6 +9,8 @@ type JtpMode = 'jsdoc' | 'closure' | 'typescript' | 'permissive'
 
 type CatharsisMode = 'jsdoc' | 'closure'
 
+type CompareMode = ParserMode | 'fail' | 'differ'
+
 interface DiffResult {
   type: 'default' | 'jsdoc' | 'closure' | 'typescript'
   expected: ParseResult
@@ -17,10 +19,18 @@ interface DiffResult {
 export interface Fixture {
   description: string
   modes: ParserMode[]
-  jtpModes: JtpMode[]
-  catharsisModes: CatharsisMode[]
+  jtp: {
+    [K in JtpMode]: CompareMode
+  }
+  catharsis: {
+    [K in CatharsisMode]: CompareMode
+  }
   expected?: ParseResult | DiffResult[]
   input: string
+}
+
+type Results = {
+  [K in ParserMode]?: ParseResult
 }
 
 function testParser (mode: ParserMode, fixture: Fixture): ParseResult | undefined {
@@ -40,15 +50,19 @@ function testParser (mode: ParserMode, fixture: Fixture): ParseResult | undefine
   }
 }
 
-function compareCatharsis (mode: CatharsisMode, result: ParseResult | undefined, fixture: Fixture): void {
-  if (fixture.catharsisModes.includes(mode)) {
+function compareCatharsis (mode: CatharsisMode, results: Results, fixture: Fixture): void {
+  const compareMode = fixture.catharsis[mode]
+
+  if (compareMode !== 'fail') {
     it(`gets parsed in '${mode}' mode`, () => {
       const catharsisResult = catharsisParse(fixture.input, {
         jsdoc: mode === 'jsdoc'
       })
 
-      if (catharsisResult !== undefined && result !== undefined) {
-        const transformed = catharsisTransform(result)
+      expect(catharsisResult).not.to.be.undefined
+
+      if (compareMode !== 'differ') {
+        const transformed = catharsisTransform(results[compareMode] as ParseResult)
         expect(transformed, 'matches the catharsis output').to.deep.equal(catharsisResult)
       }
     })
@@ -63,15 +77,19 @@ function compareCatharsis (mode: CatharsisMode, result: ParseResult | undefined,
   }
 }
 
-function compareJtp (mode: JtpMode, result: ParseResult | undefined, fixture: Fixture): void {
-  if (fixture.jtpModes.includes(mode)) {
+function compareJtp (mode: JtpMode, results: Results, fixture: Fixture): void {
+  const compareMode = fixture.jtp[mode]
+
+  if (compareMode !== 'fail') {
     it(`gets parsed in '${mode}' mode`, () => {
       const jtpResult = jtpParse(fixture.input, {
         mode: mode
       })
 
-      if (jtpResult !== undefined && result !== undefined) {
-        const transformed = jtpTransform(result)
+      expect(jtpResult).not.to.be.undefined
+
+      if (compareMode !== 'differ') {
+        const transformed = jtpTransform(results[compareMode] as ParseResult)
         expect(transformed, 'matches the jsdoctypeparser output').to.deep.equal(jtpResult)
       }
     })
@@ -89,21 +107,22 @@ function compareJtp (mode: JtpMode, result: ParseResult | undefined, fixture: Fi
 export function testFixture (fixture: Fixture): void {
   describe(fixture.description, () => {
     describe('is parsed in the expected modes and no others', () => {
-      const cResult = testParser('closure', fixture)
-      const tResult = testParser('typescript', fixture)
-      const jResult = testParser('jsdoc', fixture)
-      const result = cResult ?? tResult ?? jResult
+      const results: Results = {
+        closure: testParser('closure', fixture),
+        typescript: testParser('typescript', fixture),
+        jsdoc: testParser('jsdoc', fixture)
+      }
 
       describe('catharsis produces the same results in the expected modes an no others', () => {
-        compareCatharsis('jsdoc', jResult ?? result, fixture)
-        compareCatharsis('closure', cResult ?? result, fixture)
+        compareCatharsis('jsdoc', results, fixture)
+        compareCatharsis('closure', results, fixture)
       })
 
       describe('jsdoctypeparser produces the same results in the expected modes an no others', () => {
-        compareJtp('closure', cResult ?? result, fixture)
-        compareJtp('jsdoc', jResult ?? result, fixture)
-        compareJtp('typescript', tResult ?? result, fixture)
-        compareJtp('permissive', result, fixture)
+        compareJtp('closure', results, fixture)
+        compareJtp('jsdoc', results, fixture)
+        compareJtp('typescript', results, fixture)
+        compareJtp('permissive', results, fixture)
       })
     })
   })

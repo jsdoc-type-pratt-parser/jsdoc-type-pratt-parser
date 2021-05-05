@@ -12,8 +12,16 @@ export const jsdocFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'name expression with instance scope punctuation',
@@ -39,8 +47,16 @@ export const jsdocFixtures: Fixture[] = [
       }
     },
     modes: ['jsdoc'],
-    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a Catharsis error
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a Catharsis error
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'name expression with inner scope punctuation',
@@ -66,8 +82,16 @@ export const jsdocFixtures: Fixture[] = [
       }
     },
     modes: ['jsdoc'],
-    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a Catharsis error
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a Catharsis error
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'name expression with instance and inner scope punctuation',
@@ -119,8 +143,16 @@ export const jsdocFixtures: Fixture[] = [
       }
     },
     modes: ['jsdoc'],
-    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a Catharsis error
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a Catharsis error
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'name expression for a class within a module',
@@ -143,8 +175,16 @@ export const jsdocFixtures: Fixture[] = [
       }
     },
     modes: ['jsdoc'],
-    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a Catharsis error
-    jtpModes: ['jsdoc', 'closure', 'permissive'] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a Catharsis error
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'fail',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'name expression for a class within a module with hyphens',
@@ -167,8 +207,16 @@ export const jsdocFixtures: Fixture[] = [
       }
     },
     modes: ['jsdoc'],
-    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a Catharsis error
-    jtpModes: ['closure', 'jsdoc', 'permissive'] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a Catharsis error
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'fail',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'name expression containing a reserved word',
@@ -181,8 +229,16 @@ export const jsdocFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'name expression for a symbol variation whose name is an empty string',
@@ -192,8 +248,16 @@ export const jsdocFixtures: Fixture[] = [
       type: 'SYMBOL'
     },
     modes: ['jsdoc'],
-    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a Catharsis error
-    jtpModes: [] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a Catharsis error
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'fail',
+      permissive: 'fail'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'name expression for a symbol variation whose name is one numeral',
@@ -207,8 +271,16 @@ export const jsdocFixtures: Fixture[] = [
       }
     },
     modes: ['jsdoc'],
-    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a Catharsis error
-    jtpModes: [] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a Catharsis error
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'fail',
+      permissive: 'fail'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'name expression for a symbol variation whose name is multiple numerals',
@@ -222,8 +294,16 @@ export const jsdocFixtures: Fixture[] = [
       }
     },
     modes: ['jsdoc'],
-    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a Catharsis error
-    jtpModes: [] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a Catharsis error
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'fail',
+      permissive: 'fail'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'name expression for a symbol variation whose name is one letter',
@@ -240,8 +320,16 @@ export const jsdocFixtures: Fixture[] = [
       }
     },
     modes: ['jsdoc'],
-    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a Catharsis error
-    jtpModes: [] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a Catharsis error
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'fail',
+      permissive: 'fail'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'name expression for a symbol variation whose name is multiple letters',
@@ -258,8 +346,16 @@ export const jsdocFixtures: Fixture[] = [
       }
     },
     modes: ['jsdoc'],
-    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a Catharsis error
-    jtpModes: [] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a Catharsis error
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'fail',
+      permissive: 'fail'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'name expression enclosed in double quotes',
@@ -272,8 +368,16 @@ export const jsdocFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc'],
-    catharsisModes: ['jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'name expression enclosed in single quotes',
@@ -286,8 +390,16 @@ export const jsdocFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc'],
-    catharsisModes: ['jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'name expression partially enclosed in double quotes',
@@ -326,8 +438,16 @@ export const jsdocFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'name expression partially enclosed in single quotes',
@@ -366,8 +486,16 @@ export const jsdocFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'identifier with a repeatable param that is not enclosed in brackets',
@@ -391,8 +519,16 @@ export const jsdocFixtures: Fixture[] = [
       }
     },
     modes: ['jsdoc'],
-    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a Catharsis error
-    jtpModes: [] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a Catharsis error
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'fail',
+      permissive: 'fail'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'type application with no period',
@@ -421,8 +557,16 @@ export const jsdocFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'Jsdoc Toolkit 2-style array notation for an array of strings',
@@ -451,8 +595,16 @@ export const jsdocFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc'],
-    catharsisModes: ['jsdoc'],
-    jtpModes: ['jsdoc', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'Jsdoc Toolkit 2-style array notation for an array of functions',
@@ -481,8 +633,16 @@ export const jsdocFixtures: Fixture[] = [
       }
     },
     modes: ['jsdoc'],
-    catharsisModes: ['jsdoc'],
-    jtpModes: ['jsdoc', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'Jsdoc Toolkit 2-style nested array (two levels)',
@@ -527,8 +687,16 @@ export const jsdocFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc'],
-    catharsisModes: ['jsdoc'],
-    jtpModes: ['jsdoc', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'Jsdoc Toolkit 2-style nested array (three levels)',
@@ -589,8 +757,16 @@ export const jsdocFixtures: Fixture[] = [
       }
     },
     modes: ['typescript', 'jsdoc'],
-    catharsisModes: ['jsdoc'],
-    jtpModes: ['jsdoc', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'record type with a property that uses a type application as a key',
@@ -634,8 +810,16 @@ export const jsdocFixtures: Fixture[] = [
       ]
     },
     modes: ['jsdoc'],
-    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a Catharsis error
-    jtpModes: [] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a Catharsis error
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'fail',
+      permissive: 'fail'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'record type with a property that uses a type union as a key',
@@ -682,8 +866,16 @@ export const jsdocFixtures: Fixture[] = [
       ]
     },
     modes: ['jsdoc'],
-    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a Catharsis error
-    jtpModes: [] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a Catharsis error
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'fail',
+      permissive: 'fail'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'record type with a property name that starts with a literal',
@@ -719,8 +911,16 @@ export const jsdocFixtures: Fixture[] = [
       ]
     },
     modes: ['typescript', 'jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   },
   {
     description: 'record type with a property that contains a function with no preceding space',
@@ -748,8 +948,16 @@ export const jsdocFixtures: Fixture[] = [
       ]
     },
     modes: ['jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function type with no trailing pathentheses',
@@ -762,8 +970,16 @@ export const jsdocFixtures: Fixture[] = [
       }
     },
     modes: ['jsdoc'],
-    catharsisModes: ['jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'standard function type (should still parse if JSDoc expressions are allowed)',
@@ -846,8 +1062,16 @@ export const jsdocFixtures: Fixture[] = [
       }
     },
     modes: ['jsdoc', 'closure'],
-    catharsisModes: ['closure', 'jsdoc'],
-    jtpModes: ['jsdoc', 'closure', 'typescript', 'permissive'] // NOTE: This seems to be a JTP error
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'type union with no parentheses, a repeatable param, and a JSDoc-style array',
@@ -895,7 +1119,15 @@ export const jsdocFixtures: Fixture[] = [
       ]
     },
     modes: ['jsdoc', 'typescript'],
-    catharsisModes: ['closure', 'jsdoc'], // NOTE: This seems to be a Catharsis error
-    jtpModes: ['jsdoc', 'typescript', 'permissive']
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a Catharsis error
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
+    }
   }
 ]

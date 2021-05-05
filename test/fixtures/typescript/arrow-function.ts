@@ -29,8 +29,16 @@ export const arrowFunctionFixtures: Fixture[] = [
       }
     },
     modes: ['typescript'],
-    catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
   },
   {
     description: 'arrow with one parameter and return type',
@@ -68,8 +76,16 @@ export const arrowFunctionFixtures: Fixture[] = [
       }
     },
     modes: ['typescript'],
-    catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    catharsis: {
+  closure: 'fail',
+  jsdoc: 'fail'
+},
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
   },
   {
     description: 'arrow with multiple parameters and a return type',
@@ -141,8 +157,16 @@ export const arrowFunctionFixtures: Fixture[] = [
       }
     },
     modes: ['typescript'],
-    catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    catharsis: {
+  closure: 'fail',
+  jsdoc: 'fail'
+},
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
   },
   {
     description: 'arrow without parameter and return type',
@@ -162,8 +186,16 @@ export const arrowFunctionFixtures: Fixture[] = [
       }
     },
     modes: ['typescript'],
-    catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    catharsis: {
+  closure: 'fail',
+  jsdoc: 'fail'
+},
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
   },
   {
     description: 'function with arrow as return type',
@@ -190,8 +222,16 @@ export const arrowFunctionFixtures: Fixture[] = [
       }
     },
     modes: ['typescript'],
-    catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    catharsis: {
+  closure: 'fail',
+  jsdoc: 'fail'
+},
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
   },
   {
     description: 'function with arrow as parameter',
@@ -219,8 +259,16 @@ export const arrowFunctionFixtures: Fixture[] = [
       }
     },
     modes: ['typescript'],
-    catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    catharsis: {
+  closure: 'fail',
+  jsdoc: 'fail'
+},
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
   },
   {
     description: 'arrow function parameter list with trailing comma',
@@ -275,8 +323,16 @@ export const arrowFunctionFixtures: Fixture[] = [
       }
     },
     modes: ['typescript'],
-    catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    catharsis: {
+  closure: 'fail',
+  jsdoc: 'fail'
+},
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
   },
   {
     description: 'arrow as generic type',
@@ -312,8 +368,16 @@ export const arrowFunctionFixtures: Fixture[] = [
       }
     },
     modes: ['typescript'],
-    catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    catharsis: {
+  closure: 'fail',
+  jsdoc: 'fail'
+},
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
   },
   {
     description: 'arrow returning void',
@@ -326,8 +390,16 @@ export const arrowFunctionFixtures: Fixture[] = [
       }
     },
     modes: ['typescript'],
-    catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    catharsis: {
+  closure: 'fail',
+  jsdoc: 'fail'
+},
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
   },
   {
     description: 'arrow returning arrow',
@@ -347,8 +419,16 @@ export const arrowFunctionFixtures: Fixture[] = [
       }
     },
     modes: ['typescript'],
-    catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    catharsis: {
+  closure: 'fail',
+  jsdoc: 'fail'
+},
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
   },
   {
     description: 'arrow returning arrow with parameters',
@@ -411,8 +491,16 @@ export const arrowFunctionFixtures: Fixture[] = [
       }
     },
     modes: ['typescript'],
-    catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    catharsis: {
+  closure: 'fail',
+  jsdoc: 'fail'
+},
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
   },
   {
     description: 'arrow with unnamed parameters',
@@ -433,15 +521,31 @@ export const arrowFunctionFixtures: Fixture[] = [
       }
     },
     modes: ['typescript'],
-    catharsisModes: [],
-    jtpModes: [] // NOTE: This seems to be a JTP error
+    catharsis: {
+  closure: 'fail',
+  jsdoc: 'fail'
+},
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'fail',
+      permissive: 'fail'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'arrow with unnamed parameters that are not names should fail',
     input: '(Array<string>) => void',
     modes: [],
-    catharsisModes: [],
-    jtpModes: []
+    catharsis: {
+  closure: 'fail',
+  jsdoc: 'fail'
+},
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'fail',
+      permissive: 'fail'
+    }
   }
 ]
 

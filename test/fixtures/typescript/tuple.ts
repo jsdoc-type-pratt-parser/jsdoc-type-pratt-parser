@@ -9,8 +9,16 @@ export const tupleFixtures: Fixture[] = [
       elements: []
     },
     modes: ['typescript'],
-    catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
   },
   {
     description: 'Tuple with one element',
@@ -28,8 +36,16 @@ export const tupleFixtures: Fixture[] = [
       ]
     },
     modes: ['typescript'],
-    catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
   },
   {
     description: 'Tuple with 4 elements',
@@ -68,8 +84,16 @@ export const tupleFixtures: Fixture[] = [
       ]
     },
     modes: ['typescript'],
-    catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
   },
   {
     description: 'Tuple with spaces',
@@ -101,8 +125,16 @@ export const tupleFixtures: Fixture[] = [
       ]
     },
     modes: ['typescript'],
-    catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
   },
   {
     description: 'Tuple with spaces',
@@ -141,8 +173,16 @@ export const tupleFixtures: Fixture[] = [
       ]
     },
     modes: ['typescript'],
-    catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
   },
   {
     description: 'Array of empty tuples',
@@ -168,8 +208,16 @@ export const tupleFixtures: Fixture[] = [
       }
     },
     modes: ['typescript'],
-    catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
   },
   {
     description: 'Array of non empty tuples',
@@ -210,8 +258,16 @@ export const tupleFixtures: Fixture[] = [
       }
     },
     modes: ['typescript'],
-    catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
   },
   {
     description: 'Tuple with typeof',
@@ -246,8 +302,16 @@ export const tupleFixtures: Fixture[] = [
       ]
     },
     modes: ['typescript'],
-    catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
   },
   {
     description: 'Tuple with keyof',
@@ -282,8 +346,16 @@ export const tupleFixtures: Fixture[] = [
       ]
     },
     modes: ['typescript'],
-    catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
   },
   {
     description: 'Tuple with typeof and keyof',
@@ -335,8 +407,16 @@ export const tupleFixtures: Fixture[] = [
       ]
     },
     modes: ['typescript'],
-    catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
   }
 ]
 

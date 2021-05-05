@@ -29,7 +29,15 @@ export const miscFixtures: Fixture[] = [
       }
     },
     modes: ['typescript'],
-    catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
   }
 ]

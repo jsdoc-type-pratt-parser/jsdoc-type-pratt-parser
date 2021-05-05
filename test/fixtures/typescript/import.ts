@@ -15,8 +15,16 @@ export const importFixtures: Fixture[] = [
       }
     },
     modes: ['typescript'],
-    catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
   },
   {
     description: 'import "./x"',
@@ -32,8 +40,16 @@ export const importFixtures: Fixture[] = [
       }
     },
     modes: ['typescript'],
-    catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
   },
   {
     description: 'import "../x"',
@@ -49,8 +65,16 @@ export const importFixtures: Fixture[] = [
       }
     },
     modes: ['typescript'],
-    catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
   },
   {
     description: 'import a named export',
@@ -79,8 +103,16 @@ export const importFixtures: Fixture[] = [
       }
     },
     modes: ['typescript'],
-    catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
   },
   {
     description: 'import 2-level named export',
@@ -122,8 +154,16 @@ export const importFixtures: Fixture[] = [
       }
     },
     modes: ['typescript'],
-    catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
   },
   {
     description: 'import 2-level named export as generic',
@@ -188,7 +228,15 @@ export const importFixtures: Fixture[] = [
       }
     },
     modes: ['typescript'],
-    catharsisModes: [],
-    jtpModes: ['typescript', 'permissive']
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
   }
 ]
