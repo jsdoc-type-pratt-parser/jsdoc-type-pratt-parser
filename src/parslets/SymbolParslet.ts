@@ -2,7 +2,7 @@ import { InfixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
 import { NonTerminalResult, ParseResult, SymbolResult } from '../ParseResult'
-import { Precedence } from './Precedence'
+import { Precedence } from '../Precedence'
 import { assertNumberOrVariadicName } from '../assertTypes'
 
 export class SymbolParslet implements InfixParslet {
@@ -21,11 +21,11 @@ export class SymbolParslet implements InfixParslet {
     parser.consume('(')
     const result: SymbolResult = {
       type: 'SYMBOL',
-      name: left.name
+      value: left.value
     }
     if (!parser.consume(')')) {
       const next = parser.parseNonTerminalType(Precedence.SYMBOL)
-      result.value = assertNumberOrVariadicName(next)
+      result.element = assertNumberOrVariadicName(next)
       if (!parser.consume(')')) {
         throw new Error('Symbol does not end after value')
       }

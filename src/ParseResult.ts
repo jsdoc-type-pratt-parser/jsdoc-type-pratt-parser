@@ -5,12 +5,12 @@ export type ParseResult =
   | StringValueResult
   | NullResult
   | UndefinedResult
-  | AllResult
+  | AnyResult
   | UnknownResult
   | FunctionResult
   | RecordResult
   | ModuleResult
-  | PropertyPathResult
+  | NamePathResult
   | SymbolResult
   | TypeOfResult
   | KeyOfResult
@@ -20,6 +20,7 @@ export type ParseResult =
   | NullableResult<ParseResult>
   | NotNullableResult<ParseResult>
   | VariadicResult<ParseResult>
+  | ParenthesisResult
 
 export type NonTerminalResult =
   ParseResult
@@ -62,7 +63,7 @@ export interface VariadicResult<T extends ParseResult> {
 
 export interface NameResult {
   type: 'NAME'
-  name: string
+  value: string
   meta: {
     reservedWord: boolean
   }
@@ -75,8 +76,8 @@ export interface UnionResult {
 
 export interface GenericResult {
   type: 'GENERIC'
-  subject: ParseResult
-  objects: ParseResult[]
+  left: ParseResult
+  elements: ParseResult[]
   meta: {
     brackets: '<>' | '[]'
     dot: boolean
@@ -99,8 +100,8 @@ export interface UndefinedResult {
   type: 'UNDEFINED'
 }
 
-export interface AllResult {
-  type: 'ALL'
+export interface AnyResult {
+  type: 'ANY'
 }
 
 export interface UnknownResult {
@@ -113,29 +114,36 @@ export interface FunctionResult {
   returnType?: ParseResult
   meta: {
     arrow: boolean
+    parenthesis: boolean
   }
 }
 
 export interface KeyValueResult<KeyType = NameResult> {
   type: 'KEY_VALUE'
-  key: KeyType
-  value: ParseResult
+  left: KeyType
+  right: ParseResult
 }
 
 export interface RecordResult {
-  type: 'RECORD'
-  fields: Array<KeyValueResult<ParseResult | NumberResult> | ParseResult | NumberResult>
+  type: 'OBJECT'
+  elements: Array<KeyValueResult<ParseResult | NumberResult> | ParseResult | NumberResult>
 }
 
 export interface ModuleResult {
   type: 'MODULE'
-  path: string
+  value: string
+  meta: {
+    quote: '\'' | '"' | undefined
+  }
 }
 
-export interface PropertyPathResult {
-  type: 'PROPERTY_PATH'
+export interface NamePathResult {
+  type: 'NAME_PATH'
   left: ParseResult
-  path: string[]
+  right: NameResult | NumberResult | StringValueResult
+  meta: {
+    type: '~' | '#' | '.'
+  }
 }
 
 export interface NumberResult {
@@ -145,23 +153,23 @@ export interface NumberResult {
 
 export interface SymbolResult {
   type: 'SYMBOL'
-  name: string
-  value?: NumberResult | NameResult | VariadicResult<NameResult>
+  value: string
+  element?: NumberResult | NameResult | VariadicResult<NameResult>
 }
 
 export interface TypeOfResult {
   type: 'TYPE_OF'
-  value?: ParseResult
+  element: ParseResult
 }
 
 export interface KeyOfResult {
   type: 'KEY_OF'
-  value?: ParseResult
+  element: ParseResult
 }
 
 export interface ImportResult {
   type: 'IMPORT'
-  path: StringValueResult
+  element: StringValueResult
 }
 
 export interface ParameterList {
@@ -172,4 +180,9 @@ export interface ParameterList {
 export interface TupleResult {
   type: 'TUPLE'
   elements: ParseResult[]
+}
+
+export interface ParenthesisResult {
+  type: 'PARENTHESIS'
+  element: NonTerminalResult | undefined
 }

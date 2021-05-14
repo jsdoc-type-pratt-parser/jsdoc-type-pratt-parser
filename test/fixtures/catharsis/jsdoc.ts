@@ -6,133 +6,362 @@ export const jsdocFixtures: Fixture[] = [
     input: 'functional',
     expected: {
       type: 'NAME',
-      name: 'functional',
+      value: 'functional',
       meta: {
         reservedWord: false
       }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
     }
   },
   {
     description: 'name expression with instance scope punctuation',
     input: 'MyClass#myMember',
     expected: {
-      type: 'NAME',
-      name: 'MyClass#myMember',
+      type: 'NAME_PATH',
+      left: {
+        type: 'NAME',
+        value: 'MyClass',
+        meta: {
+          reservedWord: false
+        }
+      },
+      right: {
+        type: 'NAME',
+        value: 'myMember',
+        meta: {
+          reservedWord: false
+        }
+      },
       meta: {
-        reservedWord: false
+        type: '#'
       }
-    }
+    },
+    modes: ['jsdoc'],
+    catharsis: {
+      closure: 'differ',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a Catharsis error
+    jtp: {
+      closure: 'differ',
+      jsdoc: 'jsdoc',
+      typescript: 'differ',
+      permissive: 'jsdoc'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'name expression with inner scope punctuation',
     input: 'MyClass~myMember',
     expected: {
-      type: 'NAME',
-      name: 'MyClass~myMember',
+      type: 'NAME_PATH',
+      left: {
+        type: 'NAME',
+        value: 'MyClass',
+        meta: {
+          reservedWord: false
+        }
+      },
+      right: {
+        type: 'NAME',
+        value: 'myMember',
+        meta: {
+          reservedWord: false
+        }
+      },
       meta: {
-        reservedWord: false
+        type: '~'
       }
-    }
+    },
+    modes: ['jsdoc'],
+    catharsis: {
+      closure: 'differ',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a Catharsis error
+    jtp: {
+      closure: 'differ',
+      jsdoc: 'jsdoc',
+      typescript: 'differ',
+      permissive: 'jsdoc'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'name expression with instance and inner scope punctuation',
     input: 'MyClass#myMember#yourMember~theirMember',
     expected: {
-      type: 'NAME',
-      name: 'MyClass#myMember#yourMember~theirMember',
+      type: 'NAME_PATH',
+      left: {
+        type: 'NAME_PATH',
+        left: {
+          type: 'NAME_PATH',
+          left: {
+            type: 'NAME',
+            value: 'MyClass',
+            meta: {
+              reservedWord: false
+            }
+          },
+          right: {
+            type: 'NAME',
+            value: 'myMember',
+            meta: {
+              reservedWord: false
+            }
+          },
+          meta: {
+            type: '#'
+          }
+        },
+        right: {
+          type: 'NAME',
+          value: 'yourMember',
+          meta: {
+            reservedWord: false
+          }
+        },
+        meta: {
+          type: '#'
+        }
+      },
+      right: {
+        type: 'NAME',
+        value: 'theirMember',
+        meta: {
+          reservedWord: false
+        }
+      },
       meta: {
-        reservedWord: false
+        type: '~'
       }
-    }
+    },
+    modes: ['jsdoc'],
+    catharsis: {
+      closure: 'differ',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a Catharsis error
+    jtp: {
+      closure: 'differ',
+      jsdoc: 'jsdoc',
+      typescript: 'differ',
+      permissive: 'jsdoc'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'name expression for a class within a module',
     input: 'module:foo/bar/baz~Qux',
     expected: {
-      path: 'module:foo/bar/baz~Qux',
-      type: 'MODULE'
+      type: 'NAME_PATH',
+      left: {
+        value: 'foo/bar/baz',
+        type: 'MODULE',
+        meta: {
+          quote: undefined
+        }
+      },
+      right: {
+        type: 'NAME',
+        meta: {
+          reservedWord: false
+        },
+        value: 'Qux'
+      },
+      meta: {
+        type: '~'
+      }
+    },
+    modes: ['jsdoc'],
+    catharsis: {
+      closure: 'differ',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a Catharsis error
+    jtp: {
+      closure: 'differ',
+      jsdoc: 'jsdoc',
+      typescript: 'fail',
+      permissive: 'jsdoc'
     }
   },
   {
     description: 'name expression for a class within a module with hyphens',
     input: 'module:foo-bar/baz~Qux',
     expected: {
-      path: 'module:foo-bar/baz~Qux',
-      type: 'MODULE'
-    }
+      type: 'NAME_PATH',
+      left: {
+        value: 'foo-bar/baz',
+        type: 'MODULE',
+        meta: {
+          quote: undefined
+        }
+      },
+      right: {
+        type: 'NAME',
+        meta: {
+          reservedWord: false
+        },
+        value: 'Qux'
+      },
+      meta: {
+        type: '~'
+      }
+    },
+    modes: ['jsdoc'],
+    catharsis: {
+      closure: 'differ',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a Catharsis error
+    jtp: {
+      closure: 'differ',
+      jsdoc: 'jsdoc',
+      typescript: 'fail',
+      permissive: 'jsdoc'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'name expression containing a reserved word',
     input: 'this',
     expected: {
       type: 'NAME',
-      name: 'this',
+      value: 'this',
       meta: {
         reservedWord: true
       }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
     }
   },
   {
     description: 'name expression for a symbol variation whose name is an empty string',
     input: 'MyClass()',
     expected: {
-      name: 'MyClass',
+      value: 'MyClass',
       type: 'SYMBOL'
-    }
+    },
+    modes: ['jsdoc'],
+    catharsis: {
+      closure: 'differ',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a Catharsis error
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'fail',
+      permissive: 'fail'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'name expression for a symbol variation whose name is one numeral',
     input: 'MyClass(2)',
     expected: {
-      name: 'MyClass',
+      value: 'MyClass',
       type: 'SYMBOL',
-      value: {
+      element: {
         type: 'NUMBER',
         value: 2
       }
-    }
+    },
+    modes: ['jsdoc'],
+    catharsis: {
+      closure: 'differ',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a Catharsis error
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'fail',
+      permissive: 'fail'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'name expression for a symbol variation whose name is multiple numerals',
     input: 'MyClass(23456)',
     expected: {
-      name: 'MyClass',
+      value: 'MyClass',
       type: 'SYMBOL',
-      value: {
+      element: {
         type: 'NUMBER',
         value: 23456
       }
-    }
+    },
+    modes: ['jsdoc'],
+    catharsis: {
+      closure: 'differ',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a Catharsis error
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'fail',
+      permissive: 'fail'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'name expression for a symbol variation whose name is one letter',
     input: 'MyClass(a)',
     expected: {
-      name: 'MyClass',
+      value: 'MyClass',
       type: 'SYMBOL',
-      value: {
-        name: 'a',
+      element: {
+        value: 'a',
         type: 'NAME',
         meta: {
           reservedWord: false
         }
       }
-    }
+    },
+    modes: ['jsdoc'],
+    catharsis: {
+      closure: 'differ',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a Catharsis error
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'fail',
+      permissive: 'fail'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'name expression for a symbol variation whose name is multiple letters',
     input: 'MyClass(abcde)',
     expected: {
-      name: 'MyClass',
+      value: 'MyClass',
       type: 'SYMBOL',
-      value: {
-        name: 'abcde',
+      element: {
+        value: 'abcde',
         type: 'NAME',
         meta: {
           reservedWord: false
         }
       }
-    }
+    },
+    modes: ['jsdoc'],
+    catharsis: {
+      closure: 'differ',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a Catharsis error
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'fail',
+      permissive: 'fail'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'name expression enclosed in double quotes',
@@ -143,7 +372,18 @@ export const jsdocFixtures: Fixture[] = [
       meta: {
         quote: '"'
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'differ',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'jsdoc'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'name expression enclosed in single quotes',
@@ -154,24 +394,65 @@ export const jsdocFixtures: Fixture[] = [
       meta: {
         quote: '\''
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'differ',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'jsdoc'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'name expression partially enclosed in double quotes',
     input: 'foo."bar.baz".qux',
     expected: {
       left: {
-        name: 'foo',
+        left: {
+          value: 'foo',
+          type: 'NAME',
+          meta: {
+            reservedWord: false
+          }
+        },
+        right: {
+          type: 'STRING_VALUE',
+          value: 'bar.baz',
+          meta: {
+            quote: '"'
+          }
+        },
+        type: 'NAME_PATH',
+        meta: {
+          type: '.'
+        }
+      },
+      right: {
         type: 'NAME',
+        value: 'qux',
         meta: {
           reservedWord: false
         }
       },
-      path: [
-        '"bar.baz"',
-        'qux'
-      ],
-      type: 'PROPERTY_PATH'
+      type: 'NAME_PATH',
+      meta: {
+        type: '.'
+      }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
     }
   },
   {
@@ -179,29 +460,59 @@ export const jsdocFixtures: Fixture[] = [
     input: "foo.'bar.baz'.qux",
     expected: {
       left: {
-        name: 'foo',
+        left: {
+          value: 'foo',
+          type: 'NAME',
+          meta: {
+            reservedWord: false
+          }
+        },
+        right: {
+          type: 'STRING_VALUE',
+          value: 'bar.baz',
+          meta: {
+            quote: '\''
+          }
+        },
+        type: 'NAME_PATH',
+        meta: {
+          type: '.'
+        }
+      },
+      right: {
         type: 'NAME',
+        value: 'qux',
         meta: {
           reservedWord: false
         }
       },
-      path: [
-        "'bar.baz'",
-        'qux'
-      ],
-      type: 'PROPERTY_PATH'
+      type: 'NAME_PATH',
+      meta: {
+        type: '.'
+      }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
     }
   },
   {
     description: 'identifier with a repeatable param that is not enclosed in brackets',
     input: 'MyClass(...foo)',
     expected: {
-      name: 'MyClass',
+      value: 'MyClass',
       type: 'SYMBOL',
-      value: {
+      element: {
         type: 'VARIADIC',
         element: {
-          name: 'foo',
+          value: 'foo',
           type: 'NAME',
           meta: {
             reservedWord: false
@@ -212,25 +523,36 @@ export const jsdocFixtures: Fixture[] = [
           position: 'PREFIX'
         }
       }
-    }
+    },
+    modes: ['jsdoc'],
+    catharsis: {
+      closure: 'differ',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a Catharsis error
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'fail',
+      permissive: 'fail'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'type application with no period',
     input: 'Array<string>',
     expected: {
       type: 'GENERIC',
-      objects: [
+      elements: [
         {
           type: 'NAME',
-          name: 'string',
+          value: 'string',
           meta: {
             reservedWord: false
           }
         }
       ],
-      subject: {
+      left: {
         type: 'NAME',
-        name: 'Array',
+        value: 'Array',
         meta: {
           reservedWord: false
         }
@@ -239,6 +561,17 @@ export const jsdocFixtures: Fixture[] = [
         brackets: '<>',
         dot: false
       }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
     }
   },
   {
@@ -246,18 +579,18 @@ export const jsdocFixtures: Fixture[] = [
     input: 'string[]',
     expected: {
       type: 'GENERIC',
-      objects: [
+      elements: [
         {
           type: 'NAME',
-          name: 'string',
+          value: 'string',
           meta: {
             reservedWord: false
           }
         }
       ],
-      subject: {
+      left: {
         type: 'NAME',
-        name: 'Array',
+        value: 'Array',
         meta: {
           reservedWord: false
         }
@@ -266,6 +599,17 @@ export const jsdocFixtures: Fixture[] = [
         brackets: '[]',
         dot: false
       }
+    },
+    modes: ['typescript', 'jsdoc'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'jsdoc'
     }
   },
   {
@@ -273,18 +617,19 @@ export const jsdocFixtures: Fixture[] = [
     input: 'function[]',
     expected: {
       type: 'GENERIC',
-      objects: [
+      elements: [
         {
           type: 'FUNCTION',
           parameters: [],
           meta: {
-            arrow: false
+            arrow: false,
+            parenthesis: false
           }
         }
       ],
-      subject: {
+      left: {
         type: 'NAME',
-        name: 'Array',
+        value: 'Array',
         meta: {
           reservedWord: false
         }
@@ -293,28 +638,39 @@ export const jsdocFixtures: Fixture[] = [
         brackets: '[]',
         dot: false
       }
-    }
+    },
+    modes: ['jsdoc'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'jsdoc',
+      typescript: 'differ',
+      permissive: 'jsdoc'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'Jsdoc Toolkit 2-style nested array (two levels)',
     input: 'number[][]',
     expected: {
       type: 'GENERIC',
-      objects: [
+      elements: [
         {
           type: 'GENERIC',
-          objects: [
+          elements: [
             {
               type: 'NAME',
-              name: 'number',
+              value: 'number',
               meta: {
                 reservedWord: false
               }
             }
           ],
-          subject: {
+          left: {
             type: 'NAME',
-            name: 'Array',
+            value: 'Array',
             meta: {
               reservedWord: false
             }
@@ -325,9 +681,9 @@ export const jsdocFixtures: Fixture[] = [
           }
         }
       ],
-      subject: {
+      left: {
         type: 'NAME',
-        name: 'Array',
+        value: 'Array',
         meta: {
           reservedWord: false
         }
@@ -336,6 +692,17 @@ export const jsdocFixtures: Fixture[] = [
         brackets: '[]',
         dot: false
       }
+    },
+    modes: ['typescript', 'jsdoc'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'jsdoc'
     }
   },
   {
@@ -343,24 +710,24 @@ export const jsdocFixtures: Fixture[] = [
     input: 'number[][][]',
     expected: {
       type: 'GENERIC',
-      objects: [
+      elements: [
         {
           type: 'GENERIC',
-          objects: [
+          elements: [
             {
               type: 'GENERIC',
-              objects: [
+              elements: [
                 {
                   type: 'NAME',
-                  name: 'number',
+                  value: 'number',
                   meta: {
                     reservedWord: false
                   }
                 }
               ],
-              subject: {
+              left: {
                 type: 'NAME',
-                name: 'Array',
+                value: 'Array',
                 meta: {
                   reservedWord: false
                 }
@@ -371,9 +738,9 @@ export const jsdocFixtures: Fixture[] = [
               }
             }
           ],
-          subject: {
+          left: {
             type: 'NAME',
-            name: 'Array',
+            value: 'Array',
             meta: {
               reservedWord: false
             }
@@ -384,9 +751,9 @@ export const jsdocFixtures: Fixture[] = [
           }
         }
       ],
-      subject: {
+      left: {
         type: 'NAME',
-        name: 'Array',
+        value: 'Array',
         meta: {
           reservedWord: false
         }
@@ -395,30 +762,41 @@ export const jsdocFixtures: Fixture[] = [
         brackets: '[]',
         dot: false
       }
+    },
+    modes: ['typescript', 'jsdoc'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'jsdoc'
     }
   },
   {
     description: 'record type with a property that uses a type application as a key',
     input: '{Array.<string>: number}',
     expected: {
-      type: 'RECORD',
-      fields: [
+      type: 'OBJECT',
+      elements: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'GENERIC',
-            objects: [
+            elements: [
               {
                 type: 'NAME',
-                name: 'string',
+                value: 'string',
                 meta: {
                   reservedWord: false
                 }
               }
             ],
-            subject: {
+            left: {
               type: 'NAME',
-              name: 'Array',
+              value: 'Array',
               meta: {
                 reservedWord: false
               }
@@ -428,120 +806,216 @@ export const jsdocFixtures: Fixture[] = [
               dot: true
             }
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'number',
+            value: 'number',
             meta: {
               reservedWord: false
             }
           }
         }
       ]
-    }
+    },
+    modes: ['jsdoc'],
+    catharsis: {
+      closure: 'differ',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a Catharsis error
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'fail',
+      permissive: 'fail'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'record type with a property that uses a type union as a key',
     input: '{(number|boolean|string): number}',
     expected: {
-      type: 'RECORD',
-      fields: [
+      type: 'OBJECT',
+      elements: [
         {
           type: 'KEY_VALUE',
-          key: {
-            type: 'UNION',
-            elements: [
-              {
-                type: 'NAME',
-                name: 'number',
-                meta: {
-                  reservedWord: false
+          left: {
+            type: 'PARENTHESIS',
+            element: {
+              type: 'UNION',
+              elements: [
+                {
+                  type: 'NAME',
+                  value: 'number',
+                  meta: {
+                    reservedWord: false
+                  }
+                },
+                {
+                  type: 'NAME',
+                  value: 'boolean',
+                  meta: {
+                    reservedWord: false
+                  }
+                },
+                {
+                  type: 'NAME',
+                  value: 'string',
+                  meta: {
+                    reservedWord: false
+                  }
                 }
-              },
-              {
-                type: 'NAME',
-                name: 'boolean',
-                meta: {
-                  reservedWord: false
-                }
-              },
-              {
-                type: 'NAME',
-                name: 'string',
-                meta: {
-                  reservedWord: false
-                }
-              }
-            ]
+              ]
+            }
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'number',
+            value: 'number',
             meta: {
               reservedWord: false
             }
           }
         }
       ]
-    }
+    },
+    modes: ['jsdoc'],
+    catharsis: {
+      closure: 'differ',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a Catharsis error
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'fail',
+      permissive: 'fail'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'record type with a property name that starts with a literal',
     input: '{undefinedHTML: (string|undefined)}',
     expected: {
-      type: 'RECORD',
-      fields: [
+      type: 'OBJECT',
+      elements: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'undefinedHTML',
+            value: 'undefinedHTML',
             meta: {
               reservedWord: false
             }
           },
-          value: {
-            type: 'UNION',
-            elements: [
-              {
-                type: 'NAME',
-                name: 'string',
-                meta: {
-                  reservedWord: false
+          right: {
+            type: 'PARENTHESIS',
+            element: {
+              type: 'UNION',
+              elements: [
+                {
+                  type: 'NAME',
+                  value: 'string',
+                  meta: {
+                    reservedWord: false
+                  }
+                },
+                {
+                  type: 'UNDEFINED'
                 }
-              },
-              {
-                type: 'UNDEFINED'
-              }
-            ]
+              ]
+            }
           }
         }
       ]
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
     }
   },
   {
     description: 'record type with a property that contains a function with no preceding space',
     input: '{foo:function()}',
     expected: {
-      type: 'RECORD',
-      fields: [
+      type: 'OBJECT',
+      elements: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'foo',
+            value: 'foo',
             meta: {
               reservedWord: false
             }
           },
-          value: {
+          right: {
             type: 'FUNCTION',
             parameters: [],
             meta: {
-              arrow: false
+              arrow: false,
+              parenthesis: true
             }
           }
         }
       ]
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'differ',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
+  },
+  {
+    description: 'record type with a property that contains a function with no preceding space that returns void',
+    input: '{foo:function(): void}',
+    expected: {
+      type: 'OBJECT',
+      elements: [
+        {
+          type: 'KEY_VALUE',
+          left: {
+            type: 'NAME',
+            value: 'foo',
+            meta: {
+              reservedWord: false
+            }
+          },
+          right: {
+            type: 'FUNCTION',
+            parameters: [],
+            meta: {
+              arrow: false,
+              parenthesis: true
+            },
+            returnType: {
+              type: 'NAME',
+              value: 'void',
+              meta: {
+                reservedWord: true
+              }
+            }
+          }
+        }
+      ]
+    },
+    modes: ['jsdoc', 'closure', 'typescript'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
     }
   },
   {
@@ -551,9 +1025,21 @@ export const jsdocFixtures: Fixture[] = [
       type: 'FUNCTION',
       parameters: [],
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: false
       }
-    }
+    },
+    modes: ['jsdoc'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'differ',
+      jsdoc: 'differ',
+      typescript: 'differ',
+      permissive: 'differ'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'standard function type (should still parse if JSDoc expressions are allowed)',
@@ -565,50 +1051,88 @@ export const jsdocFixtures: Fixture[] = [
         parameters: [
           {
             type: 'KEY_VALUE',
-            key: {
+            left: {
               type: 'NAME',
               meta: {
                 reservedWord: true
               },
-              name: 'this'
+              value: 'this'
             },
-            value: {
+            right: {
               left: {
-                name: 'my',
+                left: {
+                  value: 'my',
+                  type: 'NAME',
+                  meta: {
+                    reservedWord: false
+                  }
+                },
+                right: {
+                  type: 'NAME',
+                  value: 'namespace',
+                  meta: {
+                    reservedWord: false
+                  }
+                },
+                type: 'NAME_PATH',
+                meta: {
+                  type: '.'
+                }
+              },
+              right: {
                 type: 'NAME',
+                value: 'Class',
                 meta: {
                   reservedWord: false
                 }
               },
-              path: [
-                'namespace',
-                'Class'
-              ],
-              type: 'PROPERTY_PATH'
+              type: 'NAME_PATH',
+              meta: {
+                type: '.'
+              }
             }
           },
           {
             left: {
-              name: 'my',
+              value: 'my',
               type: 'NAME',
               meta: {
                 reservedWord: false
               }
             },
-            path: [
-              'Class'
-            ],
-            type: 'PROPERTY_PATH'
+            right: {
+              type: 'NAME',
+              value: 'Class',
+              meta: {
+                reservedWord: false
+              }
+            },
+            type: 'NAME_PATH',
+            meta: {
+              type: '.'
+            }
           }
         ],
         meta: {
-          arrow: false
+          arrow: false,
+          parenthesis: true
         }
       },
       meta: {
         position: 'SUFFIX'
       }
-    }
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'differ',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'type union with no parentheses, a repeatable param, and a JSDoc-style array',
@@ -620,7 +1144,7 @@ export const jsdocFixtures: Fixture[] = [
           type: 'VARIADIC',
           element: {
             type: 'NAME',
-            name: 'string',
+            value: 'string',
             meta: {
               reservedWord: false
             }
@@ -632,18 +1156,18 @@ export const jsdocFixtures: Fixture[] = [
         },
         {
           type: 'GENERIC',
-          objects: [
+          elements: [
             {
-              name: 'string',
+              value: 'string',
               type: 'NAME',
               meta: {
                 reservedWord: false
               }
             }
           ],
-          subject: {
+          left: {
             type: 'NAME',
-            name: 'Array',
+            value: 'Array',
             meta: {
               reservedWord: false
             }
@@ -654,6 +1178,17 @@ export const jsdocFixtures: Fixture[] = [
           }
         }
       ]
+    },
+    modes: ['jsdoc', 'typescript'],
+    catharsis: {
+      closure: 'differ',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a Catharsis error
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'differ',
+      typescript: 'differ', // this seems to be a JTP error
+      permissive: 'differ'
     }
   }
 ]

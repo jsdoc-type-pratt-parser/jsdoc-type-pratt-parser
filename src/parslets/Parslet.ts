@@ -1,7 +1,7 @@
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
 import { NonTerminalResult } from '../ParseResult'
-import { Precedence } from './Precedence'
+import { Precedence } from '../Precedence'
 
 export interface Parslet {
   accepts: (type: TokenType, next: TokenType) => boolean

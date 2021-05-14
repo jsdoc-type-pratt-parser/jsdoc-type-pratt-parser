@@ -2,7 +2,7 @@ import { InfixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
 import { KeyValueResult, NonTerminalResult, ParseResult } from '../ParseResult'
-import { Precedence } from './Precedence'
+import { Precedence } from '../Precedence'
 import { assertNamedKeyValueOrTerminal } from '../assertTypes'
 import { NoParsletFoundError } from '../errors'
 
@@ -42,6 +42,11 @@ export class ParameterListParslet implements InfixParslet {
         }
       }
     } while (parser.consume(','))
+
+    if (elements.length > 0 && elements.slice(0, -1).some(e => e.type === 'VARIADIC')) {
+      throw new Error('Only the last parameter may be a rest parameter')
+    }
+
     return {
       type: 'PARAMETER_LIST',
       elements

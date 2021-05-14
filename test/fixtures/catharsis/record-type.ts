@@ -5,34 +5,56 @@ export const recordFixtures: Fixture[] = [
     description: 'empty record type',
     input: '{}',
     expected: {
-      type: 'RECORD',
-      fields: []
+      type: 'OBJECT',
+      elements: []
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
     }
   },
   {
     description: 'record type with 1 typed property',
     input: '{myNum: number}',
     expected: {
-      type: 'RECORD',
-      fields: [
+      type: 'OBJECT',
+      elements: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'myNum',
+            value: 'myNum',
             meta: {
               reservedWord: false
             }
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'number',
+            value: 'number',
             meta: {
               reservedWord: false
             }
           }
         }
       ]
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
     }
   },
   {
@@ -41,20 +63,20 @@ export const recordFixtures: Fixture[] = [
     expected: {
       type: 'VARIADIC',
       element: {
-        type: 'RECORD',
-        fields: [
+        type: 'OBJECT',
+        elements: [
           {
             type: 'KEY_VALUE',
-            key: {
+            left: {
               type: 'NAME',
-              name: 'myNum',
+              value: 'myNum',
               meta: {
                 reservedWord: false
               }
             },
-            value: {
+            right: {
               type: 'NAME',
-              name: 'number',
+              value: 'number',
               meta: {
                 reservedWord: false
               }
@@ -66,6 +88,17 @@ export const recordFixtures: Fixture[] = [
         squareBrackets: false,
         position: 'PREFIX'
       }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
     }
   },
   {
@@ -74,20 +107,20 @@ export const recordFixtures: Fixture[] = [
     expected: {
       type: 'OPTIONAL',
       element: {
-        type: 'RECORD',
-        fields: [
+        type: 'OBJECT',
+        elements: [
           {
             type: 'KEY_VALUE',
-            key: {
+            left: {
               type: 'NAME',
-              name: 'myNum',
+              value: 'myNum',
               meta: {
                 reservedWord: false
               }
             },
-            value: {
+            right: {
               type: 'NAME',
-              name: 'number',
+              value: 'number',
               meta: {
                 reservedWord: false
               }
@@ -98,6 +131,17 @@ export const recordFixtures: Fixture[] = [
       meta: {
         position: 'SUFFIX'
       }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
     }
   },
   {
@@ -106,20 +150,20 @@ export const recordFixtures: Fixture[] = [
     expected: {
       type: 'NULLABLE',
       element: {
-        type: 'RECORD',
-        fields: [
+        type: 'OBJECT',
+        elements: [
           {
             type: 'KEY_VALUE',
-            key: {
+            left: {
               type: 'NAME',
-              name: 'myNum',
+              value: 'myNum',
               meta: {
                 reservedWord: false
               }
             },
-            value: {
+            right: {
               type: 'NAME',
-              name: 'number',
+              value: 'number',
               meta: {
                 reservedWord: false
               }
@@ -130,6 +174,17 @@ export const recordFixtures: Fixture[] = [
       meta: {
         position: 'PREFIX'
       }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
     }
   },
   {
@@ -138,20 +193,20 @@ export const recordFixtures: Fixture[] = [
     expected: {
       type: 'NOT_NULLABLE',
       element: {
-        type: 'RECORD',
-        fields: [
+        type: 'OBJECT',
+        elements: [
           {
             type: 'KEY_VALUE',
-            key: {
+            left: {
               type: 'NAME',
-              name: 'myNum',
+              value: 'myNum',
               meta: {
                 reservedWord: false
               }
             },
-            value: {
+            right: {
               type: 'NAME',
-              name: 'number',
+              value: 'number',
               meta: {
                 reservedWord: false
               }
@@ -162,26 +217,37 @@ export const recordFixtures: Fixture[] = [
       meta: {
         position: 'PREFIX'
       }
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'differ',
+      permissive: 'closure'
     }
   },
   {
     description: 'record type with 1 typed property and 1 untyped property',
     input: '{myNum: number, myObject}',
     expected: {
-      type: 'RECORD',
-      fields: [
+      type: 'OBJECT',
+      elements: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'myNum',
+            value: 'myNum',
             meta: {
               reservedWord: false
             }
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'number',
+            value: 'number',
             meta: {
               reservedWord: false
             }
@@ -189,42 +255,53 @@ export const recordFixtures: Fixture[] = [
         },
         {
           type: 'NAME',
-          name: 'myObject',
+          value: 'myObject',
           meta: {
             reservedWord: false
           }
         }
       ]
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
     }
   },
   {
     description: 'record type with a property that uses a type application as a value',
     input: '{myArray: Array.<string>}',
     expected: {
-      type: 'RECORD',
-      fields: [
+      type: 'OBJECT',
+      elements: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'myArray',
+            value: 'myArray',
             meta: {
               reservedWord: false
             }
           },
-          value: {
+          right: {
             type: 'GENERIC',
-            subject: {
+            left: {
               type: 'NAME',
-              name: 'Array',
+              value: 'Array',
               meta: {
                 reservedWord: false
               }
             },
-            objects: [
+            elements: [
               {
                 type: 'NAME',
-                name: 'string',
+                value: 'string',
                 meta: {
                   reservedWord: false
                 }
@@ -237,152 +314,221 @@ export const recordFixtures: Fixture[] = [
           }
         }
       ]
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
     }
   },
   {
     description: 'record type with a property that uses a type union as a value',
     input: '{myKey: (number|boolean|string)}',
     expected: {
-      type: 'RECORD',
-      fields: [
+      type: 'OBJECT',
+      elements: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'myKey',
+            value: 'myKey',
             meta: {
               reservedWord: false
             }
           },
-          value: {
-            type: 'UNION',
-            elements: [
-              {
-                type: 'NAME',
-                name: 'number',
-                meta: {
-                  reservedWord: false
+          right: {
+            type: 'PARENTHESIS',
+            element: {
+              type: 'UNION',
+              elements: [
+                {
+                  type: 'NAME',
+                  value: 'number',
+                  meta: {
+                    reservedWord: false
+                  }
+                },
+                {
+                  type: 'NAME',
+                  value: 'boolean',
+                  meta: {
+                    reservedWord: false
+                  }
+                },
+                {
+                  type: 'NAME',
+                  value: 'string',
+                  meta: {
+                    reservedWord: false
+                  }
                 }
-              },
-              {
-                type: 'NAME',
-                name: 'boolean',
-                meta: {
-                  reservedWord: false
-                }
-              },
-              {
-                type: 'NAME',
-                name: 'string',
-                meta: {
-                  reservedWord: false
-                }
-              }
-            ]
+              ]
+            }
           }
         }
       ]
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
     }
   },
   {
     description: 'record type with a property that uses a JavaScript keyword as a key',
     input: '{continue: string}',
     expected: {
-      type: 'RECORD',
-      fields: [
+      type: 'OBJECT',
+      elements: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'continue',
+            value: 'continue',
             meta: {
               reservedWord: true
             }
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'string',
+            value: 'string',
             meta: {
               reservedWord: false
             }
           }
         }
       ]
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
     }
   },
   {
     description: 'record type with a property that uses a JavaScript future reserved word as a key',
     input: '{class: string}',
     expected: {
-      type: 'RECORD',
-      fields: [
+      type: 'OBJECT',
+      elements: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'class',
+            value: 'class',
             meta: {
               reservedWord: true
             }
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'string',
+            value: 'string',
             meta: {
               reservedWord: false
             }
           }
         }
       ]
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
     }
   },
   {
     description: 'record type with a property that uses a string representation of a JavaScript boolean literal as a key',
     input: '{true: string}',
     expected: {
-      type: 'RECORD',
-      fields: [
+      type: 'OBJECT',
+      elements: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'true',
+            value: 'true',
             meta: {
               reservedWord: true
             }
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'string',
+            value: 'string',
             meta: {
               reservedWord: false
             }
           }
         }
       ]
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
     }
   },
   {
     description: 'record type with a property that uses a numeric key',
     input: '{0: string}',
     expected: {
-      type: 'RECORD',
-      fields: [
+      type: 'OBJECT',
+      elements: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NUMBER',
             value: 0
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'string',
+            value: 'string',
             meta: {
               reservedWord: false
             }
           }
         }
       ]
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
     }
   }
 ]

@@ -2,7 +2,7 @@ import { InfixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
 import { NonTerminalResult, ParseResult } from '../ParseResult'
-import { Precedence } from './Precedence'
+import { Precedence } from '../Precedence'
 import { assertTerminal } from '../assertTypes'
 
 export class ArrayBracketsParslet implements InfixParslet {
@@ -19,14 +19,14 @@ export class ArrayBracketsParslet implements InfixParslet {
     parser.consume(']')
     return {
       type: 'GENERIC',
-      subject: {
+      left: {
         type: 'NAME',
-        name: 'Array',
+        value: 'Array',
         meta: {
           reservedWord: false
         }
       },
-      objects: [
+      elements: [
         assertTerminal(left)
       ],
       meta: {

@@ -5,7 +5,7 @@ import { InfixParslet, PrefixParslet } from './parslets/Parslet'
 import { NonTerminalResult, ParseResult } from './ParseResult'
 import { Grammar } from './grammars/Grammar'
 import { assertTerminal } from './assertTypes'
-import { Precedence } from './parslets/Precedence'
+import { Precedence } from './Precedence'
 
 export class ParserEngine {
   private readonly prefixParslets: PrefixParslet[]
@@ -48,7 +48,7 @@ export class ParserEngine {
   public tryParseType (precedence: Precedence): NonTerminalResult | undefined {
     const preserve = this.lexer.clone()
     try {
-      return this.parseType(precedence)
+      return this.parseNonTerminalType(precedence)
     } catch (e) {
       if (e instanceof NoParsletFoundError) {
         this.lexer = preserve

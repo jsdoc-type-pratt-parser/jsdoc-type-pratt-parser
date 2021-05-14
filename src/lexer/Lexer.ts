@@ -163,7 +163,6 @@ const rules = [
   makePunctuationRule('@'),
   makeKeyWordRule('undefined'),
   makeKeyWordRule('null'),
-  makeKeyWordRule('void'),
   makeKeyWordRule('function'),
   makeKeyWordRule('this'),
   makeKeyWordRule('new'),

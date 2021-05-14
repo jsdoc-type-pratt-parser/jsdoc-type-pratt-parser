@@ -9,23 +9,35 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'NAME',
-          name: 'string',
+          value: 'string',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          name: 'boolean',
+          value: 'boolean',
           meta: {
             reservedWord: false
           }
         }
       ],
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
-    }
+    },
+    modes: ['jsdoc', 'closure'], // typescript does not allow function types without return type
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'differ',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'repeatable function with two basic parameters',
@@ -37,28 +49,40 @@ export const functionFixtures: Fixture[] = [
         parameters: [
           {
             type: 'NAME',
-            name: 'string',
+            value: 'string',
             meta: {
               reservedWord: false
             }
           },
           {
             type: 'NAME',
-            name: 'boolean',
+            value: 'boolean',
             meta: {
               reservedWord: false
             }
           }
         ],
         meta: {
-          arrow: false
+          arrow: false,
+          parenthesis: true
         }
       },
       meta: {
         position: 'PREFIX',
         squareBrackets: false
       }
-    }
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'differ',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with two basic parameters and a return value',
@@ -68,14 +92,14 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'NAME',
-          name: 'string',
+          value: 'string',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          name: 'boolean',
+          value: 'boolean',
           meta: {
             reservedWord: false
           }
@@ -83,14 +107,26 @@ export const functionFixtures: Fixture[] = [
       ],
       returnType: {
         type: 'NAME',
-        name: 'boolean',
+        value: 'boolean',
         meta: {
           reservedWord: false
         }
       },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
     }
   },
   {
@@ -103,14 +139,14 @@ export const functionFixtures: Fixture[] = [
         parameters: [
           {
             type: 'NAME',
-            name: 'string',
+            value: 'string',
             meta: {
               reservedWord: false
             }
           },
           {
             type: 'NAME',
-            name: 'boolean',
+            value: 'boolean',
             meta: {
               reservedWord: false
             }
@@ -118,19 +154,31 @@ export const functionFixtures: Fixture[] = [
         ],
         returnType: {
           type: 'NAME',
-          name: 'boolean',
+          value: 'boolean',
           meta: {
             reservedWord: false
           }
         },
         meta: {
-          arrow: false
+          arrow: false,
+          parenthesis: true
         }
       },
       meta: {
         squareBrackets: false,
         position: 'PREFIX'
       }
+    },
+    modes: ['jsdoc', 'typescript', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
     }
   },
   {
@@ -143,20 +191,32 @@ export const functionFixtures: Fixture[] = [
         parameters: [
           {
             type: 'NAME',
-            name: 'string',
+            value: 'string',
             meta: {
               reservedWord: false
             }
           }
         ],
         meta: {
-          arrow: false
+          arrow: false,
+          parenthesis: true
         }
       },
       meta: {
         position: 'SUFFIX'
       }
-    }
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'differ',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with no parameters and a return value',
@@ -166,14 +226,26 @@ export const functionFixtures: Fixture[] = [
       parameters: [],
       returnType: {
         type: 'NAME',
-        name: 'number',
+        value: 'number',
         meta: {
           reservedWord: false
         }
       },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'differ', // NOTE: This seems to be a JTP error
+      permissive: 'closure'
     }
   },
   {
@@ -182,35 +254,66 @@ export const functionFixtures: Fixture[] = [
     expected: {
       parameters: [
         {
-          key: {
-            name: 'this',
+          left: {
+            value: 'this',
             type: 'NAME',
             meta: {
               reservedWord: true
             }
           },
           type: 'KEY_VALUE',
-          value: {
+          right: {
             left: {
-              name: 'goog',
+              left: {
+                value: 'goog',
+                type: 'NAME',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              right: {
+                type: 'NAME',
+                value: 'ui',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              type: 'NAME_PATH',
+              meta: {
+                type: '.'
+              }
+            },
+            right: {
               type: 'NAME',
+              value: 'Menu',
               meta: {
                 reservedWord: false
               }
             },
-            path: [
-              'ui',
-              'Menu'
-            ],
-            type: 'PROPERTY_PATH'
+            type: 'NAME_PATH',
+            meta: {
+              type: '.'
+            }
           }
         }
       ],
       type: 'FUNCTION',
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
-    }
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'differ',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a "this" type and one parameter',
@@ -218,31 +321,50 @@ export const functionFixtures: Fixture[] = [
     expected: {
       parameters: [
         {
-          key: {
-            name: 'this',
+          left: {
+            value: 'this',
             type: 'NAME',
             meta: {
               reservedWord: true
             }
           },
           type: 'KEY_VALUE',
-          value: {
+          right: {
             left: {
-              name: 'goog',
+              left: {
+                value: 'goog',
+                type: 'NAME',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              right: {
+                type: 'NAME',
+                value: 'ui',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              type: 'NAME_PATH',
+              meta: {
+                type: '.'
+              }
+            },
+            right: {
               type: 'NAME',
+              value: 'Menu',
               meta: {
                 reservedWord: false
               }
             },
-            path: [
-              'ui',
-              'Menu'
-            ],
-            type: 'PROPERTY_PATH'
+            type: 'NAME_PATH',
+            meta: {
+              type: '.'
+            }
           }
         },
         {
-          name: 'string',
+          value: 'string',
           type: 'NAME',
           meta: {
             reservedWord: false
@@ -251,9 +373,21 @@ export const functionFixtures: Fixture[] = [
       ],
       type: 'FUNCTION',
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
-    }
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'differ',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a "new" type and no parameters',
@@ -263,33 +397,64 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'new',
+            value: 'new',
             meta: {
               reservedWord: true
             }
           },
-          value: {
+          right: {
             left: {
-              name: 'goog',
+              left: {
+                value: 'goog',
+                type: 'NAME',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              right: {
+                type: 'NAME',
+                value: 'ui',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              type: 'NAME_PATH',
+              meta: {
+                type: '.'
+              }
+            },
+            right: {
               type: 'NAME',
+              value: 'Menu',
               meta: {
                 reservedWord: false
               }
             },
-            path: [
-              'ui',
-              'Menu'
-            ],
-            type: 'PROPERTY_PATH'
+            type: 'NAME_PATH',
+            meta: {
+              type: '.'
+            }
           }
         }
       ],
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
-    }
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'differ',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a "new" type and one parameter',
@@ -299,40 +464,71 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'new',
+            value: 'new',
             meta: {
               reservedWord: true
             }
           },
-          value: {
+          right: {
             left: {
-              name: 'goog',
+              left: {
+                value: 'goog',
+                type: 'NAME',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              right: {
+                type: 'NAME',
+                value: 'ui',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              type: 'NAME_PATH',
+              meta: {
+                type: '.'
+              }
+            },
+            right: {
               type: 'NAME',
+              value: 'Menu',
               meta: {
                 reservedWord: false
               }
             },
-            path: [
-              'ui',
-              'Menu'
-            ],
-            type: 'PROPERTY_PATH'
+            type: 'NAME_PATH',
+            meta: {
+              type: '.'
+            }
           }
         },
         {
           type: 'NAME',
-          name: 'string',
+          value: 'string',
           meta: {
             reservedWord: false
           }
         }
       ],
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
-    }
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'differ',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a "new" and "this" type and no parameters',
@@ -342,96 +538,190 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'new',
+            value: 'new',
             meta: {
               reservedWord: true
             }
           },
-          value: {
+          right: {
             left: {
-              name: 'goog',
+              left: {
+                value: 'goog',
+                type: 'NAME',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              right: {
+                type: 'NAME',
+                value: 'ui',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              type: 'NAME_PATH',
+              meta: {
+                type: '.'
+              }
+            },
+            right: {
               type: 'NAME',
+              value: 'Menu',
               meta: {
                 reservedWord: false
               }
             },
-            path: [
-              'ui',
-              'Menu'
-            ],
-            type: 'PROPERTY_PATH'
+            type: 'NAME_PATH',
+            meta: {
+              type: '.'
+            }
           }
         },
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'this',
+            value: 'this',
             meta: {
               reservedWord: true
             }
           },
-          value: {
+          right: {
             left: {
-              name: 'goog',
+              value: 'goog',
               type: 'NAME',
               meta: {
                 reservedWord: false
               }
             },
-            path: [
-              'ui'
-            ],
-            type: 'PROPERTY_PATH'
+            right: {
+              type: 'NAME',
+              value: 'ui',
+              meta: {
+                reservedWord: false
+              }
+            },
+            type: 'NAME_PATH',
+            meta: {
+              type: '.'
+            }
           }
         }
       ],
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
-    }
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'fail',
+      permissive: 'fail'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a fixed parameter, followed by a variable number of parameters, as well as a return value',
     input: 'function(string, ...[number]): number',
-    expected: {
-      type: 'FUNCTION',
-      parameters: [
-        {
-          type: 'NAME',
-          name: 'string',
-          meta: {
-            reservedWord: false
-          }
-        },
-        {
-          type: 'VARIADIC',
-          element: {
+    diffExpected: {
+      jsdoc: {
+        type: 'FUNCTION',
+        parameters: [
+          {
             type: 'NAME',
-            name: 'number',
+            value: 'string',
             meta: {
               reservedWord: false
             }
           },
-          meta: {
-            position: 'PREFIX',
-            squareBrackets: true
+          {
+            type: 'VARIADIC',
+            element: {
+              type: 'NAME',
+              value: 'number',
+              meta: {
+                reservedWord: false
+              }
+            },
+            meta: {
+              position: 'PREFIX',
+              squareBrackets: true
+            }
           }
-        }
-      ],
-      returnType: {
-        type: 'NAME',
-        name: 'number',
+        ],
+        returnType: {
+          type: 'NAME',
+          value: 'number',
+          meta: {
+            reservedWord: false
+          }
+        },
         meta: {
-          reservedWord: false
+          arrow: false,
+          parenthesis: true
         }
       },
-      meta: {
-        arrow: false
+      typescript: {
+        type: 'FUNCTION',
+        parameters: [
+          {
+            type: 'NAME',
+            value: 'string',
+            meta: {
+              reservedWord: false
+            }
+          },
+          {
+            type: 'VARIADIC',
+            element: {
+              type: 'TUPLE',
+              elements: [
+                {
+                  type: 'NAME',
+                  value: 'number',
+                  meta: {
+                    reservedWord: false
+                  }
+                }
+              ]
+            },
+            meta: {
+              position: 'PREFIX',
+              squareBrackets: false
+            }
+          }
+        ],
+        returnType: {
+          type: 'NAME',
+          value: 'number',
+          meta: {
+            reservedWord: false
+          }
+        },
+        meta: {
+          arrow: false,
+          parenthesis: true
+        }
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc'],
+    catharsis: {
+      closure: 'differ',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a variable number of parameters containing the value `null`',
@@ -451,9 +741,21 @@ export const functionFixtures: Fixture[] = [
         }
       ],
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
-    }
+    },
+    modes: ['jsdoc'],
+    catharsis: {
+      closure: 'differ',
+      jsdoc: 'jsdoc'
+    }, // NOTE: This seems to be a catharsis error
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'differ',
+      permissive: 'differ'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a variable number of parameters containing the value `undefined`',
@@ -473,120 +775,297 @@ export const functionFixtures: Fixture[] = [
         }
       ],
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
-    }
+    },
+    modes: ['jsdoc'],
+    catharsis: {
+      closure: 'differ', // NOTE: This seems to be a catharsis error
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'differ',
+      permissive: 'differ'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a variable number of parameters, a "new" type, a "this" type, and a return value',
     input: 'function(new:Master, this:Everyone, string, goog.ui.Menu, Array.<Object>, ...[string]): boolean',
-    expected: {
-      type: 'FUNCTION',
-      parameters: [
-        {
-          type: 'KEY_VALUE',
-          key: {
-            type: 'NAME',
-            name: 'new',
-            meta: {
-              reservedWord: true
-            }
-          },
-          value: {
-            type: 'NAME',
-            name: 'Master',
-            meta: {
-              reservedWord: false
-            }
-          }
-        },
-        {
-          type: 'KEY_VALUE',
-          key: {
-            type: 'NAME',
-            meta: {
-              reservedWord: true
-            },
-            name: 'this'
-          },
-          value: {
-            type: 'NAME',
-            name: 'Everyone',
-            meta: {
-              reservedWord: false
-            }
-          }
-        },
-        {
-          type: 'NAME',
-          name: 'string',
-          meta: {
-            reservedWord: false
-          }
-        },
-        {
-          left: {
-            name: 'goog',
-            type: 'NAME',
-            meta: {
-              reservedWord: false
-            }
-          },
-          path: [
-            'ui',
-            'Menu'
-          ],
-          type: 'PROPERTY_PATH'
-        },
-        {
-          type: 'GENERIC',
-          objects: [
-            {
+    diffExpected: {
+      jsdoc: {
+        type: 'FUNCTION',
+        parameters: [
+          {
+            type: 'KEY_VALUE',
+            left: {
               type: 'NAME',
-              name: 'Object',
+              value: 'new',
+              meta: {
+                reservedWord: true
+              }
+            },
+            right: {
+              type: 'NAME',
+              value: 'Master',
               meta: {
                 reservedWord: false
               }
             }
-          ],
-          subject: {
+          },
+          {
+            type: 'KEY_VALUE',
+            left: {
+              type: 'NAME',
+              meta: {
+                reservedWord: true
+              },
+              value: 'this'
+            },
+            right: {
+              type: 'NAME',
+              value: 'Everyone',
+              meta: {
+                reservedWord: false
+              }
+            }
+          },
+          {
             type: 'NAME',
-            name: 'Array',
+            value: 'string',
             meta: {
               reservedWord: false
             }
           },
+          {
+            left: {
+              left: {
+                value: 'goog',
+                type: 'NAME',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              right: {
+                type: 'NAME',
+                value: 'ui',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              type: 'NAME_PATH',
+              meta: {
+                type: '.'
+              }
+            },
+            right: {
+              type: 'NAME',
+              value: 'Menu',
+              meta: {
+                reservedWord: false
+              }
+            },
+            type: 'NAME_PATH',
+            meta: {
+              type: '.'
+            }
+          },
+          {
+            type: 'GENERIC',
+            elements: [
+              {
+                type: 'NAME',
+                value: 'Object',
+                meta: {
+                  reservedWord: false
+                }
+              }
+            ],
+            left: {
+              type: 'NAME',
+              value: 'Array',
+              meta: {
+                reservedWord: false
+              }
+            },
+            meta: {
+              dot: true,
+              brackets: '<>'
+            }
+          },
+          {
+            type: 'VARIADIC',
+            element: {
+              type: 'NAME',
+              value: 'string',
+              meta: {
+                reservedWord: false
+              }
+            },
+            meta: {
+              squareBrackets: true,
+              position: 'PREFIX'
+            }
+          }
+        ],
+        returnType: {
+          type: 'NAME',
+          value: 'boolean',
           meta: {
-            dot: true,
-            brackets: '<>'
+            reservedWord: false
           }
         },
-        {
-          type: 'VARIADIC',
-          element: {
+        meta: {
+          arrow: false,
+          parenthesis: true
+        }
+      },
+      typescript: {
+        type: 'FUNCTION',
+        parameters: [
+          {
+            type: 'KEY_VALUE',
+            left: {
+              type: 'NAME',
+              value: 'new',
+              meta: {
+                reservedWord: true
+              }
+            },
+            right: {
+              type: 'NAME',
+              value: 'Master',
+              meta: {
+                reservedWord: false
+              }
+            }
+          },
+          {
+            type: 'KEY_VALUE',
+            left: {
+              type: 'NAME',
+              meta: {
+                reservedWord: true
+              },
+              value: 'this'
+            },
+            right: {
+              type: 'NAME',
+              value: 'Everyone',
+              meta: {
+                reservedWord: false
+              }
+            }
+          },
+          {
             type: 'NAME',
-            name: 'string',
+            value: 'string',
             meta: {
               reservedWord: false
             }
           },
-          meta: {
-            squareBrackets: true,
-            position: 'PREFIX'
+          {
+            left: {
+              left: {
+                value: 'goog',
+                type: 'NAME',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              right: {
+                type: 'NAME',
+                value: 'ui',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              type: 'NAME_PATH',
+              meta: {
+                type: '.'
+              }
+            },
+            right: {
+              type: 'NAME',
+              value: 'Menu',
+              meta: {
+                reservedWord: false
+              }
+            },
+            type: 'NAME_PATH',
+            meta: {
+              type: '.'
+            }
+          },
+          {
+            type: 'GENERIC',
+            elements: [
+              {
+                type: 'NAME',
+                value: 'Object',
+                meta: {
+                  reservedWord: false
+                }
+              }
+            ],
+            left: {
+              type: 'NAME',
+              value: 'Array',
+              meta: {
+                reservedWord: false
+              }
+            },
+            meta: {
+              dot: true,
+              brackets: '<>'
+            }
+          },
+          {
+            type: 'VARIADIC',
+            element: {
+              type: 'TUPLE',
+              elements: [
+                {
+                  type: 'NAME',
+                  value: 'string',
+                  meta: {
+                    reservedWord: false
+                  }
+                }
+              ]
+            },
+            meta: {
+              squareBrackets: false,
+              position: 'PREFIX'
+            }
           }
-        }
-      ],
-      returnType: {
-        type: 'NAME',
-        name: 'boolean',
+        ],
+        returnType: {
+          type: 'NAME',
+          value: 'boolean',
+          meta: {
+            reservedWord: false
+          }
+        },
         meta: {
-          reservedWord: false
+          arrow: false,
+          parenthesis: true
         }
-      },
-      meta: {
-        arrow: false
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc'],
+    catharsis: {
+      closure: 'differ', // NOTE: This seems to be a catharsis error
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'fail',
+      permissive: 'fail'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a repeatable param that is not enclosed in brackets',
@@ -598,7 +1077,7 @@ export const functionFixtures: Fixture[] = [
           type: 'VARIADIC',
           element: {
             type: 'NAME',
-            name: 'foo',
+            value: 'foo',
             meta: {
               reservedWord: false
             }
@@ -610,9 +1089,21 @@ export const functionFixtures: Fixture[] = [
         }
       ],
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
-    }
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'differ',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function that returns a type union',
@@ -621,27 +1112,42 @@ export const functionFixtures: Fixture[] = [
       type: 'FUNCTION',
       parameters: [],
       returnType: {
-        type: 'UNION',
-        elements: [
-          {
-            type: 'NAME',
-            name: 'number',
-            meta: {
-              reservedWord: false
+        type: 'PARENTHESIS',
+        element: {
+          type: 'UNION',
+          elements: [
+            {
+              type: 'NAME',
+              value: 'number',
+              meta: {
+                reservedWord: false
+              }
+            },
+            {
+              type: 'NAME',
+              value: 'string',
+              meta: {
+                reservedWord: false
+              }
             }
-          },
-          {
-            type: 'NAME',
-            name: 'string',
-            meta: {
-              reservedWord: false
-            }
-          }
-        ]
+          ]
+        }
       },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
     }
   },
   {
@@ -651,9 +1157,21 @@ export const functionFixtures: Fixture[] = [
       type: 'FUNCTION',
       parameters: [],
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
-    }
+    },
+    modes: ['jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'differ',
+      permissive: 'closure'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a variable number of parameters containing any values',
@@ -664,7 +1182,7 @@ export const functionFixtures: Fixture[] = [
         {
           type: 'VARIADIC',
           element: {
-            type: 'ALL'
+            type: 'ANY'
           },
           meta: {
             squareBrackets: true,
@@ -673,8 +1191,20 @@ export const functionFixtures: Fixture[] = [
         }
       ],
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
+    },
+    modes: ['jsdoc'],
+    catharsis: {
+      closure: 'differ', // This seems to be a catharsis error
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail', // NOTE: This seems to be a JTP error
+      typescript: 'differ', // NOTE: This seems to be a JTP error
+      permissive: 'differ'
     }
   },
   {
@@ -685,16 +1215,16 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
             meta: {
               reservedWord: true
             },
-            name: 'this'
+            value: 'this'
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'Object',
+            value: 'Object',
             meta: {
               reservedWord: false
             }
@@ -702,27 +1232,42 @@ export const functionFixtures: Fixture[] = [
         }
       ],
       returnType: {
-        type: 'UNION',
-        elements: [
-          {
-            type: 'NAME',
-            name: 'number',
-            meta: {
-              reservedWord: false
+        element: {
+          elements: [
+            {
+              meta: {
+                reservedWord: false
+              },
+              type: 'NAME',
+              value: 'number'
+            },
+            {
+              meta: {
+                reservedWord: false
+              },
+              type: 'NAME',
+              value: 'string'
             }
-          },
-          {
-            type: 'NAME',
-            name: 'string',
-            meta: {
-              reservedWord: false
-            }
-          }
-        ]
+          ],
+          type: 'UNION'
+        },
+        type: 'PARENTHESIS'
       },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
     }
   },
   {
@@ -733,103 +1278,183 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
             meta: {
               reservedWord: true
             },
-            name: 'this'
+            value: 'this'
           },
-          value: {
-            type: 'UNION',
-            elements: [
-              {
-                type: 'NAME',
-                name: 'Array',
-                meta: {
-                  reservedWord: false
+          right: {
+            element: {
+              type: 'UNION',
+              elements: [
+                {
+                  type: 'NAME',
+                  value: 'Array',
+                  meta: {
+                    reservedWord: false
+                  }
+                },
+                {
+                  type: 'NAME',
+                  value: 'Date',
+                  meta: {
+                    reservedWord: false
+                  }
                 }
-              },
-              {
-                type: 'NAME',
-                name: 'Date',
-                meta: {
-                  reservedWord: false
-                }
-              }
-            ]
+              ]
+            },
+            type: 'PARENTHESIS'
           }
         }
       ],
       returnType: {
-        type: 'UNION',
-        elements: [
-          {
-            type: 'NAME',
-            name: 'number',
-            meta: {
-              reservedWord: false
+        type: 'PARENTHESIS',
+        element: {
+          type: 'UNION',
+          elements: [
+            {
+              type: 'NAME',
+              value: 'number',
+              meta: {
+                reservedWord: false
+              }
+            },
+            {
+              type: 'NAME',
+              value: 'string',
+              meta: {
+                reservedWord: false
+              }
             }
-          },
-          {
-            type: 'NAME',
-            name: 'string',
-            meta: {
-              reservedWord: false
-            }
-          }
-        ]
+          ]
+        }
       },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
     }
   },
   {
     description: 'function with a "new" type and a variable number of params that accept all types, returning a name expression',
     input: 'function(new:Array, ...[*]): Array',
-    expected: {
-      type: 'FUNCTION',
-      parameters: [
-        {
-          type: 'KEY_VALUE',
-          key: {
-            type: 'NAME',
-            meta: {
-              reservedWord: true
+    diffExpected: {
+      jsdoc: {
+        type: 'FUNCTION',
+        parameters: [
+          {
+            type: 'KEY_VALUE',
+            left: {
+              type: 'NAME',
+              meta: {
+                reservedWord: true
+              },
+              value: 'new'
             },
-            name: 'new'
+            right: {
+              type: 'NAME',
+              value: 'Array',
+              meta: {
+                reservedWord: false
+              }
+            }
           },
-          value: {
-            type: 'NAME',
-            name: 'Array',
+          {
+            type: 'VARIADIC',
+            element: {
+              type: 'ANY'
+            },
             meta: {
-              reservedWord: false
+              squareBrackets: true,
+              position: 'PREFIX'
             }
           }
-        },
-        {
-          type: 'VARIADIC',
-          element: {
-            type: 'ALL'
-          },
+        ],
+        returnType: {
+          type: 'NAME',
+          value: 'Array',
           meta: {
-            squareBrackets: true,
-            position: 'PREFIX'
+            reservedWord: false
           }
-        }
-      ],
-      returnType: {
-        type: 'NAME',
-        name: 'Array',
+        },
         meta: {
-          reservedWord: false
+          arrow: false,
+          parenthesis: true
         }
       },
-      meta: {
-        arrow: false
+      typescript: {
+        type: 'FUNCTION',
+        parameters: [
+          {
+            type: 'KEY_VALUE',
+            left: {
+              type: 'NAME',
+              meta: {
+                reservedWord: true
+              },
+              value: 'new'
+            },
+            right: {
+              type: 'NAME',
+              value: 'Array',
+              meta: {
+                reservedWord: false
+              }
+            }
+          },
+          {
+            type: 'VARIADIC',
+            element: {
+              type: 'TUPLE',
+              elements: [
+                {
+                  type: 'ANY'
+                }
+              ]
+            },
+            meta: {
+              squareBrackets: false,
+              position: 'PREFIX'
+            }
+          }
+        ],
+        returnType: {
+          type: 'NAME',
+          value: 'Array',
+          meta: {
+            reservedWord: false
+          }
+        },
+        meta: {
+          arrow: false,
+          parenthesis: true
+        }
       }
-    }
+    },
+    modes: ['typescript', 'jsdoc'],
+    catharsis: {
+      closure: 'differ', // NOTE: This seems to be a catharsis error
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'function with a "new" type that accepts an optional parameter of any type, as well as a return value',
@@ -839,16 +1464,16 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
             meta: {
               reservedWord: true
             },
-            name: 'new'
+            value: 'new'
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'Boolean',
+            value: 'Boolean',
             meta: {
               reservedWord: false
             }
@@ -857,7 +1482,7 @@ export const functionFixtures: Fixture[] = [
         {
           type: 'OPTIONAL',
           element: {
-            type: 'ALL'
+            type: 'ANY'
           },
           meta: {
             position: 'SUFFIX'
@@ -866,47 +1491,108 @@ export const functionFixtures: Fixture[] = [
       ],
       returnType: {
         type: 'NAME',
-        name: 'boolean',
+        value: 'boolean',
         meta: {
           reservedWord: false
         }
       },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
     }
   },
   {
     description: 'function with a variable number of parameters and a return value',
     input: 'function(...[number]): boolean',
-    expected: {
-      type: 'FUNCTION',
-      parameters: [
-        {
-          type: 'VARIADIC',
-          element: {
-            type: 'NAME',
-            name: 'number',
+    diffExpected: {
+      jsdoc: {
+        type: 'FUNCTION',
+        parameters: [
+          {
+            type: 'VARIADIC',
+            element: {
+              type: 'NAME',
+              value: 'number',
+              meta: {
+                reservedWord: false
+              }
+            },
             meta: {
-              reservedWord: false
+              squareBrackets: true,
+              position: 'PREFIX'
             }
-          },
-          meta: {
-            squareBrackets: true,
-            position: 'PREFIX'
           }
-        }
-      ],
-      returnType: {
-        type: 'NAME',
-        name: 'boolean',
+        ],
+        returnType: {
+          type: 'NAME',
+          value: 'boolean',
+          meta: {
+            reservedWord: false
+          }
+        },
         meta: {
-          reservedWord: false
+          arrow: false,
+          parenthesis: true
         }
       },
-      meta: {
-        arrow: false
+      typescript: {
+        type: 'FUNCTION',
+        parameters: [
+          {
+            type: 'VARIADIC',
+            element: {
+              type: 'TUPLE',
+              elements: [
+                {
+                  type: 'NAME',
+                  value: 'number',
+                  meta: {
+                    reservedWord: false
+                  }
+                }
+              ]
+            },
+            meta: {
+              squareBrackets: false,
+              position: 'PREFIX'
+            }
+          }
+        ],
+        returnType: {
+          type: 'NAME',
+          value: 'boolean',
+          meta: {
+            reservedWord: false
+          }
+        },
+        meta: {
+          arrow: false,
+          parenthesis: true
+        }
       }
+    },
+    modes: ['typescript', 'jsdoc'],
+    catharsis: {
+      closure: 'differ', // NOTE: This seems to be a catharsis error
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail', // NOTE: This seems to be a JTP error
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   },
   {
@@ -917,16 +1603,16 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
             meta: {
               reservedWord: true
             },
-            name: 'this'
+            value: 'this'
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'Date',
+            value: 'Date',
             meta: {
               reservedWord: false
             }
@@ -934,41 +1620,56 @@ export const functionFixtures: Fixture[] = [
         },
         {
           type: 'NAME',
-          name: 'number',
+          value: 'number',
           meta: {
             reservedWord: false
           }
         }
       ],
       returnType: {
-        type: 'UNION',
-        elements: [
-          {
-            type: 'NAME',
-            name: 'boolean',
-            meta: {
-              reservedWord: false
+        type: 'PARENTHESIS',
+        element: {
+          type: 'UNION',
+          elements: [
+            {
+              type: 'NAME',
+              value: 'boolean',
+              meta: {
+                reservedWord: false
+              }
+            },
+            {
+              type: 'NAME',
+              value: 'number',
+              meta: {
+                reservedWord: false
+              }
+            },
+            {
+              type: 'NAME',
+              value: 'string',
+              meta: {
+                reservedWord: false
+              }
             }
-          },
-          {
-            type: 'NAME',
-            name: 'number',
-            meta: {
-              reservedWord: false
-            }
-          },
-          {
-            type: 'NAME',
-            name: 'string',
-            meta: {
-              reservedWord: false
-            }
-          }
-        ]
+          ]
+        }
       },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
+    },
+    modes: ['typescript', 'jsdoc', 'closure'],
+    catharsis: {
+      closure: 'closure',
+      jsdoc: 'jsdoc'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'jsdoc',
+      typescript: 'typescript',
+      permissive: 'closure'
     }
   }
 ]

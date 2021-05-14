@@ -2,7 +2,7 @@ import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
 import { ParseResult } from '../ParseResult'
-import { Precedence } from './Precedence'
+import { Precedence } from '../Precedence'
 import { isQuestionMarkUnknownType } from './isQuestionMarkUnkownType'
 
 export class SpecialTypesParslet implements PrefixParslet {
@@ -15,29 +15,30 @@ export class SpecialTypesParslet implements PrefixParslet {
   }
 
   parsePrefix (parser: ParserEngine): ParseResult {
-    switch (parser.getToken().type) {
-      case 'null':
-        parser.consume('null')
-        return {
-          type: 'NULL'
-        }
-      case 'undefined':
-        parser.consume('undefined')
-        return {
-          type: 'UNDEFINED'
-        }
-      case '*':
-        parser.consume('*')
-        return {
-          type: 'ALL'
-        }
-      case '?':
-        parser.consume('?')
-        return {
-          type: 'UNKNOWN'
-        }
-      default:
-        throw new Error('Unacceptable token: ' + parser.getToken().text)
+    if (parser.consume('null')) {
+      return {
+        type: 'NULL'
+      }
     }
+
+    if (parser.consume('undefined')) {
+      return {
+        type: 'UNDEFINED'
+      }
+    }
+
+    if (parser.consume('*')) {
+      return {
+        type: 'ANY'
+      }
+    }
+
+    if (parser.consume('?')) {
+      return {
+        type: 'UNKNOWN'
+      }
+    }
+
+    throw new Error('Unacceptable token: ' + parser.getToken().text)
   }
 }

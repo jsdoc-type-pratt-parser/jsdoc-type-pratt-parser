@@ -2,7 +2,7 @@ import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
 import { ParseResult } from '../ParseResult'
-import { Precedence } from './Precedence'
+import { Precedence } from '../Precedence'
 
 export class ImportParslet implements PrefixParslet {
   accepts (type: TokenType, next: TokenType): boolean {
@@ -27,7 +27,7 @@ export class ImportParslet implements PrefixParslet {
     }
     return {
       type: 'IMPORT',
-      path
+      element: path
     }
   }
 }

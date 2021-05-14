@@ -1,5 +1,6 @@
 import { ParseResult } from '../ParseResult'
 import { extractSpecialParams, notAvailableTransform, transform, TransformRules } from './transform'
+import { assertTerminal } from '../assertTypes'
 
 interface ModifiableResult {
   optional?: boolean
@@ -99,7 +100,7 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
     return transformed
   },
 
-  ALL: () => ({
+  ANY: () => ({
     type: 'AllLiteral'
   }),
 
@@ -145,19 +146,22 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
 
   GENERIC: (result, transform) => ({
     type: 'TypeApplication',
-    applications: result.objects.map(o => transform(o)),
-    expression: transform(result.subject)
+    applications: result.elements.map(o => transform(o)),
+    expression: transform(result.left)
   }),
 
-  MODULE: result => ({
-    type: 'NameExpression',
-    name: result.path
-  }),
+  MODULE: result => {
+    const quote = result.meta.quote ?? ''
+    return {
+      type: 'NameExpression',
+      name: 'module:' + quote + result.value + quote
+    }
+  },
 
   NAME: result => {
     const transformed: CatharsisNameResult = {
       type: 'NameExpression',
-      name: result.name
+      name: result.value
     }
     if (result.meta.reservedWord) {
       transformed.reservedWord = true
@@ -170,12 +174,12 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
     name: result.value.toString()
   }),
 
-  RECORD: (result, transform) => {
+  OBJECT: (result, transform) => {
     const transformed: CatharsisRecordResult = {
       type: 'RecordType',
       fields: []
     }
-    for (const field of result.fields) {
+    for (const field of result.elements) {
       if (field.type !== 'KEY_VALUE') {
         transformed.fields.push({
           type: 'FieldType',
@@ -197,26 +201,24 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
 
   KEY_VALUE: (result, transform) => ({
     type: 'FieldType',
-    key: transform(result.key),
-    value: transform(result.value)
+    key: transform(result.left),
+    value: transform(result.right)
   }),
 
-  PROPERTY_PATH: result => {
-    if (result.left.type !== 'NAME') {
-      // TODO: here a string representations should be used
-      throw new Error('Other left types than \'NAME\' are not supported for catharsis compat mode')
-    }
+  NAME_PATH: (result, transform) => {
+    const leftResult = transform(result.left) as CatharsisNameResult
+    const rightResult = transform(result.right) as CatharsisNameResult
 
     return {
       type: 'NameExpression',
-      name: result.left.name + '.' + result.path.join('.')
+      name: `${leftResult.name}${result.meta.type}${rightResult.name}`
     }
   },
 
   SYMBOL: result => {
     let value = ''
 
-    let element = result.value
+    let element = result.element
     let trailingDots = false
 
     if (element?.type === 'VARIADIC') {
@@ -229,7 +231,7 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
     }
 
     if (element?.type === 'NAME') {
-      value += element.name
+      value += element.value
     } else if (element?.type === 'NUMBER') {
       value += element.value.toString()
     }
@@ -240,9 +242,11 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
 
     return {
       type: 'NameExpression',
-      name: `${result.name}(${value})`
+      name: `${result.value}(${value})`
     }
   },
+
+  PARENTHESIS: (result, transform) => transform(assertTerminal(result.element)),
 
   IMPORT: notAvailableTransform,
   KEY_OF: notAvailableTransform,

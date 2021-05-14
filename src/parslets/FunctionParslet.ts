@@ -2,8 +2,9 @@ import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
 import { FunctionResult, ParseResult } from '../ParseResult'
-import { Precedence } from './Precedence'
+import { Precedence } from '../Precedence'
 import { BaseFunctionParslet } from './BaseFunctionParslet'
+import { UnexpectedTypeError } from '../errors'
 
 export interface FunctionParsletOptions {
   allowNamedParameters?: string[]
@@ -34,7 +35,7 @@ export class FunctionParslet extends BaseFunctionParslet implements PrefixParsle
   parsePrefix (parser: ParserEngine): ParseResult {
     parser.consume('function')
 
-    const hasParenthesis = parser.consume('(')
+    const hasParenthesis = parser.getToken().type === '('
 
     if (!this.allowWithoutParenthesis && !hasParenthesis) {
       throw new Error('function is missing parameter list')
@@ -43,33 +44,31 @@ export class FunctionParslet extends BaseFunctionParslet implements PrefixParsle
       type: 'FUNCTION',
       parameters: [],
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: hasParenthesis
       }
     }
 
     if (hasParenthesis) {
-      if (!parser.consume(')')) {
-        const value = parser.parseNonTerminalType(Precedence.ALL)
-        if (this.allowNamedParameters === undefined) {
-          result.parameters = this.getUnnamedParameters(value)
-        } else {
-          result.parameters = this.getParameters(value)
-          for (const p of result.parameters) {
-            if (p.type === 'KEY_VALUE' && !this.allowNamedParameters.includes(p.key.name)) {
-              throw new Error(`only allowed named parameters are ${this.allowNamedParameters.join(',')} but got ${p.type}`)
-            }
-          }
-        }
+      const value = parser.parseNonTerminalType(Precedence.FUNCTION)
 
-        if (!parser.consume(')')) {
-          throw new Error('function parameter list is not terminated')
+      if (value.type !== 'PARENTHESIS') {
+        throw new UnexpectedTypeError(value)
+      }
+
+      if (this.allowNamedParameters === undefined) {
+        result.parameters = this.getUnnamedParameters(value)
+      } else {
+        result.parameters = this.getParameters(value)
+        for (const p of result.parameters) {
+          if (p.type === 'KEY_VALUE' && !this.allowNamedParameters.includes(p.left.value)) {
+            throw new Error(`only allowed named parameters are ${this.allowNamedParameters.join(',')} but got ${p.type}`)
+          }
         }
       }
 
       if (parser.consume(':')) {
-        if (!parser.consume('void')) {
-          result.returnType = parser.parseType(Precedence.PREFIX)
-        }
+        result.returnType = parser.parseType(Precedence.PREFIX)
       } else {
         if (!this.allowNoReturnType) {
           throw new Error('function is missing return type')

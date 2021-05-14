@@ -1,18 +1,20 @@
-import { KeyValueResult, NonTerminalResult, ParseResult } from '../ParseResult'
+import { KeyValueResult, NonTerminalResult, ParenthesisResult, ParseResult } from '../ParseResult'
 import { assertNamedKeyValueOrTerminal } from '../assertTypes'
 
 export class BaseFunctionParslet {
-  protected getParameters (value: NonTerminalResult): Array<ParseResult | KeyValueResult> {
-    let parameters: Array<ParseResult | KeyValueResult>
-    if (value.type === 'PARAMETER_LIST') {
-      parameters = value.elements
+  protected getParameters (value: ParenthesisResult): Array<ParseResult | KeyValueResult> {
+    let parameters: NonTerminalResult[]
+    if (value.element === undefined) {
+      parameters = []
+    } else if (value.element.type === 'PARAMETER_LIST') {
+      parameters = value.element.elements
     } else {
-      parameters = [assertNamedKeyValueOrTerminal(value)]
+      parameters = [value.element]
     }
-    return parameters
+    return parameters.map(p => assertNamedKeyValueOrTerminal(p))
   }
 
-  protected getNamedParameters (value: NonTerminalResult): KeyValueResult[] {
+  protected getNamedParameters (value: ParenthesisResult): KeyValueResult[] {
     const parameters = this.getParameters(value)
     if (parameters.some(p => p.type !== 'KEY_VALUE')) {
       throw new Error('All parameters should be named')
@@ -20,7 +22,7 @@ export class BaseFunctionParslet {
     return parameters as KeyValueResult[]
   }
 
-  protected getUnnamedParameters (value: NonTerminalResult): ParseResult[] {
+  protected getUnnamedParameters (value: ParenthesisResult): ParseResult[] {
     const parameters = this.getParameters(value)
     if (parameters.some(p => p.type === 'KEY_VALUE')) {
       throw new Error('No parameter should be named')

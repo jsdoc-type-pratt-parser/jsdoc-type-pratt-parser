@@ -9,24 +9,36 @@ export const arrowFunctionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'x',
+            value: 'x',
             meta: {
               reservedWord: false
             }
           },
-          value: {
-            type: 'ALL'
+          right: {
+            type: 'ANY'
           }
         }
       ],
       returnType: {
-        type: 'ALL'
+        type: 'ANY'
       },
       meta: {
-        arrow: true
+        arrow: true,
+        parenthesis: true
       }
+    },
+    modes: ['typescript'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   },
   {
@@ -37,16 +49,16 @@ export const arrowFunctionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'x',
+            value: 'x',
             meta: {
               reservedWord: false
             }
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'number',
+            value: 'number',
             meta: {
               reservedWord: false
             }
@@ -55,14 +67,26 @@ export const arrowFunctionFixtures: Fixture[] = [
       ],
       returnType: {
         type: 'NAME',
-        name: 'string',
+        value: 'string',
         meta: {
           reservedWord: false
         }
       },
       meta: {
-        arrow: true
+        arrow: true,
+        parenthesis: true
       }
+    },
+    modes: ['typescript'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   },
   {
@@ -73,16 +97,16 @@ export const arrowFunctionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'x',
+            value: 'x',
             meta: {
               reservedWord: false
             }
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'number',
+            value: 'number',
             meta: {
               reservedWord: false
             }
@@ -90,16 +114,16 @@ export const arrowFunctionFixtures: Fixture[] = [
         },
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'y',
+            value: 'y',
             meta: {
               reservedWord: false
             }
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'string',
+            value: 'string',
             meta: {
               reservedWord: false
             }
@@ -107,16 +131,16 @@ export const arrowFunctionFixtures: Fixture[] = [
         },
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'z',
+            value: 'z',
             meta: {
               reservedWord: false
             }
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'Class',
+            value: 'Class',
             meta: {
               reservedWord: false
             }
@@ -125,14 +149,26 @@ export const arrowFunctionFixtures: Fixture[] = [
       ],
       returnType: {
         type: 'NAME',
-        name: 'string',
+        value: 'string',
         meta: {
           reservedWord: false
         }
       },
       meta: {
-        arrow: true
+        arrow: true,
+        parenthesis: true
       }
+    },
+    modes: ['typescript'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   },
   {
@@ -143,14 +179,26 @@ export const arrowFunctionFixtures: Fixture[] = [
       parameters: [],
       returnType: {
         type: 'NAME',
-        name: 'string',
+        value: 'string',
         meta: {
           reservedWord: false
         }
       },
       meta: {
-        arrow: true
+        arrow: true,
+        parenthesis: true
       }
+    },
+    modes: ['typescript'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   },
   {
@@ -164,18 +212,31 @@ export const arrowFunctionFixtures: Fixture[] = [
         parameters: [],
         returnType: {
           type: 'NAME',
-          name: 'string',
+          value: 'string',
           meta: {
             reservedWord: false
           }
         },
         meta: {
-          arrow: true
+          arrow: true,
+          parenthesis: true
         }
       },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
+    },
+    modes: ['typescript'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   },
   {
@@ -189,19 +250,39 @@ export const arrowFunctionFixtures: Fixture[] = [
           parameters: [],
           returnType: {
             type: 'NAME',
-            name: 'string',
+            value: 'string',
             meta: {
               reservedWord: false
             }
           },
           meta: {
-            arrow: true
+            arrow: true,
+            parenthesis: true
           }
         }
       ],
+      returnType: {
+        type: 'NAME',
+        value: 'void',
+        meta: {
+          reservedWord: true
+        }
+      },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
+    },
+    modes: ['typescript'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   },
   {
@@ -212,16 +293,16 @@ export const arrowFunctionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'arrow',
+            value: 'arrow',
             meta: {
               reservedWord: false
             }
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'Function',
+            value: 'Function',
             meta: {
               reservedWord: false
             }
@@ -229,16 +310,16 @@ export const arrowFunctionFixtures: Fixture[] = [
         },
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'with',
+            value: 'with',
             meta: {
               reservedWord: true
             }
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'TrailingComma',
+            value: 'TrailingComma',
             meta: {
               reservedWord: false
             }
@@ -247,14 +328,26 @@ export const arrowFunctionFixtures: Fixture[] = [
       ],
       returnType: {
         type: 'NAME',
-        name: 'string',
+        value: 'string',
         meta: {
           reservedWord: false
         }
       },
       meta: {
-        arrow: true
+        arrow: true,
+        parenthesis: true
       }
+    },
+    modes: ['typescript'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   },
   {
@@ -262,26 +355,27 @@ export const arrowFunctionFixtures: Fixture[] = [
     input: 'X<() => string>',
     expected: {
       type: 'GENERIC',
-      subject: {
+      left: {
         type: 'NAME',
-        name: 'X',
+        value: 'X',
         meta: {
           reservedWord: false
         }
       },
-      objects: [
+      elements: [
         {
           type: 'FUNCTION',
           parameters: [],
           returnType: {
             type: 'NAME',
-            name: 'string',
+            value: 'string',
             meta: {
               reservedWord: false
             }
           },
           meta: {
-            arrow: true
+            arrow: true,
+            parenthesis: true
           }
         }
       ],
@@ -289,6 +383,17 @@ export const arrowFunctionFixtures: Fixture[] = [
         dot: false,
         brackets: '<>'
       }
+    },
+    modes: ['typescript'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   },
   {
@@ -298,8 +403,27 @@ export const arrowFunctionFixtures: Fixture[] = [
       type: 'FUNCTION',
       parameters: [],
       meta: {
-        arrow: true
+        arrow: true,
+        parenthesis: true
+      },
+      returnType: {
+        type: 'NAME',
+        value: 'void',
+        meta: {
+          reservedWord: true
+        }
       }
+    },
+    modes: ['typescript'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   },
   {
@@ -311,13 +435,33 @@ export const arrowFunctionFixtures: Fixture[] = [
       returnType: {
         type: 'FUNCTION',
         parameters: [],
+        returnType: {
+          type: 'NAME',
+          value: 'void',
+          meta: {
+            reservedWord: true
+          }
+        },
         meta: {
-          arrow: true
+          arrow: true,
+          parenthesis: true
         }
       },
       meta: {
-        arrow: true
+        arrow: true,
+        parenthesis: true
       }
+    },
+    modes: ['typescript'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   },
   {
@@ -328,16 +472,16 @@ export const arrowFunctionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          key: {
+          left: {
             type: 'NAME',
-            name: 'a',
+            value: 'a',
             meta: {
               reservedWord: false
             }
           },
-          value: {
+          right: {
             type: 'NAME',
-            name: 'number',
+            value: 'number',
             meta: {
               reservedWord: false
             }
@@ -349,16 +493,16 @@ export const arrowFunctionFixtures: Fixture[] = [
         parameters: [
           {
             type: 'KEY_VALUE',
-            key: {
+            left: {
               type: 'NAME',
-              name: 'b',
+              value: 'b',
               meta: {
                 reservedWord: false
               }
             },
-            value: {
+            right: {
               type: 'NAME',
-              name: 'string',
+              value: 'string',
               meta: {
                 reservedWord: false
               }
@@ -367,18 +511,31 @@ export const arrowFunctionFixtures: Fixture[] = [
         ],
         returnType: {
           type: 'NAME',
-          name: 'boolean',
+          value: 'boolean',
           meta: {
             reservedWord: false
           }
         },
         meta: {
-          arrow: true
+          arrow: true,
+          parenthesis: true
         }
       },
       meta: {
-        arrow: true
+        arrow: true,
+        parenthesis: true
       }
+    },
+    modes: ['typescript'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   },
   {
@@ -389,21 +546,50 @@ export const arrowFunctionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'NAME',
-          name: 'number',
+          value: 'number',
           meta: {
             reservedWord: false
           }
         }
       ],
+      returnType: {
+        type: 'NAME',
+        value: 'void',
+        meta: {
+          reservedWord: true
+        }
+      },
       meta: {
-        arrow: true
+        arrow: true,
+        parenthesis: true
       }
-    }
+    },
+    modes: ['typescript'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'fail',
+      permissive: 'fail'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'arrow with unnamed parameters that are not names should fail',
     input: '(Array<string>) => void',
-    shouldFail: true
+    modes: [],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'fail',
+      permissive: 'fail'
+    }
   }
 ]
 

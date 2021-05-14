@@ -6,41 +6,54 @@ export const typeOfFixtures: Fixture[] = [
     input: 'typeof A',
     expected: {
       type: 'TYPE_OF',
-      value: {
+      element: {
         type: 'NAME',
-        name: 'A',
+        value: 'A',
         meta: {
           reservedWord: false
         }
       }
+    },
+    modes: ['typescript', 'closure'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    }, // NOTE: This seems to be a Catharsis error
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'closure'
     }
   },
   {
     description: 'typeof',
     input: 'typeof',
-    expected: {
-      type: 'TYPE_OF'
+    modes: [],
+    catharsis: {
+      closure: 'differ',
+      jsdoc: 'differ'
+    },
+    jtp: {
+      closure: 'differ',
+      jsdoc: 'differ',
+      typescript: 'differ',
+      permissive: 'differ'
     }
   },
   {
     description: 'generic with typeof',
     input: 'X<typeof>',
-    expected: {
-      type: 'GENERIC',
-      subject: {
-        type: 'NAME',
-        name: 'X',
-        meta: {
-          reservedWord: false
-        }
-      },
-      objects: [{
-        type: 'TYPE_OF'
-      }],
-      meta: {
-        dot: false,
-        brackets: '<>'
-      }
+    modes: [],
+    catharsis: {
+      closure: 'differ',
+      jsdoc: 'differ'
+    },
+    jtp: {
+      closure: 'differ',
+      jsdoc: 'differ',
+      typescript: 'differ',
+      permissive: 'differ'
     }
   },
   {
@@ -48,18 +61,18 @@ export const typeOfFixtures: Fixture[] = [
     input: 'X<typeof A>',
     expected: {
       type: 'GENERIC',
-      subject: {
+      left: {
         type: 'NAME',
-        name: 'X',
+        value: 'X',
         meta: {
           reservedWord: false
         }
       },
-      objects: [{
+      elements: [{
         type: 'TYPE_OF',
-        value: {
+        element: {
           type: 'NAME',
-          name: 'A',
+          value: 'A',
           meta: {
             reservedWord: false
           }
@@ -69,50 +82,86 @@ export const typeOfFixtures: Fixture[] = [
         dot: false,
         brackets: '<>'
       }
+    },
+    modes: ['typescript', 'closure'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   },
-  {
-    description: 'generic typeof name in parenthesis',
-    input: '(typeof X)<A>',
-    expected: {
-      type: 'GENERIC',
-      subject: {
-        type: 'TYPE_OF',
-        value: {
-          type: 'NAME',
-          name: 'X',
-          meta: {
-            reservedWord: false
-          }
-        }
-      },
-      objects: [
-        {
-          type: 'NAME',
-          name: 'A',
-          meta: {
-            reservedWord: false
-          }
-        }
-      ],
-      meta: {
-        dot: false,
-        brackets: '<>'
-      }
-    }
-  },
+  // {
+  //   description: 'generic typeof name in parenthesis',
+  //   input: '(typeof X)<A>',
+  //   expected: {
+  //     type: 'GENERIC',
+  //     left: {
+  //       type: 'TYPE_OF',
+  //       element: {
+  //         type: 'NAME',
+  //         value: 'X',
+  //         meta: {
+  //           reservedWord: false
+  //         }
+  //       }
+  //     },
+  //     elements: [
+  //       {
+  //         type: 'NAME',
+  //         value: 'A',
+  //         meta: {
+  //           reservedWord: false
+  //         }
+  //       }
+  //     ],
+  //     meta: {
+  //       dot: false,
+  //       brackets: '<>'
+  //     }
+  //   },
+  //   modes: ['typescript'],
+  //   catharsis: {
+  //     closure: 'fail',
+  //     jsdoc: 'fail'
+  //   },
+  //   jtp: {
+  //     closure: 'fail',
+  //     jsdoc: 'fail',
+  //     typescript: 'typescript',
+  //     permissive: 'typescript'
+  //   }
+  // },
   {
     description: 'typeof name in parenthesis',
     input: '(typeof A)',
     expected: {
-      type: 'TYPE_OF',
-      value: {
-        type: 'NAME',
-        name: 'A',
-        meta: {
-          reservedWord: false
+      type: 'PARENTHESIS',
+      element: {
+        type: 'TYPE_OF',
+        element: {
+          type: 'NAME',
+          value: 'A',
+          meta: {
+            reservedWord: false
+          }
         }
       }
+    },
+    modes: ['typescript', 'closure'],
+    catharsis: {
+      closure: 'fail', // this seems to be a catharsis error
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   },
   {
@@ -122,9 +171,9 @@ export const typeOfFixtures: Fixture[] = [
       type: 'VARIADIC',
       element: {
         type: 'TYPE_OF',
-        value: {
+        element: {
           type: 'NAME',
-          name: 'A',
+          value: 'A',
           meta: {
             reservedWord: false
           }
@@ -134,6 +183,17 @@ export const typeOfFixtures: Fixture[] = [
         squareBrackets: false,
         position: 'PREFIX'
       }
+    },
+    modes: ['closure', 'typescript'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   },
   {
@@ -143,9 +203,9 @@ export const typeOfFixtures: Fixture[] = [
       type: 'VARIADIC',
       element: {
         type: 'TYPE_OF',
-        value: {
+        element: {
           type: 'NAME',
-          name: 'A',
+          value: 'A',
           meta: {
             reservedWord: false
           }
@@ -155,7 +215,18 @@ export const typeOfFixtures: Fixture[] = [
         squareBrackets: false,
         position: 'SUFFIX'
       }
-    }
+    },
+    modes: [],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'differ',
+      jsdoc: 'fail',
+      typescript: 'differ',
+      permissive: 'differ'
+    } // NOTE: This seems to be a JTP error
   },
   {
     description: 'union typeof name',
@@ -165,9 +236,9 @@ export const typeOfFixtures: Fixture[] = [
       elements: [
         {
           type: 'TYPE_OF',
-          value: {
+          element: {
             type: 'NAME',
-            name: 'A',
+            value: 'A',
             meta: {
               reservedWord: false
             }
@@ -175,12 +246,23 @@ export const typeOfFixtures: Fixture[] = [
         },
         {
           type: 'NAME',
-          name: 'number',
+          value: 'number',
           meta: {
             reservedWord: false
           }
         }
       ]
+    },
+    modes: ['typescript', 'closure'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   },
   {
@@ -191,22 +273,33 @@ export const typeOfFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          name: 'number',
+          value: 'number',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'TYPE_OF',
-          value: {
+          element: {
             type: 'NAME',
-            name: 'A',
+            value: 'A',
             meta: {
               reservedWord: false
             }
           }
         }
       ]
+    },
+    modes: ['typescript', 'closure'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   },
   {
@@ -214,19 +307,19 @@ export const typeOfFixtures: Fixture[] = [
     input: 'typeof N[]',
     expected: {
       type: 'TYPE_OF',
-      value: {
+      element: {
         type: 'GENERIC',
-        subject: {
+        left: {
           type: 'NAME',
-          name: 'Array',
+          value: 'Array',
           meta: {
             reservedWord: false
           }
         },
-        objects: [
+        elements: [
           {
             type: 'NAME',
-            name: 'N',
+            value: 'N',
             meta: {
               reservedWord: false
             }
@@ -237,12 +330,52 @@ export const typeOfFixtures: Fixture[] = [
           brackets: '[]'
         }
       }
+    },
+    modes: ['typescript'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'differ',
+      permissive: 'differ'
     }
   },
   {
     description: 'typeof as function parameter without return type should fail',
     input: 'function(typeof A)',
-    shouldFail: true
+    expected: {
+      type: 'FUNCTION',
+      parameters: [
+        {
+          type: 'TYPE_OF',
+          element: {
+            type: 'NAME',
+            value: 'A',
+            meta: {
+              reservedWord: false
+            }
+          }
+        }
+      ],
+      meta: {
+        arrow: false,
+        parenthesis: true
+      }
+    },
+    modes: ['closure'],
+    catharsis: {
+      closure: 'fail', // this seems to be a catharsis error
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'fail',
+      typescript: 'differ',
+      permissive: 'differ'
+    }
   },
   {
     description: 'typeof as function parameter',
@@ -252,18 +385,37 @@ export const typeOfFixtures: Fixture[] = [
       parameters: [
         {
           type: 'TYPE_OF',
-          value: {
+          element: {
             type: 'NAME',
-            name: 'A',
+            value: 'A',
             meta: {
               reservedWord: false
             }
           }
         }
       ],
+      returnType: {
+        type: 'NAME',
+        value: 'void',
+        meta: {
+          reservedWord: true
+        }
+      },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
+    },
+    modes: ['typescript', 'closure'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   },
   {
@@ -274,9 +426,9 @@ export const typeOfFixtures: Fixture[] = [
       parameters: [
         {
           type: 'TYPE_OF',
-          value: {
+          element: {
             type: 'NAME',
-            name: 'A',
+            value: 'A',
             meta: {
               reservedWord: false
             }
@@ -284,15 +436,34 @@ export const typeOfFixtures: Fixture[] = [
         },
         {
           type: 'NAME',
-          name: 'number',
+          value: 'number',
           meta: {
             reservedWord: false
           }
         }
       ],
+      returnType: {
+        type: 'NAME',
+        value: 'void',
+        meta: {
+          reservedWord: true
+        }
+      },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
+    },
+    modes: ['typescript', 'closure'],
+    catharsis: {
+      closure: 'fail', // this seems to be a catharsis error
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   },
   {
@@ -303,25 +474,44 @@ export const typeOfFixtures: Fixture[] = [
       parameters: [
         {
           type: 'NAME',
-          name: 'number',
+          value: 'number',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'TYPE_OF',
-          value: {
+          element: {
             type: 'NAME',
-            name: 'A',
+            value: 'A',
             meta: {
               reservedWord: false
             }
           }
         }
       ],
+      returnType: {
+        type: 'NAME',
+        value: 'void',
+        meta: {
+          reservedWord: true
+        }
+      },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
+    },
+    modes: ['typescript', 'closure'],
+    catharsis: {
+      closure: 'fail', // this seems to be a catharsis error
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   },
   {
@@ -332,17 +522,29 @@ export const typeOfFixtures: Fixture[] = [
       parameters: [],
       returnType: {
         type: 'TYPE_OF',
-        value: {
+        element: {
           type: 'NAME',
-          name: 'A',
+          value: 'A',
           meta: {
             reservedWord: false
           }
         }
       },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
+    },
+    modes: ['typescript', 'closure'],
+    catharsis: {
+      closure: 'fail', // this seems to be a catharsis error
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'closure',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   }
 ]

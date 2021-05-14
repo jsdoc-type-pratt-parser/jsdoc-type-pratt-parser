@@ -2,7 +2,7 @@ import { ParserEngine } from '../ParserEngine'
 import { NonTerminalResult, ParseResult } from '../ParseResult'
 import { TokenType } from '../lexer/Token'
 import { InfixParslet } from './Parslet'
-import { Precedence } from './Precedence'
+import { Precedence } from '../Precedence'
 import { assertTerminal } from '../assertTypes'
 
 export class GenericParslet implements InfixParslet {
@@ -29,8 +29,8 @@ export class GenericParslet implements InfixParslet {
 
     return {
       type: 'GENERIC',
-      subject: assertTerminal(left),
-      objects,
+      left: assertTerminal(left),
+      elements: objects,
       meta: {
         brackets: '<>',
         dot

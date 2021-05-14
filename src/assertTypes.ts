@@ -1,14 +1,10 @@
 import { KeyValueResult, NameResult, NonTerminalResult, NumberResult, ParseResult, VariadicResult } from './ParseResult'
+import { UnexpectedTypeError } from './errors'
 
-class UnexpectedTypeError extends Error {
-  constructor (result: NonTerminalResult) {
-    super(`Unexpected type: '${result.type}'`)
-
-    Object.setPrototypeOf(this, UnexpectedTypeError.prototype)
+export function assertTerminal (result?: NonTerminalResult): ParseResult {
+  if (result === undefined) {
+    throw new Error('Unexpected undefined')
   }
-}
-
-export function assertTerminal (result: NonTerminalResult): ParseResult {
   if (result.type === 'KEY_VALUE' || result.type === 'NUMBER' || result.type === 'PARAMETER_LIST') {
     throw new UnexpectedTypeError(result)
   }
@@ -17,7 +13,7 @@ export function assertTerminal (result: NonTerminalResult): ParseResult {
 
 export function assertNamedKeyValueOrTerminal (result: NonTerminalResult): KeyValueResult | ParseResult {
   if (result.type === 'KEY_VALUE') {
-    if (result.key.type !== 'NAME') {
+    if (result.left.type !== 'NAME') {
       throw new UnexpectedTypeError(result)
     }
     return result as KeyValueResult
@@ -27,7 +23,7 @@ export function assertNamedKeyValueOrTerminal (result: NonTerminalResult): KeyVa
 
 export function assertNamedKeyValueOrName (result: NonTerminalResult): KeyValueResult | NameResult {
   if (result.type === 'KEY_VALUE') {
-    if (result.key.type !== 'NAME') {
+    if (result.left.type !== 'NAME') {
       throw new UnexpectedTypeError(result)
     }
     return result as KeyValueResult

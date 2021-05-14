@@ -1,6 +1,6 @@
 import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
-import { Precedence } from './Precedence'
+import { Precedence } from '../Precedence'
 import { ParserEngine } from '../ParserEngine'
 import { ParseResult } from '../ParseResult'
 
@@ -18,17 +18,29 @@ export class ModuleParslet implements PrefixParslet {
     if (!parser.consume(':')) {
       throw new Error('module needs to have a \':\' afterwards.')
     }
-    let result = 'module:'
-    const allowed: TokenType[] = ['Identifier', '~', '@', '/', '#']
     let token = parser.getToken()
-    while (allowed.includes(token.type)) {
-      result += token.text
-      parser.consume(token.type)
-      token = parser.getToken()
-    }
-    return {
-      type: 'MODULE',
-      path: result
+    if (parser.consume('StringValue')) {
+      return {
+        type: 'MODULE',
+        value: token.text.slice(1, -1),
+        meta: {
+          quote: token.text[0] as '\'' | '"'
+        }
+      }
+    } else {
+      let result = ''
+      const allowed: TokenType[] = ['Identifier', '@', '/']
+      while (allowed.some(type => parser.consume(type))) {
+        result += token.text
+        token = parser.getToken()
+      }
+      return {
+        type: 'MODULE',
+        value: result,
+        meta: {
+          quote: undefined
+        }
+      }
     }
   }
 }

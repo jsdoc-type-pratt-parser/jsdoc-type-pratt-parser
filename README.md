@@ -35,7 +35,7 @@ const result = catharsisTransform(parser.parse('myType.<string>'))
 Available Grammars
 ------------------
 
-At the moment there are 3 modes supported: 'jsdoc', 'closure', 'typescipt' where 'jsdoc' is a superset of 'closure'
+At the moment there are 3 modes supported: 'jsdoc', 'closure' and 'typescipt'
 
 Tests Status
 ------------

@@ -7,6 +7,17 @@ export const tupleFixtures: Fixture[] = [
     expected: {
       type: 'TUPLE',
       elements: []
+    },
+    modes: ['typescript'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   },
   {
@@ -17,12 +28,23 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          name: 'x',
+          value: 'x',
           meta: {
             reservedWord: false
           }
         }
       ]
+    },
+    modes: ['typescript'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   },
   {
@@ -33,33 +55,44 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          name: 'it',
+          value: 'it',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          name: 'needs',
+          value: 'needs',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          name: 'to',
+          value: 'to',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          name: 'be',
+          value: 'be',
           meta: {
             reservedWord: false
           }
         }
       ]
+    },
+    modes: ['typescript'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   },
   {
@@ -70,26 +103,37 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          name: 'tuple',
+          value: 'tuple',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          name: 'with',
+          value: 'with',
           meta: {
             reservedWord: true
           }
         },
         {
           type: 'NAME',
-          name: 'spaces',
+          value: 'spaces',
           meta: {
             reservedWord: false
           }
         }
       ]
+    },
+    modes: ['typescript'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   },
   {
@@ -100,33 +144,44 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          name: 'tuple',
+          value: 'tuple',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          name: 'with',
+          value: 'with',
           meta: {
             reservedWord: true
           }
         },
         {
           type: 'NAME',
-          name: 'trailing',
+          value: 'trailing',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          name: 'comma',
+          value: 'comma',
           meta: {
             reservedWord: false
           }
         }
       ]
+    },
+    modes: ['typescript'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   },
   {
@@ -134,14 +189,14 @@ export const tupleFixtures: Fixture[] = [
     input: '[][]',
     expected: {
       type: 'GENERIC',
-      subject: {
+      left: {
         type: 'NAME',
-        name: 'Array',
+        value: 'Array',
         meta: {
           reservedWord: false
         }
       },
-      objects: [
+      elements: [
         {
           type: 'TUPLE',
           elements: []
@@ -151,6 +206,17 @@ export const tupleFixtures: Fixture[] = [
         dot: false,
         brackets: '[]'
       }
+    },
+    modes: ['typescript'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   },
   {
@@ -158,27 +224,27 @@ export const tupleFixtures: Fixture[] = [
     input: '[tuple, array][]',
     expected: {
       type: 'GENERIC',
-      subject: {
+      left: {
         type: 'NAME',
-        name: 'Array',
+        value: 'Array',
         meta: {
           reservedWord: false
         }
       },
-      objects: [
+      elements: [
         {
           type: 'TUPLE',
           elements: [
             {
               type: 'NAME',
-              name: 'tuple',
+              value: 'tuple',
               meta: {
                 reservedWord: false
               }
             },
             {
               type: 'NAME',
-              name: 'array',
+              value: 'array',
               meta: {
                 reservedWord: false
               }
@@ -190,6 +256,17 @@ export const tupleFixtures: Fixture[] = [
         dot: false,
         brackets: '[]'
       }
+    },
+    modes: ['typescript'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   },
   {
@@ -200,29 +277,40 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          name: 'tuple',
+          value: 'tuple',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          name: 'with',
+          value: 'with',
           meta: {
             reservedWord: true
           }
         },
         {
           type: 'TYPE_OF',
-          value: {
+          element: {
             type: 'NAME',
-            name: 'foo',
+            value: 'foo',
             meta: {
               reservedWord: false
             }
           }
         }
       ]
+    },
+    modes: ['typescript'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   },
   {
@@ -233,29 +321,40 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          name: 'tuple',
+          value: 'tuple',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          name: 'with',
+          value: 'with',
           meta: {
             reservedWord: true
           }
         },
         {
           type: 'KEY_OF',
-          value: {
+          element: {
             type: 'NAME',
-            name: 'foo',
+            value: 'foo',
             meta: {
               reservedWord: false
             }
           }
         }
       ]
+    },
+    modes: ['typescript'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   },
   {
@@ -266,23 +365,23 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'NAME',
-          name: 'tuple',
+          value: 'tuple',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'NAME',
-          name: 'with',
+          value: 'with',
           meta: {
             reservedWord: true
           }
         },
         {
           type: 'TYPE_OF',
-          value: {
+          element: {
             type: 'NAME',
-            name: 'foo',
+            value: 'foo',
             meta: {
               reservedWord: false
             }
@@ -290,22 +389,33 @@ export const tupleFixtures: Fixture[] = [
         },
         {
           type: 'NAME',
-          name: 'and',
+          value: 'and',
           meta: {
             reservedWord: false
           }
         },
         {
           type: 'KEY_OF',
-          value: {
+          element: {
             type: 'NAME',
-            name: 'foo',
+            value: 'foo',
             meta: {
               reservedWord: false
             }
           }
         }
       ]
+    },
+    modes: ['typescript'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
     }
   }
 ]

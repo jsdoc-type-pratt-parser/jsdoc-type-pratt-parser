@@ -1,8 +1,8 @@
 import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
-import { KeyOfResult, ParseResult } from '../ParseResult'
-import { Precedence } from './Precedence'
+import { KeyOfResult } from '../ParseResult'
+import { Precedence } from '../Precedence'
 import { assertTerminal } from '../assertTypes'
 
 export class KeyOfParslet implements PrefixParslet {
@@ -14,15 +14,11 @@ export class KeyOfParslet implements PrefixParslet {
     return Precedence.KEY_OF_TYPE_OF
   }
 
-  parsePrefix (parser: ParserEngine): ParseResult {
+  parsePrefix (parser: ParserEngine): KeyOfResult {
     parser.consume('keyof')
-    const result: KeyOfResult = {
-      type: 'KEY_OF'
+    return {
+      type: 'KEY_OF',
+      element: assertTerminal(parser.parseType(Precedence.KEY_OF_TYPE_OF))
     }
-    const value = parser.tryParseType(Precedence.KEY_OF_TYPE_OF)
-    if (value !== undefined) {
-      result.value = assertTerminal(value)
-    }
-    return result
   }
 }

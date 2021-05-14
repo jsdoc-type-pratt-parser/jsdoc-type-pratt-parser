@@ -1,10 +1,11 @@
 import { InfixParslet, PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
-import { Precedence } from './Precedence'
+import { Precedence } from '../Precedence'
 import { ParserEngine } from '../ParserEngine'
 import { FunctionResult, NonTerminalResult } from '../ParseResult'
 import { BaseFunctionParslet } from './BaseFunctionParslet'
 import { assertNamedKeyValueOrName } from '../assertTypes'
+import { UnexpectedTypeError } from '../errors'
 
 export class ArrowFunctionWithoutParametersParslet implements PrefixParslet {
   accepts (type: TokenType, next: TokenType): boolean {
@@ -16,23 +17,21 @@ export class ArrowFunctionWithoutParametersParslet implements PrefixParslet {
   }
 
   parsePrefix (parser: ParserEngine): FunctionResult {
-    parser.consume('(')
+    const hasParenthesis = parser.consume('(')
     parser.consume(')')
     if (!parser.consume('=>')) {
       throw new Error('Unexpected empty parenthesis. Expected \'=>\' afterwards.')
     }
-    const result: FunctionResult = {
+
+    return {
       type: 'FUNCTION',
       parameters: [],
       meta: {
-        arrow: true
-      }
+        arrow: true,
+        parenthesis: hasParenthesis
+      },
+      returnType: parser.parseType(Precedence.ALL)
     }
-    if (!parser.consume('void')) {
-      const right = parser.parseType(Precedence.ALL)
-      result.returnType = right
-    }
-    return result
   }
 }
 
@@ -46,21 +45,19 @@ export class ArrowFunctionWithParametersParslet extends BaseFunctionParslet impl
   }
 
   parseInfix (parser: ParserEngine, left: NonTerminalResult): FunctionResult {
-    if (parser.previousToken()?.type !== ')') {
-      throw new Error('Unexpected Arrow. Expected parenthesis before.')
+    if (left.type !== 'PARENTHESIS') {
+      throw new UnexpectedTypeError(left)
     }
     parser.consume('=>')
-    const result: FunctionResult = {
+
+    return {
       type: 'FUNCTION',
       parameters: this.getParameters(left).map(assertNamedKeyValueOrName),
       meta: {
-        arrow: true
-      }
+        arrow: true,
+        parenthesis: true
+      },
+      returnType: parser.parseType(Precedence.ALL)
     }
-    if (!parser.consume('void')) {
-      const right = parser.parseType(Precedence.ALL)
-      result.returnType = right
-    }
-    return result
   }
 }
