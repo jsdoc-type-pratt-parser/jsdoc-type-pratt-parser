@@ -15,6 +15,7 @@ import { NamePathParslet } from '../parslets/NamePathParslet'
 import { KeyValueParslet } from '../parslets/KeyValueParslet'
 import { ModuleParslet } from '../parslets/ModuleParslet'
 import { VariadicParslet } from '../parslets/VariadicParslet'
+import { NameParslet } from '../parslets/NameParslet'
 
 export const typescriptGrammar: Grammar = () => {
   const {
@@ -36,9 +37,14 @@ export const typescriptGrammar: Grammar = () => {
         allowNoReturnType: false,
         allowNamedParameters: ['this', 'new']
       }),
-      new TupleParslet(),
+      new TupleParslet({
+        allowQuestionMark: false
+      }),
       new VariadicParslet({
         allowEnclosingBrackets: false
+      }),
+      new NameParslet({
+        allowedAdditionalTokens: []
       })
     ],
     infixParslets: [

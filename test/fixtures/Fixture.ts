@@ -11,11 +11,6 @@ type CatharsisMode = 'jsdoc' | 'closure'
 
 type CompareMode = ParserMode | 'fail' | 'differ'
 
-interface DiffResult {
-  type: 'default' | 'jsdoc' | 'closure' | 'typescript'
-  expected: ParseResult
-}
-
 export interface Fixture {
   description: string
   modes: ParserMode[]
@@ -25,7 +20,10 @@ export interface Fixture {
   catharsis: {
     [K in CatharsisMode]: CompareMode
   }
-  expected?: ParseResult | DiffResult[]
+  expected?: ParseResult
+  diffExpected?: {
+    [K in ParserMode]?: ParseResult
+  }
   input: string
 }
 
@@ -40,7 +38,8 @@ function testParser (mode: ParserMode, fixture: Fixture): ParseResult | undefine
   if (fixture.modes.includes(mode)) {
     it(`gets parsed in '${mode}' mode`, () => {
       const result = parser.parse(fixture.input)
-      expect(result).to.deep.equal(fixture.expected)
+      const expected = fixture.diffExpected?.[mode] ?? fixture.expected
+      expect(result).to.deep.equal(expected)
     })
     return parser.parse(fixture.input)
   } else {
@@ -59,7 +58,7 @@ function compareCatharsis (mode: CatharsisMode, results: Results, fixture: Fixtu
         jsdoc: mode === 'jsdoc'
       })
 
-      expect(catharsisResult).not.to.be.undefined
+      expect(catharsisResult).not.to.be.equal(undefined)
 
       if (compareMode !== 'differ') {
         const transformed = catharsisTransform(results[compareMode] as ParseResult)
@@ -86,7 +85,7 @@ function compareJtp (mode: JtpMode, results: Results, fixture: Fixture): void {
         mode: mode
       })
 
-      expect(jtpResult).not.to.be.undefined
+      expect(jtpResult).not.to.be.equal(undefined)
 
       if (compareMode !== 'differ') {
         const transformed = jtpTransform(results[compareMode] as ParseResult)

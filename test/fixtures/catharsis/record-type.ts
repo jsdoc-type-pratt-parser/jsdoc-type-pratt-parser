@@ -343,30 +343,33 @@ export const recordFixtures: Fixture[] = [
             }
           },
           right: {
-            type: 'UNION',
-            elements: [
-              {
-                type: 'NAME',
-                value: 'number',
-                meta: {
-                  reservedWord: false
+            type: 'PARENTHESIS',
+            element: {
+              type: 'UNION',
+              elements: [
+                {
+                  type: 'NAME',
+                  value: 'number',
+                  meta: {
+                    reservedWord: false
+                  }
+                },
+                {
+                  type: 'NAME',
+                  value: 'boolean',
+                  meta: {
+                    reservedWord: false
+                  }
+                },
+                {
+                  type: 'NAME',
+                  value: 'string',
+                  meta: {
+                    reservedWord: false
+                  }
                 }
-              },
-              {
-                type: 'NAME',
-                value: 'boolean',
-                meta: {
-                  reservedWord: false
-                }
-              },
-              {
-                type: 'NAME',
-                value: 'string',
-                meta: {
-                  reservedWord: false
-                }
-              }
-            ]
+              ]
+            }
           }
         }
       ]

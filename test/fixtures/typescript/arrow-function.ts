@@ -17,12 +17,12 @@ export const arrowFunctionFixtures: Fixture[] = [
             }
           },
           right: {
-            type: 'ALL'
+            type: 'ANY'
           }
         }
       ],
       returnType: {
-        type: 'ALL'
+        type: 'ANY'
       },
       meta: {
         arrow: true
@@ -77,9 +77,9 @@ export const arrowFunctionFixtures: Fixture[] = [
     },
     modes: ['typescript'],
     catharsis: {
-  closure: 'fail',
-  jsdoc: 'fail'
-},
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
     jtp: {
       closure: 'fail',
       jsdoc: 'fail',
@@ -158,9 +158,9 @@ export const arrowFunctionFixtures: Fixture[] = [
     },
     modes: ['typescript'],
     catharsis: {
-  closure: 'fail',
-  jsdoc: 'fail'
-},
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
     jtp: {
       closure: 'fail',
       jsdoc: 'fail',
@@ -187,9 +187,9 @@ export const arrowFunctionFixtures: Fixture[] = [
     },
     modes: ['typescript'],
     catharsis: {
-  closure: 'fail',
-  jsdoc: 'fail'
-},
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
     jtp: {
       closure: 'fail',
       jsdoc: 'fail',
@@ -223,9 +223,9 @@ export const arrowFunctionFixtures: Fixture[] = [
     },
     modes: ['typescript'],
     catharsis: {
-  closure: 'fail',
-  jsdoc: 'fail'
-},
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
     jtp: {
       closure: 'fail',
       jsdoc: 'fail',
@@ -254,15 +254,22 @@ export const arrowFunctionFixtures: Fixture[] = [
           }
         }
       ],
+      returnType: {
+        type: 'NAME',
+        value: 'void',
+        meta: {
+          reservedWord: true
+        }
+      },
       meta: {
         arrow: false
       }
     },
     modes: ['typescript'],
     catharsis: {
-  closure: 'fail',
-  jsdoc: 'fail'
-},
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
     jtp: {
       closure: 'fail',
       jsdoc: 'fail',
@@ -324,9 +331,9 @@ export const arrowFunctionFixtures: Fixture[] = [
     },
     modes: ['typescript'],
     catharsis: {
-  closure: 'fail',
-  jsdoc: 'fail'
-},
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
     jtp: {
       closure: 'fail',
       jsdoc: 'fail',
@@ -369,9 +376,9 @@ export const arrowFunctionFixtures: Fixture[] = [
     },
     modes: ['typescript'],
     catharsis: {
-  closure: 'fail',
-  jsdoc: 'fail'
-},
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
     jtp: {
       closure: 'fail',
       jsdoc: 'fail',
@@ -391,9 +398,9 @@ export const arrowFunctionFixtures: Fixture[] = [
     },
     modes: ['typescript'],
     catharsis: {
-  closure: 'fail',
-  jsdoc: 'fail'
-},
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
     jtp: {
       closure: 'fail',
       jsdoc: 'fail',
@@ -420,9 +427,9 @@ export const arrowFunctionFixtures: Fixture[] = [
     },
     modes: ['typescript'],
     catharsis: {
-  closure: 'fail',
-  jsdoc: 'fail'
-},
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
     jtp: {
       closure: 'fail',
       jsdoc: 'fail',
@@ -492,9 +499,9 @@ export const arrowFunctionFixtures: Fixture[] = [
     },
     modes: ['typescript'],
     catharsis: {
-  closure: 'fail',
-  jsdoc: 'fail'
-},
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
     jtp: {
       closure: 'fail',
       jsdoc: 'fail',
@@ -522,9 +529,9 @@ export const arrowFunctionFixtures: Fixture[] = [
     },
     modes: ['typescript'],
     catharsis: {
-  closure: 'fail',
-  jsdoc: 'fail'
-},
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
     jtp: {
       closure: 'fail',
       jsdoc: 'fail',
@@ -537,9 +544,9 @@ export const arrowFunctionFixtures: Fixture[] = [
     input: '(Array<string>) => void',
     modes: [],
     catharsis: {
-  closure: 'fail',
-  jsdoc: 'fail'
-},
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
     jtp: {
       closure: 'fail',
       jsdoc: 'fail',

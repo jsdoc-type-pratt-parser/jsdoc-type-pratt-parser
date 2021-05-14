@@ -22,18 +22,15 @@ export class ArrowFunctionWithoutParametersParslet implements PrefixParslet {
     if (!parser.consume('=>')) {
       throw new Error('Unexpected empty parenthesis. Expected \'=>\' afterwards.')
     }
-    const result: FunctionResult = {
+
+    return {
       type: 'FUNCTION',
       parameters: [],
       meta: {
         arrow: true
-      }
+      },
+      returnType: parser.parseType(Precedence.ALL)
     }
-    if (!parser.consume('void')) {
-      const right = parser.parseType(Precedence.ALL)
-      result.returnType = right
-    }
-    return result
   }
 }
 
@@ -51,17 +48,14 @@ export class ArrowFunctionWithParametersParslet extends BaseFunctionParslet impl
       throw new UnexpectedTypeError(left)
     }
     parser.consume('=>')
-    const result: FunctionResult = {
+
+    return {
       type: 'FUNCTION',
       parameters: this.getParameters(left).map(assertNamedKeyValueOrName),
       meta: {
         arrow: true
-      }
+      },
+      returnType: parser.parseType(Precedence.ALL)
     }
-    if (!parser.consume('void')) {
-      const right = parser.parseType(Precedence.ALL)
-      result.returnType = right
-    }
-    return result
   }
 }

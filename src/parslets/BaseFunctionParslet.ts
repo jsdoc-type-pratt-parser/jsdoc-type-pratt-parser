@@ -1,10 +1,9 @@
-import { KeyValueResult, NameResult, NonTerminalResult, ParenthesisResult, ParseResult } from '../ParseResult'
+import { KeyValueResult, NonTerminalResult, ParenthesisResult, ParseResult } from '../ParseResult'
 import { assertNamedKeyValueOrTerminal } from '../assertTypes'
-import { UnexpectedTypeError } from '../errors'
 
 export class BaseFunctionParslet {
   protected getParameters (value: ParenthesisResult): Array<ParseResult | KeyValueResult> {
-    let parameters: Array<NonTerminalResult>
+    let parameters: NonTerminalResult[]
     if (value.element === undefined) {
       parameters = []
     } else if (value.element.type === 'PARAMETER_LIST') {

@@ -177,38 +177,41 @@ export const genericFixtures: Fixture[] = [
           type: 'GENERIC',
           elements: [
             {
-              type: 'UNION',
-              elements: [
-                {
-                  type: 'NAME',
-                  value: 'boolean',
-                  meta: {
-                    reservedWord: false
-                  }
-                },
-                {
-                  type: 'OBJECT',
-                  elements: [
-                    {
-                      type: 'KEY_VALUE',
-                      left: {
-                        type: 'NAME',
-                        value: 'myKey',
-                        meta: {
-                          reservedWord: false
-                        }
-                      },
-                      right: {
-                        type: 'NAME',
-                        value: 'Error',
-                        meta: {
-                          reservedWord: false
+              type: 'PARENTHESIS',
+              element: {
+                type: 'UNION',
+                elements: [
+                  {
+                    type: 'NAME',
+                    value: 'boolean',
+                    meta: {
+                      reservedWord: false
+                    }
+                  },
+                  {
+                    type: 'OBJECT',
+                    elements: [
+                      {
+                        type: 'KEY_VALUE',
+                        left: {
+                          type: 'NAME',
+                          value: 'myKey',
+                          meta: {
+                            reservedWord: false
+                          }
+                        },
+                        right: {
+                          type: 'NAME',
+                          value: 'Error',
+                          meta: {
+                            reservedWord: false
+                          }
                         }
                       }
-                    }
-                  ]
-                }
-              ]
+                    ]
+                  }
+                ]
+              }
             }
           ],
           left: {
@@ -224,55 +227,58 @@ export const genericFixtures: Fixture[] = [
           }
         },
         {
-          type: 'UNION',
-          elements: [
-            {
-              type: 'NAME',
-              value: 'boolean',
-              meta: {
-                reservedWord: false
-              }
-            },
-            {
-              type: 'NAME',
-              value: 'string',
-              meta: {
-                reservedWord: false
-              }
-            },
-            {
-              type: 'FUNCTION',
-              parameters: [
-                {
-                  type: 'KEY_VALUE',
-                  left: {
-                    type: 'NAME',
-                    value: 'new',
-                    meta: {
-                      reservedWord: true
-                    }
-                  },
-                  right: {
-                    type: 'NAME',
-                    value: 'foo',
-                    meta: {
-                      reservedWord: false
-                    }
-                  }
+          type: 'PARENTHESIS',
+          element: {
+            type: 'UNION',
+            elements: [
+              {
+                type: 'NAME',
+                value: 'boolean',
+                meta: {
+                  reservedWord: false
                 }
-              ],
-              returnType: {
+              },
+              {
                 type: 'NAME',
                 value: 'string',
                 meta: {
                   reservedWord: false
                 }
               },
-              meta: {
-                arrow: false
+              {
+                type: 'FUNCTION',
+                parameters: [
+                  {
+                    type: 'KEY_VALUE',
+                    left: {
+                      type: 'NAME',
+                      value: 'new',
+                      meta: {
+                        reservedWord: true
+                      }
+                    },
+                    right: {
+                      type: 'NAME',
+                      value: 'foo',
+                      meta: {
+                        reservedWord: false
+                      }
+                    }
+                  }
+                ],
+                returnType: {
+                  type: 'NAME',
+                  value: 'string',
+                  meta: {
+                    reservedWord: false
+                  }
+                },
+                meta: {
+                  arrow: false
+                }
               }
-            }
-          ]
+            ]
+          }
         }
       ],
       left: {
@@ -364,7 +370,7 @@ export const genericFixtures: Fixture[] = [
         brackets: '<>'
       }
     },
-    modes: ['typescript', 'jsdoc', 'closure'],
+    modes: ['jsdoc', 'closure', 'typescript'],
     catharsis: {
       closure: 'closure',
       jsdoc: 'jsdoc'

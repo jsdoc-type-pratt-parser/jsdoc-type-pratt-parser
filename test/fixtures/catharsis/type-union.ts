@@ -5,23 +5,26 @@ export const unionFixtures: Fixture[] = [
     description: 'union with 2 types (number and boolean)',
     input: '(number|boolean)',
     expected: {
-      type: 'UNION',
-      elements: [
-        {
-          type: 'NAME',
-          value: 'number',
-          meta: {
-            reservedWord: false
+      type: 'PARENTHESIS',
+      element: {
+        type: 'UNION',
+        elements: [
+          {
+            type: 'NAME',
+            value: 'number',
+            meta: {
+              reservedWord: false
+            }
+          },
+          {
+            type: 'NAME',
+            value: 'boolean',
+            meta: {
+              reservedWord: false
+            }
           }
-        },
-        {
-          type: 'NAME',
-          value: 'boolean',
-          meta: {
-            reservedWord: false
-          }
-        }
-      ]
+        ]
+      }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -41,23 +44,26 @@ export const unionFixtures: Fixture[] = [
     expected: {
       type: 'VARIADIC',
       element: {
-        type: 'UNION',
-        elements: [
-          {
-            type: 'NAME',
-            value: 'number',
-            meta: {
-              reservedWord: false
+        type: 'PARENTHESIS',
+        element: {
+          type: 'UNION',
+          elements: [
+            {
+              type: 'NAME',
+              value: 'number',
+              meta: {
+                reservedWord: false
+              }
+            },
+            {
+              type: 'NAME',
+              value: 'boolean',
+              meta: {
+                reservedWord: false
+              }
             }
-          },
-          {
-            type: 'NAME',
-            value: 'boolean',
-            meta: {
-              reservedWord: false
-            }
-          }
-        ]
+          ]
+        }
       },
       meta: {
         position: 'PREFIX',
@@ -80,19 +86,22 @@ export const unionFixtures: Fixture[] = [
     description: 'union with 2 types (Object and undefined)',
     input: '(Object|undefined)',
     expected: {
-      type: 'UNION',
-      elements: [
-        {
-          type: 'NAME',
-          value: 'Object',
-          meta: {
-            reservedWord: false
+      type: 'PARENTHESIS',
+      element: {
+        type: 'UNION',
+        elements: [
+          {
+            type: 'NAME',
+            value: 'Object',
+            meta: {
+              reservedWord: false
+            }
+          },
+          {
+            type: 'UNDEFINED'
           }
-        },
-        {
-          type: 'UNDEFINED'
-        }
-      ]
+        ]
+      }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -110,34 +119,48 @@ export const unionFixtures: Fixture[] = [
     description: 'union with 3 types (number, Window, and goog.ui.Menu)',
     input: '(number|Window|goog.ui.Menu)',
     expected: {
-      type: 'UNION',
-      elements: [
-        {
-          type: 'NAME',
-          value: 'number',
-          meta: {
-            reservedWord: false
-          }
-        },
-        {
-          type: 'NAME',
-          value: 'Window',
-          meta: {
-            reservedWord: false
-          }
-        },
-        {
-          left: {
+      type: 'PARENTHESIS',
+      element: {
+        type: 'UNION',
+        elements: [
+          {
+            type: 'NAME',
+            value: 'number',
+            meta: {
+              reservedWord: false
+            }
+          },
+          {
+            type: 'NAME',
+            value: 'Window',
+            meta: {
+              reservedWord: false
+            }
+          },
+          {
             left: {
-              value: 'goog',
-              type: 'NAME',
+              left: {
+                value: 'goog',
+                type: 'NAME',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              right: {
+                type: 'NAME',
+                value: 'ui',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              type: 'NAME_PATH',
               meta: {
-                reservedWord: false
+                type: '.'
               }
             },
             right: {
               type: 'NAME',
-              value: 'ui',
+              value: 'Menu',
               meta: {
                 reservedWord: false
               }
@@ -146,20 +169,9 @@ export const unionFixtures: Fixture[] = [
             meta: {
               type: '.'
             }
-          },
-          right: {
-            type: 'NAME',
-            value: 'Menu',
-            meta: {
-              reservedWord: false
-            }
-          },
-          type: 'NAME_PATH',
-          meta: {
-            type: '.'
           }
-        }
-      ]
+        ]
+      }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -179,23 +191,26 @@ export const unionFixtures: Fixture[] = [
     expected: {
       type: 'NULLABLE',
       element: {
-        type: 'UNION',
-        elements: [
-          {
-            type: 'NAME',
-            value: 'number',
-            meta: {
-              reservedWord: false
+        type: 'PARENTHESIS',
+        element: {
+          type: 'UNION',
+          elements: [
+            {
+              type: 'NAME',
+              value: 'number',
+              meta: {
+                reservedWord: false
+              }
+            },
+            {
+              type: 'NAME',
+              value: 'boolean',
+              meta: {
+                reservedWord: false
+              }
             }
-          },
-          {
-            type: 'NAME',
-            value: 'boolean',
-            meta: {
-              reservedWord: false
-            }
-          }
-        ]
+          ]
+        }
       },
       meta: {
         position: 'PREFIX'
@@ -219,23 +234,26 @@ export const unionFixtures: Fixture[] = [
     expected: {
       type: 'NOT_NULLABLE',
       element: {
-        type: 'UNION',
-        elements: [
-          {
-            type: 'NAME',
-            value: 'number',
-            meta: {
-              reservedWord: false
+        type: 'PARENTHESIS',
+        element: {
+          type: 'UNION',
+          elements: [
+            {
+              type: 'NAME',
+              value: 'number',
+              meta: {
+                reservedWord: false
+              }
+            },
+            {
+              type: 'NAME',
+              value: 'boolean',
+              meta: {
+                reservedWord: false
+              }
             }
-          },
-          {
-            type: 'NAME',
-            value: 'boolean',
-            meta: {
-              reservedWord: false
-            }
-          }
-        ]
+          ]
+        }
       },
       meta: {
         position: 'PREFIX'
@@ -259,23 +277,26 @@ export const unionFixtures: Fixture[] = [
     expected: {
       type: 'OPTIONAL',
       element: {
-        type: 'UNION',
-        elements: [
-          {
-            type: 'NAME',
-            value: 'number',
-            meta: {
-              reservedWord: false
+        type: 'PARENTHESIS',
+        element: {
+          type: 'UNION',
+          elements: [
+            {
+              type: 'NAME',
+              value: 'number',
+              meta: {
+                reservedWord: false
+              }
+            },
+            {
+              type: 'NAME',
+              value: 'boolean',
+              meta: {
+                reservedWord: false
+              }
             }
-          },
-          {
-            type: 'NAME',
-            value: 'boolean',
-            meta: {
-              reservedWord: false
-            }
-          }
-        ]
+          ]
+        }
       },
       meta: {
         position: 'SUFFIX'
@@ -297,42 +318,45 @@ export const unionFixtures: Fixture[] = [
     description: 'union with 2 types (array and object with unknown value type)',
     input: '(Array|Object.<string, ?>)',
     expected: {
-      type: 'UNION',
-      elements: [
-        {
-          type: 'NAME',
-          value: 'Array',
-          meta: {
-            reservedWord: false
-          }
-        },
-        {
-          type: 'GENERIC',
-          elements: [
-            {
-              type: 'NAME',
-              value: 'string',
-              meta: {
-                reservedWord: false
-              }
-            },
-            {
-              type: 'UNKNOWN'
-            }
-          ],
-          left: {
+      type: 'PARENTHESIS',
+      element: {
+        type: 'UNION',
+        elements: [
+          {
             type: 'NAME',
-            value: 'Object',
+            value: 'Array',
             meta: {
               reservedWord: false
             }
           },
-          meta: {
-            dot: true,
-            brackets: '<>'
+          {
+            type: 'GENERIC',
+            elements: [
+              {
+                type: 'NAME',
+                value: 'string',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              {
+                type: 'UNKNOWN'
+              }
+            ],
+            left: {
+              type: 'NAME',
+              value: 'Object',
+              meta: {
+                reservedWord: false
+              }
+            },
+            meta: {
+              dot: true,
+              brackets: '<>'
+            }
           }
-        }
-      ]
+        ]
+      }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -350,58 +374,61 @@ export const unionFixtures: Fixture[] = [
     description: 'union with 2 type applications',
     input: '(Array.<string>|Object.<string, ?>)',
     expected: {
-      type: 'UNION',
-      elements: [
-        {
-          type: 'GENERIC',
-          elements: [
-            {
-              type: 'NAME',
-              value: 'string',
-              meta: {
-                reservedWord: false
+      type: 'PARENTHESIS',
+      element: {
+        type: 'UNION',
+        elements: [
+          {
+            type: 'GENERIC',
+            elements: [
+              {
+                type: 'NAME',
+                value: 'string',
+                meta: {
+                  reservedWord: false
+                }
               }
-            }
-          ],
-          left: {
-            type: 'NAME',
-            value: 'Array',
-            meta: {
-              reservedWord: false
-            }
-          },
-          meta: {
-            dot: true,
-            brackets: '<>'
-          }
-        },
-        {
-          type: 'GENERIC',
-          elements: [
-            {
+            ],
+            left: {
               type: 'NAME',
-              value: 'string',
+              value: 'Array',
               meta: {
                 reservedWord: false
               }
             },
-            {
-              type: 'UNKNOWN'
-            }
-          ],
-          left: {
-            type: 'NAME',
-            value: 'Object',
             meta: {
-              reservedWord: false
+              dot: true,
+              brackets: '<>'
             }
           },
-          meta: {
-            dot: true,
-            brackets: '<>'
+          {
+            type: 'GENERIC',
+            elements: [
+              {
+                type: 'NAME',
+                value: 'string',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              {
+                type: 'UNKNOWN'
+              }
+            ],
+            left: {
+              type: 'NAME',
+              value: 'Object',
+              meta: {
+                reservedWord: false
+              }
+            },
+            meta: {
+              dot: true,
+              brackets: '<>'
+            }
           }
-        }
-      ]
+        ]
+      }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -419,30 +446,33 @@ export const unionFixtures: Fixture[] = [
     description: 'union with 2 types (an error, or a function that returns an error)',
     input: '(Error|function(): Error)',
     expected: {
-      type: 'UNION',
-      elements: [
-        {
-          type: 'NAME',
-          value: 'Error',
-          meta: {
-            reservedWord: false
-          }
-        },
-        {
-          type: 'FUNCTION',
-          parameters: [],
-          returnType: {
+      type: 'PARENTHESIS',
+      element: {
+        type: 'UNION',
+        elements: [
+          {
             type: 'NAME',
             value: 'Error',
             meta: {
               reservedWord: false
             }
           },
-          meta: {
-            arrow: false
+          {
+            type: 'FUNCTION',
+            parameters: [],
+            returnType: {
+              type: 'NAME',
+              value: 'Error',
+              meta: {
+                reservedWord: false
+              }
+            },
+            meta: {
+              arrow: false
+            }
           }
-        }
-      ]
+        ]
+      }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -542,74 +572,77 @@ export const unionFixtures: Fixture[] = [
     expected: {
       type: 'OPTIONAL',
       element: {
-        type: 'UNION',
-        elements: [
-          {
-            type: 'NAME',
-            value: 'jQuerySelector',
-            meta: {
-              reservedWord: false
-            }
-          },
-          {
-            type: 'NAME',
-            value: 'Element',
-            meta: {
-              reservedWord: false
-            }
-          },
-          {
-            type: 'NAME',
-            value: 'Object',
-            meta: {
-              reservedWord: false
-            }
-          },
-          {
-            type: 'GENERIC',
-            elements: [
-              {
-                type: 'NAME',
-                value: 'Element',
-                meta: {
-                  reservedWord: false
-                }
-              }
-            ],
-            left: {
+        type: 'PARENTHESIS',
+        element: {
+          type: 'UNION',
+          elements: [
+            {
               type: 'NAME',
-              value: 'Array',
+              value: 'jQuerySelector',
               meta: {
                 reservedWord: false
               }
             },
-            meta: {
-              dot: true,
-              brackets: '<>'
+            {
+              type: 'NAME',
+              value: 'Element',
+              meta: {
+                reservedWord: false
+              }
+            },
+            {
+              type: 'NAME',
+              value: 'Object',
+              meta: {
+                reservedWord: false
+              }
+            },
+            {
+              type: 'GENERIC',
+              elements: [
+                {
+                  type: 'NAME',
+                  value: 'Element',
+                  meta: {
+                    reservedWord: false
+                  }
+                }
+              ],
+              left: {
+                type: 'NAME',
+                value: 'Array',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              meta: {
+                dot: true,
+                brackets: '<>'
+              }
+            },
+            {
+              type: 'NAME',
+              value: 'jQuery',
+              meta: {
+                reservedWord: false
+              }
+            },
+            {
+              type: 'NAME',
+              value: 'string',
+              meta: {
+                reservedWord: false
+              }
+            },
+            {
+              type: 'FUNCTION',
+              parameters: [],
+              meta: {
+                arrow: false
+              }
             }
-          },
-          {
-            type: 'NAME',
-            value: 'jQuery',
-            meta: {
-              reservedWord: false
-            }
-          },
-          {
-            type: 'NAME',
-            value: 'string',
-            meta: {
-              reservedWord: false
-            }
-          },
-          {
-            type: 'FUNCTION',
-            parameters: [],
-            meta: {
-              arrow: false
-            }
-          }
-        ]
+          ]
+        }
       },
       meta: {
         position: 'SUFFIX'
@@ -623,9 +656,9 @@ export const unionFixtures: Fixture[] = [
     jtp: {
       closure: 'closure',
       jsdoc: 'jsdoc',
-      typescript: 'typescript',
+      typescript: 'differ', // NOTE: This seems to be a JTP error
       permissive: 'closure'
-    } // NOTE: This seems to be a JTP error
+    }
   },
   {
     description: 'optional union with multiple types, including a nested union type',
@@ -633,105 +666,111 @@ export const unionFixtures: Fixture[] = [
     expected: {
       type: 'OPTIONAL',
       element: {
-        type: 'UNION',
-        elements: [
-          {
-            type: 'NAME',
-            value: 'Element',
-            meta: {
-              reservedWord: false
-            }
-          },
-          {
-            type: 'NAME',
-            value: 'Object',
-            meta: {
-              reservedWord: false
-            }
-          },
-          {
-            type: 'NAME',
-            value: 'Document',
-            meta: {
-              reservedWord: false
-            }
-          },
-          {
-            type: 'GENERIC',
-            elements: [
-              {
-                type: 'NAME',
-                value: 'string',
-                meta: {
-                  reservedWord: false
-                }
-              },
-              {
-                type: 'UNION',
-                elements: [
-                  {
-                    type: 'NAME',
-                    value: 'string',
-                    meta: {
-                      reservedWord: false
-                    }
-                  },
-                  {
-                    type: 'FUNCTION',
-                    parameters: [
-                      {
-                        type: 'OPTIONAL',
-                        element: {
-                          type: 'NOT_NULLABLE',
-                          element: {
-                            left: {
-                              value: 'jQuery',
-                              type: 'NAME',
-                              meta: {
-                                reservedWord: false
-                              }
-                            },
-                            right: {
-                              type: 'NAME',
-                              value: 'event',
-                              meta: {
-                                reservedWord: false
-                              }
-                            },
-                            meta: {
-                              type: '.'
-                            },
-                            type: 'NAME_PATH'
-                          },
-                          meta: {
-                            position: 'PREFIX'
-                          }
-                        },
-                        meta: {
-                          position: 'SUFFIX'
-                        }
-                      }
-                    ],
-                    meta: {
-                      arrow: false
-                    }
-                  }
-                ]
+        type: 'PARENTHESIS',
+        element: {
+          type: 'UNION',
+          elements: [
+            {
+              type: 'NAME',
+              value: 'Element',
+              meta: {
+                reservedWord: false
               }
-            ],
-            left: {
+            },
+            {
               type: 'NAME',
               value: 'Object',
               meta: {
                 reservedWord: false
               }
             },
-            meta: {
-              dot: true,
-              brackets: '<>'
+            {
+              type: 'NAME',
+              value: 'Document',
+              meta: {
+                reservedWord: false
+              }
+            },
+            {
+              type: 'GENERIC',
+              elements: [
+                {
+                  type: 'NAME',
+                  value: 'string',
+                  meta: {
+                    reservedWord: false
+                  }
+                },
+                {
+                  type: 'PARENTHESIS',
+                  element: {
+                    type: 'UNION',
+                    elements: [
+                      {
+                        type: 'NAME',
+                        value: 'string',
+                        meta: {
+                          reservedWord: false
+                        }
+                      },
+                      {
+                        type: 'FUNCTION',
+                        parameters: [
+                          {
+                            type: 'OPTIONAL',
+                            element: {
+                              type: 'NOT_NULLABLE',
+                              element: {
+                                left: {
+                                  value: 'jQuery',
+                                  type: 'NAME',
+                                  meta: {
+                                    reservedWord: false
+                                  }
+                                },
+                                right: {
+                                  type: 'NAME',
+                                  value: 'event',
+                                  meta: {
+                                    reservedWord: false
+                                  }
+                                },
+                                meta: {
+                                  type: '.'
+                                },
+                                type: 'NAME_PATH'
+                              },
+                              meta: {
+                                position: 'PREFIX'
+                              }
+                            },
+                            meta: {
+                              position: 'SUFFIX'
+                            }
+                          }
+                        ],
+                        meta: {
+                          arrow: false
+                        }
+                      }
+                    ]
+                  }
+                }
+              ],
+              left: {
+                type: 'NAME',
+                value: 'Object',
+                meta: {
+                  reservedWord: false
+                }
+              },
+              meta: {
+                dot: true,
+                brackets: '<>'
+              }
             }
-          }
-        ]
+          ]
+        }
       },
       meta: {
         position: 'SUFFIX'
@@ -745,8 +784,8 @@ export const unionFixtures: Fixture[] = [
     jtp: {
       closure: 'closure',
       jsdoc: 'jsdoc',
-      typescript: 'typescript',
+      typescript: 'differ', // NOTE: This seems to be a JTP error
       permissive: 'closure'
-    } // NOTE: This seems to be a JTP error
+    }
   }
 ]

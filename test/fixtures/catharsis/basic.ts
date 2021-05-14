@@ -444,7 +444,7 @@ export const basicFixtures: Fixture[] = [
     description: 'all',
     input: '*',
     expected: {
-      type: 'ALL'
+      type: 'ANY'
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -464,7 +464,7 @@ export const basicFixtures: Fixture[] = [
     expected: {
       type: 'VARIADIC',
       element: {
-        type: 'ALL'
+        type: 'ANY'
       },
       meta: {
         position: 'PREFIX',
@@ -489,7 +489,7 @@ export const basicFixtures: Fixture[] = [
     expected: {
       type: 'UNKNOWN'
     },
-    modes: ['typescript', 'jsdoc', 'closure'],
+    modes: ['jsdoc', 'closure'],
     catharsis: {
       closure: 'closure',
       jsdoc: 'jsdoc'
@@ -497,7 +497,7 @@ export const basicFixtures: Fixture[] = [
     jtp: {
       closure: 'closure',
       jsdoc: 'jsdoc',
-      typescript: 'typescript',
+      typescript: 'differ', // NOTE: This seems to be a JTP error
       permissive: 'closure'
     }
   },
@@ -514,7 +514,7 @@ export const basicFixtures: Fixture[] = [
         squareBrackets: false
       }
     },
-    modes: ['typescript', 'jsdoc', 'closure'],
+    modes: ['jsdoc', 'closure'],
     catharsis: {
       closure: 'closure',
       jsdoc: 'jsdoc'
@@ -522,7 +522,7 @@ export const basicFixtures: Fixture[] = [
     jtp: {
       closure: 'closure',
       jsdoc: 'jsdoc',
-      typescript: 'typescript',
+      typescript: 'differ', // NOTE: This seems to be a JTP error
       permissive: 'closure'
     }
   },

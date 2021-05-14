@@ -1,40 +1,39 @@
 export type TokenType =
-  '(' |
-  ')' |
-  '[' |
-  ']' |
-  '{' |
-  '}' |
-  '|' |
-  '<' |
-  '>' |
-  ',' |
-  '*' |
-  '?' |
-  '!' |
-  '=' |
-  ':' |
-  '.' |
-  '@' |
-  '#' |
-  '~' |
-  '/' |
-  '=>' |
-  '...' |
-  'null' |
-  'undefined' |
-  'void' |
-  'function' |
-  'this' |
-  'new' |
-  'module' |
-  'typeof' |
-  'keyof' |
-  'import' |
-  'Identifier' |
-  'StringValue' |
-  'Number' |
-  'EOF'
+  '('
+  | ')'
+  | '['
+  | ']'
+  | '{'
+  | '}'
+  | '|'
+  | '<'
+  | '>'
+  | ','
+  | '*'
+  | '?'
+  | '!'
+  | '='
+  | ':'
+  | '.'
+  | '@'
+  | '#'
+  | '~'
+  | '/'
+  | '=>'
+  | '...'
+  | 'null'
+  | 'undefined'
+  | 'function'
+  | 'this'
+  | 'new'
+  | 'module'
+  | 'typeof'
+  | 'keyof'
+  | 'import'
+  | 'Identifier'
+  | 'StringValue'
+  | 'Number'
+  | 'EOF'
 
 export interface Token {
   type: TokenType

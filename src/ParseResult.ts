@@ -5,7 +5,7 @@ export type ParseResult =
   | StringValueResult
   | NullResult
   | UndefinedResult
-  | AllResult
+  | AnyResult
   | UnknownResult
   | FunctionResult
   | RecordResult
@@ -100,8 +100,8 @@ export interface UndefinedResult {
   type: 'UNDEFINED'
 }
 
-export interface AllResult {
-  type: 'ALL'
+export interface AnyResult {
+  type: 'ANY'
 }
 
 export interface UnknownResult {
@@ -155,12 +155,12 @@ export interface SymbolResult {
 
 export interface TypeOfResult {
   type: 'TYPE_OF'
-  element?: ParseResult
+  element: ParseResult
 }
 
 export interface KeyOfResult {
   type: 'KEY_OF'
-  element?: ParseResult
+  element: ParseResult
 }
 
 export interface ImportResult {

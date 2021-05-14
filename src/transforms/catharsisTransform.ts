@@ -1,5 +1,6 @@
 import { ParseResult } from '../ParseResult'
 import { extractSpecialParams, notAvailableTransform, transform, TransformRules } from './transform'
+import { assertTerminal } from '../assertTypes'
 
 interface ModifiableResult {
   optional?: boolean
@@ -99,7 +100,7 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
     return transformed
   },
 
-  ALL: () => ({
+  ANY: () => ({
     type: 'AllLiteral'
   }),
 
@@ -252,7 +253,7 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
     }
   },
 
-  PARENTHESIS: (result, transform) => transform(result),
+  PARENTHESIS: (result, transform) => transform(assertTerminal(result.element)),
 
   IMPORT: notAvailableTransform,
   KEY_OF: notAvailableTransform,

@@ -1,5 +1,6 @@
 import { extractSpecialParams, notAvailableTransform, transform, TransformRules } from './transform'
 import { NameResult, NumberResult, ParseResult } from '../ParseResult'
+import { assertTerminal } from '../assertTypes'
 
 export type JtpResult =
   JtpNameResult
@@ -21,7 +22,6 @@ export type JtpResult =
   | JtpMemberResult
   | JtpUnionResult
   | JtpParenthesisResult
-  | JtpUnknownResult
 
 export interface JtpNullableResult {
   type: 'NULLABLE'
@@ -62,12 +62,12 @@ export interface JtpNameResult {
 
 export interface JtpTypeOfResult {
   type: 'TYPE_QUERY'
-  name: JtpResult
+  name?: JtpResult
 }
 
 export interface JtpKeyOfResult {
   type: 'KEY_QUERY'
-  value: JtpResult
+  value?: JtpResult
 }
 
 export interface JtpTupleResult {
@@ -112,7 +112,7 @@ export interface JtpGenericResult {
 }
 
 export interface JtpRecordEntryResult {
-  type: 'OBJECT_ENTRY'
+  type: 'RECORD_ENTRY'
   key: string
   quoteStyle: 'none' | 'single' | 'double'
   value: JtpResult | null
@@ -120,7 +120,7 @@ export interface JtpRecordEntryResult {
 }
 
 export interface JtpRecordResult {
-  type: 'OBJECT'
+  type: 'RECORD'
   entries: JtpRecordEntryResult[]
 }
 
@@ -143,11 +143,7 @@ export interface JtpParenthesisResult {
   value: JtpResult
 }
 
-export interface JtpUnknownResult {
-  type: 'UNKNOWN'
-}
-
-function getQuoteStyle(meta: { quote: '\'' | '"' }): 'single' | 'double' {
+function getQuoteStyle (meta: { quote: '\'' | '"' }): 'single' | 'double' {
   return meta.quote === '\'' ? 'single' : 'double'
 }
 
@@ -198,7 +194,7 @@ const jtpRules: TransformRules<JtpResult> = {
 
   TYPE_OF: (result, transform) => ({
     type: 'TYPE_QUERY',
-    name: transform(result)
+    name: transform(result.element)
   }),
 
   TUPLE: (result, transform) => ({
@@ -208,7 +204,7 @@ const jtpRules: TransformRules<JtpResult> = {
 
   KEY_OF: (result, transform) => ({
     type: 'KEY_QUERY',
-    value: transform(result)
+    value: transform(result.element)
   }),
 
   IMPORT: result => ({
@@ -225,7 +221,7 @@ const jtpRules: TransformRules<JtpResult> = {
     name: 'undefined'
   }),
 
-  ALL: () => ({
+  ANY: () => ({
     type: 'ANY'
   }),
 
@@ -265,12 +261,12 @@ const jtpRules: TransformRules<JtpResult> = {
   }),
 
   KEY_VALUE: (result, transform) => {
-    if (result.left.type !== 'NAME') {
-      throw new Error('In JTP mode only name left values are allowed for record entries.')
+    if (result.left.type !== 'NAME' && result.left.type !== 'NUMBER') {
+      throw new Error('In JTP mode only name and number left values are allowed for record entries.')
     }
     return {
-      type: 'OBJECT_ENTRY',
-      key: result.left.value,
+      type: 'RECORD_ENTRY',
+      key: result.left.value.toString(),
       quoteStyle: 'none',
       value: transform(result.right),
       readonly: false
@@ -285,7 +281,7 @@ const jtpRules: TransformRules<JtpResult> = {
       } else {
         const key = (field as NameResult | NumberResult).value
         entries.push({
-          type: 'OBJECT_ENTRY',
+          type: 'RECORD_ENTRY',
           key: `${key}`,
           quoteStyle: 'none',
           value: null,
@@ -294,7 +290,7 @@ const jtpRules: TransformRules<JtpResult> = {
       }
     }
     return {
-      type: 'OBJECT',
+      type: 'RECORD',
       entries
     }
   },
@@ -308,22 +304,23 @@ const jtpRules: TransformRules<JtpResult> = {
   }),
 
   UNION: (result, transform) => {
-    let left: ParseResult | undefined = result.elements.pop() as ParseResult
-    let rightTransformed: JtpResult = transform(result.elements.pop() as ParseResult)
+    let index = result.elements.length
+    let rightTransformed: JtpResult = transform(result.elements[--index])
+    let left: ParseResult | undefined
     do {
+      left = result.elements[--index]
       rightTransformed = {
         type: 'UNION',
         left: transform(left),
         right: rightTransformed
       }
-      left = result.elements.pop()
-    } while (left !== undefined)
+    } while (index > 0)
     return rightTransformed
   },
 
   PARENTHESIS: (result, transform) => ({
     type: 'PARENTHESIS',
-    value: transform(result)
+    value: transform(assertTerminal(result.element))
   }),
 
   NULL: () => ({

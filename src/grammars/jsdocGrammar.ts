@@ -8,6 +8,7 @@ import { NamePathParslet } from '../parslets/NamePathParslet'
 import { KeyValueParslet } from '../parslets/KeyValueParslet'
 import { VariadicParslet } from '../parslets/VariadicParslet'
 import { ModuleParslet } from '../parslets/ModuleParslet'
+import { NameParslet } from '../parslets/NameParslet'
 
 export const jsdocGrammar: Grammar = () => {
   const {
@@ -27,6 +28,9 @@ export const jsdocGrammar: Grammar = () => {
       new ModuleParslet(),
       new VariadicParslet({
         allowEnclosingBrackets: true
+      }),
+      new NameParslet({
+        allowedAdditionalTokens: ['keyof', 'typeof']
       })
     ],
     infixParslets: [

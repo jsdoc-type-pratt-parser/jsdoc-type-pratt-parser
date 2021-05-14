@@ -1,7 +1,10 @@
 import { KeyValueResult, NameResult, NonTerminalResult, NumberResult, ParseResult, VariadicResult } from './ParseResult'
 import { UnexpectedTypeError } from './errors'
 
-export function assertTerminal (result: NonTerminalResult): ParseResult {
+export function assertTerminal (result?: NonTerminalResult): ParseResult {
+  if (result === undefined) {
+    throw new Error('Unexpected undefined')
+  }
   if (result.type === 'KEY_VALUE' || result.type === 'NUMBER' || result.type === 'PARAMETER_LIST') {
     throw new UnexpectedTypeError(result)
   }

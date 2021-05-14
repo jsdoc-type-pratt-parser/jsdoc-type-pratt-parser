@@ -1,7 +1,7 @@
 import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
-import { FunctionResult, ParenthesisResult, ParseResult } from '../ParseResult'
+import { FunctionResult, ParseResult } from '../ParseResult'
 import { Precedence } from '../Precedence'
 import { BaseFunctionParslet } from './BaseFunctionParslet'
 import { UnexpectedTypeError } from '../errors'
@@ -67,9 +67,7 @@ export class FunctionParslet extends BaseFunctionParslet implements PrefixParsle
       }
 
       if (parser.consume(':')) {
-        if (!parser.consume('void')) {
-          result.returnType = parser.parseType(Precedence.PREFIX)
-        }
+        result.returnType = parser.parseType(Precedence.PREFIX)
       } else {
         if (!this.allowNoReturnType) {
           throw new Error('function is missing return type')

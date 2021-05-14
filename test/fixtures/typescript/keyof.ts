@@ -28,43 +28,30 @@ export const keyofFixtures: Fixture[] = [
   },
   {
     description: 'keyof',
-    input: 'keyof', // is this really valid input?
+    input: 'keyof',
     expected: {
-      type: 'KEY_OF'
+      type: 'NAME',
+      value: 'keyof',
+      meta: {
+        reservedWord: false
+      }
     },
-    modes: ['typescript'],
+    modes: ['jsdoc'],
     catharsis: {
       closure: 'fail',
-      jsdoc: 'fail'
+      jsdoc: 'jsdoc'
     },
     jtp: {
       closure: 'fail',
       jsdoc: 'fail',
-      typescript: 'typescript',
-      permissive: 'typescript'
+      typescript: 'differ',
+      permissive: 'differ'
     }
   },
   {
     description: 'generic with keyof',
     input: 'X<keyof>',
-    expected: {
-      type: 'GENERIC',
-      left: {
-        type: 'NAME',
-        value: 'X',
-        meta: {
-          reservedWord: false
-        }
-      },
-      elements: [{
-        type: 'KEY_OF'
-      }],
-      meta: {
-        dot: false,
-        brackets: '<>'
-      }
-    },
-    modes: ['typescript'],
+    modes: [],
     catharsis: {
       closure: 'fail',
       jsdoc: 'fail'
@@ -72,8 +59,8 @@ export const keyofFixtures: Fixture[] = [
     jtp: {
       closure: 'fail',
       jsdoc: 'fail',
-      typescript: 'typescript',
-      permissive: 'typescript'
+      typescript: 'differ',
+      permissive: 'differ'
     }
   },
   {
@@ -392,6 +379,13 @@ export const keyofFixtures: Fixture[] = [
           }
         }
       ],
+      returnType: {
+        type: 'NAME',
+        value: 'void',
+        meta: {
+          reservedWord: true
+        }
+      },
       meta: {
         arrow: false
       }
@@ -432,6 +426,13 @@ export const keyofFixtures: Fixture[] = [
           }
         }
       ],
+      returnType: {
+        type: 'NAME',
+        value: 'void',
+        meta: {
+          reservedWord: true
+        }
+      },
       meta: {
         arrow: false
       }
@@ -472,6 +473,13 @@ export const keyofFixtures: Fixture[] = [
           }
         }
       ],
+      returnType: {
+        type: 'NAME',
+        value: 'void',
+        meta: {
+          reservedWord: true
+        }
+      },
       meta: {
         arrow: false
       }

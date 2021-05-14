@@ -34,23 +34,26 @@ describe('basics', () => {
           },
           elements: [
             {
-              type: 'UNION',
-              elements: [
-                {
-                  type: 'NAME',
-                  value: 'AType',
-                  meta: {
-                    reservedWord: false
+              type: 'PARENTHESIS',
+              element: {
+                type: 'UNION',
+                elements: [
+                  {
+                    type: 'NAME',
+                    value: 'AType',
+                    meta: {
+                      reservedWord: false
+                    }
+                  },
+                  {
+                    type: 'NAME',
+                    value: 'OtherType',
+                    meta: {
+                      reservedWord: false
+                    }
                   }
-                },
-                {
-                  type: 'NAME',
-                  value: 'OtherType',
-                  meta: {
-                    reservedWord: false
-                  }
-                }
-              ]
+                ]
+              }
             }
           ],
           meta: {
