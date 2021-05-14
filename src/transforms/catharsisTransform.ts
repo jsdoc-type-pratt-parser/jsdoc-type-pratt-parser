@@ -150,10 +150,13 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
     expression: transform(result.left)
   }),
 
-  MODULE: result => ({
-    type: 'NameExpression',
-    name: result.value
-  }),
+  MODULE: result => {
+    const quote = result.meta.quote ?? ''
+    return {
+      type: 'NameExpression',
+      name: 'module:' + quote + result.value + quote
+    }
+  },
 
   NAME: result => {
     const transformed: CatharsisNameResult = {
@@ -203,22 +206,12 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
   }),
 
   NAME_PATH: (result, transform) => {
-    const left = result.left
+    const leftResult = transform(result.left) as CatharsisNameResult
     const rightResult = transform(result.right) as CatharsisNameResult
-    if (left.type === 'NAME_PATH') {
-      const leftResult = transform(left) as CatharsisNameResult
-      return {
-        type: 'NameExpression',
-        name: `${leftResult.name}${result.meta.type}${rightResult.name}`
-      }
-    } else if (left.type === 'NAME' || left.type === 'MODULE') {
-      return {
-        type: 'NameExpression',
-        name: `${left.value}${result.meta.type}${rightResult.name}`
-      }
-    } else {
-      // TODO: here a string representations should be used
-      throw new Error('Other left types than \'NAME\', \'NAME_PATH\' or \'MODULE\' are not supported for catharsis compat mode')
+
+    return {
+      type: 'NameExpression',
+      name: `${leftResult.name}${result.meta.type}${rightResult.name}`
     }
   },
 

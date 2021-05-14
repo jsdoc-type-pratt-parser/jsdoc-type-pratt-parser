@@ -13,7 +13,6 @@ import {
 } from '../parslets/ArrowFunctionParslet'
 import { NamePathParslet } from '../parslets/NamePathParslet'
 import { KeyValueParslet } from '../parslets/KeyValueParslet'
-import { ModuleParslet } from '../parslets/ModuleParslet'
 import { VariadicParslet } from '../parslets/VariadicParslet'
 import { NameParslet } from '../parslets/NameParslet'
 
@@ -23,13 +22,17 @@ export const typescriptGrammar: Grammar = () => {
     infixParslets
   } = baseGrammar()
 
+  // typescript does not support explicit non nullability
+  // https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html#patterns-that-are-known-not-to-be-supported
+
+  // module seems not to be supported
+
   return {
     prefixParslets: [
       ...prefixParslets,
       new TypeOfParslet(),
       new KeyOfParslet(),
       new ImportParslet(),
-      new ModuleParslet(),
       new StringValueParslet(),
       new ArrowFunctionWithoutParametersParslet(),
       new FunctionParslet({

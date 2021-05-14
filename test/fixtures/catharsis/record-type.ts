@@ -218,7 +218,7 @@ export const recordFixtures: Fixture[] = [
         position: 'PREFIX'
       }
     },
-    modes: ['typescript', 'jsdoc', 'closure'],
+    modes: ['jsdoc', 'closure'],
     catharsis: {
       closure: 'closure',
       jsdoc: 'jsdoc'
@@ -226,7 +226,7 @@ export const recordFixtures: Fixture[] = [
     jtp: {
       closure: 'closure',
       jsdoc: 'jsdoc',
-      typescript: 'typescript',
+      typescript: 'differ',
       permissive: 'closure'
     }
   },

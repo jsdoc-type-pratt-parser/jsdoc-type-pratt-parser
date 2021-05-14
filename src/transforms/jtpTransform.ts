@@ -22,6 +22,11 @@ export type JtpResult =
   | JtpMemberResult
   | JtpUnionResult
   | JtpParenthesisResult
+  | JtpNamedParameterResult
+  | JtpModuleResult
+  | JtpFilePath
+
+type JtpQuoteStyle = 'single' | 'double' | 'none'
 
 export interface JtpNullableResult {
   type: 'NULLABLE'
@@ -77,7 +82,7 @@ export interface JtpTupleResult {
 
 export interface JtpStringValueResult {
   type: 'STRING_VALUE'
-  quoteStyle: 'single' | 'double'
+  quoteStyle: JtpQuoteStyle
   string: string
 }
 
@@ -99,7 +104,7 @@ export interface JtpFunctionResult {
   params: JtpResult[]
   returns: JtpResult | null
   new: JtpResult | null
-  this: JtpResult | null
+  this?: JtpResult | null
 }
 
 export interface JtpGenericResult {
@@ -114,7 +119,7 @@ export interface JtpGenericResult {
 export interface JtpRecordEntryResult {
   type: 'RECORD_ENTRY'
   key: string
-  quoteStyle: 'none' | 'single' | 'double'
+  quoteStyle: JtpQuoteStyle
   value: JtpResult | null
   readonly: false
 }
@@ -125,10 +130,10 @@ export interface JtpRecordResult {
 }
 
 export interface JtpMemberResult {
-  type: 'MEMBER'
+  type: 'MEMBER' | 'INNER_MEMBER' | 'INSTANCE_MEMBER'
   owner: JtpResult
   name: string
-  quoteStyle: 'none' | 'single' | 'double'
+  quoteStyle: JtpQuoteStyle
   hasEventPrefix: false
 }
 
@@ -143,8 +148,43 @@ export interface JtpParenthesisResult {
   value: JtpResult
 }
 
-function getQuoteStyle (meta: { quote: '\'' | '"' }): 'single' | 'double' {
-  return meta.quote === '\'' ? 'single' : 'double'
+export interface JtpNamedParameterResult {
+  type: 'NAMED_PARAMETER'
+  name: string
+  typeName: JtpResult
+}
+
+export interface JtpModuleResult {
+  type: 'MODULE'
+  value: JtpResult
+}
+
+export interface JtpFilePath {
+  type: 'FILE_PATH'
+  quoteStyle: JtpQuoteStyle
+  path: string
+}
+
+function getQuoteStyle (quote: '\'' | '"' | undefined): JtpQuoteStyle {
+  switch (quote) {
+    case undefined:
+      return 'none'
+    case '\'':
+      return 'single'
+    case '"':
+      return 'double'
+  }
+}
+
+function getMemberType (type: '.' | '~' | '#'): JtpMemberResult['type'] {
+  switch (type) {
+    case '~':
+      return 'INNER_MEMBER'
+    case '#':
+      return 'INSTANCE_MEMBER'
+    case '.':
+      return 'MEMBER'
+  }
 }
 
 const jtpRules: TransformRules<JtpResult> = {
@@ -211,7 +251,7 @@ const jtpRules: TransformRules<JtpResult> = {
     type: 'IMPORT',
     path: {
       type: 'STRING_VALUE',
-      quoteStyle: getQuoteStyle(result.element.meta),
+      quoteStyle: getQuoteStyle(result.element.meta.quote),
       string: result.element.value
     }
   }),
@@ -226,22 +266,33 @@ const jtpRules: TransformRules<JtpResult> = {
   }),
 
   FUNCTION: (result, transform) => {
-    const params = extractSpecialParams(result)
+    const specialParams = extractSpecialParams(result)
 
     const transformed: JtpFunctionResult = {
       type: result.meta.arrow ? 'ARROW' : 'FUNCTION',
-      params: params.params.map(transform),
+      params: specialParams.params.map(param => {
+        if (param.type === 'KEY_VALUE') {
+          return {
+            type: 'NAMED_PARAMETER',
+            name: param.left.value,
+            typeName: transform(param.right)
+          }
+        } else {
+          return transform(param)
+        }
+      }),
       new: null,
-      returns: null,
-      this: null
+      returns: null
     }
 
-    if (params.this !== undefined) {
-      transformed.this = transform(params.this)
+    if (specialParams.this !== undefined) {
+      transformed.this = transform(specialParams.this)
+    } else if (!result.meta.arrow) {
+      transformed.this = null
     }
 
-    if (params.new !== undefined) {
-      transformed.new = transform(params.new)
+    if (specialParams.new !== undefined) {
+      transformed.new = transform(specialParams.new)
     }
 
     if (result.returnType !== undefined) {
@@ -251,14 +302,25 @@ const jtpRules: TransformRules<JtpResult> = {
     return transformed
   },
 
-  GENERIC: (result, transform) => ({
-    type: 'GENERIC',
-    subject: transform(result.left),
-    objects: result.elements.map(transform),
-    meta: {
-      syntax: result.meta.brackets === '[]' ? 'SQUARE_BRACKET' : result.meta.dot ? 'ANGLE_BRACKET_WITH_DOT' : 'ANGLE_BRACKET'
+  GENERIC: (result, transform) => {
+    const transformed: JtpGenericResult = {
+      type: 'GENERIC',
+      subject: transform(result.left),
+      objects: result.elements.map(transform),
+      meta: {
+        syntax: result.meta.brackets === '[]' ? 'SQUARE_BRACKET' : result.meta.dot ? 'ANGLE_BRACKET_WITH_DOT' : 'ANGLE_BRACKET'
+      }
     }
-  }),
+
+    if (result.meta.brackets === '[]' && result.elements[0].type === 'FUNCTION' && !result.elements[0].meta.parenthesis) {
+      transformed.objects[0] = {
+        type: 'NAME',
+        name: 'function'
+      }
+    }
+
+    return transformed
+  },
 
   KEY_VALUE: (result, transform) => {
     if (result.left.type !== 'NAME' && result.left.type !== 'NUMBER') {
@@ -295,13 +357,33 @@ const jtpRules: TransformRules<JtpResult> = {
     }
   },
 
-  NAME_PATH: (result, transform) => ({
-    type: 'MEMBER',
-    owner: transform(result.left),
-    name: `${result.right.value}`,
-    quoteStyle: result.right.type === 'STRING_VALUE' ? getQuoteStyle(result.right.meta) : 'none',
-    hasEventPrefix: false
+  MODULE: result => ({
+    type: 'MODULE',
+    value: {
+      type: 'FILE_PATH',
+      quoteStyle: getQuoteStyle(result.meta.quote),
+      path: result.value
+    }
   }),
+
+  NAME_PATH: (result, transform) => {
+    const transformed: JtpMemberResult = {
+      type: getMemberType(result.meta.type),
+      owner: transform(result.left),
+      name: `${result.right.value}`,
+      quoteStyle: result.right.type === 'STRING_VALUE' ? getQuoteStyle(result.right.meta.quote) : 'none',
+      hasEventPrefix: false
+    }
+
+    if (transformed.owner.type === 'MODULE') {
+      const tModule = transformed.owner
+      transformed.owner = transformed.owner.value
+      tModule.value = transformed
+      return tModule
+    } else {
+      return transformed
+    }
+  },
 
   UNION: (result, transform) => {
     let index = result.elements.length
@@ -334,11 +416,10 @@ const jtpRules: TransformRules<JtpResult> = {
 
   STRING_VALUE: result => ({
     type: 'STRING_VALUE',
-    quoteStyle: getQuoteStyle(result.meta),
+    quoteStyle: getQuoteStyle(result.meta.quote),
     string: result.value
   }),
 
-  MODULE: notAvailableTransform,
   NUMBER: notAvailableTransform,
   SYMBOL: notAvailableTransform,
   PARAMETER_LIST: notAvailableTransform

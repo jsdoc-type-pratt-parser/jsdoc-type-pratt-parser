@@ -36,14 +36,14 @@ export const keyofFixtures: Fixture[] = [
         reservedWord: false
       }
     },
-    modes: ['jsdoc'],
+    modes: ['jsdoc', 'closure'],
     catharsis: {
-      closure: 'fail',
+      closure: 'closure',
       jsdoc: 'jsdoc'
     },
     jtp: {
-      closure: 'fail',
-      jsdoc: 'fail',
+      closure: 'differ',
+      jsdoc: 'differ',
       typescript: 'differ',
       permissive: 'differ'
     }
@@ -51,14 +51,35 @@ export const keyofFixtures: Fixture[] = [
   {
     description: 'generic with keyof',
     input: 'X<keyof>',
-    modes: [],
+    expected: {
+      type: 'GENERIC',
+      left: {
+        type: 'NAME',
+        value: 'X',
+        meta: {
+          reservedWord: false
+        }
+      },
+      elements: [{
+        type: 'NAME',
+        value: 'keyof',
+        meta: {
+          reservedWord: false
+        }
+      }],
+      meta: {
+        dot: false,
+        brackets: '<>'
+      }
+    },
+    modes: ['jsdoc', 'closure'],
     catharsis: {
-      closure: 'fail',
-      jsdoc: 'fail'
+      closure: 'closure',
+      jsdoc: 'jsdoc'
     },
     jtp: {
-      closure: 'fail',
-      jsdoc: 'fail',
+      closure: 'differ',
+      jsdoc: 'differ',
       typescript: 'differ',
       permissive: 'differ'
     }
@@ -102,57 +123,60 @@ export const keyofFixtures: Fixture[] = [
       permissive: 'typescript'
     }
   },
+  // {
+  //   description: 'generic keyof name in parenthesis',
+  //   input: '(keyof X)<A>',
+  //   expected: {
+  //     type: 'GENERIC',
+  //     left: {
+  //       type: 'KEY_OF',
+  //       element: {
+  //         type: 'NAME',
+  //         value: 'X',
+  //         meta: {
+  //           reservedWord: false
+  //         }
+  //       }
+  //     },
+  //     elements: [
+  //       {
+  //         type: 'NAME',
+  //         value: 'A',
+  //         meta: {
+  //           reservedWord: false
+  //         }
+  //       }
+  //     ],
+  //     meta: {
+  //       dot: false,
+  //       brackets: '<>'
+  //     }
+  //   },
+  //   modes: ['typescript'],
+  //   catharsis: {
+  //     closure: 'fail',
+  //     jsdoc: 'fail'
+  //   },
+  //   jtp: {
+  //     closure: 'fail',
+  //     jsdoc: 'fail',
+  //     typescript: 'typescript',
+  //     permissive: 'typescript'
+  //   }
+  // },
   {
-    description: 'generic keyof name in parenthesis',
-    input: '(keyof X)<A>',
+    description: 'keyof name in parenthesis',
+    input: '(keyof A)',
     expected: {
-      type: 'GENERIC',
-      left: {
+      type: 'PARENTHESIS',
+      element: {
         type: 'KEY_OF',
         element: {
-          type: 'NAME',
-          value: 'X',
-          meta: {
-            reservedWord: false
-          }
-        }
-      },
-      elements: [
-        {
           type: 'NAME',
           value: 'A',
           meta: {
             reservedWord: false
           }
-        }
-      ],
-      meta: {
-        dot: false,
-        brackets: '<>'
-      }
-    },
-    modes: ['typescript'],
-    catharsis: {
-      closure: 'fail',
-      jsdoc: 'fail'
-    },
-    jtp: {
-      closure: 'fail',
-      jsdoc: 'fail',
-      typescript: 'typescript',
-      permissive: 'typescript'
-    }
-  },
-  {
-    description: 'keyof name in parenthesis',
-    input: '(keyof A)',
-    expected: {
-      type: 'KEY_OF',
-      element: {
-        type: 'NAME',
-        value: 'A',
-        meta: {
-          reservedWord: false
         }
       }
     },
@@ -228,8 +252,8 @@ export const keyofFixtures: Fixture[] = [
     jtp: {
       closure: 'fail',
       jsdoc: 'fail',
-      typescript: 'typescript',
-      permissive: 'typescript'
+      typescript: 'differ',
+      permissive: 'differ'
     } // NOTE: This seems to be a JTP error
   },
   {
@@ -265,8 +289,8 @@ export const keyofFixtures: Fixture[] = [
     jtp: {
       closure: 'fail',
       jsdoc: 'fail',
-      typescript: 'typescript',
-      permissive: 'typescript'
+      typescript: 'differ',
+      permissive: 'differ'
     }
   },
   {
@@ -358,8 +382,8 @@ export const keyofFixtures: Fixture[] = [
     jtp: {
       closure: 'fail',
       jsdoc: 'fail',
-      typescript: 'typescript',
-      permissive: 'typescript'
+      typescript: 'differ',
+      permissive: 'differ'
     }
   },
   {
@@ -387,7 +411,8 @@ export const keyofFixtures: Fixture[] = [
         }
       },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['typescript'],
@@ -434,7 +459,8 @@ export const keyofFixtures: Fixture[] = [
         }
       },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['typescript'],
@@ -481,7 +507,8 @@ export const keyofFixtures: Fixture[] = [
         }
       },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['typescript'],
@@ -513,7 +540,8 @@ export const keyofFixtures: Fixture[] = [
         }
       },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['typescript'],

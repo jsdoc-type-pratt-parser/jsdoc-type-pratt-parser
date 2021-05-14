@@ -44,7 +44,8 @@ export class FunctionParslet extends BaseFunctionParslet implements PrefixParsle
       type: 'FUNCTION',
       parameters: [],
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: hasParenthesis
       }
     }
 

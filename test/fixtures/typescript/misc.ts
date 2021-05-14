@@ -25,7 +25,8 @@ export const miscFixtures: Fixture[] = [
         }
       },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['typescript'],

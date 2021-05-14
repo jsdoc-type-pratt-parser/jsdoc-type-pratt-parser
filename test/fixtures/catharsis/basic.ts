@@ -489,7 +489,7 @@ export const basicFixtures: Fixture[] = [
     expected: {
       type: 'UNKNOWN'
     },
-    modes: ['jsdoc', 'closure'],
+    modes: ['jsdoc', 'closure', 'typescript'],
     catharsis: {
       closure: 'closure',
       jsdoc: 'jsdoc'
@@ -497,7 +497,7 @@ export const basicFixtures: Fixture[] = [
     jtp: {
       closure: 'closure',
       jsdoc: 'jsdoc',
-      typescript: 'differ', // NOTE: This seems to be a JTP error
+      typescript: 'typescript',
       permissive: 'closure'
     }
   },
@@ -514,7 +514,7 @@ export const basicFixtures: Fixture[] = [
         squareBrackets: false
       }
     },
-    modes: ['jsdoc', 'closure'],
+    modes: ['jsdoc', 'closure', 'typescript'],
     catharsis: {
       closure: 'closure',
       jsdoc: 'jsdoc'
@@ -522,7 +522,7 @@ export const basicFixtures: Fixture[] = [
     jtp: {
       closure: 'closure',
       jsdoc: 'jsdoc',
-      typescript: 'differ', // NOTE: This seems to be a JTP error
+      typescript: 'typescript',
       permissive: 'closure'
     }
   },
@@ -571,13 +571,60 @@ export const basicFixtures: Fixture[] = [
     }
   },
   {
+    description: 'single quoted module path',
+    input: 'module:\'some-path\'',
+    expected: {
+      type: 'MODULE',
+      value: 'some-path',
+      meta: {
+        quote: '\''
+      }
+    },
+    modes: ['jsdoc'],
+    catharsis: {
+      jsdoc: 'jsdoc',
+      closure: 'differ'
+    },
+    jtp: {
+      jsdoc: 'jsdoc',
+      closure: 'differ',
+      typescript: 'fail',
+      permissive: 'jsdoc'
+    }
+  },
+  {
+    description: 'double quoted module path',
+    input: 'module:"some-path"',
+    expected: {
+      type: 'MODULE',
+      value: 'some-path',
+      meta: {
+        quote: '"'
+      }
+    },
+    modes: ['jsdoc'],
+    catharsis: {
+      jsdoc: 'jsdoc',
+      closure: 'differ'
+    },
+    jtp: {
+      jsdoc: 'jsdoc',
+      closure: 'differ',
+      typescript: 'fail',
+      permissive: 'jsdoc'
+    }
+  },
+  {
     description: 'name that includes an @ sign',
     input: 'module:@prefix/my-module~myCallback',
     expected: {
       type: 'NAME_PATH',
       left: {
-        value: 'module:@prefix/my-module',
-        type: 'MODULE'
+        value: '@prefix/my-module',
+        type: 'MODULE',
+        meta: {
+          quote: undefined
+        }
       },
       right: {
         type: 'NAME',
@@ -592,9 +639,9 @@ export const basicFixtures: Fixture[] = [
     },
     modes: ['jsdoc'],
     catharsis: {
-      closure: 'closure',
+      closure: 'differ', // this seems to be a catharsis error
       jsdoc: 'jsdoc'
-    }, // NOTE: This seems to be a Catharsis error
+    },
     jtp: {
       closure: 'fail',
       jsdoc: 'fail',

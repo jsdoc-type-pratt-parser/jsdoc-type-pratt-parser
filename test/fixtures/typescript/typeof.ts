@@ -29,17 +29,10 @@ export const typeOfFixtures: Fixture[] = [
   {
     description: 'typeof',
     input: 'typeof',
-    expected: {
-      type: 'NAME',
-      value: 'typeof',
-      meta: {
-        reservedWord: true
-      }
-    },
-    modes: ['jsdoc'],
+    modes: [],
     catharsis: {
       closure: 'differ',
-      jsdoc: 'jsdoc'
+      jsdoc: 'differ'
     },
     jtp: {
       closure: 'differ',
@@ -51,31 +44,10 @@ export const typeOfFixtures: Fixture[] = [
   {
     description: 'generic with typeof',
     input: 'X<typeof>',
-    expected: {
-      type: 'GENERIC',
-      left: {
-        type: 'NAME',
-        value: 'X',
-        meta: {
-          reservedWord: false
-        }
-      },
-      elements: [{
-        type: 'NAME',
-        value: 'typeof',
-        meta: {
-          reservedWord: true
-        }
-      }],
-      meta: {
-        dot: false,
-        brackets: '<>'
-      }
-    },
-    modes: ['jsdoc'],
+    modes: [],
     catharsis: {
       closure: 'differ',
-      jsdoc: 'jsdoc'
+      jsdoc: 'differ'
     },
     jtp: {
       closure: 'differ',
@@ -389,7 +361,8 @@ export const typeOfFixtures: Fixture[] = [
         }
       ],
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['closure'],
@@ -429,7 +402,8 @@ export const typeOfFixtures: Fixture[] = [
         }
       },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['typescript', 'closure'],
@@ -476,7 +450,8 @@ export const typeOfFixtures: Fixture[] = [
         }
       },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['typescript', 'closure'],
@@ -523,7 +498,8 @@ export const typeOfFixtures: Fixture[] = [
         }
       },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['typescript', 'closure'],
@@ -555,7 +531,8 @@ export const typeOfFixtures: Fixture[] = [
         }
       },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['typescript', 'closure'],

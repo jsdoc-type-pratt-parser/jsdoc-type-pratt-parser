@@ -36,9 +36,10 @@ export function extractSpecialParams (source: FunctionResult): SpecialFunctionPa
     if (param.type === 'KEY_VALUE' && param.left.type === 'NAME') {
       if (param.left.value === 'this') {
         result.this = param.right
-      }
-      if (param.left.value === 'new') {
+      } else if (param.left.value === 'new') {
         result.new = param.right
+      } else {
+        result.params.push(param)
       }
     } else {
       result.params.push(param)

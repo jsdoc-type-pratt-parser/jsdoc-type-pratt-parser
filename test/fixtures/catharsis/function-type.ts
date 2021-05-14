@@ -23,7 +23,8 @@ export const functionFixtures: Fixture[] = [
         }
       ],
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['jsdoc', 'closure'], // typescript does not allow function types without return type
@@ -62,7 +63,8 @@ export const functionFixtures: Fixture[] = [
           }
         ],
         meta: {
-          arrow: false
+          arrow: false,
+          parenthesis: true
         }
       },
       meta: {
@@ -111,7 +113,8 @@ export const functionFixtures: Fixture[] = [
         }
       },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -157,7 +160,8 @@ export const functionFixtures: Fixture[] = [
           }
         },
         meta: {
-          arrow: false
+          arrow: false,
+          parenthesis: true
         }
       },
       meta: {
@@ -194,7 +198,8 @@ export const functionFixtures: Fixture[] = [
           }
         ],
         meta: {
-          arrow: false
+          arrow: false,
+          parenthesis: true
         }
       },
       meta: {
@@ -227,7 +232,8 @@ export const functionFixtures: Fixture[] = [
         }
       },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -293,7 +299,8 @@ export const functionFixtures: Fixture[] = [
       ],
       type: 'FUNCTION',
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['jsdoc', 'closure'],
@@ -366,7 +373,8 @@ export const functionFixtures: Fixture[] = [
       ],
       type: 'FUNCTION',
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['jsdoc', 'closure'],
@@ -432,7 +440,8 @@ export const functionFixtures: Fixture[] = [
         }
       ],
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['jsdoc', 'closure'],
@@ -505,7 +514,8 @@ export const functionFixtures: Fixture[] = [
         }
       ],
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['jsdoc', 'closure'],
@@ -601,7 +611,8 @@ export const functionFixtures: Fixture[] = [
         }
       ],
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['jsdoc', 'closure'],
@@ -653,7 +664,8 @@ export const functionFixtures: Fixture[] = [
           }
         },
         meta: {
-          arrow: false
+          arrow: false,
+          parenthesis: true
         }
       },
       typescript: {
@@ -694,7 +706,8 @@ export const functionFixtures: Fixture[] = [
           }
         },
         meta: {
-          arrow: false
+          arrow: false,
+          parenthesis: true
         }
       }
     },
@@ -728,7 +741,8 @@ export const functionFixtures: Fixture[] = [
         }
       ],
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['jsdoc'],
@@ -761,7 +775,8 @@ export const functionFixtures: Fixture[] = [
         }
       ],
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['jsdoc'],
@@ -903,7 +918,8 @@ export const functionFixtures: Fixture[] = [
           }
         },
         meta: {
-          arrow: false
+          arrow: false,
+          parenthesis: true
         }
       },
       typescript: {
@@ -1034,7 +1050,8 @@ export const functionFixtures: Fixture[] = [
           }
         },
         meta: {
-          arrow: false
+          arrow: false,
+          parenthesis: true
         }
       }
     },
@@ -1072,7 +1089,8 @@ export const functionFixtures: Fixture[] = [
         }
       ],
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['jsdoc', 'closure'],
@@ -1116,7 +1134,8 @@ export const functionFixtures: Fixture[] = [
         }
       },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -1138,7 +1157,8 @@ export const functionFixtures: Fixture[] = [
       type: 'FUNCTION',
       parameters: [],
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['jsdoc', 'closure'],
@@ -1171,7 +1191,8 @@ export const functionFixtures: Fixture[] = [
         }
       ],
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['jsdoc'],
@@ -1233,7 +1254,8 @@ export const functionFixtures: Fixture[] = [
         type: 'PARENTHESIS'
       },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -1310,7 +1332,8 @@ export const functionFixtures: Fixture[] = [
         }
       },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -1368,7 +1391,8 @@ export const functionFixtures: Fixture[] = [
           }
         },
         meta: {
-          arrow: false
+          arrow: false,
+          parenthesis: true
         }
       },
       typescript: {
@@ -1415,7 +1439,8 @@ export const functionFixtures: Fixture[] = [
           }
         },
         meta: {
-          arrow: false
+          arrow: false,
+          parenthesis: true
         }
       }
     },
@@ -1472,7 +1497,8 @@ export const functionFixtures: Fixture[] = [
         }
       },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -1517,7 +1543,8 @@ export const functionFixtures: Fixture[] = [
           }
         },
         meta: {
-          arrow: false
+          arrow: false,
+          parenthesis: true
         }
       },
       typescript: {
@@ -1551,7 +1578,8 @@ export const functionFixtures: Fixture[] = [
           }
         },
         meta: {
-          arrow: false
+          arrow: false,
+          parenthesis: true
         }
       }
     },
@@ -1628,7 +1656,8 @@ export const functionFixtures: Fixture[] = [
         }
       },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],

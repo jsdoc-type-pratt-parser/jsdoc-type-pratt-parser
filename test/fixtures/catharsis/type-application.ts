@@ -274,7 +274,8 @@ export const genericFixtures: Fixture[] = [
                   }
                 },
                 meta: {
-                  arrow: false
+                  arrow: false,
+                  parenthesis: true
                 }
               }
             ]

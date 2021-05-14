@@ -17,7 +17,7 @@ export class ArrowFunctionWithoutParametersParslet implements PrefixParslet {
   }
 
   parsePrefix (parser: ParserEngine): FunctionResult {
-    parser.consume('(')
+    const hasParenthesis = parser.consume('(')
     parser.consume(')')
     if (!parser.consume('=>')) {
       throw new Error('Unexpected empty parenthesis. Expected \'=>\' afterwards.')
@@ -27,7 +27,8 @@ export class ArrowFunctionWithoutParametersParslet implements PrefixParslet {
       type: 'FUNCTION',
       parameters: [],
       meta: {
-        arrow: true
+        arrow: true,
+        parenthesis: hasParenthesis
       },
       returnType: parser.parseType(Precedence.ALL)
     }
@@ -53,7 +54,8 @@ export class ArrowFunctionWithParametersParslet extends BaseFunctionParslet impl
       type: 'FUNCTION',
       parameters: this.getParameters(left).map(assertNamedKeyValueOrName),
       meta: {
-        arrow: true
+        arrow: true,
+        parenthesis: true
       },
       returnType: parser.parseType(Precedence.ALL)
     }

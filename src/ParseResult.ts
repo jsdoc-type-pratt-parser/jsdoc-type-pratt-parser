@@ -114,6 +114,7 @@ export interface FunctionResult {
   returnType?: ParseResult
   meta: {
     arrow: boolean
+    parenthesis: boolean
   }
 }
 
@@ -131,6 +132,9 @@ export interface RecordResult {
 export interface ModuleResult {
   type: 'MODULE'
   value: string
+  meta: {
+    quote: '\'' | '"' | undefined
+  }
 }
 
 export interface NamePathResult {

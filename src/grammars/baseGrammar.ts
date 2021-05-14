@@ -7,14 +7,12 @@ import { ParenthesisParslet } from '../parslets/ParenthesisParslet'
 import { NumberParslet } from '../parslets/NumberParslet'
 import { ParameterListParslet } from '../parslets/ParameterListParslet'
 import { NullableInfixParslet, NullablePrefixParslet } from '../parslets/NullableParslets'
-import { NotNullableParslet } from '../parslets/NotNullableParslet'
 import { OptionalParslet } from '../parslets/OptionalParslet'
 
 export const baseGrammar: Grammar = () => {
   return {
     prefixParslets: [
       new NullablePrefixParslet(),
-      new NotNullableParslet(),
       new OptionalParslet(),
       new RecordParslet(),
       new NumberParslet(),
@@ -28,8 +26,7 @@ export const baseGrammar: Grammar = () => {
       new GenericParslet(),
       new UnenclosedUnionParslet(),
       new OptionalParslet(),
-      new NullableInfixParslet(),
-      new NotNullableParslet()
+      new NullableInfixParslet()
     ]
   }
 }

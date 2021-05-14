@@ -25,7 +25,8 @@ export const arrowFunctionFixtures: Fixture[] = [
         type: 'ANY'
       },
       meta: {
-        arrow: true
+        arrow: true,
+        parenthesis: true
       }
     },
     modes: ['typescript'],
@@ -72,7 +73,8 @@ export const arrowFunctionFixtures: Fixture[] = [
         }
       },
       meta: {
-        arrow: true
+        arrow: true,
+        parenthesis: true
       }
     },
     modes: ['typescript'],
@@ -153,7 +155,8 @@ export const arrowFunctionFixtures: Fixture[] = [
         }
       },
       meta: {
-        arrow: true
+        arrow: true,
+        parenthesis: true
       }
     },
     modes: ['typescript'],
@@ -182,7 +185,8 @@ export const arrowFunctionFixtures: Fixture[] = [
         }
       },
       meta: {
-        arrow: true
+        arrow: true,
+        parenthesis: true
       }
     },
     modes: ['typescript'],
@@ -214,11 +218,13 @@ export const arrowFunctionFixtures: Fixture[] = [
           }
         },
         meta: {
-          arrow: true
+          arrow: true,
+          parenthesis: true
         }
       },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['typescript'],
@@ -250,7 +256,8 @@ export const arrowFunctionFixtures: Fixture[] = [
             }
           },
           meta: {
-            arrow: true
+            arrow: true,
+            parenthesis: true
           }
         }
       ],
@@ -262,7 +269,8 @@ export const arrowFunctionFixtures: Fixture[] = [
         }
       },
       meta: {
-        arrow: false
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['typescript'],
@@ -326,7 +334,8 @@ export const arrowFunctionFixtures: Fixture[] = [
         }
       },
       meta: {
-        arrow: true
+        arrow: true,
+        parenthesis: true
       }
     },
     modes: ['typescript'],
@@ -365,7 +374,8 @@ export const arrowFunctionFixtures: Fixture[] = [
             }
           },
           meta: {
-            arrow: true
+            arrow: true,
+            parenthesis: true
           }
         }
       ],
@@ -393,7 +403,15 @@ export const arrowFunctionFixtures: Fixture[] = [
       type: 'FUNCTION',
       parameters: [],
       meta: {
-        arrow: true
+        arrow: true,
+        parenthesis: true
+      },
+      returnType: {
+        type: 'NAME',
+        value: 'void',
+        meta: {
+          reservedWord: true
+        }
       }
     },
     modes: ['typescript'],
@@ -417,12 +435,21 @@ export const arrowFunctionFixtures: Fixture[] = [
       returnType: {
         type: 'FUNCTION',
         parameters: [],
+        returnType: {
+          type: 'NAME',
+          value: 'void',
+          meta: {
+            reservedWord: true
+          }
+        },
         meta: {
-          arrow: true
+          arrow: true,
+          parenthesis: true
         }
       },
       meta: {
-        arrow: true
+        arrow: true,
+        parenthesis: true
       }
     },
     modes: ['typescript'],
@@ -490,11 +517,13 @@ export const arrowFunctionFixtures: Fixture[] = [
           }
         },
         meta: {
-          arrow: true
+          arrow: true,
+          parenthesis: true
         }
       },
       meta: {
-        arrow: true
+        arrow: true,
+        parenthesis: true
       }
     },
     modes: ['typescript'],
@@ -523,8 +552,16 @@ export const arrowFunctionFixtures: Fixture[] = [
           }
         }
       ],
+      returnType: {
+        type: 'NAME',
+        value: 'void',
+        meta: {
+          reservedWord: true
+        }
+      },
       meta: {
-        arrow: true
+        arrow: true,
+        parenthesis: true
       }
     },
     modes: ['typescript'],
