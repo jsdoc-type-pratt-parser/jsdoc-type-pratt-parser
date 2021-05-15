@@ -170,6 +170,7 @@ export const genericFixtures: Fixture[] = [
   {
     description: 'object whose properties are a type application and property values are a type union',
     input: 'Object.<Array.<(boolean|{myKey: Error})>, (boolean|string|function(new:foo): string)>',
+    stringified: 'Object.<Array.<(boolean | {myKey: Error})>, (boolean | string | function(new: foo): string)>',
     expected: {
       type: 'GENERIC',
       elements: [

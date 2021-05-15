@@ -831,6 +831,7 @@ export const jsdocFixtures: Fixture[] = [
   {
     description: 'record type with a property that uses a type union as a key',
     input: '{(number|boolean|string): number}',
+    stringified: '{(number | boolean | string): number}',
     expected: {
       type: 'OBJECT',
       elements: [
@@ -890,6 +891,7 @@ export const jsdocFixtures: Fixture[] = [
   {
     description: 'record type with a property name that starts with a literal',
     input: '{undefinedHTML: (string|undefined)}',
+    stringified: '{undefinedHTML: (string | undefined)}',
     expected: {
       type: 'OBJECT',
       elements: [
@@ -938,6 +940,7 @@ export const jsdocFixtures: Fixture[] = [
   {
     description: 'record type with a property that contains a function with no preceding space',
     input: '{foo:function()}',
+    stringified: '{foo: function()}',
     expected: {
       type: 'OBJECT',
       elements: [
@@ -976,6 +979,7 @@ export const jsdocFixtures: Fixture[] = [
   {
     description: 'record type with a property that contains a function with no preceding space that returns void',
     input: '{foo:function(): void}',
+    stringified: '{foo: function(): void}',
     expected: {
       type: 'OBJECT',
       elements: [
@@ -1044,6 +1048,7 @@ export const jsdocFixtures: Fixture[] = [
   {
     description: 'standard function type (should still parse if JSDoc expressions are allowed)',
     input: 'function(this:my.namespace.Class, my.Class)=',
+    stringified: 'function(this: my.namespace.Class, my.Class)=',
     expected: {
       type: 'OPTIONAL',
       element: {
@@ -1137,6 +1142,7 @@ export const jsdocFixtures: Fixture[] = [
   {
     description: 'type union with no parentheses, a repeatable param, and a JSDoc-style array',
     input: '...string|string[]',
+    stringified: '...string | string[]',
     expected: {
       type: 'UNION',
       elements: [

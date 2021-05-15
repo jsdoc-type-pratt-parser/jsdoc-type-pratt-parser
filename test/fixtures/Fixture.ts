@@ -1,4 +1,4 @@
-import { catharsisTransform, Parser, ParseResult, ParserMode } from '../../src'
+import { catharsisTransform, Parser, ParseResult, ParserMode, stringify } from '../../src'
 import { expect } from 'chai'
 import 'mocha'
 import { parse as catharsisParse } from 'catharsis'
@@ -25,6 +25,7 @@ export interface Fixture {
     [K in ParserMode]?: ParseResult
   }
   input: string
+  stringified?: string
 }
 
 type Results = {
@@ -122,6 +123,14 @@ export function testFixture (fixture: Fixture): void {
         compareJtp('jsdoc', results, fixture)
         compareJtp('typescript', results, fixture)
         compareJtp('permissive', results, fixture)
+      })
+
+      it('should stringify', () => {
+        // TODO: at the moment this does only test one possible stringification
+        const result = results.jsdoc ?? results.closure ?? results.typescript
+        if (result !== undefined) {
+          expect(stringify(result)).to.equal(fixture.stringified ?? fixture.input)
+        }
       })
     })
   })

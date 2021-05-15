@@ -98,6 +98,7 @@ export const tupleFixtures: Fixture[] = [
   {
     description: 'Tuple with spaces',
     input: '[ tuple, with, spaces ]',
+    stringified: '[tuple, with, spaces]',
     expected: {
       type: 'TUPLE',
       elements: [
@@ -139,6 +140,7 @@ export const tupleFixtures: Fixture[] = [
   {
     description: 'Tuple with spaces',
     input: '[ tuple, with, trailing, comma, ]',
+    stringified: '[tuple, with, trailing, comma]',
     expected: {
       type: 'TUPLE',
       elements: [
@@ -360,6 +362,7 @@ export const tupleFixtures: Fixture[] = [
   {
     description: 'Tuple with typeof and keyof',
     input: '[ tuple, with, typeof foo, and, keyof foo]',
+    stringified: '[tuple, with, typeof foo, and, keyof foo]',
     expected: {
       type: 'TUPLE',
       elements: [
@@ -420,6 +423,7 @@ export const tupleFixtures: Fixture[] = [
   }
 ]
 
+// TODO:
 // // this are actually spread operators, not repeatable arguments
 // {[variadic, arguments, ...tuple]}
 // {[ tuple, with, typeof foo, and, ...rest ]}

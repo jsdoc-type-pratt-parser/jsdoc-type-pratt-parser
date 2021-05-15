@@ -288,6 +288,7 @@ export const arrowFunctionFixtures: Fixture[] = [
   {
     description: 'arrow function parameter list with trailing comma',
     input: '( arrow: Function, with: TrailingComma, ) => string',
+    stringified: '(arrow: Function, with: TrailingComma) => string',
     expected: {
       type: 'FUNCTION',
       parameters: [
