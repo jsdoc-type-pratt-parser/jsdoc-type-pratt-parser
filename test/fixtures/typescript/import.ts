@@ -168,6 +168,7 @@ export const importFixtures: Fixture[] = [
   {
     description: 'import 2-level named export as generic',
     input: 'import("x").T.U<V,W>',
+    stringified: 'import("x").T.U<V, W>',
     expected: {
       type: 'GENERIC',
       left: {

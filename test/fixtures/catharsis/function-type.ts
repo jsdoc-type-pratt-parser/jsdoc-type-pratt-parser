@@ -251,6 +251,7 @@ export const functionFixtures: Fixture[] = [
   {
     description: 'function with a "this" type and no parameters',
     input: 'function(this:goog.ui.Menu)',
+    stringified: 'function(this: goog.ui.Menu)',
     expected: {
       parameters: [
         {
@@ -318,6 +319,7 @@ export const functionFixtures: Fixture[] = [
   {
     description: 'function with a "this" type and one parameter',
     input: 'function(this:goog.ui.Menu, string)',
+    stringified: 'function(this: goog.ui.Menu, string)',
     expected: {
       parameters: [
         {
@@ -392,6 +394,7 @@ export const functionFixtures: Fixture[] = [
   {
     description: 'function with a "new" type and no parameters',
     input: 'function(new:goog.ui.Menu)',
+    stringified: 'function(new: goog.ui.Menu)',
     expected: {
       type: 'FUNCTION',
       parameters: [
@@ -459,6 +462,7 @@ export const functionFixtures: Fixture[] = [
   {
     description: 'function with a "new" type and one parameter',
     input: 'function(new:goog.ui.Menu, string)',
+    stringified: 'function(new: goog.ui.Menu, string)',
     expected: {
       type: 'FUNCTION',
       parameters: [
@@ -533,6 +537,7 @@ export const functionFixtures: Fixture[] = [
   {
     description: 'function with a "new" and "this" type and no parameters',
     input: 'function(new:goog.ui.Menu, this:goog.ui)',
+    stringified: 'function(new: goog.ui.Menu, this: goog.ui)',
     expected: {
       type: 'FUNCTION',
       parameters: [
@@ -630,6 +635,7 @@ export const functionFixtures: Fixture[] = [
   {
     description: 'function with a fixed parameter, followed by a variable number of parameters, as well as a return value',
     input: 'function(string, ...[number]): number',
+    stringified: 'function(string, ...number): number',
     diffExpected: {
       jsdoc: {
         type: 'FUNCTION',
@@ -726,6 +732,7 @@ export const functionFixtures: Fixture[] = [
   {
     description: 'function with a variable number of parameters containing the value `null`',
     input: 'function(...[null])',
+    stringified: 'function(...null)',
     expected: {
       type: 'FUNCTION',
       parameters: [
@@ -760,6 +767,7 @@ export const functionFixtures: Fixture[] = [
   {
     description: 'function with a variable number of parameters containing the value `undefined`',
     input: 'function(...[undefined])',
+    stringified: 'function(...undefined)',
     expected: {
       type: 'FUNCTION',
       parameters: [
@@ -794,6 +802,7 @@ export const functionFixtures: Fixture[] = [
   {
     description: 'function with a variable number of parameters, a "new" type, a "this" type, and a return value',
     input: 'function(new:Master, this:Everyone, string, goog.ui.Menu, Array.<Object>, ...[string]): boolean',
+    stringified: 'function(new: Master, this: Everyone, string, goog.ui.Menu, Array.<Object>, ...string): boolean',
     diffExpected: {
       jsdoc: {
         type: 'FUNCTION',
@@ -1108,6 +1117,7 @@ export const functionFixtures: Fixture[] = [
   {
     description: 'function that returns a type union',
     input: 'function(): (number|string)',
+    stringified: 'function(): (number | string)',
     expected: {
       type: 'FUNCTION',
       parameters: [],
@@ -1176,6 +1186,7 @@ export const functionFixtures: Fixture[] = [
   {
     description: 'function with a variable number of parameters containing any values',
     input: 'function(...[*])',
+    stringified: 'function(...*)',
     expected: {
       type: 'FUNCTION',
       parameters: [
@@ -1210,6 +1221,7 @@ export const functionFixtures: Fixture[] = [
   {
     description: 'function with a "this" type that returns a type union',
     input: 'function(this:Object): (number|string)',
+    stringified: 'function(this: Object): (number | string)',
     expected: {
       type: 'FUNCTION',
       parameters: [
@@ -1273,6 +1285,7 @@ export const functionFixtures: Fixture[] = [
   {
     description: 'function with a "this" type that is a type union, and that returns a type union',
     input: 'function(this:(Array|Date)): (number|string)',
+    stringified: 'function(this: (Array | Date)): (number | string)',
     expected: {
       type: 'FUNCTION',
       parameters: [
@@ -1351,6 +1364,7 @@ export const functionFixtures: Fixture[] = [
   {
     description: 'function with a "new" type and a variable number of params that accept all types, returning a name expression',
     input: 'function(new:Array, ...[*]): Array',
+    stringified: 'function(new: Array, ...*): Array',
     diffExpected: {
       jsdoc: {
         type: 'FUNCTION',
@@ -1459,6 +1473,7 @@ export const functionFixtures: Fixture[] = [
   {
     description: 'function with a "new" type that accepts an optional parameter of any type, as well as a return value',
     input: 'function(new:Boolean, *=): boolean',
+    stringified: 'function(new: Boolean, *=): boolean',
     expected: {
       type: 'FUNCTION',
       parameters: [
@@ -1516,6 +1531,7 @@ export const functionFixtures: Fixture[] = [
   {
     description: 'function with a variable number of parameters and a return value',
     input: 'function(...[number]): boolean',
+    stringified: 'function(...number): boolean',
     diffExpected: {
       jsdoc: {
         type: 'FUNCTION',
@@ -1598,6 +1614,7 @@ export const functionFixtures: Fixture[] = [
   {
     description: 'function with a "this" type and a parameter that returns a type union',
     input: 'function(this:Date, number): (boolean|number|string)',
+    stringified: 'function(this: Date, number): (boolean | number | string)',
     expected: {
       type: 'FUNCTION',
       parameters: [

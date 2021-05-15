@@ -330,6 +330,7 @@ export const recordFixtures: Fixture[] = [
   {
     description: 'record type with a property that uses a type union as a value',
     input: '{myKey: (number|boolean|string)}',
+    stringified: '{myKey: (number | boolean | string)}',
     expected: {
       type: 'OBJECT',
       elements: [
