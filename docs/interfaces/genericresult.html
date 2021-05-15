@@ -65,6 +65,16 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p><code>left</code> is a generic type that has <code>elements</code> as type values for its type parameters.
+							Array types that are written as <code>Type[]</code> always have the name <code>Array</code> as the <code>left</code> type and <code>elements</code> will contain
+							only one element (in this case the name <code>Type</code>). To differentiate <code>Type[]</code> and <code>Array&lt;Type&gt;</code> there is the meta property
+						<code>brackets</code>.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -97,7 +107,7 @@
 					<div class="tsd-signature tsd-kind-icon">elements<span class="tsd-signature-symbol">:</span> <a href="../modules.html#parseresult" class="tsd-signature-type" data-tsd-kind="Type alias">ParseResult</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/62ba474/src/ParseResult.ts#L80">ParseResult.ts:80</a></li>
+							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/23383f9/src/ParseResult.ts#L110">ParseResult.ts:110</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -107,7 +117,7 @@
 					<div class="tsd-signature tsd-kind-icon">left<span class="tsd-signature-symbol">:</span> <a href="../modules.html#parseresult" class="tsd-signature-type" data-tsd-kind="Type alias">ParseResult</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/62ba474/src/ParseResult.ts#L79">ParseResult.ts:79</a></li>
+							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/23383f9/src/ParseResult.ts#L109">ParseResult.ts:109</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -117,7 +127,7 @@
 					<div class="tsd-signature tsd-kind-icon">meta<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>brackets<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;&lt;&gt;&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;[]&quot;</span><span class="tsd-signature-symbol">; </span>dot<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/62ba474/src/ParseResult.ts#L81">ParseResult.ts:81</a></li>
+							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/23383f9/src/ParseResult.ts#L111">ParseResult.ts:111</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -138,7 +148,7 @@
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;GENERIC&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/62ba474/src/ParseResult.ts#L78">ParseResult.ts:78</a></li>
+							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/23383f9/src/ParseResult.ts#L108">ParseResult.ts:108</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -214,6 +224,9 @@
 					<li class=" tsd-kind-interface">
 						<a href="numberresult.html" class="tsd-kind-icon">Number<wbr>Result</a>
 					</li>
+					<li class=" tsd-kind-interface">
+						<a href="objectresult.html" class="tsd-kind-icon">Object<wbr>Result</a>
+					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="optionalresult.html" class="tsd-kind-icon">Optional<wbr>Result</a>
 					</li>
@@ -225,9 +238,6 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="parseroptions.html" class="tsd-kind-icon">Parser<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="recordresult.html" class="tsd-kind-icon">Record<wbr>Result</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="stringvalueresult.html" class="tsd-kind-icon">String<wbr>Value<wbr>Result</a>

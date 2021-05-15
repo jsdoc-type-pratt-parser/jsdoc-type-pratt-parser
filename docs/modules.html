@@ -83,11 +83,11 @@
 								<li class="tsd-kind-interface"><a href="interfaces/nullresult.html" class="tsd-kind-icon">Null<wbr>Result</a></li>
 								<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/nullableresult.html" class="tsd-kind-icon">Nullable<wbr>Result</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/numberresult.html" class="tsd-kind-icon">Number<wbr>Result</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/objectresult.html" class="tsd-kind-icon">Object<wbr>Result</a></li>
 								<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/optionalresult.html" class="tsd-kind-icon">Optional<wbr>Result</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/parameterlist.html" class="tsd-kind-icon">Parameter<wbr>List</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/parenthesisresult.html" class="tsd-kind-icon">Parenthesis<wbr>Result</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/parseroptions.html" class="tsd-kind-icon">Parser<wbr>Options</a></li>
-								<li class="tsd-kind-interface"><a href="interfaces/recordresult.html" class="tsd-kind-icon">Record<wbr>Result</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/stringvalueresult.html" class="tsd-kind-icon">String<wbr>Value<wbr>Result</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/symbolresult.html" class="tsd-kind-icon">Symbol<wbr>Result</a></li>
 								<li class="tsd-kind-interface"><a href="interfaces/tupleresult.html" class="tsd-kind-icon">Tuple<wbr>Result</a></li>
@@ -130,19 +130,29 @@
 					<div class="tsd-signature tsd-kind-icon">Non<wbr>Terminal<wbr>Result<span class="tsd-signature-symbol">:</span> <a href="modules.html#parseresult" class="tsd-signature-type" data-tsd-kind="Type alias">ParseResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/keyvalueresult.html" class="tsd-signature-type" data-tsd-kind="Interface">KeyValueResult</a><span class="tsd-signature-symbol">&lt;</span><a href="modules.html#parseresult" class="tsd-signature-type" data-tsd-kind="Type alias">ParseResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/nameresult.html" class="tsd-signature-type" data-tsd-kind="Interface">NameResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/numberresult.html" class="tsd-signature-type" data-tsd-kind="Interface">NumberResult</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/numberresult.html" class="tsd-signature-type" data-tsd-kind="Interface">NumberResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/parameterlist.html" class="tsd-signature-type" data-tsd-kind="Interface">ParameterList</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/62ba474/src/ParseResult.ts#L25">ParseResult.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/23383f9/src/ParseResult.ts#L31">ParseResult.ts:31</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A parse sub result that might not be a valid type expression on its own.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias">
 					<a name="parseresult" class="tsd-anchor"></a>
 					<h3>Parse<wbr>Result</h3>
-					<div class="tsd-signature tsd-kind-icon">Parse<wbr>Result<span class="tsd-signature-symbol">:</span> <a href="interfaces/nameresult.html" class="tsd-signature-type" data-tsd-kind="Interface">NameResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/unionresult.html" class="tsd-signature-type" data-tsd-kind="Interface">UnionResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/genericresult.html" class="tsd-signature-type" data-tsd-kind="Interface">GenericResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/stringvalueresult.html" class="tsd-signature-type" data-tsd-kind="Interface">StringValueResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/nullresult.html" class="tsd-signature-type" data-tsd-kind="Interface">NullResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/undefinedresult.html" class="tsd-signature-type" data-tsd-kind="Interface">UndefinedResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/anyresult.html" class="tsd-signature-type" data-tsd-kind="Interface">AnyResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/unknownresult.html" class="tsd-signature-type" data-tsd-kind="Interface">UnknownResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/functionresult.html" class="tsd-signature-type" data-tsd-kind="Interface">FunctionResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/recordresult.html" class="tsd-signature-type" data-tsd-kind="Interface">RecordResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/moduleresult.html" class="tsd-signature-type" data-tsd-kind="Interface">ModuleResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/namepathresult.html" class="tsd-signature-type" data-tsd-kind="Interface">NamePathResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/symbolresult.html" class="tsd-signature-type" data-tsd-kind="Interface">SymbolResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/typeofresult.html" class="tsd-signature-type" data-tsd-kind="Interface">TypeOfResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/keyofresult.html" class="tsd-signature-type" data-tsd-kind="Interface">KeyOfResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/importresult.html" class="tsd-signature-type" data-tsd-kind="Interface">ImportResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/tupleresult.html" class="tsd-signature-type" data-tsd-kind="Interface">TupleResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/optionalresult.html" class="tsd-signature-type" data-tsd-kind="Interface">OptionalResult</a><span class="tsd-signature-symbol">&lt;</span><a href="modules.html#parseresult" class="tsd-signature-type" data-tsd-kind="Type alias">ParseResult</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/nullableresult.html" class="tsd-signature-type" data-tsd-kind="Interface">NullableResult</a><span class="tsd-signature-symbol">&lt;</span><a href="modules.html#parseresult" class="tsd-signature-type" data-tsd-kind="Type alias">ParseResult</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/notnullableresult.html" class="tsd-signature-type" data-tsd-kind="Interface">NotNullableResult</a><span class="tsd-signature-symbol">&lt;</span><a href="modules.html#parseresult" class="tsd-signature-type" data-tsd-kind="Type alias">ParseResult</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/variadicresult.html" class="tsd-signature-type" data-tsd-kind="Interface">VariadicResult</a><span class="tsd-signature-symbol">&lt;</span><a href="modules.html#parseresult" class="tsd-signature-type" data-tsd-kind="Type alias">ParseResult</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/parenthesisresult.html" class="tsd-signature-type" data-tsd-kind="Interface">ParenthesisResult</a></div>
+					<div class="tsd-signature tsd-kind-icon">Parse<wbr>Result<span class="tsd-signature-symbol">:</span> <a href="interfaces/nameresult.html" class="tsd-signature-type" data-tsd-kind="Interface">NameResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/unionresult.html" class="tsd-signature-type" data-tsd-kind="Interface">UnionResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/genericresult.html" class="tsd-signature-type" data-tsd-kind="Interface">GenericResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/stringvalueresult.html" class="tsd-signature-type" data-tsd-kind="Interface">StringValueResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/nullresult.html" class="tsd-signature-type" data-tsd-kind="Interface">NullResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/undefinedresult.html" class="tsd-signature-type" data-tsd-kind="Interface">UndefinedResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/anyresult.html" class="tsd-signature-type" data-tsd-kind="Interface">AnyResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/unknownresult.html" class="tsd-signature-type" data-tsd-kind="Interface">UnknownResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/functionresult.html" class="tsd-signature-type" data-tsd-kind="Interface">FunctionResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/objectresult.html" class="tsd-signature-type" data-tsd-kind="Interface">ObjectResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/moduleresult.html" class="tsd-signature-type" data-tsd-kind="Interface">ModuleResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/namepathresult.html" class="tsd-signature-type" data-tsd-kind="Interface">NamePathResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/symbolresult.html" class="tsd-signature-type" data-tsd-kind="Interface">SymbolResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/typeofresult.html" class="tsd-signature-type" data-tsd-kind="Interface">TypeOfResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/keyofresult.html" class="tsd-signature-type" data-tsd-kind="Interface">KeyOfResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/importresult.html" class="tsd-signature-type" data-tsd-kind="Interface">ImportResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/tupleresult.html" class="tsd-signature-type" data-tsd-kind="Interface">TupleResult</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/optionalresult.html" class="tsd-signature-type" data-tsd-kind="Interface">OptionalResult</a><span class="tsd-signature-symbol">&lt;</span><a href="modules.html#parseresult" class="tsd-signature-type" data-tsd-kind="Type alias">ParseResult</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/nullableresult.html" class="tsd-signature-type" data-tsd-kind="Interface">NullableResult</a><span class="tsd-signature-symbol">&lt;</span><a href="modules.html#parseresult" class="tsd-signature-type" data-tsd-kind="Type alias">ParseResult</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/notnullableresult.html" class="tsd-signature-type" data-tsd-kind="Interface">NotNullableResult</a><span class="tsd-signature-symbol">&lt;</span><a href="modules.html#parseresult" class="tsd-signature-type" data-tsd-kind="Type alias">ParseResult</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/variadicresult.html" class="tsd-signature-type" data-tsd-kind="Interface">VariadicResult</a><span class="tsd-signature-symbol">&lt;</span><a href="modules.html#parseresult" class="tsd-signature-type" data-tsd-kind="Type alias">ParseResult</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/parenthesisresult.html" class="tsd-signature-type" data-tsd-kind="Interface">ParenthesisResult</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/62ba474/src/ParseResult.ts#L1">ParseResult.ts:1</a></li>
+							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/23383f9/src/ParseResult.ts#L4">ParseResult.ts:4</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A parse result that corresponds to a valid type expression.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias">
 					<a name="parsermode" class="tsd-anchor"></a>
@@ -150,7 +160,7 @@
 					<div class="tsd-signature tsd-kind-icon">Parser<wbr>Mode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;closure&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;jsdoc&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;typescript&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/62ba474/src/Parser.ts#L7">Parser.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/23383f9/src/Parser.ts#L7">Parser.ts:7</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -160,7 +170,7 @@
 					<div class="tsd-signature tsd-kind-icon">Transform<wbr>Function&lt;TransformResult&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>parseResult<span class="tsd-signature-symbol">: </span><a href="modules.html#nonterminalresult" class="tsd-signature-type" data-tsd-kind="Type alias">NonTerminalResult</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">TransformResult</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/62ba474/src/transforms/transform.ts#L3">transforms/transform.ts:3</a></li>
+							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/23383f9/src/transforms/transform.ts#L3">transforms/transform.ts:3</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -197,7 +207,7 @@
 					<div class="tsd-signature tsd-kind-icon">Transform<wbr>Rule&lt;TransformResult, ParseResultType&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>parseResult<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ParseResultType</span>, transform<span class="tsd-signature-symbol">: </span><a href="modules.html#transformfunction" class="tsd-signature-type" data-tsd-kind="Type alias">TransformFunction</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TransformResult</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">TransformResult</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/62ba474/src/transforms/transform.ts#L5">transforms/transform.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/23383f9/src/transforms/transform.ts#L5">transforms/transform.ts:5</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -240,7 +250,7 @@
 					<div class="tsd-signature tsd-kind-icon">Transform<wbr>Rules&lt;TransformResult&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{</span><span class="tsd-signature-symbol">[ </span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol"> in </span><a href="modules.html#nonterminalresult" class="tsd-signature-type" data-tsd-kind="Type alias">NonTerminalResult</a><span class="tsd-signature-symbol"> as </span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">&quot;type&quot;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">: </span><a href="modules.html#transformrule" class="tsd-signature-type" data-tsd-kind="Type alias">TransformRule</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TransformResult</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/62ba474/src/transforms/transform.ts#L7">transforms/transform.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/23383f9/src/transforms/transform.ts#L7">transforms/transform.ts:7</a></li>
 						</ul>
 					</aside>
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -263,7 +273,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/62ba474/src/transforms/catharsisTransform.ts#L258">transforms/catharsisTransform.ts:258</a></li>
+									<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/23383f9/src/transforms/catharsisTransform.ts#L258">transforms/catharsisTransform.ts:258</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -286,7 +296,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/62ba474/src/transforms/jtpTransform.ts#L428">transforms/jtpTransform.ts:428</a></li>
+									<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/23383f9/src/transforms/jtpTransform.ts#L428">transforms/jtpTransform.ts:428</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -309,7 +319,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/62ba474/src/transforms/stringify.ts#L87">transforms/stringify.ts:87</a></li>
+									<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/23383f9/src/transforms/stringify.ts#L87">transforms/stringify.ts:87</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -332,7 +342,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/62ba474/src/transforms/stringify.ts#L8">transforms/stringify.ts:8</a></li>
+									<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/23383f9/src/transforms/stringify.ts#L8">transforms/stringify.ts:8</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <a href="modules.html#transformrules" class="tsd-signature-type" data-tsd-kind="Type alias">TransformRules</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -349,7 +359,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/62ba474/src/transforms/transform.ts#L11">transforms/transform.ts:11</a></li>
+									<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/23383f9/src/transforms/transform.ts#L11">transforms/transform.ts:11</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -425,6 +435,9 @@
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/numberresult.html" class="tsd-kind-icon">Number<wbr>Result</a>
 					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/objectresult.html" class="tsd-kind-icon">Object<wbr>Result</a>
+					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="interfaces/optionalresult.html" class="tsd-kind-icon">Optional<wbr>Result</a>
 					</li>
@@ -436,9 +449,6 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/parseroptions.html" class="tsd-kind-icon">Parser<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="interfaces/recordresult.html" class="tsd-kind-icon">Record<wbr>Result</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/stringvalueresult.html" class="tsd-kind-icon">String<wbr>Value<wbr>Result</a>

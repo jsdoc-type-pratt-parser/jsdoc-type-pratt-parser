@@ -65,6 +65,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A name path. This can be a property path separated by <code>.</code> or an inner or static member (<code>~</code>, <code>#</code>).</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -81,9 +88,9 @@
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="namepathresult.html#left" class="tsd-kind-icon">left</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="namepathresult.html#meta" class="tsd-kind-icon">meta</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="namepathresult.html#pathtype" class="tsd-kind-icon">path<wbr>Type</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="namepathresult.html#right" class="tsd-kind-icon">right</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="namepathresult.html#type-1" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="namepathresult.html#type" class="tsd-kind-icon">type</a></li>
 							</ul>
 						</section>
 					</div>
@@ -97,27 +104,19 @@
 					<div class="tsd-signature tsd-kind-icon">left<span class="tsd-signature-symbol">:</span> <a href="../modules.html#parseresult" class="tsd-signature-type" data-tsd-kind="Type alias">ParseResult</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/62ba474/src/ParseResult.ts#L142">ParseResult.ts:142</a></li>
+							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/23383f9/src/ParseResult.ts#L206">ParseResult.ts:206</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="meta" class="tsd-anchor"></a>
-					<h3>meta</h3>
-					<div class="tsd-signature tsd-kind-icon">meta<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;~&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;#&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;.&quot;</span><span class="tsd-signature-symbol"> }</span></div>
+					<a name="pathtype" class="tsd-anchor"></a>
+					<h3>path<wbr>Type</h3>
+					<div class="tsd-signature tsd-kind-icon">path<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;~&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;#&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;.&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/62ba474/src/ParseResult.ts#L144">ParseResult.ts:144</a></li>
+							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/23383f9/src/ParseResult.ts#L208">ParseResult.ts:208</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter">
-								<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;~&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;#&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;.&quot;</span></h5>
-							</li>
-						</ul>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="right" class="tsd-anchor"></a>
@@ -125,17 +124,17 @@
 					<div class="tsd-signature tsd-kind-icon">right<span class="tsd-signature-symbol">:</span> <a href="nameresult.html" class="tsd-signature-type" data-tsd-kind="Interface">NameResult</a><span class="tsd-signature-symbol"> | </span><a href="stringvalueresult.html" class="tsd-signature-type" data-tsd-kind="Interface">StringValueResult</a><span class="tsd-signature-symbol"> | </span><a href="numberresult.html" class="tsd-signature-type" data-tsd-kind="Interface">NumberResult</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/62ba474/src/ParseResult.ts#L143">ParseResult.ts:143</a></li>
+							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/23383f9/src/ParseResult.ts#L207">ParseResult.ts:207</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="type-1" class="tsd-anchor"></a>
+					<a name="type" class="tsd-anchor"></a>
 					<h3>type</h3>
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;NAME_PATH&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/62ba474/src/ParseResult.ts#L141">ParseResult.ts:141</a></li>
+							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/23383f9/src/ParseResult.ts#L205">ParseResult.ts:205</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -184,13 +183,13 @@
 								<a href="namepathresult.html#left" class="tsd-kind-icon">left</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="namepathresult.html#meta" class="tsd-kind-icon">meta</a>
+								<a href="namepathresult.html#pathtype" class="tsd-kind-icon">path<wbr>Type</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="namepathresult.html#right" class="tsd-kind-icon">right</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="namepathresult.html#type-1" class="tsd-kind-icon">type</a>
+								<a href="namepathresult.html#type" class="tsd-kind-icon">type</a>
 							</li>
 						</ul>
 					</li>
@@ -211,6 +210,9 @@
 					<li class=" tsd-kind-interface">
 						<a href="numberresult.html" class="tsd-kind-icon">Number<wbr>Result</a>
 					</li>
+					<li class=" tsd-kind-interface">
+						<a href="objectresult.html" class="tsd-kind-icon">Object<wbr>Result</a>
+					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="optionalresult.html" class="tsd-kind-icon">Optional<wbr>Result</a>
 					</li>
@@ -222,9 +224,6 @@
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="parseroptions.html" class="tsd-kind-icon">Parser<wbr>Options</a>
-					</li>
-					<li class=" tsd-kind-interface">
-						<a href="recordresult.html" class="tsd-kind-icon">Record<wbr>Result</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="stringvalueresult.html" class="tsd-kind-icon">String<wbr>Value<wbr>Result</a>
