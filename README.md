@@ -3,10 +3,10 @@
 [![Code Style](https://badgen.net/badge/code%20style/ts-standard/blue?icon=typescript)](https://github.com/standard/ts-standard)
 
 This project is a parser for jsdoc types. It is heavily inspired by the existing libraries catharsis and
- jsdoctypeparser, but does not use PEG.js, but is written as a pratt parser. 
-* http://journal.stuffwithstuff.com/2011/03/19/pratt-parsers-expression-parsing-made-easy/
+ jsdoctypeparser, but does not use PEG.js, instead it is written as a pratt parser. 
 * https://github.com/hegemonic/catharsis
 * https://github.com/jsdoctypeparser/jsdoctypeparser
+* http://journal.stuffwithstuff.com/2011/03/19/pratt-parsers-expression-parsing-made-easy/
 
 Live Demo
 ---------
@@ -75,7 +75,7 @@ import { stringifyRules, transform } from 'jsdoc-type-pratt-parser'
 
 const rules = stringifyRules()
 
-// `result` is the current node and `transform` is function to transform child nodes.
+// `result` is the current node and `transform` is a function to transform child nodes.
 rules.NAME = (result, transform) => 'something else'
 
 const val = transform(rules, { type: 'NAME', value: 'name'}) // -> 'something else'
@@ -91,8 +91,8 @@ function onEnter(node, parent, property) {
     console.log(node.type)
 }
 
-traverse({ type: 'NAME', value: 'name'}, onEnter, console.log)
 // an onEnter and/or an onLeave function can be supplied
+traverse({ type: 'NAME', value: 'name'}, onEnter, console.log)
 ```
 
 Available Grammars

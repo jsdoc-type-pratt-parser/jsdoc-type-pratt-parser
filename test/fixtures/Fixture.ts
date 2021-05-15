@@ -37,14 +37,14 @@ function testParser (mode: ParserMode, fixture: Fixture): ParseResult | undefine
     mode: mode
   })
   if (fixture.modes.includes(mode)) {
-    it(`gets parsed in '${mode}' mode`, () => {
+    it(`is parsed in '${mode}' mode`, () => {
       const result = parser.parse(fixture.input)
       const expected = fixture.diffExpected?.[mode] ?? fixture.expected
       expect(result).to.deep.equal(expected)
     })
     return parser.parse(fixture.input)
   } else {
-    it(`gets not parsed in '${mode}' mode`, () => {
+    it(`fails to parse in '${mode}' mode`, () => {
       expect(() => parser.parse(fixture.input)).to.throw()
     })
   }
@@ -54,7 +54,7 @@ function compareCatharsis (mode: CatharsisMode, results: Results, fixture: Fixtu
   const compareMode = fixture.catharsis[mode]
 
   if (compareMode !== 'fail') {
-    it(`gets parsed in '${mode}' mode`, () => {
+    it(`compares to catharsis in '${mode}' mode`, () => {
       const catharsisResult = catharsisParse(fixture.input, {
         jsdoc: mode === 'jsdoc'
       })
@@ -67,7 +67,7 @@ function compareCatharsis (mode: CatharsisMode, results: Results, fixture: Fixtu
       }
     })
   } else {
-    it(`gets not parsed in '${mode}' mode`, () => {
+    it(`does not get parsed by catharsis in '${mode}' mode`, () => {
       expect(() => {
         catharsisParse(fixture.input, {
           jsdoc: mode === 'jsdoc'
@@ -81,7 +81,7 @@ function compareJtp (mode: JtpMode, results: Results, fixture: Fixture): void {
   const compareMode = fixture.jtp[mode]
 
   if (compareMode !== 'fail') {
-    it(`gets parsed in '${mode}' mode`, () => {
+    it(`compares to jsdoctypeparser in '${mode}' mode`, () => {
       const jtpResult = jtpParse(fixture.input, {
         mode: mode
       })
@@ -94,7 +94,7 @@ function compareJtp (mode: JtpMode, results: Results, fixture: Fixture): void {
       }
     })
   } else {
-    it(`gets not parsed in '${mode}' mode`, () => {
+    it(`does not get parsed by jsdoctypeparser in '${mode}' mode`, () => {
       expect(() => {
         jtpParse(fixture.input, {
           mode: mode
@@ -106,32 +106,26 @@ function compareJtp (mode: JtpMode, results: Results, fixture: Fixture): void {
 
 export function testFixture (fixture: Fixture): void {
   describe(fixture.description, () => {
-    describe('is parsed in the expected modes and no others', () => {
-      const results: Results = {
-        closure: testParser('closure', fixture),
-        typescript: testParser('typescript', fixture),
-        jsdoc: testParser('jsdoc', fixture)
+    const results: Results = {
+      closure: testParser('closure', fixture),
+      typescript: testParser('typescript', fixture),
+      jsdoc: testParser('jsdoc', fixture)
+    }
+
+    compareCatharsis('jsdoc', results, fixture)
+    compareCatharsis('closure', results, fixture)
+
+    compareJtp('closure', results, fixture)
+    compareJtp('jsdoc', results, fixture)
+    compareJtp('typescript', results, fixture)
+    compareJtp('permissive', results, fixture)
+
+    it('should stringify', () => {
+      // TODO: at the moment this does only test one possible stringification
+      const result = results.jsdoc ?? results.closure ?? results.typescript
+      if (result !== undefined) {
+        expect(stringify(result)).to.equal(fixture.stringified ?? fixture.input)
       }
-
-      describe('catharsis produces the same results in the expected modes an no others', () => {
-        compareCatharsis('jsdoc', results, fixture)
-        compareCatharsis('closure', results, fixture)
-      })
-
-      describe('jsdoctypeparser produces the same results in the expected modes an no others', () => {
-        compareJtp('closure', results, fixture)
-        compareJtp('jsdoc', results, fixture)
-        compareJtp('typescript', results, fixture)
-        compareJtp('permissive', results, fixture)
-      })
-
-      it('should stringify', () => {
-        // TODO: at the moment this does only test one possible stringification
-        const result = results.jsdoc ?? results.closure ?? results.typescript
-        if (result !== undefined) {
-          expect(stringify(result)).to.equal(fixture.stringified ?? fixture.input)
-        }
-      })
     })
   })
 }
