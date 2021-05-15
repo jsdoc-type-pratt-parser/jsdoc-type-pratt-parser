@@ -24,10 +24,8 @@ export const arrowFunctionFixtures: Fixture[] = [
       returnType: {
         type: 'ANY'
       },
-      meta: {
-        arrow: true,
-        parenthesis: true
-      }
+      arrow: true,
+      parenthesis: true
     },
     modes: ['typescript'],
     catharsis: {
@@ -72,10 +70,8 @@ export const arrowFunctionFixtures: Fixture[] = [
           reservedWord: false
         }
       },
-      meta: {
-        arrow: true,
-        parenthesis: true
-      }
+      arrow: true,
+      parenthesis: true
     },
     modes: ['typescript'],
     catharsis: {
@@ -154,10 +150,8 @@ export const arrowFunctionFixtures: Fixture[] = [
           reservedWord: false
         }
       },
-      meta: {
-        arrow: true,
-        parenthesis: true
-      }
+      arrow: true,
+      parenthesis: true
     },
     modes: ['typescript'],
     catharsis: {
@@ -184,10 +178,8 @@ export const arrowFunctionFixtures: Fixture[] = [
           reservedWord: false
         }
       },
-      meta: {
-        arrow: true,
-        parenthesis: true
-      }
+      arrow: true,
+      parenthesis: true
     },
     modes: ['typescript'],
     catharsis: {
@@ -217,15 +209,11 @@ export const arrowFunctionFixtures: Fixture[] = [
             reservedWord: false
           }
         },
-        meta: {
-          arrow: true,
-          parenthesis: true
-        }
-      },
-      meta: {
-        arrow: false,
+        arrow: true,
         parenthesis: true
-      }
+      },
+      arrow: false,
+      parenthesis: true
     },
     modes: ['typescript'],
     catharsis: {
@@ -255,10 +243,8 @@ export const arrowFunctionFixtures: Fixture[] = [
               reservedWord: false
             }
           },
-          meta: {
-            arrow: true,
-            parenthesis: true
-          }
+          arrow: true,
+          parenthesis: true
         }
       ],
       returnType: {
@@ -268,10 +254,8 @@ export const arrowFunctionFixtures: Fixture[] = [
           reservedWord: true
         }
       },
-      meta: {
-        arrow: false,
-        parenthesis: true
-      }
+      arrow: false,
+      parenthesis: true
     },
     modes: ['typescript'],
     catharsis: {
@@ -334,10 +318,8 @@ export const arrowFunctionFixtures: Fixture[] = [
           reservedWord: false
         }
       },
-      meta: {
-        arrow: true,
-        parenthesis: true
-      }
+      arrow: true,
+      parenthesis: true
     },
     modes: ['typescript'],
     catharsis: {
@@ -374,10 +356,8 @@ export const arrowFunctionFixtures: Fixture[] = [
               reservedWord: false
             }
           },
-          meta: {
-            arrow: true,
-            parenthesis: true
-          }
+          arrow: true,
+          parenthesis: true
         }
       ],
       meta: {
@@ -403,10 +383,8 @@ export const arrowFunctionFixtures: Fixture[] = [
     expected: {
       type: 'FUNCTION',
       parameters: [],
-      meta: {
-        arrow: true,
-        parenthesis: true
-      },
+      arrow: true,
+      parenthesis: true,
       returnType: {
         type: 'NAME',
         value: 'void',
@@ -443,15 +421,11 @@ export const arrowFunctionFixtures: Fixture[] = [
             reservedWord: true
           }
         },
-        meta: {
-          arrow: true,
-          parenthesis: true
-        }
-      },
-      meta: {
         arrow: true,
         parenthesis: true
-      }
+      },
+      arrow: true,
+      parenthesis: true
     },
     modes: ['typescript'],
     catharsis: {
@@ -517,15 +491,11 @@ export const arrowFunctionFixtures: Fixture[] = [
             reservedWord: false
           }
         },
-        meta: {
-          arrow: true,
-          parenthesis: true
-        }
-      },
-      meta: {
         arrow: true,
         parenthesis: true
-      }
+      },
+      arrow: true,
+      parenthesis: true
     },
     modes: ['typescript'],
     catharsis: {
@@ -560,10 +530,8 @@ export const arrowFunctionFixtures: Fixture[] = [
           reservedWord: true
         }
       },
-      meta: {
-        arrow: true,
-        parenthesis: true
-      }
+      arrow: true,
+      parenthesis: true
     },
     modes: ['typescript'],
     catharsis: {

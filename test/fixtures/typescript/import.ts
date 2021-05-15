@@ -98,9 +98,7 @@ export const importFixtures: Fixture[] = [
           reservedWord: false
         }
       },
-      meta: {
-        type: '.'
-      }
+      pathType: '.'
     },
     modes: ['typescript'],
     catharsis: {
@@ -138,9 +136,7 @@ export const importFixtures: Fixture[] = [
             reservedWord: false
           }
         },
-        meta: {
-          type: '.'
-        }
+        pathType: '.'
       },
       right: {
         type: 'NAME',
@@ -149,9 +145,7 @@ export const importFixtures: Fixture[] = [
           reservedWord: false
         }
       },
-      meta: {
-        type: '.'
-      }
+      pathType: '.'
     },
     modes: ['typescript'],
     catharsis: {
@@ -192,9 +186,7 @@ export const importFixtures: Fixture[] = [
               reservedWord: false
             }
           },
-          meta: {
-            type: '.'
-          }
+          pathType: '.'
         },
         right: {
           type: 'NAME',
@@ -203,9 +195,7 @@ export const importFixtures: Fixture[] = [
             reservedWord: false
           }
         },
-        meta: {
-          type: '.'
-        }
+        pathType: '.'
       },
       elements: [
         {

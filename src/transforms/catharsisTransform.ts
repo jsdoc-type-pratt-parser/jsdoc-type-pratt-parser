@@ -211,7 +211,7 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
 
     return {
       type: 'NameExpression',
-      name: `${leftResult.name}${result.meta.type}${rightResult.name}`
+      name: `${leftResult.name}${result.pathType}${rightResult.name}`
     }
   },
 

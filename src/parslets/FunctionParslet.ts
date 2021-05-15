@@ -43,10 +43,8 @@ export class FunctionParslet extends BaseFunctionParslet implements PrefixParsle
     const result: FunctionResult = {
       type: 'FUNCTION',
       parameters: [],
-      meta: {
-        arrow: false,
-        parenthesis: hasParenthesis
-      }
+      arrow: false,
+      parenthesis: hasParenthesis
     }
 
     if (hasParenthesis) {

@@ -158,9 +158,7 @@ export const unionFixtures: Fixture[] = [
                 }
               },
               type: 'NAME_PATH',
-              meta: {
-                type: '.'
-              }
+              pathType: '.'
             },
             right: {
               type: 'NAME',
@@ -170,9 +168,7 @@ export const unionFixtures: Fixture[] = [
               }
             },
             type: 'NAME_PATH',
-            meta: {
-              type: '.'
-            }
+            pathType: '.'
           }
         ]
       }
@@ -477,10 +473,8 @@ export const unionFixtures: Fixture[] = [
                 reservedWord: false
               }
             },
-            meta: {
-              arrow: false,
-              parenthesis: true
-            }
+            arrow: false,
+            parenthesis: true
           }
         ]
       }
@@ -651,10 +645,8 @@ export const unionFixtures: Fixture[] = [
             {
               type: 'FUNCTION',
               parameters: [],
-              meta: {
-                arrow: false,
-                parenthesis: true
-              }
+              arrow: false,
+              parenthesis: true
             }
           ]
         }
@@ -751,9 +743,7 @@ export const unionFixtures: Fixture[] = [
                                     reservedWord: false
                                   }
                                 },
-                                meta: {
-                                  type: '.'
-                                },
+                                pathType: '.',
                                 type: 'NAME_PATH'
                               },
                               meta: {
@@ -765,10 +755,8 @@ export const unionFixtures: Fixture[] = [
                             }
                           }
                         ],
-                        meta: {
-                          arrow: false,
-                          parenthesis: true
-                        }
+                        arrow: false,
+                        parenthesis: true
                       }
                     ]
                   }

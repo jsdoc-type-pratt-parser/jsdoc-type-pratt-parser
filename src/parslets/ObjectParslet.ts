@@ -1,10 +1,10 @@
 import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
-import { ParseResult, RecordResult } from '../ParseResult'
+import { ParseResult, ObjectResult } from '../ParseResult'
 import { Precedence } from '../Precedence'
 
-export class RecordParslet implements PrefixParslet {
+export class ObjectParslet implements PrefixParslet {
   accepts (type: TokenType): boolean {
     return type === '{'
   }
@@ -15,7 +15,7 @@ export class RecordParslet implements PrefixParslet {
 
   parsePrefix (parser: ParserEngine): ParseResult {
     parser.consume('{')
-    const result: RecordResult = {
+    const result: ObjectResult = {
       type: 'OBJECT',
       elements: []
     }

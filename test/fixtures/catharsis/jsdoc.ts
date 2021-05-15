@@ -42,9 +42,7 @@ export const jsdocFixtures: Fixture[] = [
           reservedWord: false
         }
       },
-      meta: {
-        type: '#'
-      }
+      pathType: '#'
     },
     modes: ['jsdoc'],
     catharsis: {
@@ -77,9 +75,7 @@ export const jsdocFixtures: Fixture[] = [
           reservedWord: false
         }
       },
-      meta: {
-        type: '~'
-      }
+      pathType: '~'
     },
     modes: ['jsdoc'],
     catharsis: {
@@ -116,9 +112,7 @@ export const jsdocFixtures: Fixture[] = [
               reservedWord: false
             }
           },
-          meta: {
-            type: '#'
-          }
+          pathType: '#'
         },
         right: {
           type: 'NAME',
@@ -127,9 +121,7 @@ export const jsdocFixtures: Fixture[] = [
             reservedWord: false
           }
         },
-        meta: {
-          type: '#'
-        }
+        pathType: '#'
       },
       right: {
         type: 'NAME',
@@ -138,9 +130,7 @@ export const jsdocFixtures: Fixture[] = [
           reservedWord: false
         }
       },
-      meta: {
-        type: '~'
-      }
+      pathType: '~'
     },
     modes: ['jsdoc'],
     catharsis: {
@@ -173,9 +163,7 @@ export const jsdocFixtures: Fixture[] = [
         },
         value: 'Qux'
       },
-      meta: {
-        type: '~'
-      }
+      pathType: '~'
     },
     modes: ['jsdoc'],
     catharsis: {
@@ -208,9 +196,7 @@ export const jsdocFixtures: Fixture[] = [
         },
         value: 'Qux'
       },
-      meta: {
-        type: '~'
-      }
+      pathType: '~'
     },
     modes: ['jsdoc'],
     catharsis: {
@@ -427,9 +413,7 @@ export const jsdocFixtures: Fixture[] = [
           }
         },
         type: 'NAME_PATH',
-        meta: {
-          type: '.'
-        }
+        pathType: '.'
       },
       right: {
         type: 'NAME',
@@ -439,9 +423,7 @@ export const jsdocFixtures: Fixture[] = [
         }
       },
       type: 'NAME_PATH',
-      meta: {
-        type: '.'
-      }
+      pathType: '.'
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -475,9 +457,7 @@ export const jsdocFixtures: Fixture[] = [
           }
         },
         type: 'NAME_PATH',
-        meta: {
-          type: '.'
-        }
+        pathType: '.'
       },
       right: {
         type: 'NAME',
@@ -487,9 +467,7 @@ export const jsdocFixtures: Fixture[] = [
         }
       },
       type: 'NAME_PATH',
-      meta: {
-        type: '.'
-      }
+      pathType: '.'
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -621,10 +599,8 @@ export const jsdocFixtures: Fixture[] = [
         {
           type: 'FUNCTION',
           parameters: [],
-          meta: {
-            arrow: false,
-            parenthesis: false
-          }
+          arrow: false,
+          parenthesis: false
         }
       ],
       left: {
@@ -956,10 +932,8 @@ export const jsdocFixtures: Fixture[] = [
           right: {
             type: 'FUNCTION',
             parameters: [],
-            meta: {
-              arrow: false,
-              parenthesis: true
-            }
+            arrow: false,
+            parenthesis: true
           }
         }
       ]
@@ -995,10 +969,8 @@ export const jsdocFixtures: Fixture[] = [
           right: {
             type: 'FUNCTION',
             parameters: [],
-            meta: {
-              arrow: false,
-              parenthesis: true
-            },
+            arrow: false,
+            parenthesis: true,
             returnType: {
               type: 'NAME',
               value: 'void',
@@ -1028,10 +1000,8 @@ export const jsdocFixtures: Fixture[] = [
     expected: {
       type: 'FUNCTION',
       parameters: [],
-      meta: {
-        arrow: false,
-        parenthesis: false
-      }
+      arrow: false,
+      parenthesis: false
     },
     modes: ['jsdoc'],
     catharsis: {
@@ -1080,9 +1050,7 @@ export const jsdocFixtures: Fixture[] = [
                   }
                 },
                 type: 'NAME_PATH',
-                meta: {
-                  type: '.'
-                }
+                pathType: '.'
               },
               right: {
                 type: 'NAME',
@@ -1092,9 +1060,7 @@ export const jsdocFixtures: Fixture[] = [
                 }
               },
               type: 'NAME_PATH',
-              meta: {
-                type: '.'
-              }
+              pathType: '.'
             }
           },
           {
@@ -1113,15 +1079,11 @@ export const jsdocFixtures: Fixture[] = [
               }
             },
             type: 'NAME_PATH',
-            meta: {
-              type: '.'
-            }
+            pathType: '.'
           }
         ],
-        meta: {
-          arrow: false,
-          parenthesis: true
-        }
+        arrow: false,
+        parenthesis: true
       },
       meta: {
         position: 'SUFFIX'

@@ -26,10 +26,8 @@ export class ArrowFunctionWithoutParametersParslet implements PrefixParslet {
     return {
       type: 'FUNCTION',
       parameters: [],
-      meta: {
-        arrow: true,
-        parenthesis: hasParenthesis
-      },
+      arrow: true,
+      parenthesis: hasParenthesis,
       returnType: parser.parseType(Precedence.ALL)
     }
   }
@@ -53,10 +51,8 @@ export class ArrowFunctionWithParametersParslet extends BaseFunctionParslet impl
     return {
       type: 'FUNCTION',
       parameters: this.getParameters(left).map(assertNamedKeyValueOrName),
-      meta: {
-        arrow: true,
-        parenthesis: true
-      },
+      arrow: true,
+      parenthesis: true,
       returnType: parser.parseType(Precedence.ALL)
     }
   }

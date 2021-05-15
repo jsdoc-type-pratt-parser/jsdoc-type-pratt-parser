@@ -1,6 +1,6 @@
 {
   "name": "jsdoc-type-pratt-parser",
-  "version": "1.0.0-alpha.6.0",
+  "version": "1.0.0-alpha.7.0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/src/index.d.ts",
@@ -15,6 +15,7 @@
     "build": "rollup -c",
     "apidoc": "typedoc src/index.ts --out docs",
     "preversion": "npm test",
+    "prepublish": "npm run build",
     "postpublish": "./deploy.sh"
   },
   "author": "Simon Seyock (https://github.com/simonseyock)",

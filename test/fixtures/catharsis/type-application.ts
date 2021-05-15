@@ -274,10 +274,8 @@ export const genericFixtures: Fixture[] = [
                     reservedWord: false
                   }
                 },
-                meta: {
-                  arrow: false,
-                  parenthesis: true
-                }
+                arrow: false,
+                parenthesis: true
               }
             ]
           }
@@ -451,9 +449,7 @@ export const genericFixtures: Fixture[] = [
             reservedWord: false
           }
         },
-        meta: {
-          type: '.'
-        },
+        pathType: '.',
         type: 'NAME_PATH'
       },
       meta: {

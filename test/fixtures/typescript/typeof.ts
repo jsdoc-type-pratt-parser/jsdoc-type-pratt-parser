@@ -360,10 +360,8 @@ export const typeOfFixtures: Fixture[] = [
           }
         }
       ],
-      meta: {
-        arrow: false,
-        parenthesis: true
-      }
+      arrow: false,
+      parenthesis: true
     },
     modes: ['closure'],
     catharsis: {
@@ -401,10 +399,8 @@ export const typeOfFixtures: Fixture[] = [
           reservedWord: true
         }
       },
-      meta: {
-        arrow: false,
-        parenthesis: true
-      }
+      arrow: false,
+      parenthesis: true
     },
     modes: ['typescript', 'closure'],
     catharsis: {
@@ -449,10 +445,8 @@ export const typeOfFixtures: Fixture[] = [
           reservedWord: true
         }
       },
-      meta: {
-        arrow: false,
-        parenthesis: true
-      }
+      arrow: false,
+      parenthesis: true
     },
     modes: ['typescript', 'closure'],
     catharsis: {
@@ -497,10 +491,8 @@ export const typeOfFixtures: Fixture[] = [
           reservedWord: true
         }
       },
-      meta: {
-        arrow: false,
-        parenthesis: true
-      }
+      arrow: false,
+      parenthesis: true
     },
     modes: ['typescript', 'closure'],
     catharsis: {
@@ -530,10 +522,8 @@ export const typeOfFixtures: Fixture[] = [
           }
         }
       },
-      meta: {
-        arrow: false,
-        parenthesis: true
-      }
+      arrow: false,
+      parenthesis: true
     },
     modes: ['typescript', 'closure'],
     catharsis: {

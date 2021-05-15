@@ -65,9 +65,7 @@ export const basicFixtures: Fixture[] = [
           }
         },
         type: 'NAME_PATH',
-        meta: {
-          type: '.'
-        }
+        pathType: '.'
       },
       right: {
         type: 'NAME',
@@ -77,9 +75,7 @@ export const basicFixtures: Fixture[] = [
         }
       },
       type: 'NAME_PATH',
-      meta: {
-        type: '.'
-      }
+      pathType: '.'
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -113,9 +109,7 @@ export const basicFixtures: Fixture[] = [
           }
         },
         type: 'NAME_PATH',
-        meta: {
-          type: '.'
-        }
+        pathType: '.'
       },
       right: {
         type: 'NAME',
@@ -125,9 +119,7 @@ export const basicFixtures: Fixture[] = [
         }
       },
       type: 'NAME_PATH',
-      meta: {
-        type: '.'
-      }
+      pathType: '.'
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -161,9 +153,7 @@ export const basicFixtures: Fixture[] = [
           }
         },
         type: 'NAME_PATH',
-        meta: {
-          type: '.'
-        }
+        pathType: '.'
       },
       right: {
         type: 'NAME',
@@ -173,9 +163,7 @@ export const basicFixtures: Fixture[] = [
         }
       },
       type: 'NAME_PATH',
-      meta: {
-        type: '.'
-      }
+      pathType: '.'
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -209,9 +197,7 @@ export const basicFixtures: Fixture[] = [
           }
         },
         type: 'NAME_PATH',
-        meta: {
-          type: '.'
-        }
+        pathType: '.'
       },
       right: {
         type: 'NAME',
@@ -221,9 +207,7 @@ export const basicFixtures: Fixture[] = [
         }
       },
       type: 'NAME_PATH',
-      meta: {
-        type: '.'
-      }
+      pathType: '.'
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -253,9 +237,7 @@ export const basicFixtures: Fixture[] = [
         value: 12345
       },
       type: 'NAME_PATH',
-      meta: {
-        type: '.'
-      }
+      pathType: '.'
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -633,9 +615,7 @@ export const basicFixtures: Fixture[] = [
           reservedWord: false
         }
       },
-      meta: {
-        type: '~'
-      }
+      pathType: '~'
     },
     modes: ['jsdoc'],
     catharsis: {
