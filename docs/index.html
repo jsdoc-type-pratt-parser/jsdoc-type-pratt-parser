@@ -58,7 +58,16 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<p>This project is parser for jsdoc types. It is heavily inspired by <a href="http://journal.stuffwithstuff.com/2011/03/19/pratt-parsers-expression-parsing-made-easy/">http://journal.stuffwithstuff.com/2011/03/19/pratt-parsers-expression-parsing-made-easy/</a>, <a href="https://github.com/hegemonic/catharsis">https://github.com/hegemonic/catharsis</a> and <a href="https://github.com/jsdoctypeparser/jsdoctypeparser">https://github.com/jsdoctypeparser/jsdoctypeparser</a>.</p>
+				<p><a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/actions?query=branch%3Amain"><img src="https://github.com/simonseyock/jsdoc-type-pratt-parser/actions/workflows/node.js.yml/badge.svg?branch=main" alt="Test Status"></a>
+					<a href="https://www.npmjs.com/package/jsdoc-type-pratt-parser"><img src="https://badgen.net/npm/v/jsdoc-type-pratt-parser" alt="Npm Package"></a>
+				<a href="https://github.com/standard/ts-standard"><img src="https://badgen.net/badge/code%20style/ts-standard/blue?icon=typescript" alt="Code Style"></a></p>
+				<p>This project is a parser for jsdoc types. It is heavily inspired by the existing libraries catharsis and
+				jsdoctypeparser, but does not use PEG.js, but is written as a pratt parser. </p>
+				<ul>
+					<li><a href="http://journal.stuffwithstuff.com/2011/03/19/pratt-parsers-expression-parsing-made-easy/">http://journal.stuffwithstuff.com/2011/03/19/pratt-parsers-expression-parsing-made-easy/</a></li>
+					<li><a href="https://github.com/hegemonic/catharsis">https://github.com/hegemonic/catharsis</a></li>
+					<li><a href="https://github.com/jsdoctypeparser/jsdoctypeparser">https://github.com/jsdoctypeparser/jsdoctypeparser</a></li>
+				</ul>
 				<a href="#live-demo" id="live-demo" style="color: inherit; text-decoration: none;">
 					<h2>Live Demo</h2>
 				</a>
@@ -66,8 +75,9 @@
 				<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
 					<h2>Getting started</h2>
 				</a>
-				<p>The usage is not perfect for now as it is not published as a package for now. Dependening on your needs you might want to run <code>npm run build</code> before using. An <code>index.js</code> in umd format will be built. All exports from <code>index.ts</code> should be available. </p>
-				<pre><code><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Parser</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;src/index&#039;</span>
+				<pre><code><span style="color: #001080">npm</span><span style="color: #000000"> </span><span style="color: #001080">install</span><span style="color: #000000"> </span><span style="color: #001080">jsdoc</span><span style="color: #000000">-</span><span style="color: #001080">type</span><span style="color: #000000">-</span><span style="color: #001080">pratt</span><span style="color: #000000">-</span><span style="color: #001080">parser</span>
+</code></pre>
+				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Parser</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;jsdoc-type-pratt-parser&#039;</span>
 
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">parser</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Parser</span><span style="color: #000000">({</span>
 <span style="color: #000000">  </span><span style="color: #001080">mode:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;closure&#039;</span>
@@ -75,8 +85,12 @@
 
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">result</span><span style="color: #000000"> = </span><span style="color: #001080">parser</span><span style="color: #000000">.</span><span style="color: #795E26">parse</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;myType.&lt;string&gt;&#039;</span><span style="color: #000000">)</span>
 </code></pre>
+				<p>This library supports compatibility modes for catharsis and jsdoctypeparser. The provided transform functions attempt to
+					transform the output to the expected output of the target library. This will not always be the same as some types are
+					parsed differently. These modes are thought to make transition easier, but it is advised to use the native output as
+				this will be more uniform and will contain more information.</p>
 				<p>Catharsis compat mode:</p>
-				<pre><code><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Parser</span><span style="color: #000000">, </span><span style="color: #001080">catharsisTransform</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;src/index&#039;</span>
+				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Parser</span><span style="color: #000000">, </span><span style="color: #001080">catharsisTransform</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;jsdoc-type-pratt-parser&#039;</span>
 
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">parser</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Parser</span><span style="color: #000000">({</span>
 <span style="color: #000000">  </span><span style="color: #001080">mode:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;closure&#039;</span>
@@ -84,20 +98,31 @@
 
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">result</span><span style="color: #000000"> = </span><span style="color: #795E26">catharsisTransform</span><span style="color: #000000">(</span><span style="color: #001080">parser</span><span style="color: #000000">.</span><span style="color: #795E26">parse</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;myType.&lt;string&gt;&#039;</span><span style="color: #000000">))</span>
 </code></pre>
+				<p>Jsdoctypeparser compat mode:</p>
+				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Parser</span><span style="color: #000000">, </span><span style="color: #001080">jtpTransform</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;jsdoc-type-pratt-parser&#039;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">parser</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Parser</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">mode:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;closure&#039;</span>
+<span style="color: #000000">})</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">result</span><span style="color: #000000"> = </span><span style="color: #795E26">jtpTransform</span><span style="color: #000000">(</span><span style="color: #001080">parser</span><span style="color: #000000">.</span><span style="color: #795E26">parse</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;myType.&lt;string&gt;&#039;</span><span style="color: #000000">))</span>
+</code></pre>
 				<a href="#available-grammars" id="available-grammars" style="color: inherit; text-decoration: none;">
 					<h2>Available Grammars</h2>
 				</a>
-				<p>At the moment there are 3 modes supported: &#39;jsdoc&#39;, &#39;closure&#39;, &#39;typescipt&#39; where &#39;jsdoc&#39; is a superset of &#39;closure&#39;</p>
+				<p>At the moment there are 3 modes supported: &#39;jsdoc&#39;, &#39;closure&#39; and &#39;typescipt&#39;</p>
 				<a href="#tests-status" id="tests-status" style="color: inherit; text-decoration: none;">
 					<h2>Tests Status</h2>
 				</a>
-				<p>This parser runs most tests of <a href="https://github.com/hegemonic/catharsis">https://github.com/hegemonic/catharsis</a> and also some of the typescript tests of <a href="https://github.com/jsdoctypeparser/jsdoctypeparser">https://github.com/jsdoctypeparser/jsdoctypeparser</a></p>
+				<p>This parser runs most tests of <a href="https://github.com/hegemonic/catharsis">https://github.com/hegemonic/catharsis</a> and of
+					<a href="https://github.com/jsdoctypeparser/jsdoctypeparser">https://github.com/jsdoctypeparser/jsdoctypeparser</a>. It compares the results of the different parsing libraries. If you
+					want to find out where the output differs, look in the tests for the comments <code>// This seems to be an error of ...</code> or
+				the <code>differ</code> keyword which indicates that differing results are produced.</p>
 				<p>It adds an increasing number of tests on its own, especially the tests to assure the differences between the modes.</p>
-				<p>The current status can be checked in the github action results: <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/actions">https://github.com/simonseyock/jsdoc-type-pratt-parser/actions</a></p>
 				<a href="#api-documentation" id="api-documentation" style="color: inherit; text-decoration: none;">
 					<h2>API Documentation</h2>
 				</a>
-				<p>A simple api doc can be found here: <a href="https://simonseyock.github.io/jsdoc-type-pratt-parser/docs/">https://simonseyock.github.io/jsdoc-type-pratt-parser/docs/</a></p>
+				<p>An API documentation can be found here: <a href="https://simonseyock.github.io/jsdoc-type-pratt-parser/docs/modules.html">https://simonseyock.github.io/jsdoc-type-pratt-parser/docs/modules.html</a></p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -114,19 +139,148 @@
 						<a href="classes/parser.html" class="tsd-kind-icon">Parser</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/modifiableresult.html" class="tsd-kind-icon">Modifiable<wbr>Result</a>
+						<a href="interfaces/anyresult.html" class="tsd-kind-icon">Any<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/functionresult.html" class="tsd-kind-icon">Function<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/genericresult.html" class="tsd-kind-icon">Generic<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/importresult.html" class="tsd-kind-icon">Import<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/jtpanyresult.html" class="tsd-kind-icon">Jtp<wbr>Any<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/jtpfilepath.html" class="tsd-kind-icon">Jtp<wbr>File<wbr>Path</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/jtpfunctionresult.html" class="tsd-kind-icon">Jtp<wbr>Function<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/jtpgenericresult.html" class="tsd-kind-icon">Jtp<wbr>Generic<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/jtpimportresult.html" class="tsd-kind-icon">Jtp<wbr>Import<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/jtpkeyofresult.html" class="tsd-kind-icon">Jtp<wbr>Key<wbr>OfResult</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/jtpmemberresult.html" class="tsd-kind-icon">Jtp<wbr>Member<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/jtpmoduleresult.html" class="tsd-kind-icon">Jtp<wbr>Module<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/jtpnameresult.html" class="tsd-kind-icon">Jtp<wbr>Name<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/jtpnamedparameterresult.html" class="tsd-kind-icon">Jtp<wbr>Named<wbr>Parameter<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/jtpnotnullableresult.html" class="tsd-kind-icon">Jtp<wbr>Not<wbr>Nullable<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/jtpnullableresult.html" class="tsd-kind-icon">Jtp<wbr>Nullable<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/jtpoptionalresult.html" class="tsd-kind-icon">Jtp<wbr>Optional<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/jtpparenthesisresult.html" class="tsd-kind-icon">Jtp<wbr>Parenthesis<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/jtprecordentryresult.html" class="tsd-kind-icon">Jtp<wbr>Record<wbr>Entry<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/jtprecordresult.html" class="tsd-kind-icon">Jtp<wbr>Record<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/jtpstringvalueresult.html" class="tsd-kind-icon">Jtp<wbr>String<wbr>Value<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/jtptupleresult.html" class="tsd-kind-icon">Jtp<wbr>Tuple<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/jtptypeofresult.html" class="tsd-kind-icon">Jtp<wbr>Type<wbr>OfResult</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/jtpunionresult.html" class="tsd-kind-icon">Jtp<wbr>Union<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/jtpunknownresult.html" class="tsd-kind-icon">Jtp<wbr>Unknown<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/jtpvariadicresult.html" class="tsd-kind-icon">Jtp<wbr>Variadic<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/keyofresult.html" class="tsd-kind-icon">Key<wbr>OfResult</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/keyvalueresult.html" class="tsd-kind-icon">Key<wbr>Value<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/moduleresult.html" class="tsd-kind-icon">Module<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/namepathresult.html" class="tsd-kind-icon">Name<wbr>Path<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/nameresult.html" class="tsd-kind-icon">Name<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/notnullableresult.html" class="tsd-kind-icon">Not<wbr>Nullable<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/nullresult.html" class="tsd-kind-icon">Null<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/nullableresult.html" class="tsd-kind-icon">Nullable<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/numberresult.html" class="tsd-kind-icon">Number<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/optionalresult.html" class="tsd-kind-icon">Optional<wbr>Result</a>
 					</li>
 					<li class=" tsd-kind-interface">
 						<a href="interfaces/parameterlist.html" class="tsd-kind-icon">Parameter<wbr>List</a>
 					</li>
 					<li class=" tsd-kind-interface">
+						<a href="interfaces/parenthesisresult.html" class="tsd-kind-icon">Parenthesis<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="interfaces/parseroptions.html" class="tsd-kind-icon">Parser<wbr>Options</a>
 					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#allresult" class="tsd-kind-icon">All<wbr>Result</a>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/recordresult.html" class="tsd-kind-icon">Record<wbr>Result</a>
 					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#arrowresult" class="tsd-kind-icon">Arrow<wbr>Result</a>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/stringvalueresult.html" class="tsd-kind-icon">String<wbr>Value<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/symbolresult.html" class="tsd-kind-icon">Symbol<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/tupleresult.html" class="tsd-kind-icon">Tuple<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/typeofresult.html" class="tsd-kind-icon">Type<wbr>OfResult</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/undefinedresult.html" class="tsd-kind-icon">Undefined<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/unionresult.html" class="tsd-kind-icon">Union<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/unknownresult.html" class="tsd-kind-icon">Unknown<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/variadicresult.html" class="tsd-kind-icon">Variadic<wbr>Result</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="modules.html#catharsisallresult" class="tsd-kind-icon">Catharsis<wbr>All<wbr>Result</a>
@@ -150,9 +304,6 @@
 						<a href="modules.html#catharsisparseresult" class="tsd-kind-icon">Catharsis<wbr>Parse<wbr>Result</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#catharsisparseresulttype" class="tsd-kind-icon">Catharsis<wbr>Parse<wbr>Result<wbr>Type</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
 						<a href="modules.html#catharsisrecordresult" class="tsd-kind-icon">Catharsis<wbr>Record<wbr>Result</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
@@ -165,34 +316,10 @@
 						<a href="modules.html#catharsisunknownresult" class="tsd-kind-icon">Catharsis<wbr>Unknown<wbr>Result</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#functionresult" class="tsd-kind-icon">Function<wbr>Result</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#genericresult" class="tsd-kind-icon">Generic<wbr>Result</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#importresult" class="tsd-kind-icon">Import<wbr>Result</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#keyofresult" class="tsd-kind-icon">Key<wbr>OfResult</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="modules.html#keyvalueresult" class="tsd-kind-icon">Key<wbr>Value<wbr>Result</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#moduleresult" class="tsd-kind-icon">Module<wbr>Result</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#nameresult" class="tsd-kind-icon">Name<wbr>Result</a>
+						<a href="modules.html#jtpresult" class="tsd-kind-icon">Jtp<wbr>Result</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="modules.html#nonterminalresult" class="tsd-kind-icon">Non<wbr>Terminal<wbr>Result</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#nullresult" class="tsd-kind-icon">Null<wbr>Result</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#numberresult" class="tsd-kind-icon">Number<wbr>Result</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
 						<a href="modules.html#parseresult" class="tsd-kind-icon">Parse<wbr>Result</a>
@@ -200,35 +327,11 @@
 					<li class=" tsd-kind-type-alias">
 						<a href="modules.html#parsermode" class="tsd-kind-icon">Parser<wbr>Mode</a>
 					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#propertypathresult" class="tsd-kind-icon">Property<wbr>Path<wbr>Result</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#recordresult" class="tsd-kind-icon">Record<wbr>Result</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#stringvalueresult" class="tsd-kind-icon">String<wbr>Value<wbr>Result</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#symbolresult" class="tsd-kind-icon">Symbol<wbr>Result</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#tupleresult" class="tsd-kind-icon">Tuple<wbr>Result</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#typeofresult" class="tsd-kind-icon">Type<wbr>OfResult</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#undefinedresult" class="tsd-kind-icon">Undefined<wbr>Result</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#unionresult" class="tsd-kind-icon">Union<wbr>Result</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#unknownresult" class="tsd-kind-icon">Unknown<wbr>Result</a>
-					</li>
 					<li class=" tsd-kind-function">
 						<a href="modules.html#catharsistransform" class="tsd-kind-icon">catharsis<wbr>Transform</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#jtptransform" class="tsd-kind-icon">jtp<wbr>Transform</a>
 					</li>
 				</ul>
 			</nav>
