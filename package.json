@@ -1,6 +1,6 @@
 {
   "name": "jsdoc-type-pratt-parser",
-  "version": "1.0.0-alpha.4.0",
+  "version": "1.0.0-alpha.5.0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/src/index.d.ts",
