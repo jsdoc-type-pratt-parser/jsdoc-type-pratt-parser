@@ -112,10 +112,8 @@ export interface FunctionResult {
   type: 'FUNCTION'
   parameters: Array<ParseResult | KeyValueResult>
   returnType?: ParseResult
-  meta: {
-    arrow: boolean
-    parenthesis: boolean
-  }
+  arrow: boolean
+  parenthesis: boolean
 }
 
 export interface KeyValueResult<KeyType = NameResult> {
@@ -141,9 +139,7 @@ export interface NamePathResult {
   type: 'NAME_PATH'
   left: ParseResult
   right: NameResult | NumberResult | StringValueResult
-  meta: {
-    type: '~' | '#' | '.'
-  }
+  pathType: '~' | '#' | '.'
 }
 
 export interface NumberResult {

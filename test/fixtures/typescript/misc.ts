@@ -24,10 +24,8 @@ export const miscFixtures: Fixture[] = [
           reservedWord: false
         }
       },
-      meta: {
-        arrow: false,
-        parenthesis: true
-      }
+      arrow: false,
+      parenthesis: true
     },
     modes: ['typescript'],
     catharsis: {

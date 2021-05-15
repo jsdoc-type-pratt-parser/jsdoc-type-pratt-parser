@@ -12,9 +12,9 @@ export function stringifyRules (): TransformRules<string> {
     KEY_OF: (result, transform) => `keyof ${transform(result.element)}`,
 
     FUNCTION: (result, transform) => {
-      if (!result.meta.arrow) {
+      if (!result.arrow) {
         let stringified = 'function'
-        if (!result.meta.parenthesis) {
+        if (!result.parenthesis) {
           return stringified
         }
         stringified += `(${result.parameters.map(transform).join(', ')})`
@@ -38,7 +38,7 @@ export function stringifyRules (): TransformRules<string> {
       ? '...'
       : applyPosition(result.meta.position, transform(result.element as NonTerminalResult), '...'),
 
-    NAME_PATH: (result, transform) => `${transform(result.left)}${result.meta.type}${transform(result.right)}`,
+    NAME_PATH: (result, transform) => `${transform(result.left)}${result.pathType}${transform(result.right)}`,
 
     STRING_VALUE: result => `${result.meta.quote}${result.value}${result.meta.quote}`,
 

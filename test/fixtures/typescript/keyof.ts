@@ -410,10 +410,8 @@ export const keyofFixtures: Fixture[] = [
           reservedWord: true
         }
       },
-      meta: {
-        arrow: false,
-        parenthesis: true
-      }
+      arrow: false,
+      parenthesis: true
     },
     modes: ['typescript'],
     catharsis: {
@@ -458,10 +456,8 @@ export const keyofFixtures: Fixture[] = [
           reservedWord: true
         }
       },
-      meta: {
-        arrow: false,
-        parenthesis: true
-      }
+      arrow: false,
+      parenthesis: true
     },
     modes: ['typescript'],
     catharsis: {
@@ -506,10 +502,8 @@ export const keyofFixtures: Fixture[] = [
           reservedWord: true
         }
       },
-      meta: {
-        arrow: false,
-        parenthesis: true
-      }
+      arrow: false,
+      parenthesis: true
     },
     modes: ['typescript'],
     catharsis: {
@@ -539,10 +533,8 @@ export const keyofFixtures: Fixture[] = [
           }
         }
       },
-      meta: {
-        arrow: false,
-        parenthesis: true
-      }
+      arrow: false,
+      parenthesis: true
     },
     modes: ['typescript'],
     catharsis: {

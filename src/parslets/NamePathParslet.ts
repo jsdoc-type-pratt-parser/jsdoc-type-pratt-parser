@@ -48,9 +48,7 @@ export class NamePathParslet implements InfixParslet {
       type: 'NAME_PATH',
       left: assertTerminal(left),
       right: next,
-      meta: {
-        type
-      }
+      pathType: type
     }
   }
 }

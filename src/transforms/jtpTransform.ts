@@ -269,7 +269,7 @@ const jtpRules: TransformRules<JtpResult> = {
     const specialParams = extractSpecialParams(result)
 
     const transformed: JtpFunctionResult = {
-      type: result.meta.arrow ? 'ARROW' : 'FUNCTION',
+      type: result.arrow ? 'ARROW' : 'FUNCTION',
       params: specialParams.params.map(param => {
         if (param.type === 'KEY_VALUE') {
           return {
@@ -287,7 +287,7 @@ const jtpRules: TransformRules<JtpResult> = {
 
     if (specialParams.this !== undefined) {
       transformed.this = transform(specialParams.this)
-    } else if (!result.meta.arrow) {
+    } else if (!result.arrow) {
       transformed.this = null
     }
 
@@ -312,7 +312,7 @@ const jtpRules: TransformRules<JtpResult> = {
       }
     }
 
-    if (result.meta.brackets === '[]' && result.elements[0].type === 'FUNCTION' && !result.elements[0].meta.parenthesis) {
+    if (result.meta.brackets === '[]' && result.elements[0].type === 'FUNCTION' && !result.elements[0].parenthesis) {
       transformed.objects[0] = {
         type: 'NAME',
         name: 'function'
@@ -368,7 +368,7 @@ const jtpRules: TransformRules<JtpResult> = {
 
   NAME_PATH: (result, transform) => {
     const transformed: JtpMemberResult = {
-      type: getMemberType(result.meta.type),
+      type: getMemberType(result.pathType),
       owner: transform(result.left),
       name: `${result.right.value}`,
       quoteStyle: result.right.type === 'STRING_VALUE' ? getQuoteStyle(result.right.meta.quote) : 'none',

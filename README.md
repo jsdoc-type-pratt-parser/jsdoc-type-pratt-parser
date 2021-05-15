@@ -74,7 +74,9 @@ You can customize the stringification by using `stringifyRules` and `transform`:
 import { stringifyRules, transform } from 'jsdoc-type-pratt-parser'
 
 const rules = stringifyRules()
-rules.NAME = (result, transform) => 'something else' // `result` is the current node and `transform` is function to transform child nodes.
+
+// `result` is the current node and `transform` is function to transform child nodes.
+rules.NAME = (result, transform) => 'something else'
 
 const val = transform(rules, { type: 'NAME', value: 'name'}) // -> 'something else'
 ```
@@ -84,27 +86,27 @@ You can traverse a result tree with the `traverse` function:
 ```js
 import { traverse } from 'jsdoc-type-pratt-parser'
 
-function onEnter(node, parent, property) { // property is the name of the property on parent that contains node
+// property is the name of the property on parent that contains node
+function onEnter(node, parent, property) {
     console.log(node.type)
 }
 
-traverse({ type: 'NAME', value: 'name'}, onEnter, console.log) // an onEnter and/or an onLeave function can be supplied
+traverse({ type: 'NAME', value: 'name'}, onEnter, console.log)
+// an onEnter and/or an onLeave function can be supplied
 ```
 
 Available Grammars
 ------------------
 
-At the moment there are 3 modes supported: 'jsdoc', 'closure' and 'typescipt'
+Three different modes (grammars) are supported: `'jsdoc'`, `'closure'` and `'typescript'`
 
 Tests Status
 ------------
 
-This parser runs most tests of https://github.com/hegemonic/catharsis and of
+This parser runs most tests of https://github.com/hegemonic/catharsis and
  https://github.com/jsdoctypeparser/jsdoctypeparser. It compares the results of the different parsing libraries. If you
  want to find out where the output differs, look in the tests for the comments `// This seems to be an error of ...` or
  the `differ` keyword which indicates that differing results are produced.
-
-It adds an increasing number of tests on its own, especially the tests to assure the differences between the modes.
 
 API Documentation
 -----------------

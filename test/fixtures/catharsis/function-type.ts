@@ -22,10 +22,8 @@ export const functionFixtures: Fixture[] = [
           }
         }
       ],
-      meta: {
-        arrow: false,
-        parenthesis: true
-      }
+      arrow: false,
+      parenthesis: true
     },
     modes: ['jsdoc', 'closure'], // typescript does not allow function types without return type
     catharsis: {
@@ -62,10 +60,8 @@ export const functionFixtures: Fixture[] = [
             }
           }
         ],
-        meta: {
-          arrow: false,
-          parenthesis: true
-        }
+        arrow: false,
+        parenthesis: true
       },
       meta: {
         position: 'PREFIX',
@@ -112,10 +108,8 @@ export const functionFixtures: Fixture[] = [
           reservedWord: false
         }
       },
-      meta: {
-        arrow: false,
-        parenthesis: true
-      }
+      arrow: false,
+      parenthesis: true
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -159,10 +153,8 @@ export const functionFixtures: Fixture[] = [
             reservedWord: false
           }
         },
-        meta: {
-          arrow: false,
-          parenthesis: true
-        }
+        arrow: false,
+        parenthesis: true
       },
       meta: {
         squareBrackets: false,
@@ -197,10 +189,8 @@ export const functionFixtures: Fixture[] = [
             }
           }
         ],
-        meta: {
-          arrow: false,
-          parenthesis: true
-        }
+        arrow: false,
+        parenthesis: true
       },
       meta: {
         position: 'SUFFIX'
@@ -231,10 +221,8 @@ export const functionFixtures: Fixture[] = [
           reservedWord: false
         }
       },
-      meta: {
-        arrow: false,
-        parenthesis: true
-      }
+      arrow: false,
+      parenthesis: true
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -280,9 +268,7 @@ export const functionFixtures: Fixture[] = [
                 }
               },
               type: 'NAME_PATH',
-              meta: {
-                type: '.'
-              }
+              pathType: '.'
             },
             right: {
               type: 'NAME',
@@ -292,17 +278,13 @@ export const functionFixtures: Fixture[] = [
               }
             },
             type: 'NAME_PATH',
-            meta: {
-              type: '.'
-            }
+            pathType: '.'
           }
         }
       ],
       type: 'FUNCTION',
-      meta: {
-        arrow: false,
-        parenthesis: true
-      }
+      arrow: false,
+      parenthesis: true
     },
     modes: ['jsdoc', 'closure'],
     catharsis: {
@@ -348,9 +330,7 @@ export const functionFixtures: Fixture[] = [
                 }
               },
               type: 'NAME_PATH',
-              meta: {
-                type: '.'
-              }
+              pathType: '.'
             },
             right: {
               type: 'NAME',
@@ -360,9 +340,7 @@ export const functionFixtures: Fixture[] = [
               }
             },
             type: 'NAME_PATH',
-            meta: {
-              type: '.'
-            }
+            pathType: '.'
           }
         },
         {
@@ -374,10 +352,8 @@ export const functionFixtures: Fixture[] = [
         }
       ],
       type: 'FUNCTION',
-      meta: {
-        arrow: false,
-        parenthesis: true
-      }
+      arrow: false,
+      parenthesis: true
     },
     modes: ['jsdoc', 'closure'],
     catharsis: {
@@ -424,9 +400,7 @@ export const functionFixtures: Fixture[] = [
                 }
               },
               type: 'NAME_PATH',
-              meta: {
-                type: '.'
-              }
+              pathType: '.'
             },
             right: {
               type: 'NAME',
@@ -436,16 +410,12 @@ export const functionFixtures: Fixture[] = [
               }
             },
             type: 'NAME_PATH',
-            meta: {
-              type: '.'
-            }
+            pathType: '.'
           }
         }
       ],
-      meta: {
-        arrow: false,
-        parenthesis: true
-      }
+      arrow: false,
+      parenthesis: true
     },
     modes: ['jsdoc', 'closure'],
     catharsis: {
@@ -492,9 +462,7 @@ export const functionFixtures: Fixture[] = [
                 }
               },
               type: 'NAME_PATH',
-              meta: {
-                type: '.'
-              }
+              pathType: '.'
             },
             right: {
               type: 'NAME',
@@ -504,9 +472,7 @@ export const functionFixtures: Fixture[] = [
               }
             },
             type: 'NAME_PATH',
-            meta: {
-              type: '.'
-            }
+            pathType: '.'
           }
         },
         {
@@ -517,10 +483,8 @@ export const functionFixtures: Fixture[] = [
           }
         }
       ],
-      meta: {
-        arrow: false,
-        parenthesis: true
-      }
+      arrow: false,
+      parenthesis: true
     },
     modes: ['jsdoc', 'closure'],
     catharsis: {
@@ -567,9 +531,7 @@ export const functionFixtures: Fixture[] = [
                 }
               },
               type: 'NAME_PATH',
-              meta: {
-                type: '.'
-              }
+              pathType: '.'
             },
             right: {
               type: 'NAME',
@@ -579,9 +541,7 @@ export const functionFixtures: Fixture[] = [
               }
             },
             type: 'NAME_PATH',
-            meta: {
-              type: '.'
-            }
+            pathType: '.'
           }
         },
         {
@@ -609,16 +569,12 @@ export const functionFixtures: Fixture[] = [
               }
             },
             type: 'NAME_PATH',
-            meta: {
-              type: '.'
-            }
+            pathType: '.'
           }
         }
       ],
-      meta: {
-        arrow: false,
-        parenthesis: true
-      }
+      arrow: false,
+      parenthesis: true
     },
     modes: ['jsdoc', 'closure'],
     catharsis: {
@@ -669,10 +625,8 @@ export const functionFixtures: Fixture[] = [
             reservedWord: false
           }
         },
-        meta: {
-          arrow: false,
-          parenthesis: true
-        }
+        arrow: false,
+        parenthesis: true
       },
       typescript: {
         type: 'FUNCTION',
@@ -711,10 +665,8 @@ export const functionFixtures: Fixture[] = [
             reservedWord: false
           }
         },
-        meta: {
-          arrow: false,
-          parenthesis: true
-        }
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['typescript', 'jsdoc'],
@@ -747,10 +699,8 @@ export const functionFixtures: Fixture[] = [
           }
         }
       ],
-      meta: {
-        arrow: false,
-        parenthesis: true
-      }
+      arrow: false,
+      parenthesis: true
     },
     modes: ['jsdoc'],
     catharsis: {
@@ -782,10 +732,8 @@ export const functionFixtures: Fixture[] = [
           }
         }
       ],
-      meta: {
-        arrow: false,
-        parenthesis: true
-      }
+      arrow: false,
+      parenthesis: true
     },
     modes: ['jsdoc'],
     catharsis: {
@@ -865,9 +813,7 @@ export const functionFixtures: Fixture[] = [
                 }
               },
               type: 'NAME_PATH',
-              meta: {
-                type: '.'
-              }
+              pathType: '.'
             },
             right: {
               type: 'NAME',
@@ -877,9 +823,7 @@ export const functionFixtures: Fixture[] = [
               }
             },
             type: 'NAME_PATH',
-            meta: {
-              type: '.'
-            }
+            pathType: '.'
           },
           {
             type: 'GENERIC',
@@ -926,10 +870,8 @@ export const functionFixtures: Fixture[] = [
             reservedWord: false
           }
         },
-        meta: {
-          arrow: false,
-          parenthesis: true
-        }
+        arrow: false,
+        parenthesis: true
       },
       typescript: {
         type: 'FUNCTION',
@@ -992,9 +934,7 @@ export const functionFixtures: Fixture[] = [
                 }
               },
               type: 'NAME_PATH',
-              meta: {
-                type: '.'
-              }
+              pathType: '.'
             },
             right: {
               type: 'NAME',
@@ -1004,9 +944,7 @@ export const functionFixtures: Fixture[] = [
               }
             },
             type: 'NAME_PATH',
-            meta: {
-              type: '.'
-            }
+            pathType: '.'
           },
           {
             type: 'GENERIC',
@@ -1058,10 +996,8 @@ export const functionFixtures: Fixture[] = [
             reservedWord: false
           }
         },
-        meta: {
-          arrow: false,
-          parenthesis: true
-        }
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['typescript', 'jsdoc'],
@@ -1097,10 +1033,8 @@ export const functionFixtures: Fixture[] = [
           }
         }
       ],
-      meta: {
-        arrow: false,
-        parenthesis: true
-      }
+      arrow: false,
+      parenthesis: true
     },
     modes: ['jsdoc', 'closure'],
     catharsis: {
@@ -1143,10 +1077,8 @@ export const functionFixtures: Fixture[] = [
           ]
         }
       },
-      meta: {
-        arrow: false,
-        parenthesis: true
-      }
+      arrow: false,
+      parenthesis: true
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -1166,10 +1098,8 @@ export const functionFixtures: Fixture[] = [
     expected: {
       type: 'FUNCTION',
       parameters: [],
-      meta: {
-        arrow: false,
-        parenthesis: true
-      }
+      arrow: false,
+      parenthesis: true
     },
     modes: ['jsdoc', 'closure'],
     catharsis: {
@@ -1201,10 +1131,8 @@ export const functionFixtures: Fixture[] = [
           }
         }
       ],
-      meta: {
-        arrow: false,
-        parenthesis: true
-      }
+      arrow: false,
+      parenthesis: true
     },
     modes: ['jsdoc'],
     catharsis: {
@@ -1265,10 +1193,8 @@ export const functionFixtures: Fixture[] = [
         },
         type: 'PARENTHESIS'
       },
-      meta: {
-        arrow: false,
-        parenthesis: true
-      }
+      arrow: false,
+      parenthesis: true
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -1344,10 +1270,8 @@ export const functionFixtures: Fixture[] = [
           ]
         }
       },
-      meta: {
-        arrow: false,
-        parenthesis: true
-      }
+      arrow: false,
+      parenthesis: true
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -1404,10 +1328,8 @@ export const functionFixtures: Fixture[] = [
             reservedWord: false
           }
         },
-        meta: {
-          arrow: false,
-          parenthesis: true
-        }
+        arrow: false,
+        parenthesis: true
       },
       typescript: {
         type: 'FUNCTION',
@@ -1452,10 +1374,8 @@ export const functionFixtures: Fixture[] = [
             reservedWord: false
           }
         },
-        meta: {
-          arrow: false,
-          parenthesis: true
-        }
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['typescript', 'jsdoc'],
@@ -1511,10 +1431,8 @@ export const functionFixtures: Fixture[] = [
           reservedWord: false
         }
       },
-      meta: {
-        arrow: false,
-        parenthesis: true
-      }
+      arrow: false,
+      parenthesis: true
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -1558,10 +1476,8 @@ export const functionFixtures: Fixture[] = [
             reservedWord: false
           }
         },
-        meta: {
-          arrow: false,
-          parenthesis: true
-        }
+        arrow: false,
+        parenthesis: true
       },
       typescript: {
         type: 'FUNCTION',
@@ -1593,10 +1509,8 @@ export const functionFixtures: Fixture[] = [
             reservedWord: false
           }
         },
-        meta: {
-          arrow: false,
-          parenthesis: true
-        }
+        arrow: false,
+        parenthesis: true
       }
     },
     modes: ['typescript', 'jsdoc'],
@@ -1672,10 +1586,8 @@ export const functionFixtures: Fixture[] = [
           ]
         }
       },
-      meta: {
-        arrow: false,
-        parenthesis: true
-      }
+      arrow: false,
+      parenthesis: true
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {

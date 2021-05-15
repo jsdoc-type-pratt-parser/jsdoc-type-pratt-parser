@@ -5,7 +5,7 @@
 
 export * from './Parser'
 export * from './ParseResult'
-export * from './transforms/transform'
-export * from './transforms/catharsisTransform'
-export * from './transforms/jtpTransform'
-export * from './transforms/stringify'
+export { transform, TransformRule, TransformFunction, TransformRules } from './transforms/transform'
+export { catharsisTransform } from './transforms/catharsisTransform'
+export { jtpTransform } from './transforms/jtpTransform'
+export { stringify, stringifyRules } from './transforms/stringify'
