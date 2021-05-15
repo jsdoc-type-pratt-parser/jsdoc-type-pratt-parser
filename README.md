@@ -1,4 +1,9 @@
-This project is parser for jsdoc types. It is heavily inspired by 
+[![Test Status](https://github.com/simonseyock/jsdoc-type-pratt-parser/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/simonseyock/jsdoc-type-pratt-parser/actions?query=branch%3Amain)
+[![Npm Package](https://badgen.net/npm/v/jsdoc-type-pratt-parser)](https://www.npmjs.com/package/jsdoc-type-pratt-parser)
+[![Code Style](https://badgen.net/badge/code%20style/ts-standard/blue?icon=typescript)](https://github.com/standard/ts-standard)
+
+This project is a parser for jsdoc types. It is heavily inspired by the existing libraries catharsis and
+ jsdoctypeparser, but does not use PEG.js, but is written as a pratt parser. 
 * http://journal.stuffwithstuff.com/2011/03/19/pratt-parsers-expression-parsing-made-easy/
 * https://github.com/hegemonic/catharsis
 * https://github.com/jsdoctypeparser/jsdoctypeparser
@@ -63,14 +68,12 @@ At the moment there are 3 modes supported: 'jsdoc', 'closure' and 'typescipt'
 Tests Status
 ------------
 
-This parser runs most tests of https://github.com/hegemonic/catharsis and of https://github.com/jsdoctypeparser/jsdoctypeparser.
- It compares the results of the different parsing libraries. If you want to find out where the output differs, look in
- the tests for the comments `// This seems to be an error of ...` or the `differ` keyword which indicates that differing
-  results are produced.
+This parser runs most tests of https://github.com/hegemonic/catharsis and of
+ https://github.com/jsdoctypeparser/jsdoctypeparser. It compares the results of the different parsing libraries. If you
+ want to find out where the output differs, look in the tests for the comments `// This seems to be an error of ...` or
+ the `differ` keyword which indicates that differing results are produced.
 
 It adds an increasing number of tests on its own, especially the tests to assure the differences between the modes.
-
-The current status can be checked in the github action results: https://github.com/simonseyock/jsdoc-type-pratt-parser/actions
 
 API Documentation
 -----------------
