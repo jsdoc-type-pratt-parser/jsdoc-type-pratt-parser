@@ -2,7 +2,7 @@ import { NonTerminalResult, ParseResult } from './ParseResult'
 
 type NodeVisitor = (node: NonTerminalResult, parentNode?: NonTerminalResult, property?: string) => void
 
-function _traverse(node: NonTerminalResult, parentNode?: NonTerminalResult, property?: string, onEnter?: NodeVisitor, onLeave?: NodeVisitor): void {
+function _traverse (node: NonTerminalResult, parentNode?: NonTerminalResult, property?: string, onEnter?: NodeVisitor, onLeave?: NodeVisitor): void {
   onEnter?.(node, parentNode, property)
   if ('left' in node && node.left !== undefined) {
     _traverse(node.left, node, 'left', onEnter, onLeave)
@@ -29,6 +29,6 @@ function _traverse(node: NonTerminalResult, parentNode?: NonTerminalResult, prop
   onLeave?.(node, parentNode, property)
 }
 
-export function traverse(node: ParseResult, onEnter?: NodeVisitor, onLeave?: NodeVisitor): void {
+export function traverse (node: ParseResult, onEnter?: NodeVisitor, onLeave?: NodeVisitor): void {
   _traverse(node, undefined, undefined, onEnter, onLeave)
 }

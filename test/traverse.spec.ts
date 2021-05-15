@@ -3,7 +3,7 @@ import { SinonSpy, spy } from 'sinon'
 import { GenericResult, NameResult, ParseResult, StringValueResult, UnionResult } from '../src'
 import { traverse } from '../src/traverse'
 
-function expectOrder(calls: [SinonSpy, any[]][]) {
+function expectOrder (calls: Array<[SinonSpy, any[]]>): void {
   const callsCount: Map<SinonSpy, number> = new Map<SinonSpy, number>()
   for (let i = 0; i < calls.length; i++) {
     const [cb, args] = calls[i]
@@ -11,7 +11,7 @@ function expectOrder(calls: [SinonSpy, any[]][]) {
     const call = cb.getCall(count)
     expect(call.calledWithExactly(...args), 'called with correct arguments').to.be.equal(true)
     if (i > 0) {
-      const cbBefore = calls[i-1][0]
+      const cbBefore = calls[i - 1][0]
       const callBefore = cbBefore.getCall(cbBefore === cb ? count - 1 : (callsCount.get(cbBefore) as number - 1))
       expect(callBefore.calledBefore(call), 'called in correct order').to.be.equal(true)
     }
@@ -21,8 +21,8 @@ function expectOrder(calls: [SinonSpy, any[]][]) {
 
 describe('traverse', () => {
   it('should traverse a simple expression', () => {
-    const onEnter = spy();
-    const onLeave = spy();
+    const onEnter = spy()
+    const onLeave = spy()
 
     const result: ParseResult = {
       type: 'NAME',
@@ -35,13 +35,13 @@ describe('traverse', () => {
     traverse(result, onEnter, onLeave)
 
     expect(onEnter.getCall(0).calledWith(result, undefined, undefined)).to.be.equal(true)
-    expect(onLeave.getCall(0)).calledWith(result, undefined, undefined).to.be.equal(true)
-    expect(onEnter.getCall(0).calledBefore(onLeave.getCall(0)))
+    expect(onLeave.getCall(0).calledWith(result, undefined, undefined)).to.be.equal(true)
+    expect(onEnter.getCall(0).calledBefore(onLeave.getCall(0))).to.be.equal(true)
   })
 
-  it('should traverse a nested expression with union and generic',() => {
-    const onEnter = spy();
-    const onLeave = spy();
+  it('should traverse a nested expression with union and generic', () => {
+    const onEnter = spy()
+    const onLeave = spy()
 
     const name: NameResult = {
       type: 'NAME',
@@ -110,8 +110,7 @@ describe('traverse', () => {
       [onLeave, [generic, union, 'elements']],
       [onEnter, [stringVal, union, 'elements']],
       [onLeave, [stringVal, union, 'elements']],
-      [onLeave, [union, undefined, undefined]],
+      [onLeave, [union, undefined, undefined]]
     ])
-
   })
 })

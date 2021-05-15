@@ -14,7 +14,7 @@
     "typecheck": "tsc --noEmit",
     "build": "rollup -c",
     "apidoc": "typedoc src/index.ts --out docs",
-    "prepublish": "npm test",
+    "preversion": "npm test",
     "postpublish": "./deploy.sh"
   },
   "author": "Simon Seyock (https://github.com/simonseyock)",
