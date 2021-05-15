@@ -60,6 +60,37 @@ const parser = new Parser({
 const result = jtpTransform(parser.parse('myType.<string>'))
 ```
 
+Stringify:
+
+```js
+import { stringify } from 'jsdoc-type-pratt-parser'
+
+const val = stringify({ type: 'NAME', value: 'name'}) // -> 'name'
+```
+
+You can customize the stringification by using `stringifyRules` and `transform`:
+
+```js
+import { stringifyRules, transform } from 'jsdoc-type-pratt-parser'
+
+const rules = stringifyRules()
+rules.NAME = (result, transform) => 'something else' // `result` is the current node and `transform` is function to transform child nodes.
+
+const val = transform(rules, { type: 'NAME', value: 'name'}) // -> 'something else'
+```
+
+You can traverse a result tree with the `traverse` function:
+
+```js
+import { traverse } from 'jsdoc-type-pratt-parser'
+
+function onEnter(node, parent, property) { // property is the name of the property on parent that contains node
+    console.log(node.type)
+}
+
+traverse({ type: 'NAME', value: 'name'}, onEnter, console.log) // an onEnter and/or an onLeave function can be supplied
+```
+
 Available Grammars
 ------------------
 
