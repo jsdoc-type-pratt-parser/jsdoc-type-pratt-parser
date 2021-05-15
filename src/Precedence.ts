@@ -3,6 +3,7 @@ export enum Precedence {
   ALL,
   PARAMETER_LIST,
   UNION,
+  INTERSECTION,
   PREFIX,
   POSTFIX,
   TUPLE,

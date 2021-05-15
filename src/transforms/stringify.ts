@@ -80,7 +80,9 @@ export function stringifyRules (): TransformRules<string> {
 
     UNION: (result, transform) => result.elements.map(transform).join(' | '),
 
-    UNKNOWN: () => '?'
+    UNKNOWN: () => '?',
+
+    INTERSECTION: (result, transform) => result.elements.map(transform).join(' & ')
   }
 }
 

@@ -1,5 +1,5 @@
 import { Grammar } from './Grammar'
-import { UnenclosedUnionParslet } from '../parslets/UnionParslets'
+import { UnionParslet } from '../parslets/UnionParslets'
 import { SpecialTypesParslet } from '../parslets/SpecialTypesParslet'
 import { ObjectParslet } from '../parslets/ObjectParslet'
 import { GenericParslet } from '../parslets/GenericParslet'
@@ -24,7 +24,7 @@ export const baseGrammar: Grammar = () => {
         allowTrailingComma: true
       }),
       new GenericParslet(),
-      new UnenclosedUnionParslet(),
+      new UnionParslet(),
       new OptionalParslet(),
       new NullableInfixParslet()
     ]

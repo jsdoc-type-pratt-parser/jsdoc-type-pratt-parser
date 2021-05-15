@@ -25,6 +25,7 @@ export type JtpResult =
   | JtpNamedParameterResult
   | JtpModuleResult
   | JtpFilePath
+  | JtpIntersectionResult
 
 type JtpQuoteStyle = 'single' | 'double' | 'none'
 
@@ -143,6 +144,12 @@ export interface JtpUnionResult {
   right: JtpResult
 }
 
+export interface JtpIntersectionResult {
+  type: 'INTERSECTION'
+  left: JtpResult
+  right: JtpResult
+}
+
 export interface JtpParenthesisResult {
   type: 'PARENTHESIS'
   value: JtpResult
@@ -184,6 +191,22 @@ function getMemberType (type: '.' | '~' | '#'): JtpMemberResult['type'] {
       return 'INSTANCE_MEMBER'
     case '.':
       return 'MEMBER'
+  }
+}
+
+function nestResults (type: 'UNION' | 'INTERSECTION', results: JtpResult[]): JtpResult {
+  if (results.length == 2) {
+    return {
+      type,
+      left: results[0],
+      right: results[1]
+    }
+  } else {
+    return {
+      type,
+      left: nestResults(type, results.slice(0, -1)),
+      right: results[results.length - 1]
+    }
   }
 }
 
@@ -385,20 +408,7 @@ const jtpRules: TransformRules<JtpResult> = {
     }
   },
 
-  UNION: (result, transform) => {
-    let index = result.elements.length
-    let rightTransformed: JtpResult = transform(result.elements[--index])
-    let left: ParseResult | undefined
-    do {
-      left = result.elements[--index]
-      rightTransformed = {
-        type: 'UNION',
-        left: transform(left),
-        right: rightTransformed
-      }
-    } while (index > 0)
-    return rightTransformed
-  },
+  UNION: (result, transform) => nestResults('UNION', result.elements.map(transform)),
 
   PARENTHESIS: (result, transform) => ({
     type: 'PARENTHESIS',
@@ -419,6 +429,8 @@ const jtpRules: TransformRules<JtpResult> = {
     quoteStyle: getQuoteStyle(result.meta.quote),
     string: result.value
   }),
+
+  INTERSECTION: (result, transform) => nestResults('INTERSECTION', result.elements.map(transform)),
 
   NUMBER: notAvailableTransform,
   SYMBOL: notAvailableTransform,

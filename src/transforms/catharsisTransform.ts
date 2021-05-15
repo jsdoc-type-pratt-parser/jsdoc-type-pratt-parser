@@ -252,7 +252,8 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
   KEY_OF: notAvailableTransform,
   PARAMETER_LIST: notAvailableTransform,
   TUPLE: notAvailableTransform,
-  TYPE_OF: notAvailableTransform
+  TYPE_OF: notAvailableTransform,
+  INTERSECTION: notAvailableTransform
 }
 
 export function catharsisTransform (result: ParseResult): CatharsisParseResult {
