@@ -18,9 +18,7 @@
   },
   "author": "Simon Seyock (https://github.com/simonseyock)",
   "license": "MIT",
-  "dependencies": {
-    "typescript": "^4.1.3"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.1.1",
     "@types/chai": "^4.2.14",
@@ -35,7 +33,8 @@
     "rollup": "^2.39.0",
     "ts-node": "^9.1.1",
     "ts-standard": "^10.0.0",
-    "typedoc": "^0.20.24"
+    "typedoc": "^0.20.24",
+    "typescript": "^4.1.3"
   },
   "ts-standard": {
     "ignore": [
