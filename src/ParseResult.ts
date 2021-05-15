@@ -281,6 +281,6 @@ export interface ParenthesisResult {
  * An intersection.
  */
 export interface IntersectionResult {
-  type: 'INTERSECTION',
+  type: 'INTERSECTION'
   elements: ParseResult[]
 }

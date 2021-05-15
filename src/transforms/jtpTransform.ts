@@ -195,7 +195,7 @@ function getMemberType (type: '.' | '~' | '#'): JtpMemberResult['type'] {
 }
 
 function nestResults (type: 'UNION' | 'INTERSECTION', results: JtpResult[]): JtpResult {
-  if (results.length == 2) {
+  if (results.length === 2) {
     return {
       type,
       left: results[0],
@@ -204,8 +204,8 @@ function nestResults (type: 'UNION' | 'INTERSECTION', results: JtpResult[]): Jtp
   } else {
     return {
       type,
-      left: nestResults(type, results.slice(0, -1)),
-      right: results[results.length - 1]
+      left: results[0],
+      right: nestResults(type, results.slice(1))
     }
   }
 }
