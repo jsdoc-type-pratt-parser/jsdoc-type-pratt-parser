@@ -77,4 +77,4 @@ It adds an increasing number of tests on its own, especially the tests to assure
 
 API Documentation
 -----------------
-A simple api doc can be found here: https://simonseyock.github.io/jsdoc-type-pratt-parser/docs/
+An API documentation can be found here: https://simonseyock.github.io/jsdoc-type-pratt-parser/docs/modules.html
