@@ -1,4 +1,7 @@
-This project is parser for jsdoc types. It is heavily inspired by http://journal.stuffwithstuff.com/2011/03/19/pratt-parsers-expression-parsing-made-easy/, https://github.com/hegemonic/catharsis and https://github.com/jsdoctypeparser/jsdoctypeparser.
+This project is parser for jsdoc types. It is heavily inspired by 
+* http://journal.stuffwithstuff.com/2011/03/19/pratt-parsers-expression-parsing-made-easy/
+* https://github.com/hegemonic/catharsis
+* https://github.com/jsdoctypeparser/jsdoctypeparser
 
 Live Demo
 ---------
@@ -8,10 +11,13 @@ Simple live demo can be found at: https://simonseyock.github.io/jsdoc-type-pratt
 Getting started
 ---------------
 
-The usage is not perfect for now as it is not published as a package for now. Dependening on your needs you might want to run `npm run build` before using. An `index.js` in umd format will be built. All exports from `index.ts` should be available. 
+```
+npm install jsdoc-type-pratt-parser
+```
+
 
 ```js
-import { Parser } from 'src/index'
+import { Parser } from 'jsdoc-type-pratt-parser'
 
 const parser = new Parser({
   mode: 'closure'
@@ -20,16 +26,33 @@ const parser = new Parser({
 const result = parser.parse('myType.<string>')
 ```
 
+This library supports compatibility modes for catharsis and jsdoctypeparser. The provided transform functions attempt to
+ transform the output to the expected output of the target library. This will not always be the same as some types are
+ parsed differently. These modes are thought to make transition easier, but it is advised to use the native output as
+ this will be more uniform and will contain more information.
+ 
 Catharsis compat mode:
 
 ```js
-import { Parser, catharsisTransform } from 'src/index'
+import { Parser, catharsisTransform } from 'jsdoc-type-pratt-parser'
 
 const parser = new Parser({
   mode: 'closure'
 })
 
 const result = catharsisTransform(parser.parse('myType.<string>'))
+```
+
+Jsdoctypeparser compat mode:
+
+```js
+import { Parser, jtpTransform } from 'jsdoc-type-pratt-parser'
+
+const parser = new Parser({
+  mode: 'closure'
+})
+
+const result = jtpTransform(parser.parse('myType.<string>'))
 ```
 
 Available Grammars
@@ -40,7 +63,10 @@ At the moment there are 3 modes supported: 'jsdoc', 'closure' and 'typescipt'
 Tests Status
 ------------
 
-This parser runs most tests of https://github.com/hegemonic/catharsis and also some of the typescript tests of https://github.com/jsdoctypeparser/jsdoctypeparser
+This parser runs most tests of https://github.com/hegemonic/catharsis and of https://github.com/jsdoctypeparser/jsdoctypeparser.
+ It compares the results of the different parsing libraries. If you want to find out where the output differs, look in
+ the tests for the comments `// This seems to be an error of ...` or the `differ` keyword which indicates that differing
+  results are produced.
 
 It adds an increasing number of tests on its own, especially the tests to assure the differences between the modes.
 
