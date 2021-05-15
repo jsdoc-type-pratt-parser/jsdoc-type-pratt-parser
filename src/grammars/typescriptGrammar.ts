@@ -15,6 +15,7 @@ import { NamePathParslet } from '../parslets/NamePathParslet'
 import { KeyValueParslet } from '../parslets/KeyValueParslet'
 import { VariadicParslet } from '../parslets/VariadicParslet'
 import { NameParslet } from '../parslets/NameParslet'
+import { IntersectionParslet } from '../parslets/IntersectionParslet'
 
 export const typescriptGrammar: Grammar = () => {
   const {
@@ -59,7 +60,8 @@ export const typescriptGrammar: Grammar = () => {
       }),
       new KeyValueParslet({
         allowOnlyNameOrNumberProperties: true
-      })
+      }),
+      new IntersectionParslet()
     ]
   }
 }

@@ -5,25 +5,25 @@ import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
 import { assertTerminal } from '../assertTypes'
 
-export class UnionParslet implements InfixParslet {
+export class IntersectionParslet implements InfixParslet {
   accepts (type: TokenType): boolean {
-    return type === '|'
+    return type === '&'
   }
 
   getPrecedence (): Precedence {
-    return Precedence.UNION
+    return Precedence.INTERSECTION
   }
 
   parseInfix (parser: ParserEngine, left: NonTerminalResult): ParseResult {
-    parser.consume('|')
+    parser.consume('&')
 
     const elements = []
     do {
-      elements.push(parser.parseType(Precedence.UNION))
-    } while (parser.consume('|'))
+      elements.push(parser.parseType(Precedence.INTERSECTION))
+    } while (parser.consume('&'))
 
     return {
-      type: 'UNION',
+      type: 'INTERSECTION',
       elements: [assertTerminal(left), ...elements]
     }
   }

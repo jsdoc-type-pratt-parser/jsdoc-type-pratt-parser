@@ -24,6 +24,7 @@ export type ParseResult =
   | NotNullableResult<ParseResult>
   | VariadicResult<ParseResult>
   | ParenthesisResult
+  | IntersectionResult
 
 /**
  * A parse sub result that might not be a valid type expression on its own.
@@ -274,4 +275,12 @@ export interface TupleResult {
 export interface ParenthesisResult {
   type: 'PARENTHESIS'
   element: NonTerminalResult | undefined
+}
+
+/**
+ * An intersection.
+ */
+export interface IntersectionResult {
+  type: 'INTERSECTION'
+  elements: ParseResult[]
 }
