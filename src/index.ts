@@ -3,7 +3,7 @@
  * This package provides a parser for jsdoc types.
  */
 
-export * from './Parser'
+export * from './parse'
 export * from './ParseResult'
 export { transform, TransformRule, TransformFunction, TransformRules } from './transforms/transform'
 export { catharsisTransform } from './transforms/catharsisTransform'

@@ -1,10 +1,10 @@
-import { catharsisTransform, Parser, ParseResult, ParserMode, stringify } from '../../src'
 import { expect } from 'chai'
 import 'mocha'
 import { parse as catharsisParse } from 'catharsis'
 import { parse as jtpParse } from 'jsdoctypeparser'
 import { jtpTransform } from '../../src/transforms/jtpTransform'
 import { simplify } from '../../src/transforms/simplify'
+import { catharsisTransform, parse, ParseResult, ParserMode, stringify } from '../../src'
 
 type JtpMode = 'jsdoc' | 'closure' | 'typescript' | 'permissive'
 
@@ -34,19 +34,16 @@ type Results = {
 }
 
 function testParser (mode: ParserMode, fixture: Fixture): ParseResult | undefined {
-  const parser = new Parser({
-    mode: mode
-  })
   if (fixture.modes.includes(mode)) {
     it(`is parsed in '${mode}' mode`, () => {
-      const result = parser.parse(fixture.input)
+      const result = parse(fixture.input, mode)
       const expected = fixture.diffExpected?.[mode] ?? fixture.expected
       expect(result).to.deep.equal(expected)
     })
-    return parser.parse(fixture.input)
+    return parse(fixture.input, mode)
   } else {
     it(`fails to parse in '${mode}' mode`, () => {
-      expect(() => parser.parse(fixture.input)).to.throw()
+      expect(() => parse(fixture.input, mode)).to.throw()
     })
   }
 }
@@ -135,8 +132,7 @@ export function testFixture (fixture: Fixture): void {
 
         expect(stringified).to.equal(fixture.stringified ?? fixture.input)
 
-        const parser = new Parser({ mode })
-        const reparsed = parser.parse(stringified)
+        const reparsed = parse(stringified, mode)
 
         expect(simplify(reparsed)).to.deep.equal(simplify(result))
       }
