@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AnyResult | jsdoc-type-pratt-parser</title>
+	<title>SpecialNamePath | jsdoc-type-pratt-parser</title>
 	<meta name="description" content="Documentation for jsdoc-type-pratt-parser">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,10 +55,10 @@
 					<a href="../modules.html">jsdoc-type-pratt-parser</a>
 				</li>
 				<li>
-					<a href="anyresult.html">AnyResult</a>
+					<a href="specialnamepath.html">SpecialNamePath</a>
 				</li>
 			</ul>
-			<h1>Interface AnyResult</h1>
+			<h1>Interface SpecialNamePath&lt;Type&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -68,15 +68,23 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>An any result that is represented by <code>*</code>.</p>
+						<p>A module. Often this is a <code>left</code> type of a <a href="namepathresult.html">NamePathResult</a>.</p>
 					</div>
 				</div>
+			</section>
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>Type = <span class="tsd-signature-type">&quot;module&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;event&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;external&quot;</span></h4>
+					</li>
+				</ul>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">AnyResult</span>
+						<span class="target">SpecialNamePath</span>
 					</li>
 				</ul>
 			</section>
@@ -87,7 +95,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="anyresult.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="specialnamepath.html#meta" class="tsd-kind-icon">meta</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="specialnamepath.html#specialtype" class="tsd-kind-icon">special<wbr>Type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="specialnamepath.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="specialnamepath.html#value" class="tsd-kind-icon">value</a></li>
 							</ul>
 						</section>
 					</div>
@@ -96,12 +107,50 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;ANY&quot;</span></div>
+					<a name="meta" class="tsd-anchor"></a>
+					<h3>meta</h3>
+					<div class="tsd-signature tsd-kind-icon">meta<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>quote<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;&#x27;&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;\&quot;&quot;</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/bea1292/src/ParseResult.ts#L146">ParseResult.ts:146</a></li>
+							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/bea1292/src/ParseResult.ts#L197">ParseResult.ts:197</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>quote<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;&#x27;&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;\&quot;&quot;</span></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="specialtype" class="tsd-anchor"></a>
+					<h3>special<wbr>Type</h3>
+					<div class="tsd-signature tsd-kind-icon">special<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Type</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/bea1292/src/ParseResult.ts#L196">ParseResult.ts:196</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="type" class="tsd-anchor"></a>
+					<h3>type</h3>
+					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;SPECIAL_NAME_PATH&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/bea1292/src/ParseResult.ts#L194">ParseResult.ts:194</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="value" class="tsd-anchor"></a>
+					<h3>value</h3>
+					<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/bea1292/src/ParseResult.ts#L195">ParseResult.ts:195</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -120,18 +169,9 @@
 					<li class=" tsd-kind-class">
 						<a href="../classes/parser.html" class="tsd-kind-icon">Parser</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface">
+					<li class=" tsd-kind-interface">
 						<a href="anyresult.html" class="tsd-kind-icon">Any<wbr>Result</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="anyresult.html#type" class="tsd-kind-icon">type</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="functionresult.html" class="tsd-kind-icon">Function<wbr>Result</a>
 					</li>
@@ -180,9 +220,27 @@
 					<li class=" tsd-kind-interface">
 						<a href="parseroptions.html" class="tsd-kind-icon">Parser<wbr>Options</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-has-type-parameter">
 						<a href="specialnamepath.html" class="tsd-kind-icon">Special<wbr>Name<wbr>Path</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="specialnamepath.html#meta" class="tsd-kind-icon">meta</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="specialnamepath.html#specialtype" class="tsd-kind-icon">special<wbr>Type</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="specialnamepath.html#type" class="tsd-kind-icon">type</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="specialnamepath.html#value" class="tsd-kind-icon">value</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface">
 						<a href="stringvalueresult.html" class="tsd-kind-icon">String<wbr>Value<wbr>Result</a>
 					</li>
