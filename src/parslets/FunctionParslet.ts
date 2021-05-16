@@ -4,7 +4,6 @@ import { ParserEngine } from '../ParserEngine'
 import { FunctionResult, ParseResult } from '../ParseResult'
 import { Precedence } from '../Precedence'
 import { BaseFunctionParslet } from './BaseFunctionParslet'
-import { UnexpectedTypeError } from '../errors'
 
 export interface FunctionParsletOptions {
   allowNamedParameters?: string[]

@@ -2,7 +2,7 @@ import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
 import { ParameterList, ParserEngine } from '../ParserEngine'
-import { KeyValueResult, NameResult, ParenthesisResult } from '../ParseResult'
+import { KeyValueResult, ParenthesisResult } from '../ParseResult'
 import { assertTerminal } from '../assertTypes'
 
 export class ParenthesisParslet implements PrefixParslet {

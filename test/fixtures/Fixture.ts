@@ -4,6 +4,7 @@ import 'mocha'
 import { parse as catharsisParse } from 'catharsis'
 import { parse as jtpParse } from 'jsdoctypeparser'
 import { jtpTransform } from '../../src/transforms/jtpTransform'
+import { simplify } from '../../src/transforms/simplify'
 
 type JtpMode = 'jsdoc' | 'closure' | 'typescript' | 'permissive'
 
@@ -122,9 +123,22 @@ export function testFixture (fixture: Fixture): void {
 
     it('should stringify', () => {
       // TODO: at the moment this does only test one possible stringification
-      const result = results.jsdoc ?? results.closure ?? results.typescript
-      if (result !== undefined) {
-        expect(stringify(result)).to.equal(fixture.stringified ?? fixture.input)
+
+      const mode: ParserMode | undefined = (results.jsdoc !== undefined)
+        ? 'jsdoc' : (results.closure !== undefined)
+          ? 'closure' : (results.typescript !== undefined)
+            ? 'typescript' : undefined
+
+      if (mode !== undefined) {
+        const result = results[mode] as ParseResult
+        const stringified = stringify(result)
+
+        expect(stringified).to.equal(fixture.stringified ?? fixture.input)
+
+        const parser = new Parser({ mode })
+        const reparsed = parser.parse(stringified)
+
+        expect(simplify(reparsed)).to.deep.equal(simplify(result))
       }
     })
   })

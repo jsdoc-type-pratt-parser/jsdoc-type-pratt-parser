@@ -1,4 +1,4 @@
-import { KeyValueResult, NonTerminalResult, ParenthesisResult, ParseResult } from '../ParseResult'
+import { KeyValueResult, NonTerminalResult, ParseResult } from '../ParseResult'
 import { assertNamedKeyValueOrTerminal } from '../assertTypes'
 import { IntermediateResult } from '../ParserEngine'
 import { UnexpectedTypeError } from '../errors'

@@ -5,7 +5,6 @@ import { IntermediateResult, ParserEngine } from '../ParserEngine'
 import { FunctionResult } from '../ParseResult'
 import { BaseFunctionParslet } from './BaseFunctionParslet'
 import { assertNamedKeyValueOrName } from '../assertTypes'
-import { UnexpectedTypeError } from '../errors'
 
 export class ArrowFunctionWithoutParametersParslet implements PrefixParslet {
   accepts (type: TokenType, next: TokenType): boolean {

@@ -1,4 +1,4 @@
-import { notAvailableTransform, transform, TransformRules } from './transform'
+import { transform, TransformRules } from './transform'
 import { NonTerminalResult, ParseResult } from '../ParseResult'
 
 function applyPosition (position: 'PREFIX' | 'SUFFIX', target: string, value: string): string {

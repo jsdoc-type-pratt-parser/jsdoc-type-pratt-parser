@@ -1,5 +1,5 @@
 import { IntermediateResult, ParserEngine } from '../ParserEngine'
-import { NonTerminalResult, ParseResult } from '../ParseResult'
+import { ParseResult } from '../ParseResult'
 import { TokenType } from '../lexer/Token'
 import { InfixParslet } from './Parslet'
 import { Precedence } from '../Precedence'

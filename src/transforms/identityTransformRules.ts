@@ -1,11 +1,12 @@
-import { notAvailableTransform, transform, TransformRules } from './transform'
+import { TransformRules } from './transform'
 import {
   FunctionResult,
   KeyValueResult,
   NameResult,
   NonTerminalResult,
-  NumberResult, ParenthesisResult,
-  ParseResult, StringValueResult,
+  NumberResult,
+  ParseResult,
+  StringValueResult,
   SymbolResult,
   VariadicResult
 } from '../ParseResult'
@@ -89,7 +90,7 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
 
     IMPORT: (result, transform) => ({
       type: 'IMPORT',
-      element: transform(result) as StringValueResult
+      element: transform(result.element) as StringValueResult
     }),
 
     ANY: result => result,
