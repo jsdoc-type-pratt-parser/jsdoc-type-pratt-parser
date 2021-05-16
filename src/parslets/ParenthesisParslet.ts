@@ -1,8 +1,9 @@
 import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
-import { ParserEngine } from '../ParserEngine'
-import { ParenthesisResult } from '../ParseResult'
+import { ParameterList, ParserEngine } from '../ParserEngine'
+import { KeyValueResult, ParenthesisResult } from '../ParseResult'
+import { assertTerminal } from '../assertTypes'
 
 export class ParenthesisParslet implements PrefixParslet {
   accepts (type: TokenType, next: TokenType): boolean {
@@ -13,15 +14,28 @@ export class ParenthesisParslet implements PrefixParslet {
     return Precedence.PARENTHESIS
   }
 
-  parsePrefix (parser: ParserEngine): ParenthesisResult {
+  parsePrefix (parser: ParserEngine): ParenthesisResult | ParameterList {
     parser.consume('(')
     const result = parser.tryParseType(Precedence.ALL)
     if (!parser.consume(')')) {
       throw new Error('Unterminated parenthesis')
     }
+    if (result === undefined) {
+      return {
+        type: 'PARAMETER_LIST',
+        elements: []
+      }
+    } else if (result.type === 'PARAMETER_LIST') {
+      return result
+    } else if (result.type === 'KEY_VALUE' && result.left.type === 'NAME') {
+      return {
+        type: 'PARAMETER_LIST',
+        elements: [result as KeyValueResult]
+      }
+    }
     return {
       type: 'PARENTHESIS',
-      element: result // NOTE: this can only be non-terminal or undefined if it is a parameter list
+      element: assertTerminal(result)
     }
   }
 }

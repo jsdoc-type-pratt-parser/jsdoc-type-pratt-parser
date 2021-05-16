@@ -22,7 +22,7 @@ export class ObjectParslet implements PrefixParslet {
 
     if (!parser.consume('}')) {
       do {
-        const field = parser.parseNonTerminalType(Precedence.OBJECT)
+        const field = parser.parseIntermediateType(Precedence.OBJECT)
         if (field.type !== 'NAME' && field.type !== 'NUMBER' && field.type !== 'KEY_VALUE') {
           throw new Error('records may only contain \'NAME\', \'NUMBER\' or \'KEY_VALUE\' fields.')
         }

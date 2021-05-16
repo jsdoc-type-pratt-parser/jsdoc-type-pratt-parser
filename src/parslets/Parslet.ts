@@ -1,6 +1,5 @@
 import { TokenType } from '../lexer/Token'
-import { ParserEngine } from '../ParserEngine'
-import { NonTerminalResult } from '../ParseResult'
+import { IntermediateResult, ParserEngine } from '../ParserEngine'
 import { Precedence } from '../Precedence'
 
 export interface Parslet {
@@ -9,9 +8,9 @@ export interface Parslet {
 }
 
 export interface PrefixParslet extends Parslet {
-  parsePrefix: (parser: ParserEngine) => NonTerminalResult
+  parsePrefix: (parser: ParserEngine) => IntermediateResult
 }
 
 export interface InfixParslet extends Parslet {
-  parseInfix: (parser: ParserEngine, left: NonTerminalResult) => NonTerminalResult
+  parseInfix: (parser: ParserEngine, left: IntermediateResult) => IntermediateResult
 }

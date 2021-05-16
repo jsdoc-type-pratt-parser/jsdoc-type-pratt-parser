@@ -1,7 +1,7 @@
 import { InfixParslet, PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
-import { ParserEngine } from '../ParserEngine'
-import { NonTerminalResult, ParseResult, VariadicResult } from '../ParseResult'
+import { IntermediateResult, ParserEngine } from '../ParserEngine'
+import { ParseResult, VariadicResult } from '../ParseResult'
 import { Precedence } from '../Precedence'
 import { assertTerminal } from '../assertTypes'
 
@@ -53,7 +53,7 @@ export class VariadicParslet implements PrefixParslet, InfixParslet {
     }
   }
 
-  parseInfix (parser: ParserEngine, left: NonTerminalResult): ParseResult {
+  parseInfix (parser: ParserEngine, left: IntermediateResult): ParseResult {
     parser.consume('...')
     return {
       type: 'VARIADIC',

@@ -4,7 +4,6 @@ import { ParserEngine } from '../ParserEngine'
 import { FunctionResult, ParseResult } from '../ParseResult'
 import { Precedence } from '../Precedence'
 import { BaseFunctionParslet } from './BaseFunctionParslet'
-import { UnexpectedTypeError } from '../errors'
 
 export interface FunctionParsletOptions {
   allowNamedParameters?: string[]
@@ -48,11 +47,7 @@ export class FunctionParslet extends BaseFunctionParslet implements PrefixParsle
     }
 
     if (hasParenthesis) {
-      const value = parser.parseNonTerminalType(Precedence.FUNCTION)
-
-      if (value.type !== 'PARENTHESIS') {
-        throw new UnexpectedTypeError(value)
-      }
+      const value = parser.parseIntermediateType(Precedence.FUNCTION)
 
       if (this.allowNamedParameters === undefined) {
         result.parameters = this.getUnnamedParameters(value)

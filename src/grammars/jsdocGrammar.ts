@@ -7,7 +7,7 @@ import { baseGrammar } from './baseGrammar'
 import { NamePathParslet } from '../parslets/NamePathParslet'
 import { KeyValueParslet } from '../parslets/KeyValueParslet'
 import { VariadicParslet } from '../parslets/VariadicParslet'
-import { ModuleParslet } from '../parslets/ModuleParslet'
+import { SpecialNamePathParslet } from '../parslets/SpecialNamePathParslet'
 import { NameParslet } from '../parslets/NameParslet'
 import { NotNullableParslet } from '../parslets/NotNullableParslet'
 
@@ -26,7 +26,7 @@ export const jsdocGrammar: Grammar = () => {
         allowNoReturnType: true
       }),
       new StringValueParslet(),
-      new ModuleParslet(),
+      new SpecialNamePathParslet(),
       new VariadicParslet({
         allowEnclosingBrackets: true
       }),

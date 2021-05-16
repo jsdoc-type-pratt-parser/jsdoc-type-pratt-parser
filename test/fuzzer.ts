@@ -1,4 +1,4 @@
-import { Parser } from '../src/Parser'
+import { parse } from '../src/parse'
 
 interface BaseFuzzingRule {
   getString: () => string
@@ -172,13 +172,11 @@ if (process.argv.length !== 3) {
 
 const results: any[] = []
 
-const parser = new Parser({ mode: 'typescript' })
-
 while (results.length < parseInt(process.argv[2], 10)) {
   const result: any = {}
   try {
     result.fuzzed = fuzz(4)
-    result.parsed = parser.parse(result.fuzzed)
+    result.parsed = parse(result.fuzzed, 'typescript')
   } catch (e) {
     result.error = e.toString()
   }

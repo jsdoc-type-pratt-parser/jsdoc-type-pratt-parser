@@ -18,7 +18,7 @@ export const closureGrammar: Grammar = () => {
     prefixParslets: [
       ...prefixParslets,
       new NameParslet({
-        allowedAdditionalTokens: []
+        allowedAdditionalTokens: ['module', 'event', 'external']
       }),
       new TypeOfParslet(),
       new FunctionParslet({

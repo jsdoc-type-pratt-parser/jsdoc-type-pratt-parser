@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import 'mocha'
 import { ParseResult } from '../src/ParseResult'
-import { Parser } from '../src/Parser'
+import { parse } from '../src/parse'
 
 describe('basics', () => {
   it('should parse names', () => {
@@ -13,8 +13,7 @@ describe('basics', () => {
         reservedWord: false
       }
     }
-    const parser = new Parser()
-    const result = parser.parse(typeString)
+    const result = parse(typeString, 'typescript')
     expect(result).to.deep.equal(expected)
   })
 
@@ -74,10 +73,7 @@ describe('basics', () => {
       ]
     }
 
-    const parser = new Parser({
-      mode: 'typescript'
-    })
-    const result = parser.parse(typeString)
+    const result = parse(typeString, 'typescript')
     expect(result).to.deep.equal(expected)
   })
 })

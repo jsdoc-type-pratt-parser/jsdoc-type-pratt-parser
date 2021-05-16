@@ -28,6 +28,8 @@ export type TokenType =
   | 'this'
   | 'new'
   | 'module'
+  | 'event'
+  | 'external'
   | 'typeof'
   | 'keyof'
   | 'import'

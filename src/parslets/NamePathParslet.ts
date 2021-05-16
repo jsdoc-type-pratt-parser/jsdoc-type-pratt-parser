@@ -1,8 +1,8 @@
 import { InfixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
-import { ParserEngine } from '../ParserEngine'
-import { NonTerminalResult, ParseResult } from '../ParseResult'
+import { IntermediateResult, ParserEngine } from '../ParserEngine'
+import { NameResult, NumberResult, ParseResult, SpecialNamePath } from '../ParseResult'
 import { assertTerminal } from '../assertTypes'
 import { UnexpectedTypeError } from '../errors'
 import { StringValueParslet } from './StringValueParslet'
@@ -28,7 +28,7 @@ export class NamePathParslet implements InfixParslet {
     return Precedence.NAME_PATH
   }
 
-  parseInfix (parser: ParserEngine, left: NonTerminalResult): ParseResult {
+  parseInfix (parser: ParserEngine, left: IntermediateResult): ParseResult {
     const type = parser.getToken().text as '#' | '~' | '.'
 
     parser.consume('.') || parser.consume('~') || parser.consume('#')
@@ -38,8 +38,8 @@ export class NamePathParslet implements InfixParslet {
     if (parser.getToken().type === 'StringValue') {
       next = this.stringValueParslet.parsePrefix(parser)
     } else {
-      next = parser.parseNonTerminalType(Precedence.NAME_PATH)
-      if (next.type !== 'NAME' && next.type !== 'NUMBER') {
+      next = parser.parseIntermediateType(Precedence.NAME_PATH)
+      if (next.type !== 'NAME' && next.type !== 'NUMBER' && !(next.type === 'SPECIAL_NAME_PATH' && next.specialType === 'event')) {
         throw new UnexpectedTypeError(next)
       }
     }
@@ -47,7 +47,7 @@ export class NamePathParslet implements InfixParslet {
     return {
       type: 'NAME_PATH',
       left: assertTerminal(left),
-      right: next,
+      right: next as NameResult | NumberResult | SpecialNamePath<'event'>,
       pathType: type
     }
   }

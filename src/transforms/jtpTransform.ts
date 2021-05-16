@@ -135,7 +135,7 @@ export interface JtpMemberResult {
   owner: JtpResult
   name: string
   quoteStyle: JtpQuoteStyle
-  hasEventPrefix: false
+  hasEventPrefix: boolean
 }
 
 export interface JtpUnionResult {
@@ -380,22 +380,39 @@ const jtpRules: TransformRules<JtpResult> = {
     }
   },
 
-  MODULE: result => ({
-    type: 'MODULE',
-    value: {
-      type: 'FILE_PATH',
-      quoteStyle: getQuoteStyle(result.meta.quote),
-      path: result.value
+  SPECIAL_NAME_PATH: result => {
+    if (result.specialType !== 'module') {
+      throw new Error(`jsdoctypeparser does not support type ${result.specialType} at this point.`)
     }
-  }),
+    return {
+      type: 'MODULE',
+      value: {
+        type: 'FILE_PATH',
+        quoteStyle: getQuoteStyle(result.meta.quote),
+        path: result.value
+      }
+    }
+  },
 
   NAME_PATH: (result, transform) => {
+    let hasEventPrefix = false
+    let name
+    let quoteStyle
+    if (result.right.type === 'SPECIAL_NAME_PATH' && result.right.specialType === 'event') {
+      hasEventPrefix = true
+      name = result.right.value
+      quoteStyle = getQuoteStyle(result.right.meta.quote)
+    } else {
+      name = `${result.right.value}`
+      quoteStyle = result.right.type === 'STRING_VALUE' ? getQuoteStyle(result.right.meta.quote) : 'none'
+    }
+
     const transformed: JtpMemberResult = {
       type: getMemberType(result.pathType),
       owner: transform(result.left),
-      name: `${result.right.value}`,
-      quoteStyle: result.right.type === 'STRING_VALUE' ? getQuoteStyle(result.right.meta.quote) : 'none',
-      hasEventPrefix: false
+      name,
+      quoteStyle,
+      hasEventPrefix
     }
 
     if (transformed.owner.type === 'MODULE') {
@@ -433,8 +450,7 @@ const jtpRules: TransformRules<JtpResult> = {
   INTERSECTION: (result, transform) => nestResults('INTERSECTION', result.elements.map(transform)),
 
   NUMBER: notAvailableTransform,
-  SYMBOL: notAvailableTransform,
-  PARAMETER_LIST: notAvailableTransform
+  SYMBOL: notAvailableTransform
 }
 
 export function jtpTransform (result: ParseResult): JtpResult {
