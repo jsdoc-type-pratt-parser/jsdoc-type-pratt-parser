@@ -62,7 +62,7 @@ export function stringifyRules (): TransformRules<string> {
 
     KEY_VALUE: (result, transform) => `${transform(result.left)}: ${transform(result.right)}`,
 
-    MODULE: result => `module:${result.meta.quote ?? ''}${result.value}${result.meta.quote ?? ''}`,
+    SPECIAL_NAME_PATH: result => `${result.specialType}:${result.meta.quote ?? ''}${result.value}${result.meta.quote ?? ''}`,
 
     NOT_NULLABLE: (result, transform) => applyPosition(result.meta.position, transform(result.element), '!'),
 

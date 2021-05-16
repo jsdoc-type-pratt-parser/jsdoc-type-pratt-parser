@@ -151,7 +151,8 @@ export const jsdocFixtures: Fixture[] = [
       type: 'NAME_PATH',
       left: {
         value: 'foo/bar/baz',
-        type: 'MODULE',
+        type: 'SPECIAL_NAME_PATH',
+        specialType: 'module',
         meta: {
           quote: undefined
         }
@@ -184,7 +185,8 @@ export const jsdocFixtures: Fixture[] = [
       type: 'NAME_PATH',
       left: {
         value: 'foo-bar/baz',
-        type: 'MODULE',
+        type: 'SPECIAL_NAME_PATH',
+        specialType: 'module',
         meta: {
           quote: undefined
         }

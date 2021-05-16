@@ -12,13 +12,13 @@ export type ParseResult =
   | UnknownResult
   | FunctionResult
   | ObjectResult
-  | ModuleResult
   | NamePathResult
   | SymbolResult
   | TypeOfResult
   | KeyOfResult
   | ImportResult
   | TupleResult
+  | SpecialNamePath
   | OptionalResult<ParseResult>
   | NullableResult<ParseResult>
   | NotNullableResult<ParseResult>
@@ -190,9 +190,10 @@ export interface ObjectResult {
 /**
  * A module. Often this is a `left` type of a {@link NamePathResult}.
  */
-export interface ModuleResult {
-  type: 'MODULE'
+export interface SpecialNamePath<Type = 'module' | 'event' | 'external'> {
+  type: 'SPECIAL_NAME_PATH'
   value: string
+  specialType: Type
   meta: {
     quote: '\'' | '"' | undefined
   }
@@ -204,7 +205,7 @@ export interface ModuleResult {
 export interface NamePathResult {
   type: 'NAME_PATH'
   left: ParseResult
-  right: NameResult | NumberResult | StringValueResult
+  right: NameResult | NumberResult | StringValueResult | SpecialNamePath<'event'>
   pathType: '~' | '#' | '.'
 }
 

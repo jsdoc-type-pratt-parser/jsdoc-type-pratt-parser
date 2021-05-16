@@ -2,7 +2,7 @@ import { InfixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
 import { IntermediateResult, ParserEngine } from '../ParserEngine'
-import { ParseResult } from '../ParseResult'
+import { NameResult, NumberResult, ParseResult, SpecialNamePath } from '../ParseResult'
 import { assertTerminal } from '../assertTypes'
 import { UnexpectedTypeError } from '../errors'
 import { StringValueParslet } from './StringValueParslet'
@@ -39,7 +39,7 @@ export class NamePathParslet implements InfixParslet {
       next = this.stringValueParslet.parsePrefix(parser)
     } else {
       next = parser.parseIntermediateType(Precedence.NAME_PATH)
-      if (next.type !== 'NAME' && next.type !== 'NUMBER') {
+      if (next.type !== 'NAME' && next.type !== 'NUMBER' && !(next.type === 'SPECIAL_NAME_PATH' && next.specialType === 'event')) {
         throw new UnexpectedTypeError(next)
       }
     }
@@ -47,7 +47,7 @@ export class NamePathParslet implements InfixParslet {
     return {
       type: 'NAME_PATH',
       left: assertTerminal(left),
-      right: next,
+      right: next as NameResult | NumberResult | SpecialNamePath<'event'>,
       pathType: type
     }
   }

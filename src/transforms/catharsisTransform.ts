@@ -150,11 +150,11 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
     expression: transform(result.left)
   }),
 
-  MODULE: result => {
+  SPECIAL_NAME_PATH: result => {
     const quote = result.meta.quote ?? ''
     return {
       type: 'NameExpression',
-      name: 'module:' + quote + result.value + quote
+      name: result.specialType + ':' + quote + result.value + quote
     }
   },
 

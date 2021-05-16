@@ -168,6 +168,8 @@ const rules = [
   makeKeyWordRule('this'),
   makeKeyWordRule('new'),
   makeKeyWordRule('module'),
+  makeKeyWordRule('event'),
+  makeKeyWordRule('external'),
   makeKeyWordRule('typeof'),
   makeKeyWordRule('keyof'),
   makeKeyWordRule('import'),

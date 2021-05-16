@@ -48,7 +48,7 @@ export const typescriptGrammar: Grammar = () => {
         allowEnclosingBrackets: false
       }),
       new NameParslet({
-        allowedAdditionalTokens: []
+        allowedAdditionalTokens: ['module', 'event', 'external']
       })
     ],
     infixParslets: [

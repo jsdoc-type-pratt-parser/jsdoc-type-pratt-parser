@@ -79,7 +79,7 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
       }
     }),
 
-    MODULE: result => result,
+    SPECIAL_NAME_PATH: result => result,
 
     KEY_VALUE: (result, transform) => ({
       type: 'KEY_VALUE',

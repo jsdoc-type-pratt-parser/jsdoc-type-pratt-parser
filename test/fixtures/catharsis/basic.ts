@@ -556,7 +556,8 @@ export const basicFixtures: Fixture[] = [
     description: 'single quoted module path',
     input: 'module:\'some-path\'',
     expected: {
-      type: 'MODULE',
+      type: 'SPECIAL_NAME_PATH',
+      specialType: 'module',
       value: 'some-path',
       meta: {
         quote: '\''
@@ -578,7 +579,8 @@ export const basicFixtures: Fixture[] = [
     description: 'double quoted module path',
     input: 'module:"some-path"',
     expected: {
-      type: 'MODULE',
+      type: 'SPECIAL_NAME_PATH',
+      specialType: 'module',
       value: 'some-path',
       meta: {
         quote: '"'
@@ -603,7 +605,8 @@ export const basicFixtures: Fixture[] = [
       type: 'NAME_PATH',
       left: {
         value: '@prefix/my-module',
-        type: 'MODULE',
+        type: 'SPECIAL_NAME_PATH',
+        specialType: 'module',
         meta: {
           quote: undefined
         }
