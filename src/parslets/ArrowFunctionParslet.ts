@@ -1,8 +1,8 @@
 import { InfixParslet, PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
-import { ParserEngine } from '../ParserEngine'
-import { FunctionResult, NonTerminalResult } from '../ParseResult'
+import { IntermediateResult, ParserEngine } from '../ParserEngine'
+import { FunctionResult } from '../ParseResult'
 import { BaseFunctionParslet } from './BaseFunctionParslet'
 import { assertNamedKeyValueOrName } from '../assertTypes'
 import { UnexpectedTypeError } from '../errors'
@@ -42,10 +42,7 @@ export class ArrowFunctionWithParametersParslet extends BaseFunctionParslet impl
     return Precedence.ARROW
   }
 
-  parseInfix (parser: ParserEngine, left: NonTerminalResult): FunctionResult {
-    if (left.type !== 'PARENTHESIS') {
-      throw new UnexpectedTypeError(left)
-    }
+  parseInfix (parser: ParserEngine, left: IntermediateResult): FunctionResult {
     parser.consume('=>')
 
     return {

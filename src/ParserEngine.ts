@@ -2,10 +2,17 @@ import { EarlyEndOfParseError, NoParsletFoundError } from './errors'
 import { Token, TokenType } from './lexer/Token'
 import { Lexer } from './lexer/Lexer'
 import { InfixParslet, PrefixParslet } from './parslets/Parslet'
-import { NonTerminalResult, ParseResult } from './ParseResult'
+import { KeyValueResult, NonTerminalResult, ParseResult } from './ParseResult'
 import { Grammar } from './grammars/Grammar'
 import { assertTerminal } from './assertTypes'
 import { Precedence } from './Precedence'
+
+export interface ParameterList {
+  type: 'PARAMETER_LIST'
+  elements: Array<KeyValueResult | ParseResult>
+}
+
+export type IntermediateResult = NonTerminalResult | ParameterList
 
 export class ParserEngine {
   private readonly prefixParslets: PrefixParslet[]
@@ -45,10 +52,10 @@ export class ParserEngine {
     })
   }
 
-  public tryParseType (precedence: Precedence): NonTerminalResult | undefined {
+  public tryParseType (precedence: Precedence): IntermediateResult | undefined {
     const preserve = this.lexer.clone()
     try {
-      return this.parseNonTerminalType(precedence)
+      return this.parseIntermediateType(precedence)
     } catch (e) {
       if (e instanceof NoParsletFoundError) {
         this.lexer = preserve
@@ -60,10 +67,10 @@ export class ParserEngine {
   }
 
   public parseType (precedence: Precedence): ParseResult {
-    return assertTerminal(this.parseNonTerminalType(precedence))
+    return assertTerminal(this.parseIntermediateType(precedence))
   }
 
-  public parseNonTerminalType (precedence: Precedence): NonTerminalResult {
+  public parseIntermediateType (precedence: Precedence): IntermediateResult {
     const pParslet = this.getPrefixParslet()
 
     if (pParslet === undefined) {

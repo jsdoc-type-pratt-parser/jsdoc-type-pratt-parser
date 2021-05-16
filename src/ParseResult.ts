@@ -33,7 +33,6 @@ export type NonTerminalResult =
   ParseResult
   | KeyValueResult<ParseResult | NameResult | NumberResult>
   | NumberResult
-  | ParameterList
 
 /**
  * `element` is optional.
@@ -253,15 +252,6 @@ export interface ImportResult {
 }
 
 /**
- * A parameter list of a function. This is a intermediate result that should never occur in a final result.
- * Is a {@link NonTerminalResult}.
- */
-export interface ParameterList {
-  type: 'PARAMETER_LIST'
-  elements: Array<KeyValueResult | ParseResult>
-}
-
-/**
  * A tuple containing multiple `elements`.
  */
 export interface TupleResult {
@@ -274,7 +264,7 @@ export interface TupleResult {
  */
 export interface ParenthesisResult {
   type: 'PARENTHESIS'
-  element: NonTerminalResult | undefined
+  element: ParseResult
 }
 
 /**

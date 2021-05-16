@@ -250,7 +250,6 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
 
   IMPORT: notAvailableTransform,
   KEY_OF: notAvailableTransform,
-  PARAMETER_LIST: notAvailableTransform,
   TUPLE: notAvailableTransform,
   TYPE_OF: notAvailableTransform,
   INTERSECTION: notAvailableTransform

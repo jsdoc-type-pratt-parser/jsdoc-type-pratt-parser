@@ -1,8 +1,8 @@
 import { InfixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
-import { ParserEngine } from '../ParserEngine'
-import { NonTerminalResult } from '../ParseResult'
+import { IntermediateResult, ParserEngine } from '../ParserEngine'
+import { KeyValueResult, NumberResult, ParseResult } from '../ParseResult'
 import { assertTerminal } from '../assertTypes'
 import { UnexpectedTypeError } from '../errors'
 
@@ -25,7 +25,7 @@ export class KeyValueParslet implements InfixParslet {
     return Precedence.KEY_VALUE
   }
 
-  parseInfix (parser: ParserEngine, left: NonTerminalResult): NonTerminalResult {
+  parseInfix (parser: ParserEngine, left: IntermediateResult): KeyValueResult<ParseResult | NumberResult> {
     if (this.allowOnlyNameOrNumberProperties && left.type !== 'NUMBER' && left.type !== 'NAME') {
       throw new UnexpectedTypeError(left)
     }

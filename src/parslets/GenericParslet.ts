@@ -1,4 +1,4 @@
-import { ParserEngine } from '../ParserEngine'
+import { IntermediateResult, ParserEngine } from '../ParserEngine'
 import { NonTerminalResult, ParseResult } from '../ParseResult'
 import { TokenType } from '../lexer/Token'
 import { InfixParslet } from './Parslet'
@@ -14,7 +14,7 @@ export class GenericParslet implements InfixParslet {
     return Precedence.GENERIC
   }
 
-  parseInfix (parser: ParserEngine, left: NonTerminalResult): ParseResult {
+  parseInfix (parser: ParserEngine, left: IntermediateResult): ParseResult {
     const dot = parser.consume('.')
     parser.consume('<')
 

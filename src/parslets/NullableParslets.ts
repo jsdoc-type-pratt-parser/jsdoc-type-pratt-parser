@@ -1,7 +1,7 @@
 import { InfixParslet, PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
-import { ParserEngine } from '../ParserEngine'
-import { NonTerminalResult, ParseResult } from '../ParseResult'
+import { IntermediateResult, ParserEngine } from '../ParserEngine'
+import { ParseResult } from '../ParseResult'
 import { Precedence } from '../Precedence'
 import { isQuestionMarkUnknownType } from './isQuestionMarkUnkownType'
 import { assertTerminal } from '../assertTypes'
@@ -36,7 +36,7 @@ export class NullableInfixParslet implements InfixParslet {
     return Precedence.NULLABLE
   }
 
-  parseInfix (parser: ParserEngine, left: NonTerminalResult): ParseResult {
+  parseInfix (parser: ParserEngine, left: IntermediateResult): ParseResult {
     parser.consume('?')
     return {
       type: 'NULLABLE',

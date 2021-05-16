@@ -35,7 +35,7 @@ export class TupleParslet implements PrefixParslet {
       return result
     }
 
-    const typeList = parser.parseNonTerminalType(Precedence.ALL)
+    const typeList = parser.parseIntermediateType(Precedence.ALL)
     if (typeList.type === 'PARAMETER_LIST') {
       result.elements = typeList.elements.map(assertTerminal)
     } else {

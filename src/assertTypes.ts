@@ -1,7 +1,8 @@
-import { KeyValueResult, NameResult, NonTerminalResult, NumberResult, ParseResult, VariadicResult } from './ParseResult'
+import { KeyValueResult, NameResult, NumberResult, ParseResult, VariadicResult } from './ParseResult'
 import { UnexpectedTypeError } from './errors'
+import { IntermediateResult } from './ParserEngine'
 
-export function assertTerminal (result?: NonTerminalResult): ParseResult {
+export function assertTerminal (result?: IntermediateResult): ParseResult {
   if (result === undefined) {
     throw new Error('Unexpected undefined')
   }
@@ -11,7 +12,7 @@ export function assertTerminal (result?: NonTerminalResult): ParseResult {
   return result
 }
 
-export function assertNamedKeyValueOrTerminal (result: NonTerminalResult): KeyValueResult | ParseResult {
+export function assertNamedKeyValueOrTerminal (result: IntermediateResult): KeyValueResult | ParseResult {
   if (result.type === 'KEY_VALUE') {
     if (result.left.type !== 'NAME') {
       throw new UnexpectedTypeError(result)
@@ -21,7 +22,7 @@ export function assertNamedKeyValueOrTerminal (result: NonTerminalResult): KeyVa
   return assertTerminal(result)
 }
 
-export function assertNamedKeyValueOrName (result: NonTerminalResult): KeyValueResult | NameResult {
+export function assertNamedKeyValueOrName (result: IntermediateResult): KeyValueResult | NameResult {
   if (result.type === 'KEY_VALUE') {
     if (result.left.type !== 'NAME') {
       throw new UnexpectedTypeError(result)
@@ -33,7 +34,7 @@ export function assertNamedKeyValueOrName (result: NonTerminalResult): KeyValueR
   return result
 }
 
-export function assertNumberOrVariadicName (result: NonTerminalResult): NumberResult | NameResult | VariadicResult<NameResult> {
+export function assertNumberOrVariadicName (result: IntermediateResult): NumberResult | NameResult | VariadicResult<NameResult> {
   if (result.type === 'VARIADIC') {
     if (result.element?.type === 'NAME') {
       return result as VariadicResult<NameResult>

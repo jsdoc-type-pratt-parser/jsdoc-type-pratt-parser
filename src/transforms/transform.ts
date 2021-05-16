@@ -2,7 +2,7 @@ import { FunctionResult, KeyValueResult, NonTerminalResult, ParseResult } from '
 
 export type TransformFunction<TransformResult> = (parseResult: NonTerminalResult) => TransformResult
 
-export type TransformRule<TransformResult, ParseResultType extends NonTerminalResult> = (parseResult: ParseResultType, transform: TransformFunction<TransformResult>) => TransformResult
+export type TransformRule<TransformResult, InputType extends NonTerminalResult> = (parseResult: InputType, transform: TransformFunction<TransformResult>) => TransformResult
 
 export type TransformRules<TransformResult> = {
   [P in NonTerminalResult as P['type']]: TransformRule<TransformResult, P>

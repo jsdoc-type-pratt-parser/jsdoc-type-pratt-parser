@@ -46,7 +46,13 @@ export function stringifyRules (): TransformRules<string> {
 
     GENERIC: (result, transform) => {
       if (result.meta.brackets === '[]') {
-        return `${transform(result.elements[0])}[]`
+        const element = result.elements[0]
+        const transformed = transform(element)
+        if (element.type === 'UNION' || element.type === 'INTERSECTION') {
+          return `(${transformed})[]`
+        } else {
+          return `${transformed}[]`
+        }
       } else {
         return `${transform(result.left)}${result.meta.dot ? '.' : ''}<${result.elements.map(transform).join(', ')}>`
       }
@@ -70,8 +76,6 @@ export function stringifyRules (): TransformRules<string> {
 
     OPTIONAL: (result, transform) => applyPosition(result.meta.position, transform(result.element), '='),
 
-    PARAMETER_LIST: notAvailableTransform,
-
     SYMBOL: (result, transform) => `${result.value}(${result.element !== undefined ? transform(result.element) : ''})`,
 
     TYPE_OF: (result, transform) => `typeof ${transform(result.element)}`,
@@ -86,6 +90,8 @@ export function stringifyRules (): TransformRules<string> {
   }
 }
 
+const storedStringifyRules = stringifyRules()
+
 export function stringify (result: ParseResult): string {
-  return transform(stringifyRules(), result)
+  return transform(storedStringifyRules, result)
 }

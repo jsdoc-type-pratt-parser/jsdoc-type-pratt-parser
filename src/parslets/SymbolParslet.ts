@@ -1,7 +1,7 @@
 import { InfixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
-import { ParserEngine } from '../ParserEngine'
-import { NonTerminalResult, ParseResult, SymbolResult } from '../ParseResult'
+import { IntermediateResult, ParserEngine } from '../ParserEngine'
+import { ParseResult, SymbolResult } from '../ParseResult'
 import { Precedence } from '../Precedence'
 import { assertNumberOrVariadicName } from '../assertTypes'
 
@@ -14,7 +14,7 @@ export class SymbolParslet implements InfixParslet {
     return Precedence.SYMBOL
   }
 
-  parseInfix (parser: ParserEngine, left: NonTerminalResult): ParseResult {
+  parseInfix (parser: ParserEngine, left: IntermediateResult): ParseResult {
     if (left.type !== 'NAME') {
       throw new Error('Symbol expects a name on the left side. (Reacting on \'(\')')
     }
@@ -24,7 +24,7 @@ export class SymbolParslet implements InfixParslet {
       value: left.value
     }
     if (!parser.consume(')')) {
-      const next = parser.parseNonTerminalType(Precedence.SYMBOL)
+      const next = parser.parseIntermediateType(Precedence.SYMBOL)
       result.element = assertNumberOrVariadicName(next)
       if (!parser.consume(')')) {
         throw new Error('Symbol does not end after value')

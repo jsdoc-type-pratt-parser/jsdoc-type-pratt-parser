@@ -433,8 +433,7 @@ const jtpRules: TransformRules<JtpResult> = {
   INTERSECTION: (result, transform) => nestResults('INTERSECTION', result.elements.map(transform)),
 
   NUMBER: notAvailableTransform,
-  SYMBOL: notAvailableTransform,
-  PARAMETER_LIST: notAvailableTransform
+  SYMBOL: notAvailableTransform
 }
 
 export function jtpTransform (result: ParseResult): JtpResult {
