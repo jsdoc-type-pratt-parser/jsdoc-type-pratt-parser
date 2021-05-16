@@ -62,11 +62,11 @@
 					<a href="https://www.npmjs.com/package/jsdoc-type-pratt-parser"><img src="https://badgen.net/npm/v/jsdoc-type-pratt-parser" alt="Npm Package"></a>
 				<a href="https://github.com/standard/ts-standard"><img src="https://badgen.net/badge/code%20style/ts-standard/blue?icon=typescript" alt="Code Style"></a></p>
 				<p>This project is a parser for jsdoc types. It is heavily inspired by the existing libraries catharsis and
-				jsdoctypeparser, but does not use PEG.js, but is written as a pratt parser. </p>
+				jsdoctypeparser, but does not use PEG.js, instead it is written as a pratt parser. </p>
 				<ul>
-					<li><a href="http://journal.stuffwithstuff.com/2011/03/19/pratt-parsers-expression-parsing-made-easy/">http://journal.stuffwithstuff.com/2011/03/19/pratt-parsers-expression-parsing-made-easy/</a></li>
 					<li><a href="https://github.com/hegemonic/catharsis">https://github.com/hegemonic/catharsis</a></li>
 					<li><a href="https://github.com/jsdoctypeparser/jsdoctypeparser">https://github.com/jsdoctypeparser/jsdoctypeparser</a></li>
+					<li><a href="http://journal.stuffwithstuff.com/2011/03/19/pratt-parsers-expression-parsing-made-easy/">http://journal.stuffwithstuff.com/2011/03/19/pratt-parsers-expression-parsing-made-easy/</a></li>
 				</ul>
 				<a href="#live-demo" id="live-demo" style="color: inherit; text-decoration: none;">
 					<h2>Live Demo</h2>
@@ -117,7 +117,7 @@
 
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">rules</span><span style="color: #000000"> = </span><span style="color: #795E26">stringifyRules</span><span style="color: #000000">()</span>
 
-<span style="color: #008000">// `result` is the current node and `transform` is function to transform child nodes.</span>
+<span style="color: #008000">// `result` is the current node and `transform` is a function to transform child nodes.</span>
 <span style="color: #001080">rules</span><span style="color: #000000">.</span><span style="color: #795E26">NAME</span><span style="color: #000000"> = (</span><span style="color: #001080">result</span><span style="color: #000000">, </span><span style="color: #001080">transform</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;something else&#039;</span>
 
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">val</span><span style="color: #000000"> = </span><span style="color: #795E26">transform</span><span style="color: #000000">(</span><span style="color: #001080">rules</span><span style="color: #000000">, { </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;NAME&#039;</span><span style="color: #000000">, </span><span style="color: #001080">value:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;name&#039;</span><span style="color: #000000">}) </span><span style="color: #008000">// -&gt; &#039;something else&#039;</span>
@@ -130,8 +130,8 @@
 <span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">node</span><span style="color: #000000">.</span><span style="color: #001080">type</span><span style="color: #000000">)</span>
 <span style="color: #000000">}</span>
 
-<span style="color: #795E26">traverse</span><span style="color: #000000">({ </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;NAME&#039;</span><span style="color: #000000">, </span><span style="color: #001080">value:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;name&#039;</span><span style="color: #000000">}, </span><span style="color: #001080">onEnter</span><span style="color: #000000">, </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #001080">log</span><span style="color: #000000">)</span>
 <span style="color: #008000">// an onEnter and/or an onLeave function can be supplied</span>
+<span style="color: #795E26">traverse</span><span style="color: #000000">({ </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;NAME&#039;</span><span style="color: #000000">, </span><span style="color: #001080">value:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;name&#039;</span><span style="color: #000000">}, </span><span style="color: #001080">onEnter</span><span style="color: #000000">, </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #001080">log</span><span style="color: #000000">)</span>
 </code></pre>
 				<a href="#available-grammars" id="available-grammars" style="color: inherit; text-decoration: none;">
 					<h2>Available Grammars</h2>
@@ -276,6 +276,9 @@
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="modules.html#transform" class="tsd-kind-icon">transform</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="modules.html#traverse" class="tsd-kind-icon">traverse</a>
 					</li>
 				</ul>
 			</nav>
