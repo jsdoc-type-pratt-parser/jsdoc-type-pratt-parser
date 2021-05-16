@@ -9,4 +9,5 @@ export { transform, TransformRule, TransformFunction, TransformRules } from './t
 export { catharsisTransform } from './transforms/catharsisTransform'
 export { jtpTransform } from './transforms/jtpTransform'
 export { stringify, stringifyRules } from './transforms/stringify'
+export { identityTransformRules } from './transforms/identityTransformRules'
 export * from './traverse'
