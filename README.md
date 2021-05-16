@@ -22,13 +22,9 @@ npm install jsdoc-type-pratt-parser
 
 
 ```js
-import { Parser } from 'jsdoc-type-pratt-parser'
+import { parse } from 'jsdoc-type-pratt-parser'
 
-const parser = new Parser({
-  mode: 'closure'
-})
-
-const result = parser.parse('myType.<string>')
+const result = parse('myType.<string>', 'closure')
 ```
 
 This library supports compatibility modes for catharsis and jsdoctypeparser. The provided transform functions attempt to
@@ -39,25 +35,17 @@ This library supports compatibility modes for catharsis and jsdoctypeparser. The
 Catharsis compat mode:
 
 ```js
-import { Parser, catharsisTransform } from 'jsdoc-type-pratt-parser'
+import { parse, catharsisTransform } from 'jsdoc-type-pratt-parser'
 
-const parser = new Parser({
-  mode: 'closure'
-})
-
-const result = catharsisTransform(parser.parse('myType.<string>'))
+const result = catharsisTransform(parse('myType.<string>', 'closure'))
 ```
 
 Jsdoctypeparser compat mode:
 
 ```js
-import { Parser, jtpTransform } from 'jsdoc-type-pratt-parser'
+import { parse, jtpTransform } from 'jsdoc-type-pratt-parser'
 
-const parser = new Parser({
-  mode: 'closure'
-})
-
-const result = jtpTransform(parser.parse('myType.<string>'))
+const result = jtpTransform(parse('myType.<string>', 'closure'))
 ```
 
 Stringify:
@@ -93,6 +81,18 @@ function onEnter(node, parent, property) {
 
 // an onEnter and/or an onLeave function can be supplied
 traverse({ type: 'NAME', value: 'name'}, onEnter, console.log)
+```
+
+You can also build your own transform rules by implementing the `TransformRules<TransformResultType>` interface or you
+can build upon the identity ruleset like this:
+
+```js
+import { identityTransformRules, transform } from 'jsdoc-type-pratt-parser'
+
+const myRules = identityTransformRules()
+myRules.NAME = () => ({ type: 'NAME', value: 'funky' })
+
+const val = transform(myRules, result)
 ```
 
 Available Grammars
