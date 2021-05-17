@@ -76,11 +76,8 @@
     button.addEventListener('click', function () {
         var mode = getSelected(modeSelect)
         var compatMode = getSelected(compatModeSelect)
-        var parser = new jtpp.Parser({
-            mode: mode
-        })
         try {
-            var result = parser.parse(input.value)
+            var result = jtpp.parse(input.value, mode)
             if (compatMode === 'catharsis') {
                 result = jtpp.catharsisTransform(result)
             } else if (compatMode === 'jtp') {
