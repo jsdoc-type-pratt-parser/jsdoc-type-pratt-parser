@@ -111,3 +111,31 @@ This parser runs most tests of https://github.com/hegemonic/catharsis and
 API Documentation
 -----------------
 An API documentation can be found here: https://simonseyock.github.io/jsdoc-type-pratt-parser/docs/modules.html
+
+Performance
+-----------
+
+A simple performance [comparision](benchmark/benchmark.js) comparison produced the following results:
+```
+Testing expression: Name
+catharsis x 10,194 ops/sec ±22.98% (58 runs sampled)
+jsdoc-type-pratt-parser x 238,233 ops/sec ±2.11% (84 runs sampled)
+jsdoctypeparser x 29,201 ops/sec ±15.65% (76 runs sampled)
+The fastest was jsdoc-type-pratt-parser
+
+Testing expression: Array<number>
+catharsis x 5,063 ops/sec ±2.89% (82 runs sampled)
+jsdoc-type-pratt-parser x 84,744 ops/sec ±5.34% (77 runs sampled)
+jsdoctypeparser x 10,964 ops/sec ±24.98% (52 runs sampled)
+The fastest was jsdoc-type-pratt-parser
+
+Testing expression: { keyA: Type<A | "string val" >, keyB: function(string, B): A }
+catharsis x 206 ops/sec ±17.93% (59 runs sampled)
+jsdoc-type-pratt-parser x 7,706 ops/sec ±12.20% (54 runs sampled)
+jsdoctypeparser x 2,456 ops/sec ±22.06% (49 runs sampled)
+The fastest was jsdoc-type-pratt-parser
+
+```
+
+catharsis was used without cache, as this is just a simple lookup table that could easily be implemented for any parser.
+ 
