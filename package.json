@@ -60,7 +60,8 @@
     "branches": [
       {
         "name": "main",
-        "prerelease": "alpha"
+        "prerelease": "alpha",
+        "channel": "alpha"
       }
     ]
   },
