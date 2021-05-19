@@ -1,3 +1,10 @@
+# [1.0.0-alpha.20](https://github.com/simonseyock/jsdoc-type-pratt-parser/compare/v1.0.0-alpha.19...v1.0.0-alpha.20) (2021-05-19)
+
+
+### Bug Fixes
+
+* **readme:** test badge pointing to correct workflow ([dacfe87](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/dacfe87ca7b6ce7f917313b2e12041032d8dbcd5))
+
 # [1.0.0-alpha.19](https://github.com/simonseyock/jsdoc-type-pratt-parser/compare/v1.0.0-alpha.18...v1.0.0-alpha.19) (2021-05-19)
 
 
