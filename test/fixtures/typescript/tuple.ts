@@ -420,12 +420,261 @@ export const tupleFixtures: Fixture[] = [
       typescript: 'typescript',
       permissive: 'typescript'
     }
+  },
+  {
+    description: 'Tuple with spreaded tuple',
+    input: '[variadic, arguments, ...tuple]',
+    expected: {
+      type: 'TUPLE',
+      elements: [
+        {
+          type: 'NAME',
+          value: 'variadic',
+          meta: {
+            reservedWord: false
+          }
+        },
+        {
+          type: 'NAME',
+          value: 'arguments',
+          meta: {
+            reservedWord: false
+          }
+        },
+        {
+          type: 'VARIADIC',
+          element: {
+            type: 'NAME',
+            value: 'tuple',
+            meta: {
+              reservedWord: false
+            }
+          },
+          meta: {
+            squareBrackets: false,
+            position: 'PREFIX'
+          }
+        }
+      ]
+    },
+    modes: ['typescript'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
+  },
+  {
+    description: 'Tuple with spreaded tuple and typeof',
+    input: '[ tuple, with, typeof foo, and, ...rest ]',
+    stringified: '[tuple, with, typeof foo, and, ...rest]',
+    expected: {
+      type: 'TUPLE',
+      elements: [
+        {
+          type: 'NAME',
+          value: 'tuple',
+          meta: {
+            reservedWord: false
+          }
+        },
+        {
+          type: 'NAME',
+          value: 'with',
+          meta: {
+            reservedWord: true
+          }
+        },
+        {
+          type: 'TYPE_OF',
+          element: {
+            type: 'NAME',
+            value: 'foo',
+            meta: {
+              reservedWord: false
+            }
+          }
+        },
+        {
+          type: 'NAME',
+          value: 'and',
+          meta: {
+            reservedWord: false
+          }
+        },
+        {
+          type: 'VARIADIC',
+          element: {
+            type: 'NAME',
+            value: 'rest',
+            meta: {
+              reservedWord: false
+            }
+          },
+          meta: {
+            squareBrackets: false,
+            position: 'PREFIX'
+          }
+        }
+      ]
+    },
+    modes: ['typescript'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
+  },
+  {
+    description: 'Tuple with spreaded tuple and keyof',
+    input: '[ tuple, with, keyof foo, and, ...rest ]',
+    stringified: '[tuple, with, keyof foo, and, ...rest]',
+    expected: {
+      type: 'TUPLE',
+      elements: [
+        {
+          type: 'NAME',
+          value: 'tuple',
+          meta: {
+            reservedWord: false
+          }
+        },
+        {
+          type: 'NAME',
+          value: 'with',
+          meta: {
+            reservedWord: true
+          }
+        },
+        {
+          type: 'KEY_OF',
+          element: {
+            type: 'NAME',
+            value: 'foo',
+            meta: {
+              reservedWord: false
+            }
+          }
+        },
+        {
+          type: 'NAME',
+          value: 'and',
+          meta: {
+            reservedWord: false
+          }
+        },
+        {
+          type: 'VARIADIC',
+          element: {
+            type: 'NAME',
+            value: 'rest',
+            meta: {
+              reservedWord: false
+            }
+          },
+          meta: {
+            squareBrackets: false,
+            position: 'PREFIX'
+          }
+        }
+      ]
+    },
+    modes: ['typescript'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
+  },
+  {
+    description: 'Tuple with spreaded tuple and typeof and keyof',
+    input: '[ tuple, with, typeof foo, keyof foo, and, ...rest ]',
+    stringified: '[tuple, with, typeof foo, keyof foo, and, ...rest]',
+    expected: {
+      type: 'TUPLE',
+      elements: [
+        {
+          type: 'NAME',
+          value: 'tuple',
+          meta: {
+            reservedWord: false
+          }
+        },
+        {
+          type: 'NAME',
+          value: 'with',
+          meta: {
+            reservedWord: true
+          }
+        },
+        {
+          type: 'TYPE_OF',
+          element: {
+            type: 'NAME',
+            value: 'foo',
+            meta: {
+              reservedWord: false
+            }
+          }
+        },
+        {
+          type: 'KEY_OF',
+          element: {
+            type: 'NAME',
+            value: 'foo',
+            meta: {
+              reservedWord: false
+            }
+          }
+        },
+        {
+          type: 'NAME',
+          value: 'and',
+          meta: {
+            reservedWord: false
+          }
+        },
+        {
+          type: 'VARIADIC',
+          element: {
+            type: 'NAME',
+            value: 'rest',
+            meta: {
+              reservedWord: false
+            }
+          },
+          meta: {
+            squareBrackets: false,
+            position: 'PREFIX'
+          }
+        }
+      ]
+    },
+    modes: ['typescript'],
+    catharsis: {
+      closure: 'fail',
+      jsdoc: 'fail'
+    },
+    jtp: {
+      closure: 'fail',
+      jsdoc: 'fail',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
   }
 ]
-
-// TODO:
-// // this are actually spread operators, not repeatable arguments
-// {[variadic, arguments, ...tuple]}
-// {[ tuple, with, typeof foo, and, ...rest ]}
-// {[ tuple, with, keyof foo, and, ...rest ]}
-// {[ tuple, with, typeof foo, keyof foo, and, ...rest ]}
