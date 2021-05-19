@@ -1,3 +1,10 @@
+# [1.0.0-alpha.17](https://github.com/simonseyock/jsdoc-type-pratt-parser/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2021-05-19)
+
+
+### Bug Fixes
+
+* **gh-pages:** whitespace ([16e97c4](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/16e97c4eb6c7fd96b3d24104c695179eb7d07ab6))
+
 # [1.0.0-alpha.16](https://github.com/simonseyock/jsdoc-type-pratt-parser/compare/v1.0.0-alpha.15...v1.0.0-alpha.16) (2021-05-19)
 
 
