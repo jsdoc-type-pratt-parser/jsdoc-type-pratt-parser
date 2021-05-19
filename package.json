@@ -16,7 +16,6 @@
     "apidoc": "typedoc src/index.ts --out docs",
     "preversion": "npm test",
     "prepublishOnly": "npm run build",
-    "postpublish": "./deploy.sh",
     "semantic-release": "semantic-release"
   },
   "author": "Simon Seyock (https://github.com/simonseyock)",
