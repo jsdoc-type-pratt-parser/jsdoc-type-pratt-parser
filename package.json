@@ -24,6 +24,8 @@
   "dependencies": {},
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.1.1",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.0",
     "@types/chai": "^4.2.14",
     "@types/mocha": "^8.2.0",
     "@types/node": "^14.14.31",
@@ -64,6 +66,14 @@
         "prerelease": "alpha",
         "channel": "alpha"
       }
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/github",
+      "@semantic-release/npm",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/git"
     ]
   },
   "publishConfig": {
