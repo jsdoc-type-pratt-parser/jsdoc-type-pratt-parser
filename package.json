@@ -55,5 +55,14 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/simonseyock/jsdoc-type-pratt-parser.git"
+  },
+  "release": {
+    "branches": {
+      "name": "main",
+      "prerelease": "alpha"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
