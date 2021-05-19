@@ -1,3 +1,10 @@
+# [1.0.0-alpha.18](https://github.com/simonseyock/jsdoc-type-pratt-parser/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2021-05-19)
+
+
+### Bug Fixes
+
+* **gh-pages:** use actor ([74256b1](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/74256b1e9a309d5b64edbae999fbb2137d1b6f91))
+
 # [1.0.0-alpha.17](https://github.com/simonseyock/jsdoc-type-pratt-parser/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2021-05-19)
 
 
