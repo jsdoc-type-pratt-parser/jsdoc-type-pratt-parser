@@ -1,3 +1,10 @@
+# [1.0.0-alpha.19](https://github.com/simonseyock/jsdoc-type-pratt-parser/compare/v1.0.0-alpha.18...v1.0.0-alpha.19) (2021-05-19)
+
+
+### Bug Fixes
+
+* **readme:** use npm links to alpha channel ([cf13883](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/cf13883a1a29bda25c74dbb12def52a851321944))
+
 # [1.0.0-alpha.18](https://github.com/simonseyock/jsdoc-type-pratt-parser/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2021-05-19)
 
 
