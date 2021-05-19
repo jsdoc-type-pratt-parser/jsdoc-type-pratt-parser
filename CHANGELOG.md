@@ -1,3 +1,11 @@
+# [1.0.0-alpha.16](https://github.com/simonseyock/jsdoc-type-pratt-parser/compare/v1.0.0-alpha.15...v1.0.0-alpha.16) (2021-05-19)
+
+
+### Bug Fixes
+
+* **gh-pages:** set author ([a28b3dd](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/a28b3dd6d88e469abe2ea34920a0d98fa6f7b587))
+* **github actions:** rename test workflow ([d70f819](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/d70f8191eef3d37da82084fa04999975cf99deb3))
+
 # [1.0.0-alpha.15](https://github.com/simonseyock/jsdoc-type-pratt-parser/compare/v1.0.0-alpha.14...v1.0.0-alpha.15) (2021-05-19)
 
 
