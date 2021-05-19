@@ -2,6 +2,9 @@
 
 set -e
 
+git config --global user.name "${GITHUB_ACTOR}"
+git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+
 npm run build
 npm run apidoc
 
@@ -12,5 +15,5 @@ cp -r docs pages/
 
 cd pages
 git add --all
-git commit --author='gh-pages deployment script <>' -m 'deploy update'
+git commit -m 'deploy update'
 git push ${REPOSITORY:-origin} gh-pages
