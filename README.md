@@ -117,7 +117,7 @@ An API documentation can be found here: https://simonseyock.github.io/jsdoc-type
 Performance
 -----------
 
-A simple performance [comparision](benchmark/benchmark.js) comparison produced the following results:
+A simple performance [comparision](benchmark/benchmark.js) using [Benchmark.js](https://benchmarkjs.com/) produced the following results:
 ```
 Testing expression: Name
 catharsis x 10,194 ops/sec ±22.98% (58 runs sampled)
