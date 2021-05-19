@@ -12,5 +12,5 @@ cp -r docs pages/
 
 cd pages
 git add --all
-git commit -m 'deploy update'
+git commit --author='gh-pages deployment script<>' -m 'deploy update'
 git push ${REPOSITORY:-origin} gh-pages
