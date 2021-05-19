@@ -2,10 +2,10 @@
 
 set -e
 
-npm run typecheck
-npm run lint
 npm run build
 npm run apidoc
+
+git worktree add pages gh-pages
 
 cp dist/index.js pages/lib/jsdoc-type-pratt-parser/
 cp -r docs pages/
