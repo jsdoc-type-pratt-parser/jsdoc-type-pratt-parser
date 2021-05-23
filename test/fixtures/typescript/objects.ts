@@ -56,7 +56,7 @@ export const objectsFixtures: Fixture[] = [
                 }
               },
               meta: {
-                position: 'SUFFIX'
+                position: 'suffix'
               }
             },
             right: {

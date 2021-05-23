@@ -35,7 +35,7 @@ export interface OptionalResult<T extends TerminalResult> {
   type: 'JsdocTypeOptional'
   element: T
   meta: {
-    position: 'PREFIX' | 'SUFFIX'
+    position: 'prefix' | 'suffix'
   }
 }
 
@@ -46,7 +46,7 @@ export interface NullableResult<T extends TerminalResult> {
   type: 'JsdocTypeNullable'
   element: T
   meta: {
-    position: 'PREFIX' | 'SUFFIX'
+    position: 'prefix' | 'suffix'
   }
 }
 
@@ -57,7 +57,7 @@ export interface NotNullableResult<T extends TerminalResult> {
   type: 'JsdocTypeNotNullable'
   element: T
   meta: {
-    position: 'PREFIX' | 'SUFFIX'
+    position: 'prefix' | 'suffix'
   }
 }
 
@@ -68,7 +68,7 @@ export interface VariadicResult<T extends TerminalResult> {
   type: 'JsdocTypeVariadic'
   element?: T
   meta: {
-    position: 'PREFIX' | 'SUFFIX' | 'ONLY_DOTS'
+    position: 'prefix' | 'suffix' | undefined
     squareBrackets: boolean
   }
 }

@@ -22,7 +22,7 @@ export class NullablePrefixParslet implements PrefixParslet {
       type: 'JsdocTypeNullable',
       element: parser.parseType(Precedence.NULLABLE),
       meta: {
-        position: 'PREFIX'
+        position: 'prefix'
       }
     }
   }
@@ -43,7 +43,7 @@ export class NullableInfixParslet implements InfixParslet {
       type: 'JsdocTypeNullable',
       element: assertTerminal(left),
       meta: {
-        position: 'SUFFIX'
+        position: 'suffix'
       }
     }
   }

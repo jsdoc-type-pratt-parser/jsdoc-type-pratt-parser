@@ -265,7 +265,7 @@ export const basicFixtures: Fixture[] = [
       },
       meta: {
         squareBrackets: false,
-        position: 'PREFIX'
+        position: 'prefix'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -293,7 +293,7 @@ export const basicFixtures: Fixture[] = [
         }
       },
       meta: {
-        position: 'SUFFIX'
+        position: 'suffix'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -321,7 +321,7 @@ export const basicFixtures: Fixture[] = [
         }
       },
       meta: {
-        position: 'SUFFIX'
+        position: 'suffix'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -363,7 +363,7 @@ export const basicFixtures: Fixture[] = [
         type: 'JsdocTypeNull'
       },
       meta: {
-        position: 'PREFIX',
+        position: 'prefix',
         squareBrackets: false
       }
     },
@@ -406,7 +406,7 @@ export const basicFixtures: Fixture[] = [
         type: 'JsdocTypeUndefined'
       },
       meta: {
-        position: 'PREFIX',
+        position: 'prefix',
         squareBrackets: false
       }
     },
@@ -449,7 +449,7 @@ export const basicFixtures: Fixture[] = [
         type: 'JsdocTypeAny'
       },
       meta: {
-        position: 'PREFIX',
+        position: 'prefix',
         squareBrackets: false
       }
     },
@@ -492,7 +492,7 @@ export const basicFixtures: Fixture[] = [
         type: 'JsdocTypeUnknown'
       },
       meta: {
-        position: 'PREFIX',
+        position: 'prefix',
         squareBrackets: false
       }
     },

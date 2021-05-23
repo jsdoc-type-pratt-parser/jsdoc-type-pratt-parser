@@ -39,7 +39,7 @@ export class VariadicParslet implements PrefixParslet, InfixParslet {
         type: 'JsdocTypeVariadic',
         element: assertTerminal(value),
         meta: {
-          position: 'PREFIX',
+          position: 'prefix',
           squareBrackets: brackets
         }
       }
@@ -47,7 +47,7 @@ export class VariadicParslet implements PrefixParslet, InfixParslet {
       return {
         type: 'JsdocTypeVariadic',
         meta: {
-          position: 'ONLY_DOTS',
+          position: undefined,
           squareBrackets: false
         }
       }
@@ -60,7 +60,7 @@ export class VariadicParslet implements PrefixParslet, InfixParslet {
       type: 'JsdocTypeVariadic',
       element: assertTerminal(left),
       meta: {
-        position: 'SUFFIX',
+        position: 'suffix',
         squareBrackets: false
       }
     }

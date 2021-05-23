@@ -68,7 +68,7 @@ export const unionFixtures: Fixture[] = [
         }
       },
       meta: {
-        position: 'PREFIX',
+        position: 'prefix',
         squareBrackets: false
       }
     },
@@ -214,7 +214,7 @@ export const unionFixtures: Fixture[] = [
         }
       },
       meta: {
-        position: 'PREFIX'
+        position: 'prefix'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -258,7 +258,7 @@ export const unionFixtures: Fixture[] = [
         }
       },
       meta: {
-        position: 'PREFIX'
+        position: 'prefix'
       }
     },
     modes: ['jsdoc', 'closure'],
@@ -302,7 +302,7 @@ export const unionFixtures: Fixture[] = [
         }
       },
       meta: {
-        position: 'SUFFIX'
+        position: 'suffix'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -543,7 +543,7 @@ export const unionFixtures: Fixture[] = [
             }
           },
           meta: {
-            position: 'PREFIX'
+            position: 'prefix'
           }
         },
         {
@@ -556,7 +556,7 @@ export const unionFixtures: Fixture[] = [
             }
           },
           meta: {
-            position: 'PREFIX'
+            position: 'prefix'
           }
         }
       ]
@@ -652,7 +652,7 @@ export const unionFixtures: Fixture[] = [
         }
       },
       meta: {
-        position: 'SUFFIX'
+        position: 'suffix'
       }
     },
     modes: ['jsdoc', 'closure'],
@@ -747,11 +747,11 @@ export const unionFixtures: Fixture[] = [
                                 type: 'JsdocTypeNamePath'
                               },
                               meta: {
-                                position: 'PREFIX'
+                                position: 'prefix'
                               }
                             },
                             meta: {
-                              position: 'SUFFIX'
+                              position: 'suffix'
                             }
                           }
                         ],
@@ -778,7 +778,7 @@ export const unionFixtures: Fixture[] = [
         }
       },
       meta: {
-        position: 'SUFFIX'
+        position: 'suffix'
       }
     },
     modes: ['jsdoc', 'closure'],

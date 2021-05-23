@@ -181,7 +181,7 @@ export const typeOfFixtures: Fixture[] = [
       },
       meta: {
         squareBrackets: false,
-        position: 'PREFIX'
+        position: 'prefix'
       }
     },
     modes: ['closure', 'typescript'],
@@ -213,7 +213,7 @@ export const typeOfFixtures: Fixture[] = [
       },
       meta: {
         squareBrackets: false,
-        position: 'SUFFIX'
+        position: 'suffix'
       }
     },
     modes: [],

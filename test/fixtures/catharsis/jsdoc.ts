@@ -500,7 +500,7 @@ export const jsdocFixtures: Fixture[] = [
         },
         meta: {
           squareBrackets: false,
-          position: 'PREFIX'
+          position: 'prefix'
         }
       }
     },
@@ -1083,7 +1083,7 @@ export const jsdocFixtures: Fixture[] = [
         parenthesis: true
       },
       meta: {
-        position: 'SUFFIX'
+        position: 'suffix'
       }
     },
     modes: ['jsdoc', 'closure'],
@@ -1116,7 +1116,7 @@ export const jsdocFixtures: Fixture[] = [
           },
           meta: {
             squareBrackets: false,
-            position: 'PREFIX'
+            position: 'prefix'
           }
         },
         {

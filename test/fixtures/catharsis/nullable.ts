@@ -14,7 +14,7 @@ export const nullableFixtures: Fixture[] = [
         }
       },
       meta: {
-        position: 'PREFIX'
+        position: 'prefix'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -42,7 +42,7 @@ export const nullableFixtures: Fixture[] = [
         }
       },
       meta: {
-        position: 'SUFFIX'
+        position: 'suffix'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -70,7 +70,7 @@ export const nullableFixtures: Fixture[] = [
         }
       },
       meta: {
-        position: 'PREFIX'
+        position: 'prefix'
       }
     },
     modes: ['jsdoc', 'closure'],
@@ -98,7 +98,7 @@ export const nullableFixtures: Fixture[] = [
         }
       },
       meta: {
-        position: 'SUFFIX'
+        position: 'suffix'
       }
     },
     modes: ['jsdoc', 'closure'],
@@ -128,11 +128,11 @@ export const nullableFixtures: Fixture[] = [
           }
         },
         meta: {
-          position: 'PREFIX'
+          position: 'prefix'
         }
       },
       meta: {
-        position: 'PREFIX',
+        position: 'prefix',
         squareBrackets: false
       }
     },
@@ -163,11 +163,11 @@ export const nullableFixtures: Fixture[] = [
           }
         },
         meta: {
-          position: 'SUFFIX'
+          position: 'suffix'
         }
       },
       meta: {
-        position: 'PREFIX',
+        position: 'prefix',
         squareBrackets: false
       }
     },
@@ -198,11 +198,11 @@ export const nullableFixtures: Fixture[] = [
           }
         },
         meta: {
-          position: 'PREFIX'
+          position: 'prefix'
         }
       },
       meta: {
-        position: 'PREFIX',
+        position: 'prefix',
         squareBrackets: false
       }
     },
@@ -233,11 +233,11 @@ export const nullableFixtures: Fixture[] = [
           }
         },
         meta: {
-          position: 'SUFFIX'
+          position: 'suffix'
         }
       },
       meta: {
-        position: 'PREFIX',
+        position: 'prefix',
         squareBrackets: false
       }
     },
@@ -268,11 +268,11 @@ export const nullableFixtures: Fixture[] = [
           }
         },
         meta: {
-          position: 'SUFFIX'
+          position: 'suffix'
         }
       },
       meta: {
-        position: 'SUFFIX'
+        position: 'suffix'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -302,11 +302,11 @@ export const nullableFixtures: Fixture[] = [
           }
         },
         meta: {
-          position: 'SUFFIX'
+          position: 'suffix'
         }
       },
       meta: {
-        position: 'SUFFIX'
+        position: 'suffix'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -338,15 +338,15 @@ export const nullableFixtures: Fixture[] = [
             }
           },
           meta: {
-            position: 'SUFFIX'
+            position: 'suffix'
           }
         },
         meta: {
-          position: 'SUFFIX'
+          position: 'suffix'
         }
       },
       meta: {
-        position: 'PREFIX',
+        position: 'prefix',
         squareBrackets: false
       }
     },
@@ -377,11 +377,11 @@ export const nullableFixtures: Fixture[] = [
           }
         },
         meta: {
-          position: 'SUFFIX'
+          position: 'suffix'
         }
       },
       meta: {
-        position: 'SUFFIX'
+        position: 'suffix'
       }
     },
     modes: ['jsdoc', 'closure'],
@@ -411,11 +411,11 @@ export const nullableFixtures: Fixture[] = [
           }
         },
         meta: {
-          position: 'SUFFIX'
+          position: 'suffix'
         }
       },
       meta: {
-        position: 'SUFFIX'
+        position: 'suffix'
       }
     },
     modes: ['jsdoc', 'closure'],
@@ -447,15 +447,15 @@ export const nullableFixtures: Fixture[] = [
             }
           },
           meta: {
-            position: 'SUFFIX'
+            position: 'suffix'
           }
         },
         meta: {
-          position: 'SUFFIX'
+          position: 'suffix'
         }
       },
       meta: {
-        position: 'PREFIX',
+        position: 'prefix',
         squareBrackets: false
       }
     },

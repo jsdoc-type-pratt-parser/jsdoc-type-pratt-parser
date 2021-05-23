@@ -209,7 +209,7 @@ export const keyofFixtures: Fixture[] = [
       },
       meta: {
         squareBrackets: false,
-        position: 'PREFIX'
+        position: 'prefix'
       }
     },
     modes: ['typescript'],
@@ -241,7 +241,7 @@ export const keyofFixtures: Fixture[] = [
       },
       meta: {
         squareBrackets: false,
-        position: 'SUFFIX'
+        position: 'suffix'
       }
     },
     modes: [],

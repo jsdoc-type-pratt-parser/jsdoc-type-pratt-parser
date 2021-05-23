@@ -21,7 +21,7 @@ export class NotNullableParslet implements PrefixParslet, InfixParslet {
       type: 'JsdocTypeNotNullable',
       element: parser.parseType(Precedence.NULLABLE),
       meta: {
-        position: 'PREFIX'
+        position: 'prefix'
       }
     }
   }
@@ -32,7 +32,7 @@ export class NotNullableParslet implements PrefixParslet, InfixParslet {
       type: 'JsdocTypeNotNullable',
       element: assertTerminal(left),
       meta: {
-        position: 'SUFFIX'
+        position: 'suffix'
       }
     }
   }

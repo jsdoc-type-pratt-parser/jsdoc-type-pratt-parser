@@ -215,7 +215,7 @@ const jtpRules: TransformRules<JtpResult> = {
     type: 'OPTIONAL',
     value: transform(result.element),
     meta: {
-      syntax: result.meta.position === 'PREFIX' ? 'PREFIX_EQUAL_SIGN' : 'SUFFIX_EQUALS_SIGN'
+      syntax: result.meta.position === 'prefix' ? 'PREFIX_EQUAL_SIGN' : 'SUFFIX_EQUALS_SIGN'
     }
   }),
 
@@ -223,7 +223,7 @@ const jtpRules: TransformRules<JtpResult> = {
     type: 'NULLABLE',
     value: transform(result.element),
     meta: {
-      syntax: result.meta.position === 'PREFIX' ? 'PREFIX_QUESTION_MARK' : 'SUFFIX_QUESTION_MARK'
+      syntax: result.meta.position === 'prefix' ? 'PREFIX_QUESTION_MARK' : 'SUFFIX_QUESTION_MARK'
     }
   }),
 
@@ -231,7 +231,7 @@ const jtpRules: TransformRules<JtpResult> = {
     type: 'NOT_NULLABLE',
     value: transform(result.element),
     meta: {
-      syntax: result.meta.position === 'PREFIX' ? 'PREFIX_BANG' : 'SUFFIX_BANG'
+      syntax: result.meta.position === 'prefix' ? 'PREFIX_BANG' : 'SUFFIX_BANG'
     }
   }),
 
@@ -239,8 +239,8 @@ const jtpRules: TransformRules<JtpResult> = {
     const transformed: JtpVariadicResult = {
       type: 'VARIADIC',
       meta: {
-        syntax: result.meta.position === 'PREFIX' ? 'PREFIX_DOTS'
-          : result.meta.position === 'SUFFIX' ? 'SUFFIX_DOTS' : 'ONLY_DOTS'
+        syntax: result.meta.position === 'prefix' ? 'PREFIX_DOTS'
+          : result.meta.position === 'suffix' ? 'SUFFIX_DOTS' : 'ONLY_DOTS'
       }
     }
     if (result.element !== undefined) {

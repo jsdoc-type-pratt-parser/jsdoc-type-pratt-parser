@@ -21,7 +21,7 @@ export class OptionalParslet implements PrefixParslet, InfixParslet {
       type: 'JsdocTypeOptional',
       element: parser.parseType(Precedence.OPTIONAL),
       meta: {
-        position: 'PREFIX'
+        position: 'prefix'
       }
     }
   }
@@ -32,7 +32,7 @@ export class OptionalParslet implements PrefixParslet, InfixParslet {
       type: 'JsdocTypeOptional',
       element: assertTerminal(left),
       meta: {
-        position: 'SUFFIX'
+        position: 'suffix'
       }
     }
   }

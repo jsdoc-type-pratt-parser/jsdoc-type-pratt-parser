@@ -452,7 +452,7 @@ export const tupleFixtures: Fixture[] = [
           },
           meta: {
             squareBrackets: false,
-            position: 'PREFIX'
+            position: 'prefix'
           }
         }
       ]
@@ -518,7 +518,7 @@ export const tupleFixtures: Fixture[] = [
           },
           meta: {
             squareBrackets: false,
-            position: 'PREFIX'
+            position: 'prefix'
           }
         }
       ]
@@ -584,7 +584,7 @@ export const tupleFixtures: Fixture[] = [
           },
           meta: {
             squareBrackets: false,
-            position: 'PREFIX'
+            position: 'prefix'
           }
         }
       ]
@@ -660,7 +660,7 @@ export const tupleFixtures: Fixture[] = [
           },
           meta: {
             squareBrackets: false,
-            position: 'PREFIX'
+            position: 'prefix'
           }
         }
       ]

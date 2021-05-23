@@ -63,7 +63,7 @@ export const intersectionFixtures: Fixture[] = [
         }
       },
       meta: {
-        position: 'SUFFIX'
+        position: 'suffix'
       }
     },
     modes: ['typescript'],

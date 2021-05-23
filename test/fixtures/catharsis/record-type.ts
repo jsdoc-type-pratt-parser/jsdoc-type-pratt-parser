@@ -82,7 +82,7 @@ export const recordFixtures: Fixture[] = [
       },
       meta: {
         squareBrackets: false,
-        position: 'PREFIX'
+        position: 'prefix'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -123,7 +123,7 @@ export const recordFixtures: Fixture[] = [
         ]
       },
       meta: {
-        position: 'SUFFIX'
+        position: 'suffix'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -164,7 +164,7 @@ export const recordFixtures: Fixture[] = [
         ]
       },
       meta: {
-        position: 'PREFIX'
+        position: 'prefix'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -205,7 +205,7 @@ export const recordFixtures: Fixture[] = [
         ]
       },
       meta: {
-        position: 'PREFIX'
+        position: 'prefix'
       }
     },
     modes: ['jsdoc', 'closure'],

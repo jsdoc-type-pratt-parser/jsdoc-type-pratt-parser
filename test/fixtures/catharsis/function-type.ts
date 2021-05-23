@@ -64,7 +64,7 @@ export const functionFixtures: Fixture[] = [
         parenthesis: true
       },
       meta: {
-        position: 'PREFIX',
+        position: 'prefix',
         squareBrackets: false
       }
     },
@@ -158,7 +158,7 @@ export const functionFixtures: Fixture[] = [
       },
       meta: {
         squareBrackets: false,
-        position: 'PREFIX'
+        position: 'prefix'
       }
     },
     modes: ['jsdoc', 'typescript', 'closure'],
@@ -193,7 +193,7 @@ export const functionFixtures: Fixture[] = [
         parenthesis: true
       },
       meta: {
-        position: 'SUFFIX'
+        position: 'suffix'
       }
     },
     modes: ['jsdoc', 'closure'],
@@ -601,7 +601,7 @@ export const functionFixtures: Fixture[] = [
               }
             },
             meta: {
-              position: 'PREFIX',
+              position: 'prefix',
               squareBrackets: true
             }
           }
@@ -641,7 +641,7 @@ export const functionFixtures: Fixture[] = [
               ]
             },
             meta: {
-              position: 'PREFIX',
+              position: 'prefix',
               squareBrackets: false
             }
           }
@@ -683,7 +683,7 @@ export const functionFixtures: Fixture[] = [
           },
           meta: {
             squareBrackets: true,
-            position: 'PREFIX'
+            position: 'prefix'
           }
         }
       ],
@@ -715,7 +715,7 @@ export const functionFixtures: Fixture[] = [
             type: 'JsdocTypeUndefined'
           },
           meta: {
-            position: 'PREFIX',
+            position: 'prefix',
             squareBrackets: true
           }
         }
@@ -843,7 +843,7 @@ export const functionFixtures: Fixture[] = [
             },
             meta: {
               squareBrackets: true,
-              position: 'PREFIX'
+              position: 'prefix'
             }
           }
         ],
@@ -965,7 +965,7 @@ export const functionFixtures: Fixture[] = [
             },
             meta: {
               squareBrackets: false,
-              position: 'PREFIX'
+              position: 'prefix'
             }
           }
         ],
@@ -1008,7 +1008,7 @@ export const functionFixtures: Fixture[] = [
             }
           },
           meta: {
-            position: 'PREFIX',
+            position: 'prefix',
             squareBrackets: false
           }
         }
@@ -1107,7 +1107,7 @@ export const functionFixtures: Fixture[] = [
           },
           meta: {
             squareBrackets: true,
-            position: 'PREFIX'
+            position: 'prefix'
           }
         }
       ],
@@ -1294,7 +1294,7 @@ export const functionFixtures: Fixture[] = [
             },
             meta: {
               squareBrackets: true,
-              position: 'PREFIX'
+              position: 'prefix'
             }
           }
         ],
@@ -1338,7 +1338,7 @@ export const functionFixtures: Fixture[] = [
             },
             meta: {
               squareBrackets: false,
-              position: 'PREFIX'
+              position: 'prefix'
             }
           }
         ],
@@ -1393,7 +1393,7 @@ export const functionFixtures: Fixture[] = [
             type: 'JsdocTypeAny'
           },
           meta: {
-            position: 'SUFFIX'
+            position: 'suffix'
           }
         }
       ],
@@ -1438,7 +1438,7 @@ export const functionFixtures: Fixture[] = [
             },
             meta: {
               squareBrackets: true,
-              position: 'PREFIX'
+              position: 'prefix'
             }
           }
         ],
@@ -1471,7 +1471,7 @@ export const functionFixtures: Fixture[] = [
             },
             meta: {
               squareBrackets: false,
-              position: 'PREFIX'
+              position: 'prefix'
             }
           }
         ],

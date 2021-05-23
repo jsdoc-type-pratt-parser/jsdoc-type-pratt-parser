@@ -259,7 +259,7 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
     let trailingDots = false
 
     if (element?.type === 'JsdocTypeVariadic') {
-      if (element.meta.position === 'PREFIX') {
+      if (element.meta.position === 'prefix') {
         value = '...'
       } else {
         trailingDots = true

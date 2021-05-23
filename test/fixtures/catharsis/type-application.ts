@@ -107,7 +107,7 @@ export const genericFixtures: Fixture[] = [
       },
       meta: {
         squareBrackets: false,
-        position: 'PREFIX'
+        position: 'prefix'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],

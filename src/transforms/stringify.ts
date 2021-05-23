@@ -2,8 +2,8 @@ import { transform, TransformRules } from './transform'
 import { NonTerminalResult } from '../result/NonTerminalResult'
 import { TerminalResult } from '../result/TerminalResult'
 
-function applyPosition (position: 'PREFIX' | 'SUFFIX', target: string, value: string): string {
-  return position === 'PREFIX' ? value + target : target + value
+function applyPosition (position: 'prefix' | 'suffix', target: string, value: string): string {
+  return position === 'prefix' ? value + target : target + value
 }
 
 export function quote (value: string, quote: 'single' | 'double' | undefined): string {
@@ -46,7 +46,7 @@ export function stringifyRules (): TransformRules<string> {
 
     JsdocTypeTuple: (result, transform) => `[${result.elements.map(transform).join(', ')}]`,
 
-    JsdocTypeVariadic: (result, transform) => result.meta.position === 'ONLY_DOTS'
+    JsdocTypeVariadic: (result, transform) => result.meta.position === undefined
       ? '...'
       : applyPosition(result.meta.position, transform(result.element as NonTerminalResult), '...'),
 
