@@ -52,6 +52,11 @@
   "include": [
     "**/*.ts"
   ],
+  "exclude": [
+    "./dist",
+    "./docs",
+    "./pages"
+  ],
   "ts-node": {
     "files": true
   }

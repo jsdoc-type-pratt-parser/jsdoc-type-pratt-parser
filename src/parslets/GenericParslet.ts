@@ -1,9 +1,10 @@
-import { IntermediateResult, ParserEngine } from '../ParserEngine'
-import { ParseResult } from '../ParseResult'
 import { TokenType } from '../lexer/Token'
 import { InfixParslet } from './Parslet'
 import { Precedence } from '../Precedence'
 import { assertTerminal } from '../assertTypes'
+import { ParserEngine } from '../ParserEngine'
+import { IntermediateResult } from '../result/IntermediateResult'
+import { TerminalResult } from '../result/TerminalResult'
 
 export class GenericParslet implements InfixParslet {
   accepts (type: TokenType, next: TokenType): boolean {
@@ -14,7 +15,7 @@ export class GenericParslet implements InfixParslet {
     return Precedence.GENERIC
   }
 
-  parseInfix (parser: ParserEngine, left: IntermediateResult): ParseResult {
+  parseInfix (parser: ParserEngine, left: IntermediateResult): TerminalResult {
     const dot = parser.consume('.')
     parser.consume('<')
 
@@ -28,11 +29,11 @@ export class GenericParslet implements InfixParslet {
     }
 
     return {
-      type: 'GENERIC',
+      type: 'JsdocTypeGeneric',
       left: assertTerminal(left),
       elements: objects,
       meta: {
-        brackets: '<>',
+        brackets: 'angle',
         dot
       }
     }

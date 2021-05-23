@@ -1,8 +1,8 @@
 import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
-import { StringValueResult } from '../ParseResult'
 import { Precedence } from '../Precedence'
+import { StringValueResult } from '../result/TerminalResult'
 
 export class StringValueParslet implements PrefixParslet {
   accepts (type: TokenType): boolean {
@@ -17,10 +17,10 @@ export class StringValueParslet implements PrefixParslet {
     const token = parser.getToken()
     parser.consume('StringValue')
     return {
-      type: 'STRING_VALUE',
+      type: 'JsdocTypeStringValue',
       value: token.text.slice(1, -1),
       meta: {
-        quote: token.text[0] as '\'' | '"'
+        quote: token.text[0] === '\'' ? 'single' : 'double'
       }
     }
   }

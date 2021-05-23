@@ -5,13 +5,10 @@ export const typeOfFixtures: Fixture[] = [
     description: 'typeof name',
     input: 'typeof A',
     expected: {
-      type: 'TYPE_OF',
+      type: 'JsdocTypeTypeof',
       element: {
-        type: 'NAME',
-        value: 'A',
-        meta: {
-          reservedWord: false
-        }
+        type: 'JsdocTypeName',
+        value: 'A'
       }
     },
     modes: ['typescript', 'closure'],
@@ -60,27 +57,21 @@ export const typeOfFixtures: Fixture[] = [
     description: 'generic with typeof name',
     input: 'X<typeof A>',
     expected: {
-      type: 'GENERIC',
+      type: 'JsdocTypeGeneric',
       left: {
-        type: 'NAME',
-        value: 'X',
-        meta: {
-          reservedWord: false
-        }
+        type: 'JsdocTypeName',
+        value: 'X'
       },
       elements: [{
-        type: 'TYPE_OF',
+        type: 'JsdocTypeTypeof',
         element: {
-          type: 'NAME',
-          value: 'A',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'A'
         }
       }],
       meta: {
         dot: false,
-        brackets: '<>'
+        brackets: 'angle'
       }
     },
     modes: ['typescript', 'closure'],
@@ -99,11 +90,11 @@ export const typeOfFixtures: Fixture[] = [
   //   description: 'generic typeof name in parenthesis',
   //   input: '(typeof X)<A>',
   //   expected: {
-  //     type: 'GENERIC',
+  //     type: 'JsdocTypeGeneric',
   //     left: {
-  //       type: 'TYPE_OF',
+  //       type: 'JsdocTypeTypeof',
   //       element: {
-  //         type: 'NAME',
+  //         type: 'JsdocTypeName',
   //         value: 'X',
   //         meta: {
   //           reservedWord: false
@@ -112,7 +103,7 @@ export const typeOfFixtures: Fixture[] = [
   //     },
   //     elements: [
   //       {
-  //         type: 'NAME',
+  //         type: 'JsdocTypeName',
   //         value: 'A',
   //         meta: {
   //           reservedWord: false
@@ -121,7 +112,7 @@ export const typeOfFixtures: Fixture[] = [
   //     ],
   //     meta: {
   //       dot: false,
-  //       brackets: '<>'
+  //       brackets: 'angle'
   //     }
   //   },
   //   modes: ['typescript'],
@@ -140,15 +131,12 @@ export const typeOfFixtures: Fixture[] = [
     description: 'typeof name in parenthesis',
     input: '(typeof A)',
     expected: {
-      type: 'PARENTHESIS',
+      type: 'JsdocTypeParenthesis',
       element: {
-        type: 'TYPE_OF',
+        type: 'JsdocTypeTypeof',
         element: {
-          type: 'NAME',
-          value: 'A',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'A'
         }
       }
     },
@@ -168,20 +156,17 @@ export const typeOfFixtures: Fixture[] = [
     description: 'repeatable typeof name',
     input: '...typeof A',
     expected: {
-      type: 'VARIADIC',
+      type: 'JsdocTypeVariadic',
       element: {
-        type: 'TYPE_OF',
+        type: 'JsdocTypeTypeof',
         element: {
-          type: 'NAME',
-          value: 'A',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'A'
         }
       },
       meta: {
         squareBrackets: false,
-        position: 'PREFIX'
+        position: 'prefix'
       }
     },
     modes: ['closure', 'typescript'],
@@ -200,20 +185,17 @@ export const typeOfFixtures: Fixture[] = [
     description: 'postfix repeatable typeof name',
     input: 'typeof A...',
     expected: {
-      type: 'VARIADIC',
+      type: 'JsdocTypeVariadic',
       element: {
-        type: 'TYPE_OF',
+        type: 'JsdocTypeTypeof',
         element: {
-          type: 'NAME',
-          value: 'A',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'A'
         }
       },
       meta: {
         squareBrackets: false,
-        position: 'SUFFIX'
+        position: 'suffix'
       }
     },
     modes: [],
@@ -232,24 +214,18 @@ export const typeOfFixtures: Fixture[] = [
     description: 'union typeof name',
     input: 'typeof A | number',
     expected: {
-      type: 'UNION',
+      type: 'JsdocTypeUnion',
       elements: [
         {
-          type: 'TYPE_OF',
+          type: 'JsdocTypeTypeof',
           element: {
-            type: 'NAME',
-            value: 'A',
-            meta: {
-              reservedWord: false
-            }
+            type: 'JsdocTypeName',
+            value: 'A'
           }
         },
         {
-          type: 'NAME',
-          value: 'number',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'number'
         }
       ]
     },
@@ -269,23 +245,17 @@ export const typeOfFixtures: Fixture[] = [
     description: 'union with typeof name',
     input: 'number | typeof A',
     expected: {
-      type: 'UNION',
+      type: 'JsdocTypeUnion',
       elements: [
         {
-          type: 'NAME',
-          value: 'number',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'number'
         },
         {
-          type: 'TYPE_OF',
+          type: 'JsdocTypeTypeof',
           element: {
-            type: 'NAME',
-            value: 'A',
-            meta: {
-              reservedWord: false
-            }
+            type: 'JsdocTypeName',
+            value: 'A'
           }
         }
       ]
@@ -306,28 +276,22 @@ export const typeOfFixtures: Fixture[] = [
     description: 'typeof array',
     input: 'typeof N[]',
     expected: {
-      type: 'TYPE_OF',
+      type: 'JsdocTypeTypeof',
       element: {
-        type: 'GENERIC',
+        type: 'JsdocTypeGeneric',
         left: {
-          type: 'NAME',
-          value: 'Array',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'Array'
         },
         elements: [
           {
-            type: 'NAME',
-            value: 'N',
-            meta: {
-              reservedWord: false
-            }
+            type: 'JsdocTypeName',
+            value: 'N'
           }
         ],
         meta: {
           dot: false,
-          brackets: '[]'
+          brackets: 'square'
         }
       }
     },
@@ -347,16 +311,13 @@ export const typeOfFixtures: Fixture[] = [
     description: 'typeof as function parameter without return type should fail',
     input: 'function(typeof A)',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [
         {
-          type: 'TYPE_OF',
+          type: 'JsdocTypeTypeof',
           element: {
-            type: 'NAME',
-            value: 'A',
-            meta: {
-              reservedWord: false
-            }
+            type: 'JsdocTypeName',
+            value: 'A'
           }
         }
       ],
@@ -379,25 +340,19 @@ export const typeOfFixtures: Fixture[] = [
     description: 'typeof as function parameter',
     input: 'function(typeof A): void',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [
         {
-          type: 'TYPE_OF',
+          type: 'JsdocTypeTypeof',
           element: {
-            type: 'NAME',
-            value: 'A',
-            meta: {
-              reservedWord: false
-            }
+            type: 'JsdocTypeName',
+            value: 'A'
           }
         }
       ],
       returnType: {
-        type: 'NAME',
-        value: 'void',
-        meta: {
-          reservedWord: true
-        }
+        type: 'JsdocTypeName',
+        value: 'void'
       },
       arrow: false,
       parenthesis: true
@@ -418,32 +373,23 @@ export const typeOfFixtures: Fixture[] = [
     description: 'typeof as first function parameter',
     input: 'function(typeof A, number): void',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [
         {
-          type: 'TYPE_OF',
+          type: 'JsdocTypeTypeof',
           element: {
-            type: 'NAME',
-            value: 'A',
-            meta: {
-              reservedWord: false
-            }
+            type: 'JsdocTypeName',
+            value: 'A'
           }
         },
         {
-          type: 'NAME',
-          value: 'number',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'number'
         }
       ],
       returnType: {
-        type: 'NAME',
-        value: 'void',
-        meta: {
-          reservedWord: true
-        }
+        type: 'JsdocTypeName',
+        value: 'void'
       },
       arrow: false,
       parenthesis: true
@@ -464,32 +410,23 @@ export const typeOfFixtures: Fixture[] = [
     description: 'typeof as second function parameter',
     input: 'function(number, typeof A): void',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [
         {
-          type: 'NAME',
-          value: 'number',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'number'
         },
         {
-          type: 'TYPE_OF',
+          type: 'JsdocTypeTypeof',
           element: {
-            type: 'NAME',
-            value: 'A',
-            meta: {
-              reservedWord: false
-            }
+            type: 'JsdocTypeName',
+            value: 'A'
           }
         }
       ],
       returnType: {
-        type: 'NAME',
-        value: 'void',
-        meta: {
-          reservedWord: true
-        }
+        type: 'JsdocTypeName',
+        value: 'void'
       },
       arrow: false,
       parenthesis: true
@@ -510,16 +447,13 @@ export const typeOfFixtures: Fixture[] = [
     description: 'typeof as return of function',
     input: 'function(): typeof A',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [],
       returnType: {
-        type: 'TYPE_OF',
+        type: 'JsdocTypeTypeof',
         element: {
-          type: 'NAME',
-          value: 'A',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'A'
         }
       },
       arrow: false,

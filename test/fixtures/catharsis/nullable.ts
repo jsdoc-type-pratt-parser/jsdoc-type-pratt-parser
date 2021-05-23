@@ -5,16 +5,13 @@ export const nullableFixtures: Fixture[] = [
     description: 'nullable number',
     input: '?number',
     expected: {
-      type: 'NULLABLE',
+      type: 'JsdocTypeNullable',
       element: {
-        type: 'NAME',
-        value: 'number',
-        meta: {
-          reservedWord: false
-        }
+        type: 'JsdocTypeName',
+        value: 'number'
       },
       meta: {
-        position: 'PREFIX'
+        position: 'prefix'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -33,16 +30,13 @@ export const nullableFixtures: Fixture[] = [
     description: 'postfix nullable number',
     input: 'number?',
     expected: {
-      type: 'NULLABLE',
+      type: 'JsdocTypeNullable',
       element: {
-        type: 'NAME',
-        value: 'number',
-        meta: {
-          reservedWord: false
-        }
+        type: 'JsdocTypeName',
+        value: 'number'
       },
       meta: {
-        position: 'SUFFIX'
+        position: 'suffix'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -61,16 +55,13 @@ export const nullableFixtures: Fixture[] = [
     description: 'non-nullable object',
     input: '!Object',
     expected: {
-      type: 'NOT_NULLABLE',
+      type: 'JsdocTypeNotNullable',
       element: {
-        type: 'NAME',
-        value: 'Object',
-        meta: {
-          reservedWord: false
-        }
+        type: 'JsdocTypeName',
+        value: 'Object'
       },
       meta: {
-        position: 'PREFIX'
+        position: 'prefix'
       }
     },
     modes: ['jsdoc', 'closure'],
@@ -89,16 +80,13 @@ export const nullableFixtures: Fixture[] = [
     description: 'postfix non-nullable object',
     input: 'Object!',
     expected: {
-      type: 'NOT_NULLABLE',
+      type: 'JsdocTypeNotNullable',
       element: {
-        type: 'NAME',
-        value: 'Object',
-        meta: {
-          reservedWord: false
-        }
+        type: 'JsdocTypeName',
+        value: 'Object'
       },
       meta: {
-        position: 'SUFFIX'
+        position: 'suffix'
       }
     },
     modes: ['jsdoc', 'closure'],
@@ -117,22 +105,19 @@ export const nullableFixtures: Fixture[] = [
     description: 'repeatable nullable number',
     input: '...?number',
     expected: {
-      type: 'VARIADIC',
+      type: 'JsdocTypeVariadic',
       element: {
-        type: 'NULLABLE',
+        type: 'JsdocTypeNullable',
         element: {
-          type: 'NAME',
-          value: 'number',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'number'
         },
         meta: {
-          position: 'PREFIX'
+          position: 'prefix'
         }
       },
       meta: {
-        position: 'PREFIX',
+        position: 'prefix',
         squareBrackets: false
       }
     },
@@ -152,22 +137,19 @@ export const nullableFixtures: Fixture[] = [
     description: 'postfix repeatable nullable number',
     input: '...number?',
     expected: {
-      type: 'VARIADIC',
+      type: 'JsdocTypeVariadic',
       element: {
-        type: 'NULLABLE',
+        type: 'JsdocTypeNullable',
         element: {
-          type: 'NAME',
-          value: 'number',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'number'
         },
         meta: {
-          position: 'SUFFIX'
+          position: 'suffix'
         }
       },
       meta: {
-        position: 'PREFIX',
+        position: 'prefix',
         squareBrackets: false
       }
     },
@@ -187,22 +169,19 @@ export const nullableFixtures: Fixture[] = [
     description: 'repeatable non-nullable object',
     input: '...!Object',
     expected: {
-      type: 'VARIADIC',
+      type: 'JsdocTypeVariadic',
       element: {
-        type: 'NOT_NULLABLE',
+        type: 'JsdocTypeNotNullable',
         element: {
-          type: 'NAME',
-          value: 'Object',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'Object'
         },
         meta: {
-          position: 'PREFIX'
+          position: 'prefix'
         }
       },
       meta: {
-        position: 'PREFIX',
+        position: 'prefix',
         squareBrackets: false
       }
     },
@@ -222,22 +201,19 @@ export const nullableFixtures: Fixture[] = [
     description: 'postfix repeatable non-nullable object',
     input: '...Object!',
     expected: {
-      type: 'VARIADIC',
+      type: 'JsdocTypeVariadic',
       element: {
-        type: 'NOT_NULLABLE',
+        type: 'JsdocTypeNotNullable',
         element: {
-          type: 'NAME',
-          value: 'Object',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'Object'
         },
         meta: {
-          position: 'SUFFIX'
+          position: 'suffix'
         }
       },
       meta: {
-        position: 'PREFIX',
+        position: 'prefix',
         squareBrackets: false
       }
     },
@@ -257,22 +233,19 @@ export const nullableFixtures: Fixture[] = [
     description: 'postfix optional nullable number',
     input: 'number=?',
     expected: {
-      type: 'NULLABLE',
+      type: 'JsdocTypeNullable',
       element: {
-        type: 'OPTIONAL',
+        type: 'JsdocTypeOptional',
         element: {
-          type: 'NAME',
-          value: 'number',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'number'
         },
         meta: {
-          position: 'SUFFIX'
+          position: 'suffix'
         }
       },
       meta: {
-        position: 'SUFFIX'
+        position: 'suffix'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -291,22 +264,19 @@ export const nullableFixtures: Fixture[] = [
     description: 'postfix nullable optional number',
     input: 'number?=',
     expected: {
-      type: 'OPTIONAL',
+      type: 'JsdocTypeOptional',
       element: {
-        type: 'NULLABLE',
+        type: 'JsdocTypeNullable',
         element: {
-          type: 'NAME',
-          value: 'number',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'number'
         },
         meta: {
-          position: 'SUFFIX'
+          position: 'suffix'
         }
       },
       meta: {
-        position: 'SUFFIX'
+        position: 'suffix'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -325,28 +295,25 @@ export const nullableFixtures: Fixture[] = [
     description: 'postfix repeatable nullable optional number',
     input: '...number?=',
     expected: {
-      type: 'VARIADIC',
+      type: 'JsdocTypeVariadic',
       element: {
-        type: 'OPTIONAL',
+        type: 'JsdocTypeOptional',
         element: {
-          type: 'NULLABLE',
+          type: 'JsdocTypeNullable',
           element: {
-            type: 'NAME',
-            value: 'number',
-            meta: {
-              reservedWord: false
-            }
+            type: 'JsdocTypeName',
+            value: 'number'
           },
           meta: {
-            position: 'SUFFIX'
+            position: 'suffix'
           }
         },
         meta: {
-          position: 'SUFFIX'
+          position: 'suffix'
         }
       },
       meta: {
-        position: 'PREFIX',
+        position: 'prefix',
         squareBrackets: false
       }
     },
@@ -366,22 +333,19 @@ export const nullableFixtures: Fixture[] = [
     description: 'postfix optional non-nullable object',
     input: 'Object=!',
     expected: {
-      type: 'NOT_NULLABLE',
+      type: 'JsdocTypeNotNullable',
       element: {
-        type: 'OPTIONAL',
+        type: 'JsdocTypeOptional',
         element: {
-          type: 'NAME',
-          value: 'Object',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'Object'
         },
         meta: {
-          position: 'SUFFIX'
+          position: 'suffix'
         }
       },
       meta: {
-        position: 'SUFFIX'
+        position: 'suffix'
       }
     },
     modes: ['jsdoc', 'closure'],
@@ -400,22 +364,19 @@ export const nullableFixtures: Fixture[] = [
     description: 'postfix non-nullable optional object',
     input: 'Object!=',
     expected: {
-      type: 'OPTIONAL',
+      type: 'JsdocTypeOptional',
       element: {
-        type: 'NOT_NULLABLE',
+        type: 'JsdocTypeNotNullable',
         element: {
-          type: 'NAME',
-          value: 'Object',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'Object'
         },
         meta: {
-          position: 'SUFFIX'
+          position: 'suffix'
         }
       },
       meta: {
-        position: 'SUFFIX'
+        position: 'suffix'
       }
     },
     modes: ['jsdoc', 'closure'],
@@ -434,28 +395,25 @@ export const nullableFixtures: Fixture[] = [
     description: 'postfix repeatable non-nullable optional object',
     input: '...Object!=',
     expected: {
-      type: 'VARIADIC',
+      type: 'JsdocTypeVariadic',
       element: {
-        type: 'OPTIONAL',
+        type: 'JsdocTypeOptional',
         element: {
-          type: 'NOT_NULLABLE',
+          type: 'JsdocTypeNotNullable',
           element: {
-            type: 'NAME',
-            value: 'Object',
-            meta: {
-              reservedWord: false
-            }
+            type: 'JsdocTypeName',
+            value: 'Object'
           },
           meta: {
-            position: 'SUFFIX'
+            position: 'suffix'
           }
         },
         meta: {
-          position: 'SUFFIX'
+          position: 'suffix'
         }
       },
       meta: {
-        position: 'PREFIX',
+        position: 'prefix',
         squareBrackets: false
       }
     },

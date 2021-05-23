@@ -4,7 +4,8 @@
  */
 
 export * from './parse'
-export * from './ParseResult'
+export * from './result/TerminalResult'
+export * from './result/NonTerminalResult'
 export { transform, TransformRule, TransformFunction, TransformRules } from './transforms/transform'
 export { catharsisTransform } from './transforms/catharsisTransform'
 export { jtpTransform } from './transforms/jtpTransform'

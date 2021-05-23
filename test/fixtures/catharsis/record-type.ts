@@ -5,7 +5,7 @@ export const recordFixtures: Fixture[] = [
     description: 'empty record type',
     input: '{}',
     expected: {
-      type: 'OBJECT',
+      type: 'JsdocTypeObject',
       elements: []
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -24,21 +24,18 @@ export const recordFixtures: Fixture[] = [
     description: 'record type with 1 typed property',
     input: '{myNum: number}',
     expected: {
-      type: 'OBJECT',
+      type: 'JsdocTypeObject',
       elements: [
         {
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           optional: false,
           value: 'myNum',
           meta: {
             quote: undefined
           },
           right: {
-            type: 'NAME',
-            value: 'number',
-            meta: {
-              reservedWord: false
-            }
+            type: 'JsdocTypeName',
+            value: 'number'
           }
         }
       ]
@@ -59,30 +56,27 @@ export const recordFixtures: Fixture[] = [
     description: 'repeatable record type with 1 typed property',
     input: '...{myNum: number}',
     expected: {
-      type: 'VARIADIC',
+      type: 'JsdocTypeVariadic',
       element: {
-        type: 'OBJECT',
+        type: 'JsdocTypeObject',
         elements: [
           {
-            type: 'KEY_VALUE',
+            type: 'JsdocTypeKeyValue',
             optional: false,
             value: 'myNum',
             meta: {
               quote: undefined
             },
             right: {
-              type: 'NAME',
-              value: 'number',
-              meta: {
-                reservedWord: false
-              }
+              type: 'JsdocTypeName',
+              value: 'number'
             }
           }
         ]
       },
       meta: {
         squareBrackets: false,
-        position: 'PREFIX'
+        position: 'prefix'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -101,29 +95,26 @@ export const recordFixtures: Fixture[] = [
     description: 'optional record type with 1 typed property',
     input: '{myNum: number}=',
     expected: {
-      type: 'OPTIONAL',
+      type: 'JsdocTypeOptional',
       element: {
-        type: 'OBJECT',
+        type: 'JsdocTypeObject',
         elements: [
           {
-            type: 'KEY_VALUE',
+            type: 'JsdocTypeKeyValue',
             optional: false,
             value: 'myNum',
             meta: {
               quote: undefined
             },
             right: {
-              type: 'NAME',
-              value: 'number',
-              meta: {
-                reservedWord: false
-              }
+              type: 'JsdocTypeName',
+              value: 'number'
             }
           }
         ]
       },
       meta: {
-        position: 'SUFFIX'
+        position: 'suffix'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -142,29 +133,26 @@ export const recordFixtures: Fixture[] = [
     description: 'nullable record type with 1 typed property',
     input: '?{myNum: number}',
     expected: {
-      type: 'NULLABLE',
+      type: 'JsdocTypeNullable',
       element: {
-        type: 'OBJECT',
+        type: 'JsdocTypeObject',
         elements: [
           {
-            type: 'KEY_VALUE',
+            type: 'JsdocTypeKeyValue',
             optional: false,
             value: 'myNum',
             meta: {
               quote: undefined
             },
             right: {
-              type: 'NAME',
-              value: 'number',
-              meta: {
-                reservedWord: false
-              }
+              type: 'JsdocTypeName',
+              value: 'number'
             }
           }
         ]
       },
       meta: {
-        position: 'PREFIX'
+        position: 'prefix'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -183,29 +171,26 @@ export const recordFixtures: Fixture[] = [
     description: 'non-nullable record type with 1 typed property',
     input: '!{myNum: number}',
     expected: {
-      type: 'NOT_NULLABLE',
+      type: 'JsdocTypeNotNullable',
       element: {
-        type: 'OBJECT',
+        type: 'JsdocTypeObject',
         elements: [
           {
-            type: 'KEY_VALUE',
+            type: 'JsdocTypeKeyValue',
             optional: false,
             value: 'myNum',
             meta: {
               quote: undefined
             },
             right: {
-              type: 'NAME',
-              value: 'number',
-              meta: {
-                reservedWord: false
-              }
+              type: 'JsdocTypeName',
+              value: 'number'
             }
           }
         ]
       },
       meta: {
-        position: 'PREFIX'
+        position: 'prefix'
       }
     },
     modes: ['jsdoc', 'closure'],
@@ -224,25 +209,22 @@ export const recordFixtures: Fixture[] = [
     description: 'record type with 1 typed property and 1 untyped property',
     input: '{myNum: number, myObject}',
     expected: {
-      type: 'OBJECT',
+      type: 'JsdocTypeObject',
       elements: [
         {
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           optional: false,
           value: 'myNum',
           meta: {
             quote: undefined
           },
           right: {
-            type: 'NAME',
-            value: 'number',
-            meta: {
-              reservedWord: false
-            }
+            type: 'JsdocTypeName',
+            value: 'number'
           }
         },
         {
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           value: 'myObject',
           right: undefined,
           optional: false,
@@ -268,36 +250,30 @@ export const recordFixtures: Fixture[] = [
     description: 'record type with a property that uses a type application as a value',
     input: '{myArray: Array.<string>}',
     expected: {
-      type: 'OBJECT',
+      type: 'JsdocTypeObject',
       elements: [
         {
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           optional: false,
           value: 'myArray',
           meta: {
             quote: undefined
           },
           right: {
-            type: 'GENERIC',
+            type: 'JsdocTypeGeneric',
             left: {
-              type: 'NAME',
-              value: 'Array',
-              meta: {
-                reservedWord: false
-              }
+              type: 'JsdocTypeName',
+              value: 'Array'
             },
             elements: [
               {
-                type: 'NAME',
-                value: 'string',
-                meta: {
-                  reservedWord: false
-                }
+                type: 'JsdocTypeName',
+                value: 'string'
               }
             ],
             meta: {
               dot: true,
-              brackets: '<>'
+              brackets: 'angle'
             }
           }
         }
@@ -320,40 +296,31 @@ export const recordFixtures: Fixture[] = [
     input: '{myKey: (number|boolean|string)}',
     stringified: '{myKey: (number | boolean | string)}',
     expected: {
-      type: 'OBJECT',
+      type: 'JsdocTypeObject',
       elements: [
         {
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           optional: false,
           value: 'myKey',
           meta: {
             quote: undefined
           },
           right: {
-            type: 'PARENTHESIS',
+            type: 'JsdocTypeParenthesis',
             element: {
-              type: 'UNION',
+              type: 'JsdocTypeUnion',
               elements: [
                 {
-                  type: 'NAME',
-                  value: 'number',
-                  meta: {
-                    reservedWord: false
-                  }
+                  type: 'JsdocTypeName',
+                  value: 'number'
                 },
                 {
-                  type: 'NAME',
-                  value: 'boolean',
-                  meta: {
-                    reservedWord: false
-                  }
+                  type: 'JsdocTypeName',
+                  value: 'boolean'
                 },
                 {
-                  type: 'NAME',
-                  value: 'string',
-                  meta: {
-                    reservedWord: false
-                  }
+                  type: 'JsdocTypeName',
+                  value: 'string'
                 }
               ]
             }
@@ -377,21 +344,18 @@ export const recordFixtures: Fixture[] = [
     description: 'record type with a property that uses a JavaScript keyword as a key',
     input: '{continue: string}',
     expected: {
-      type: 'OBJECT',
+      type: 'JsdocTypeObject',
       elements: [
         {
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           optional: false,
           value: 'continue',
           meta: {
             quote: undefined
           },
           right: {
-            type: 'NAME',
-            value: 'string',
-            meta: {
-              reservedWord: false
-            }
+            type: 'JsdocTypeName',
+            value: 'string'
           }
         }
       ]
@@ -412,21 +376,18 @@ export const recordFixtures: Fixture[] = [
     description: 'record type with a property that uses a JavaScript future reserved word as a key',
     input: '{class: string}',
     expected: {
-      type: 'OBJECT',
+      type: 'JsdocTypeObject',
       elements: [
         {
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           optional: false,
           value: 'class',
           meta: {
             quote: undefined
           },
           right: {
-            type: 'NAME',
-            value: 'string',
-            meta: {
-              reservedWord: false
-            }
+            type: 'JsdocTypeName',
+            value: 'string'
           }
         }
       ]
@@ -447,21 +408,18 @@ export const recordFixtures: Fixture[] = [
     description: 'record type with a property that uses a string representation of a JavaScript boolean literal as a key',
     input: '{true: string}',
     expected: {
-      type: 'OBJECT',
+      type: 'JsdocTypeObject',
       elements: [
         {
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           optional: false,
           value: 'true',
           meta: {
             quote: undefined
           },
           right: {
-            type: 'NAME',
-            value: 'string',
-            meta: {
-              reservedWord: false
-            }
+            type: 'JsdocTypeName',
+            value: 'string'
           }
         }
       ]
@@ -482,21 +440,18 @@ export const recordFixtures: Fixture[] = [
     description: 'record type with a property that uses a numeric key',
     input: '{0: string}',
     expected: {
-      type: 'OBJECT',
+      type: 'JsdocTypeObject',
       elements: [
         {
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           optional: false,
           value: '0',
           meta: {
             quote: undefined
           },
           right: {
-            type: 'NAME',
-            value: 'string',
-            meta: {
-              reservedWord: false
-            }
+            type: 'JsdocTypeName',
+            value: 'string'
           }
         }
       ]

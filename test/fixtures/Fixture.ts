@@ -4,7 +4,7 @@ import { parse as catharsisParse } from 'catharsis'
 import { parse as jtpParse } from 'jsdoctypeparser'
 import { jtpTransform } from '../../src/transforms/jtpTransform'
 import { simplify } from '../../src/transforms/simplify'
-import { catharsisTransform, parse, ParseResult, ParserMode, stringify } from '../../src'
+import { catharsisTransform, parse, TerminalResult, ParserMode, stringify } from '../../src'
 
 type JtpMode = 'jsdoc' | 'closure' | 'typescript' | 'permissive'
 
@@ -21,19 +21,19 @@ export interface Fixture {
   catharsis: {
     [K in CatharsisMode]: CompareMode
   }
-  expected?: ParseResult
+  expected?: TerminalResult
   diffExpected?: {
-    [K in ParserMode]?: ParseResult
+    [K in ParserMode]?: TerminalResult
   }
   input: string
   stringified?: string
 }
 
 type Results = {
-  [K in ParserMode]?: ParseResult
+  [K in ParserMode]?: TerminalResult
 }
 
-function testParser (mode: ParserMode, fixture: Fixture): ParseResult | undefined {
+function testParser (mode: ParserMode, fixture: Fixture): TerminalResult | undefined {
   if (fixture.modes.includes(mode)) {
     it(`is parsed in '${mode}' mode`, () => {
       const result = parse(fixture.input, mode)
@@ -60,7 +60,7 @@ function compareCatharsis (mode: CatharsisMode, results: Results, fixture: Fixtu
       expect(catharsisResult).not.to.be.equal(undefined)
 
       if (compareMode !== 'differ') {
-        const transformed = catharsisTransform(results[compareMode] as ParseResult)
+        const transformed = catharsisTransform(results[compareMode] as TerminalResult)
         expect(transformed, 'matches the catharsis output').to.deep.equal(catharsisResult)
       }
     })
@@ -87,7 +87,7 @@ function compareJtp (mode: JtpMode, results: Results, fixture: Fixture): void {
       expect(jtpResult).not.to.be.equal(undefined)
 
       if (compareMode !== 'differ') {
-        const transformed = jtpTransform(results[compareMode] as ParseResult)
+        const transformed = jtpTransform(results[compareMode] as TerminalResult)
         expect(transformed, 'matches the jsdoctypeparser output').to.deep.equal(jtpResult)
       }
     })
@@ -127,7 +127,7 @@ export function testFixture (fixture: Fixture): void {
             ? 'typescript' : undefined
 
       if (mode !== undefined) {
-        const result = results[mode] as ParseResult
+        const result = results[mode] as TerminalResult
         const stringified = stringify(result)
 
         expect(stringified).to.equal(fixture.stringified ?? fixture.input)

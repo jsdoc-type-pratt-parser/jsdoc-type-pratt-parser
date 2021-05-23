@@ -1,52 +1,55 @@
 import { TransformRules } from './transform'
 import {
-  FunctionResult, JsdocObjectKeyValueResult,
+  JsdocObjectKeyValueResult,
   KeyValueResult,
-  NameResult,
   NonTerminalResult,
-  NumberResult,
-  ParseResult,
+  NumberResult
+} from '../result/NonTerminalResult'
+import {
+  FunctionResult,
+  NameResult,
   StringValueResult,
   SymbolResult,
+  TerminalResult,
   VariadicResult
-} from '../ParseResult'
+} from '../result/TerminalResult'
 
 export function identityTransformRules (): TransformRules<NonTerminalResult> {
   return {
-    INTERSECTION: (result, transform) => ({
-      type: 'INTERSECTION',
-      elements: result.elements.map(transform) as ParseResult[]
+    JsdocTypeIntersection: (result, transform) => ({
+      type: 'JsdocTypeIntersection',
+      elements: result.elements.map(transform) as TerminalResult[]
     }),
 
-    GENERIC: (result, transform) => ({
-      type: 'GENERIC',
-      left: transform(result.left) as ParseResult,
-      elements: result.elements.map(transform) as ParseResult[],
+    JsdocTypeGeneric: (result, transform) => ({
+      type: 'JsdocTypeGeneric',
+      left: transform(result.left) as TerminalResult,
+      elements: result.elements.map(transform) as TerminalResult[],
       meta: {
         dot: result.meta.dot,
         brackets: result.meta.brackets
       }
     }),
 
-    NULLABLE: result => result,
+    JsdocTypeNullable: result => result,
 
-    UNION: (result, transform) => ({
-      type: 'UNION',
-      elements: result.elements.map(transform) as ParseResult[]
+    JsdocTypeUnion: (result, transform) => ({
+      type: 'JsdocTypeUnion',
+      elements: result.elements.map(transform) as TerminalResult[]
     }),
 
-    UNKNOWN: result => result,
+    JsdocTypeUnknown: result => result,
 
-    UNDEFINED: result => result,
+    JsdocTypeUndefined: result => result,
 
-    TYPE_OF: (result, transform) => ({
-      type: 'TYPE_OF',
-      element: transform(result.element) as ParseResult
+    JsdocTypeTypeof: (result, transform) => ({
+      type: 'JsdocTypeTypeof',
+      element: transform(result.element) as TerminalResult
     }),
 
-    SYMBOL: (result, transform) => {
+    JsdocTypeSymbol: (result, transform) => {
       const transformed: SymbolResult = {
-        type: 'SYMBOL',
+        type: 'JsdocTypeSymbol',
         value: result.value
       }
       if (result.element !== undefined) {
@@ -55,55 +58,65 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
       return transformed
     },
 
-    OPTIONAL: (result, transform) => ({
-      type: 'OPTIONAL',
-      element: transform(result.element) as ParseResult,
+    JsdocTypeOptional: (result, transform) => ({
+      type: 'JsdocTypeOptional',
+      element: transform(result.element) as TerminalResult,
       meta: {
         position: result.meta.position
       }
     }),
 
-    OBJECT: (result, transform) => ({
-      type: 'OBJECT',
+    JsdocTypeObject: (result, transform) => ({
+      type: 'JsdocTypeObject',
       elements: result.elements.map(transform) as Array<KeyValueResult | JsdocObjectKeyValueResult>
     }),
 
-    NUMBER: result => result,
+    JsdocTypeNumber: result => result,
 
-    NULL: result => result,
+    JsdocTypeNull: result => result,
 
-    NOT_NULLABLE: (result, transform) => ({
-      type: 'NOT_NULLABLE',
-      element: transform(result.element) as ParseResult,
+    JsdocTypeNotNullable: (result, transform) => ({
+      type: 'JsdocTypeNotNullable',
+      element: transform(result.element) as TerminalResult,
       meta: {
         position: result.meta.position
       }
     }),
 
-    SPECIAL_NAME_PATH: result => result,
+    JsdocTypeSpecialNamePath: result => result,
 
-    KEY_VALUE: (result, transform) => ({
-      type: 'KEY_VALUE',
-      value: result.value,
-      right: result.right === undefined ? undefined : transform(result.right) as ParseResult,
-      optional: result.optional,
-      meta: result.meta
-    }),
+    JsdocTypeKeyValue: (result, transform) => {
+      if ('value' in result) {
+        return {
+          type: 'JsdocTypeKeyValue',
+          value: result.value,
+          right: result.right === undefined ? undefined : transform(result.right) as TerminalResult,
+          optional: result.optional,
+          meta: result.meta
+        }
+      } else {
+        return {
+          type: 'JsdocTypeKeyValue',
+          left: transform(result.left) as TerminalResult,
+          right: transform(result.right) as TerminalResult
+        }
+      }
+    },
 
-    IMPORT: (result, transform) => ({
-      type: 'IMPORT',
+    JsdocTypeImport: (result, transform) => ({
+      type: 'JsdocTypeImport',
       element: transform(result.element) as StringValueResult
     }),
 
-    ANY: result => result,
+    JsdocTypeAny: result => result,
 
-    STRING_VALUE: result => result,
+    JsdocTypeStringValue: result => result,
 
-    NAME_PATH: result => result,
+    JsdocTypeNamePath: result => result,
 
-    VARIADIC: (result, transform) => {
-      const transformed: VariadicResult<ParseResult> = {
-        type: 'VARIADIC',
+    JsdocTypeVariadic: (result, transform) => {
+      const transformed: VariadicResult<TerminalResult> = {
+        type: 'JsdocTypeVariadic',
         meta: {
           position: result.meta.position,
           squareBrackets: result.meta.squareBrackets
@@ -111,48 +124,42 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
       }
 
       if (result.element !== undefined) {
-        transformed.element = transform(result.element) as ParseResult
+        transformed.element = transform(result.element) as TerminalResult
       }
 
       return transformed
     },
 
-    TUPLE: (result, transform) => ({
-      type: 'TUPLE',
-      elements: result.elements.map(transform) as ParseResult[]
+    JsdocTypeTuple: (result, transform) => ({
+      type: 'JsdocTypeTuple',
+      elements: result.elements.map(transform) as TerminalResult[]
     }),
 
-    NAME: result => result,
+    JsdocTypeName: result => result,
 
-    FUNCTION: (result, transform) => {
+    JsdocTypeFunction: (result, transform) => {
       const transformed: FunctionResult = {
-        type: 'FUNCTION',
+        type: 'JsdocTypeFunction',
         arrow: result.arrow,
-        parameters: result.parameters.map(transform) as ParseResult[],
+        parameters: result.parameters.map(transform) as TerminalResult[],
         parenthesis: result.parenthesis
       }
 
       if (result.returnType !== undefined) {
-        transformed.returnType = transform(result.returnType) as ParseResult
+        transformed.returnType = transform(result.returnType) as TerminalResult
       }
 
       return transformed
     },
 
-    KEY_OF: (result, transform) => ({
-      type: 'KEY_OF',
-      element: transform(result.element) as ParseResult
+    JsdocTypeKeyof: (result, transform) => ({
+      type: 'JsdocTypeKeyof',
+      element: transform(result.element) as TerminalResult
     }),
 
-    PARENTHESIS: (result, transform) => ({
-      type: 'PARENTHESIS',
-      element: transform(result.element) as ParseResult
-    }),
-
-    JSDOC_OBJECT_KEY_VALUE: (result, transform) => ({
-      type: 'JSDOC_OBJECT_KEY_VALUE',
-      left: transform(result.left) as ParseResult,
-      right: transform(result.right) as ParseResult
+    JsdocTypeParenthesis: (result, transform) => ({
+      type: 'JsdocTypeParenthesis',
+      element: transform(result.element) as TerminalResult
     })
   }
 }

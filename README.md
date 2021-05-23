@@ -54,7 +54,7 @@ Stringify:
 ```js
 import { stringify } from 'jsdoc-type-pratt-parser'
 
-const val = stringify({ type: 'NAME', value: 'name'}) // -> 'name'
+const val = stringify({ type: 'JsdocTypeName', value: 'name'}) // -> 'name'
 ```
 
 You can customize the stringification by using `stringifyRules` and `transform`:
@@ -67,7 +67,7 @@ const rules = stringifyRules()
 // `result` is the current node and `transform` is a function to transform child nodes.
 rules.NAME = (result, transform) => 'something else'
 
-const val = transform(rules, { type: 'NAME', value: 'name'}) // -> 'something else'
+const val = transform(rules, { type: 'JsdocTypeName', value: 'name'}) // -> 'something else'
 ```
 
 You can traverse a result tree with the `traverse` function:
@@ -81,7 +81,7 @@ function onEnter(node, parent, property) {
 }
 
 // an onEnter and/or an onLeave function can be supplied
-traverse({ type: 'NAME', value: 'name'}, onEnter, console.log)
+traverse({ type: 'JsdocTypeName', value: 'name'}, onEnter, console.log)
 ```
 
 You can also build your own transform rules by implementing the `TransformRules<TransformResultType>` interface or you
@@ -91,7 +91,7 @@ can build upon the identity ruleset like this:
 import { identityTransformRules, transform } from 'jsdoc-type-pratt-parser'
 
 const myRules = identityTransformRules()
-myRules.NAME = () => ({ type: 'NAME', value: 'funky' })
+myRules.NAME = () => ({ type: 'JsdocTypeName', value: 'funky' })
 
 const val = transform(myRules, result)
 ```

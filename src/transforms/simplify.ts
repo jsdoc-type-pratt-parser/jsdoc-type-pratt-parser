@@ -1,19 +1,19 @@
 import { identityTransformRules } from './identityTransformRules'
-import { ParseResult } from '../ParseResult'
 import { transform } from './transform'
+import { TerminalResult } from '../result/TerminalResult'
 
 const simplifyRules = identityTransformRules()
 
 // remove parenthesis
-simplifyRules.PARENTHESIS = (result, transform) => transform(result.element)
+simplifyRules.JsdocTypeParenthesis = (result, transform) => transform(result.element)
 
 // remove squares around variadic parameters
-const identityVariadic = simplifyRules.VARIADIC
-simplifyRules.VARIADIC = (result, transform) => {
+const identityVariadic = simplifyRules.JsdocTypeVariadic
+simplifyRules.JsdocTypeVariadic = (result, transform) => {
   result.meta.squareBrackets = false
   return identityVariadic(result, transform)
 }
 
-export function simplify (result: ParseResult): ParseResult {
-  return transform(simplifyRules, result) as ParseResult
+export function simplify (result: TerminalResult): TerminalResult {
+  return transform(simplifyRules, result) as TerminalResult
 }

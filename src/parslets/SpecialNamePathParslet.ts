@@ -2,7 +2,7 @@ import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
 import { ParserEngine } from '../ParserEngine'
-import { NameResult, SpecialNamePath } from '../ParseResult'
+import { NameResult, SpecialNamePath } from '../result/TerminalResult'
 
 export class SpecialNamePathParslet implements PrefixParslet {
   accepts (type: TokenType, next: TokenType): boolean {
@@ -18,21 +18,18 @@ export class SpecialNamePathParslet implements PrefixParslet {
     parser.consume('module') || parser.consume('event') || parser.consume('external')
     if (!parser.consume(':')) {
       return {
-        type: 'NAME',
-        value: type,
-        meta: {
-          reservedWord: false
-        }
+        type: 'JsdocTypeName',
+        value: type
       }
     }
     let token = parser.getToken()
     if (parser.consume('StringValue')) {
       return {
-        type: 'SPECIAL_NAME_PATH',
+        type: 'JsdocTypeSpecialNamePath',
         value: token.text.slice(1, -1),
         specialType: type,
         meta: {
-          quote: token.text[0] as '\'' | '"'
+          quote: token.text[0] === '\'' ? 'single' : 'double'
         }
       }
     } else {
@@ -43,7 +40,7 @@ export class SpecialNamePathParslet implements PrefixParslet {
         token = parser.getToken()
       }
       return {
-        type: 'SPECIAL_NAME_PATH',
+        type: 'JsdocTypeSpecialNamePath',
         value: result,
         specialType: type,
         meta: {

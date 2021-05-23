@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { SinonSpy, spy } from 'sinon'
-import { GenericResult, NameResult, ParseResult, StringValueResult, UnionResult } from '../src'
+import { GenericResult, NameResult, TerminalResult, StringValueResult, UnionResult } from '../src'
 import { traverse } from '../src/traverse'
 
 function expectOrder (calls: Array<[SinonSpy, any[]]>): void {
@@ -24,12 +24,9 @@ describe('traverse', () => {
     const onEnter = spy()
     const onLeave = spy()
 
-    const result: ParseResult = {
-      type: 'NAME',
-      value: 'test',
-      meta: {
-        reservedWord: false
-      }
+    const result: TerminalResult = {
+      type: 'JsdocTypeName',
+      value: 'test'
     }
 
     traverse(result, onEnter, onLeave)
@@ -44,52 +41,43 @@ describe('traverse', () => {
     const onLeave = spy()
 
     const name: NameResult = {
-      type: 'NAME',
-      value: 'genericName',
-      meta: {
-        reservedWord: false
-      }
+      type: 'JsdocTypeName',
+      value: 'genericName'
     }
 
     const typeA: NameResult = {
-      type: 'NAME',
-      value: 'TypeA',
-      meta: {
-        reservedWord: false
-      }
+      type: 'JsdocTypeName',
+      value: 'TypeA'
     }
 
     const typeB: NameResult = {
-      type: 'NAME',
-      value: 'TypeB',
-      meta: {
-        reservedWord: false
-      }
+      type: 'JsdocTypeName',
+      value: 'TypeB'
     }
 
     const generic: GenericResult = {
-      type: 'GENERIC',
+      type: 'JsdocTypeGeneric',
       left: name,
       elements: [
         typeA,
         typeB
       ],
       meta: {
-        brackets: '<>',
+        brackets: 'angle',
         dot: false
       }
     }
 
     const stringVal: StringValueResult = {
-      type: 'STRING_VALUE',
+      type: 'JsdocTypeStringValue',
       value: 'some value',
       meta: {
-        quote: '\''
+        quote: 'single'
       }
     }
 
     const union: UnionResult = {
-      type: 'UNION',
+      type: 'JsdocTypeUnion',
       elements: [
         generic,
         stringVal

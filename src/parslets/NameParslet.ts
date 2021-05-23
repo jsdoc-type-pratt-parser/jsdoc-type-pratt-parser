@@ -1,9 +1,8 @@
 import { ParserEngine } from '../ParserEngine'
 import { TokenType } from '../lexer/Token'
-import { NameResult } from '../ParseResult'
 import { PrefixParslet } from './Parslet'
 import { Precedence } from '../Precedence'
-import { reservedWords } from '../transforms/catharsisTransform'
+import { NameResult } from '../result/TerminalResult'
 
 interface NameParsletOptions {
   allowedAdditionalTokens: TokenType[]
@@ -30,11 +29,8 @@ export class NameParslet implements PrefixParslet {
       this.allowedAdditionalTokens.some(type => parser.consume(type))
 
     return {
-      type: 'NAME',
-      value: token.text,
-      meta: {
-        reservedWord: reservedWords.includes(token.text)
-      }
+      type: 'JsdocTypeName',
+      value: token.text
     }
   }
 }

@@ -1,9 +1,9 @@
 import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
-import { FunctionResult, ParseResult } from '../ParseResult'
 import { Precedence } from '../Precedence'
 import { BaseFunctionParslet } from './BaseFunctionParslet'
+import { FunctionResult, TerminalResult } from '../result/TerminalResult'
 
 export interface FunctionParsletOptions {
   allowNamedParameters?: string[]
@@ -31,7 +31,7 @@ export class FunctionParslet extends BaseFunctionParslet implements PrefixParsle
     return Precedence.FUNCTION
   }
 
-  parsePrefix (parser: ParserEngine): ParseResult {
+  parsePrefix (parser: ParserEngine): TerminalResult {
     parser.consume('function')
 
     const hasParenthesis = parser.getToken().type === '('
@@ -40,7 +40,7 @@ export class FunctionParslet extends BaseFunctionParslet implements PrefixParsle
       throw new Error('function is missing parameter list')
     }
     const result: FunctionResult = {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [],
       arrow: false,
       parenthesis: hasParenthesis
@@ -54,7 +54,7 @@ export class FunctionParslet extends BaseFunctionParslet implements PrefixParsle
       } else {
         result.parameters = this.getParameters(value)
         for (const p of result.parameters) {
-          if (p.type === 'KEY_VALUE' && (!this.allowNamedParameters.includes(p.value) || p.meta.quote !== undefined)) {
+          if (p.type === 'JsdocTypeKeyValue' && (!this.allowNamedParameters.includes(p.value) || p.meta.quote !== undefined)) {
             throw new Error(`only allowed named parameters are ${this.allowNamedParameters.join(',')} but got ${p.type}`)
           }
         }

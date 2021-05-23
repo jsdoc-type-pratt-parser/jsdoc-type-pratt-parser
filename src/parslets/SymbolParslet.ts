@@ -1,9 +1,10 @@
 import { InfixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
-import { IntermediateResult, ParserEngine } from '../ParserEngine'
-import { ParseResult, SymbolResult } from '../ParseResult'
 import { Precedence } from '../Precedence'
 import { assertNumberOrVariadicName } from '../assertTypes'
+import { ParserEngine } from '../ParserEngine'
+import { IntermediateResult } from '../result/IntermediateResult'
+import { SymbolResult, TerminalResult } from '../result/TerminalResult'
 
 export class SymbolParslet implements InfixParslet {
   accepts (type: TokenType): boolean {
@@ -14,13 +15,13 @@ export class SymbolParslet implements InfixParslet {
     return Precedence.SYMBOL
   }
 
-  parseInfix (parser: ParserEngine, left: IntermediateResult): ParseResult {
-    if (left.type !== 'NAME') {
+  parseInfix (parser: ParserEngine, left: IntermediateResult): TerminalResult {
+    if (left.type !== 'JsdocTypeName') {
       throw new Error('Symbol expects a name on the left side. (Reacting on \'(\')')
     }
     parser.consume('(')
     const result: SymbolResult = {
-      type: 'SYMBOL',
+      type: 'JsdocTypeSymbol',
       value: left.value
     }
     if (!parser.consume(')')) {

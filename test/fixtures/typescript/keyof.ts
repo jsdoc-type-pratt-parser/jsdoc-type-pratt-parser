@@ -5,13 +5,10 @@ export const keyofFixtures: Fixture[] = [
     description: 'keyof name',
     input: 'keyof A',
     expected: {
-      type: 'KEY_OF',
+      type: 'JsdocTypeKeyof',
       element: {
-        type: 'NAME',
-        value: 'A',
-        meta: {
-          reservedWord: false
-        }
+        type: 'JsdocTypeName',
+        value: 'A'
       }
     },
     modes: ['typescript'],
@@ -30,11 +27,8 @@ export const keyofFixtures: Fixture[] = [
     description: 'keyof',
     input: 'keyof',
     expected: {
-      type: 'NAME',
-      value: 'keyof',
-      meta: {
-        reservedWord: false
-      }
+      type: 'JsdocTypeName',
+      value: 'keyof'
     },
     modes: ['jsdoc', 'closure'],
     catharsis: {
@@ -52,24 +46,18 @@ export const keyofFixtures: Fixture[] = [
     description: 'generic with keyof',
     input: 'X<keyof>',
     expected: {
-      type: 'GENERIC',
+      type: 'JsdocTypeGeneric',
       left: {
-        type: 'NAME',
-        value: 'X',
-        meta: {
-          reservedWord: false
-        }
+        type: 'JsdocTypeName',
+        value: 'X'
       },
       elements: [{
-        type: 'NAME',
-        value: 'keyof',
-        meta: {
-          reservedWord: false
-        }
+        type: 'JsdocTypeName',
+        value: 'keyof'
       }],
       meta: {
         dot: false,
-        brackets: '<>'
+        brackets: 'angle'
       }
     },
     modes: ['jsdoc', 'closure'],
@@ -88,27 +76,21 @@ export const keyofFixtures: Fixture[] = [
     description: 'generic with keyof name',
     input: 'X<keyof A>',
     expected: {
-      type: 'GENERIC',
+      type: 'JsdocTypeGeneric',
       left: {
-        type: 'NAME',
-        value: 'X',
-        meta: {
-          reservedWord: false
-        }
+        type: 'JsdocTypeName',
+        value: 'X'
       },
       elements: [{
-        type: 'KEY_OF',
+        type: 'JsdocTypeKeyof',
         element: {
-          type: 'NAME',
-          value: 'A',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'A'
         }
       }],
       meta: {
         dot: false,
-        brackets: '<>'
+        brackets: 'angle'
       }
     },
     modes: ['typescript'],
@@ -127,11 +109,11 @@ export const keyofFixtures: Fixture[] = [
   //   description: 'generic keyof name in parenthesis',
   //   input: '(keyof X)<A>',
   //   expected: {
-  //     type: 'GENERIC',
+  //     type: 'JsdocTypeGeneric',
   //     left: {
-  //       type: 'KEY_OF',
+  //       type: 'JsdocTypeKeyof',
   //       element: {
-  //         type: 'NAME',
+  //         type: 'JsdocTypeName',
   //         value: 'X',
   //         meta: {
   //           reservedWord: false
@@ -140,7 +122,7 @@ export const keyofFixtures: Fixture[] = [
   //     },
   //     elements: [
   //       {
-  //         type: 'NAME',
+  //         type: 'JsdocTypeName',
   //         value: 'A',
   //         meta: {
   //           reservedWord: false
@@ -149,7 +131,7 @@ export const keyofFixtures: Fixture[] = [
   //     ],
   //     meta: {
   //       dot: false,
-  //       brackets: '<>'
+  //       brackets: 'angle'
   //     }
   //   },
   //   modes: ['typescript'],
@@ -168,15 +150,12 @@ export const keyofFixtures: Fixture[] = [
     description: 'keyof name in parenthesis',
     input: '(keyof A)',
     expected: {
-      type: 'PARENTHESIS',
+      type: 'JsdocTypeParenthesis',
       element: {
-        type: 'KEY_OF',
+        type: 'JsdocTypeKeyof',
         element: {
-          type: 'NAME',
-          value: 'A',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'A'
         }
       }
     },
@@ -196,20 +175,17 @@ export const keyofFixtures: Fixture[] = [
     description: 'repeatable keyof name',
     input: '...keyof A',
     expected: {
-      type: 'VARIADIC',
+      type: 'JsdocTypeVariadic',
       element: {
-        type: 'KEY_OF',
+        type: 'JsdocTypeKeyof',
         element: {
-          type: 'NAME',
-          value: 'A',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'A'
         }
       },
       meta: {
         squareBrackets: false,
-        position: 'PREFIX'
+        position: 'prefix'
       }
     },
     modes: ['typescript'],
@@ -228,20 +204,17 @@ export const keyofFixtures: Fixture[] = [
     description: 'postfix repeatable keyof name',
     input: 'keyof A...',
     expected: {
-      type: 'VARIADIC',
+      type: 'JsdocTypeVariadic',
       element: {
-        type: 'KEY_OF',
+        type: 'JsdocTypeKeyof',
         element: {
-          type: 'NAME',
-          value: 'A',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'A'
         }
       },
       meta: {
         squareBrackets: false,
-        position: 'SUFFIX'
+        position: 'suffix'
       }
     },
     modes: [],
@@ -260,24 +233,18 @@ export const keyofFixtures: Fixture[] = [
     description: 'union keyof name',
     input: 'keyof A | number',
     expected: {
-      type: 'UNION',
+      type: 'JsdocTypeUnion',
       elements: [
         {
-          type: 'KEY_OF',
+          type: 'JsdocTypeKeyof',
           element: {
-            type: 'NAME',
-            value: 'A',
-            meta: {
-              reservedWord: false
-            }
+            type: 'JsdocTypeName',
+            value: 'A'
           }
         },
         {
-          type: 'NAME',
-          value: 'number',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'number'
         }
       ]
     },
@@ -297,23 +264,17 @@ export const keyofFixtures: Fixture[] = [
     description: 'union with keyof name',
     input: 'number | keyof A',
     expected: {
-      type: 'UNION',
+      type: 'JsdocTypeUnion',
       elements: [
         {
-          type: 'NAME',
-          value: 'number',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'number'
         },
         {
-          type: 'KEY_OF',
+          type: 'JsdocTypeKeyof',
           element: {
-            type: 'NAME',
-            value: 'A',
-            meta: {
-              reservedWord: false
-            }
+            type: 'JsdocTypeName',
+            value: 'A'
           }
         }
       ]
@@ -334,28 +295,22 @@ export const keyofFixtures: Fixture[] = [
     description: 'keyof array',
     input: 'keyof N[]',
     expected: {
-      type: 'KEY_OF',
+      type: 'JsdocTypeKeyof',
       element: {
-        type: 'GENERIC',
+        type: 'JsdocTypeGeneric',
         left: {
-          type: 'NAME',
-          value: 'Array',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'Array'
         },
         elements: [
           {
-            type: 'NAME',
-            value: 'N',
-            meta: {
-              reservedWord: false
-            }
+            type: 'JsdocTypeName',
+            value: 'N'
           }
         ],
         meta: {
           dot: false,
-          brackets: '[]'
+          brackets: 'square'
         }
       }
     },
@@ -390,25 +345,19 @@ export const keyofFixtures: Fixture[] = [
     description: 'keyof as function parameter',
     input: 'function(keyof A): void',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [
         {
-          type: 'KEY_OF',
+          type: 'JsdocTypeKeyof',
           element: {
-            type: 'NAME',
-            value: 'A',
-            meta: {
-              reservedWord: false
-            }
+            type: 'JsdocTypeName',
+            value: 'A'
           }
         }
       ],
       returnType: {
-        type: 'NAME',
-        value: 'void',
-        meta: {
-          reservedWord: true
-        }
+        type: 'JsdocTypeName',
+        value: 'void'
       },
       arrow: false,
       parenthesis: true
@@ -429,32 +378,23 @@ export const keyofFixtures: Fixture[] = [
     description: 'keyof as first function parameter',
     input: 'function(keyof A, number): void',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [
         {
-          type: 'KEY_OF',
+          type: 'JsdocTypeKeyof',
           element: {
-            type: 'NAME',
-            value: 'A',
-            meta: {
-              reservedWord: false
-            }
+            type: 'JsdocTypeName',
+            value: 'A'
           }
         },
         {
-          type: 'NAME',
-          value: 'number',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'number'
         }
       ],
       returnType: {
-        type: 'NAME',
-        value: 'void',
-        meta: {
-          reservedWord: true
-        }
+        type: 'JsdocTypeName',
+        value: 'void'
       },
       arrow: false,
       parenthesis: true
@@ -475,32 +415,23 @@ export const keyofFixtures: Fixture[] = [
     description: 'keyof as second function parameter',
     input: 'function(number, keyof A): void',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [
         {
-          type: 'NAME',
-          value: 'number',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'number'
         },
         {
-          type: 'KEY_OF',
+          type: 'JsdocTypeKeyof',
           element: {
-            type: 'NAME',
-            value: 'A',
-            meta: {
-              reservedWord: false
-            }
+            type: 'JsdocTypeName',
+            value: 'A'
           }
         }
       ],
       returnType: {
-        type: 'NAME',
-        value: 'void',
-        meta: {
-          reservedWord: true
-        }
+        type: 'JsdocTypeName',
+        value: 'void'
       },
       arrow: false,
       parenthesis: true
@@ -521,16 +452,13 @@ export const keyofFixtures: Fixture[] = [
     description: 'keyof as return of function',
     input: 'function(): keyof A',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [],
       returnType: {
-        type: 'KEY_OF',
+        type: 'JsdocTypeKeyof',
         element: {
-          type: 'NAME',
-          value: 'A',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'A'
         }
       },
       arrow: false,

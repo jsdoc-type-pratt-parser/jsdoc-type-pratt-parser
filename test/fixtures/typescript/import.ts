@@ -5,12 +5,12 @@ export const importFixtures: Fixture[] = [
     description: 'import "x"',
     input: 'import("x")',
     expected: {
-      type: 'IMPORT',
+      type: 'JsdocTypeImport',
       element: {
-        type: 'STRING_VALUE',
+        type: 'JsdocTypeStringValue',
         value: 'x',
         meta: {
-          quote: '"'
+          quote: 'double'
         }
       }
     },
@@ -30,12 +30,12 @@ export const importFixtures: Fixture[] = [
     description: 'import "./x"',
     input: 'import("./x")',
     expected: {
-      type: 'IMPORT',
+      type: 'JsdocTypeImport',
       element: {
-        type: 'STRING_VALUE',
+        type: 'JsdocTypeStringValue',
         value: './x',
         meta: {
-          quote: '"'
+          quote: 'double'
         }
       }
     },
@@ -55,12 +55,12 @@ export const importFixtures: Fixture[] = [
     description: 'import "../x"',
     input: 'import("../x")',
     expected: {
-      type: 'IMPORT',
+      type: 'JsdocTypeImport',
       element: {
-        type: 'STRING_VALUE',
+        type: 'JsdocTypeStringValue',
         value: '../x',
         meta: {
-          quote: '"'
+          quote: 'double'
         }
       }
     },
@@ -80,25 +80,22 @@ export const importFixtures: Fixture[] = [
     description: 'import a named export',
     input: 'import("x").T',
     expected: {
-      type: 'NAME_PATH',
+      type: 'JsdocTypeNamePath',
       left: {
-        type: 'IMPORT',
+        type: 'JsdocTypeImport',
         element: {
-          type: 'STRING_VALUE',
+          type: 'JsdocTypeStringValue',
           value: 'x',
           meta: {
-            quote: '"'
+            quote: 'double'
           }
         }
       },
       right: {
-        type: 'NAME',
-        value: 'T',
-        meta: {
-          reservedWord: false
-        }
+        type: 'JsdocTypeName',
+        value: 'T'
       },
-      pathType: '.'
+      pathType: 'property'
     },
     modes: ['typescript'],
     catharsis: {
@@ -116,36 +113,30 @@ export const importFixtures: Fixture[] = [
     description: 'import 2-level named export',
     input: 'import("x").T.U',
     expected: {
-      type: 'NAME_PATH',
+      type: 'JsdocTypeNamePath',
       left: {
-        type: 'NAME_PATH',
+        type: 'JsdocTypeNamePath',
         left: {
-          type: 'IMPORT',
+          type: 'JsdocTypeImport',
           element: {
-            type: 'STRING_VALUE',
+            type: 'JsdocTypeStringValue',
             value: 'x',
             meta: {
-              quote: '"'
+              quote: 'double'
             }
           }
         },
         right: {
-          type: 'NAME',
-          value: 'T',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'T'
         },
-        pathType: '.'
+        pathType: 'property'
       },
       right: {
-        type: 'NAME',
-        value: 'U',
-        meta: {
-          reservedWord: false
-        }
+        type: 'JsdocTypeName',
+        value: 'U'
       },
-      pathType: '.'
+      pathType: 'property'
     },
     modes: ['typescript'],
     catharsis: {
@@ -164,58 +155,46 @@ export const importFixtures: Fixture[] = [
     input: 'import("x").T.U<V,W>',
     stringified: 'import("x").T.U<V, W>',
     expected: {
-      type: 'GENERIC',
+      type: 'JsdocTypeGeneric',
       left: {
-        type: 'NAME_PATH',
+        type: 'JsdocTypeNamePath',
         left: {
-          type: 'NAME_PATH',
+          type: 'JsdocTypeNamePath',
           left: {
-            type: 'IMPORT',
+            type: 'JsdocTypeImport',
             element: {
-              type: 'STRING_VALUE',
+              type: 'JsdocTypeStringValue',
               value: 'x',
               meta: {
-                quote: '"'
+                quote: 'double'
               }
             }
           },
           right: {
-            type: 'NAME',
-            value: 'T',
-            meta: {
-              reservedWord: false
-            }
+            type: 'JsdocTypeName',
+            value: 'T'
           },
-          pathType: '.'
+          pathType: 'property'
         },
         right: {
-          type: 'NAME',
-          value: 'U',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'U'
         },
-        pathType: '.'
+        pathType: 'property'
       },
       elements: [
         {
-          type: 'NAME',
-          value: 'V',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'V'
         },
         {
-          type: 'NAME',
-          value: 'W',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'W'
         }
       ],
       meta: {
         dot: false,
-        brackets: '<>'
+        brackets: 'angle'
       }
     },
     modes: ['typescript'],

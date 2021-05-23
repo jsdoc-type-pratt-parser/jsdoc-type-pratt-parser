@@ -1,17 +1,14 @@
 import { expect } from 'chai'
 import 'mocha'
-import { ParseResult } from '../src/ParseResult'
+import { TerminalResult } from '../src/result/TerminalResult'
 import { parse } from '../src/parse'
 
 describe('basics', () => {
   it('should parse names', () => {
     const typeString = 'sometype'
-    const expected: ParseResult = {
-      type: 'NAME',
-      value: 'sometype',
-      meta: {
-        reservedWord: false
-      }
+    const expected: TerminalResult = {
+      type: 'JsdocTypeName',
+      value: 'sometype'
     }
     const result = parse(typeString, 'typescript')
     expect(result).to.deep.equal(expected)
@@ -19,56 +16,47 @@ describe('basics', () => {
 
   it('should parse a complex expression', () => {
     const typeString = 'Array<(AType|OtherType)>|\'test\'|undefined'
-    const expected: ParseResult = {
-      type: 'UNION',
+    const expected: TerminalResult = {
+      type: 'JsdocTypeUnion',
       elements: [
         {
-          type: 'GENERIC',
+          type: 'JsdocTypeGeneric',
           left: {
-            type: 'NAME',
-            value: 'Array',
-            meta: {
-              reservedWord: false
-            }
+            type: 'JsdocTypeName',
+            value: 'Array'
           },
           elements: [
             {
-              type: 'PARENTHESIS',
+              type: 'JsdocTypeParenthesis',
               element: {
-                type: 'UNION',
+                type: 'JsdocTypeUnion',
                 elements: [
                   {
-                    type: 'NAME',
-                    value: 'AType',
-                    meta: {
-                      reservedWord: false
-                    }
+                    type: 'JsdocTypeName',
+                    value: 'AType'
                   },
                   {
-                    type: 'NAME',
-                    value: 'OtherType',
-                    meta: {
-                      reservedWord: false
-                    }
+                    type: 'JsdocTypeName',
+                    value: 'OtherType'
                   }
                 ]
               }
             }
           ],
           meta: {
-            brackets: '<>',
+            brackets: 'angle',
             dot: false
           }
         },
         {
-          type: 'STRING_VALUE',
+          type: 'JsdocTypeStringValue',
           value: 'test',
           meta: {
-            quote: '\''
+            quote: 'single'
           }
         },
         {
-          type: 'UNDEFINED'
+          type: 'JsdocTypeUndefined'
         }
       ]
     }

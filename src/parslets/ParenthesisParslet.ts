@@ -1,9 +1,10 @@
 import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
-import { ParameterList, ParserEngine } from '../ParserEngine'
-import { ParenthesisResult } from '../ParseResult'
 import { assertTerminal } from '../assertTypes'
+import { ParserEngine } from '../ParserEngine'
+import { ParenthesisResult } from '../result/TerminalResult'
+import { ParameterList } from '../result/IntermediateResult'
 
 export class ParenthesisParslet implements PrefixParslet {
   accepts (type: TokenType, next: TokenType): boolean {
@@ -22,19 +23,19 @@ export class ParenthesisParslet implements PrefixParslet {
     }
     if (result === undefined) {
       return {
-        type: 'PARAMETER_LIST',
+        type: 'JsdocTypeParameterList',
         elements: []
       }
-    } else if (result.type === 'PARAMETER_LIST') {
+    } else if (result.type === 'JsdocTypeParameterList') {
       return result
-    } else if (result.type === 'KEY_VALUE') {
+    } else if (result.type === 'JsdocTypeKeyValue' && 'value' in result) {
       return {
-        type: 'PARAMETER_LIST',
+        type: 'JsdocTypeParameterList',
         elements: [result]
       }
     }
     return {
-      type: 'PARENTHESIS',
+      type: 'JsdocTypeParenthesis',
       element: assertTerminal(result)
     }
   }

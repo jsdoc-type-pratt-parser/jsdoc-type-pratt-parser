@@ -1,4 +1,5 @@
-import { NonTerminalResult, ParseResult } from './ParseResult'
+import { NonTerminalResult } from './result/NonTerminalResult'
+import { TerminalResult } from './result/TerminalResult'
 
 type NodeVisitor = (node: NonTerminalResult, parentNode?: NonTerminalResult, property?: string) => void
 
@@ -29,6 +30,6 @@ function _traverse (node: NonTerminalResult, parentNode?: NonTerminalResult, pro
   onLeave?.(node, parentNode, property)
 }
 
-export function traverse (node: ParseResult, onEnter?: NodeVisitor, onLeave?: NodeVisitor): void {
+export function traverse (node: TerminalResult, onEnter?: NodeVisitor, onLeave?: NodeVisitor): void {
   _traverse(node, undefined, undefined, onEnter, onLeave)
 }

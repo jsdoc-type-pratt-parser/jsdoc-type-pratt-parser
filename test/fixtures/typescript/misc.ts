@@ -7,22 +7,16 @@ export const miscFixtures: Fixture[] = [
     description: 'function parameter list with trailing comma',
     input: 'function( TrailingComma, ): string',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [
         {
-          type: 'NAME',
-          value: 'TrailingComma',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'TrailingComma'
         }
       ],
       returnType: {
-        type: 'NAME',
-        value: 'string',
-        meta: {
-          reservedWord: false
-        }
+        type: 'JsdocTypeName',
+        value: 'string'
       },
       arrow: false,
       parenthesis: true

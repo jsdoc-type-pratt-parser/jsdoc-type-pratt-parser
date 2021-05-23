@@ -1,9 +1,9 @@
 import { assertTerminal } from '../assertTypes'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
-import { TupleResult } from '../ParseResult'
 import { PrefixParslet } from './Parslet'
 import { Precedence } from '../Precedence'
+import { TupleResult } from '../result/TerminalResult'
 
 interface TupleParsletOptions {
   allowQuestionMark: boolean
@@ -27,7 +27,7 @@ export class TupleParslet implements PrefixParslet {
   parsePrefix (parser: ParserEngine): TupleResult {
     parser.consume('[')
     const result: TupleResult = {
-      type: 'TUPLE',
+      type: 'JsdocTypeTuple',
       elements: []
     }
 
@@ -36,7 +36,7 @@ export class TupleParslet implements PrefixParslet {
     }
 
     const typeList = parser.parseIntermediateType(Precedence.ALL)
-    if (typeList.type === 'PARAMETER_LIST') {
+    if (typeList.type === 'JsdocTypeParameterList') {
       result.elements = typeList.elements.map(assertTerminal)
     } else {
       result.elements = [assertTerminal(typeList)]
@@ -46,7 +46,7 @@ export class TupleParslet implements PrefixParslet {
       throw new Error('Unterminated \'[\'')
     }
 
-    if (!this.allowQuestionMark && result.elements.some(e => e.type === 'UNKNOWN')) {
+    if (!this.allowQuestionMark && result.elements.some(e => e.type === 'JsdocTypeUnknown')) {
       throw new Error('Question mark in tuple not allowed')
     }
 

@@ -1,10 +1,11 @@
 import { InfixParslet, PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
-import { IntermediateResult, ParserEngine } from '../ParserEngine'
-import { FunctionResult } from '../ParseResult'
 import { BaseFunctionParslet } from './BaseFunctionParslet'
 import { assertKeyValueOrName } from '../assertTypes'
+import { ParserEngine } from '../ParserEngine'
+import { FunctionResult } from '../result/TerminalResult'
+import { IntermediateResult } from '../result/IntermediateResult'
 
 export class ArrowFunctionWithoutParametersParslet implements PrefixParslet {
   accepts (type: TokenType, next: TokenType): boolean {
@@ -23,7 +24,7 @@ export class ArrowFunctionWithoutParametersParslet implements PrefixParslet {
     }
 
     return {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [],
       arrow: true,
       parenthesis: hasParenthesis,
@@ -45,7 +46,7 @@ export class ArrowFunctionWithParametersParslet extends BaseFunctionParslet impl
     parser.consume('=>')
 
     return {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: this.getParameters(left).map(assertKeyValueOrName),
       arrow: true,
       parenthesis: true,

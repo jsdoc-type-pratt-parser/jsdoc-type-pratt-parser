@@ -1,9 +1,10 @@
 import { InfixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
-import { IntermediateResult, ParserEngine } from '../ParserEngine'
-import { ParseResult } from '../ParseResult'
 import { Precedence } from '../Precedence'
 import { assertTerminal } from '../assertTypes'
+import { ParserEngine } from '../ParserEngine'
+import { IntermediateResult } from '../result/IntermediateResult'
+import { TerminalResult } from '../result/TerminalResult'
 
 export class ArrayBracketsParslet implements InfixParslet {
   accepts (type: TokenType, next: TokenType): boolean {
@@ -14,23 +15,20 @@ export class ArrayBracketsParslet implements InfixParslet {
     return Precedence.ARRAY_BRACKETS
   }
 
-  parseInfix (parser: ParserEngine, left: IntermediateResult): ParseResult {
+  parseInfix (parser: ParserEngine, left: IntermediateResult): TerminalResult {
     parser.consume('[')
     parser.consume(']')
     return {
-      type: 'GENERIC',
+      type: 'JsdocTypeGeneric',
       left: {
-        type: 'NAME',
-        value: 'Array',
-        meta: {
-          reservedWord: false
-        }
+        type: 'JsdocTypeName',
+        value: 'Array'
       },
       elements: [
         assertTerminal(left)
       ],
       meta: {
-        brackets: '[]',
+        brackets: 'square',
         dot: false
       }
     }

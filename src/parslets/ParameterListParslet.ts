@@ -1,10 +1,12 @@
 import { InfixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
-import { IntermediateResult, ParameterList, ParserEngine } from '../ParserEngine'
-import { KeyValueResult, ParseResult } from '../ParseResult'
 import { Precedence } from '../Precedence'
 import { assertKeyValueOrTerminal } from '../assertTypes'
 import { NoParsletFoundError } from '../errors'
+import { ParserEngine } from '../ParserEngine'
+import { IntermediateResult, ParameterList } from '../result/IntermediateResult'
+import { KeyValueResult } from '..'
+import { TerminalResult } from '../result/TerminalResult'
 
 interface ParameterListParsletOptions {
   allowTrailingComma: boolean
@@ -26,7 +28,7 @@ export class ParameterListParslet implements InfixParslet {
   }
 
   parseInfix (parser: ParserEngine, left: IntermediateResult): ParameterList {
-    const elements: Array<ParseResult|KeyValueResult> = [
+    const elements: Array<TerminalResult|KeyValueResult> = [
       assertKeyValueOrTerminal(left)
     ]
     parser.consume(',')
@@ -43,12 +45,12 @@ export class ParameterListParslet implements InfixParslet {
       }
     } while (parser.consume(','))
 
-    if (elements.length > 0 && elements.slice(0, -1).some(e => e.type === 'VARIADIC')) {
+    if (elements.length > 0 && elements.slice(0, -1).some(e => e.type === 'JsdocTypeVariadic')) {
       throw new Error('Only the last parameter may be a rest parameter')
     }
 
     return {
-      type: 'PARAMETER_LIST',
+      type: 'JsdocTypeParameterList',
       elements
     }
   }

@@ -1,6 +1,7 @@
-import { ParseResult } from '../ParseResult'
 import { extractSpecialParams, notAvailableTransform, transform, TransformRules } from './transform'
 import { assertTerminal } from '../assertTypes'
+import { TerminalResult } from '../result/TerminalResult'
+import { quote } from './stringify'
 
 export const reservedWords = [
   'null',
@@ -123,25 +124,25 @@ function makeName (value: string): CatharsisNameResult {
 }
 
 const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
-  OPTIONAL: (result, transform) => {
+  JsdocTypeOptional: (result, transform) => {
     const transformed = transform(result.element)
     transformed.optional = true
     return transformed
   },
 
-  NULLABLE: (result, transform) => {
+  JsdocTypeNullable: (result, transform) => {
     const transformed = transform(result.element)
     transformed.nullable = true
     return transformed
   },
 
-  NOT_NULLABLE: (result, transform) => {
+  JsdocTypeNotNullable: (result, transform) => {
     const transformed = transform(result.element)
     transformed.nullable = false
     return transformed
   },
 
-  VARIADIC: (result, transform) => {
+  JsdocTypeVariadic: (result, transform) => {
     if (result.element === undefined) {
       throw new Error('dots without value are not allowed in catharsis mode')
     }
@@ -150,25 +151,25 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
     return transformed
   },
 
-  ANY: () => ({
+  JsdocTypeAny: () => ({
     type: 'AllLiteral'
   }),
 
-  NULL: () => ({
+  JsdocTypeNull: () => ({
     type: 'NullLiteral'
   }),
 
-  STRING_VALUE: result => makeName(`${result.meta.quote}${result.value}${result.meta.quote}`),
+  JsdocTypeStringValue: result => makeName(quote(result.value, result.meta.quote)),
 
-  UNDEFINED: () => ({
+  JsdocTypeUndefined: () => ({
     type: 'UndefinedLiteral'
   }),
 
-  UNKNOWN: () => ({
+  JsdocTypeUnknown: () => ({
     type: 'UnknownLiteral'
   }),
 
-  FUNCTION: (result, transform) => {
+  JsdocTypeFunction: (result, transform) => {
     const params = extractSpecialParams(result)
 
     const transformed: CatharsisFunctionResult = {
@@ -191,28 +192,25 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
     return transformed
   },
 
-  GENERIC: (result, transform) => ({
+  JsdocTypeGeneric: (result, transform) => ({
     type: 'TypeApplication',
     applications: result.elements.map(o => transform(o)),
     expression: transform(result.left)
   }),
 
-  SPECIAL_NAME_PATH: result => {
-    const quote = result.meta.quote ?? ''
-    return makeName(result.specialType + ':' + quote + result.value + quote)
-  },
+  JsdocTypeSpecialNamePath: result => makeName(result.specialType + ':' + quote(result.value, result.meta.quote)),
 
-  NAME: result => makeName(result.value),
+  JsdocTypeName: result => makeName(result.value),
 
-  NUMBER: result => makeName(result.value.toString()),
+  JsdocTypeNumber: result => makeName(result.value.toString()),
 
-  OBJECT: (result, transform) => {
+  JsdocTypeObject: (result, transform) => {
     const transformed: CatharsisRecordResult = {
       type: 'RecordType',
       fields: []
     }
     for (const field of result.elements) {
-      if (field.type !== 'KEY_VALUE' && field.type !== 'JSDOC_OBJECT_KEY_VALUE') {
+      if (field.type !== 'JsdocTypeKeyValue') {
         transformed.fields.push({
           type: 'FieldType',
           key: transform(field),
@@ -226,32 +224,44 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
     return transformed
   },
 
-  UNION: (result, transform) => ({
+  JsdocTypeUnion: (result, transform) => ({
     type: 'TypeUnion',
     elements: result.elements.map(e => transform(e))
   }),
 
-  KEY_VALUE: (result, transform) => ({
-    type: 'FieldType',
-    key: makeName(`${result.meta.quote ?? ''}${result.value}${result.meta.quote ?? ''}`),
-    value: result.right === undefined ? undefined : transform(result.right)
-  }),
+  JsdocTypeKeyValue: (result, transform) => {
+    if ('value' in result) {
+      return {
+        type: 'FieldType',
+        key: makeName(quote(result.value, result.meta.quote)),
+        value: result.right === undefined ? undefined : transform(result.right)
+      }
+    } else {
+      return {
+        type: 'FieldType',
+        key: transform(result.left),
+        value: transform(result.right)
+      }
+    }
+  },
 
-  NAME_PATH: (result, transform) => {
+  JsdocTypeNamePath: (result, transform) => {
     const leftResult = transform(result.left) as CatharsisNameResult
     const rightResult = transform(result.right) as CatharsisNameResult
 
-    return makeName(`${leftResult.name}${result.pathType}${rightResult.name}`)
+    const joiner = result.pathType === 'inner' ? '~' : result.pathType === 'instance' ? '#' : '.'
+
+    return makeName(`${leftResult.name}${joiner}${rightResult.name}`)
   },
 
-  SYMBOL: result => {
+  JsdocTypeSymbol: result => {
     let value = ''
 
     let element = result.element
     let trailingDots = false
 
-    if (element?.type === 'VARIADIC') {
-      if (element.meta.position === 'PREFIX') {
+    if (element?.type === 'JsdocTypeVariadic') {
+      if (element.meta.position === 'prefix') {
         value = '...'
       } else {
         trailingDots = true
@@ -259,9 +269,9 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
       element = element.element
     }
 
-    if (element?.type === 'NAME') {
+    if (element?.type === 'JsdocTypeName') {
       value += element.value
-    } else if (element?.type === 'NUMBER') {
+    } else if (element?.type === 'JsdocTypeNumber') {
       value += element.value.toString()
     }
 
@@ -272,21 +282,15 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
     return makeName(`${result.value}(${value})`)
   },
 
-  PARENTHESIS: (result, transform) => transform(assertTerminal(result.element)),
+  JsdocTypeParenthesis: (result, transform) => transform(assertTerminal(result.element)),
 
-  JSDOC_OBJECT_KEY_VALUE: (result, transform) => ({
-    type: 'FieldType',
-    key: transform(result.left),
-    value: transform(result.right)
-  }),
-
-  IMPORT: notAvailableTransform,
-  KEY_OF: notAvailableTransform,
-  TUPLE: notAvailableTransform,
-  TYPE_OF: notAvailableTransform,
-  INTERSECTION: notAvailableTransform
+  JsdocTypeImport: notAvailableTransform,
+  JsdocTypeKeyof: notAvailableTransform,
+  JsdocTypeTuple: notAvailableTransform,
+  JsdocTypeTypeof: notAvailableTransform,
+  JsdocTypeIntersection: notAvailableTransform
 }
 
-export function catharsisTransform (result: ParseResult): CatharsisParseResult {
+export function catharsisTransform (result: TerminalResult): CatharsisParseResult {
   return transform(catharsisTransformRules, result)
 }

@@ -5,26 +5,20 @@ export const genericFixtures: Fixture[] = [
     description: 'array of strings, without a dot separator',
     input: 'Array<string>',
     expected: {
-      type: 'GENERIC',
+      type: 'JsdocTypeGeneric',
       elements: [
         {
-          type: 'NAME',
-          value: 'string',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'string'
         }
       ],
       left: {
-        type: 'NAME',
-        value: 'Array',
-        meta: {
-          reservedWord: false
-        }
+        type: 'JsdocTypeName',
+        value: 'Array'
       },
       meta: {
         dot: false,
-        brackets: '<>'
+        brackets: 'angle'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -43,26 +37,20 @@ export const genericFixtures: Fixture[] = [
     description: 'array of strings, with a dot separator',
     input: 'Array.<string>',
     expected: {
-      type: 'GENERIC',
+      type: 'JsdocTypeGeneric',
       elements: [
         {
-          type: 'NAME',
-          value: 'string',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'string'
         }
       ],
       left: {
-        type: 'NAME',
-        value: 'Array',
-        meta: {
-          reservedWord: false
-        }
+        type: 'JsdocTypeName',
+        value: 'Array'
       },
       meta: {
         dot: true,
-        brackets: '<>'
+        brackets: 'angle'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -81,33 +69,27 @@ export const genericFixtures: Fixture[] = [
     description: 'repeatable array of strings',
     input: '...Array.<string>',
     expected: {
-      type: 'VARIADIC',
+      type: 'JsdocTypeVariadic',
       element: {
-        type: 'GENERIC',
+        type: 'JsdocTypeGeneric',
         elements: [
           {
-            type: 'NAME',
-            value: 'string',
-            meta: {
-              reservedWord: false
-            }
+            type: 'JsdocTypeName',
+            value: 'string'
           }
         ],
         left: {
-          type: 'NAME',
-          value: 'Array',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'Array'
         },
         meta: {
           dot: true,
-          brackets: '<>'
+          brackets: 'angle'
         }
       },
       meta: {
         squareBrackets: false,
-        position: 'PREFIX'
+        position: 'prefix'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -126,33 +108,24 @@ export const genericFixtures: Fixture[] = [
     description: 'object whose properties are strings and property values are numbers',
     input: 'Object.<string, number>',
     expected: {
-      type: 'GENERIC',
+      type: 'JsdocTypeGeneric',
       elements: [
         {
-          type: 'NAME',
-          value: 'string',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'string'
         },
         {
-          type: 'NAME',
-          value: 'number',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'number'
         }
       ],
       left: {
-        type: 'NAME',
-        value: 'Object',
-        meta: {
-          reservedWord: false
-        }
+        type: 'JsdocTypeName',
+        value: 'Object'
       },
       meta: {
         dot: true,
-        brackets: '<>'
+        brackets: 'angle'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -172,39 +145,33 @@ export const genericFixtures: Fixture[] = [
     input: 'Object.<Array.<(boolean|{myKey: Error})>, (boolean|string|function(new:foo): string)>',
     stringified: 'Object.<Array.<(boolean | {myKey: Error})>, (boolean | string | function(new: foo): string)>',
     expected: {
-      type: 'GENERIC',
+      type: 'JsdocTypeGeneric',
       elements: [
         {
-          type: 'GENERIC',
+          type: 'JsdocTypeGeneric',
           elements: [
             {
-              type: 'PARENTHESIS',
+              type: 'JsdocTypeParenthesis',
               element: {
-                type: 'UNION',
+                type: 'JsdocTypeUnion',
                 elements: [
                   {
-                    type: 'NAME',
-                    value: 'boolean',
-                    meta: {
-                      reservedWord: false
-                    }
+                    type: 'JsdocTypeName',
+                    value: 'boolean'
                   },
                   {
-                    type: 'OBJECT',
+                    type: 'JsdocTypeObject',
                     elements: [
                       {
-                        type: 'KEY_VALUE',
+                        type: 'JsdocTypeKeyValue',
                         optional: false,
                         value: 'myKey',
                         meta: {
                           quote: undefined
                         },
                         right: {
-                          type: 'NAME',
-                          value: 'Error',
-                          meta: {
-                            reservedWord: false
-                          }
+                          type: 'JsdocTypeName',
+                          value: 'Error'
                         }
                       }
                     ]
@@ -214,61 +181,46 @@ export const genericFixtures: Fixture[] = [
             }
           ],
           left: {
-            type: 'NAME',
-            value: 'Array',
-            meta: {
-              reservedWord: false
-            }
+            type: 'JsdocTypeName',
+            value: 'Array'
           },
           meta: {
             dot: true,
-            brackets: '<>'
+            brackets: 'angle'
           }
         },
         {
-          type: 'PARENTHESIS',
+          type: 'JsdocTypeParenthesis',
           element: {
-            type: 'UNION',
+            type: 'JsdocTypeUnion',
             elements: [
               {
-                type: 'NAME',
-                value: 'boolean',
-                meta: {
-                  reservedWord: false
-                }
+                type: 'JsdocTypeName',
+                value: 'boolean'
               },
               {
-                type: 'NAME',
-                value: 'string',
-                meta: {
-                  reservedWord: false
-                }
+                type: 'JsdocTypeName',
+                value: 'string'
               },
               {
-                type: 'FUNCTION',
+                type: 'JsdocTypeFunction',
                 parameters: [
                   {
-                    type: 'KEY_VALUE',
+                    type: 'JsdocTypeKeyValue',
                     optional: false,
                     value: 'new',
                     meta: {
                       quote: undefined
                     },
                     right: {
-                      type: 'NAME',
-                      value: 'foo',
-                      meta: {
-                        reservedWord: false
-                      }
+                      type: 'JsdocTypeName',
+                      value: 'foo'
                     }
                   }
                 ],
                 returnType: {
-                  type: 'NAME',
-                  value: 'string',
-                  meta: {
-                    reservedWord: false
-                  }
+                  type: 'JsdocTypeName',
+                  value: 'string'
                 },
                 arrow: false,
                 parenthesis: true
@@ -278,15 +230,12 @@ export const genericFixtures: Fixture[] = [
         }
       ],
       left: {
-        type: 'NAME',
-        value: 'Object',
-        meta: {
-          reservedWord: false
-        }
+        type: 'JsdocTypeName',
+        value: 'Object'
       },
       meta: {
         dot: true,
-        brackets: '<>'
+        brackets: 'angle'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -305,13 +254,13 @@ export const genericFixtures: Fixture[] = [
     description: 'array of objects that have a length property',
     input: 'Array.<{length}>',
     expected: {
-      type: 'GENERIC',
+      type: 'JsdocTypeGeneric',
       elements: [
         {
-          type: 'OBJECT',
+          type: 'JsdocTypeObject',
           elements: [
             {
-              type: 'KEY_VALUE',
+              type: 'JsdocTypeKeyValue',
               value: 'length',
               right: undefined,
               optional: false,
@@ -323,15 +272,12 @@ export const genericFixtures: Fixture[] = [
         }
       ],
       left: {
-        type: 'NAME',
-        value: 'Array',
-        meta: {
-          reservedWord: false
-        }
+        type: 'JsdocTypeName',
+        value: 'Array'
       },
       meta: {
         dot: true,
-        brackets: '<>'
+        brackets: 'angle'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -350,22 +296,19 @@ export const genericFixtures: Fixture[] = [
     description: 'array of unknown',
     input: 'Array.<?>',
     expected: {
-      type: 'GENERIC',
+      type: 'JsdocTypeGeneric',
       elements: [
         {
-          type: 'UNKNOWN'
+          type: 'JsdocTypeUnknown'
         }
       ],
       left: {
-        type: 'NAME',
-        value: 'Array',
-        meta: {
-          reservedWord: false
-        }
+        type: 'JsdocTypeName',
+        value: 'Array'
       },
       meta: {
         dot: true,
-        brackets: '<>'
+        brackets: 'angle'
       }
     },
     modes: ['jsdoc', 'closure', 'typescript'],
@@ -384,26 +327,20 @@ export const genericFixtures: Fixture[] = [
     description: 'Promise containing string',
     input: 'Promise.<string>',
     expected: {
-      type: 'GENERIC',
+      type: 'JsdocTypeGeneric',
       elements: [
         {
-          type: 'NAME',
-          value: 'string',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'string'
         }
       ],
       left: {
-        type: 'NAME',
-        value: 'Promise',
-        meta: {
-          reservedWord: false
-        }
+        type: 'JsdocTypeName',
+        value: 'Promise'
       },
       meta: {
         dot: true,
-        brackets: '<>'
+        brackets: 'angle'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -422,37 +359,28 @@ export const genericFixtures: Fixture[] = [
     description: 'foo.Promise containing string',
     input: 'foo.Promise.<string>',
     expected: {
-      type: 'GENERIC',
+      type: 'JsdocTypeGeneric',
       elements: [
         {
-          type: 'NAME',
-          value: 'string',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'string'
         }
       ],
       left: {
         left: {
           value: 'foo',
-          type: 'NAME',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName'
         },
         right: {
-          type: 'NAME',
-          value: 'Promise',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName',
+          value: 'Promise'
         },
-        pathType: '.',
-        type: 'NAME_PATH'
+        pathType: 'property',
+        type: 'JsdocTypeNamePath'
       },
       meta: {
         dot: true,
-        brackets: '<>'
+        brackets: 'angle'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
