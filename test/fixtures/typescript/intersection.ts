@@ -124,7 +124,7 @@ export const intersectionFixtures: Fixture[] = [
           ],
           meta: {
             dot: false,
-            brackets: '<>'
+            brackets: 'angle'
           }
         }
       ]

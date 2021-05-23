@@ -297,7 +297,7 @@ export const recordFixtures: Fixture[] = [
             ],
             meta: {
               dot: true,
-              brackets: '<>'
+              brackets: 'angle'
             }
           }
         }

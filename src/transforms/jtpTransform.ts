@@ -334,11 +334,11 @@ const jtpRules: TransformRules<JtpResult> = {
       subject: transform(result.left),
       objects: result.elements.map(transform),
       meta: {
-        syntax: result.meta.brackets === '[]' ? 'SQUARE_BRACKET' : result.meta.dot ? 'ANGLE_BRACKET_WITH_DOT' : 'ANGLE_BRACKET'
+        syntax: result.meta.brackets === 'square' ? 'SQUARE_BRACKET' : result.meta.dot ? 'ANGLE_BRACKET_WITH_DOT' : 'ANGLE_BRACKET'
       }
     }
 
-    if (result.meta.brackets === '[]' && result.elements[0].type === 'JsdocTypeFunction' && !result.elements[0].parenthesis) {
+    if (result.meta.brackets === 'square' && result.elements[0].type === 'JsdocTypeFunction' && !result.elements[0].parenthesis) {
       transformed.objects[0] = {
         type: 'NAME',
         name: 'function'

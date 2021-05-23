@@ -215,7 +215,7 @@ export const importFixtures: Fixture[] = [
       ],
       meta: {
         dot: false,
-        brackets: '<>'
+        brackets: 'angle'
       }
     },
     modes: ['typescript'],

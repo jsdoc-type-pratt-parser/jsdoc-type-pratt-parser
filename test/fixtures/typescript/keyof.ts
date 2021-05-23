@@ -69,7 +69,7 @@ export const keyofFixtures: Fixture[] = [
       }],
       meta: {
         dot: false,
-        brackets: '<>'
+        brackets: 'angle'
       }
     },
     modes: ['jsdoc', 'closure'],
@@ -108,7 +108,7 @@ export const keyofFixtures: Fixture[] = [
       }],
       meta: {
         dot: false,
-        brackets: '<>'
+        brackets: 'angle'
       }
     },
     modes: ['typescript'],
@@ -149,7 +149,7 @@ export const keyofFixtures: Fixture[] = [
   //     ],
   //     meta: {
   //       dot: false,
-  //       brackets: '<>'
+  //       brackets: 'angle'
   //     }
   //   },
   //   modes: ['typescript'],
@@ -355,7 +355,7 @@ export const keyofFixtures: Fixture[] = [
         ],
         meta: {
           dot: false,
-          brackets: '[]'
+          brackets: 'square'
         }
       }
     },

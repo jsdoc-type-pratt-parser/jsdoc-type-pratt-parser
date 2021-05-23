@@ -206,7 +206,7 @@ export const tupleFixtures: Fixture[] = [
       ],
       meta: {
         dot: false,
-        brackets: '[]'
+        brackets: 'square'
       }
     },
     modes: ['typescript'],
@@ -256,7 +256,7 @@ export const tupleFixtures: Fixture[] = [
       ],
       meta: {
         dot: false,
-        brackets: '[]'
+        brackets: 'square'
       }
     },
     modes: ['typescript'],

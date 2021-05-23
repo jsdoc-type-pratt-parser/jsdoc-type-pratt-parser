@@ -356,7 +356,7 @@ export const unionFixtures: Fixture[] = [
             },
             meta: {
               dot: true,
-              brackets: '<>'
+              brackets: 'angle'
             }
           }
         ]
@@ -403,7 +403,7 @@ export const unionFixtures: Fixture[] = [
             },
             meta: {
               dot: true,
-              brackets: '<>'
+              brackets: 'angle'
             }
           },
           {
@@ -429,7 +429,7 @@ export const unionFixtures: Fixture[] = [
             },
             meta: {
               dot: true,
-              brackets: '<>'
+              brackets: 'angle'
             }
           }
         ]
@@ -625,7 +625,7 @@ export const unionFixtures: Fixture[] = [
               },
               meta: {
                 dot: true,
-                brackets: '<>'
+                brackets: 'angle'
               }
             },
             {
@@ -771,7 +771,7 @@ export const unionFixtures: Fixture[] = [
               },
               meta: {
                 dot: true,
-                brackets: '<>'
+                brackets: 'angle'
               }
             }
           ]

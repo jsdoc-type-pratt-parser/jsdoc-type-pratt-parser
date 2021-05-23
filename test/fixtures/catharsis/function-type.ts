@@ -829,7 +829,7 @@ export const functionFixtures: Fixture[] = [
             },
             meta: {
               dot: true,
-              brackets: '<>'
+              brackets: 'angle'
             }
           },
           {
@@ -946,7 +946,7 @@ export const functionFixtures: Fixture[] = [
             },
             meta: {
               dot: true,
-              brackets: '<>'
+              brackets: 'angle'
             }
           },
           {

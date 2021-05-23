@@ -348,7 +348,7 @@ export const arrowFunctionFixtures: Fixture[] = [
       ],
       meta: {
         dot: false,
-        brackets: '<>'
+        brackets: 'angle'
       }
     },
     modes: ['typescript'],

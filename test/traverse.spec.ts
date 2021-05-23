@@ -75,7 +75,7 @@ describe('traverse', () => {
         typeB
       ],
       meta: {
-        brackets: '<>',
+        brackets: 'angle',
         dot: false
       }
     }

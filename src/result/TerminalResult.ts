@@ -103,7 +103,7 @@ export interface GenericResult {
   left: TerminalResult
   elements: TerminalResult[]
   meta: {
-    brackets: '<>' | '[]'
+    brackets: 'angle' | 'square'
     dot: boolean
   }
 }

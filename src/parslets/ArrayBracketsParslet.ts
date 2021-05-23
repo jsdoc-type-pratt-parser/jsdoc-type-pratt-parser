@@ -31,7 +31,7 @@ export class ArrayBracketsParslet implements InfixParslet {
         assertTerminal(left)
       ],
       meta: {
-        brackets: '[]',
+        brackets: 'square',
         dot: false
       }
     }

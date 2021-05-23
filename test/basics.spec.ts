@@ -56,7 +56,7 @@ describe('basics', () => {
             }
           ],
           meta: {
-            brackets: '<>',
+            brackets: 'angle',
             dot: false
           }
         },

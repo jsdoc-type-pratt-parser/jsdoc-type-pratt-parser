@@ -57,7 +57,7 @@ export function stringifyRules (): TransformRules<string> {
     JsdocTypeAny: () => '*',
 
     JsdocTypeGeneric: (result, transform) => {
-      if (result.meta.brackets === '[]') {
+      if (result.meta.brackets === 'square') {
         const element = result.elements[0]
         const transformed = transform(element)
         if (element.type === 'JsdocTypeUnion' || element.type === 'JsdocTypeIntersection') {

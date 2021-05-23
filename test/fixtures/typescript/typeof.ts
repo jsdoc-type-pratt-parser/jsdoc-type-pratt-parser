@@ -80,7 +80,7 @@ export const typeOfFixtures: Fixture[] = [
       }],
       meta: {
         dot: false,
-        brackets: '<>'
+        brackets: 'angle'
       }
     },
     modes: ['typescript', 'closure'],
@@ -121,7 +121,7 @@ export const typeOfFixtures: Fixture[] = [
   //     ],
   //     meta: {
   //       dot: false,
-  //       brackets: '<>'
+  //       brackets: 'angle'
   //     }
   //   },
   //   modes: ['typescript'],
@@ -327,7 +327,7 @@ export const typeOfFixtures: Fixture[] = [
         ],
         meta: {
           dot: false,
-          brackets: '[]'
+          brackets: 'square'
         }
       }
     },

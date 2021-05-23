@@ -33,7 +33,7 @@ export class GenericParslet implements InfixParslet {
       left: assertTerminal(left),
       elements: objects,
       meta: {
-        brackets: '<>',
+        brackets: 'angle',
         dot
       }
     }

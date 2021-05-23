@@ -24,7 +24,7 @@ export const genericFixtures: Fixture[] = [
       },
       meta: {
         dot: false,
-        brackets: '<>'
+        brackets: 'angle'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -62,7 +62,7 @@ export const genericFixtures: Fixture[] = [
       },
       meta: {
         dot: true,
-        brackets: '<>'
+        brackets: 'angle'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -102,7 +102,7 @@ export const genericFixtures: Fixture[] = [
         },
         meta: {
           dot: true,
-          brackets: '<>'
+          brackets: 'angle'
         }
       },
       meta: {
@@ -152,7 +152,7 @@ export const genericFixtures: Fixture[] = [
       },
       meta: {
         dot: true,
-        brackets: '<>'
+        brackets: 'angle'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -222,7 +222,7 @@ export const genericFixtures: Fixture[] = [
           },
           meta: {
             dot: true,
-            brackets: '<>'
+            brackets: 'angle'
           }
         },
         {
@@ -286,7 +286,7 @@ export const genericFixtures: Fixture[] = [
       },
       meta: {
         dot: true,
-        brackets: '<>'
+        brackets: 'angle'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -331,7 +331,7 @@ export const genericFixtures: Fixture[] = [
       },
       meta: {
         dot: true,
-        brackets: '<>'
+        brackets: 'angle'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -365,7 +365,7 @@ export const genericFixtures: Fixture[] = [
       },
       meta: {
         dot: true,
-        brackets: '<>'
+        brackets: 'angle'
       }
     },
     modes: ['jsdoc', 'closure', 'typescript'],
@@ -403,7 +403,7 @@ export const genericFixtures: Fixture[] = [
       },
       meta: {
         dot: true,
-        brackets: '<>'
+        brackets: 'angle'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -452,7 +452,7 @@ export const genericFixtures: Fixture[] = [
       },
       meta: {
         dot: true,
-        brackets: '<>'
+        brackets: 'angle'
       }
     },
     modes: ['typescript', 'jsdoc', 'closure'],

@@ -538,7 +538,7 @@ export const jsdocFixtures: Fixture[] = [
         }
       },
       meta: {
-        brackets: '<>',
+        brackets: 'angle',
         dot: false
       }
     },
@@ -576,7 +576,7 @@ export const jsdocFixtures: Fixture[] = [
         }
       },
       meta: {
-        brackets: '[]',
+        brackets: 'square',
         dot: false
       }
     },
@@ -613,7 +613,7 @@ export const jsdocFixtures: Fixture[] = [
         }
       },
       meta: {
-        brackets: '[]',
+        brackets: 'square',
         dot: false
       }
     },
@@ -654,7 +654,7 @@ export const jsdocFixtures: Fixture[] = [
             }
           },
           meta: {
-            brackets: '[]',
+            brackets: 'square',
             dot: false
           }
         }
@@ -667,7 +667,7 @@ export const jsdocFixtures: Fixture[] = [
         }
       },
       meta: {
-        brackets: '[]',
+        brackets: 'square',
         dot: false
       }
     },
@@ -711,7 +711,7 @@ export const jsdocFixtures: Fixture[] = [
                 }
               },
               meta: {
-                brackets: '[]',
+                brackets: 'square',
                 dot: false
               }
             }
@@ -724,7 +724,7 @@ export const jsdocFixtures: Fixture[] = [
             }
           },
           meta: {
-            brackets: '[]',
+            brackets: 'square',
             dot: false
           }
         }
@@ -737,7 +737,7 @@ export const jsdocFixtures: Fixture[] = [
         }
       },
       meta: {
-        brackets: '[]',
+        brackets: 'square',
         dot: false
       }
     },
@@ -780,7 +780,7 @@ export const jsdocFixtures: Fixture[] = [
               }
             },
             meta: {
-              brackets: '<>',
+              brackets: 'angle',
               dot: true
             }
           },
@@ -1138,7 +1138,7 @@ export const jsdocFixtures: Fixture[] = [
             }
           },
           meta: {
-            brackets: '[]',
+            brackets: 'square',
             dot: false
           }
         }
