@@ -1,3 +1,15 @@
+# [1.0.0-alpha.21](https://github.com/simonseyock/jsdoc-type-pratt-parser/compare/v1.0.0-alpha.20...v1.0.0-alpha.21) (2021-05-23)
+
+
+### Features
+
+* Keys of `KEY_VALUE` are now static values and no ParseResults. ([c2bfa24](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/c2bfa24ebe0f6b18ba7784fdfa7b2a9decc04d2b))
+
+
+### BREAKING CHANGES
+
+* key `left` was removed from `KEY_VALUE` and is replaced by `value`. For the special record entries of `jsdoc` mode a new type `JSDOC_OBJECT_KEY_VALUE` was introduced.
+
 # [1.0.0-alpha.20](https://github.com/simonseyock/jsdoc-type-pratt-parser/compare/v1.0.0-alpha.19...v1.0.0-alpha.20) (2021-05-19)
 
 
