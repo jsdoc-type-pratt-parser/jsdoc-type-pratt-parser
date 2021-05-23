@@ -62,7 +62,7 @@ export class KeyValueParslet implements InfixParslet {
       parser.consume(':')
 
       return {
-        type: 'JSDOC_OBJECT_KEY_VALUE',
+        type: 'KEY_VALUE',
         left: assertTerminal(left),
         right: parser.parseType(Precedence.KEY_VALUE)
       }

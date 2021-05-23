@@ -85,13 +85,23 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
 
     SPECIAL_NAME_PATH: result => result,
 
-    KEY_VALUE: (result, transform) => ({
-      type: 'KEY_VALUE',
-      value: result.value,
-      right: result.right === undefined ? undefined : transform(result.right) as TerminalResult,
-      optional: result.optional,
-      meta: result.meta
-    }),
+    KEY_VALUE: (result, transform) => {
+      if ('value' in result) {
+        return {
+          type: 'KEY_VALUE',
+          value: result.value,
+          right: result.right === undefined ? undefined : transform(result.right) as TerminalResult,
+          optional: result.optional,
+          meta: result.meta
+        }
+      } else {
+        return {
+          type: 'KEY_VALUE',
+          left: transform(result.left) as TerminalResult,
+          right: transform(result.right) as TerminalResult
+        }
+      }
+    },
 
     IMPORT: (result, transform) => ({
       type: 'IMPORT',
@@ -150,12 +160,6 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
     PARENTHESIS: (result, transform) => ({
       type: 'PARENTHESIS',
       element: transform(result.element) as TerminalResult
-    }),
-
-    JSDOC_OBJECT_KEY_VALUE: (result, transform) => ({
-      type: 'JSDOC_OBJECT_KEY_VALUE',
-      left: transform(result.left) as TerminalResult,
-      right: transform(result.right) as TerminalResult
     })
   }
 }

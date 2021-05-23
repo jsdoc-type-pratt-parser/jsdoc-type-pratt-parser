@@ -62,7 +62,7 @@ export interface NotNullableResult<T extends TerminalResult> {
 }
 
 /**
- * `element` is a rest parameter.
+ * `element` is a rest parameter or a spreaded value.
  */
 export interface VariadicResult<T extends TerminalResult> {
   type: 'VARIADIC'

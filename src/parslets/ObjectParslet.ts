@@ -56,7 +56,7 @@ export class ObjectParslet implements PrefixParslet {
               quote
             }
           })
-        } else if (field.type === 'KEY_VALUE' || field.type === 'JSDOC_OBJECT_KEY_VALUE') {
+        } else if (field.type === 'KEY_VALUE') {
           result.elements.push(field)
         } else {
           throw new UnexpectedTypeError(field)

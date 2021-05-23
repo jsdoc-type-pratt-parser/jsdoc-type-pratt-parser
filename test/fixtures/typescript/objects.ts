@@ -45,7 +45,7 @@ export const objectsFixtures: Fixture[] = [
         type: 'OBJECT',
         elements: [
           {
-            type: 'JSDOC_OBJECT_KEY_VALUE',
+            type: 'KEY_VALUE',
             left: {
               type: 'NULLABLE',
               element: {

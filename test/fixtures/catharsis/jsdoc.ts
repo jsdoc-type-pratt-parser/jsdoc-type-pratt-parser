@@ -760,7 +760,7 @@ export const jsdocFixtures: Fixture[] = [
       type: 'OBJECT',
       elements: [
         {
-          type: 'JSDOC_OBJECT_KEY_VALUE',
+          type: 'KEY_VALUE',
           left: {
             type: 'GENERIC',
             elements: [
@@ -814,7 +814,7 @@ export const jsdocFixtures: Fixture[] = [
       type: 'OBJECT',
       elements: [
         {
-          type: 'JSDOC_OBJECT_KEY_VALUE',
+          type: 'KEY_VALUE',
           left: {
             type: 'PARENTHESIS',
             element: {

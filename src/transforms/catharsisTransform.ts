@@ -212,7 +212,7 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
       fields: []
     }
     for (const field of result.elements) {
-      if (field.type !== 'KEY_VALUE' && field.type !== 'JSDOC_OBJECT_KEY_VALUE') {
+      if (field.type !== 'KEY_VALUE') {
         transformed.fields.push({
           type: 'FieldType',
           key: transform(field),
@@ -231,11 +231,21 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
     elements: result.elements.map(e => transform(e))
   }),
 
-  KEY_VALUE: (result, transform) => ({
-    type: 'FieldType',
-    key: makeName(`${result.meta.quote ?? ''}${result.value}${result.meta.quote ?? ''}`),
-    value: result.right === undefined ? undefined : transform(result.right)
-  }),
+  KEY_VALUE: (result, transform) => {
+    if ('value' in result) {
+      return {
+        type: 'FieldType',
+        key: makeName(`${result.meta.quote ?? ''}${result.value}${result.meta.quote ?? ''}`),
+        value: result.right === undefined ? undefined : transform(result.right)
+      }
+    } else {
+      return {
+        type: 'FieldType',
+        key: transform(result.left),
+        value: transform(result.right)
+      }
+    }
+  },
 
   NAME_PATH: (result, transform) => {
     const leftResult = transform(result.left) as CatharsisNameResult
@@ -273,12 +283,6 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
   },
 
   PARENTHESIS: (result, transform) => transform(assertTerminal(result.element)),
-
-  JSDOC_OBJECT_KEY_VALUE: (result, transform) => ({
-    type: 'FieldType',
-    key: transform(result.left),
-    value: transform(result.right)
-  }),
 
   IMPORT: notAvailableTransform,
   KEY_OF: notAvailableTransform,

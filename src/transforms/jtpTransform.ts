@@ -349,6 +349,10 @@ const jtpRules: TransformRules<JtpResult> = {
   },
 
   KEY_VALUE: (result, transform) => {
+    if ('left' in result) {
+      throw new Error('Keys may not be typed in jsdoctypeparser.')
+    }
+
     if (result.right === undefined) {
       return {
         type: 'RECORD_ENTRY',
@@ -384,8 +388,6 @@ const jtpRules: TransformRules<JtpResult> = {
     for (const field of result.elements) {
       if (field.type === 'KEY_VALUE') {
         entries.push(transform(field) as JtpRecordEntryResult)
-      } else if (field.type === 'JSDOC_OBJECT_KEY_VALUE') {
-        throw new Error(`jsdoctypeparser does not support type ${field.type} at this point`)
       }
     }
     return {
@@ -462,8 +464,6 @@ const jtpRules: TransformRules<JtpResult> = {
   }),
 
   INTERSECTION: (result, transform) => nestResults('INTERSECTION', result.elements.map(transform)),
-
-  JSDOC_OBJECT_KEY_VALUE: notAvailableTransform,
 
   NUMBER: notAvailableTransform,
   SYMBOL: notAvailableTransform

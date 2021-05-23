@@ -11,7 +11,8 @@ export type NonTerminalResult =
 
 /**
  * A key value pair represented by a `:`. Can occur as a named parameter of a {@link FunctionResult} or as an entry for
- * an {@link ObjectResult}. Is a {@link NonTerminalResult}.
+ * an {@link ObjectResult}. Is a {@link NonTerminalResult}. {@link JsdocObjectKeyValueResult} uses the same type name
+ * and will not have a `value` property.
  */
 export interface KeyValueResult {
   type: 'KEY_VALUE'
@@ -23,8 +24,13 @@ export interface KeyValueResult {
   }
 }
 
+/**
+ * A key value pair represented by a `:`. This particular variant of the `KEY_VALUE` type will only occur in `'jsdoc'`
+ * parsing mode and can only occur in {@link ObjectResult}s. It can be differentiated from {@link KeyValueResult} by
+ * the `left` property that will never appear on the latter.
+ */
 export interface JsdocObjectKeyValueResult {
-  type: 'JSDOC_OBJECT_KEY_VALUE'
+  type: 'KEY_VALUE'
   left: TerminalResult
   right: TerminalResult
 }

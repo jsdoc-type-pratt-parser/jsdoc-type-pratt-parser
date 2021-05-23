@@ -28,7 +28,7 @@ export class ParenthesisParslet implements PrefixParslet {
       }
     } else if (result.type === 'PARAMETER_LIST') {
       return result
-    } else if (result.type === 'KEY_VALUE') {
+    } else if (result.type === 'KEY_VALUE' && 'value' in result) {
       return {
         type: 'PARAMETER_LIST',
         elements: [result]
