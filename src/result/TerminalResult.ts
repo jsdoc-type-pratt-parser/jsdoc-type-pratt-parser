@@ -115,7 +115,7 @@ export interface StringValueResult {
   type: 'JsdocTypeStringValue'
   value: string
   meta: {
-    quote: '\'' | '"'
+    quote: 'single' | 'double'
   }
 }
 
@@ -179,7 +179,7 @@ export interface SpecialNamePath<Type = 'module' | 'event' | 'external'> {
   value: string
   specialType: Type
   meta: {
-    quote: '\'' | '"' | undefined
+    quote: 'single' | 'double' | undefined
   }
 }
 

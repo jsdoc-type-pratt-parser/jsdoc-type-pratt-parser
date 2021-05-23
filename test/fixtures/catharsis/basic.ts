@@ -105,7 +105,7 @@ export const basicFixtures: Fixture[] = [
           type: 'JsdocTypeStringValue',
           value: 'myProp',
           meta: {
-            quote: '\''
+            quote: 'single'
           }
         },
         type: 'JsdocTypeNamePath',
@@ -149,7 +149,7 @@ export const basicFixtures: Fixture[] = [
           type: 'JsdocTypeStringValue',
           value: 'myProp',
           meta: {
-            quote: '"'
+            quote: 'double'
           }
         },
         type: 'JsdocTypeNamePath',
@@ -193,7 +193,7 @@ export const basicFixtures: Fixture[] = [
           type: 'JsdocTypeStringValue',
           value: '#weirdProp',
           meta: {
-            quote: '"'
+            quote: 'double'
           }
         },
         type: 'JsdocTypeNamePath',
@@ -560,7 +560,7 @@ export const basicFixtures: Fixture[] = [
       specialType: 'module',
       value: 'some-path',
       meta: {
-        quote: '\''
+        quote: 'single'
       }
     },
     modes: ['jsdoc'],
@@ -583,7 +583,7 @@ export const basicFixtures: Fixture[] = [
       specialType: 'module',
       value: 'some-path',
       meta: {
-        quote: '"'
+        quote: 'double'
       }
     },
     modes: ['jsdoc'],

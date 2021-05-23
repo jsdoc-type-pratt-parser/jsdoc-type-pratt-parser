@@ -84,7 +84,7 @@ describe('traverse', () => {
       type: 'JsdocTypeStringValue',
       value: 'some value',
       meta: {
-        quote: '\''
+        quote: 'single'
       }
     }
 

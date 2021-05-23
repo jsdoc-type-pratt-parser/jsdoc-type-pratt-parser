@@ -10,7 +10,7 @@ export const importFixtures: Fixture[] = [
         type: 'JsdocTypeStringValue',
         value: 'x',
         meta: {
-          quote: '"'
+          quote: 'double'
         }
       }
     },
@@ -35,7 +35,7 @@ export const importFixtures: Fixture[] = [
         type: 'JsdocTypeStringValue',
         value: './x',
         meta: {
-          quote: '"'
+          quote: 'double'
         }
       }
     },
@@ -60,7 +60,7 @@ export const importFixtures: Fixture[] = [
         type: 'JsdocTypeStringValue',
         value: '../x',
         meta: {
-          quote: '"'
+          quote: 'double'
         }
       }
     },
@@ -87,7 +87,7 @@ export const importFixtures: Fixture[] = [
           type: 'JsdocTypeStringValue',
           value: 'x',
           meta: {
-            quote: '"'
+            quote: 'double'
           }
         }
       },
@@ -125,7 +125,7 @@ export const importFixtures: Fixture[] = [
             type: 'JsdocTypeStringValue',
             value: 'x',
             meta: {
-              quote: '"'
+              quote: 'double'
             }
           }
         },
@@ -175,7 +175,7 @@ export const importFixtures: Fixture[] = [
               type: 'JsdocTypeStringValue',
               value: 'x',
               meta: {
-                quote: '"'
+                quote: 'double'
               }
             }
           },

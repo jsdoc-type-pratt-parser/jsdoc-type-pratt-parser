@@ -32,7 +32,7 @@ export class SpecialNamePathParslet implements PrefixParslet {
         value: token.text.slice(1, -1),
         specialType: type,
         meta: {
-          quote: token.text[0] as '\'' | '"'
+          quote: token.text[0] === '\'' ? 'single' : 'double'
         }
       }
     } else {

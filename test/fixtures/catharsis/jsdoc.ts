@@ -358,7 +358,7 @@ export const jsdocFixtures: Fixture[] = [
       type: 'JsdocTypeStringValue',
       value: 'foo.bar.baz',
       meta: {
-        quote: '"'
+        quote: 'double'
       }
     },
     modes: ['typescript', 'jsdoc'],
@@ -380,7 +380,7 @@ export const jsdocFixtures: Fixture[] = [
       type: 'JsdocTypeStringValue',
       value: 'foo.bar.baz',
       meta: {
-        quote: '\''
+        quote: 'single'
       }
     },
     modes: ['typescript', 'jsdoc'],
@@ -411,7 +411,7 @@ export const jsdocFixtures: Fixture[] = [
           type: 'JsdocTypeStringValue',
           value: 'bar.baz',
           meta: {
-            quote: '"'
+            quote: 'double'
           }
         },
         type: 'JsdocTypeNamePath',
@@ -455,7 +455,7 @@ export const jsdocFixtures: Fixture[] = [
           type: 'JsdocTypeStringValue',
           value: 'bar.baz',
           meta: {
-            quote: '\''
+            quote: 'single'
           }
         },
         type: 'JsdocTypeNamePath',

@@ -32,7 +32,7 @@ export const eventExternalFixtures: Fixture[] = [
       specialType: 'event',
       value: 'some-event',
       meta: {
-        quote: '\''
+        quote: 'single'
       }
     },
     modes: ['jsdoc'],

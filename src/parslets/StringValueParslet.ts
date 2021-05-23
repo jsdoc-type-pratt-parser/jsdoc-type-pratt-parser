@@ -20,7 +20,7 @@ export class StringValueParslet implements PrefixParslet {
       type: 'JsdocTypeStringValue',
       value: token.text.slice(1, -1),
       meta: {
-        quote: token.text[0] as '\'' | '"'
+        quote: token.text[0] === '\'' ? 'single' : 'double'
       }
     }
   }

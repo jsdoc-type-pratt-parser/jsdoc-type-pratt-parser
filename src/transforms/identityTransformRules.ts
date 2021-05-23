@@ -31,7 +31,7 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
       }
     }),
 
-    JsdocTypeNullable:result => result,
+    JsdocTypeNullable: result => result,
 
     JsdocTypeUnion: (result, transform) => ({
       type: 'JsdocTypeUnion',
@@ -75,7 +75,7 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
 
     JsdocTypeNull: result => result,
 
-    JsdocTypeNotNullable:(result, transform) => ({
+    JsdocTypeNotNullable: (result, transform) => ({
       type: 'JsdocTypeNotNullable',
       element: transform(result.element) as TerminalResult,
       meta: {

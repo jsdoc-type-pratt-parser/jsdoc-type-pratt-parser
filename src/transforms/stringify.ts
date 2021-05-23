@@ -6,6 +6,17 @@ function applyPosition (position: 'PREFIX' | 'SUFFIX', target: string, value: st
   return position === 'PREFIX' ? value + target : target + value
 }
 
+export function quote (value: string, quote: 'single' | 'double' | undefined): string {
+  switch (quote) {
+    case 'double':
+      return `"${value}"`
+    case 'single':
+      return `'${value}'`
+    case undefined:
+      return value
+  }
+}
+
 export function stringifyRules (): TransformRules<string> {
   return {
     JsdocTypeParenthesis: (result, transform) => `(${result.element !== undefined ? transform(result.element) : ''})`,
@@ -41,7 +52,7 @@ export function stringifyRules (): TransformRules<string> {
 
     JsdocTypeNamePath: (result, transform) => `${transform(result.left)}${result.pathType}${transform(result.right)}`,
 
-    JsdocTypeStringValue: result => `${result.meta.quote}${result.value}${result.meta.quote}`,
+    JsdocTypeStringValue: result => quote(result.value, result.meta.quote),
 
     JsdocTypeAny: () => '*',
 
@@ -63,7 +74,7 @@ export function stringifyRules (): TransformRules<string> {
 
     JsdocTypeKeyValue: (result, transform) => {
       if ('value' in result) {
-        const left = `${result.meta.quote ?? ''}${result.value}${result.meta.quote ?? ''}${result.optional ? '?' : ''}`
+        const left = `${quote(result.value, result.meta.quote)}${result.optional ? '?' : ''}`
         if (result.right === undefined) {
           return left
         } else {
@@ -74,13 +85,13 @@ export function stringifyRules (): TransformRules<string> {
       }
     },
 
-    JsdocTypeSpecialNamePath: result => `${result.specialType}:${result.meta.quote ?? ''}${result.value}${result.meta.quote ?? ''}`,
+    JsdocTypeSpecialNamePath: result => `${result.specialType}:${quote(result.value, result.meta.quote)}`,
 
-    JsdocTypeNotNullable:(result, transform) => applyPosition(result.meta.position, transform(result.element), '!'),
+    JsdocTypeNotNullable: (result, transform) => applyPosition(result.meta.position, transform(result.element), '!'),
 
     JsdocTypeNull: () => 'null',
 
-    JsdocTypeNullable:(result, transform) => applyPosition(result.meta.position, transform(result.element), '?'),
+    JsdocTypeNullable: (result, transform) => applyPosition(result.meta.position, transform(result.element), '?'),
 
     JsdocTypeNumber: result => result.value.toString(),
 

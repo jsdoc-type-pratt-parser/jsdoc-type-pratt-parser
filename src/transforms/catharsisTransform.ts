@@ -1,6 +1,7 @@
 import { extractSpecialParams, notAvailableTransform, transform, TransformRules } from './transform'
 import { assertTerminal } from '../assertTypes'
 import { TerminalResult } from '../result/TerminalResult'
+import { quote } from './stringify'
 
 export const reservedWords = [
   'null',
@@ -129,13 +130,13 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
     return transformed
   },
 
-  JsdocTypeNullable:(result, transform) => {
+  JsdocTypeNullable: (result, transform) => {
     const transformed = transform(result.element)
     transformed.nullable = true
     return transformed
   },
 
-  JsdocTypeNotNullable:(result, transform) => {
+  JsdocTypeNotNullable: (result, transform) => {
     const transformed = transform(result.element)
     transformed.nullable = false
     return transformed
@@ -158,7 +159,7 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
     type: 'NullLiteral'
   }),
 
-  JsdocTypeStringValue: result => makeName(`${result.meta.quote}${result.value}${result.meta.quote}`),
+  JsdocTypeStringValue: result => makeName(quote(result.value, result.meta.quote)),
 
   JsdocTypeUndefined: () => ({
     type: 'UndefinedLiteral'
@@ -197,10 +198,7 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
     expression: transform(result.left)
   }),
 
-  JsdocTypeSpecialNamePath: result => {
-    const quote = result.meta.quote ?? ''
-    return makeName(result.specialType + ':' + quote + result.value + quote)
-  },
+  JsdocTypeSpecialNamePath: result => makeName(result.specialType + ':' + quote(result.value, result.meta.quote)),
 
   JsdocTypeName: result => makeName(result.value),
 
@@ -235,7 +233,7 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
     if ('value' in result) {
       return {
         type: 'FieldType',
-        key: makeName(`${result.meta.quote ?? ''}${result.value}${result.meta.quote ?? ''}`),
+        key: makeName(quote(result.value, result.meta.quote)),
         value: result.right === undefined ? undefined : transform(result.right)
       }
     } else {

@@ -30,7 +30,7 @@ export type JtpResult =
 type JtpQuoteStyle = 'single' | 'double' | 'none'
 
 export interface JtpNullableResult {
-  type: 'JNULLABLE'
+  type: 'NULLABLE'
   value: JtpResult
   meta: {
     syntax: 'PREFIX_QUESTION_MARK' | 'SUFFIX_QUESTION_MARK'
@@ -38,7 +38,7 @@ export interface JtpNullableResult {
 }
 
 export interface JtpNotNullableResult {
-  type: 'JNOT_NULLABLE'
+  type: 'NOT_NULLABLE'
   value: JtpResult
   meta: {
     syntax: 'PREFIX_BANG' | 'SUFFIX_BANG'
@@ -46,7 +46,7 @@ export interface JtpNotNullableResult {
 }
 
 export interface JtpOptionalResult {
-  type: 'JOPTIONAL'
+  type: 'OPTIONAL'
   value: JtpResult
   meta: {
     syntax: 'PREFIX_EQUAL_SIGN' | 'SUFFIX_EQUALS_SIGN' | 'SUFFIX_KEY_QUESTION_MARK'
@@ -54,7 +54,7 @@ export interface JtpOptionalResult {
 }
 
 export interface JtpVariadicResult {
-  type: 'JVARIADIC'
+  type: 'VARIADIC'
   value?: JtpResult
   meta: {
     syntax: 'PREFIX_DOTS' | 'SUFFIX_DOTS' | 'ONLY_DOTS'
@@ -62,46 +62,46 @@ export interface JtpVariadicResult {
 }
 
 export interface JtpNameResult {
-  type: 'JNAME'
+  type: 'NAME'
   name: string
 }
 
 export interface JtpTypeOfResult {
-  type: 'JTYPE_QUERY'
+  type: 'TYPE_QUERY'
   name?: JtpResult
 }
 
 export interface JtpKeyOfResult {
-  type: 'JKEY_QUERY'
+  type: 'KEY_QUERY'
   value?: JtpResult
 }
 
 export interface JtpTupleResult {
-  type: 'JTUPLE'
+  type: 'TUPLE'
   entries: JtpResult[]
 }
 
 export interface JtpStringValueResult {
-  type: 'JSTRING_VALUE'
+  type: 'STRING_VALUE'
   quoteStyle: JtpQuoteStyle
   string: string
 }
 
 export interface JtpImportResult {
-  type: 'JIMPORT'
+  type: 'IMPORT'
   path: JtpStringValueResult
 }
 
 export interface JtpAnyResult {
-  type: 'JANY'
+  type: 'ANY'
 }
 
 export interface JtpUnknownResult {
-  type: 'JUNKNOWN'
+  type: 'UNKNOWN'
 }
 
 export interface JtpFunctionResult {
-  type: 'JFUNCTION' | 'JARROW'
+  type: 'FUNCTION' | 'ARROW'
   params: JtpResult[]
   returns: JtpResult | null
   new: JtpResult | null
@@ -109,7 +109,7 @@ export interface JtpFunctionResult {
 }
 
 export interface JtpGenericResult {
-  type: 'JGENERIC'
+  type: 'GENERIC'
   subject: JtpResult
   objects: JtpResult[]
   meta: {
@@ -118,7 +118,7 @@ export interface JtpGenericResult {
 }
 
 export interface JtpRecordEntryResult {
-  type: 'JRECORD_ENTRY'
+  type: 'RECORD_ENTRY'
   key: string
   quoteStyle: JtpQuoteStyle
   value: JtpResult | null
@@ -126,12 +126,12 @@ export interface JtpRecordEntryResult {
 }
 
 export interface JtpRecordResult {
-  type: 'JRECORD'
+  type: 'RECORD'
   entries: JtpRecordEntryResult[]
 }
 
 export interface JtpMemberResult {
-  type: 'JMEMBER' | 'JINNER_MEMBER' | 'JINSTANCE_MEMBER'
+  type: 'MEMBER' | 'INNER_MEMBER' | 'INSTANCE_MEMBER'
   owner: JtpResult
   name: string
   quoteStyle: JtpQuoteStyle
@@ -139,46 +139,46 @@ export interface JtpMemberResult {
 }
 
 export interface JtpUnionResult {
-  type: 'JUNION'
+  type: 'UNION'
   left: JtpResult
   right: JtpResult
 }
 
 export interface JtpIntersectionResult {
-  type: 'JINTERSECTION'
+  type: 'INTERSECTION'
   left: JtpResult
   right: JtpResult
 }
 
 export interface JtpParenthesisResult {
-  type: 'JPARENTHESIS'
+  type: 'PARENTHESIS'
   value: JtpResult
 }
 
 export interface JtpNamedParameterResult {
-  type: 'JNAMED_PARAMETER'
+  type: 'NAMED_PARAMETER'
   name: string
   typeName: JtpResult
 }
 
 export interface JtpModuleResult {
-  type: 'JMODULE'
+  type: 'MODULE'
   value: JtpResult
 }
 
 export interface JtpFilePath {
-  type: 'JFILE_PATH'
+  type: 'FILE_PATH'
   quoteStyle: JtpQuoteStyle
   path: string
 }
 
-function getQuoteStyle (quote: '\'' | '"' | undefined): JtpQuoteStyle {
+function getQuoteStyle (quote: 'single' | 'double' | undefined): JtpQuoteStyle {
   switch (quote) {
     case undefined:
       return 'none'
-    case '\'':
+    case 'single':
       return 'single'
-    case '"':
+    case 'double':
       return 'double'
   }
 }
@@ -186,15 +186,15 @@ function getQuoteStyle (quote: '\'' | '"' | undefined): JtpQuoteStyle {
 function getMemberType (type: '.' | '~' | '#'): JtpMemberResult['type'] {
   switch (type) {
     case '~':
-      return 'JINNER_MEMBER'
+      return 'INNER_MEMBER'
     case '#':
-      return 'JINSTANCE_MEMBER'
+      return 'INSTANCE_MEMBER'
     case '.':
-      return 'JMEMBER'
+      return 'MEMBER'
   }
 }
 
-function nestResults (type: 'JUNION' | 'JINTERSECTION', results: JtpResult[]): JtpResult {
+function nestResults (type: 'UNION' | 'INTERSECTION', results: JtpResult[]): JtpResult {
   if (results.length === 2) {
     return {
       type,
@@ -212,23 +212,23 @@ function nestResults (type: 'JUNION' | 'JINTERSECTION', results: JtpResult[]): J
 
 const jtpRules: TransformRules<JtpResult> = {
   JsdocTypeOptional: (result, transform) => ({
-    type: 'JOPTIONAL',
+    type: 'OPTIONAL',
     value: transform(result.element),
     meta: {
       syntax: result.meta.position === 'PREFIX' ? 'PREFIX_EQUAL_SIGN' : 'SUFFIX_EQUALS_SIGN'
     }
   }),
 
-  JsdocTypeNullable:(result, transform) => ({
-    type: 'JNULLABLE',
+  JsdocTypeNullable: (result, transform) => ({
+    type: 'NULLABLE',
     value: transform(result.element),
     meta: {
       syntax: result.meta.position === 'PREFIX' ? 'PREFIX_QUESTION_MARK' : 'SUFFIX_QUESTION_MARK'
     }
   }),
 
-  JsdocTypeNotNullable:(result, transform) => ({
-    type: 'JNOT_NULLABLE',
+  JsdocTypeNotNullable: (result, transform) => ({
+    type: 'NOT_NULLABLE',
     value: transform(result.element),
     meta: {
       syntax: result.meta.position === 'PREFIX' ? 'PREFIX_BANG' : 'SUFFIX_BANG'
@@ -237,7 +237,7 @@ const jtpRules: TransformRules<JtpResult> = {
 
   JsdocTypeVariadic: (result, transform) => {
     const transformed: JtpVariadicResult = {
-      type: 'JVARIADIC',
+      type: 'VARIADIC',
       meta: {
         syntax: result.meta.position === 'PREFIX' ? 'PREFIX_DOTS'
           : result.meta.position === 'SUFFIX' ? 'SUFFIX_DOTS' : 'ONLY_DOTS'
@@ -251,55 +251,55 @@ const jtpRules: TransformRules<JtpResult> = {
   },
 
   JsdocTypeName: result => ({
-    type: 'JNAME',
+    type: 'NAME',
     name: result.value
   }),
 
   JsdocTypeTypeof: (result, transform) => ({
-    type: 'JTYPE_QUERY',
+    type: 'TYPE_QUERY',
     name: transform(result.element)
   }),
 
   JsdocTypeTuple: (result, transform) => ({
-    type: 'JTUPLE',
+    type: 'TUPLE',
     entries: result.elements.map(transform)
   }),
 
   JsdocTypeKeyof: (result, transform) => ({
-    type: 'JKEY_QUERY',
+    type: 'KEY_QUERY',
     value: transform(result.element)
   }),
 
   JsdocTypeImport: result => ({
-    type: 'JIMPORT',
+    type: 'IMPORT',
     path: {
-      type: 'JSTRING_VALUE',
+      type: 'STRING_VALUE',
       quoteStyle: getQuoteStyle(result.element.meta.quote),
       string: result.element.value
     }
   }),
 
   JsdocTypeUndefined: () => ({
-    type: 'JNAME',
+    type: 'NAME',
     name: 'undefined'
   }),
 
   JsdocTypeAny: () => ({
-    type: 'JANY'
+    type: 'ANY'
   }),
 
   JsdocTypeFunction: (result, transform) => {
     const specialParams = extractSpecialParams(result)
 
     const transformed: JtpFunctionResult = {
-      type: result.arrow ? 'JARROW' : 'JFUNCTION',
+      type: result.arrow ? 'ARROW' : 'FUNCTION',
       params: specialParams.params.map(param => {
         if (param.type === 'JsdocTypeKeyValue') {
           if (param.right === undefined) {
             throw new Error('Function parameter without \':\' is not expected to be \'KEY_VALUE\'')
           }
           return {
-            type: 'JNAMED_PARAMETER',
+            type: 'NAMED_PARAMETER',
             name: param.value,
             typeName: transform(param.right)
           }
@@ -330,7 +330,7 @@ const jtpRules: TransformRules<JtpResult> = {
 
   JsdocTypeGeneric: (result, transform) => {
     const transformed: JtpGenericResult = {
-      type: 'JGENERIC',
+      type: 'GENERIC',
       subject: transform(result.left),
       objects: result.elements.map(transform),
       meta: {
@@ -340,7 +340,7 @@ const jtpRules: TransformRules<JtpResult> = {
 
     if (result.meta.brackets === '[]' && result.elements[0].type === 'JsdocTypeFunction' && !result.elements[0].parenthesis) {
       transformed.objects[0] = {
-        type: 'JNAME',
+        type: 'NAME',
         name: 'function'
       }
     }
@@ -355,7 +355,7 @@ const jtpRules: TransformRules<JtpResult> = {
 
     if (result.right === undefined) {
       return {
-        type: 'JRECORD_ENTRY',
+        type: 'RECORD_ENTRY',
         key: result.value.toString(),
         quoteStyle: getQuoteStyle(result.meta.quote),
         value: null,
@@ -366,7 +366,7 @@ const jtpRules: TransformRules<JtpResult> = {
     let right = transform(result.right)
     if (result.optional) {
       right = {
-        type: 'JOPTIONAL',
+        type: 'OPTIONAL',
         value: right,
         meta: {
           syntax: 'SUFFIX_KEY_QUESTION_MARK'
@@ -375,7 +375,7 @@ const jtpRules: TransformRules<JtpResult> = {
     }
 
     return {
-      type: 'JRECORD_ENTRY',
+      type: 'RECORD_ENTRY',
       key: result.value.toString(),
       quoteStyle: getQuoteStyle(result.meta.quote),
       value: right,
@@ -391,7 +391,7 @@ const jtpRules: TransformRules<JtpResult> = {
       }
     }
     return {
-      type: 'JRECORD',
+      type: 'RECORD',
       entries
     }
   },
@@ -401,9 +401,9 @@ const jtpRules: TransformRules<JtpResult> = {
       throw new Error(`jsdoctypeparser does not support type ${result.specialType} at this point.`)
     }
     return {
-      type: 'JMODULE',
+      type: 'MODULE',
       value: {
-        type: 'JFILE_PATH',
+        type: 'FILE_PATH',
         quoteStyle: getQuoteStyle(result.meta.quote),
         path: result.value
       }
@@ -431,7 +431,7 @@ const jtpRules: TransformRules<JtpResult> = {
       hasEventPrefix
     }
 
-    if (transformed.owner.type === 'JMODULE') {
+    if (transformed.owner.type === 'MODULE') {
       const tModule = transformed.owner
       transformed.owner = transformed.owner.value
       tModule.value = transformed
@@ -441,29 +441,29 @@ const jtpRules: TransformRules<JtpResult> = {
     }
   },
 
-  JsdocTypeUnion: (result, transform) => nestResults('JUNION', result.elements.map(transform)),
+  JsdocTypeUnion: (result, transform) => nestResults('UNION', result.elements.map(transform)),
 
   JsdocTypeParenthesis: (result, transform) => ({
-    type: 'JPARENTHESIS',
+    type: 'PARENTHESIS',
     value: transform(assertTerminal(result.element))
   }),
 
   JsdocTypeNull: () => ({
-    type: 'JNAME',
+    type: 'NAME',
     name: 'null'
   }),
 
   JsdocTypeUnknown: () => ({
-    type: 'JUNKNOWN'
+    type: 'UNKNOWN'
   }),
 
   JsdocTypeStringValue: result => ({
-    type: 'JSTRING_VALUE',
+    type: 'STRING_VALUE',
     quoteStyle: getQuoteStyle(result.meta.quote),
     string: result.value
   }),
 
-  JsdocTypeIntersection: (result, transform) => nestResults('JINTERSECTION', result.elements.map(transform)),
+  JsdocTypeIntersection: (result, transform) => nestResults('INTERSECTION', result.elements.map(transform)),
 
   JsdocTypeNumber: notAvailableTransform,
   JsdocTypeSymbol: notAvailableTransform

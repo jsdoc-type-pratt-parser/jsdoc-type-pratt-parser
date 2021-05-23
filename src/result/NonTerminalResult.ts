@@ -20,7 +20,7 @@ export interface KeyValueResult {
   right: TerminalResult | undefined
   optional: boolean
   meta: {
-    quote: '\'' | '"' | undefined
+    quote: 'single' | 'double' | undefined
   }
 }
 

@@ -64,7 +64,7 @@ describe('basics', () => {
           type: 'JsdocTypeStringValue',
           value: 'test',
           meta: {
-            quote: '\''
+            quote: 'single'
           }
         },
         {
