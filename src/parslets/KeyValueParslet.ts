@@ -1,10 +1,11 @@
 import { InfixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
-import { IntermediateResult, ParserEngine } from '../ParserEngine'
-import { JsdocObjectKeyValueResult, KeyValueResult } from '../ParseResult'
+import { ParserEngine } from '../ParserEngine'
+import { JsdocObjectKeyValueResult, KeyValueResult } from '../result/NonTerminalResult'
 import { assertTerminal } from '../assertTypes'
 import { UnexpectedTypeError } from '../errors'
+import { IntermediateResult } from '../result/IntermediateResult'
 
 interface KeyValueParsletOptions {
   allowKeyTypes: boolean

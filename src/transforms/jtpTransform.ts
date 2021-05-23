@@ -1,5 +1,5 @@
 import { extractSpecialParams, notAvailableTransform, transform, TransformRules } from './transform'
-import { ParseResult } from '../ParseResult'
+import { TerminalResult } from '../result/TerminalResult'
 import { assertTerminal } from '../assertTypes'
 
 export type JtpResult =
@@ -469,6 +469,6 @@ const jtpRules: TransformRules<JtpResult> = {
   SYMBOL: notAvailableTransform
 }
 
-export function jtpTransform (result: ParseResult): JtpResult {
+export function jtpTransform (result: TerminalResult): JtpResult {
   return transform(jtpRules, result)
 }

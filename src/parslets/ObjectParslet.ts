@@ -1,9 +1,9 @@
 import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
-import { ParseResult, ObjectResult } from '../ParseResult'
 import { Precedence } from '../Precedence'
 import { UnexpectedTypeError } from '../errors'
+import { ObjectResult, TerminalResult } from '../result/TerminalResult'
 
 interface ObjectParsletOptions {
   allowKeyTypes: boolean
@@ -24,7 +24,7 @@ export class ObjectParslet implements PrefixParslet {
     return Precedence.OBJECT
   }
 
-  parsePrefix (parser: ParserEngine): ParseResult {
+  parsePrefix (parser: ParserEngine): TerminalResult {
     parser.consume('{')
     const result: ObjectResult = {
       type: 'OBJECT',

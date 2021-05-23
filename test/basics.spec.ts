@@ -1,12 +1,12 @@
 import { expect } from 'chai'
 import 'mocha'
-import { ParseResult } from '../src/ParseResult'
+import { TerminalResult } from '../src/result/TerminalResult'
 import { parse } from '../src/parse'
 
 describe('basics', () => {
   it('should parse names', () => {
     const typeString = 'sometype'
-    const expected: ParseResult = {
+    const expected: TerminalResult = {
       type: 'NAME',
       value: 'sometype',
       meta: {
@@ -19,7 +19,7 @@ describe('basics', () => {
 
   it('should parse a complex expression', () => {
     const typeString = 'Array<(AType|OtherType)>|\'test\'|undefined'
-    const expected: ParseResult = {
+    const expected: TerminalResult = {
       type: 'UNION',
       elements: [
         {

@@ -1,7 +1,9 @@
+import { JsdocObjectKeyValueResult, KeyValueResult, NumberResult } from './NonTerminalResult'
+
 /**
  * A parse result that corresponds to a valid type expression.
  */
-export type ParseResult =
+export type TerminalResult =
   NameResult
   | UnionResult
   | GenericResult
@@ -19,26 +21,17 @@ export type ParseResult =
   | ImportResult
   | TupleResult
   | SpecialNamePath
-  | OptionalResult<ParseResult>
-  | NullableResult<ParseResult>
-  | NotNullableResult<ParseResult>
-  | VariadicResult<ParseResult>
+  | OptionalResult<TerminalResult>
+  | NullableResult<TerminalResult>
+  | NotNullableResult<TerminalResult>
+  | VariadicResult<TerminalResult>
   | ParenthesisResult
   | IntersectionResult
 
 /**
- * A parse sub result that might not be a valid type expression on its own.
- */
-export type NonTerminalResult =
-  ParseResult
-  | KeyValueResult
-  | JsdocObjectKeyValueResult
-  | NumberResult
-
-/**
  * `element` is optional.
  */
-export interface OptionalResult<T extends ParseResult> {
+export interface OptionalResult<T extends TerminalResult> {
   type: 'OPTIONAL'
   element: T
   meta: {
@@ -49,7 +42,7 @@ export interface OptionalResult<T extends ParseResult> {
 /**
  * `element` is nullable.
  */
-export interface NullableResult<T extends ParseResult> {
+export interface NullableResult<T extends TerminalResult> {
   type: 'NULLABLE'
   element: T
   meta: {
@@ -60,7 +53,7 @@ export interface NullableResult<T extends ParseResult> {
 /**
  * `element` is not nullable.
  */
-export interface NotNullableResult<T extends ParseResult> {
+export interface NotNullableResult<T extends TerminalResult> {
   type: 'NOT_NULLABLE'
   element: T
   meta: {
@@ -71,7 +64,7 @@ export interface NotNullableResult<T extends ParseResult> {
 /**
  * `element` is a rest parameter.
  */
-export interface VariadicResult<T extends ParseResult> {
+export interface VariadicResult<T extends TerminalResult> {
   type: 'VARIADIC'
   element?: T
   meta: {
@@ -96,7 +89,7 @@ export interface NameResult {
  */
 export interface UnionResult {
   type: 'UNION'
-  elements: ParseResult[]
+  elements: TerminalResult[]
 }
 
 /**
@@ -107,8 +100,8 @@ export interface UnionResult {
  */
 export interface GenericResult {
   type: 'GENERIC'
-  left: ParseResult
-  elements: ParseResult[]
+  left: TerminalResult
+  elements: TerminalResult[]
   meta: {
     brackets: '<>' | '[]'
     dot: boolean
@@ -162,35 +155,15 @@ export interface UnknownResult {
  */
 export interface FunctionResult {
   type: 'FUNCTION'
-  parameters: Array<ParseResult | KeyValueResult>
-  returnType?: ParseResult
+  parameters: Array<TerminalResult | KeyValueResult>
+  returnType?: TerminalResult
   arrow: boolean
   parenthesis: boolean
 }
 
 /**
- * A key value pair represented by a `:`. Can occur as a named parameter of a {@link FunctionResult} or as an entry for
- * an {@link ObjectResult}. Is a {@link NonTerminalResult}.
- */
-export interface KeyValueResult {
-  type: 'KEY_VALUE'
-  value: string
-  right: ParseResult | undefined
-  optional: boolean
-  meta: {
-    quote: '\'' | '"' | undefined
-  }
-}
-
-export interface JsdocObjectKeyValueResult {
-  type: 'JSDOC_OBJECT_KEY_VALUE'
-  left: ParseResult
-  right: ParseResult
-}
-
-/**
  * An object. Contains entries which can be {@link KeyValueResult}s or {@link NameResult}s. In most grammars the keys
- * need to be {@link NameResult}s. In some grammars it possible that an entry is only a {@link ParseResult} or a
+ * need to be {@link NameResult}s. In some grammars it possible that an entry is only a {@link TerminalResult} or a
  * {@link NumberResult} without a key.
  */
 export interface ObjectResult {
@@ -215,18 +188,9 @@ export interface SpecialNamePath<Type = 'module' | 'event' | 'external'> {
  */
 export interface NamePathResult {
   type: 'NAME_PATH'
-  left: ParseResult
+  left: TerminalResult
   right: NameResult | NumberResult | StringValueResult | SpecialNamePath<'event'>
   pathType: '~' | '#' | '.'
-}
-
-/**
- * A number. Can be the key of an {@link ObjectResult} entry or the parameter of a {@link SymbolResult}.
- * Is a {@link NonTerminalResult}.
- */
-export interface NumberResult {
-  type: 'NUMBER'
-  value: number
 }
 
 /**
@@ -243,7 +207,7 @@ export interface SymbolResult {
  */
 export interface TypeOfResult {
   type: 'TYPE_OF'
-  element: ParseResult
+  element: TerminalResult
 }
 
 /**
@@ -251,7 +215,7 @@ export interface TypeOfResult {
  */
 export interface KeyOfResult {
   type: 'KEY_OF'
-  element: ParseResult
+  element: TerminalResult
 }
 
 /**
@@ -268,7 +232,7 @@ export interface ImportResult {
  */
 export interface TupleResult {
   type: 'TUPLE'
-  elements: ParseResult[]
+  elements: TerminalResult[]
 }
 
 /**
@@ -276,7 +240,7 @@ export interface TupleResult {
  */
 export interface ParenthesisResult {
   type: 'PARENTHESIS'
-  element: ParseResult
+  element: TerminalResult
 }
 
 /**
@@ -284,5 +248,5 @@ export interface ParenthesisResult {
  */
 export interface IntersectionResult {
   type: 'INTERSECTION'
-  elements: ParseResult[]
+  elements: TerminalResult[]
 }

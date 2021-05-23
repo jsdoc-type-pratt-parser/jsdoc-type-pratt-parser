@@ -1,27 +1,30 @@
 import { TransformRules } from './transform'
 import {
-  FunctionResult, JsdocObjectKeyValueResult,
+  JsdocObjectKeyValueResult,
   KeyValueResult,
-  NameResult,
   NonTerminalResult,
-  NumberResult,
-  ParseResult,
+  NumberResult
+} from '../result/NonTerminalResult'
+import {
+  FunctionResult,
+  NameResult,
   StringValueResult,
   SymbolResult,
+  TerminalResult,
   VariadicResult
-} from '../ParseResult'
+} from '../result/TerminalResult'
 
 export function identityTransformRules (): TransformRules<NonTerminalResult> {
   return {
     INTERSECTION: (result, transform) => ({
       type: 'INTERSECTION',
-      elements: result.elements.map(transform) as ParseResult[]
+      elements: result.elements.map(transform) as TerminalResult[]
     }),
 
     GENERIC: (result, transform) => ({
       type: 'GENERIC',
-      left: transform(result.left) as ParseResult,
-      elements: result.elements.map(transform) as ParseResult[],
+      left: transform(result.left) as TerminalResult,
+      elements: result.elements.map(transform) as TerminalResult[],
       meta: {
         dot: result.meta.dot,
         brackets: result.meta.brackets
@@ -32,7 +35,7 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
 
     UNION: (result, transform) => ({
       type: 'UNION',
-      elements: result.elements.map(transform) as ParseResult[]
+      elements: result.elements.map(transform) as TerminalResult[]
     }),
 
     UNKNOWN: result => result,
@@ -41,7 +44,7 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
 
     TYPE_OF: (result, transform) => ({
       type: 'TYPE_OF',
-      element: transform(result.element) as ParseResult
+      element: transform(result.element) as TerminalResult
     }),
 
     SYMBOL: (result, transform) => {
@@ -57,7 +60,7 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
 
     OPTIONAL: (result, transform) => ({
       type: 'OPTIONAL',
-      element: transform(result.element) as ParseResult,
+      element: transform(result.element) as TerminalResult,
       meta: {
         position: result.meta.position
       }
@@ -74,7 +77,7 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
 
     NOT_NULLABLE: (result, transform) => ({
       type: 'NOT_NULLABLE',
-      element: transform(result.element) as ParseResult,
+      element: transform(result.element) as TerminalResult,
       meta: {
         position: result.meta.position
       }
@@ -85,7 +88,7 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
     KEY_VALUE: (result, transform) => ({
       type: 'KEY_VALUE',
       value: result.value,
-      right: result.right === undefined ? undefined : transform(result.right) as ParseResult,
+      right: result.right === undefined ? undefined : transform(result.right) as TerminalResult,
       optional: result.optional,
       meta: result.meta
     }),
@@ -102,7 +105,7 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
     NAME_PATH: result => result,
 
     VARIADIC: (result, transform) => {
-      const transformed: VariadicResult<ParseResult> = {
+      const transformed: VariadicResult<TerminalResult> = {
         type: 'VARIADIC',
         meta: {
           position: result.meta.position,
@@ -111,7 +114,7 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
       }
 
       if (result.element !== undefined) {
-        transformed.element = transform(result.element) as ParseResult
+        transformed.element = transform(result.element) as TerminalResult
       }
 
       return transformed
@@ -119,7 +122,7 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
 
     TUPLE: (result, transform) => ({
       type: 'TUPLE',
-      elements: result.elements.map(transform) as ParseResult[]
+      elements: result.elements.map(transform) as TerminalResult[]
     }),
 
     NAME: result => result,
@@ -128,12 +131,12 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
       const transformed: FunctionResult = {
         type: 'FUNCTION',
         arrow: result.arrow,
-        parameters: result.parameters.map(transform) as ParseResult[],
+        parameters: result.parameters.map(transform) as TerminalResult[],
         parenthesis: result.parenthesis
       }
 
       if (result.returnType !== undefined) {
-        transformed.returnType = transform(result.returnType) as ParseResult
+        transformed.returnType = transform(result.returnType) as TerminalResult
       }
 
       return transformed
@@ -141,18 +144,18 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
 
     KEY_OF: (result, transform) => ({
       type: 'KEY_OF',
-      element: transform(result.element) as ParseResult
+      element: transform(result.element) as TerminalResult
     }),
 
     PARENTHESIS: (result, transform) => ({
       type: 'PARENTHESIS',
-      element: transform(result.element) as ParseResult
+      element: transform(result.element) as TerminalResult
     }),
 
     JSDOC_OBJECT_KEY_VALUE: (result, transform) => ({
       type: 'JSDOC_OBJECT_KEY_VALUE',
-      left: transform(result.left) as ParseResult,
-      right: transform(result.right) as ParseResult
+      left: transform(result.left) as TerminalResult,
+      right: transform(result.right) as TerminalResult
     })
   }
 }

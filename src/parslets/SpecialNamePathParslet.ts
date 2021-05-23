@@ -2,7 +2,7 @@ import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
 import { ParserEngine } from '../ParserEngine'
-import { NameResult, SpecialNamePath } from '../ParseResult'
+import { NameResult, SpecialNamePath } from '../result/TerminalResult'
 
 export class SpecialNamePathParslet implements PrefixParslet {
   accepts (type: TokenType, next: TokenType): boolean {

@@ -1,9 +1,9 @@
 import { assertTerminal } from '../assertTypes'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
-import { TupleResult } from '../ParseResult'
 import { PrefixParslet } from './Parslet'
 import { Precedence } from '../Precedence'
+import { TupleResult } from '../result/TerminalResult'
 
 interface TupleParsletOptions {
   allowQuestionMark: boolean

@@ -1,4 +1,5 @@
-import { FunctionResult, KeyValueResult, NonTerminalResult, ParseResult } from '../ParseResult'
+import { KeyValueResult, NonTerminalResult } from '../result/NonTerminalResult'
+import { FunctionResult, TerminalResult } from '../result/TerminalResult'
 
 export type TransformFunction<TransformResult> = (parseResult: NonTerminalResult) => TransformResult
 
@@ -22,9 +23,9 @@ export function notAvailableTransform<TransformResult> (parseResult: NonTerminal
 }
 
 interface SpecialFunctionParams {
-  params: Array<ParseResult | KeyValueResult>
-  this?: ParseResult
-  new?: ParseResult
+  params: Array<TerminalResult | KeyValueResult>
+  this?: TerminalResult
+  new?: TerminalResult
 }
 
 export function extractSpecialParams (source: FunctionResult): SpecialFunctionParams {

@@ -1,9 +1,10 @@
 import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
-import { ParameterList, ParserEngine } from '../ParserEngine'
-import { ParenthesisResult } from '../ParseResult'
 import { assertTerminal } from '../assertTypes'
+import { ParserEngine } from '../ParserEngine'
+import { ParenthesisResult } from '../result/TerminalResult'
+import { ParameterList } from '../result/IntermediateResult'
 
 export class ParenthesisParslet implements PrefixParslet {
   accepts (type: TokenType, next: TokenType): boolean {

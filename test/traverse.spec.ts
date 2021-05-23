@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { SinonSpy, spy } from 'sinon'
-import { GenericResult, NameResult, ParseResult, StringValueResult, UnionResult } from '../src'
+import { GenericResult, NameResult, TerminalResult, StringValueResult, UnionResult } from '../src'
 import { traverse } from '../src/traverse'
 
 function expectOrder (calls: Array<[SinonSpy, any[]]>): void {
@@ -24,7 +24,7 @@ describe('traverse', () => {
     const onEnter = spy()
     const onLeave = spy()
 
-    const result: ParseResult = {
+    const result: TerminalResult = {
       type: 'NAME',
       value: 'test',
       meta: {

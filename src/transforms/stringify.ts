@@ -1,5 +1,6 @@
 import { transform, TransformRules } from './transform'
-import { NonTerminalResult, ParseResult } from '../ParseResult'
+import { NonTerminalResult } from '../result/NonTerminalResult'
+import { TerminalResult } from '../result/TerminalResult'
 
 function applyPosition (position: 'PREFIX' | 'SUFFIX', target: string, value: string): string {
   return position === 'PREFIX' ? value + target : target + value
@@ -101,6 +102,6 @@ export function stringifyRules (): TransformRules<string> {
 
 const storedStringifyRules = stringifyRules()
 
-export function stringify (result: ParseResult): string {
+export function stringify (result: TerminalResult): string {
   return transform(storedStringifyRules, result)
 }

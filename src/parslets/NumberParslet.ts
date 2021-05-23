@@ -2,7 +2,7 @@ import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
 import { ParserEngine } from '../ParserEngine'
-import { NonTerminalResult } from '../ParseResult'
+import { NonTerminalResult } from '../result/NonTerminalResult'
 
 export class NumberParslet implements PrefixParslet {
   accepts (type: TokenType, next: TokenType): boolean {

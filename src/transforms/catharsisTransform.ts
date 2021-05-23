@@ -1,6 +1,6 @@
-import { ParseResult } from '../ParseResult'
 import { extractSpecialParams, notAvailableTransform, transform, TransformRules } from './transform'
 import { assertTerminal } from '../assertTypes'
+import { TerminalResult } from '../result/TerminalResult'
 
 export const reservedWords = [
   'null',
@@ -287,6 +287,6 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
   INTERSECTION: notAvailableTransform
 }
 
-export function catharsisTransform (result: ParseResult): CatharsisParseResult {
+export function catharsisTransform (result: TerminalResult): CatharsisParseResult {
   return transform(catharsisTransformRules, result)
 }

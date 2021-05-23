@@ -1,6 +1,6 @@
 import { identityTransformRules } from './identityTransformRules'
-import { ParseResult } from '../ParseResult'
 import { transform } from './transform'
+import { TerminalResult } from '../result/TerminalResult'
 
 const simplifyRules = identityTransformRules()
 
@@ -14,6 +14,6 @@ simplifyRules.VARIADIC = (result, transform) => {
   return identityVariadic(result, transform)
 }
 
-export function simplify (result: ParseResult): ParseResult {
-  return transform(simplifyRules, result) as ParseResult
+export function simplify (result: TerminalResult): TerminalResult {
+  return transform(simplifyRules, result) as TerminalResult
 }

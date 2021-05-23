@@ -1,11 +1,13 @@
 import { InfixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
-import { IntermediateResult, ParserEngine } from '../ParserEngine'
-import { NameResult, NumberResult, ParseResult, SpecialNamePath } from '../ParseResult'
 import { assertTerminal } from '../assertTypes'
 import { UnexpectedTypeError } from '../errors'
 import { StringValueParslet } from './StringValueParslet'
+import { ParserEngine } from '../ParserEngine'
+import { IntermediateResult } from '../result/IntermediateResult'
+import { NameResult, SpecialNamePath, TerminalResult } from '../result/TerminalResult'
+import { NumberResult } from '..'
 
 interface NamePathParsletOptions {
   allowJsdocNamePaths: boolean
@@ -28,7 +30,7 @@ export class NamePathParslet implements InfixParslet {
     return Precedence.NAME_PATH
   }
 
-  parseInfix (parser: ParserEngine, left: IntermediateResult): ParseResult {
+  parseInfix (parser: ParserEngine, left: IntermediateResult): TerminalResult {
     const type = parser.getToken().text as '#' | '~' | '.'
 
     parser.consume('.') || parser.consume('~') || parser.consume('#')

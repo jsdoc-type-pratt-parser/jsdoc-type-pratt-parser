@@ -1,8 +1,9 @@
-import { KeyValueResult, NameResult, NumberResult, ParseResult, VariadicResult } from './ParseResult'
+import { KeyValueResult, NumberResult } from './result/NonTerminalResult'
 import { UnexpectedTypeError } from './errors'
-import { IntermediateResult } from './ParserEngine'
+import { NameResult, TerminalResult, VariadicResult } from './result/TerminalResult'
+import { IntermediateResult } from './result/IntermediateResult'
 
-export function assertTerminal (result?: IntermediateResult): ParseResult {
+export function assertTerminal (result?: IntermediateResult): TerminalResult {
   if (result === undefined) {
     throw new Error('Unexpected undefined')
   }
@@ -12,7 +13,7 @@ export function assertTerminal (result?: IntermediateResult): ParseResult {
   return result
 }
 
-export function assertKeyValueOrTerminal (result: IntermediateResult): KeyValueResult | ParseResult {
+export function assertKeyValueOrTerminal (result: IntermediateResult): KeyValueResult | TerminalResult {
   if (result.type === 'KEY_VALUE') {
     return result
   }

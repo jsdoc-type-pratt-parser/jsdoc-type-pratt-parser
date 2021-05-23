@@ -1,9 +1,10 @@
 import { InfixParslet, PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
-import { IntermediateResult, ParserEngine } from '../ParserEngine'
-import { ParseResult } from '../ParseResult'
 import { Precedence } from '../Precedence'
 import { assertTerminal } from '../assertTypes'
+import { ParserEngine } from '../ParserEngine'
+import { IntermediateResult } from '../result/IntermediateResult'
+import { TerminalResult } from '../result/TerminalResult'
 
 export class OptionalParslet implements PrefixParslet, InfixParslet {
   accepts (type: TokenType, next: TokenType): boolean {
@@ -14,7 +15,7 @@ export class OptionalParslet implements PrefixParslet, InfixParslet {
     return Precedence.OPTIONAL
   }
 
-  parsePrefix (parser: ParserEngine): ParseResult {
+  parsePrefix (parser: ParserEngine): TerminalResult {
     parser.consume('=')
     return {
       type: 'OPTIONAL',
@@ -25,7 +26,7 @@ export class OptionalParslet implements PrefixParslet, InfixParslet {
     }
   }
 
-  parseInfix (parser: ParserEngine, left: IntermediateResult): ParseResult {
+  parseInfix (parser: ParserEngine, left: IntermediateResult): TerminalResult {
     parser.consume('=')
     return {
       type: 'OPTIONAL',

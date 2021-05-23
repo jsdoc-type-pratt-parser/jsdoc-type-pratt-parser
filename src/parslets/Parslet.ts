@@ -1,6 +1,7 @@
 import { TokenType } from '../lexer/Token'
-import { IntermediateResult, ParserEngine } from '../ParserEngine'
+import { ParserEngine } from '../ParserEngine'
 import { Precedence } from '../Precedence'
+import { IntermediateResult } from '../result/IntermediateResult'
 
 export interface Parslet {
   accepts: (type: TokenType, next: TokenType) => boolean

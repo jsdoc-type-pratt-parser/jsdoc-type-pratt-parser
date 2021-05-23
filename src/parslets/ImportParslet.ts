@@ -1,8 +1,8 @@
 import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
-import { ParseResult } from '../ParseResult'
 import { Precedence } from '../Precedence'
+import { TerminalResult } from '../result/TerminalResult'
 
 export class ImportParslet implements PrefixParslet {
   accepts (type: TokenType, next: TokenType): boolean {
@@ -13,7 +13,7 @@ export class ImportParslet implements PrefixParslet {
     return Precedence.PREFIX
   }
 
-  parsePrefix (parser: ParserEngine): ParseResult {
+  parsePrefix (parser: ParserEngine): TerminalResult {
     parser.consume('import')
     if (!parser.consume('(')) {
       throw new Error('Missing parenthesis after import keyword')

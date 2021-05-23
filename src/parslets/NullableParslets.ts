@@ -1,10 +1,11 @@
 import { InfixParslet, PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
-import { IntermediateResult, ParserEngine } from '../ParserEngine'
-import { ParseResult } from '../ParseResult'
 import { Precedence } from '../Precedence'
 import { isQuestionMarkUnknownType } from './isQuestionMarkUnkownType'
 import { assertTerminal } from '../assertTypes'
+import { ParserEngine } from '../ParserEngine'
+import { IntermediateResult } from '../result/IntermediateResult'
+import { TerminalResult } from '../result/TerminalResult'
 
 export class NullablePrefixParslet implements PrefixParslet {
   accepts (type: TokenType, next: TokenType): boolean {
@@ -15,7 +16,7 @@ export class NullablePrefixParslet implements PrefixParslet {
     return Precedence.NULLABLE
   }
 
-  parsePrefix (parser: ParserEngine): ParseResult {
+  parsePrefix (parser: ParserEngine): TerminalResult {
     parser.consume('?')
     return {
       type: 'NULLABLE',
@@ -36,7 +37,7 @@ export class NullableInfixParslet implements InfixParslet {
     return Precedence.NULLABLE
   }
 
-  parseInfix (parser: ParserEngine, left: IntermediateResult): ParseResult {
+  parseInfix (parser: ParserEngine, left: IntermediateResult): TerminalResult {
     parser.consume('?')
     return {
       type: 'NULLABLE',

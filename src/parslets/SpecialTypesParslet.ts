@@ -1,9 +1,9 @@
 import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
-import { ParseResult } from '../ParseResult'
 import { Precedence } from '../Precedence'
 import { isQuestionMarkUnknownType } from './isQuestionMarkUnkownType'
+import { TerminalResult } from '../result/TerminalResult'
 
 export class SpecialTypesParslet implements PrefixParslet {
   accepts (type: TokenType, next: TokenType): boolean {
@@ -14,7 +14,7 @@ export class SpecialTypesParslet implements PrefixParslet {
     return Precedence.SPECIAL_TYPES
   }
 
-  parsePrefix (parser: ParserEngine): ParseResult {
+  parsePrefix (parser: ParserEngine): TerminalResult {
     if (parser.consume('null')) {
       return {
         type: 'NULL'

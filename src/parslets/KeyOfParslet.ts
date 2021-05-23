@@ -1,9 +1,9 @@
 import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
-import { KeyOfResult } from '../ParseResult'
 import { Precedence } from '../Precedence'
 import { assertTerminal } from '../assertTypes'
+import { KeyOfResult } from '../result/TerminalResult'
 
 export class KeyOfParslet implements PrefixParslet {
   accepts (type: TokenType, next: TokenType): boolean {

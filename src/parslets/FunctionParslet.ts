@@ -1,9 +1,9 @@
 import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { ParserEngine } from '../ParserEngine'
-import { FunctionResult, ParseResult } from '../ParseResult'
 import { Precedence } from '../Precedence'
 import { BaseFunctionParslet } from './BaseFunctionParslet'
+import { FunctionResult, TerminalResult } from '../result/TerminalResult'
 
 export interface FunctionParsletOptions {
   allowNamedParameters?: string[]
@@ -31,7 +31,7 @@ export class FunctionParslet extends BaseFunctionParslet implements PrefixParsle
     return Precedence.FUNCTION
   }
 
-  parsePrefix (parser: ParserEngine): ParseResult {
+  parsePrefix (parser: ParserEngine): TerminalResult {
     parser.consume('function')
 
     const hasParenthesis = parser.getToken().type === '('

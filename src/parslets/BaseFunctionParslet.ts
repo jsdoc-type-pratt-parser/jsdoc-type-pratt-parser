@@ -1,10 +1,11 @@
-import { KeyValueResult, NonTerminalResult, ParseResult } from '../ParseResult'
+import { KeyValueResult, NonTerminalResult } from '../result/NonTerminalResult'
 import { assertKeyValueOrTerminal } from '../assertTypes'
-import { IntermediateResult } from '../ParserEngine'
 import { UnexpectedTypeError } from '../errors'
+import { IntermediateResult } from '../result/IntermediateResult'
+import { TerminalResult } from '../result/TerminalResult'
 
 export class BaseFunctionParslet {
-  protected getParameters (value: IntermediateResult): Array<ParseResult | KeyValueResult> {
+  protected getParameters (value: IntermediateResult): Array<TerminalResult | KeyValueResult> {
     let parameters: NonTerminalResult[]
     if (value.type === 'PARAMETER_LIST') {
       parameters = value.elements
@@ -25,11 +26,11 @@ export class BaseFunctionParslet {
     return parameters as KeyValueResult[]
   }
 
-  protected getUnnamedParameters (value: IntermediateResult): ParseResult[] {
+  protected getUnnamedParameters (value: IntermediateResult): TerminalResult[] {
     const parameters = this.getParameters(value)
     if (parameters.some(p => p.type === 'KEY_VALUE')) {
       throw new Error('No parameter should be named')
     }
-    return parameters as ParseResult[]
+    return parameters as TerminalResult[]
   }
 }
