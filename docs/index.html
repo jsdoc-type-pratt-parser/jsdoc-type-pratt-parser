@@ -99,7 +99,7 @@
 				<p>Stringify:</p>
 				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">stringify</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;jsdoc-type-pratt-parser&#039;</span>
 
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">val</span><span style="color: #000000"> = </span><span style="color: #795E26">stringify</span><span style="color: #000000">({ </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;NAME&#039;</span><span style="color: #000000">, </span><span style="color: #001080">value:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;name&#039;</span><span style="color: #000000">}) </span><span style="color: #008000">// -&gt; &#039;name&#039;</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">val</span><span style="color: #000000"> = </span><span style="color: #795E26">stringify</span><span style="color: #000000">({ </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;JsdocTypeName&#039;</span><span style="color: #000000">, </span><span style="color: #001080">value:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;name&#039;</span><span style="color: #000000">}) </span><span style="color: #008000">// -&gt; &#039;name&#039;</span>
 </code></pre>
 				<p>You can customize the stringification by using <code>stringifyRules</code> and <code>transform</code>:</p>
 				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">stringifyRules</span><span style="color: #000000">, </span><span style="color: #001080">transform</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;jsdoc-type-pratt-parser&#039;</span>
@@ -109,7 +109,7 @@
 <span style="color: #008000">// `result` is the current node and `transform` is a function to transform child nodes.</span>
 <span style="color: #001080">rules</span><span style="color: #000000">.</span><span style="color: #795E26">NAME</span><span style="color: #000000"> = (</span><span style="color: #001080">result</span><span style="color: #000000">, </span><span style="color: #001080">transform</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;something else&#039;</span>
 
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">val</span><span style="color: #000000"> = </span><span style="color: #795E26">transform</span><span style="color: #000000">(</span><span style="color: #001080">rules</span><span style="color: #000000">, { </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;NAME&#039;</span><span style="color: #000000">, </span><span style="color: #001080">value:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;name&#039;</span><span style="color: #000000">}) </span><span style="color: #008000">// -&gt; &#039;something else&#039;</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">val</span><span style="color: #000000"> = </span><span style="color: #795E26">transform</span><span style="color: #000000">(</span><span style="color: #001080">rules</span><span style="color: #000000">, { </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;JsdocTypeName&#039;</span><span style="color: #000000">, </span><span style="color: #001080">value:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;name&#039;</span><span style="color: #000000">}) </span><span style="color: #008000">// -&gt; &#039;something else&#039;</span>
 </code></pre>
 				<p>You can traverse a result tree with the <code>traverse</code> function:</p>
 				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">traverse</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;jsdoc-type-pratt-parser&#039;</span>
@@ -120,14 +120,14 @@
 <span style="color: #000000">}</span>
 
 <span style="color: #008000">// an onEnter and/or an onLeave function can be supplied</span>
-<span style="color: #795E26">traverse</span><span style="color: #000000">({ </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;NAME&#039;</span><span style="color: #000000">, </span><span style="color: #001080">value:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;name&#039;</span><span style="color: #000000">}, </span><span style="color: #001080">onEnter</span><span style="color: #000000">, </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #001080">log</span><span style="color: #000000">)</span>
+<span style="color: #795E26">traverse</span><span style="color: #000000">({ </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;JsdocTypeName&#039;</span><span style="color: #000000">, </span><span style="color: #001080">value:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;name&#039;</span><span style="color: #000000">}, </span><span style="color: #001080">onEnter</span><span style="color: #000000">, </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #001080">log</span><span style="color: #000000">)</span>
 </code></pre>
 				<p>You can also build your own transform rules by implementing the <code>TransformRules&lt;TransformResultType&gt;</code> interface or you
 				can build upon the identity ruleset like this:</p>
 				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">identityTransformRules</span><span style="color: #000000">, </span><span style="color: #001080">transform</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;jsdoc-type-pratt-parser&#039;</span>
 
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">myRules</span><span style="color: #000000"> = </span><span style="color: #795E26">identityTransformRules</span><span style="color: #000000">()</span>
-<span style="color: #001080">myRules</span><span style="color: #000000">.</span><span style="color: #795E26">NAME</span><span style="color: #000000"> = () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> ({ </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;NAME&#039;</span><span style="color: #000000">, </span><span style="color: #001080">value:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;funky&#039;</span><span style="color: #000000"> })</span>
+<span style="color: #001080">myRules</span><span style="color: #000000">.</span><span style="color: #795E26">NAME</span><span style="color: #000000"> = () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> ({ </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;JsdocTypeName&#039;</span><span style="color: #000000">, </span><span style="color: #001080">value:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;funky&#039;</span><span style="color: #000000"> })</span>
 
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">val</span><span style="color: #000000"> = </span><span style="color: #795E26">transform</span><span style="color: #000000">(</span><span style="color: #001080">myRules</span><span style="color: #000000">, </span><span style="color: #001080">result</span><span style="color: #000000">)</span>
 </code></pre>
@@ -264,10 +264,10 @@
 						<a href="modules.html#nonterminalresult" class="tsd-kind-icon">Non<wbr>Terminal<wbr>Result</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#parseresult" class="tsd-kind-icon">Parse<wbr>Result</a>
+						<a href="modules.html#parsermode" class="tsd-kind-icon">Parser<wbr>Mode</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#parsermode" class="tsd-kind-icon">Parser<wbr>Mode</a>
+						<a href="modules.html#terminalresult" class="tsd-kind-icon">Terminal<wbr>Result</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="modules.html#transformfunction" class="tsd-kind-icon">Transform<wbr>Function</a>
