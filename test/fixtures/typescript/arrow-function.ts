@@ -52,19 +52,13 @@ export const arrowFunctionFixtures: Fixture[] = [
           },
           right: {
             type: 'JsdocTypeName',
-            value: 'number',
-            meta: {
-              reservedWord: false
-            }
+            value: 'number'
           }
         }
       ],
       returnType: {
         type: 'JsdocTypeName',
-        value: 'string',
-        meta: {
-          reservedWord: false
-        }
+        value: 'string'
       },
       arrow: true,
       parenthesis: true
@@ -96,10 +90,7 @@ export const arrowFunctionFixtures: Fixture[] = [
           },
           right: {
             type: 'JsdocTypeName',
-            value: 'number',
-            meta: {
-              reservedWord: false
-            }
+            value: 'number'
           }
         },
         {
@@ -111,10 +102,7 @@ export const arrowFunctionFixtures: Fixture[] = [
           },
           right: {
             type: 'JsdocTypeName',
-            value: 'string',
-            meta: {
-              reservedWord: false
-            }
+            value: 'string'
           }
         },
         {
@@ -126,19 +114,13 @@ export const arrowFunctionFixtures: Fixture[] = [
           },
           right: {
             type: 'JsdocTypeName',
-            value: 'Class',
-            meta: {
-              reservedWord: false
-            }
+            value: 'Class'
           }
         }
       ],
       returnType: {
         type: 'JsdocTypeName',
-        value: 'string',
-        meta: {
-          reservedWord: false
-        }
+        value: 'string'
       },
       arrow: true,
       parenthesis: true
@@ -163,10 +145,7 @@ export const arrowFunctionFixtures: Fixture[] = [
       parameters: [],
       returnType: {
         type: 'JsdocTypeName',
-        value: 'string',
-        meta: {
-          reservedWord: false
-        }
+        value: 'string'
       },
       arrow: true,
       parenthesis: true
@@ -194,10 +173,7 @@ export const arrowFunctionFixtures: Fixture[] = [
         parameters: [],
         returnType: {
           type: 'JsdocTypeName',
-          value: 'string',
-          meta: {
-            reservedWord: false
-          }
+          value: 'string'
         },
         arrow: true,
         parenthesis: true
@@ -228,10 +204,7 @@ export const arrowFunctionFixtures: Fixture[] = [
           parameters: [],
           returnType: {
             type: 'JsdocTypeName',
-            value: 'string',
-            meta: {
-              reservedWord: false
-            }
+            value: 'string'
           },
           arrow: true,
           parenthesis: true
@@ -239,10 +212,7 @@ export const arrowFunctionFixtures: Fixture[] = [
       ],
       returnType: {
         type: 'JsdocTypeName',
-        value: 'void',
-        meta: {
-          reservedWord: true
-        }
+        value: 'void'
       },
       arrow: false,
       parenthesis: true
@@ -275,10 +245,7 @@ export const arrowFunctionFixtures: Fixture[] = [
           },
           right: {
             type: 'JsdocTypeName',
-            value: 'Function',
-            meta: {
-              reservedWord: false
-            }
+            value: 'Function'
           }
         },
         {
@@ -290,19 +257,13 @@ export const arrowFunctionFixtures: Fixture[] = [
           },
           right: {
             type: 'JsdocTypeName',
-            value: 'TrailingComma',
-            meta: {
-              reservedWord: false
-            }
+            value: 'TrailingComma'
           }
         }
       ],
       returnType: {
         type: 'JsdocTypeName',
-        value: 'string',
-        meta: {
-          reservedWord: false
-        }
+        value: 'string'
       },
       arrow: true,
       parenthesis: true
@@ -326,10 +287,7 @@ export const arrowFunctionFixtures: Fixture[] = [
       type: 'JsdocTypeGeneric',
       left: {
         type: 'JsdocTypeName',
-        value: 'X',
-        meta: {
-          reservedWord: false
-        }
+        value: 'X'
       },
       elements: [
         {
@@ -337,10 +295,7 @@ export const arrowFunctionFixtures: Fixture[] = [
           parameters: [],
           returnType: {
             type: 'JsdocTypeName',
-            value: 'string',
-            meta: {
-              reservedWord: false
-            }
+            value: 'string'
           },
           arrow: true,
           parenthesis: true
@@ -373,10 +328,7 @@ export const arrowFunctionFixtures: Fixture[] = [
       parenthesis: true,
       returnType: {
         type: 'JsdocTypeName',
-        value: 'void',
-        meta: {
-          reservedWord: true
-        }
+        value: 'void'
       }
     },
     modes: ['typescript'],
@@ -402,10 +354,7 @@ export const arrowFunctionFixtures: Fixture[] = [
         parameters: [],
         returnType: {
           type: 'JsdocTypeName',
-          value: 'void',
-          meta: {
-            reservedWord: true
-          }
+          value: 'void'
         },
         arrow: true,
         parenthesis: true
@@ -440,10 +389,7 @@ export const arrowFunctionFixtures: Fixture[] = [
           },
           right: {
             type: 'JsdocTypeName',
-            value: 'number',
-            meta: {
-              reservedWord: false
-            }
+            value: 'number'
           }
         }
       ],
@@ -459,19 +405,13 @@ export const arrowFunctionFixtures: Fixture[] = [
             },
             right: {
               type: 'JsdocTypeName',
-              value: 'string',
-              meta: {
-                reservedWord: false
-              }
+              value: 'string'
             }
           }
         ],
         returnType: {
           type: 'JsdocTypeName',
-          value: 'boolean',
-          meta: {
-            reservedWord: false
-          }
+          value: 'boolean'
         },
         arrow: true,
         parenthesis: true
@@ -499,18 +439,12 @@ export const arrowFunctionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'JsdocTypeName',
-          value: 'number',
-          meta: {
-            reservedWord: false
-          }
+          value: 'number'
         }
       ],
       returnType: {
         type: 'JsdocTypeName',
-        value: 'void',
-        meta: {
-          reservedWord: true
-        }
+        value: 'void'
       },
       arrow: true,
       parenthesis: true

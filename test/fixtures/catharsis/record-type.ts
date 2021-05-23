@@ -35,10 +35,7 @@ export const recordFixtures: Fixture[] = [
           },
           right: {
             type: 'JsdocTypeName',
-            value: 'number',
-            meta: {
-              reservedWord: false
-            }
+            value: 'number'
           }
         }
       ]
@@ -72,10 +69,7 @@ export const recordFixtures: Fixture[] = [
             },
             right: {
               type: 'JsdocTypeName',
-              value: 'number',
-              meta: {
-                reservedWord: false
-              }
+              value: 'number'
             }
           }
         ]
@@ -114,10 +108,7 @@ export const recordFixtures: Fixture[] = [
             },
             right: {
               type: 'JsdocTypeName',
-              value: 'number',
-              meta: {
-                reservedWord: false
-              }
+              value: 'number'
             }
           }
         ]
@@ -155,10 +146,7 @@ export const recordFixtures: Fixture[] = [
             },
             right: {
               type: 'JsdocTypeName',
-              value: 'number',
-              meta: {
-                reservedWord: false
-              }
+              value: 'number'
             }
           }
         ]
@@ -196,10 +184,7 @@ export const recordFixtures: Fixture[] = [
             },
             right: {
               type: 'JsdocTypeName',
-              value: 'number',
-              meta: {
-                reservedWord: false
-              }
+              value: 'number'
             }
           }
         ]
@@ -235,10 +220,7 @@ export const recordFixtures: Fixture[] = [
           },
           right: {
             type: 'JsdocTypeName',
-            value: 'number',
-            meta: {
-              reservedWord: false
-            }
+            value: 'number'
           }
         },
         {
@@ -281,18 +263,12 @@ export const recordFixtures: Fixture[] = [
             type: 'JsdocTypeGeneric',
             left: {
               type: 'JsdocTypeName',
-              value: 'Array',
-              meta: {
-                reservedWord: false
-              }
+              value: 'Array'
             },
             elements: [
               {
                 type: 'JsdocTypeName',
-                value: 'string',
-                meta: {
-                  reservedWord: false
-                }
+                value: 'string'
               }
             ],
             meta: {
@@ -336,24 +312,15 @@ export const recordFixtures: Fixture[] = [
               elements: [
                 {
                   type: 'JsdocTypeName',
-                  value: 'number',
-                  meta: {
-                    reservedWord: false
-                  }
+                  value: 'number'
                 },
                 {
                   type: 'JsdocTypeName',
-                  value: 'boolean',
-                  meta: {
-                    reservedWord: false
-                  }
+                  value: 'boolean'
                 },
                 {
                   type: 'JsdocTypeName',
-                  value: 'string',
-                  meta: {
-                    reservedWord: false
-                  }
+                  value: 'string'
                 }
               ]
             }
@@ -388,10 +355,7 @@ export const recordFixtures: Fixture[] = [
           },
           right: {
             type: 'JsdocTypeName',
-            value: 'string',
-            meta: {
-              reservedWord: false
-            }
+            value: 'string'
           }
         }
       ]
@@ -423,10 +387,7 @@ export const recordFixtures: Fixture[] = [
           },
           right: {
             type: 'JsdocTypeName',
-            value: 'string',
-            meta: {
-              reservedWord: false
-            }
+            value: 'string'
           }
         }
       ]
@@ -458,10 +419,7 @@ export const recordFixtures: Fixture[] = [
           },
           right: {
             type: 'JsdocTypeName',
-            value: 'string',
-            meta: {
-              reservedWord: false
-            }
+            value: 'string'
           }
         }
       ]
@@ -493,10 +451,7 @@ export const recordFixtures: Fixture[] = [
           },
           right: {
             type: 'JsdocTypeName',
-            value: 'string',
-            meta: {
-              reservedWord: false
-            }
+            value: 'string'
           }
         }
       ]

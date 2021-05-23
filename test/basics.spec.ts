@@ -8,10 +8,7 @@ describe('basics', () => {
     const typeString = 'sometype'
     const expected: TerminalResult = {
       type: 'JsdocTypeName',
-      value: 'sometype',
-      meta: {
-        reservedWord: false
-      }
+      value: 'sometype'
     }
     const result = parse(typeString, 'typescript')
     expect(result).to.deep.equal(expected)
@@ -26,10 +23,7 @@ describe('basics', () => {
           type: 'JsdocTypeGeneric',
           left: {
             type: 'JsdocTypeName',
-            value: 'Array',
-            meta: {
-              reservedWord: false
-            }
+            value: 'Array'
           },
           elements: [
             {
@@ -39,17 +33,11 @@ describe('basics', () => {
                 elements: [
                   {
                     type: 'JsdocTypeName',
-                    value: 'AType',
-                    meta: {
-                      reservedWord: false
-                    }
+                    value: 'AType'
                   },
                   {
                     type: 'JsdocTypeName',
-                    value: 'OtherType',
-                    meta: {
-                      reservedWord: false
-                    }
+                    value: 'OtherType'
                   }
                 ]
               }

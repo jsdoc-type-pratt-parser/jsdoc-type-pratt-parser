@@ -8,10 +8,7 @@ export const keyofFixtures: Fixture[] = [
       type: 'JsdocTypeKeyof',
       element: {
         type: 'JsdocTypeName',
-        value: 'A',
-        meta: {
-          reservedWord: false
-        }
+        value: 'A'
       }
     },
     modes: ['typescript'],
@@ -31,10 +28,7 @@ export const keyofFixtures: Fixture[] = [
     input: 'keyof',
     expected: {
       type: 'JsdocTypeName',
-      value: 'keyof',
-      meta: {
-        reservedWord: false
-      }
+      value: 'keyof'
     },
     modes: ['jsdoc', 'closure'],
     catharsis: {
@@ -55,17 +49,11 @@ export const keyofFixtures: Fixture[] = [
       type: 'JsdocTypeGeneric',
       left: {
         type: 'JsdocTypeName',
-        value: 'X',
-        meta: {
-          reservedWord: false
-        }
+        value: 'X'
       },
       elements: [{
         type: 'JsdocTypeName',
-        value: 'keyof',
-        meta: {
-          reservedWord: false
-        }
+        value: 'keyof'
       }],
       meta: {
         dot: false,
@@ -91,19 +79,13 @@ export const keyofFixtures: Fixture[] = [
       type: 'JsdocTypeGeneric',
       left: {
         type: 'JsdocTypeName',
-        value: 'X',
-        meta: {
-          reservedWord: false
-        }
+        value: 'X'
       },
       elements: [{
         type: 'JsdocTypeKeyof',
         element: {
           type: 'JsdocTypeName',
-          value: 'A',
-          meta: {
-            reservedWord: false
-          }
+          value: 'A'
         }
       }],
       meta: {
@@ -173,10 +155,7 @@ export const keyofFixtures: Fixture[] = [
         type: 'JsdocTypeKeyof',
         element: {
           type: 'JsdocTypeName',
-          value: 'A',
-          meta: {
-            reservedWord: false
-          }
+          value: 'A'
         }
       }
     },
@@ -201,10 +180,7 @@ export const keyofFixtures: Fixture[] = [
         type: 'JsdocTypeKeyof',
         element: {
           type: 'JsdocTypeName',
-          value: 'A',
-          meta: {
-            reservedWord: false
-          }
+          value: 'A'
         }
       },
       meta: {
@@ -233,10 +209,7 @@ export const keyofFixtures: Fixture[] = [
         type: 'JsdocTypeKeyof',
         element: {
           type: 'JsdocTypeName',
-          value: 'A',
-          meta: {
-            reservedWord: false
-          }
+          value: 'A'
         }
       },
       meta: {
@@ -266,18 +239,12 @@ export const keyofFixtures: Fixture[] = [
           type: 'JsdocTypeKeyof',
           element: {
             type: 'JsdocTypeName',
-            value: 'A',
-            meta: {
-              reservedWord: false
-            }
+            value: 'A'
           }
         },
         {
           type: 'JsdocTypeName',
-          value: 'number',
-          meta: {
-            reservedWord: false
-          }
+          value: 'number'
         }
       ]
     },
@@ -301,19 +268,13 @@ export const keyofFixtures: Fixture[] = [
       elements: [
         {
           type: 'JsdocTypeName',
-          value: 'number',
-          meta: {
-            reservedWord: false
-          }
+          value: 'number'
         },
         {
           type: 'JsdocTypeKeyof',
           element: {
             type: 'JsdocTypeName',
-            value: 'A',
-            meta: {
-              reservedWord: false
-            }
+            value: 'A'
           }
         }
       ]
@@ -339,18 +300,12 @@ export const keyofFixtures: Fixture[] = [
         type: 'JsdocTypeGeneric',
         left: {
           type: 'JsdocTypeName',
-          value: 'Array',
-          meta: {
-            reservedWord: false
-          }
+          value: 'Array'
         },
         elements: [
           {
             type: 'JsdocTypeName',
-            value: 'N',
-            meta: {
-              reservedWord: false
-            }
+            value: 'N'
           }
         ],
         meta: {
@@ -396,19 +351,13 @@ export const keyofFixtures: Fixture[] = [
           type: 'JsdocTypeKeyof',
           element: {
             type: 'JsdocTypeName',
-            value: 'A',
-            meta: {
-              reservedWord: false
-            }
+            value: 'A'
           }
         }
       ],
       returnType: {
         type: 'JsdocTypeName',
-        value: 'void',
-        meta: {
-          reservedWord: true
-        }
+        value: 'void'
       },
       arrow: false,
       parenthesis: true
@@ -435,26 +384,17 @@ export const keyofFixtures: Fixture[] = [
           type: 'JsdocTypeKeyof',
           element: {
             type: 'JsdocTypeName',
-            value: 'A',
-            meta: {
-              reservedWord: false
-            }
+            value: 'A'
           }
         },
         {
           type: 'JsdocTypeName',
-          value: 'number',
-          meta: {
-            reservedWord: false
-          }
+          value: 'number'
         }
       ],
       returnType: {
         type: 'JsdocTypeName',
-        value: 'void',
-        meta: {
-          reservedWord: true
-        }
+        value: 'void'
       },
       arrow: false,
       parenthesis: true
@@ -479,28 +419,19 @@ export const keyofFixtures: Fixture[] = [
       parameters: [
         {
           type: 'JsdocTypeName',
-          value: 'number',
-          meta: {
-            reservedWord: false
-          }
+          value: 'number'
         },
         {
           type: 'JsdocTypeKeyof',
           element: {
             type: 'JsdocTypeName',
-            value: 'A',
-            meta: {
-              reservedWord: false
-            }
+            value: 'A'
           }
         }
       ],
       returnType: {
         type: 'JsdocTypeName',
-        value: 'void',
-        meta: {
-          reservedWord: true
-        }
+        value: 'void'
       },
       arrow: false,
       parenthesis: true
@@ -527,10 +458,7 @@ export const keyofFixtures: Fixture[] = [
         type: 'JsdocTypeKeyof',
         element: {
           type: 'JsdocTypeName',
-          value: 'A',
-          meta: {
-            reservedWord: false
-          }
+          value: 'A'
         }
       },
       arrow: false,

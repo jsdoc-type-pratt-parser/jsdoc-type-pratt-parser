@@ -19,10 +19,7 @@ export class SpecialNamePathParslet implements PrefixParslet {
     if (!parser.consume(':')) {
       return {
         type: 'JsdocTypeName',
-        value: type,
-        meta: {
-          reservedWord: false
-        }
+        value: type
       }
     }
     let token = parser.getToken()

@@ -6,10 +6,7 @@ export const basicFixtures: Fixture[] = [
     input: 'boolean',
     expected: {
       type: 'JsdocTypeName',
-      value: 'boolean',
-      meta: {
-        reservedWord: false
-      }
+      value: 'boolean'
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -28,10 +25,7 @@ export const basicFixtures: Fixture[] = [
     input: 'Window',
     expected: {
       type: 'JsdocTypeName',
-      value: 'Window',
-      meta: {
-        reservedWord: false
-      }
+      value: 'Window'
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -52,27 +46,18 @@ export const basicFixtures: Fixture[] = [
       left: {
         left: {
           value: 'goog',
-          type: 'JsdocTypeName',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName'
         },
         right: {
           type: 'JsdocTypeName',
-          value: 'ui',
-          meta: {
-            reservedWord: false
-          }
+          value: 'ui'
         },
         type: 'JsdocTypeNamePath',
         pathType: 'property'
       },
       right: {
         type: 'JsdocTypeName',
-        value: 'Menu',
-        meta: {
-          reservedWord: false
-        }
+        value: 'Menu'
       },
       type: 'JsdocTypeNamePath',
       pathType: 'property'
@@ -96,10 +81,7 @@ export const basicFixtures: Fixture[] = [
       left: {
         left: {
           value: 'myObj',
-          type: 'JsdocTypeName',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName'
         },
         right: {
           type: 'JsdocTypeStringValue',
@@ -113,10 +95,7 @@ export const basicFixtures: Fixture[] = [
       },
       right: {
         type: 'JsdocTypeName',
-        value: 'foo',
-        meta: {
-          reservedWord: false
-        }
+        value: 'foo'
       },
       type: 'JsdocTypeNamePath',
       pathType: 'property'
@@ -140,10 +119,7 @@ export const basicFixtures: Fixture[] = [
       left: {
         left: {
           value: 'myObj',
-          type: 'JsdocTypeName',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName'
         },
         right: {
           type: 'JsdocTypeStringValue',
@@ -157,10 +133,7 @@ export const basicFixtures: Fixture[] = [
       },
       right: {
         type: 'JsdocTypeName',
-        value: 'foo',
-        meta: {
-          reservedWord: false
-        }
+        value: 'foo'
       },
       type: 'JsdocTypeNamePath',
       pathType: 'property'
@@ -184,10 +157,7 @@ export const basicFixtures: Fixture[] = [
       left: {
         left: {
           value: 'myObj',
-          type: 'JsdocTypeName',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName'
         },
         right: {
           type: 'JsdocTypeStringValue',
@@ -201,10 +171,7 @@ export const basicFixtures: Fixture[] = [
       },
       right: {
         type: 'JsdocTypeName',
-        value: 'foo',
-        meta: {
-          reservedWord: false
-        }
+        value: 'foo'
       },
       type: 'JsdocTypeNamePath',
       pathType: 'property'
@@ -227,10 +194,7 @@ export const basicFixtures: Fixture[] = [
     expected: {
       left: {
         value: 'myObj',
-        type: 'JsdocTypeName',
-        meta: {
-          reservedWord: false
-        }
+        type: 'JsdocTypeName'
       },
       right: {
         type: 'JsdocTypeNumber',
@@ -258,10 +222,7 @@ export const basicFixtures: Fixture[] = [
       type: 'JsdocTypeVariadic',
       element: {
         type: 'JsdocTypeName',
-        value: 'number',
-        meta: {
-          reservedWord: false
-        }
+        value: 'number'
       },
       meta: {
         squareBrackets: false,
@@ -287,10 +248,7 @@ export const basicFixtures: Fixture[] = [
       type: 'JsdocTypeOptional',
       element: {
         type: 'JsdocTypeName',
-        value: 'number',
-        meta: {
-          reservedWord: false
-        }
+        value: 'number'
       },
       meta: {
         position: 'suffix'
@@ -315,10 +273,7 @@ export const basicFixtures: Fixture[] = [
       type: 'JsdocTypeOptional',
       element: {
         type: 'JsdocTypeName',
-        value: 'Object',
-        meta: {
-          reservedWord: false
-        }
+        value: 'Object'
       },
       meta: {
         position: 'suffix'
@@ -513,10 +468,7 @@ export const basicFixtures: Fixture[] = [
     input: 'forsooth',
     expected: {
       type: 'JsdocTypeName',
-      value: 'forsooth',
-      meta: {
-        reservedWord: false
-      }
+      value: 'forsooth'
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -535,10 +487,7 @@ export const basicFixtures: Fixture[] = [
     input: 'My-1st-Class',
     expected: {
       type: 'JsdocTypeName',
-      value: 'My-1st-Class',
-      meta: {
-        reservedWord: false
-      }
+      value: 'My-1st-Class'
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -613,10 +562,7 @@ export const basicFixtures: Fixture[] = [
       },
       right: {
         type: 'JsdocTypeName',
-        value: 'myCallback',
-        meta: {
-          reservedWord: false
-        }
+        value: 'myCallback'
       },
       pathType: 'inner'
     },

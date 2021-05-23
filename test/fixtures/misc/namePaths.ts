@@ -122,10 +122,7 @@ export const eventExternalFixtures: Fixture[] = [
         },
         right: {
           type: 'JsdocTypeName',
-          value: 'some-where',
-          meta: {
-            reservedWord: false
-          }
+          value: 'some-where'
         },
         pathType: 'instance'
       },

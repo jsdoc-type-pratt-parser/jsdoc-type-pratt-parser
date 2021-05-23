@@ -2,7 +2,6 @@ import { ParserEngine } from '../ParserEngine'
 import { TokenType } from '../lexer/Token'
 import { PrefixParslet } from './Parslet'
 import { Precedence } from '../Precedence'
-import { reservedWords } from '../transforms/catharsisTransform'
 import { NameResult } from '../result/TerminalResult'
 
 interface NameParsletOptions {
@@ -31,10 +30,7 @@ export class NameParslet implements PrefixParslet {
 
     return {
       type: 'JsdocTypeName',
-      value: token.text,
-      meta: {
-        reservedWord: reservedWords.includes(token.text)
-      }
+      value: token.text
     }
   }
 }

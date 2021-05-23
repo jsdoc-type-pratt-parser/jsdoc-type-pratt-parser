@@ -93,10 +93,7 @@ export const importFixtures: Fixture[] = [
       },
       right: {
         type: 'JsdocTypeName',
-        value: 'T',
-        meta: {
-          reservedWord: false
-        }
+        value: 'T'
       },
       pathType: 'property'
     },
@@ -131,19 +128,13 @@ export const importFixtures: Fixture[] = [
         },
         right: {
           type: 'JsdocTypeName',
-          value: 'T',
-          meta: {
-            reservedWord: false
-          }
+          value: 'T'
         },
         pathType: 'property'
       },
       right: {
         type: 'JsdocTypeName',
-        value: 'U',
-        meta: {
-          reservedWord: false
-        }
+        value: 'U'
       },
       pathType: 'property'
     },
@@ -181,36 +172,24 @@ export const importFixtures: Fixture[] = [
           },
           right: {
             type: 'JsdocTypeName',
-            value: 'T',
-            meta: {
-              reservedWord: false
-            }
+            value: 'T'
           },
           pathType: 'property'
         },
         right: {
           type: 'JsdocTypeName',
-          value: 'U',
-          meta: {
-            reservedWord: false
-          }
+          value: 'U'
         },
         pathType: 'property'
       },
       elements: [
         {
           type: 'JsdocTypeName',
-          value: 'V',
-          meta: {
-            reservedWord: false
-          }
+          value: 'V'
         },
         {
           type: 'JsdocTypeName',
-          value: 'W',
-          meta: {
-            reservedWord: false
-          }
+          value: 'W'
         }
       ],
       meta: {

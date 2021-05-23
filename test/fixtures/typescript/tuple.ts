@@ -28,10 +28,7 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'JsdocTypeName',
-          value: 'x',
-          meta: {
-            reservedWord: false
-          }
+          value: 'x'
         }
       ]
     },
@@ -55,31 +52,19 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'JsdocTypeName',
-          value: 'it',
-          meta: {
-            reservedWord: false
-          }
+          value: 'it'
         },
         {
           type: 'JsdocTypeName',
-          value: 'needs',
-          meta: {
-            reservedWord: false
-          }
+          value: 'needs'
         },
         {
           type: 'JsdocTypeName',
-          value: 'to',
-          meta: {
-            reservedWord: false
-          }
+          value: 'to'
         },
         {
           type: 'JsdocTypeName',
-          value: 'be',
-          meta: {
-            reservedWord: false
-          }
+          value: 'be'
         }
       ]
     },
@@ -104,24 +89,15 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'JsdocTypeName',
-          value: 'tuple',
-          meta: {
-            reservedWord: false
-          }
+          value: 'tuple'
         },
         {
           type: 'JsdocTypeName',
-          value: 'with',
-          meta: {
-            reservedWord: true
-          }
+          value: 'with'
         },
         {
           type: 'JsdocTypeName',
-          value: 'spaces',
-          meta: {
-            reservedWord: false
-          }
+          value: 'spaces'
         }
       ]
     },
@@ -146,31 +122,19 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'JsdocTypeName',
-          value: 'tuple',
-          meta: {
-            reservedWord: false
-          }
+          value: 'tuple'
         },
         {
           type: 'JsdocTypeName',
-          value: 'with',
-          meta: {
-            reservedWord: true
-          }
+          value: 'with'
         },
         {
           type: 'JsdocTypeName',
-          value: 'trailing',
-          meta: {
-            reservedWord: false
-          }
+          value: 'trailing'
         },
         {
           type: 'JsdocTypeName',
-          value: 'comma',
-          meta: {
-            reservedWord: false
-          }
+          value: 'comma'
         }
       ]
     },
@@ -193,10 +157,7 @@ export const tupleFixtures: Fixture[] = [
       type: 'JsdocTypeGeneric',
       left: {
         type: 'JsdocTypeName',
-        value: 'Array',
-        meta: {
-          reservedWord: false
-        }
+        value: 'Array'
       },
       elements: [
         {
@@ -228,10 +189,7 @@ export const tupleFixtures: Fixture[] = [
       type: 'JsdocTypeGeneric',
       left: {
         type: 'JsdocTypeName',
-        value: 'Array',
-        meta: {
-          reservedWord: false
-        }
+        value: 'Array'
       },
       elements: [
         {
@@ -239,17 +197,11 @@ export const tupleFixtures: Fixture[] = [
           elements: [
             {
               type: 'JsdocTypeName',
-              value: 'tuple',
-              meta: {
-                reservedWord: false
-              }
+              value: 'tuple'
             },
             {
               type: 'JsdocTypeName',
-              value: 'array',
-              meta: {
-                reservedWord: false
-              }
+              value: 'array'
             }
           ]
         }
@@ -279,26 +231,17 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'JsdocTypeName',
-          value: 'tuple',
-          meta: {
-            reservedWord: false
-          }
+          value: 'tuple'
         },
         {
           type: 'JsdocTypeName',
-          value: 'with',
-          meta: {
-            reservedWord: true
-          }
+          value: 'with'
         },
         {
           type: 'JsdocTypeTypeof',
           element: {
             type: 'JsdocTypeName',
-            value: 'foo',
-            meta: {
-              reservedWord: false
-            }
+            value: 'foo'
           }
         }
       ]
@@ -323,26 +266,17 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'JsdocTypeName',
-          value: 'tuple',
-          meta: {
-            reservedWord: false
-          }
+          value: 'tuple'
         },
         {
           type: 'JsdocTypeName',
-          value: 'with',
-          meta: {
-            reservedWord: true
-          }
+          value: 'with'
         },
         {
           type: 'JsdocTypeKeyof',
           element: {
             type: 'JsdocTypeName',
-            value: 'foo',
-            meta: {
-              reservedWord: false
-            }
+            value: 'foo'
           }
         }
       ]
@@ -368,43 +302,28 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'JsdocTypeName',
-          value: 'tuple',
-          meta: {
-            reservedWord: false
-          }
+          value: 'tuple'
         },
         {
           type: 'JsdocTypeName',
-          value: 'with',
-          meta: {
-            reservedWord: true
-          }
+          value: 'with'
         },
         {
           type: 'JsdocTypeTypeof',
           element: {
             type: 'JsdocTypeName',
-            value: 'foo',
-            meta: {
-              reservedWord: false
-            }
+            value: 'foo'
           }
         },
         {
           type: 'JsdocTypeName',
-          value: 'and',
-          meta: {
-            reservedWord: false
-          }
+          value: 'and'
         },
         {
           type: 'JsdocTypeKeyof',
           element: {
             type: 'JsdocTypeName',
-            value: 'foo',
-            meta: {
-              reservedWord: false
-            }
+            value: 'foo'
           }
         }
       ]
@@ -429,26 +348,17 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'JsdocTypeName',
-          value: 'variadic',
-          meta: {
-            reservedWord: false
-          }
+          value: 'variadic'
         },
         {
           type: 'JsdocTypeName',
-          value: 'arguments',
-          meta: {
-            reservedWord: false
-          }
+          value: 'arguments'
         },
         {
           type: 'JsdocTypeVariadic',
           element: {
             type: 'JsdocTypeName',
-            value: 'tuple',
-            meta: {
-              reservedWord: false
-            }
+            value: 'tuple'
           },
           meta: {
             squareBrackets: false,
@@ -478,43 +388,28 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'JsdocTypeName',
-          value: 'tuple',
-          meta: {
-            reservedWord: false
-          }
+          value: 'tuple'
         },
         {
           type: 'JsdocTypeName',
-          value: 'with',
-          meta: {
-            reservedWord: true
-          }
+          value: 'with'
         },
         {
           type: 'JsdocTypeTypeof',
           element: {
             type: 'JsdocTypeName',
-            value: 'foo',
-            meta: {
-              reservedWord: false
-            }
+            value: 'foo'
           }
         },
         {
           type: 'JsdocTypeName',
-          value: 'and',
-          meta: {
-            reservedWord: false
-          }
+          value: 'and'
         },
         {
           type: 'JsdocTypeVariadic',
           element: {
             type: 'JsdocTypeName',
-            value: 'rest',
-            meta: {
-              reservedWord: false
-            }
+            value: 'rest'
           },
           meta: {
             squareBrackets: false,
@@ -544,43 +439,28 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'JsdocTypeName',
-          value: 'tuple',
-          meta: {
-            reservedWord: false
-          }
+          value: 'tuple'
         },
         {
           type: 'JsdocTypeName',
-          value: 'with',
-          meta: {
-            reservedWord: true
-          }
+          value: 'with'
         },
         {
           type: 'JsdocTypeKeyof',
           element: {
             type: 'JsdocTypeName',
-            value: 'foo',
-            meta: {
-              reservedWord: false
-            }
+            value: 'foo'
           }
         },
         {
           type: 'JsdocTypeName',
-          value: 'and',
-          meta: {
-            reservedWord: false
-          }
+          value: 'and'
         },
         {
           type: 'JsdocTypeVariadic',
           element: {
             type: 'JsdocTypeName',
-            value: 'rest',
-            meta: {
-              reservedWord: false
-            }
+            value: 'rest'
           },
           meta: {
             squareBrackets: false,
@@ -610,53 +490,35 @@ export const tupleFixtures: Fixture[] = [
       elements: [
         {
           type: 'JsdocTypeName',
-          value: 'tuple',
-          meta: {
-            reservedWord: false
-          }
+          value: 'tuple'
         },
         {
           type: 'JsdocTypeName',
-          value: 'with',
-          meta: {
-            reservedWord: true
-          }
+          value: 'with'
         },
         {
           type: 'JsdocTypeTypeof',
           element: {
             type: 'JsdocTypeName',
-            value: 'foo',
-            meta: {
-              reservedWord: false
-            }
+            value: 'foo'
           }
         },
         {
           type: 'JsdocTypeKeyof',
           element: {
             type: 'JsdocTypeName',
-            value: 'foo',
-            meta: {
-              reservedWord: false
-            }
+            value: 'foo'
           }
         },
         {
           type: 'JsdocTypeName',
-          value: 'and',
-          meta: {
-            reservedWord: false
-          }
+          value: 'and'
         },
         {
           type: 'JsdocTypeVariadic',
           element: {
             type: 'JsdocTypeName',
-            value: 'rest',
-            meta: {
-              reservedWord: false
-            }
+            value: 'rest'
           },
           meta: {
             squareBrackets: false,

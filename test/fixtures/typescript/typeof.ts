@@ -8,10 +8,7 @@ export const typeOfFixtures: Fixture[] = [
       type: 'JsdocTypeTypeof',
       element: {
         type: 'JsdocTypeName',
-        value: 'A',
-        meta: {
-          reservedWord: false
-        }
+        value: 'A'
       }
     },
     modes: ['typescript', 'closure'],
@@ -63,19 +60,13 @@ export const typeOfFixtures: Fixture[] = [
       type: 'JsdocTypeGeneric',
       left: {
         type: 'JsdocTypeName',
-        value: 'X',
-        meta: {
-          reservedWord: false
-        }
+        value: 'X'
       },
       elements: [{
         type: 'JsdocTypeTypeof',
         element: {
           type: 'JsdocTypeName',
-          value: 'A',
-          meta: {
-            reservedWord: false
-          }
+          value: 'A'
         }
       }],
       meta: {
@@ -145,10 +136,7 @@ export const typeOfFixtures: Fixture[] = [
         type: 'JsdocTypeTypeof',
         element: {
           type: 'JsdocTypeName',
-          value: 'A',
-          meta: {
-            reservedWord: false
-          }
+          value: 'A'
         }
       }
     },
@@ -173,10 +161,7 @@ export const typeOfFixtures: Fixture[] = [
         type: 'JsdocTypeTypeof',
         element: {
           type: 'JsdocTypeName',
-          value: 'A',
-          meta: {
-            reservedWord: false
-          }
+          value: 'A'
         }
       },
       meta: {
@@ -205,10 +190,7 @@ export const typeOfFixtures: Fixture[] = [
         type: 'JsdocTypeTypeof',
         element: {
           type: 'JsdocTypeName',
-          value: 'A',
-          meta: {
-            reservedWord: false
-          }
+          value: 'A'
         }
       },
       meta: {
@@ -238,18 +220,12 @@ export const typeOfFixtures: Fixture[] = [
           type: 'JsdocTypeTypeof',
           element: {
             type: 'JsdocTypeName',
-            value: 'A',
-            meta: {
-              reservedWord: false
-            }
+            value: 'A'
           }
         },
         {
           type: 'JsdocTypeName',
-          value: 'number',
-          meta: {
-            reservedWord: false
-          }
+          value: 'number'
         }
       ]
     },
@@ -273,19 +249,13 @@ export const typeOfFixtures: Fixture[] = [
       elements: [
         {
           type: 'JsdocTypeName',
-          value: 'number',
-          meta: {
-            reservedWord: false
-          }
+          value: 'number'
         },
         {
           type: 'JsdocTypeTypeof',
           element: {
             type: 'JsdocTypeName',
-            value: 'A',
-            meta: {
-              reservedWord: false
-            }
+            value: 'A'
           }
         }
       ]
@@ -311,18 +281,12 @@ export const typeOfFixtures: Fixture[] = [
         type: 'JsdocTypeGeneric',
         left: {
           type: 'JsdocTypeName',
-          value: 'Array',
-          meta: {
-            reservedWord: false
-          }
+          value: 'Array'
         },
         elements: [
           {
             type: 'JsdocTypeName',
-            value: 'N',
-            meta: {
-              reservedWord: false
-            }
+            value: 'N'
           }
         ],
         meta: {
@@ -353,10 +317,7 @@ export const typeOfFixtures: Fixture[] = [
           type: 'JsdocTypeTypeof',
           element: {
             type: 'JsdocTypeName',
-            value: 'A',
-            meta: {
-              reservedWord: false
-            }
+            value: 'A'
           }
         }
       ],
@@ -385,19 +346,13 @@ export const typeOfFixtures: Fixture[] = [
           type: 'JsdocTypeTypeof',
           element: {
             type: 'JsdocTypeName',
-            value: 'A',
-            meta: {
-              reservedWord: false
-            }
+            value: 'A'
           }
         }
       ],
       returnType: {
         type: 'JsdocTypeName',
-        value: 'void',
-        meta: {
-          reservedWord: true
-        }
+        value: 'void'
       },
       arrow: false,
       parenthesis: true
@@ -424,26 +379,17 @@ export const typeOfFixtures: Fixture[] = [
           type: 'JsdocTypeTypeof',
           element: {
             type: 'JsdocTypeName',
-            value: 'A',
-            meta: {
-              reservedWord: false
-            }
+            value: 'A'
           }
         },
         {
           type: 'JsdocTypeName',
-          value: 'number',
-          meta: {
-            reservedWord: false
-          }
+          value: 'number'
         }
       ],
       returnType: {
         type: 'JsdocTypeName',
-        value: 'void',
-        meta: {
-          reservedWord: true
-        }
+        value: 'void'
       },
       arrow: false,
       parenthesis: true
@@ -468,28 +414,19 @@ export const typeOfFixtures: Fixture[] = [
       parameters: [
         {
           type: 'JsdocTypeName',
-          value: 'number',
-          meta: {
-            reservedWord: false
-          }
+          value: 'number'
         },
         {
           type: 'JsdocTypeTypeof',
           element: {
             type: 'JsdocTypeName',
-            value: 'A',
-            meta: {
-              reservedWord: false
-            }
+            value: 'A'
           }
         }
       ],
       returnType: {
         type: 'JsdocTypeName',
-        value: 'void',
-        meta: {
-          reservedWord: true
-        }
+        value: 'void'
       },
       arrow: false,
       parenthesis: true
@@ -516,10 +453,7 @@ export const typeOfFixtures: Fixture[] = [
         type: 'JsdocTypeTypeof',
         element: {
           type: 'JsdocTypeName',
-          value: 'A',
-          meta: {
-            reservedWord: false
-          }
+          value: 'A'
         }
       },
       arrow: false,

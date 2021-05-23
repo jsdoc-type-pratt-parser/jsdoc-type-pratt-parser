@@ -79,9 +79,6 @@ export interface VariadicResult<T extends TerminalResult> {
 export interface NameResult {
   type: 'JsdocTypeName'
   value: string
-  meta: {
-    reservedWord: boolean
-  }
 }
 
 /**

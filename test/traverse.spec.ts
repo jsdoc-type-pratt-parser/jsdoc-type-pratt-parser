@@ -26,10 +26,7 @@ describe('traverse', () => {
 
     const result: TerminalResult = {
       type: 'JsdocTypeName',
-      value: 'test',
-      meta: {
-        reservedWord: false
-      }
+      value: 'test'
     }
 
     traverse(result, onEnter, onLeave)
@@ -45,26 +42,17 @@ describe('traverse', () => {
 
     const name: NameResult = {
       type: 'JsdocTypeName',
-      value: 'genericName',
-      meta: {
-        reservedWord: false
-      }
+      value: 'genericName'
     }
 
     const typeA: NameResult = {
       type: 'JsdocTypeName',
-      value: 'TypeA',
-      meta: {
-        reservedWord: false
-      }
+      value: 'TypeA'
     }
 
     const typeB: NameResult = {
       type: 'JsdocTypeName',
-      value: 'TypeB',
-      meta: {
-        reservedWord: false
-      }
+      value: 'TypeB'
     }
 
     const generic: GenericResult = {

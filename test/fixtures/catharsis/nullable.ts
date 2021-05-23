@@ -8,10 +8,7 @@ export const nullableFixtures: Fixture[] = [
       type: 'JsdocTypeNullable',
       element: {
         type: 'JsdocTypeName',
-        value: 'number',
-        meta: {
-          reservedWord: false
-        }
+        value: 'number'
       },
       meta: {
         position: 'prefix'
@@ -36,10 +33,7 @@ export const nullableFixtures: Fixture[] = [
       type: 'JsdocTypeNullable',
       element: {
         type: 'JsdocTypeName',
-        value: 'number',
-        meta: {
-          reservedWord: false
-        }
+        value: 'number'
       },
       meta: {
         position: 'suffix'
@@ -64,10 +58,7 @@ export const nullableFixtures: Fixture[] = [
       type: 'JsdocTypeNotNullable',
       element: {
         type: 'JsdocTypeName',
-        value: 'Object',
-        meta: {
-          reservedWord: false
-        }
+        value: 'Object'
       },
       meta: {
         position: 'prefix'
@@ -92,10 +83,7 @@ export const nullableFixtures: Fixture[] = [
       type: 'JsdocTypeNotNullable',
       element: {
         type: 'JsdocTypeName',
-        value: 'Object',
-        meta: {
-          reservedWord: false
-        }
+        value: 'Object'
       },
       meta: {
         position: 'suffix'
@@ -122,10 +110,7 @@ export const nullableFixtures: Fixture[] = [
         type: 'JsdocTypeNullable',
         element: {
           type: 'JsdocTypeName',
-          value: 'number',
-          meta: {
-            reservedWord: false
-          }
+          value: 'number'
         },
         meta: {
           position: 'prefix'
@@ -157,10 +142,7 @@ export const nullableFixtures: Fixture[] = [
         type: 'JsdocTypeNullable',
         element: {
           type: 'JsdocTypeName',
-          value: 'number',
-          meta: {
-            reservedWord: false
-          }
+          value: 'number'
         },
         meta: {
           position: 'suffix'
@@ -192,10 +174,7 @@ export const nullableFixtures: Fixture[] = [
         type: 'JsdocTypeNotNullable',
         element: {
           type: 'JsdocTypeName',
-          value: 'Object',
-          meta: {
-            reservedWord: false
-          }
+          value: 'Object'
         },
         meta: {
           position: 'prefix'
@@ -227,10 +206,7 @@ export const nullableFixtures: Fixture[] = [
         type: 'JsdocTypeNotNullable',
         element: {
           type: 'JsdocTypeName',
-          value: 'Object',
-          meta: {
-            reservedWord: false
-          }
+          value: 'Object'
         },
         meta: {
           position: 'suffix'
@@ -262,10 +238,7 @@ export const nullableFixtures: Fixture[] = [
         type: 'JsdocTypeOptional',
         element: {
           type: 'JsdocTypeName',
-          value: 'number',
-          meta: {
-            reservedWord: false
-          }
+          value: 'number'
         },
         meta: {
           position: 'suffix'
@@ -296,10 +269,7 @@ export const nullableFixtures: Fixture[] = [
         type: 'JsdocTypeNullable',
         element: {
           type: 'JsdocTypeName',
-          value: 'number',
-          meta: {
-            reservedWord: false
-          }
+          value: 'number'
         },
         meta: {
           position: 'suffix'
@@ -332,10 +302,7 @@ export const nullableFixtures: Fixture[] = [
           type: 'JsdocTypeNullable',
           element: {
             type: 'JsdocTypeName',
-            value: 'number',
-            meta: {
-              reservedWord: false
-            }
+            value: 'number'
           },
           meta: {
             position: 'suffix'
@@ -371,10 +338,7 @@ export const nullableFixtures: Fixture[] = [
         type: 'JsdocTypeOptional',
         element: {
           type: 'JsdocTypeName',
-          value: 'Object',
-          meta: {
-            reservedWord: false
-          }
+          value: 'Object'
         },
         meta: {
           position: 'suffix'
@@ -405,10 +369,7 @@ export const nullableFixtures: Fixture[] = [
         type: 'JsdocTypeNotNullable',
         element: {
           type: 'JsdocTypeName',
-          value: 'Object',
-          meta: {
-            reservedWord: false
-          }
+          value: 'Object'
         },
         meta: {
           position: 'suffix'
@@ -441,10 +402,7 @@ export const nullableFixtures: Fixture[] = [
           type: 'JsdocTypeNotNullable',
           element: {
             type: 'JsdocTypeName',
-            value: 'Object',
-            meta: {
-              reservedWord: false
-            }
+            value: 'Object'
           },
           meta: {
             position: 'suffix'

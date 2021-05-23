@@ -17,10 +17,7 @@ export const objectsFixtures: Fixture[] = [
             },
             right: {
               type: 'JsdocTypeName',
-              value: 'string',
-              meta: {
-                reservedWord: false
-              }
+              value: 'string'
             },
             optional: true
           },
@@ -32,10 +29,7 @@ export const objectsFixtures: Fixture[] = [
             },
             right: {
               type: 'JsdocTypeName',
-              value: 'string',
-              meta: {
-                reservedWord: false
-              }
+              value: 'string'
             },
             optional: false
           }
@@ -50,10 +44,7 @@ export const objectsFixtures: Fixture[] = [
               type: 'JsdocTypeNullable',
               element: {
                 type: 'JsdocTypeName',
-                value: 'object',
-                meta: {
-                  reservedWord: false
-                }
+                value: 'object'
               },
               meta: {
                 position: 'suffix'
@@ -61,10 +52,7 @@ export const objectsFixtures: Fixture[] = [
             },
             right: {
               type: 'JsdocTypeName',
-              value: 'string',
-              meta: {
-                reservedWord: false
-              }
+              value: 'string'
             }
           },
           {
@@ -75,10 +63,7 @@ export const objectsFixtures: Fixture[] = [
             },
             right: {
               type: 'JsdocTypeName',
-              value: 'string',
-              meta: {
-                reservedWord: false
-              }
+              value: 'string'
             },
             optional: false
           }

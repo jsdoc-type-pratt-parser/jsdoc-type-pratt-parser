@@ -9,18 +9,12 @@ export const genericFixtures: Fixture[] = [
       elements: [
         {
           type: 'JsdocTypeName',
-          value: 'string',
-          meta: {
-            reservedWord: false
-          }
+          value: 'string'
         }
       ],
       left: {
         type: 'JsdocTypeName',
-        value: 'Array',
-        meta: {
-          reservedWord: false
-        }
+        value: 'Array'
       },
       meta: {
         dot: false,
@@ -47,18 +41,12 @@ export const genericFixtures: Fixture[] = [
       elements: [
         {
           type: 'JsdocTypeName',
-          value: 'string',
-          meta: {
-            reservedWord: false
-          }
+          value: 'string'
         }
       ],
       left: {
         type: 'JsdocTypeName',
-        value: 'Array',
-        meta: {
-          reservedWord: false
-        }
+        value: 'Array'
       },
       meta: {
         dot: true,
@@ -87,18 +75,12 @@ export const genericFixtures: Fixture[] = [
         elements: [
           {
             type: 'JsdocTypeName',
-            value: 'string',
-            meta: {
-              reservedWord: false
-            }
+            value: 'string'
           }
         ],
         left: {
           type: 'JsdocTypeName',
-          value: 'Array',
-          meta: {
-            reservedWord: false
-          }
+          value: 'Array'
         },
         meta: {
           dot: true,
@@ -130,25 +112,16 @@ export const genericFixtures: Fixture[] = [
       elements: [
         {
           type: 'JsdocTypeName',
-          value: 'string',
-          meta: {
-            reservedWord: false
-          }
+          value: 'string'
         },
         {
           type: 'JsdocTypeName',
-          value: 'number',
-          meta: {
-            reservedWord: false
-          }
+          value: 'number'
         }
       ],
       left: {
         type: 'JsdocTypeName',
-        value: 'Object',
-        meta: {
-          reservedWord: false
-        }
+        value: 'Object'
       },
       meta: {
         dot: true,
@@ -184,10 +157,7 @@ export const genericFixtures: Fixture[] = [
                 elements: [
                   {
                     type: 'JsdocTypeName',
-                    value: 'boolean',
-                    meta: {
-                      reservedWord: false
-                    }
+                    value: 'boolean'
                   },
                   {
                     type: 'JsdocTypeObject',
@@ -201,10 +171,7 @@ export const genericFixtures: Fixture[] = [
                         },
                         right: {
                           type: 'JsdocTypeName',
-                          value: 'Error',
-                          meta: {
-                            reservedWord: false
-                          }
+                          value: 'Error'
                         }
                       }
                     ]
@@ -215,10 +182,7 @@ export const genericFixtures: Fixture[] = [
           ],
           left: {
             type: 'JsdocTypeName',
-            value: 'Array',
-            meta: {
-              reservedWord: false
-            }
+            value: 'Array'
           },
           meta: {
             dot: true,
@@ -232,17 +196,11 @@ export const genericFixtures: Fixture[] = [
             elements: [
               {
                 type: 'JsdocTypeName',
-                value: 'boolean',
-                meta: {
-                  reservedWord: false
-                }
+                value: 'boolean'
               },
               {
                 type: 'JsdocTypeName',
-                value: 'string',
-                meta: {
-                  reservedWord: false
-                }
+                value: 'string'
               },
               {
                 type: 'JsdocTypeFunction',
@@ -256,19 +214,13 @@ export const genericFixtures: Fixture[] = [
                     },
                     right: {
                       type: 'JsdocTypeName',
-                      value: 'foo',
-                      meta: {
-                        reservedWord: false
-                      }
+                      value: 'foo'
                     }
                   }
                 ],
                 returnType: {
                   type: 'JsdocTypeName',
-                  value: 'string',
-                  meta: {
-                    reservedWord: false
-                  }
+                  value: 'string'
                 },
                 arrow: false,
                 parenthesis: true
@@ -279,10 +231,7 @@ export const genericFixtures: Fixture[] = [
       ],
       left: {
         type: 'JsdocTypeName',
-        value: 'Object',
-        meta: {
-          reservedWord: false
-        }
+        value: 'Object'
       },
       meta: {
         dot: true,
@@ -324,10 +273,7 @@ export const genericFixtures: Fixture[] = [
       ],
       left: {
         type: 'JsdocTypeName',
-        value: 'Array',
-        meta: {
-          reservedWord: false
-        }
+        value: 'Array'
       },
       meta: {
         dot: true,
@@ -358,10 +304,7 @@ export const genericFixtures: Fixture[] = [
       ],
       left: {
         type: 'JsdocTypeName',
-        value: 'Array',
-        meta: {
-          reservedWord: false
-        }
+        value: 'Array'
       },
       meta: {
         dot: true,
@@ -388,18 +331,12 @@ export const genericFixtures: Fixture[] = [
       elements: [
         {
           type: 'JsdocTypeName',
-          value: 'string',
-          meta: {
-            reservedWord: false
-          }
+          value: 'string'
         }
       ],
       left: {
         type: 'JsdocTypeName',
-        value: 'Promise',
-        meta: {
-          reservedWord: false
-        }
+        value: 'Promise'
       },
       meta: {
         dot: true,
@@ -426,26 +363,17 @@ export const genericFixtures: Fixture[] = [
       elements: [
         {
           type: 'JsdocTypeName',
-          value: 'string',
-          meta: {
-            reservedWord: false
-          }
+          value: 'string'
         }
       ],
       left: {
         left: {
           value: 'foo',
-          type: 'JsdocTypeName',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName'
         },
         right: {
           type: 'JsdocTypeName',
-          value: 'Promise',
-          meta: {
-            reservedWord: false
-          }
+          value: 'Promise'
         },
         pathType: 'property',
         type: 'JsdocTypeNamePath'

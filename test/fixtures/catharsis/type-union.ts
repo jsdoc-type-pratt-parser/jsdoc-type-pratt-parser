@@ -12,17 +12,11 @@ export const unionFixtures: Fixture[] = [
         elements: [
           {
             type: 'JsdocTypeName',
-            value: 'number',
-            meta: {
-              reservedWord: false
-            }
+            value: 'number'
           },
           {
             type: 'JsdocTypeName',
-            value: 'boolean',
-            meta: {
-              reservedWord: false
-            }
+            value: 'boolean'
           }
         ]
       }
@@ -52,17 +46,11 @@ export const unionFixtures: Fixture[] = [
           elements: [
             {
               type: 'JsdocTypeName',
-              value: 'number',
-              meta: {
-                reservedWord: false
-              }
+              value: 'number'
             },
             {
               type: 'JsdocTypeName',
-              value: 'boolean',
-              meta: {
-                reservedWord: false
-              }
+              value: 'boolean'
             }
           ]
         }
@@ -95,10 +83,7 @@ export const unionFixtures: Fixture[] = [
         elements: [
           {
             type: 'JsdocTypeName',
-            value: 'Object',
-            meta: {
-              reservedWord: false
-            }
+            value: 'Object'
           },
           {
             type: 'JsdocTypeUndefined'
@@ -129,43 +114,28 @@ export const unionFixtures: Fixture[] = [
         elements: [
           {
             type: 'JsdocTypeName',
-            value: 'number',
-            meta: {
-              reservedWord: false
-            }
+            value: 'number'
           },
           {
             type: 'JsdocTypeName',
-            value: 'Window',
-            meta: {
-              reservedWord: false
-            }
+            value: 'Window'
           },
           {
             left: {
               left: {
                 value: 'goog',
-                type: 'JsdocTypeName',
-                meta: {
-                  reservedWord: false
-                }
+                type: 'JsdocTypeName'
               },
               right: {
                 type: 'JsdocTypeName',
-                value: 'ui',
-                meta: {
-                  reservedWord: false
-                }
+                value: 'ui'
               },
               type: 'JsdocTypeNamePath',
               pathType: 'property'
             },
             right: {
               type: 'JsdocTypeName',
-              value: 'Menu',
-              meta: {
-                reservedWord: false
-              }
+              value: 'Menu'
             },
             type: 'JsdocTypeNamePath',
             pathType: 'property'
@@ -198,17 +168,11 @@ export const unionFixtures: Fixture[] = [
           elements: [
             {
               type: 'JsdocTypeName',
-              value: 'number',
-              meta: {
-                reservedWord: false
-              }
+              value: 'number'
             },
             {
               type: 'JsdocTypeName',
-              value: 'boolean',
-              meta: {
-                reservedWord: false
-              }
+              value: 'boolean'
             }
           ]
         }
@@ -242,17 +206,11 @@ export const unionFixtures: Fixture[] = [
           elements: [
             {
               type: 'JsdocTypeName',
-              value: 'number',
-              meta: {
-                reservedWord: false
-              }
+              value: 'number'
             },
             {
               type: 'JsdocTypeName',
-              value: 'boolean',
-              meta: {
-                reservedWord: false
-              }
+              value: 'boolean'
             }
           ]
         }
@@ -286,17 +244,11 @@ export const unionFixtures: Fixture[] = [
           elements: [
             {
               type: 'JsdocTypeName',
-              value: 'number',
-              meta: {
-                reservedWord: false
-              }
+              value: 'number'
             },
             {
               type: 'JsdocTypeName',
-              value: 'boolean',
-              meta: {
-                reservedWord: false
-              }
+              value: 'boolean'
             }
           ]
         }
@@ -328,20 +280,14 @@ export const unionFixtures: Fixture[] = [
         elements: [
           {
             type: 'JsdocTypeName',
-            value: 'Array',
-            meta: {
-              reservedWord: false
-            }
+            value: 'Array'
           },
           {
             type: 'JsdocTypeGeneric',
             elements: [
               {
                 type: 'JsdocTypeName',
-                value: 'string',
-                meta: {
-                  reservedWord: false
-                }
+                value: 'string'
               },
               {
                 type: 'JsdocTypeUnknown'
@@ -349,10 +295,7 @@ export const unionFixtures: Fixture[] = [
             ],
             left: {
               type: 'JsdocTypeName',
-              value: 'Object',
-              meta: {
-                reservedWord: false
-              }
+              value: 'Object'
             },
             meta: {
               dot: true,
@@ -388,18 +331,12 @@ export const unionFixtures: Fixture[] = [
             elements: [
               {
                 type: 'JsdocTypeName',
-                value: 'string',
-                meta: {
-                  reservedWord: false
-                }
+                value: 'string'
               }
             ],
             left: {
               type: 'JsdocTypeName',
-              value: 'Array',
-              meta: {
-                reservedWord: false
-              }
+              value: 'Array'
             },
             meta: {
               dot: true,
@@ -411,10 +348,7 @@ export const unionFixtures: Fixture[] = [
             elements: [
               {
                 type: 'JsdocTypeName',
-                value: 'string',
-                meta: {
-                  reservedWord: false
-                }
+                value: 'string'
               },
               {
                 type: 'JsdocTypeUnknown'
@@ -422,10 +356,7 @@ export const unionFixtures: Fixture[] = [
             ],
             left: {
               type: 'JsdocTypeName',
-              value: 'Object',
-              meta: {
-                reservedWord: false
-              }
+              value: 'Object'
             },
             meta: {
               dot: true,
@@ -458,20 +389,14 @@ export const unionFixtures: Fixture[] = [
         elements: [
           {
             type: 'JsdocTypeName',
-            value: 'Error',
-            meta: {
-              reservedWord: false
-            }
+            value: 'Error'
           },
           {
             type: 'JsdocTypeFunction',
             parameters: [],
             returnType: {
               type: 'JsdocTypeName',
-              value: 'Error',
-              meta: {
-                reservedWord: false
-              }
+              value: 'Error'
             },
             arrow: false,
             parenthesis: true
@@ -500,17 +425,11 @@ export const unionFixtures: Fixture[] = [
       elements: [
         {
           type: 'JsdocTypeName',
-          value: 'number',
-          meta: {
-            reservedWord: false
-          }
+          value: 'number'
         },
         {
           type: 'JsdocTypeName',
-          value: 'string',
-          meta: {
-            reservedWord: false
-          }
+          value: 'string'
         }
       ]
     },
@@ -537,10 +456,7 @@ export const unionFixtures: Fixture[] = [
           type: 'JsdocTypeNotNullable',
           element: {
             type: 'JsdocTypeName',
-            value: 'number',
-            meta: {
-              reservedWord: false
-            }
+            value: 'number'
           },
           meta: {
             position: 'prefix'
@@ -550,10 +466,7 @@ export const unionFixtures: Fixture[] = [
           type: 'JsdocTypeNotNullable',
           element: {
             type: 'JsdocTypeName',
-            value: 'string',
-            meta: {
-              reservedWord: false
-            }
+            value: 'string'
           },
           meta: {
             position: 'prefix'
@@ -586,42 +499,27 @@ export const unionFixtures: Fixture[] = [
           elements: [
             {
               type: 'JsdocTypeName',
-              value: 'jQuerySelector',
-              meta: {
-                reservedWord: false
-              }
+              value: 'jQuerySelector'
             },
             {
               type: 'JsdocTypeName',
-              value: 'Element',
-              meta: {
-                reservedWord: false
-              }
+              value: 'Element'
             },
             {
               type: 'JsdocTypeName',
-              value: 'Object',
-              meta: {
-                reservedWord: false
-              }
+              value: 'Object'
             },
             {
               type: 'JsdocTypeGeneric',
               elements: [
                 {
                   type: 'JsdocTypeName',
-                  value: 'Element',
-                  meta: {
-                    reservedWord: false
-                  }
+                  value: 'Element'
                 }
               ],
               left: {
                 type: 'JsdocTypeName',
-                value: 'Array',
-                meta: {
-                  reservedWord: false
-                }
+                value: 'Array'
               },
               meta: {
                 dot: true,
@@ -630,17 +528,11 @@ export const unionFixtures: Fixture[] = [
             },
             {
               type: 'JsdocTypeName',
-              value: 'jQuery',
-              meta: {
-                reservedWord: false
-              }
+              value: 'jQuery'
             },
             {
               type: 'JsdocTypeName',
-              value: 'string',
-              meta: {
-                reservedWord: false
-              }
+              value: 'string'
             },
             {
               type: 'JsdocTypeFunction',
@@ -680,34 +572,22 @@ export const unionFixtures: Fixture[] = [
           elements: [
             {
               type: 'JsdocTypeName',
-              value: 'Element',
-              meta: {
-                reservedWord: false
-              }
+              value: 'Element'
             },
             {
               type: 'JsdocTypeName',
-              value: 'Object',
-              meta: {
-                reservedWord: false
-              }
+              value: 'Object'
             },
             {
               type: 'JsdocTypeName',
-              value: 'Document',
-              meta: {
-                reservedWord: false
-              }
+              value: 'Document'
             },
             {
               type: 'JsdocTypeGeneric',
               elements: [
                 {
                   type: 'JsdocTypeName',
-                  value: 'string',
-                  meta: {
-                    reservedWord: false
-                  }
+                  value: 'string'
                 },
                 {
                   type: 'JsdocTypeParenthesis',
@@ -716,10 +596,7 @@ export const unionFixtures: Fixture[] = [
                     elements: [
                       {
                         type: 'JsdocTypeName',
-                        value: 'string',
-                        meta: {
-                          reservedWord: false
-                        }
+                        value: 'string'
                       },
                       {
                         type: 'JsdocTypeFunction',
@@ -731,17 +608,11 @@ export const unionFixtures: Fixture[] = [
                               element: {
                                 left: {
                                   value: 'jQuery',
-                                  type: 'JsdocTypeName',
-                                  meta: {
-                                    reservedWord: false
-                                  }
+                                  type: 'JsdocTypeName'
                                 },
                                 right: {
                                   type: 'JsdocTypeName',
-                                  value: 'event',
-                                  meta: {
-                                    reservedWord: false
-                                  }
+                                  value: 'event'
                                 },
                                 pathType: 'property',
                                 type: 'JsdocTypeNamePath'
@@ -764,10 +635,7 @@ export const unionFixtures: Fixture[] = [
               ],
               left: {
                 type: 'JsdocTypeName',
-                value: 'Object',
-                meta: {
-                  reservedWord: false
-                }
+                value: 'Object'
               },
               meta: {
                 dot: true,

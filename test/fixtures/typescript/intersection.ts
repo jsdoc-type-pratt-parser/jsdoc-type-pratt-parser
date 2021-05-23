@@ -9,17 +9,11 @@ export const intersectionFixtures: Fixture[] = [
       elements: [
         {
           type: 'JsdocTypeName',
-          value: 'A',
-          meta: {
-            reservedWord: false
-          }
+          value: 'A'
         },
         {
           type: 'JsdocTypeName',
-          value: 'B',
-          meta: {
-            reservedWord: false
-          }
+          value: 'B'
         }
       ]
     },
@@ -47,17 +41,11 @@ export const intersectionFixtures: Fixture[] = [
           elements: [
             {
               type: 'JsdocTypeName',
-              value: 'A',
-              meta: {
-                reservedWord: false
-              }
+              value: 'A'
             },
             {
               type: 'JsdocTypeName',
-              value: 'B',
-              meta: {
-                reservedWord: false
-              }
+              value: 'B'
             }
           ]
         }
@@ -89,10 +77,7 @@ export const intersectionFixtures: Fixture[] = [
           parameters: [],
           returnType: {
             type: 'JsdocTypeName',
-            value: 'void',
-            meta: {
-              reservedWord: true
-            }
+            value: 'void'
           },
           arrow: false,
           parenthesis: true
@@ -101,25 +86,16 @@ export const intersectionFixtures: Fixture[] = [
           type: 'JsdocTypeGeneric',
           left: {
             type: 'JsdocTypeName',
-            value: 'A',
-            meta: {
-              reservedWord: false
-            }
+            value: 'A'
           },
           elements: [
             {
               type: 'JsdocTypeName',
-              value: 'B',
-              meta: {
-                reservedWord: false
-              }
+              value: 'B'
             },
             {
               type: 'JsdocTypeName',
-              value: 'C',
-              meta: {
-                reservedWord: false
-              }
+              value: 'C'
             }
           ],
           meta: {
@@ -154,17 +130,11 @@ export const intersectionFixtures: Fixture[] = [
             elements: [
               {
                 type: 'JsdocTypeName',
-                value: 'A',
-                meta: {
-                  reservedWord: false
-                }
+                value: 'A'
               },
               {
                 type: 'JsdocTypeName',
-                value: 'B',
-                meta: {
-                  reservedWord: false
-                }
+                value: 'B'
               }
             ]
           }
@@ -183,19 +153,13 @@ export const intersectionFixtures: Fixture[] = [
               },
               right: {
                 type: 'JsdocTypeName',
-                value: 'string',
-                meta: {
-                  reservedWord: false
-                }
+                value: 'string'
               }
             }
           ],
           returnType: {
             type: 'JsdocTypeName',
-            value: 'void',
-            meta: {
-              reservedWord: true
-            }
+            value: 'void'
           }
         }
       ]

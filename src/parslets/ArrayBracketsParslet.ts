@@ -22,10 +22,7 @@ export class ArrayBracketsParslet implements InfixParslet {
       type: 'JsdocTypeGeneric',
       left: {
         type: 'JsdocTypeName',
-        value: 'Array',
-        meta: {
-          reservedWord: false
-        }
+        value: 'Array'
       },
       elements: [
         assertTerminal(left)

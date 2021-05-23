@@ -6,10 +6,7 @@ export const jsdocFixtures: Fixture[] = [
     input: 'functional',
     expected: {
       type: 'JsdocTypeName',
-      value: 'functional',
-      meta: {
-        reservedWord: false
-      }
+      value: 'functional'
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -30,17 +27,11 @@ export const jsdocFixtures: Fixture[] = [
       type: 'JsdocTypeNamePath',
       left: {
         type: 'JsdocTypeName',
-        value: 'MyClass',
-        meta: {
-          reservedWord: false
-        }
+        value: 'MyClass'
       },
       right: {
         type: 'JsdocTypeName',
-        value: 'myMember',
-        meta: {
-          reservedWord: false
-        }
+        value: 'myMember'
       },
       pathType: 'instance'
     },
@@ -63,17 +54,11 @@ export const jsdocFixtures: Fixture[] = [
       type: 'JsdocTypeNamePath',
       left: {
         type: 'JsdocTypeName',
-        value: 'MyClass',
-        meta: {
-          reservedWord: false
-        }
+        value: 'MyClass'
       },
       right: {
         type: 'JsdocTypeName',
-        value: 'myMember',
-        meta: {
-          reservedWord: false
-        }
+        value: 'myMember'
       },
       pathType: 'inner'
     },
@@ -100,35 +85,23 @@ export const jsdocFixtures: Fixture[] = [
           type: 'JsdocTypeNamePath',
           left: {
             type: 'JsdocTypeName',
-            value: 'MyClass',
-            meta: {
-              reservedWord: false
-            }
+            value: 'MyClass'
           },
           right: {
             type: 'JsdocTypeName',
-            value: 'myMember',
-            meta: {
-              reservedWord: false
-            }
+            value: 'myMember'
           },
           pathType: 'instance'
         },
         right: {
           type: 'JsdocTypeName',
-          value: 'yourMember',
-          meta: {
-            reservedWord: false
-          }
+          value: 'yourMember'
         },
         pathType: 'instance'
       },
       right: {
         type: 'JsdocTypeName',
-        value: 'theirMember',
-        meta: {
-          reservedWord: false
-        }
+        value: 'theirMember'
       },
       pathType: 'inner'
     },
@@ -159,9 +132,6 @@ export const jsdocFixtures: Fixture[] = [
       },
       right: {
         type: 'JsdocTypeName',
-        meta: {
-          reservedWord: false
-        },
         value: 'Qux'
       },
       pathType: 'inner'
@@ -193,9 +163,6 @@ export const jsdocFixtures: Fixture[] = [
       },
       right: {
         type: 'JsdocTypeName',
-        meta: {
-          reservedWord: false
-        },
         value: 'Qux'
       },
       pathType: 'inner'
@@ -217,10 +184,7 @@ export const jsdocFixtures: Fixture[] = [
     input: 'this',
     expected: {
       type: 'JsdocTypeName',
-      value: 'this',
-      meta: {
-        reservedWord: true
-      }
+      value: 'this'
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -307,10 +271,7 @@ export const jsdocFixtures: Fixture[] = [
       type: 'JsdocTypeSymbol',
       element: {
         value: 'a',
-        type: 'JsdocTypeName',
-        meta: {
-          reservedWord: false
-        }
+        type: 'JsdocTypeName'
       }
     },
     modes: ['jsdoc'],
@@ -333,10 +294,7 @@ export const jsdocFixtures: Fixture[] = [
       type: 'JsdocTypeSymbol',
       element: {
         value: 'abcde',
-        type: 'JsdocTypeName',
-        meta: {
-          reservedWord: false
-        }
+        type: 'JsdocTypeName'
       }
     },
     modes: ['jsdoc'],
@@ -402,10 +360,7 @@ export const jsdocFixtures: Fixture[] = [
       left: {
         left: {
           value: 'foo',
-          type: 'JsdocTypeName',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName'
         },
         right: {
           type: 'JsdocTypeStringValue',
@@ -419,10 +374,7 @@ export const jsdocFixtures: Fixture[] = [
       },
       right: {
         type: 'JsdocTypeName',
-        value: 'qux',
-        meta: {
-          reservedWord: false
-        }
+        value: 'qux'
       },
       type: 'JsdocTypeNamePath',
       pathType: 'property'
@@ -446,10 +398,7 @@ export const jsdocFixtures: Fixture[] = [
       left: {
         left: {
           value: 'foo',
-          type: 'JsdocTypeName',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName'
         },
         right: {
           type: 'JsdocTypeStringValue',
@@ -463,10 +412,7 @@ export const jsdocFixtures: Fixture[] = [
       },
       right: {
         type: 'JsdocTypeName',
-        value: 'qux',
-        meta: {
-          reservedWord: false
-        }
+        value: 'qux'
       },
       type: 'JsdocTypeNamePath',
       pathType: 'property'
@@ -493,10 +439,7 @@ export const jsdocFixtures: Fixture[] = [
         type: 'JsdocTypeVariadic',
         element: {
           value: 'foo',
-          type: 'JsdocTypeName',
-          meta: {
-            reservedWord: false
-          }
+          type: 'JsdocTypeName'
         },
         meta: {
           squareBrackets: false,
@@ -524,18 +467,12 @@ export const jsdocFixtures: Fixture[] = [
       elements: [
         {
           type: 'JsdocTypeName',
-          value: 'string',
-          meta: {
-            reservedWord: false
-          }
+          value: 'string'
         }
       ],
       left: {
         type: 'JsdocTypeName',
-        value: 'Array',
-        meta: {
-          reservedWord: false
-        }
+        value: 'Array'
       },
       meta: {
         brackets: 'angle',
@@ -562,18 +499,12 @@ export const jsdocFixtures: Fixture[] = [
       elements: [
         {
           type: 'JsdocTypeName',
-          value: 'string',
-          meta: {
-            reservedWord: false
-          }
+          value: 'string'
         }
       ],
       left: {
         type: 'JsdocTypeName',
-        value: 'Array',
-        meta: {
-          reservedWord: false
-        }
+        value: 'Array'
       },
       meta: {
         brackets: 'square',
@@ -607,10 +538,7 @@ export const jsdocFixtures: Fixture[] = [
       ],
       left: {
         type: 'JsdocTypeName',
-        value: 'Array',
-        meta: {
-          reservedWord: false
-        }
+        value: 'Array'
       },
       meta: {
         brackets: 'square',
@@ -640,18 +568,12 @@ export const jsdocFixtures: Fixture[] = [
           elements: [
             {
               type: 'JsdocTypeName',
-              value: 'number',
-              meta: {
-                reservedWord: false
-              }
+              value: 'number'
             }
           ],
           left: {
             type: 'JsdocTypeName',
-            value: 'Array',
-            meta: {
-              reservedWord: false
-            }
+            value: 'Array'
           },
           meta: {
             brackets: 'square',
@@ -661,10 +583,7 @@ export const jsdocFixtures: Fixture[] = [
       ],
       left: {
         type: 'JsdocTypeName',
-        value: 'Array',
-        meta: {
-          reservedWord: false
-        }
+        value: 'Array'
       },
       meta: {
         brackets: 'square',
@@ -697,18 +616,12 @@ export const jsdocFixtures: Fixture[] = [
               elements: [
                 {
                   type: 'JsdocTypeName',
-                  value: 'number',
-                  meta: {
-                    reservedWord: false
-                  }
+                  value: 'number'
                 }
               ],
               left: {
                 type: 'JsdocTypeName',
-                value: 'Array',
-                meta: {
-                  reservedWord: false
-                }
+                value: 'Array'
               },
               meta: {
                 brackets: 'square',
@@ -718,10 +631,7 @@ export const jsdocFixtures: Fixture[] = [
           ],
           left: {
             type: 'JsdocTypeName',
-            value: 'Array',
-            meta: {
-              reservedWord: false
-            }
+            value: 'Array'
           },
           meta: {
             brackets: 'square',
@@ -731,10 +641,7 @@ export const jsdocFixtures: Fixture[] = [
       ],
       left: {
         type: 'JsdocTypeName',
-        value: 'Array',
-        meta: {
-          reservedWord: false
-        }
+        value: 'Array'
       },
       meta: {
         brackets: 'square',
@@ -766,18 +673,12 @@ export const jsdocFixtures: Fixture[] = [
             elements: [
               {
                 type: 'JsdocTypeName',
-                value: 'string',
-                meta: {
-                  reservedWord: false
-                }
+                value: 'string'
               }
             ],
             left: {
               type: 'JsdocTypeName',
-              value: 'Array',
-              meta: {
-                reservedWord: false
-              }
+              value: 'Array'
             },
             meta: {
               brackets: 'angle',
@@ -786,10 +687,7 @@ export const jsdocFixtures: Fixture[] = [
           },
           right: {
             type: 'JsdocTypeName',
-            value: 'number',
-            meta: {
-              reservedWord: false
-            }
+            value: 'number'
           }
         }
       ]
@@ -822,34 +720,22 @@ export const jsdocFixtures: Fixture[] = [
               elements: [
                 {
                   type: 'JsdocTypeName',
-                  value: 'number',
-                  meta: {
-                    reservedWord: false
-                  }
+                  value: 'number'
                 },
                 {
                   type: 'JsdocTypeName',
-                  value: 'boolean',
-                  meta: {
-                    reservedWord: false
-                  }
+                  value: 'boolean'
                 },
                 {
                   type: 'JsdocTypeName',
-                  value: 'string',
-                  meta: {
-                    reservedWord: false
-                  }
+                  value: 'string'
                 }
               ]
             }
           },
           right: {
             type: 'JsdocTypeName',
-            value: 'number',
-            meta: {
-              reservedWord: false
-            }
+            value: 'number'
           }
         }
       ]
@@ -887,10 +773,7 @@ export const jsdocFixtures: Fixture[] = [
               elements: [
                 {
                   type: 'JsdocTypeName',
-                  value: 'string',
-                  meta: {
-                    reservedWord: false
-                  }
+                  value: 'string'
                 },
                 {
                   type: 'JsdocTypeUndefined'
@@ -969,10 +852,7 @@ export const jsdocFixtures: Fixture[] = [
             parenthesis: true,
             returnType: {
               type: 'JsdocTypeName',
-              value: 'void',
-              meta: {
-                reservedWord: true
-              }
+              value: 'void'
             }
           }
         }
@@ -1034,27 +914,18 @@ export const jsdocFixtures: Fixture[] = [
               left: {
                 left: {
                   value: 'my',
-                  type: 'JsdocTypeName',
-                  meta: {
-                    reservedWord: false
-                  }
+                  type: 'JsdocTypeName'
                 },
                 right: {
                   type: 'JsdocTypeName',
-                  value: 'namespace',
-                  meta: {
-                    reservedWord: false
-                  }
+                  value: 'namespace'
                 },
                 type: 'JsdocTypeNamePath',
                 pathType: 'property'
               },
               right: {
                 type: 'JsdocTypeName',
-                value: 'Class',
-                meta: {
-                  reservedWord: false
-                }
+                value: 'Class'
               },
               type: 'JsdocTypeNamePath',
               pathType: 'property'
@@ -1063,17 +934,11 @@ export const jsdocFixtures: Fixture[] = [
           {
             left: {
               value: 'my',
-              type: 'JsdocTypeName',
-              meta: {
-                reservedWord: false
-              }
+              type: 'JsdocTypeName'
             },
             right: {
               type: 'JsdocTypeName',
-              value: 'Class',
-              meta: {
-                reservedWord: false
-              }
+              value: 'Class'
             },
             type: 'JsdocTypeNamePath',
             pathType: 'property'
@@ -1109,10 +974,7 @@ export const jsdocFixtures: Fixture[] = [
           type: 'JsdocTypeVariadic',
           element: {
             type: 'JsdocTypeName',
-            value: 'string',
-            meta: {
-              reservedWord: false
-            }
+            value: 'string'
           },
           meta: {
             squareBrackets: false,
@@ -1124,18 +986,12 @@ export const jsdocFixtures: Fixture[] = [
           elements: [
             {
               value: 'string',
-              type: 'JsdocTypeName',
-              meta: {
-                reservedWord: false
-              }
+              type: 'JsdocTypeName'
             }
           ],
           left: {
             type: 'JsdocTypeName',
-            value: 'Array',
-            meta: {
-              reservedWord: false
-            }
+            value: 'Array'
           },
           meta: {
             brackets: 'square',
