@@ -5,17 +5,17 @@ export const functionFixtures: Fixture[] = [
     description: 'function with two basic parameters',
     input: 'function(string, boolean)',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'string',
           meta: {
             reservedWord: false
           }
         },
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'boolean',
           meta: {
             reservedWord: false
@@ -41,19 +41,19 @@ export const functionFixtures: Fixture[] = [
     description: 'repeatable function with two basic parameters',
     input: '...function(string, boolean)',
     expected: {
-      type: 'VARIADIC',
+      type: 'JsdocTypeVariadic',
       element: {
-        type: 'FUNCTION',
+        type: 'JsdocTypeFunction',
         parameters: [
           {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'string',
             meta: {
               reservedWord: false
             }
           },
           {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'boolean',
             meta: {
               reservedWord: false
@@ -84,17 +84,17 @@ export const functionFixtures: Fixture[] = [
     description: 'function with two basic parameters and a return value',
     input: 'function(string, boolean): boolean',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'string',
           meta: {
             reservedWord: false
           }
         },
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'boolean',
           meta: {
             reservedWord: false
@@ -102,7 +102,7 @@ export const functionFixtures: Fixture[] = [
         }
       ],
       returnType: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'boolean',
         meta: {
           reservedWord: false
@@ -127,19 +127,19 @@ export const functionFixtures: Fixture[] = [
     description: 'repeatable function with two basic parameters and a return value',
     input: '...function(string, boolean): boolean',
     expected: {
-      type: 'VARIADIC',
+      type: 'JsdocTypeVariadic',
       element: {
-        type: 'FUNCTION',
+        type: 'JsdocTypeFunction',
         parameters: [
           {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'string',
             meta: {
               reservedWord: false
             }
           },
           {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'boolean',
             meta: {
               reservedWord: false
@@ -147,7 +147,7 @@ export const functionFixtures: Fixture[] = [
           }
         ],
         returnType: {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'boolean',
           meta: {
             reservedWord: false
@@ -177,12 +177,12 @@ export const functionFixtures: Fixture[] = [
     description: 'optional function with one basic parameter',
     input: 'function(string)=',
     expected: {
-      type: 'OPTIONAL',
+      type: 'JsdocTypeOptional',
       element: {
-        type: 'FUNCTION',
+        type: 'JsdocTypeFunction',
         parameters: [
           {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'string',
             meta: {
               reservedWord: false
@@ -212,10 +212,10 @@ export const functionFixtures: Fixture[] = [
     description: 'function with no parameters and a return value',
     input: 'function(): number',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [],
       returnType: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'number',
         meta: {
           reservedWord: false
@@ -247,40 +247,40 @@ export const functionFixtures: Fixture[] = [
           meta: {
             quote: undefined
           },
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           optional: false,
           right: {
             left: {
               left: {
                 value: 'goog',
-                type: 'NAME',
+                type: 'JsdocTypeName',
                 meta: {
                   reservedWord: false
                 }
               },
               right: {
-                type: 'NAME',
+                type: 'JsdocTypeName',
                 value: 'ui',
                 meta: {
                   reservedWord: false
                 }
               },
-              type: 'NAME_PATH',
+              type: 'JsdocTypeNamePath',
               pathType: '.'
             },
             right: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'Menu',
               meta: {
                 reservedWord: false
               }
             },
-            type: 'NAME_PATH',
+            type: 'JsdocTypeNamePath',
             pathType: '.'
           }
         }
       ],
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       arrow: false,
       parenthesis: true
     },
@@ -307,47 +307,47 @@ export const functionFixtures: Fixture[] = [
           meta: {
             quote: undefined
           },
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           optional: false,
           right: {
             left: {
               left: {
                 value: 'goog',
-                type: 'NAME',
+                type: 'JsdocTypeName',
                 meta: {
                   reservedWord: false
                 }
               },
               right: {
-                type: 'NAME',
+                type: 'JsdocTypeName',
                 value: 'ui',
                 meta: {
                   reservedWord: false
                 }
               },
-              type: 'NAME_PATH',
+              type: 'JsdocTypeNamePath',
               pathType: '.'
             },
             right: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'Menu',
               meta: {
                 reservedWord: false
               }
             },
-            type: 'NAME_PATH',
+            type: 'JsdocTypeNamePath',
             pathType: '.'
           }
         },
         {
           value: 'string',
-          type: 'NAME',
+          type: 'JsdocTypeName',
           meta: {
             reservedWord: false
           }
         }
       ],
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       arrow: false,
       parenthesis: true
     },
@@ -368,10 +368,10 @@ export const functionFixtures: Fixture[] = [
     input: 'function(new:goog.ui.Menu)',
     stringified: 'function(new: goog.ui.Menu)',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [
         {
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           optional: false,
           value: 'new',
           meta: {
@@ -381,29 +381,29 @@ export const functionFixtures: Fixture[] = [
             left: {
               left: {
                 value: 'goog',
-                type: 'NAME',
+                type: 'JsdocTypeName',
                 meta: {
                   reservedWord: false
                 }
               },
               right: {
-                type: 'NAME',
+                type: 'JsdocTypeName',
                 value: 'ui',
                 meta: {
                   reservedWord: false
                 }
               },
-              type: 'NAME_PATH',
+              type: 'JsdocTypeNamePath',
               pathType: '.'
             },
             right: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'Menu',
               meta: {
                 reservedWord: false
               }
             },
-            type: 'NAME_PATH',
+            type: 'JsdocTypeNamePath',
             pathType: '.'
           }
         }
@@ -428,10 +428,10 @@ export const functionFixtures: Fixture[] = [
     input: 'function(new:goog.ui.Menu, string)',
     stringified: 'function(new: goog.ui.Menu, string)',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [
         {
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           optional: false,
           meta: {
             quote: undefined
@@ -441,34 +441,34 @@ export const functionFixtures: Fixture[] = [
             left: {
               left: {
                 value: 'goog',
-                type: 'NAME',
+                type: 'JsdocTypeName',
                 meta: {
                   reservedWord: false
                 }
               },
               right: {
-                type: 'NAME',
+                type: 'JsdocTypeName',
                 value: 'ui',
                 meta: {
                   reservedWord: false
                 }
               },
-              type: 'NAME_PATH',
+              type: 'JsdocTypeNamePath',
               pathType: '.'
             },
             right: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'Menu',
               meta: {
                 reservedWord: false
               }
             },
-            type: 'NAME_PATH',
+            type: 'JsdocTypeNamePath',
             pathType: '.'
           }
         },
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'string',
           meta: {
             reservedWord: false
@@ -495,10 +495,10 @@ export const functionFixtures: Fixture[] = [
     input: 'function(new:goog.ui.Menu, this:goog.ui)',
     stringified: 'function(new: goog.ui.Menu, this: goog.ui)',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [
         {
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           optional: false,
           value: 'new',
           meta: {
@@ -508,34 +508,34 @@ export const functionFixtures: Fixture[] = [
             left: {
               left: {
                 value: 'goog',
-                type: 'NAME',
+                type: 'JsdocTypeName',
                 meta: {
                   reservedWord: false
                 }
               },
               right: {
-                type: 'NAME',
+                type: 'JsdocTypeName',
                 value: 'ui',
                 meta: {
                   reservedWord: false
                 }
               },
-              type: 'NAME_PATH',
+              type: 'JsdocTypeNamePath',
               pathType: '.'
             },
             right: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'Menu',
               meta: {
                 reservedWord: false
               }
             },
-            type: 'NAME_PATH',
+            type: 'JsdocTypeNamePath',
             pathType: '.'
           }
         },
         {
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           optional: false,
           value: 'this',
           meta: {
@@ -544,19 +544,19 @@ export const functionFixtures: Fixture[] = [
           right: {
             left: {
               value: 'goog',
-              type: 'NAME',
+              type: 'JsdocTypeName',
               meta: {
                 reservedWord: false
               }
             },
             right: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'ui',
               meta: {
                 reservedWord: false
               }
             },
-            type: 'NAME_PATH',
+            type: 'JsdocTypeNamePath',
             pathType: '.'
           }
         }
@@ -582,19 +582,19 @@ export const functionFixtures: Fixture[] = [
     stringified: 'function(string, ...number): number',
     diffExpected: {
       jsdoc: {
-        type: 'FUNCTION',
+        type: 'JsdocTypeFunction',
         parameters: [
           {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'string',
             meta: {
               reservedWord: false
             }
           },
           {
-            type: 'VARIADIC',
+            type: 'JsdocTypeVariadic',
             element: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'number',
               meta: {
                 reservedWord: false
@@ -607,7 +607,7 @@ export const functionFixtures: Fixture[] = [
           }
         ],
         returnType: {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'number',
           meta: {
             reservedWord: false
@@ -617,22 +617,22 @@ export const functionFixtures: Fixture[] = [
         parenthesis: true
       },
       typescript: {
-        type: 'FUNCTION',
+        type: 'JsdocTypeFunction',
         parameters: [
           {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'string',
             meta: {
               reservedWord: false
             }
           },
           {
-            type: 'VARIADIC',
+            type: 'JsdocTypeVariadic',
             element: {
-              type: 'TUPLE',
+              type: 'JsdocTypeTuple',
               elements: [
                 {
-                  type: 'NAME',
+                  type: 'JsdocTypeName',
                   value: 'number',
                   meta: {
                     reservedWord: false
@@ -647,7 +647,7 @@ export const functionFixtures: Fixture[] = [
           }
         ],
         returnType: {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'number',
           meta: {
             reservedWord: false
@@ -674,12 +674,12 @@ export const functionFixtures: Fixture[] = [
     input: 'function(...[null])',
     stringified: 'function(...null)',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [
         {
-          type: 'VARIADIC',
+          type: 'JsdocTypeVariadic',
           element: {
-            type: 'NULL'
+            type: 'JsdocTypeNull'
           },
           meta: {
             squareBrackets: true,
@@ -707,12 +707,12 @@ export const functionFixtures: Fixture[] = [
     input: 'function(...[undefined])',
     stringified: 'function(...undefined)',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [
         {
-          type: 'VARIADIC',
+          type: 'JsdocTypeVariadic',
           element: {
-            type: 'UNDEFINED'
+            type: 'JsdocTypeUndefined'
           },
           meta: {
             position: 'PREFIX',
@@ -741,17 +741,17 @@ export const functionFixtures: Fixture[] = [
     stringified: 'function(new: Master, this: Everyone, string, goog.ui.Menu, Array.<Object>, ...string): boolean',
     diffExpected: {
       jsdoc: {
-        type: 'FUNCTION',
+        type: 'JsdocTypeFunction',
         parameters: [
           {
-            type: 'KEY_VALUE',
+            type: 'JsdocTypeKeyValue',
             optional: false,
             value: 'new',
             meta: {
               quote: undefined
             },
             right: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'Master',
               meta: {
                 reservedWord: false
@@ -759,14 +759,14 @@ export const functionFixtures: Fixture[] = [
             }
           },
           {
-            type: 'KEY_VALUE',
+            type: 'JsdocTypeKeyValue',
             optional: false,
             value: 'this',
             meta: {
               quote: undefined
             },
             right: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'Everyone',
               meta: {
                 reservedWord: false
@@ -774,7 +774,7 @@ export const functionFixtures: Fixture[] = [
             }
           },
           {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'string',
             meta: {
               reservedWord: false
@@ -784,36 +784,36 @@ export const functionFixtures: Fixture[] = [
             left: {
               left: {
                 value: 'goog',
-                type: 'NAME',
+                type: 'JsdocTypeName',
                 meta: {
                   reservedWord: false
                 }
               },
               right: {
-                type: 'NAME',
+                type: 'JsdocTypeName',
                 value: 'ui',
                 meta: {
                   reservedWord: false
                 }
               },
-              type: 'NAME_PATH',
+              type: 'JsdocTypeNamePath',
               pathType: '.'
             },
             right: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'Menu',
               meta: {
                 reservedWord: false
               }
             },
-            type: 'NAME_PATH',
+            type: 'JsdocTypeNamePath',
             pathType: '.'
           },
           {
-            type: 'GENERIC',
+            type: 'JsdocTypeGeneric',
             elements: [
               {
-                type: 'NAME',
+                type: 'JsdocTypeName',
                 value: 'Object',
                 meta: {
                   reservedWord: false
@@ -821,7 +821,7 @@ export const functionFixtures: Fixture[] = [
               }
             ],
             left: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'Array',
               meta: {
                 reservedWord: false
@@ -833,9 +833,9 @@ export const functionFixtures: Fixture[] = [
             }
           },
           {
-            type: 'VARIADIC',
+            type: 'JsdocTypeVariadic',
             element: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'string',
               meta: {
                 reservedWord: false
@@ -848,7 +848,7 @@ export const functionFixtures: Fixture[] = [
           }
         ],
         returnType: {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'boolean',
           meta: {
             reservedWord: false
@@ -858,17 +858,17 @@ export const functionFixtures: Fixture[] = [
         parenthesis: true
       },
       typescript: {
-        type: 'FUNCTION',
+        type: 'JsdocTypeFunction',
         parameters: [
           {
-            type: 'KEY_VALUE',
+            type: 'JsdocTypeKeyValue',
             optional: false,
             value: 'new',
             meta: {
               quote: undefined
             },
             right: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'Master',
               meta: {
                 reservedWord: false
@@ -876,14 +876,14 @@ export const functionFixtures: Fixture[] = [
             }
           },
           {
-            type: 'KEY_VALUE',
+            type: 'JsdocTypeKeyValue',
             optional: false,
             value: 'this',
             meta: {
               quote: undefined
             },
             right: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'Everyone',
               meta: {
                 reservedWord: false
@@ -891,7 +891,7 @@ export const functionFixtures: Fixture[] = [
             }
           },
           {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'string',
             meta: {
               reservedWord: false
@@ -901,36 +901,36 @@ export const functionFixtures: Fixture[] = [
             left: {
               left: {
                 value: 'goog',
-                type: 'NAME',
+                type: 'JsdocTypeName',
                 meta: {
                   reservedWord: false
                 }
               },
               right: {
-                type: 'NAME',
+                type: 'JsdocTypeName',
                 value: 'ui',
                 meta: {
                   reservedWord: false
                 }
               },
-              type: 'NAME_PATH',
+              type: 'JsdocTypeNamePath',
               pathType: '.'
             },
             right: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'Menu',
               meta: {
                 reservedWord: false
               }
             },
-            type: 'NAME_PATH',
+            type: 'JsdocTypeNamePath',
             pathType: '.'
           },
           {
-            type: 'GENERIC',
+            type: 'JsdocTypeGeneric',
             elements: [
               {
-                type: 'NAME',
+                type: 'JsdocTypeName',
                 value: 'Object',
                 meta: {
                   reservedWord: false
@@ -938,7 +938,7 @@ export const functionFixtures: Fixture[] = [
               }
             ],
             left: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'Array',
               meta: {
                 reservedWord: false
@@ -950,12 +950,12 @@ export const functionFixtures: Fixture[] = [
             }
           },
           {
-            type: 'VARIADIC',
+            type: 'JsdocTypeVariadic',
             element: {
-              type: 'TUPLE',
+              type: 'JsdocTypeTuple',
               elements: [
                 {
-                  type: 'NAME',
+                  type: 'JsdocTypeName',
                   value: 'string',
                   meta: {
                     reservedWord: false
@@ -970,7 +970,7 @@ export const functionFixtures: Fixture[] = [
           }
         ],
         returnType: {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'boolean',
           meta: {
             reservedWord: false
@@ -996,12 +996,12 @@ export const functionFixtures: Fixture[] = [
     description: 'function with a repeatable param that is not enclosed in brackets',
     input: 'function(...foo)',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [
         {
-          type: 'VARIADIC',
+          type: 'JsdocTypeVariadic',
           element: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'foo',
             meta: {
               reservedWord: false
@@ -1033,22 +1033,22 @@ export const functionFixtures: Fixture[] = [
     input: 'function(): (number|string)',
     stringified: 'function(): (number | string)',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [],
       returnType: {
-        type: 'PARENTHESIS',
+        type: 'JsdocTypeParenthesis',
         element: {
-          type: 'UNION',
+          type: 'JsdocTypeUnion',
           elements: [
             {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'number',
               meta: {
                 reservedWord: false
               }
             },
             {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'string',
               meta: {
                 reservedWord: false
@@ -1076,7 +1076,7 @@ export const functionFixtures: Fixture[] = [
     description: 'function with no parameters and no return value',
     input: 'function()',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [],
       arrow: false,
       parenthesis: true
@@ -1098,12 +1098,12 @@ export const functionFixtures: Fixture[] = [
     input: 'function(...[*])',
     stringified: 'function(...*)',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [
         {
-          type: 'VARIADIC',
+          type: 'JsdocTypeVariadic',
           element: {
-            type: 'ANY'
+            type: 'JsdocTypeAny'
           },
           meta: {
             squareBrackets: true,
@@ -1131,17 +1131,17 @@ export const functionFixtures: Fixture[] = [
     input: 'function(this:Object): (number|string)',
     stringified: 'function(this: Object): (number | string)',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [
         {
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           optional: false,
           value: 'this',
           meta: {
             quote: undefined
           },
           right: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'Object',
             meta: {
               reservedWord: false
@@ -1156,20 +1156,20 @@ export const functionFixtures: Fixture[] = [
               meta: {
                 reservedWord: false
               },
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'number'
             },
             {
               meta: {
                 reservedWord: false
               },
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'string'
             }
           ],
-          type: 'UNION'
+          type: 'JsdocTypeUnion'
         },
-        type: 'PARENTHESIS'
+        type: 'JsdocTypeParenthesis'
       },
       arrow: false,
       parenthesis: true
@@ -1191,10 +1191,10 @@ export const functionFixtures: Fixture[] = [
     input: 'function(this:(Array|Date)): (number|string)',
     stringified: 'function(this: (Array | Date)): (number | string)',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [
         {
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           optional: false,
           value: 'this',
 
@@ -1205,17 +1205,17 @@ export const functionFixtures: Fixture[] = [
           },
           right: {
             element: {
-              type: 'UNION',
+              type: 'JsdocTypeUnion',
               elements: [
                 {
-                  type: 'NAME',
+                  type: 'JsdocTypeName',
                   value: 'Array',
                   meta: {
                     reservedWord: false
                   }
                 },
                 {
-                  type: 'NAME',
+                  type: 'JsdocTypeName',
                   value: 'Date',
                   meta: {
                     reservedWord: false
@@ -1223,24 +1223,24 @@ export const functionFixtures: Fixture[] = [
                 }
               ]
             },
-            type: 'PARENTHESIS'
+            type: 'JsdocTypeParenthesis'
           }
         }
       ],
       returnType: {
-        type: 'PARENTHESIS',
+        type: 'JsdocTypeParenthesis',
         element: {
-          type: 'UNION',
+          type: 'JsdocTypeUnion',
           elements: [
             {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'number',
               meta: {
                 reservedWord: false
               }
             },
             {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'string',
               meta: {
                 reservedWord: false
@@ -1270,17 +1270,17 @@ export const functionFixtures: Fixture[] = [
     stringified: 'function(new: Array, ...*): Array',
     diffExpected: {
       jsdoc: {
-        type: 'FUNCTION',
+        type: 'JsdocTypeFunction',
         parameters: [
           {
-            type: 'KEY_VALUE',
+            type: 'JsdocTypeKeyValue',
             optional: false,
             value: 'new',
             meta: {
               quote: undefined
             },
             right: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'Array',
               meta: {
                 reservedWord: false
@@ -1288,9 +1288,9 @@ export const functionFixtures: Fixture[] = [
             }
           },
           {
-            type: 'VARIADIC',
+            type: 'JsdocTypeVariadic',
             element: {
-              type: 'ANY'
+              type: 'JsdocTypeAny'
             },
             meta: {
               squareBrackets: true,
@@ -1299,7 +1299,7 @@ export const functionFixtures: Fixture[] = [
           }
         ],
         returnType: {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'Array',
           meta: {
             reservedWord: false
@@ -1309,17 +1309,17 @@ export const functionFixtures: Fixture[] = [
         parenthesis: true
       },
       typescript: {
-        type: 'FUNCTION',
+        type: 'JsdocTypeFunction',
         parameters: [
           {
-            type: 'KEY_VALUE',
+            type: 'JsdocTypeKeyValue',
             optional: false,
             value: 'new',
             meta: {
               quote: undefined
             },
             right: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'Array',
               meta: {
                 reservedWord: false
@@ -1327,12 +1327,12 @@ export const functionFixtures: Fixture[] = [
             }
           },
           {
-            type: 'VARIADIC',
+            type: 'JsdocTypeVariadic',
             element: {
-              type: 'TUPLE',
+              type: 'JsdocTypeTuple',
               elements: [
                 {
-                  type: 'ANY'
+                  type: 'JsdocTypeAny'
                 }
               ]
             },
@@ -1343,7 +1343,7 @@ export const functionFixtures: Fixture[] = [
           }
         ],
         returnType: {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'Array',
           meta: {
             reservedWord: false
@@ -1370,17 +1370,17 @@ export const functionFixtures: Fixture[] = [
     input: 'function(new:Boolean, *=): boolean',
     stringified: 'function(new: Boolean, *=): boolean',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [
         {
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           optional: false,
           value: 'new',
           meta: {
             quote: undefined
           },
           right: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'Boolean',
             meta: {
               reservedWord: false
@@ -1388,9 +1388,9 @@ export const functionFixtures: Fixture[] = [
           }
         },
         {
-          type: 'OPTIONAL',
+          type: 'JsdocTypeOptional',
           element: {
-            type: 'ANY'
+            type: 'JsdocTypeAny'
           },
           meta: {
             position: 'SUFFIX'
@@ -1398,7 +1398,7 @@ export const functionFixtures: Fixture[] = [
         }
       ],
       returnType: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'boolean',
         meta: {
           reservedWord: false
@@ -1425,12 +1425,12 @@ export const functionFixtures: Fixture[] = [
     stringified: 'function(...number): boolean',
     diffExpected: {
       jsdoc: {
-        type: 'FUNCTION',
+        type: 'JsdocTypeFunction',
         parameters: [
           {
-            type: 'VARIADIC',
+            type: 'JsdocTypeVariadic',
             element: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'number',
               meta: {
                 reservedWord: false
@@ -1443,7 +1443,7 @@ export const functionFixtures: Fixture[] = [
           }
         ],
         returnType: {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'boolean',
           meta: {
             reservedWord: false
@@ -1453,15 +1453,15 @@ export const functionFixtures: Fixture[] = [
         parenthesis: true
       },
       typescript: {
-        type: 'FUNCTION',
+        type: 'JsdocTypeFunction',
         parameters: [
           {
-            type: 'VARIADIC',
+            type: 'JsdocTypeVariadic',
             element: {
-              type: 'TUPLE',
+              type: 'JsdocTypeTuple',
               elements: [
                 {
-                  type: 'NAME',
+                  type: 'JsdocTypeName',
                   value: 'number',
                   meta: {
                     reservedWord: false
@@ -1476,7 +1476,7 @@ export const functionFixtures: Fixture[] = [
           }
         ],
         returnType: {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'boolean',
           meta: {
             reservedWord: false
@@ -1503,10 +1503,10 @@ export const functionFixtures: Fixture[] = [
     input: 'function(this:Date, number): (boolean|number|string)',
     stringified: 'function(this: Date, number): (boolean | number | string)',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [
         {
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           optional: false,
           value: 'this',
 
@@ -1516,7 +1516,7 @@ export const functionFixtures: Fixture[] = [
 
           },
           right: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'Date',
             meta: {
               reservedWord: false
@@ -1524,7 +1524,7 @@ export const functionFixtures: Fixture[] = [
           }
         },
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'number',
           meta: {
             reservedWord: false
@@ -1532,26 +1532,26 @@ export const functionFixtures: Fixture[] = [
         }
       ],
       returnType: {
-        type: 'PARENTHESIS',
+        type: 'JsdocTypeParenthesis',
         element: {
-          type: 'UNION',
+          type: 'JsdocTypeUnion',
           elements: [
             {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'boolean',
               meta: {
                 reservedWord: false
               }
             },
             {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'number',
               meta: {
                 reservedWord: false
               }
             },
             {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'string',
               meta: {
                 reservedWord: false

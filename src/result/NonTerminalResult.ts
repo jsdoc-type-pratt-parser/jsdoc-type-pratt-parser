@@ -15,7 +15,7 @@ export type NonTerminalResult =
  * and will not have a `value` property.
  */
 export interface KeyValueResult {
-  type: 'KEY_VALUE'
+  type: 'JsdocTypeKeyValue'
   value: string
   right: TerminalResult | undefined
   optional: boolean
@@ -30,7 +30,7 @@ export interface KeyValueResult {
  * the `left` property that will never appear on the latter.
  */
 export interface JsdocObjectKeyValueResult {
-  type: 'KEY_VALUE'
+  type: 'JsdocTypeKeyValue'
   left: TerminalResult
   right: TerminalResult
 }
@@ -40,6 +40,6 @@ export interface JsdocObjectKeyValueResult {
  * Is a {@link NonTerminalResult}.
  */
 export interface NumberResult {
-  type: 'NUMBER'
+  type: 'JsdocTypeNumber'
   value: number
 }

@@ -7,16 +7,16 @@ export const objectsFixtures: Fixture[] = [
     stringified: '{object?: string, key: string}',
     diffExpected: {
       typescript: {
-        type: 'OBJECT',
+        type: 'JsdocTypeObject',
         elements: [
           {
-            type: 'KEY_VALUE',
+            type: 'JsdocTypeKeyValue',
             value: 'object',
             meta: {
               quote: undefined
             },
             right: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'string',
               meta: {
                 reservedWord: false
@@ -25,13 +25,13 @@ export const objectsFixtures: Fixture[] = [
             optional: true
           },
           {
-            type: 'KEY_VALUE',
+            type: 'JsdocTypeKeyValue',
             value: 'key',
             meta: {
               quote: undefined
             },
             right: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'string',
               meta: {
                 reservedWord: false
@@ -42,14 +42,14 @@ export const objectsFixtures: Fixture[] = [
         ]
       },
       jsdoc: {
-        type: 'OBJECT',
+        type: 'JsdocTypeObject',
         elements: [
           {
-            type: 'KEY_VALUE',
+            type: 'JsdocTypeKeyValue',
             left: {
-              type: 'NULLABLE',
+              type: 'JsdocTypeNullable',
               element: {
-                type: 'NAME',
+                type: 'JsdocTypeName',
                 value: 'object',
                 meta: {
                   reservedWord: false
@@ -60,7 +60,7 @@ export const objectsFixtures: Fixture[] = [
               }
             },
             right: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'string',
               meta: {
                 reservedWord: false
@@ -68,13 +68,13 @@ export const objectsFixtures: Fixture[] = [
             }
           },
           {
-            type: 'KEY_VALUE',
+            type: 'JsdocTypeKeyValue',
             value: 'key',
             meta: {
               quote: undefined
             },
             right: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'string',
               meta: {
                 reservedWord: false

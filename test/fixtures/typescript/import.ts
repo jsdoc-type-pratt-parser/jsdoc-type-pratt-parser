@@ -5,9 +5,9 @@ export const importFixtures: Fixture[] = [
     description: 'import "x"',
     input: 'import("x")',
     expected: {
-      type: 'IMPORT',
+      type: 'JsdocTypeImport',
       element: {
-        type: 'STRING_VALUE',
+        type: 'JsdocTypeStringValue',
         value: 'x',
         meta: {
           quote: '"'
@@ -30,9 +30,9 @@ export const importFixtures: Fixture[] = [
     description: 'import "./x"',
     input: 'import("./x")',
     expected: {
-      type: 'IMPORT',
+      type: 'JsdocTypeImport',
       element: {
-        type: 'STRING_VALUE',
+        type: 'JsdocTypeStringValue',
         value: './x',
         meta: {
           quote: '"'
@@ -55,9 +55,9 @@ export const importFixtures: Fixture[] = [
     description: 'import "../x"',
     input: 'import("../x")',
     expected: {
-      type: 'IMPORT',
+      type: 'JsdocTypeImport',
       element: {
-        type: 'STRING_VALUE',
+        type: 'JsdocTypeStringValue',
         value: '../x',
         meta: {
           quote: '"'
@@ -80,11 +80,11 @@ export const importFixtures: Fixture[] = [
     description: 'import a named export',
     input: 'import("x").T',
     expected: {
-      type: 'NAME_PATH',
+      type: 'JsdocTypeNamePath',
       left: {
-        type: 'IMPORT',
+        type: 'JsdocTypeImport',
         element: {
-          type: 'STRING_VALUE',
+          type: 'JsdocTypeStringValue',
           value: 'x',
           meta: {
             quote: '"'
@@ -92,7 +92,7 @@ export const importFixtures: Fixture[] = [
         }
       },
       right: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'T',
         meta: {
           reservedWord: false
@@ -116,13 +116,13 @@ export const importFixtures: Fixture[] = [
     description: 'import 2-level named export',
     input: 'import("x").T.U',
     expected: {
-      type: 'NAME_PATH',
+      type: 'JsdocTypeNamePath',
       left: {
-        type: 'NAME_PATH',
+        type: 'JsdocTypeNamePath',
         left: {
-          type: 'IMPORT',
+          type: 'JsdocTypeImport',
           element: {
-            type: 'STRING_VALUE',
+            type: 'JsdocTypeStringValue',
             value: 'x',
             meta: {
               quote: '"'
@@ -130,7 +130,7 @@ export const importFixtures: Fixture[] = [
           }
         },
         right: {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'T',
           meta: {
             reservedWord: false
@@ -139,7 +139,7 @@ export const importFixtures: Fixture[] = [
         pathType: '.'
       },
       right: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'U',
         meta: {
           reservedWord: false
@@ -164,15 +164,15 @@ export const importFixtures: Fixture[] = [
     input: 'import("x").T.U<V,W>',
     stringified: 'import("x").T.U<V, W>',
     expected: {
-      type: 'GENERIC',
+      type: 'JsdocTypeGeneric',
       left: {
-        type: 'NAME_PATH',
+        type: 'JsdocTypeNamePath',
         left: {
-          type: 'NAME_PATH',
+          type: 'JsdocTypeNamePath',
           left: {
-            type: 'IMPORT',
+            type: 'JsdocTypeImport',
             element: {
-              type: 'STRING_VALUE',
+              type: 'JsdocTypeStringValue',
               value: 'x',
               meta: {
                 quote: '"'
@@ -180,7 +180,7 @@ export const importFixtures: Fixture[] = [
             }
           },
           right: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'T',
             meta: {
               reservedWord: false
@@ -189,7 +189,7 @@ export const importFixtures: Fixture[] = [
           pathType: '.'
         },
         right: {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'U',
           meta: {
             reservedWord: false
@@ -199,14 +199,14 @@ export const importFixtures: Fixture[] = [
       },
       elements: [
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'V',
           meta: {
             reservedWord: false
           }
         },
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'W',
           meta: {
             reservedWord: false

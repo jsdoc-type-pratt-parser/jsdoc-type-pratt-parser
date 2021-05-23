@@ -17,7 +17,7 @@ export class KeyOfParslet implements PrefixParslet {
   parsePrefix (parser: ParserEngine): KeyOfResult {
     parser.consume('keyof')
     return {
-      type: 'KEY_OF',
+      type: 'JsdocTypeKeyof',
       element: assertTerminal(parser.parseType(Precedence.KEY_OF_TYPE_OF))
     }
   }

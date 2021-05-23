@@ -18,7 +18,7 @@ export class SpecialNamePathParslet implements PrefixParslet {
     parser.consume('module') || parser.consume('event') || parser.consume('external')
     if (!parser.consume(':')) {
       return {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: type,
         meta: {
           reservedWord: false
@@ -28,7 +28,7 @@ export class SpecialNamePathParslet implements PrefixParslet {
     let token = parser.getToken()
     if (parser.consume('StringValue')) {
       return {
-        type: 'SPECIAL_NAME_PATH',
+        type: 'JsdocTypeSpecialNamePath',
         value: token.text.slice(1, -1),
         specialType: type,
         meta: {
@@ -43,7 +43,7 @@ export class SpecialNamePathParslet implements PrefixParslet {
         token = parser.getToken()
       }
       return {
-        type: 'SPECIAL_NAME_PATH',
+        type: 'JsdocTypeSpecialNamePath',
         value: result,
         specialType: type,
         meta: {

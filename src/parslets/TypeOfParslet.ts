@@ -17,7 +17,7 @@ export class TypeOfParslet implements PrefixParslet {
   parsePrefix (parser: ParserEngine): TypeOfResult {
     parser.consume('typeof')
     return {
-      type: 'TYPE_OF',
+      type: 'JsdocTypeTypeof',
       element: assertTerminal(parser.parseType(Precedence.KEY_OF_TYPE_OF))
     }
   }

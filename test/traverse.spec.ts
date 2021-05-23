@@ -25,7 +25,7 @@ describe('traverse', () => {
     const onLeave = spy()
 
     const result: TerminalResult = {
-      type: 'NAME',
+      type: 'JsdocTypeName',
       value: 'test',
       meta: {
         reservedWord: false
@@ -44,7 +44,7 @@ describe('traverse', () => {
     const onLeave = spy()
 
     const name: NameResult = {
-      type: 'NAME',
+      type: 'JsdocTypeName',
       value: 'genericName',
       meta: {
         reservedWord: false
@@ -52,7 +52,7 @@ describe('traverse', () => {
     }
 
     const typeA: NameResult = {
-      type: 'NAME',
+      type: 'JsdocTypeName',
       value: 'TypeA',
       meta: {
         reservedWord: false
@@ -60,7 +60,7 @@ describe('traverse', () => {
     }
 
     const typeB: NameResult = {
-      type: 'NAME',
+      type: 'JsdocTypeName',
       value: 'TypeB',
       meta: {
         reservedWord: false
@@ -68,7 +68,7 @@ describe('traverse', () => {
     }
 
     const generic: GenericResult = {
-      type: 'GENERIC',
+      type: 'JsdocTypeGeneric',
       left: name,
       elements: [
         typeA,
@@ -81,7 +81,7 @@ describe('traverse', () => {
     }
 
     const stringVal: StringValueResult = {
-      type: 'STRING_VALUE',
+      type: 'JsdocTypeStringValue',
       value: 'some value',
       meta: {
         quote: '\''
@@ -89,7 +89,7 @@ describe('traverse', () => {
     }
 
     const union: UnionResult = {
-      type: 'UNION',
+      type: 'JsdocTypeUnion',
       elements: [
         generic,
         stringVal

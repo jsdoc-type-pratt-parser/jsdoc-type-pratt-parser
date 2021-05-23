@@ -5,11 +5,11 @@ import { TerminalResult } from '../result/TerminalResult'
 const simplifyRules = identityTransformRules()
 
 // remove parenthesis
-simplifyRules.PARENTHESIS = (result, transform) => transform(result.element)
+simplifyRules.JsdocTypeParenthesis = (result, transform) => transform(result.element)
 
 // remove squares around variadic parameters
-const identityVariadic = simplifyRules.VARIADIC
-simplifyRules.VARIADIC = (result, transform) => {
+const identityVariadic = simplifyRules.JsdocTypeVariadic
+simplifyRules.JsdocTypeVariadic = (result, transform) => {
   result.meta.squareBrackets = false
   return identityVariadic(result, transform)
 }

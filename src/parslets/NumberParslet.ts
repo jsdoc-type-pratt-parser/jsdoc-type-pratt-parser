@@ -17,7 +17,7 @@ export class NumberParslet implements PrefixParslet {
     const token = parser.getToken()
     parser.consume('Number')
     return {
-      type: 'NUMBER',
+      type: 'JsdocTypeNumber',
       value: parseInt(token.text, 10)
     }
   }

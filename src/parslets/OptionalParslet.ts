@@ -18,7 +18,7 @@ export class OptionalParslet implements PrefixParslet, InfixParslet {
   parsePrefix (parser: ParserEngine): TerminalResult {
     parser.consume('=')
     return {
-      type: 'OPTIONAL',
+      type: 'JsdocTypeOptional',
       element: parser.parseType(Precedence.OPTIONAL),
       meta: {
         position: 'PREFIX'
@@ -29,7 +29,7 @@ export class OptionalParslet implements PrefixParslet, InfixParslet {
   parseInfix (parser: ParserEngine, left: IntermediateResult): TerminalResult {
     parser.consume('=')
     return {
-      type: 'OPTIONAL',
+      type: 'JsdocTypeOptional',
       element: assertTerminal(left),
       meta: {
         position: 'SUFFIX'

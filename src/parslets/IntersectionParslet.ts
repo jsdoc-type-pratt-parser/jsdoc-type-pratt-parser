@@ -24,7 +24,7 @@ export class IntersectionParslet implements InfixParslet {
     } while (parser.consume('&'))
 
     return {
-      type: 'INTERSECTION',
+      type: 'JsdocTypeIntersection',
       elements: [assertTerminal(left), ...elements]
     }
   }

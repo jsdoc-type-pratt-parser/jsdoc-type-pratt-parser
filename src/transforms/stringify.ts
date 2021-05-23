@@ -8,11 +8,11 @@ function applyPosition (position: 'PREFIX' | 'SUFFIX', target: string, value: st
 
 export function stringifyRules (): TransformRules<string> {
   return {
-    PARENTHESIS: (result, transform) => `(${result.element !== undefined ? transform(result.element) : ''})`,
+    JsdocTypeParenthesis: (result, transform) => `(${result.element !== undefined ? transform(result.element) : ''})`,
 
-    KEY_OF: (result, transform) => `keyof ${transform(result.element)}`,
+    JsdocTypeKeyof: (result, transform) => `keyof ${transform(result.element)}`,
 
-    FUNCTION: (result, transform) => {
+    JsdocTypeFunction: (result, transform) => {
       if (!result.arrow) {
         let stringified = 'function'
         if (!result.parenthesis) {
@@ -31,25 +31,25 @@ export function stringifyRules (): TransformRules<string> {
       }
     },
 
-    NAME: result => result.value,
+    JsdocTypeName: result => result.value,
 
-    TUPLE: (result, transform) => `[${result.elements.map(transform).join(', ')}]`,
+    JsdocTypeTuple: (result, transform) => `[${result.elements.map(transform).join(', ')}]`,
 
-    VARIADIC: (result, transform) => result.meta.position === 'ONLY_DOTS'
+    JsdocTypeVariadic: (result, transform) => result.meta.position === 'ONLY_DOTS'
       ? '...'
       : applyPosition(result.meta.position, transform(result.element as NonTerminalResult), '...'),
 
-    NAME_PATH: (result, transform) => `${transform(result.left)}${result.pathType}${transform(result.right)}`,
+    JsdocTypeNamePath: (result, transform) => `${transform(result.left)}${result.pathType}${transform(result.right)}`,
 
-    STRING_VALUE: result => `${result.meta.quote}${result.value}${result.meta.quote}`,
+    JsdocTypeStringValue: result => `${result.meta.quote}${result.value}${result.meta.quote}`,
 
-    ANY: () => '*',
+    JsdocTypeAny: () => '*',
 
-    GENERIC: (result, transform) => {
+    JsdocTypeGeneric: (result, transform) => {
       if (result.meta.brackets === '[]') {
         const element = result.elements[0]
         const transformed = transform(element)
-        if (element.type === 'UNION' || element.type === 'INTERSECTION') {
+        if (element.type === 'JsdocTypeUnion' || element.type === 'JsdocTypeIntersection') {
           return `(${transformed})[]`
         } else {
           return `${transformed}[]`
@@ -59,9 +59,9 @@ export function stringifyRules (): TransformRules<string> {
       }
     },
 
-    IMPORT: (result, transform) => `import(${transform(result.element)})`,
+    JsdocTypeImport: (result, transform) => `import(${transform(result.element)})`,
 
-    KEY_VALUE: (result, transform) => {
+    JsdocTypeKeyValue: (result, transform) => {
       if ('value' in result) {
         const left = `${result.meta.quote ?? ''}${result.value}${result.meta.quote ?? ''}${result.optional ? '?' : ''}`
         if (result.right === undefined) {
@@ -74,31 +74,31 @@ export function stringifyRules (): TransformRules<string> {
       }
     },
 
-    SPECIAL_NAME_PATH: result => `${result.specialType}:${result.meta.quote ?? ''}${result.value}${result.meta.quote ?? ''}`,
+    JsdocTypeSpecialNamePath: result => `${result.specialType}:${result.meta.quote ?? ''}${result.value}${result.meta.quote ?? ''}`,
 
-    NOT_NULLABLE: (result, transform) => applyPosition(result.meta.position, transform(result.element), '!'),
+    JsdocTypeNotNullable:(result, transform) => applyPosition(result.meta.position, transform(result.element), '!'),
 
-    NULL: () => 'null',
+    JsdocTypeNull: () => 'null',
 
-    NULLABLE: (result, transform) => applyPosition(result.meta.position, transform(result.element), '?'),
+    JsdocTypeNullable:(result, transform) => applyPosition(result.meta.position, transform(result.element), '?'),
 
-    NUMBER: result => result.value.toString(),
+    JsdocTypeNumber: result => result.value.toString(),
 
-    OBJECT: (result, transform) => `{${result.elements.map(transform).join(', ')}}`,
+    JsdocTypeObject: (result, transform) => `{${result.elements.map(transform).join(', ')}}`,
 
-    OPTIONAL: (result, transform) => applyPosition(result.meta.position, transform(result.element), '='),
+    JsdocTypeOptional: (result, transform) => applyPosition(result.meta.position, transform(result.element), '='),
 
-    SYMBOL: (result, transform) => `${result.value}(${result.element !== undefined ? transform(result.element) : ''})`,
+    JsdocTypeSymbol: (result, transform) => `${result.value}(${result.element !== undefined ? transform(result.element) : ''})`,
 
-    TYPE_OF: (result, transform) => `typeof ${transform(result.element)}`,
+    JsdocTypeTypeof: (result, transform) => `typeof ${transform(result.element)}`,
 
-    UNDEFINED: () => 'undefined',
+    JsdocTypeUndefined: () => 'undefined',
 
-    UNION: (result, transform) => result.elements.map(transform).join(' | '),
+    JsdocTypeUnion: (result, transform) => result.elements.map(transform).join(' | '),
 
-    UNKNOWN: () => '?',
+    JsdocTypeUnknown: () => '?',
 
-    INTERSECTION: (result, transform) => result.elements.map(transform).join(' & ')
+    JsdocTypeIntersection: (result, transform) => result.elements.map(transform).join(' & ')
   }
 }
 

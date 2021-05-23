@@ -6,19 +6,19 @@ export const unionFixtures: Fixture[] = [
     input: '(number|boolean)',
     stringified: '(number | boolean)',
     expected: {
-      type: 'PARENTHESIS',
+      type: 'JsdocTypeParenthesis',
       element: {
-        type: 'UNION',
+        type: 'JsdocTypeUnion',
         elements: [
           {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'number',
             meta: {
               reservedWord: false
             }
           },
           {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'boolean',
             meta: {
               reservedWord: false
@@ -44,21 +44,21 @@ export const unionFixtures: Fixture[] = [
     input: '...(number|boolean)',
     stringified: '...(number | boolean)',
     expected: {
-      type: 'VARIADIC',
+      type: 'JsdocTypeVariadic',
       element: {
-        type: 'PARENTHESIS',
+        type: 'JsdocTypeParenthesis',
         element: {
-          type: 'UNION',
+          type: 'JsdocTypeUnion',
           elements: [
             {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'number',
               meta: {
                 reservedWord: false
               }
             },
             {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'boolean',
               meta: {
                 reservedWord: false
@@ -89,19 +89,19 @@ export const unionFixtures: Fixture[] = [
     input: '(Object|undefined)',
     stringified: '(Object | undefined)',
     expected: {
-      type: 'PARENTHESIS',
+      type: 'JsdocTypeParenthesis',
       element: {
-        type: 'UNION',
+        type: 'JsdocTypeUnion',
         elements: [
           {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'Object',
             meta: {
               reservedWord: false
             }
           },
           {
-            type: 'UNDEFINED'
+            type: 'JsdocTypeUndefined'
           }
         ]
       }
@@ -123,19 +123,19 @@ export const unionFixtures: Fixture[] = [
     input: '(number|Window|goog.ui.Menu)',
     stringified: '(number | Window | goog.ui.Menu)',
     expected: {
-      type: 'PARENTHESIS',
+      type: 'JsdocTypeParenthesis',
       element: {
-        type: 'UNION',
+        type: 'JsdocTypeUnion',
         elements: [
           {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'number',
             meta: {
               reservedWord: false
             }
           },
           {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'Window',
             meta: {
               reservedWord: false
@@ -145,29 +145,29 @@ export const unionFixtures: Fixture[] = [
             left: {
               left: {
                 value: 'goog',
-                type: 'NAME',
+                type: 'JsdocTypeName',
                 meta: {
                   reservedWord: false
                 }
               },
               right: {
-                type: 'NAME',
+                type: 'JsdocTypeName',
                 value: 'ui',
                 meta: {
                   reservedWord: false
                 }
               },
-              type: 'NAME_PATH',
+              type: 'JsdocTypeNamePath',
               pathType: '.'
             },
             right: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'Menu',
               meta: {
                 reservedWord: false
               }
             },
-            type: 'NAME_PATH',
+            type: 'JsdocTypeNamePath',
             pathType: '.'
           }
         ]
@@ -190,21 +190,21 @@ export const unionFixtures: Fixture[] = [
     input: '?(number|boolean)',
     stringified: '?(number | boolean)',
     expected: {
-      type: 'NULLABLE',
+      type: 'JsdocTypeNullable',
       element: {
-        type: 'PARENTHESIS',
+        type: 'JsdocTypeParenthesis',
         element: {
-          type: 'UNION',
+          type: 'JsdocTypeUnion',
           elements: [
             {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'number',
               meta: {
                 reservedWord: false
               }
             },
             {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'boolean',
               meta: {
                 reservedWord: false
@@ -234,21 +234,21 @@ export const unionFixtures: Fixture[] = [
     input: '!(number|boolean)',
     stringified: '!(number | boolean)',
     expected: {
-      type: 'NOT_NULLABLE',
+      type: 'JsdocTypeNotNullable',
       element: {
-        type: 'PARENTHESIS',
+        type: 'JsdocTypeParenthesis',
         element: {
-          type: 'UNION',
+          type: 'JsdocTypeUnion',
           elements: [
             {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'number',
               meta: {
                 reservedWord: false
               }
             },
             {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'boolean',
               meta: {
                 reservedWord: false
@@ -278,21 +278,21 @@ export const unionFixtures: Fixture[] = [
     input: '(number|boolean)=',
     stringified: '(number | boolean)=',
     expected: {
-      type: 'OPTIONAL',
+      type: 'JsdocTypeOptional',
       element: {
-        type: 'PARENTHESIS',
+        type: 'JsdocTypeParenthesis',
         element: {
-          type: 'UNION',
+          type: 'JsdocTypeUnion',
           elements: [
             {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'number',
               meta: {
                 reservedWord: false
               }
             },
             {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'boolean',
               meta: {
                 reservedWord: false
@@ -322,33 +322,33 @@ export const unionFixtures: Fixture[] = [
     input: '(Array|Object.<string, ?>)',
     stringified: '(Array | Object.<string, ?>)',
     expected: {
-      type: 'PARENTHESIS',
+      type: 'JsdocTypeParenthesis',
       element: {
-        type: 'UNION',
+        type: 'JsdocTypeUnion',
         elements: [
           {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'Array',
             meta: {
               reservedWord: false
             }
           },
           {
-            type: 'GENERIC',
+            type: 'JsdocTypeGeneric',
             elements: [
               {
-                type: 'NAME',
+                type: 'JsdocTypeName',
                 value: 'string',
                 meta: {
                   reservedWord: false
                 }
               },
               {
-                type: 'UNKNOWN'
+                type: 'JsdocTypeUnknown'
               }
             ],
             left: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'Object',
               meta: {
                 reservedWord: false
@@ -379,15 +379,15 @@ export const unionFixtures: Fixture[] = [
     input: '(Array.<string>|Object.<string, ?>)',
     stringified: '(Array.<string> | Object.<string, ?>)',
     expected: {
-      type: 'PARENTHESIS',
+      type: 'JsdocTypeParenthesis',
       element: {
-        type: 'UNION',
+        type: 'JsdocTypeUnion',
         elements: [
           {
-            type: 'GENERIC',
+            type: 'JsdocTypeGeneric',
             elements: [
               {
-                type: 'NAME',
+                type: 'JsdocTypeName',
                 value: 'string',
                 meta: {
                   reservedWord: false
@@ -395,7 +395,7 @@ export const unionFixtures: Fixture[] = [
               }
             ],
             left: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'Array',
               meta: {
                 reservedWord: false
@@ -407,21 +407,21 @@ export const unionFixtures: Fixture[] = [
             }
           },
           {
-            type: 'GENERIC',
+            type: 'JsdocTypeGeneric',
             elements: [
               {
-                type: 'NAME',
+                type: 'JsdocTypeName',
                 value: 'string',
                 meta: {
                   reservedWord: false
                 }
               },
               {
-                type: 'UNKNOWN'
+                type: 'JsdocTypeUnknown'
               }
             ],
             left: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'Object',
               meta: {
                 reservedWord: false
@@ -452,22 +452,22 @@ export const unionFixtures: Fixture[] = [
     input: '(Error|function(): Error)',
     stringified: '(Error | function(): Error)',
     expected: {
-      type: 'PARENTHESIS',
+      type: 'JsdocTypeParenthesis',
       element: {
-        type: 'UNION',
+        type: 'JsdocTypeUnion',
         elements: [
           {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'Error',
             meta: {
               reservedWord: false
             }
           },
           {
-            type: 'FUNCTION',
+            type: 'JsdocTypeFunction',
             parameters: [],
             returnType: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'Error',
               meta: {
                 reservedWord: false
@@ -496,17 +496,17 @@ export const unionFixtures: Fixture[] = [
     input: 'number|string',
     stringified: 'number | string',
     expected: {
-      type: 'UNION',
+      type: 'JsdocTypeUnion',
       elements: [
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'number',
           meta: {
             reservedWord: false
           }
         },
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'string',
           meta: {
             reservedWord: false
@@ -531,12 +531,12 @@ export const unionFixtures: Fixture[] = [
     input: '!number|!string',
     stringified: '!number | !string',
     expected: {
-      type: 'UNION',
+      type: 'JsdocTypeUnion',
       elements: [
         {
-          type: 'NOT_NULLABLE',
+          type: 'JsdocTypeNotNullable',
           element: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'number',
             meta: {
               reservedWord: false
@@ -547,9 +547,9 @@ export const unionFixtures: Fixture[] = [
           }
         },
         {
-          type: 'NOT_NULLABLE',
+          type: 'JsdocTypeNotNullable',
           element: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'string',
             meta: {
               reservedWord: false
@@ -578,38 +578,38 @@ export const unionFixtures: Fixture[] = [
     input: '(jQuerySelector|Element|Object|Array.<Element>|jQuery|string|function())=',
     stringified: '(jQuerySelector | Element | Object | Array.<Element> | jQuery | string | function())=',
     expected: {
-      type: 'OPTIONAL',
+      type: 'JsdocTypeOptional',
       element: {
-        type: 'PARENTHESIS',
+        type: 'JsdocTypeParenthesis',
         element: {
-          type: 'UNION',
+          type: 'JsdocTypeUnion',
           elements: [
             {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'jQuerySelector',
               meta: {
                 reservedWord: false
               }
             },
             {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'Element',
               meta: {
                 reservedWord: false
               }
             },
             {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'Object',
               meta: {
                 reservedWord: false
               }
             },
             {
-              type: 'GENERIC',
+              type: 'JsdocTypeGeneric',
               elements: [
                 {
-                  type: 'NAME',
+                  type: 'JsdocTypeName',
                   value: 'Element',
                   meta: {
                     reservedWord: false
@@ -617,7 +617,7 @@ export const unionFixtures: Fixture[] = [
                 }
               ],
               left: {
-                type: 'NAME',
+                type: 'JsdocTypeName',
                 value: 'Array',
                 meta: {
                   reservedWord: false
@@ -629,21 +629,21 @@ export const unionFixtures: Fixture[] = [
               }
             },
             {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'jQuery',
               meta: {
                 reservedWord: false
               }
             },
             {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'string',
               meta: {
                 reservedWord: false
               }
             },
             {
-              type: 'FUNCTION',
+              type: 'JsdocTypeFunction',
               parameters: [],
               arrow: false,
               parenthesis: true
@@ -672,79 +672,79 @@ export const unionFixtures: Fixture[] = [
     input: '(Element|Object|Document|Object.<string, (string|function(!jQuery.event=))>)=',
     stringified: '(Element | Object | Document | Object.<string, (string | function(!jQuery.event=))>)=',
     expected: {
-      type: 'OPTIONAL',
+      type: 'JsdocTypeOptional',
       element: {
-        type: 'PARENTHESIS',
+        type: 'JsdocTypeParenthesis',
         element: {
-          type: 'UNION',
+          type: 'JsdocTypeUnion',
           elements: [
             {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'Element',
               meta: {
                 reservedWord: false
               }
             },
             {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'Object',
               meta: {
                 reservedWord: false
               }
             },
             {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'Document',
               meta: {
                 reservedWord: false
               }
             },
             {
-              type: 'GENERIC',
+              type: 'JsdocTypeGeneric',
               elements: [
                 {
-                  type: 'NAME',
+                  type: 'JsdocTypeName',
                   value: 'string',
                   meta: {
                     reservedWord: false
                   }
                 },
                 {
-                  type: 'PARENTHESIS',
+                  type: 'JsdocTypeParenthesis',
                   element: {
-                    type: 'UNION',
+                    type: 'JsdocTypeUnion',
                     elements: [
                       {
-                        type: 'NAME',
+                        type: 'JsdocTypeName',
                         value: 'string',
                         meta: {
                           reservedWord: false
                         }
                       },
                       {
-                        type: 'FUNCTION',
+                        type: 'JsdocTypeFunction',
                         parameters: [
                           {
-                            type: 'OPTIONAL',
+                            type: 'JsdocTypeOptional',
                             element: {
-                              type: 'NOT_NULLABLE',
+                              type: 'JsdocTypeNotNullable',
                               element: {
                                 left: {
                                   value: 'jQuery',
-                                  type: 'NAME',
+                                  type: 'JsdocTypeName',
                                   meta: {
                                     reservedWord: false
                                   }
                                 },
                                 right: {
-                                  type: 'NAME',
+                                  type: 'JsdocTypeName',
                                   value: 'event',
                                   meta: {
                                     reservedWord: false
                                   }
                                 },
                                 pathType: '.',
-                                type: 'NAME_PATH'
+                                type: 'JsdocTypeNamePath'
                               },
                               meta: {
                                 position: 'PREFIX'
@@ -763,7 +763,7 @@ export const unionFixtures: Fixture[] = [
                 }
               ],
               left: {
-                type: 'NAME',
+                type: 'JsdocTypeName',
                 value: 'Object',
                 meta: {
                   reservedWord: false

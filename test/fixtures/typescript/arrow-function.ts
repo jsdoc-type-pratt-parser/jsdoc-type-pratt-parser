@@ -5,22 +5,22 @@ export const arrowFunctionFixtures: Fixture[] = [
     description: 'arrow with special any type',
     input: '(x: *) => *',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [
         {
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           optional: false,
           value: 'x',
           meta: {
             quote: undefined
           },
           right: {
-            type: 'ANY'
+            type: 'JsdocTypeAny'
           }
         }
       ],
       returnType: {
-        type: 'ANY'
+        type: 'JsdocTypeAny'
       },
       arrow: true,
       parenthesis: true
@@ -41,17 +41,17 @@ export const arrowFunctionFixtures: Fixture[] = [
     description: 'arrow with one parameter and return type',
     input: '(x: number) => string',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [
         {
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           optional: false,
           value: 'x',
           meta: {
             quote: undefined
           },
           right: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'number',
             meta: {
               reservedWord: false
@@ -60,7 +60,7 @@ export const arrowFunctionFixtures: Fixture[] = [
         }
       ],
       returnType: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'string',
         meta: {
           reservedWord: false
@@ -85,17 +85,17 @@ export const arrowFunctionFixtures: Fixture[] = [
     description: 'arrow with multiple parameters and a return type',
     input: '(x: number, y: string, z: Class) => string',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [
         {
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           optional: false,
           value: 'x',
           meta: {
             quote: undefined
           },
           right: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'number',
             meta: {
               reservedWord: false
@@ -103,14 +103,14 @@ export const arrowFunctionFixtures: Fixture[] = [
           }
         },
         {
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           optional: false,
           value: 'y',
           meta: {
             quote: undefined
           },
           right: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'string',
             meta: {
               reservedWord: false
@@ -118,14 +118,14 @@ export const arrowFunctionFixtures: Fixture[] = [
           }
         },
         {
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           optional: false,
           value: 'z',
           meta: {
             quote: undefined
           },
           right: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'Class',
             meta: {
               reservedWord: false
@@ -134,7 +134,7 @@ export const arrowFunctionFixtures: Fixture[] = [
         }
       ],
       returnType: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'string',
         meta: {
           reservedWord: false
@@ -159,10 +159,10 @@ export const arrowFunctionFixtures: Fixture[] = [
     description: 'arrow without parameter and return type',
     input: '() => string',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [],
       returnType: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'string',
         meta: {
           reservedWord: false
@@ -187,13 +187,13 @@ export const arrowFunctionFixtures: Fixture[] = [
     description: 'function with arrow as return type',
     input: 'function(): () => string',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [],
       returnType: {
-        type: 'FUNCTION',
+        type: 'JsdocTypeFunction',
         parameters: [],
         returnType: {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'string',
           meta: {
             reservedWord: false
@@ -221,13 +221,13 @@ export const arrowFunctionFixtures: Fixture[] = [
     description: 'function with arrow as parameter',
     input: 'function(() => string): void',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [
         {
-          type: 'FUNCTION',
+          type: 'JsdocTypeFunction',
           parameters: [],
           returnType: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'string',
             meta: {
               reservedWord: false
@@ -238,7 +238,7 @@ export const arrowFunctionFixtures: Fixture[] = [
         }
       ],
       returnType: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'void',
         meta: {
           reservedWord: true
@@ -264,17 +264,17 @@ export const arrowFunctionFixtures: Fixture[] = [
     input: '( arrow: Function, with: TrailingComma, ) => string',
     stringified: '(arrow: Function, with: TrailingComma) => string',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [
         {
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           optional: false,
           value: 'arrow',
           meta: {
             quote: undefined
           },
           right: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'Function',
             meta: {
               reservedWord: false
@@ -282,14 +282,14 @@ export const arrowFunctionFixtures: Fixture[] = [
           }
         },
         {
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           optional: false,
           value: 'with',
           meta: {
             quote: undefined
           },
           right: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'TrailingComma',
             meta: {
               reservedWord: false
@@ -298,7 +298,7 @@ export const arrowFunctionFixtures: Fixture[] = [
         }
       ],
       returnType: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'string',
         meta: {
           reservedWord: false
@@ -323,9 +323,9 @@ export const arrowFunctionFixtures: Fixture[] = [
     description: 'arrow as generic type',
     input: 'X<() => string>',
     expected: {
-      type: 'GENERIC',
+      type: 'JsdocTypeGeneric',
       left: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'X',
         meta: {
           reservedWord: false
@@ -333,10 +333,10 @@ export const arrowFunctionFixtures: Fixture[] = [
       },
       elements: [
         {
-          type: 'FUNCTION',
+          type: 'JsdocTypeFunction',
           parameters: [],
           returnType: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'string',
             meta: {
               reservedWord: false
@@ -367,12 +367,12 @@ export const arrowFunctionFixtures: Fixture[] = [
     description: 'arrow returning void',
     input: '() => void',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [],
       arrow: true,
       parenthesis: true,
       returnType: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'void',
         meta: {
           reservedWord: true
@@ -395,13 +395,13 @@ export const arrowFunctionFixtures: Fixture[] = [
     description: 'arrow returning arrow',
     input: '() => () => void',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [],
       returnType: {
-        type: 'FUNCTION',
+        type: 'JsdocTypeFunction',
         parameters: [],
         returnType: {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'void',
           meta: {
             reservedWord: true
@@ -429,17 +429,17 @@ export const arrowFunctionFixtures: Fixture[] = [
     description: 'arrow returning arrow with parameters',
     input: '(a: number) => (b: string) => boolean',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [
         {
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           optional: false,
           value: 'a',
           meta: {
             quote: undefined
           },
           right: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'number',
             meta: {
               reservedWord: false
@@ -448,17 +448,17 @@ export const arrowFunctionFixtures: Fixture[] = [
         }
       ],
       returnType: {
-        type: 'FUNCTION',
+        type: 'JsdocTypeFunction',
         parameters: [
           {
-            type: 'KEY_VALUE',
+            type: 'JsdocTypeKeyValue',
             optional: false,
             value: 'b',
             meta: {
               quote: undefined
             },
             right: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'string',
               meta: {
                 reservedWord: false
@@ -467,7 +467,7 @@ export const arrowFunctionFixtures: Fixture[] = [
           }
         ],
         returnType: {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'boolean',
           meta: {
             reservedWord: false
@@ -495,10 +495,10 @@ export const arrowFunctionFixtures: Fixture[] = [
     description: 'arrow with unnamed parameters',
     input: '(number) => void',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'number',
           meta: {
             reservedWord: false
@@ -506,7 +506,7 @@ export const arrowFunctionFixtures: Fixture[] = [
         }
       ],
       returnType: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'void',
         meta: {
           reservedWord: true

@@ -30,7 +30,7 @@ export class NameParslet implements PrefixParslet {
       this.allowedAdditionalTokens.some(type => parser.consume(type))
 
     return {
-      type: 'NAME',
+      type: 'JsdocTypeName',
       value: token.text,
       meta: {
         reservedWord: reservedWords.includes(token.text)

@@ -16,12 +16,12 @@ export class SymbolParslet implements InfixParslet {
   }
 
   parseInfix (parser: ParserEngine, left: IntermediateResult): TerminalResult {
-    if (left.type !== 'NAME') {
+    if (left.type !== 'JsdocTypeName') {
       throw new Error('Symbol expects a name on the left side. (Reacting on \'(\')')
     }
     parser.consume('(')
     const result: SymbolResult = {
-      type: 'SYMBOL',
+      type: 'JsdocTypeSymbol',
       value: left.value
     }
     if (!parser.consume(')')) {

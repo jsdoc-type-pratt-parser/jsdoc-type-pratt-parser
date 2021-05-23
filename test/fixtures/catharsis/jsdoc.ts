@@ -5,7 +5,7 @@ export const jsdocFixtures: Fixture[] = [
     description: 'name expression that starts with the word "function"',
     input: 'functional',
     expected: {
-      type: 'NAME',
+      type: 'JsdocTypeName',
       value: 'functional',
       meta: {
         reservedWord: false
@@ -27,16 +27,16 @@ export const jsdocFixtures: Fixture[] = [
     description: 'name expression with instance scope punctuation',
     input: 'MyClass#myMember',
     expected: {
-      type: 'NAME_PATH',
+      type: 'JsdocTypeNamePath',
       left: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'MyClass',
         meta: {
           reservedWord: false
         }
       },
       right: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'myMember',
         meta: {
           reservedWord: false
@@ -60,16 +60,16 @@ export const jsdocFixtures: Fixture[] = [
     description: 'name expression with inner scope punctuation',
     input: 'MyClass~myMember',
     expected: {
-      type: 'NAME_PATH',
+      type: 'JsdocTypeNamePath',
       left: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'MyClass',
         meta: {
           reservedWord: false
         }
       },
       right: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'myMember',
         meta: {
           reservedWord: false
@@ -93,20 +93,20 @@ export const jsdocFixtures: Fixture[] = [
     description: 'name expression with instance and inner scope punctuation',
     input: 'MyClass#myMember#yourMember~theirMember',
     expected: {
-      type: 'NAME_PATH',
+      type: 'JsdocTypeNamePath',
       left: {
-        type: 'NAME_PATH',
+        type: 'JsdocTypeNamePath',
         left: {
-          type: 'NAME_PATH',
+          type: 'JsdocTypeNamePath',
           left: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'MyClass',
             meta: {
               reservedWord: false
             }
           },
           right: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'myMember',
             meta: {
               reservedWord: false
@@ -115,7 +115,7 @@ export const jsdocFixtures: Fixture[] = [
           pathType: '#'
         },
         right: {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'yourMember',
           meta: {
             reservedWord: false
@@ -124,7 +124,7 @@ export const jsdocFixtures: Fixture[] = [
         pathType: '#'
       },
       right: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'theirMember',
         meta: {
           reservedWord: false
@@ -148,17 +148,17 @@ export const jsdocFixtures: Fixture[] = [
     description: 'name expression for a class within a module',
     input: 'module:foo/bar/baz~Qux',
     expected: {
-      type: 'NAME_PATH',
+      type: 'JsdocTypeNamePath',
       left: {
         value: 'foo/bar/baz',
-        type: 'SPECIAL_NAME_PATH',
+        type: 'JsdocTypeSpecialNamePath',
         specialType: 'module',
         meta: {
           quote: undefined
         }
       },
       right: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         meta: {
           reservedWord: false
         },
@@ -182,17 +182,17 @@ export const jsdocFixtures: Fixture[] = [
     description: 'name expression for a class within a module with hyphens',
     input: 'module:foo-bar/baz~Qux',
     expected: {
-      type: 'NAME_PATH',
+      type: 'JsdocTypeNamePath',
       left: {
         value: 'foo-bar/baz',
-        type: 'SPECIAL_NAME_PATH',
+        type: 'JsdocTypeSpecialNamePath',
         specialType: 'module',
         meta: {
           quote: undefined
         }
       },
       right: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         meta: {
           reservedWord: false
         },
@@ -216,7 +216,7 @@ export const jsdocFixtures: Fixture[] = [
     description: 'name expression containing a reserved word',
     input: 'this',
     expected: {
-      type: 'NAME',
+      type: 'JsdocTypeName',
       value: 'this',
       meta: {
         reservedWord: true
@@ -239,7 +239,7 @@ export const jsdocFixtures: Fixture[] = [
     input: 'MyClass()',
     expected: {
       value: 'MyClass',
-      type: 'SYMBOL'
+      type: 'JsdocTypeSymbol'
     },
     modes: ['jsdoc'],
     catharsis: {
@@ -258,9 +258,9 @@ export const jsdocFixtures: Fixture[] = [
     input: 'MyClass(2)',
     expected: {
       value: 'MyClass',
-      type: 'SYMBOL',
+      type: 'JsdocTypeSymbol',
       element: {
-        type: 'NUMBER',
+        type: 'JsdocTypeNumber',
         value: 2
       }
     },
@@ -281,9 +281,9 @@ export const jsdocFixtures: Fixture[] = [
     input: 'MyClass(23456)',
     expected: {
       value: 'MyClass',
-      type: 'SYMBOL',
+      type: 'JsdocTypeSymbol',
       element: {
-        type: 'NUMBER',
+        type: 'JsdocTypeNumber',
         value: 23456
       }
     },
@@ -304,10 +304,10 @@ export const jsdocFixtures: Fixture[] = [
     input: 'MyClass(a)',
     expected: {
       value: 'MyClass',
-      type: 'SYMBOL',
+      type: 'JsdocTypeSymbol',
       element: {
         value: 'a',
-        type: 'NAME',
+        type: 'JsdocTypeName',
         meta: {
           reservedWord: false
         }
@@ -330,10 +330,10 @@ export const jsdocFixtures: Fixture[] = [
     input: 'MyClass(abcde)',
     expected: {
       value: 'MyClass',
-      type: 'SYMBOL',
+      type: 'JsdocTypeSymbol',
       element: {
         value: 'abcde',
-        type: 'NAME',
+        type: 'JsdocTypeName',
         meta: {
           reservedWord: false
         }
@@ -355,7 +355,7 @@ export const jsdocFixtures: Fixture[] = [
     description: 'name expression enclosed in double quotes',
     input: '"foo.bar.baz"',
     expected: {
-      type: 'STRING_VALUE',
+      type: 'JsdocTypeStringValue',
       value: 'foo.bar.baz',
       meta: {
         quote: '"'
@@ -377,7 +377,7 @@ export const jsdocFixtures: Fixture[] = [
     description: 'name expression enclosed in single quotes',
     input: "'foo.bar.baz'",
     expected: {
-      type: 'STRING_VALUE',
+      type: 'JsdocTypeStringValue',
       value: 'foo.bar.baz',
       meta: {
         quote: '\''
@@ -402,29 +402,29 @@ export const jsdocFixtures: Fixture[] = [
       left: {
         left: {
           value: 'foo',
-          type: 'NAME',
+          type: 'JsdocTypeName',
           meta: {
             reservedWord: false
           }
         },
         right: {
-          type: 'STRING_VALUE',
+          type: 'JsdocTypeStringValue',
           value: 'bar.baz',
           meta: {
             quote: '"'
           }
         },
-        type: 'NAME_PATH',
+        type: 'JsdocTypeNamePath',
         pathType: '.'
       },
       right: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'qux',
         meta: {
           reservedWord: false
         }
       },
-      type: 'NAME_PATH',
+      type: 'JsdocTypeNamePath',
       pathType: '.'
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -446,29 +446,29 @@ export const jsdocFixtures: Fixture[] = [
       left: {
         left: {
           value: 'foo',
-          type: 'NAME',
+          type: 'JsdocTypeName',
           meta: {
             reservedWord: false
           }
         },
         right: {
-          type: 'STRING_VALUE',
+          type: 'JsdocTypeStringValue',
           value: 'bar.baz',
           meta: {
             quote: '\''
           }
         },
-        type: 'NAME_PATH',
+        type: 'JsdocTypeNamePath',
         pathType: '.'
       },
       right: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'qux',
         meta: {
           reservedWord: false
         }
       },
-      type: 'NAME_PATH',
+      type: 'JsdocTypeNamePath',
       pathType: '.'
     },
     modes: ['typescript', 'jsdoc', 'closure'],
@@ -488,12 +488,12 @@ export const jsdocFixtures: Fixture[] = [
     input: 'MyClass(...foo)',
     expected: {
       value: 'MyClass',
-      type: 'SYMBOL',
+      type: 'JsdocTypeSymbol',
       element: {
-        type: 'VARIADIC',
+        type: 'JsdocTypeVariadic',
         element: {
           value: 'foo',
-          type: 'NAME',
+          type: 'JsdocTypeName',
           meta: {
             reservedWord: false
           }
@@ -520,10 +520,10 @@ export const jsdocFixtures: Fixture[] = [
     description: 'type application with no period',
     input: 'Array<string>',
     expected: {
-      type: 'GENERIC',
+      type: 'JsdocTypeGeneric',
       elements: [
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'string',
           meta: {
             reservedWord: false
@@ -531,7 +531,7 @@ export const jsdocFixtures: Fixture[] = [
         }
       ],
       left: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'Array',
         meta: {
           reservedWord: false
@@ -558,10 +558,10 @@ export const jsdocFixtures: Fixture[] = [
     description: 'Jsdoc Toolkit 2-style array notation for an array of strings',
     input: 'string[]',
     expected: {
-      type: 'GENERIC',
+      type: 'JsdocTypeGeneric',
       elements: [
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'string',
           meta: {
             reservedWord: false
@@ -569,7 +569,7 @@ export const jsdocFixtures: Fixture[] = [
         }
       ],
       left: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'Array',
         meta: {
           reservedWord: false
@@ -596,17 +596,17 @@ export const jsdocFixtures: Fixture[] = [
     description: 'Jsdoc Toolkit 2-style array notation for an array of functions',
     input: 'function[]',
     expected: {
-      type: 'GENERIC',
+      type: 'JsdocTypeGeneric',
       elements: [
         {
-          type: 'FUNCTION',
+          type: 'JsdocTypeFunction',
           parameters: [],
           arrow: false,
           parenthesis: false
         }
       ],
       left: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'Array',
         meta: {
           reservedWord: false
@@ -633,13 +633,13 @@ export const jsdocFixtures: Fixture[] = [
     description: 'Jsdoc Toolkit 2-style nested array (two levels)',
     input: 'number[][]',
     expected: {
-      type: 'GENERIC',
+      type: 'JsdocTypeGeneric',
       elements: [
         {
-          type: 'GENERIC',
+          type: 'JsdocTypeGeneric',
           elements: [
             {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'number',
               meta: {
                 reservedWord: false
@@ -647,7 +647,7 @@ export const jsdocFixtures: Fixture[] = [
             }
           ],
           left: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'Array',
             meta: {
               reservedWord: false
@@ -660,7 +660,7 @@ export const jsdocFixtures: Fixture[] = [
         }
       ],
       left: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'Array',
         meta: {
           reservedWord: false
@@ -687,16 +687,16 @@ export const jsdocFixtures: Fixture[] = [
     description: 'Jsdoc Toolkit 2-style nested array (three levels)',
     input: 'number[][][]',
     expected: {
-      type: 'GENERIC',
+      type: 'JsdocTypeGeneric',
       elements: [
         {
-          type: 'GENERIC',
+          type: 'JsdocTypeGeneric',
           elements: [
             {
-              type: 'GENERIC',
+              type: 'JsdocTypeGeneric',
               elements: [
                 {
-                  type: 'NAME',
+                  type: 'JsdocTypeName',
                   value: 'number',
                   meta: {
                     reservedWord: false
@@ -704,7 +704,7 @@ export const jsdocFixtures: Fixture[] = [
                 }
               ],
               left: {
-                type: 'NAME',
+                type: 'JsdocTypeName',
                 value: 'Array',
                 meta: {
                   reservedWord: false
@@ -717,7 +717,7 @@ export const jsdocFixtures: Fixture[] = [
             }
           ],
           left: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'Array',
             meta: {
               reservedWord: false
@@ -730,7 +730,7 @@ export const jsdocFixtures: Fixture[] = [
         }
       ],
       left: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'Array',
         meta: {
           reservedWord: false
@@ -757,15 +757,15 @@ export const jsdocFixtures: Fixture[] = [
     description: 'record type with a property that uses a type application as a key',
     input: '{Array.<string>: number}',
     expected: {
-      type: 'OBJECT',
+      type: 'JsdocTypeObject',
       elements: [
         {
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           left: {
-            type: 'GENERIC',
+            type: 'JsdocTypeGeneric',
             elements: [
               {
-                type: 'NAME',
+                type: 'JsdocTypeName',
                 value: 'string',
                 meta: {
                   reservedWord: false
@@ -773,7 +773,7 @@ export const jsdocFixtures: Fixture[] = [
               }
             ],
             left: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'Array',
               meta: {
                 reservedWord: false
@@ -785,7 +785,7 @@ export const jsdocFixtures: Fixture[] = [
             }
           },
           right: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'number',
             meta: {
               reservedWord: false
@@ -811,31 +811,31 @@ export const jsdocFixtures: Fixture[] = [
     input: '{(number|boolean|string): number}',
     stringified: '{(number | boolean | string): number}',
     expected: {
-      type: 'OBJECT',
+      type: 'JsdocTypeObject',
       elements: [
         {
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           left: {
-            type: 'PARENTHESIS',
+            type: 'JsdocTypeParenthesis',
             element: {
-              type: 'UNION',
+              type: 'JsdocTypeUnion',
               elements: [
                 {
-                  type: 'NAME',
+                  type: 'JsdocTypeName',
                   value: 'number',
                   meta: {
                     reservedWord: false
                   }
                 },
                 {
-                  type: 'NAME',
+                  type: 'JsdocTypeName',
                   value: 'boolean',
                   meta: {
                     reservedWord: false
                   }
                 },
                 {
-                  type: 'NAME',
+                  type: 'JsdocTypeName',
                   value: 'string',
                   meta: {
                     reservedWord: false
@@ -845,7 +845,7 @@ export const jsdocFixtures: Fixture[] = [
             }
           },
           right: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'number',
             meta: {
               reservedWord: false
@@ -871,29 +871,29 @@ export const jsdocFixtures: Fixture[] = [
     input: '{undefinedHTML: (string|undefined)}',
     stringified: '{undefinedHTML: (string | undefined)}',
     expected: {
-      type: 'OBJECT',
+      type: 'JsdocTypeObject',
       elements: [
         {
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           optional: false,
           value: 'undefinedHTML',
           meta: {
             quote: undefined
           },
           right: {
-            type: 'PARENTHESIS',
+            type: 'JsdocTypeParenthesis',
             element: {
-              type: 'UNION',
+              type: 'JsdocTypeUnion',
               elements: [
                 {
-                  type: 'NAME',
+                  type: 'JsdocTypeName',
                   value: 'string',
                   meta: {
                     reservedWord: false
                   }
                 },
                 {
-                  type: 'UNDEFINED'
+                  type: 'JsdocTypeUndefined'
                 }
               ]
             }
@@ -918,17 +918,17 @@ export const jsdocFixtures: Fixture[] = [
     input: '{foo:function()}',
     stringified: '{foo: function()}',
     expected: {
-      type: 'OBJECT',
+      type: 'JsdocTypeObject',
       elements: [
         {
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           optional: false,
           value: 'foo',
           meta: {
             quote: undefined
           },
           right: {
-            type: 'FUNCTION',
+            type: 'JsdocTypeFunction',
             parameters: [],
             arrow: false,
             parenthesis: true
@@ -953,22 +953,22 @@ export const jsdocFixtures: Fixture[] = [
     input: '{foo:function(): void}',
     stringified: '{foo: function(): void}',
     expected: {
-      type: 'OBJECT',
+      type: 'JsdocTypeObject',
       elements: [
         {
-          type: 'KEY_VALUE',
+          type: 'JsdocTypeKeyValue',
           optional: false,
           value: 'foo',
           meta: {
             quote: undefined
           },
           right: {
-            type: 'FUNCTION',
+            type: 'JsdocTypeFunction',
             parameters: [],
             arrow: false,
             parenthesis: true,
             returnType: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'void',
               meta: {
                 reservedWord: true
@@ -994,7 +994,7 @@ export const jsdocFixtures: Fixture[] = [
     description: 'function type with no trailing pathentheses',
     input: 'function',
     expected: {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [],
       arrow: false,
       parenthesis: false
@@ -1016,12 +1016,12 @@ export const jsdocFixtures: Fixture[] = [
     input: 'function(this:my.namespace.Class, my.Class)=',
     stringified: 'function(this: my.namespace.Class, my.Class)=',
     expected: {
-      type: 'OPTIONAL',
+      type: 'JsdocTypeOptional',
       element: {
-        type: 'FUNCTION',
+        type: 'JsdocTypeFunction',
         parameters: [
           {
-            type: 'KEY_VALUE',
+            type: 'JsdocTypeKeyValue',
             optional: false,
             value: 'this',
 
@@ -1034,48 +1034,48 @@ export const jsdocFixtures: Fixture[] = [
               left: {
                 left: {
                   value: 'my',
-                  type: 'NAME',
+                  type: 'JsdocTypeName',
                   meta: {
                     reservedWord: false
                   }
                 },
                 right: {
-                  type: 'NAME',
+                  type: 'JsdocTypeName',
                   value: 'namespace',
                   meta: {
                     reservedWord: false
                   }
                 },
-                type: 'NAME_PATH',
+                type: 'JsdocTypeNamePath',
                 pathType: '.'
               },
               right: {
-                type: 'NAME',
+                type: 'JsdocTypeName',
                 value: 'Class',
                 meta: {
                   reservedWord: false
                 }
               },
-              type: 'NAME_PATH',
+              type: 'JsdocTypeNamePath',
               pathType: '.'
             }
           },
           {
             left: {
               value: 'my',
-              type: 'NAME',
+              type: 'JsdocTypeName',
               meta: {
                 reservedWord: false
               }
             },
             right: {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'Class',
               meta: {
                 reservedWord: false
               }
             },
-            type: 'NAME_PATH',
+            type: 'JsdocTypeNamePath',
             pathType: '.'
           }
         ],
@@ -1103,12 +1103,12 @@ export const jsdocFixtures: Fixture[] = [
     input: '...string|string[]',
     stringified: '...string | string[]',
     expected: {
-      type: 'UNION',
+      type: 'JsdocTypeUnion',
       elements: [
         {
-          type: 'VARIADIC',
+          type: 'JsdocTypeVariadic',
           element: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'string',
             meta: {
               reservedWord: false
@@ -1120,18 +1120,18 @@ export const jsdocFixtures: Fixture[] = [
           }
         },
         {
-          type: 'GENERIC',
+          type: 'JsdocTypeGeneric',
           elements: [
             {
               value: 'string',
-              type: 'NAME',
+              type: 'JsdocTypeName',
               meta: {
                 reservedWord: false
               }
             }
           ],
           left: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'Array',
             meta: {
               reservedWord: false

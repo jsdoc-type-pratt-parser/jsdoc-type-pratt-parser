@@ -27,7 +27,7 @@ export class ObjectParslet implements PrefixParslet {
   parsePrefix (parser: ParserEngine): TerminalResult {
     parser.consume('{')
     const result: ObjectResult = {
-      type: 'OBJECT',
+      type: 'JsdocTypeObject',
       elements: []
     }
 
@@ -36,19 +36,19 @@ export class ObjectParslet implements PrefixParslet {
         let field = parser.parseIntermediateType(Precedence.OBJECT)
 
         let optional = false
-        if (field.type === 'NULLABLE') {
+        if (field.type === 'JsdocTypeNullable') {
           optional = true
           field = field.element
         }
 
-        if (field.type === 'NUMBER' || field.type === 'NAME' || field.type === 'STRING_VALUE') {
+        if (field.type === 'JsdocTypeNumber' || field.type === 'JsdocTypeName' || field.type === 'JsdocTypeStringValue') {
           let quote
-          if (field.type === 'STRING_VALUE') {
+          if (field.type === 'JsdocTypeStringValue') {
             quote = field.meta.quote
           }
 
           result.elements.push({
-            type: 'KEY_VALUE',
+            type: 'JsdocTypeKeyValue',
             value: field.value.toString(),
             right: undefined,
             optional: optional,
@@ -56,7 +56,7 @@ export class ObjectParslet implements PrefixParslet {
               quote
             }
           })
-        } else if (field.type === 'KEY_VALUE') {
+        } else if (field.type === 'JsdocTypeKeyValue') {
           result.elements.push(field)
         } else {
           throw new UnexpectedTypeError(field)

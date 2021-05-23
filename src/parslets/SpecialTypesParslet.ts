@@ -17,25 +17,25 @@ export class SpecialTypesParslet implements PrefixParslet {
   parsePrefix (parser: ParserEngine): TerminalResult {
     if (parser.consume('null')) {
       return {
-        type: 'NULL'
+        type: 'JsdocTypeNull'
       }
     }
 
     if (parser.consume('undefined')) {
       return {
-        type: 'UNDEFINED'
+        type: 'JsdocTypeUndefined'
       }
     }
 
     if (parser.consume('*')) {
       return {
-        type: 'ANY'
+        type: 'JsdocTypeAny'
       }
     }
 
     if (parser.consume('?')) {
       return {
-        type: 'UNKNOWN'
+        type: 'JsdocTypeUnknown'
       }
     }
 

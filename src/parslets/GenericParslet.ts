@@ -29,7 +29,7 @@ export class GenericParslet implements InfixParslet {
     }
 
     return {
-      type: 'GENERIC',
+      type: 'JsdocTypeGeneric',
       left: assertTerminal(left),
       elements: objects,
       meta: {

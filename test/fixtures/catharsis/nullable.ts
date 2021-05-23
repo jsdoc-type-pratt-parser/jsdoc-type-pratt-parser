@@ -5,9 +5,9 @@ export const nullableFixtures: Fixture[] = [
     description: 'nullable number',
     input: '?number',
     expected: {
-      type: 'NULLABLE',
+      type: 'JsdocTypeNullable',
       element: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'number',
         meta: {
           reservedWord: false
@@ -33,9 +33,9 @@ export const nullableFixtures: Fixture[] = [
     description: 'postfix nullable number',
     input: 'number?',
     expected: {
-      type: 'NULLABLE',
+      type: 'JsdocTypeNullable',
       element: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'number',
         meta: {
           reservedWord: false
@@ -61,9 +61,9 @@ export const nullableFixtures: Fixture[] = [
     description: 'non-nullable object',
     input: '!Object',
     expected: {
-      type: 'NOT_NULLABLE',
+      type: 'JsdocTypeNotNullable',
       element: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'Object',
         meta: {
           reservedWord: false
@@ -89,9 +89,9 @@ export const nullableFixtures: Fixture[] = [
     description: 'postfix non-nullable object',
     input: 'Object!',
     expected: {
-      type: 'NOT_NULLABLE',
+      type: 'JsdocTypeNotNullable',
       element: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'Object',
         meta: {
           reservedWord: false
@@ -117,11 +117,11 @@ export const nullableFixtures: Fixture[] = [
     description: 'repeatable nullable number',
     input: '...?number',
     expected: {
-      type: 'VARIADIC',
+      type: 'JsdocTypeVariadic',
       element: {
-        type: 'NULLABLE',
+        type: 'JsdocTypeNullable',
         element: {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'number',
           meta: {
             reservedWord: false
@@ -152,11 +152,11 @@ export const nullableFixtures: Fixture[] = [
     description: 'postfix repeatable nullable number',
     input: '...number?',
     expected: {
-      type: 'VARIADIC',
+      type: 'JsdocTypeVariadic',
       element: {
-        type: 'NULLABLE',
+        type: 'JsdocTypeNullable',
         element: {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'number',
           meta: {
             reservedWord: false
@@ -187,11 +187,11 @@ export const nullableFixtures: Fixture[] = [
     description: 'repeatable non-nullable object',
     input: '...!Object',
     expected: {
-      type: 'VARIADIC',
+      type: 'JsdocTypeVariadic',
       element: {
-        type: 'NOT_NULLABLE',
+        type: 'JsdocTypeNotNullable',
         element: {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'Object',
           meta: {
             reservedWord: false
@@ -222,11 +222,11 @@ export const nullableFixtures: Fixture[] = [
     description: 'postfix repeatable non-nullable object',
     input: '...Object!',
     expected: {
-      type: 'VARIADIC',
+      type: 'JsdocTypeVariadic',
       element: {
-        type: 'NOT_NULLABLE',
+        type: 'JsdocTypeNotNullable',
         element: {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'Object',
           meta: {
             reservedWord: false
@@ -257,11 +257,11 @@ export const nullableFixtures: Fixture[] = [
     description: 'postfix optional nullable number',
     input: 'number=?',
     expected: {
-      type: 'NULLABLE',
+      type: 'JsdocTypeNullable',
       element: {
-        type: 'OPTIONAL',
+        type: 'JsdocTypeOptional',
         element: {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'number',
           meta: {
             reservedWord: false
@@ -291,11 +291,11 @@ export const nullableFixtures: Fixture[] = [
     description: 'postfix nullable optional number',
     input: 'number?=',
     expected: {
-      type: 'OPTIONAL',
+      type: 'JsdocTypeOptional',
       element: {
-        type: 'NULLABLE',
+        type: 'JsdocTypeNullable',
         element: {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'number',
           meta: {
             reservedWord: false
@@ -325,13 +325,13 @@ export const nullableFixtures: Fixture[] = [
     description: 'postfix repeatable nullable optional number',
     input: '...number?=',
     expected: {
-      type: 'VARIADIC',
+      type: 'JsdocTypeVariadic',
       element: {
-        type: 'OPTIONAL',
+        type: 'JsdocTypeOptional',
         element: {
-          type: 'NULLABLE',
+          type: 'JsdocTypeNullable',
           element: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'number',
             meta: {
               reservedWord: false
@@ -366,11 +366,11 @@ export const nullableFixtures: Fixture[] = [
     description: 'postfix optional non-nullable object',
     input: 'Object=!',
     expected: {
-      type: 'NOT_NULLABLE',
+      type: 'JsdocTypeNotNullable',
       element: {
-        type: 'OPTIONAL',
+        type: 'JsdocTypeOptional',
         element: {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'Object',
           meta: {
             reservedWord: false
@@ -400,11 +400,11 @@ export const nullableFixtures: Fixture[] = [
     description: 'postfix non-nullable optional object',
     input: 'Object!=',
     expected: {
-      type: 'OPTIONAL',
+      type: 'JsdocTypeOptional',
       element: {
-        type: 'NOT_NULLABLE',
+        type: 'JsdocTypeNotNullable',
         element: {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'Object',
           meta: {
             reservedWord: false
@@ -434,13 +434,13 @@ export const nullableFixtures: Fixture[] = [
     description: 'postfix repeatable non-nullable optional object',
     input: '...Object!=',
     expected: {
-      type: 'VARIADIC',
+      type: 'JsdocTypeVariadic',
       element: {
-        type: 'OPTIONAL',
+        type: 'JsdocTypeOptional',
         element: {
-          type: 'NOT_NULLABLE',
+          type: 'JsdocTypeNotNullable',
           element: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'Object',
             meta: {
               reservedWord: false

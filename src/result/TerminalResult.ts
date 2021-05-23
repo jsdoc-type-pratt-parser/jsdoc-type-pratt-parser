@@ -32,7 +32,7 @@ export type TerminalResult =
  * `element` is optional.
  */
 export interface OptionalResult<T extends TerminalResult> {
-  type: 'OPTIONAL'
+  type: 'JsdocTypeOptional'
   element: T
   meta: {
     position: 'PREFIX' | 'SUFFIX'
@@ -43,7 +43,7 @@ export interface OptionalResult<T extends TerminalResult> {
  * `element` is nullable.
  */
 export interface NullableResult<T extends TerminalResult> {
-  type: 'NULLABLE'
+  type: 'JsdocTypeNullable'
   element: T
   meta: {
     position: 'PREFIX' | 'SUFFIX'
@@ -54,7 +54,7 @@ export interface NullableResult<T extends TerminalResult> {
  * `element` is not nullable.
  */
 export interface NotNullableResult<T extends TerminalResult> {
-  type: 'NOT_NULLABLE'
+  type: 'JsdocTypeNotNullable'
   element: T
   meta: {
     position: 'PREFIX' | 'SUFFIX'
@@ -65,7 +65,7 @@ export interface NotNullableResult<T extends TerminalResult> {
  * `element` is a rest parameter or a spreaded value.
  */
 export interface VariadicResult<T extends TerminalResult> {
-  type: 'VARIADIC'
+  type: 'JsdocTypeVariadic'
   element?: T
   meta: {
     position: 'PREFIX' | 'SUFFIX' | 'ONLY_DOTS'
@@ -77,7 +77,7 @@ export interface VariadicResult<T extends TerminalResult> {
  * Is a type name.
  */
 export interface NameResult {
-  type: 'NAME'
+  type: 'JsdocTypeName'
   value: string
   meta: {
     reservedWord: boolean
@@ -88,7 +88,7 @@ export interface NameResult {
  * Is a type union of `elements`.
  */
 export interface UnionResult {
-  type: 'UNION'
+  type: 'JsdocTypeUnion'
   elements: TerminalResult[]
 }
 
@@ -99,7 +99,7 @@ export interface UnionResult {
  * `brackets`.
  */
 export interface GenericResult {
-  type: 'GENERIC'
+  type: 'JsdocTypeGeneric'
   left: TerminalResult
   elements: TerminalResult[]
   meta: {
@@ -112,7 +112,7 @@ export interface GenericResult {
  * A string value as a type.
  */
 export interface StringValueResult {
-  type: 'STRING_VALUE'
+  type: 'JsdocTypeStringValue'
   value: string
   meta: {
     quote: '\'' | '"'
@@ -123,28 +123,28 @@ export interface StringValueResult {
  * Is `null`.
  */
 export interface NullResult {
-  type: 'NULL'
+  type: 'JsdocTypeNull'
 }
 
 /**
  * Is `undefined`.
  */
 export interface UndefinedResult {
-  type: 'UNDEFINED'
+  type: 'JsdocTypeUndefined'
 }
 
 /**
  * An any result that is represented by `*`.
  */
 export interface AnyResult {
-  type: 'ANY'
+  type: 'JsdocTypeAny'
 }
 
 /**
  * An unknown result that is represented by `?`.
  */
 export interface UnknownResult {
-  type: 'UNKNOWN'
+  type: 'JsdocTypeUnknown'
 }
 
 /**
@@ -154,7 +154,7 @@ export interface UnknownResult {
  * kind of function without specified parameters or return type.
  */
 export interface FunctionResult {
-  type: 'FUNCTION'
+  type: 'JsdocTypeFunction'
   parameters: Array<TerminalResult | KeyValueResult>
   returnType?: TerminalResult
   arrow: boolean
@@ -167,7 +167,7 @@ export interface FunctionResult {
  * {@link NumberResult} without a key.
  */
 export interface ObjectResult {
-  type: 'OBJECT'
+  type: 'JsdocTypeObject'
   elements: Array<KeyValueResult | JsdocObjectKeyValueResult>
 }
 
@@ -175,7 +175,7 @@ export interface ObjectResult {
  * A module. Often this is a `left` type of a {@link NamePathResult}.
  */
 export interface SpecialNamePath<Type = 'module' | 'event' | 'external'> {
-  type: 'SPECIAL_NAME_PATH'
+  type: 'JsdocTypeSpecialNamePath'
   value: string
   specialType: Type
   meta: {
@@ -187,7 +187,7 @@ export interface SpecialNamePath<Type = 'module' | 'event' | 'external'> {
  * A name path. This can be a property path separated by `.` or an inner or static member (`~`, `#`).
  */
 export interface NamePathResult {
-  type: 'NAME_PATH'
+  type: 'JsdocTypeNamePath'
   left: TerminalResult
   right: NameResult | NumberResult | StringValueResult | SpecialNamePath<'event'>
   pathType: '~' | '#' | '.'
@@ -197,7 +197,7 @@ export interface NamePathResult {
  * A symbol.
  */
 export interface SymbolResult {
-  type: 'SYMBOL'
+  type: 'JsdocTypeSymbol'
   value: string
   element?: NumberResult | NameResult | VariadicResult<NameResult>
 }
@@ -206,7 +206,7 @@ export interface SymbolResult {
  * A typeof. The `element` normally should be a name.
  */
 export interface TypeOfResult {
-  type: 'TYPE_OF'
+  type: 'JsdocTypeTypeof'
   element: TerminalResult
 }
 
@@ -214,7 +214,7 @@ export interface TypeOfResult {
  * A keyof. The `element` normally should be a name.
  */
 export interface KeyOfResult {
-  type: 'KEY_OF'
+  type: 'JsdocTypeKeyof'
   element: TerminalResult
 }
 
@@ -223,7 +223,7 @@ export interface KeyOfResult {
  * {@link NamePathResult}.
  */
 export interface ImportResult {
-  type: 'IMPORT'
+  type: 'JsdocTypeImport'
   element: StringValueResult
 }
 
@@ -231,7 +231,7 @@ export interface ImportResult {
  * A tuple containing multiple `elements`.
  */
 export interface TupleResult {
-  type: 'TUPLE'
+  type: 'JsdocTypeTuple'
   elements: TerminalResult[]
 }
 
@@ -239,7 +239,7 @@ export interface TupleResult {
  * An `element` that is enclosed in parenthesis. Often {@link UnionResult}s.
  */
 export interface ParenthesisResult {
-  type: 'PARENTHESIS'
+  type: 'JsdocTypeParenthesis'
   element: TerminalResult
 }
 
@@ -247,6 +247,6 @@ export interface ParenthesisResult {
  * An intersection.
  */
 export interface IntersectionResult {
-  type: 'INTERSECTION'
+  type: 'JsdocTypeIntersection'
   elements: TerminalResult[]
 }

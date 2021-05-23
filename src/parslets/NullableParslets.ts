@@ -19,7 +19,7 @@ export class NullablePrefixParslet implements PrefixParslet {
   parsePrefix (parser: ParserEngine): TerminalResult {
     parser.consume('?')
     return {
-      type: 'NULLABLE',
+      type: 'JsdocTypeNullable',
       element: parser.parseType(Precedence.NULLABLE),
       meta: {
         position: 'PREFIX'
@@ -40,7 +40,7 @@ export class NullableInfixParslet implements InfixParslet {
   parseInfix (parser: ParserEngine, left: IntermediateResult): TerminalResult {
     parser.consume('?')
     return {
-      type: 'NULLABLE',
+      type: 'JsdocTypeNullable',
       element: assertTerminal(left),
       meta: {
         position: 'SUFFIX'

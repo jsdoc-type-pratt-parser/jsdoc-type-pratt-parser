@@ -24,7 +24,7 @@ export class UnionParslet implements InfixParslet {
     } while (parser.consume('|'))
 
     return {
-      type: 'UNION',
+      type: 'JsdocTypeUnion',
       elements: [assertTerminal(left), ...elements]
     }
   }

@@ -27,7 +27,7 @@ export class TupleParslet implements PrefixParslet {
   parsePrefix (parser: ParserEngine): TupleResult {
     parser.consume('[')
     const result: TupleResult = {
-      type: 'TUPLE',
+      type: 'JsdocTypeTuple',
       elements: []
     }
 
@@ -46,7 +46,7 @@ export class TupleParslet implements PrefixParslet {
       throw new Error('Unterminated \'[\'')
     }
 
-    if (!this.allowQuestionMark && result.elements.some(e => e.type === 'UNKNOWN')) {
+    if (!this.allowQuestionMark && result.elements.some(e => e.type === 'JsdocTypeUnknown')) {
       throw new Error('Question mark in tuple not allowed')
     }
 

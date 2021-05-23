@@ -5,7 +5,7 @@ export const tupleFixtures: Fixture[] = [
     description: 'Empty tuple',
     input: '[]',
     expected: {
-      type: 'TUPLE',
+      type: 'JsdocTypeTuple',
       elements: []
     },
     modes: ['typescript'],
@@ -24,10 +24,10 @@ export const tupleFixtures: Fixture[] = [
     description: 'Tuple with one element',
     input: '[x]',
     expected: {
-      type: 'TUPLE',
+      type: 'JsdocTypeTuple',
       elements: [
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'x',
           meta: {
             reservedWord: false
@@ -51,31 +51,31 @@ export const tupleFixtures: Fixture[] = [
     description: 'Tuple with 4 elements',
     input: '[it, needs, to, be]',
     expected: {
-      type: 'TUPLE',
+      type: 'JsdocTypeTuple',
       elements: [
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'it',
           meta: {
             reservedWord: false
           }
         },
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'needs',
           meta: {
             reservedWord: false
           }
         },
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'to',
           meta: {
             reservedWord: false
           }
         },
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'be',
           meta: {
             reservedWord: false
@@ -100,24 +100,24 @@ export const tupleFixtures: Fixture[] = [
     input: '[ tuple, with, spaces ]',
     stringified: '[tuple, with, spaces]',
     expected: {
-      type: 'TUPLE',
+      type: 'JsdocTypeTuple',
       elements: [
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'tuple',
           meta: {
             reservedWord: false
           }
         },
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'with',
           meta: {
             reservedWord: true
           }
         },
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'spaces',
           meta: {
             reservedWord: false
@@ -142,31 +142,31 @@ export const tupleFixtures: Fixture[] = [
     input: '[ tuple, with, trailing, comma, ]',
     stringified: '[tuple, with, trailing, comma]',
     expected: {
-      type: 'TUPLE',
+      type: 'JsdocTypeTuple',
       elements: [
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'tuple',
           meta: {
             reservedWord: false
           }
         },
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'with',
           meta: {
             reservedWord: true
           }
         },
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'trailing',
           meta: {
             reservedWord: false
           }
         },
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'comma',
           meta: {
             reservedWord: false
@@ -190,9 +190,9 @@ export const tupleFixtures: Fixture[] = [
     description: 'Array of empty tuples',
     input: '[][]',
     expected: {
-      type: 'GENERIC',
+      type: 'JsdocTypeGeneric',
       left: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'Array',
         meta: {
           reservedWord: false
@@ -200,7 +200,7 @@ export const tupleFixtures: Fixture[] = [
       },
       elements: [
         {
-          type: 'TUPLE',
+          type: 'JsdocTypeTuple',
           elements: []
         }
       ],
@@ -225,9 +225,9 @@ export const tupleFixtures: Fixture[] = [
     description: 'Array of non empty tuples',
     input: '[tuple, array][]',
     expected: {
-      type: 'GENERIC',
+      type: 'JsdocTypeGeneric',
       left: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'Array',
         meta: {
           reservedWord: false
@@ -235,17 +235,17 @@ export const tupleFixtures: Fixture[] = [
       },
       elements: [
         {
-          type: 'TUPLE',
+          type: 'JsdocTypeTuple',
           elements: [
             {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'tuple',
               meta: {
                 reservedWord: false
               }
             },
             {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'array',
               meta: {
                 reservedWord: false
@@ -275,26 +275,26 @@ export const tupleFixtures: Fixture[] = [
     description: 'Tuple with typeof',
     input: '[tuple, with, typeof foo]',
     expected: {
-      type: 'TUPLE',
+      type: 'JsdocTypeTuple',
       elements: [
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'tuple',
           meta: {
             reservedWord: false
           }
         },
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'with',
           meta: {
             reservedWord: true
           }
         },
         {
-          type: 'TYPE_OF',
+          type: 'JsdocTypeTypeof',
           element: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'foo',
             meta: {
               reservedWord: false
@@ -319,26 +319,26 @@ export const tupleFixtures: Fixture[] = [
     description: 'Tuple with keyof',
     input: '[tuple, with, keyof foo]',
     expected: {
-      type: 'TUPLE',
+      type: 'JsdocTypeTuple',
       elements: [
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'tuple',
           meta: {
             reservedWord: false
           }
         },
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'with',
           meta: {
             reservedWord: true
           }
         },
         {
-          type: 'KEY_OF',
+          type: 'JsdocTypeKeyof',
           element: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'foo',
             meta: {
               reservedWord: false
@@ -364,26 +364,26 @@ export const tupleFixtures: Fixture[] = [
     input: '[ tuple, with, typeof foo, and, keyof foo]',
     stringified: '[tuple, with, typeof foo, and, keyof foo]',
     expected: {
-      type: 'TUPLE',
+      type: 'JsdocTypeTuple',
       elements: [
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'tuple',
           meta: {
             reservedWord: false
           }
         },
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'with',
           meta: {
             reservedWord: true
           }
         },
         {
-          type: 'TYPE_OF',
+          type: 'JsdocTypeTypeof',
           element: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'foo',
             meta: {
               reservedWord: false
@@ -391,16 +391,16 @@ export const tupleFixtures: Fixture[] = [
           }
         },
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'and',
           meta: {
             reservedWord: false
           }
         },
         {
-          type: 'KEY_OF',
+          type: 'JsdocTypeKeyof',
           element: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'foo',
             meta: {
               reservedWord: false
@@ -425,26 +425,26 @@ export const tupleFixtures: Fixture[] = [
     description: 'Tuple with spreaded tuple',
     input: '[variadic, arguments, ...tuple]',
     expected: {
-      type: 'TUPLE',
+      type: 'JsdocTypeTuple',
       elements: [
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'variadic',
           meta: {
             reservedWord: false
           }
         },
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'arguments',
           meta: {
             reservedWord: false
           }
         },
         {
-          type: 'VARIADIC',
+          type: 'JsdocTypeVariadic',
           element: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'tuple',
             meta: {
               reservedWord: false
@@ -474,26 +474,26 @@ export const tupleFixtures: Fixture[] = [
     input: '[ tuple, with, typeof foo, and, ...rest ]',
     stringified: '[tuple, with, typeof foo, and, ...rest]',
     expected: {
-      type: 'TUPLE',
+      type: 'JsdocTypeTuple',
       elements: [
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'tuple',
           meta: {
             reservedWord: false
           }
         },
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'with',
           meta: {
             reservedWord: true
           }
         },
         {
-          type: 'TYPE_OF',
+          type: 'JsdocTypeTypeof',
           element: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'foo',
             meta: {
               reservedWord: false
@@ -501,16 +501,16 @@ export const tupleFixtures: Fixture[] = [
           }
         },
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'and',
           meta: {
             reservedWord: false
           }
         },
         {
-          type: 'VARIADIC',
+          type: 'JsdocTypeVariadic',
           element: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'rest',
             meta: {
               reservedWord: false
@@ -540,26 +540,26 @@ export const tupleFixtures: Fixture[] = [
     input: '[ tuple, with, keyof foo, and, ...rest ]',
     stringified: '[tuple, with, keyof foo, and, ...rest]',
     expected: {
-      type: 'TUPLE',
+      type: 'JsdocTypeTuple',
       elements: [
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'tuple',
           meta: {
             reservedWord: false
           }
         },
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'with',
           meta: {
             reservedWord: true
           }
         },
         {
-          type: 'KEY_OF',
+          type: 'JsdocTypeKeyof',
           element: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'foo',
             meta: {
               reservedWord: false
@@ -567,16 +567,16 @@ export const tupleFixtures: Fixture[] = [
           }
         },
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'and',
           meta: {
             reservedWord: false
           }
         },
         {
-          type: 'VARIADIC',
+          type: 'JsdocTypeVariadic',
           element: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'rest',
             meta: {
               reservedWord: false
@@ -606,26 +606,26 @@ export const tupleFixtures: Fixture[] = [
     input: '[ tuple, with, typeof foo, keyof foo, and, ...rest ]',
     stringified: '[tuple, with, typeof foo, keyof foo, and, ...rest]',
     expected: {
-      type: 'TUPLE',
+      type: 'JsdocTypeTuple',
       elements: [
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'tuple',
           meta: {
             reservedWord: false
           }
         },
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'with',
           meta: {
             reservedWord: true
           }
         },
         {
-          type: 'TYPE_OF',
+          type: 'JsdocTypeTypeof',
           element: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'foo',
             meta: {
               reservedWord: false
@@ -633,9 +633,9 @@ export const tupleFixtures: Fixture[] = [
           }
         },
         {
-          type: 'KEY_OF',
+          type: 'JsdocTypeKeyof',
           element: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'foo',
             meta: {
               reservedWord: false
@@ -643,16 +643,16 @@ export const tupleFixtures: Fixture[] = [
           }
         },
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'and',
           meta: {
             reservedWord: false
           }
         },
         {
-          type: 'VARIADIC',
+          type: 'JsdocTypeVariadic',
           element: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'rest',
             meta: {
               reservedWord: false

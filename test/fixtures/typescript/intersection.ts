@@ -5,17 +5,17 @@ export const intersectionFixtures: Fixture[] = [
     description: 'intersection of 2 types',
     input: 'A & B',
     expected: {
-      type: 'INTERSECTION',
+      type: 'JsdocTypeIntersection',
       elements: [
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'A',
           meta: {
             reservedWord: false
           }
         },
         {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'B',
           meta: {
             reservedWord: false
@@ -39,21 +39,21 @@ export const intersectionFixtures: Fixture[] = [
     description: 'nullable intersection',
     input: '(A & B)?',
     expected: {
-      type: 'NULLABLE',
+      type: 'JsdocTypeNullable',
       element: {
-        type: 'PARENTHESIS',
+        type: 'JsdocTypeParenthesis',
         element: {
-          type: 'INTERSECTION',
+          type: 'JsdocTypeIntersection',
           elements: [
             {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'A',
               meta: {
                 reservedWord: false
               }
             },
             {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'B',
               meta: {
                 reservedWord: false
@@ -82,13 +82,13 @@ export const intersectionFixtures: Fixture[] = [
     description: 'intersection of a function and generic',
     input: 'function(): void & A<B, C>',
     expected: {
-      type: 'INTERSECTION',
+      type: 'JsdocTypeIntersection',
       elements: [
         {
-          type: 'FUNCTION',
+          type: 'JsdocTypeFunction',
           parameters: [],
           returnType: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'void',
             meta: {
               reservedWord: true
@@ -98,9 +98,9 @@ export const intersectionFixtures: Fixture[] = [
           parenthesis: true
         },
         {
-          type: 'GENERIC',
+          type: 'JsdocTypeGeneric',
           left: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'A',
             meta: {
               reservedWord: false
@@ -108,14 +108,14 @@ export const intersectionFixtures: Fixture[] = [
           },
           elements: [
             {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'B',
               meta: {
                 reservedWord: false
               }
             },
             {
-              type: 'NAME',
+              type: 'JsdocTypeName',
               value: 'C',
               meta: {
                 reservedWord: false
@@ -145,22 +145,22 @@ export const intersectionFixtures: Fixture[] = [
     description: 'intersection of an union and an arrow',
     input: '(A | B) & (a: string) => void',
     expected: {
-      type: 'INTERSECTION',
+      type: 'JsdocTypeIntersection',
       elements: [
         {
-          type: 'PARENTHESIS',
+          type: 'JsdocTypeParenthesis',
           element: {
-            type: 'UNION',
+            type: 'JsdocTypeUnion',
             elements: [
               {
-                type: 'NAME',
+                type: 'JsdocTypeName',
                 value: 'A',
                 meta: {
                   reservedWord: false
                 }
               },
               {
-                type: 'NAME',
+                type: 'JsdocTypeName',
                 value: 'B',
                 meta: {
                   reservedWord: false
@@ -170,19 +170,19 @@ export const intersectionFixtures: Fixture[] = [
           }
         },
         {
-          type: 'FUNCTION',
+          type: 'JsdocTypeFunction',
           arrow: true,
           parenthesis: true,
           parameters: [
             {
-              type: 'KEY_VALUE',
+              type: 'JsdocTypeKeyValue',
               optional: false,
               value: 'a',
               meta: {
                 quote: undefined
               },
               right: {
-                type: 'NAME',
+                type: 'JsdocTypeName',
                 value: 'string',
                 meta: {
                   reservedWord: false
@@ -191,7 +191,7 @@ export const intersectionFixtures: Fixture[] = [
             }
           ],
           returnType: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'void',
             meta: {
               reservedWord: true

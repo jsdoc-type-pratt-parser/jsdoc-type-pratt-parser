@@ -7,7 +7,7 @@ describe('basics', () => {
   it('should parse names', () => {
     const typeString = 'sometype'
     const expected: TerminalResult = {
-      type: 'NAME',
+      type: 'JsdocTypeName',
       value: 'sometype',
       meta: {
         reservedWord: false
@@ -20,12 +20,12 @@ describe('basics', () => {
   it('should parse a complex expression', () => {
     const typeString = 'Array<(AType|OtherType)>|\'test\'|undefined'
     const expected: TerminalResult = {
-      type: 'UNION',
+      type: 'JsdocTypeUnion',
       elements: [
         {
-          type: 'GENERIC',
+          type: 'JsdocTypeGeneric',
           left: {
-            type: 'NAME',
+            type: 'JsdocTypeName',
             value: 'Array',
             meta: {
               reservedWord: false
@@ -33,19 +33,19 @@ describe('basics', () => {
           },
           elements: [
             {
-              type: 'PARENTHESIS',
+              type: 'JsdocTypeParenthesis',
               element: {
-                type: 'UNION',
+                type: 'JsdocTypeUnion',
                 elements: [
                   {
-                    type: 'NAME',
+                    type: 'JsdocTypeName',
                     value: 'AType',
                     meta: {
                       reservedWord: false
                     }
                   },
                   {
-                    type: 'NAME',
+                    type: 'JsdocTypeName',
                     value: 'OtherType',
                     meta: {
                       reservedWord: false
@@ -61,14 +61,14 @@ describe('basics', () => {
           }
         },
         {
-          type: 'STRING_VALUE',
+          type: 'JsdocTypeStringValue',
           value: 'test',
           meta: {
             quote: '\''
           }
         },
         {
-          type: 'UNDEFINED'
+          type: 'JsdocTypeUndefined'
         }
       ]
     }

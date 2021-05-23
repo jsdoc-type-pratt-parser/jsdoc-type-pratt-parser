@@ -36,7 +36,7 @@ export class VariadicParslet implements PrefixParslet, InfixParslet {
 
     if (value !== undefined) {
       return {
-        type: 'VARIADIC',
+        type: 'JsdocTypeVariadic',
         element: assertTerminal(value),
         meta: {
           position: 'PREFIX',
@@ -45,7 +45,7 @@ export class VariadicParslet implements PrefixParslet, InfixParslet {
       }
     } else {
       return {
-        type: 'VARIADIC',
+        type: 'JsdocTypeVariadic',
         meta: {
           position: 'ONLY_DOTS',
           squareBrackets: false
@@ -57,7 +57,7 @@ export class VariadicParslet implements PrefixParslet, InfixParslet {
   parseInfix (parser: ParserEngine, left: IntermediateResult): TerminalResult {
     parser.consume('...')
     return {
-      type: 'VARIADIC',
+      type: 'JsdocTypeVariadic',
       element: assertTerminal(left),
       meta: {
         position: 'SUFFIX',

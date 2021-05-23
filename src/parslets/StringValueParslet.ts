@@ -17,7 +17,7 @@ export class StringValueParslet implements PrefixParslet {
     const token = parser.getToken()
     parser.consume('StringValue')
     return {
-      type: 'STRING_VALUE',
+      type: 'JsdocTypeStringValue',
       value: token.text.slice(1, -1),
       meta: {
         quote: token.text[0] as '\'' | '"'

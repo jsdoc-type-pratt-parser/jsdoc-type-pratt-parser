@@ -19,9 +19,9 @@ export class ArrayBracketsParslet implements InfixParslet {
     parser.consume('[')
     parser.consume(']')
     return {
-      type: 'GENERIC',
+      type: 'JsdocTypeGeneric',
       left: {
-        type: 'NAME',
+        type: 'JsdocTypeName',
         value: 'Array',
         meta: {
           reservedWord: false

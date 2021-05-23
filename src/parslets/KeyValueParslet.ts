@@ -32,21 +32,21 @@ export class KeyValueParslet implements InfixParslet {
   parseInfix (parser: ParserEngine, left: IntermediateResult): KeyValueResult | JsdocObjectKeyValueResult {
     let optional = false
 
-    if (this.allowOptional && left.type === 'NULLABLE') {
+    if (this.allowOptional && left.type === 'JsdocTypeNullable') {
       optional = true
       left = left.element
     }
 
-    if (left.type === 'NUMBER' || left.type === 'NAME' || left.type === 'STRING_VALUE') {
+    if (left.type === 'JsdocTypeNumber' || left.type === 'JsdocTypeName' || left.type === 'JsdocTypeStringValue') {
       parser.consume(':')
 
       let quote
-      if (left.type === 'STRING_VALUE') {
+      if (left.type === 'JsdocTypeStringValue') {
         quote = left.meta.quote
       }
 
       return {
-        type: 'KEY_VALUE',
+        type: 'JsdocTypeKeyValue',
         value: left.value.toString(),
         right: parser.parseType(Precedence.KEY_VALUE),
         optional: optional,
@@ -62,7 +62,7 @@ export class KeyValueParslet implements InfixParslet {
       parser.consume(':')
 
       return {
-        type: 'KEY_VALUE',
+        type: 'JsdocTypeKeyValue',
         left: assertTerminal(left),
         right: parser.parseType(Precedence.KEY_VALUE)
       }

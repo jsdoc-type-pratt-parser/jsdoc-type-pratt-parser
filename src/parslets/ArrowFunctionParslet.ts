@@ -24,7 +24,7 @@ export class ArrowFunctionWithoutParametersParslet implements PrefixParslet {
     }
 
     return {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: [],
       arrow: true,
       parenthesis: hasParenthesis,
@@ -46,7 +46,7 @@ export class ArrowFunctionWithParametersParslet extends BaseFunctionParslet impl
     parser.consume('=>')
 
     return {
-      type: 'FUNCTION',
+      type: 'JsdocTypeFunction',
       parameters: this.getParameters(left).map(assertKeyValueOrName),
       arrow: true,
       parenthesis: true,

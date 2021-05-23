@@ -18,7 +18,7 @@ export class NotNullableParslet implements PrefixParslet, InfixParslet {
   parsePrefix (parser: ParserEngine): TerminalResult {
     parser.consume('!')
     return {
-      type: 'NOT_NULLABLE',
+      type: 'JsdocTypeNotNullable',
       element: parser.parseType(Precedence.NULLABLE),
       meta: {
         position: 'PREFIX'
@@ -29,7 +29,7 @@ export class NotNullableParslet implements PrefixParslet, InfixParslet {
   parseInfix (parser: ParserEngine, left: IntermediateResult): TerminalResult {
     parser.consume('!')
     return {
-      type: 'NOT_NULLABLE',
+      type: 'JsdocTypeNotNullable',
       element: assertTerminal(left),
       meta: {
         position: 'SUFFIX'

@@ -5,7 +5,7 @@ export const eventExternalFixtures: Fixture[] = [
     description: 'event',
     input: 'event:some_event',
     expected: {
-      type: 'SPECIAL_NAME_PATH',
+      type: 'JsdocTypeSpecialNamePath',
       specialType: 'event',
       value: 'some_event',
       meta: {
@@ -28,7 +28,7 @@ export const eventExternalFixtures: Fixture[] = [
     description: 'event with quotes',
     input: 'event:\'some-event\'',
     expected: {
-      type: 'SPECIAL_NAME_PATH',
+      type: 'JsdocTypeSpecialNamePath',
       specialType: 'event',
       value: 'some-event',
       meta: {
@@ -51,7 +51,7 @@ export const eventExternalFixtures: Fixture[] = [
     description: 'external',
     input: 'external:some-external',
     expected: {
-      type: 'SPECIAL_NAME_PATH',
+      type: 'JsdocTypeSpecialNamePath',
       specialType: 'external',
       value: 'some-external',
       meta: {
@@ -74,9 +74,9 @@ export const eventExternalFixtures: Fixture[] = [
     description: 'event in module',
     input: 'module:some-module.event:some-event',
     expected: {
-      type: 'NAME_PATH',
+      type: 'JsdocTypeNamePath',
       left: {
-        type: 'SPECIAL_NAME_PATH',
+        type: 'JsdocTypeSpecialNamePath',
         specialType: 'module',
         value: 'some-module',
         meta: {
@@ -84,7 +84,7 @@ export const eventExternalFixtures: Fixture[] = [
         }
       },
       right: {
-        type: 'SPECIAL_NAME_PATH',
+        type: 'JsdocTypeSpecialNamePath',
         specialType: 'event',
         value: 'some-event',
         meta: {
@@ -109,11 +109,11 @@ export const eventExternalFixtures: Fixture[] = [
     description: 'event in static property of module',
     input: 'module:some-module#some-where.event:some-event',
     expected: {
-      type: 'NAME_PATH',
+      type: 'JsdocTypeNamePath',
       left: {
-        type: 'NAME_PATH',
+        type: 'JsdocTypeNamePath',
         left: {
-          type: 'SPECIAL_NAME_PATH',
+          type: 'JsdocTypeSpecialNamePath',
           specialType: 'module',
           value: 'some-module',
           meta: {
@@ -121,7 +121,7 @@ export const eventExternalFixtures: Fixture[] = [
           }
         },
         right: {
-          type: 'NAME',
+          type: 'JsdocTypeName',
           value: 'some-where',
           meta: {
             reservedWord: false
@@ -130,7 +130,7 @@ export const eventExternalFixtures: Fixture[] = [
         pathType: '#'
       },
       right: {
-        type: 'SPECIAL_NAME_PATH',
+        type: 'JsdocTypeSpecialNamePath',
         specialType: 'event',
         value: 'some-event',
         meta: {

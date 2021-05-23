@@ -41,13 +41,13 @@ export class NamePathParslet implements InfixParslet {
       next = this.stringValueParslet.parsePrefix(parser)
     } else {
       next = parser.parseIntermediateType(Precedence.NAME_PATH)
-      if (next.type !== 'NAME' && next.type !== 'NUMBER' && !(next.type === 'SPECIAL_NAME_PATH' && next.specialType === 'event')) {
+      if (next.type !== 'JsdocTypeName' && next.type !== 'JsdocTypeNumber' && !(next.type === 'JsdocTypeSpecialNamePath' && next.specialType === 'event')) {
         throw new UnexpectedTypeError(next)
       }
     }
 
     return {
-      type: 'NAME_PATH',
+      type: 'JsdocTypeNamePath',
       left: assertTerminal(left),
       right: next as NameResult | NumberResult | SpecialNamePath<'event'>,
       pathType: type
