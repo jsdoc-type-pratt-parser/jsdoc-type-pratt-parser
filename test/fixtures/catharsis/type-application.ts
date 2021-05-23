@@ -194,12 +194,10 @@ export const genericFixtures: Fixture[] = [
                     elements: [
                       {
                         type: 'KEY_VALUE',
-                        left: {
-                          type: 'NAME',
-                          value: 'myKey',
-                          meta: {
-                            reservedWord: false
-                          }
+                        optional: false,
+                        value: 'myKey',
+                        meta: {
+                          quote: undefined
                         },
                         right: {
                           type: 'NAME',
@@ -251,12 +249,10 @@ export const genericFixtures: Fixture[] = [
                 parameters: [
                   {
                     type: 'KEY_VALUE',
-                    left: {
-                      type: 'NAME',
-                      value: 'new',
-                      meta: {
-                        reservedWord: true
-                      }
+                    optional: false,
+                    value: 'new',
+                    meta: {
+                      quote: undefined
                     },
                     right: {
                       type: 'NAME',
@@ -315,10 +311,12 @@ export const genericFixtures: Fixture[] = [
           type: 'OBJECT',
           elements: [
             {
-              type: 'NAME',
+              type: 'KEY_VALUE',
               value: 'length',
+              right: undefined,
+              optional: false,
               meta: {
-                reservedWord: false
+                quote: undefined
               }
             }
           ]

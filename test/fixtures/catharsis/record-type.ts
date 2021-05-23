@@ -28,12 +28,10 @@ export const recordFixtures: Fixture[] = [
       elements: [
         {
           type: 'KEY_VALUE',
-          left: {
-            type: 'NAME',
-            value: 'myNum',
-            meta: {
-              reservedWord: false
-            }
+          optional: false,
+          value: 'myNum',
+          meta: {
+            quote: undefined
           },
           right: {
             type: 'NAME',
@@ -67,12 +65,10 @@ export const recordFixtures: Fixture[] = [
         elements: [
           {
             type: 'KEY_VALUE',
-            left: {
-              type: 'NAME',
-              value: 'myNum',
-              meta: {
-                reservedWord: false
-              }
+            optional: false,
+            value: 'myNum',
+            meta: {
+              quote: undefined
             },
             right: {
               type: 'NAME',
@@ -111,12 +107,10 @@ export const recordFixtures: Fixture[] = [
         elements: [
           {
             type: 'KEY_VALUE',
-            left: {
-              type: 'NAME',
-              value: 'myNum',
-              meta: {
-                reservedWord: false
-              }
+            optional: false,
+            value: 'myNum',
+            meta: {
+              quote: undefined
             },
             right: {
               type: 'NAME',
@@ -154,12 +148,10 @@ export const recordFixtures: Fixture[] = [
         elements: [
           {
             type: 'KEY_VALUE',
-            left: {
-              type: 'NAME',
-              value: 'myNum',
-              meta: {
-                reservedWord: false
-              }
+            optional: false,
+            value: 'myNum',
+            meta: {
+              quote: undefined
             },
             right: {
               type: 'NAME',
@@ -197,12 +189,10 @@ export const recordFixtures: Fixture[] = [
         elements: [
           {
             type: 'KEY_VALUE',
-            left: {
-              type: 'NAME',
-              value: 'myNum',
-              meta: {
-                reservedWord: false
-              }
+            optional: false,
+            value: 'myNum',
+            meta: {
+              quote: undefined
             },
             right: {
               type: 'NAME',
@@ -238,12 +228,10 @@ export const recordFixtures: Fixture[] = [
       elements: [
         {
           type: 'KEY_VALUE',
-          left: {
-            type: 'NAME',
-            value: 'myNum',
-            meta: {
-              reservedWord: false
-            }
+          optional: false,
+          value: 'myNum',
+          meta: {
+            quote: undefined
           },
           right: {
             type: 'NAME',
@@ -254,10 +242,12 @@ export const recordFixtures: Fixture[] = [
           }
         },
         {
-          type: 'NAME',
+          type: 'KEY_VALUE',
           value: 'myObject',
+          right: undefined,
+          optional: false,
           meta: {
-            reservedWord: false
+            quote: undefined
           }
         }
       ]
@@ -282,12 +272,10 @@ export const recordFixtures: Fixture[] = [
       elements: [
         {
           type: 'KEY_VALUE',
-          left: {
-            type: 'NAME',
-            value: 'myArray',
-            meta: {
-              reservedWord: false
-            }
+          optional: false,
+          value: 'myArray',
+          meta: {
+            quote: undefined
           },
           right: {
             type: 'GENERIC',
@@ -336,12 +324,10 @@ export const recordFixtures: Fixture[] = [
       elements: [
         {
           type: 'KEY_VALUE',
-          left: {
-            type: 'NAME',
-            value: 'myKey',
-            meta: {
-              reservedWord: false
-            }
+          optional: false,
+          value: 'myKey',
+          meta: {
+            quote: undefined
           },
           right: {
             type: 'PARENTHESIS',
@@ -395,12 +381,10 @@ export const recordFixtures: Fixture[] = [
       elements: [
         {
           type: 'KEY_VALUE',
-          left: {
-            type: 'NAME',
-            value: 'continue',
-            meta: {
-              reservedWord: true
-            }
+          optional: false,
+          value: 'continue',
+          meta: {
+            quote: undefined
           },
           right: {
             type: 'NAME',
@@ -432,12 +416,10 @@ export const recordFixtures: Fixture[] = [
       elements: [
         {
           type: 'KEY_VALUE',
-          left: {
-            type: 'NAME',
-            value: 'class',
-            meta: {
-              reservedWord: true
-            }
+          optional: false,
+          value: 'class',
+          meta: {
+            quote: undefined
           },
           right: {
             type: 'NAME',
@@ -469,12 +451,10 @@ export const recordFixtures: Fixture[] = [
       elements: [
         {
           type: 'KEY_VALUE',
-          left: {
-            type: 'NAME',
-            value: 'true',
-            meta: {
-              reservedWord: true
-            }
+          optional: false,
+          value: 'true',
+          meta: {
+            quote: undefined
           },
           right: {
             type: 'NAME',
@@ -506,9 +486,10 @@ export const recordFixtures: Fixture[] = [
       elements: [
         {
           type: 'KEY_VALUE',
-          left: {
-            type: 'NUMBER',
-            value: 0
+          optional: false,
+          value: '0',
+          meta: {
+            quote: undefined
           },
           right: {
             type: 'NAME',

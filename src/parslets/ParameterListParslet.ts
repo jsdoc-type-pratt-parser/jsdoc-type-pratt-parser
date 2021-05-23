@@ -3,7 +3,7 @@ import { TokenType } from '../lexer/Token'
 import { IntermediateResult, ParameterList, ParserEngine } from '../ParserEngine'
 import { KeyValueResult, ParseResult } from '../ParseResult'
 import { Precedence } from '../Precedence'
-import { assertNamedKeyValueOrTerminal } from '../assertTypes'
+import { assertKeyValueOrTerminal } from '../assertTypes'
 import { NoParsletFoundError } from '../errors'
 
 interface ParameterListParsletOptions {
@@ -27,13 +27,13 @@ export class ParameterListParslet implements InfixParslet {
 
   parseInfix (parser: ParserEngine, left: IntermediateResult): ParameterList {
     const elements: Array<ParseResult|KeyValueResult> = [
-      assertNamedKeyValueOrTerminal(left)
+      assertKeyValueOrTerminal(left)
     ]
     parser.consume(',')
     do {
       try {
         const next = parser.parseIntermediateType(Precedence.PARAMETER_LIST)
-        elements.push(assertNamedKeyValueOrTerminal(next))
+        elements.push(assertKeyValueOrTerminal(next))
       } catch (e) {
         if (this.allowTrailingComma && e instanceof NoParsletFoundError) {
           break

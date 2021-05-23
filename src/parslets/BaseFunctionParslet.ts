@@ -1,5 +1,5 @@
 import { KeyValueResult, NonTerminalResult, ParseResult } from '../ParseResult'
-import { assertNamedKeyValueOrTerminal } from '../assertTypes'
+import { assertKeyValueOrTerminal } from '../assertTypes'
 import { IntermediateResult } from '../ParserEngine'
 import { UnexpectedTypeError } from '../errors'
 
@@ -14,7 +14,7 @@ export class BaseFunctionParslet {
       throw new UnexpectedTypeError(value)
     }
 
-    return parameters.map(p => assertNamedKeyValueOrTerminal(p))
+    return parameters.map(p => assertKeyValueOrTerminal(p))
   }
 
   protected getNamedParameters (value: IntermediateResult): KeyValueResult[] {

@@ -2,6 +2,45 @@ import { ParseResult } from '../ParseResult'
 import { extractSpecialParams, notAvailableTransform, transform, TransformRules } from './transform'
 import { assertTerminal } from '../assertTypes'
 
+export const reservedWords = [
+  'null',
+  'true',
+  'false',
+  'break',
+  'case',
+  'catch',
+  'class',
+  'const',
+  'continue',
+  'debugger',
+  'default',
+  'delete',
+  'do',
+  'else',
+  'export',
+  'extends',
+  'finally',
+  'for',
+  'function',
+  'if',
+  'import',
+  'in',
+  'instanceof',
+  'new',
+  'return',
+  'super',
+  'switch',
+  'this',
+  'throw',
+  'try',
+  'typeof',
+  'var',
+  'void',
+  'while',
+  'with',
+  'yield'
+]
+
 interface ModifiableResult {
   optional?: boolean
   nullable?: boolean
@@ -72,6 +111,17 @@ export type CatharsisRecordResult = ModifiableResult & {
   fields: CatharsisFieldResult[]
 }
 
+function makeName (value: string): CatharsisNameResult {
+  const result: CatharsisNameResult = {
+    type: 'NameExpression',
+    name: value
+  }
+  if (reservedWords.includes(value)) {
+    result.reservedWord = true
+  }
+  return result
+}
+
 const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
   OPTIONAL: (result, transform) => {
     const transformed = transform(result.element)
@@ -108,10 +158,7 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
     type: 'NullLiteral'
   }),
 
-  STRING_VALUE: result => ({
-    type: 'NameExpression',
-    name: `${result.meta.quote}${result.value}${result.meta.quote}`
-  }),
+  STRING_VALUE: result => makeName(`${result.meta.quote}${result.value}${result.meta.quote}`),
 
   UNDEFINED: () => ({
     type: 'UndefinedLiteral'
@@ -152,27 +199,12 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
 
   SPECIAL_NAME_PATH: result => {
     const quote = result.meta.quote ?? ''
-    return {
-      type: 'NameExpression',
-      name: result.specialType + ':' + quote + result.value + quote
-    }
+    return makeName(result.specialType + ':' + quote + result.value + quote)
   },
 
-  NAME: result => {
-    const transformed: CatharsisNameResult = {
-      type: 'NameExpression',
-      name: result.value
-    }
-    if (result.meta.reservedWord) {
-      transformed.reservedWord = true
-    }
-    return transformed
-  },
+  NAME: result => makeName(result.value),
 
-  NUMBER: result => ({
-    type: 'NameExpression',
-    name: result.value.toString()
-  }),
+  NUMBER: result => makeName(result.value.toString()),
 
   OBJECT: (result, transform) => {
     const transformed: CatharsisRecordResult = {
@@ -180,7 +212,7 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
       fields: []
     }
     for (const field of result.elements) {
-      if (field.type !== 'KEY_VALUE') {
+      if (field.type !== 'KEY_VALUE' && field.type !== 'JSDOC_OBJECT_KEY_VALUE') {
         transformed.fields.push({
           type: 'FieldType',
           key: transform(field),
@@ -201,18 +233,15 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
 
   KEY_VALUE: (result, transform) => ({
     type: 'FieldType',
-    key: transform(result.left),
-    value: transform(result.right)
+    key: makeName(`${result.meta.quote ?? ''}${result.value}${result.meta.quote ?? ''}`),
+    value: result.right === undefined ? undefined : transform(result.right)
   }),
 
   NAME_PATH: (result, transform) => {
     const leftResult = transform(result.left) as CatharsisNameResult
     const rightResult = transform(result.right) as CatharsisNameResult
 
-    return {
-      type: 'NameExpression',
-      name: `${leftResult.name}${result.pathType}${rightResult.name}`
-    }
+    return makeName(`${leftResult.name}${result.pathType}${rightResult.name}`)
   },
 
   SYMBOL: result => {
@@ -240,13 +269,16 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
       value += '...'
     }
 
-    return {
-      type: 'NameExpression',
-      name: `${result.value}(${value})`
-    }
+    return makeName(`${result.value}(${value})`)
   },
 
   PARENTHESIS: (result, transform) => transform(assertTerminal(result.element)),
+
+  JSDOC_OBJECT_KEY_VALUE: (result, transform) => ({
+    type: 'FieldType',
+    key: transform(result.left),
+    value: transform(result.right)
+  }),
 
   IMPORT: notAvailableTransform,
   KEY_OF: notAvailableTransform,

@@ -7,6 +7,7 @@ import { keyofFixtures } from './fixtures/typescript/keyof'
 import { importFixtures } from './fixtures/typescript/import'
 import { arrowFunctionFixtures } from './fixtures/typescript/arrow-function'
 import { intersectionFixtures } from './fixtures/typescript/intersection'
+import { objectsFixtures } from './fixtures/typescript/objects'
 
 describe('TypeScript TypeOf', () => {
   for (const fixture of typeOfFixtures) {
@@ -40,6 +41,12 @@ describe('TypeScript tuples', () => {
 
 describe('TypeScript intersection', () => {
   for (const fixture of intersectionFixtures) {
+    testFixture(fixture)
+  }
+})
+
+describe('TypeScript objects', () => {
+  for (const fixture of objectsFixtures) {
     testFixture(fixture)
   }
 })

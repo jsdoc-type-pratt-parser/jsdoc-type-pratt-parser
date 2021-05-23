@@ -13,7 +13,7 @@ This project is a parser for jsdoc types. It is heavily inspired by the existing
 Live Demo
 ---------
 
-Simple live demo can be found at: https://simonseyock.github.io/jsdoc-type-pratt-parser/
+A simple live demo to test expressions can be found at: https://simonseyock.github.io/jsdoc-type-pratt-parser/
 
 Getting started
 ---------------
@@ -21,7 +21,6 @@ Getting started
 ```
 npm install jsdoc-type-pratt-parser@alpha
 ```
-
 
 ```js
 import { parse } from 'jsdoc-type-pratt-parser'

@@ -33,10 +33,10 @@ export function extractSpecialParams (source: FunctionResult): SpecialFunctionPa
   }
 
   for (const param of source.parameters) {
-    if (param.type === 'KEY_VALUE' && param.left.type === 'NAME') {
-      if (param.left.value === 'this') {
+    if (param.type === 'KEY_VALUE' && param.meta.quote === undefined) {
+      if (param.value === 'this') {
         result.this = param.right
-      } else if (param.left.value === 'new') {
+      } else if (param.value === 'new') {
         result.new = param.right
       } else {
         result.params.push(param)

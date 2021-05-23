@@ -6,28 +6,22 @@ export function assertTerminal (result?: IntermediateResult): ParseResult {
   if (result === undefined) {
     throw new Error('Unexpected undefined')
   }
-  if (result.type === 'KEY_VALUE' || result.type === 'NUMBER' || result.type === 'PARAMETER_LIST') {
+  if (result.type === 'KEY_VALUE' || result.type === 'NUMBER' || result.type === 'PARAMETER_LIST' || result.type === 'JSDOC_OBJECT_KEY_VALUE') {
     throw new UnexpectedTypeError(result)
   }
   return result
 }
 
-export function assertNamedKeyValueOrTerminal (result: IntermediateResult): KeyValueResult | ParseResult {
+export function assertKeyValueOrTerminal (result: IntermediateResult): KeyValueResult | ParseResult {
   if (result.type === 'KEY_VALUE') {
-    if (result.left.type !== 'NAME') {
-      throw new UnexpectedTypeError(result)
-    }
-    return result as KeyValueResult
+    return result
   }
   return assertTerminal(result)
 }
 
-export function assertNamedKeyValueOrName (result: IntermediateResult): KeyValueResult | NameResult {
+export function assertKeyValueOrName (result: IntermediateResult): KeyValueResult | NameResult {
   if (result.type === 'KEY_VALUE') {
-    if (result.left.type !== 'NAME') {
-      throw new UnexpectedTypeError(result)
-    }
-    return result as KeyValueResult
+    return result
   } else if (result.type !== 'NAME') {
     throw new UnexpectedTypeError(result)
   }

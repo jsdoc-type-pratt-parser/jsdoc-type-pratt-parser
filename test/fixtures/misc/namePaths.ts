@@ -1,4 +1,4 @@
-import { Fixture } from './Fixture'
+import { Fixture } from '../Fixture'
 
 export const eventExternalFixtures: Fixture[] = [
   {

@@ -4,7 +4,7 @@ import { Precedence } from '../Precedence'
 import { IntermediateResult, ParserEngine } from '../ParserEngine'
 import { FunctionResult } from '../ParseResult'
 import { BaseFunctionParslet } from './BaseFunctionParslet'
-import { assertNamedKeyValueOrName } from '../assertTypes'
+import { assertKeyValueOrName } from '../assertTypes'
 
 export class ArrowFunctionWithoutParametersParslet implements PrefixParslet {
   accepts (type: TokenType, next: TokenType): boolean {
@@ -46,7 +46,7 @@ export class ArrowFunctionWithParametersParslet extends BaseFunctionParslet impl
 
     return {
       type: 'FUNCTION',
-      parameters: this.getParameters(left).map(assertNamedKeyValueOrName),
+      parameters: this.getParameters(left).map(assertKeyValueOrName),
       arrow: true,
       parenthesis: true,
       returnType: parser.parseType(Precedence.ALL)
