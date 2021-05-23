@@ -1,3 +1,27 @@
+# [1.0.0-alpha.22](https://github.com/simonseyock/jsdoc-type-pratt-parser/compare/v1.0.0-alpha.21...v1.0.0-alpha.22) (2021-05-23)
+
+
+### Features
+
+* make types eslint friendly ([497cd59](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/497cd59f2b87c460a46c6c97b2ae496ca6a19b5f))
+* meta brackets change ([4bbc137](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/4bbc137ed0ac057007d4e94664a7b35c6a13c2b6))
+* meta position change ([f85ce88](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/f85ce8867e32b3bfb0ecbb9c26dbdece7210ebbb))
+* meta quotes changed ([3faf6c1](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/3faf6c11e67ed1fcf4343c3e79d39805d6d5eb79))
+* path type change ([7601ce5](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/7601ce5bb2899e273cf686b2b37083328a8eadde))
+* remove reservedWord meta ([d73d64d](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/d73d64d1040980a0c2cdaa625057d4a62f0d5651))
+* use `KEY_VALUE` for typed record entries ([80fd550](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/80fd550ec95ba4ae1e1d08f908146d89d8fcc9ea))
+
+
+### BREAKING CHANGES
+
+* Names no longer have the meta property `reservedWord`
+* `pathType` property uses `'instance'`, `'inner'` and `'property'` now
+* `brackets` property uses `'square'` and `'angle'` now
+* position property is lowercase. example: `'suffix'`
+* For meta properties use 'single' and 'double' instead of '\'' and '"'
+* All types are now prefixed with `JsdocType` and are made CamelCase
+* `JSDOC_OBJECT_KEY_VALUE` is now `KEY_VALUE`.
+
 # [1.0.0-alpha.21](https://github.com/simonseyock/jsdoc-type-pratt-parser/compare/v1.0.0-alpha.20...v1.0.0-alpha.21) (2021-05-23)
 
 
