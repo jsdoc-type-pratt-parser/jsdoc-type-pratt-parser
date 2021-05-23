@@ -42,7 +42,7 @@ export const jsdocFixtures: Fixture[] = [
           reservedWord: false
         }
       },
-      pathType: '#'
+      pathType: 'instance'
     },
     modes: ['jsdoc'],
     catharsis: {
@@ -75,7 +75,7 @@ export const jsdocFixtures: Fixture[] = [
           reservedWord: false
         }
       },
-      pathType: '~'
+      pathType: 'inner'
     },
     modes: ['jsdoc'],
     catharsis: {
@@ -112,7 +112,7 @@ export const jsdocFixtures: Fixture[] = [
               reservedWord: false
             }
           },
-          pathType: '#'
+          pathType: 'instance'
         },
         right: {
           type: 'JsdocTypeName',
@@ -121,7 +121,7 @@ export const jsdocFixtures: Fixture[] = [
             reservedWord: false
           }
         },
-        pathType: '#'
+        pathType: 'instance'
       },
       right: {
         type: 'JsdocTypeName',
@@ -130,7 +130,7 @@ export const jsdocFixtures: Fixture[] = [
           reservedWord: false
         }
       },
-      pathType: '~'
+      pathType: 'inner'
     },
     modes: ['jsdoc'],
     catharsis: {
@@ -164,7 +164,7 @@ export const jsdocFixtures: Fixture[] = [
         },
         value: 'Qux'
       },
-      pathType: '~'
+      pathType: 'inner'
     },
     modes: ['jsdoc'],
     catharsis: {
@@ -198,7 +198,7 @@ export const jsdocFixtures: Fixture[] = [
         },
         value: 'Qux'
       },
-      pathType: '~'
+      pathType: 'inner'
     },
     modes: ['jsdoc'],
     catharsis: {
@@ -415,7 +415,7 @@ export const jsdocFixtures: Fixture[] = [
           }
         },
         type: 'JsdocTypeNamePath',
-        pathType: '.'
+        pathType: 'property'
       },
       right: {
         type: 'JsdocTypeName',
@@ -425,7 +425,7 @@ export const jsdocFixtures: Fixture[] = [
         }
       },
       type: 'JsdocTypeNamePath',
-      pathType: '.'
+      pathType: 'property'
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -459,7 +459,7 @@ export const jsdocFixtures: Fixture[] = [
           }
         },
         type: 'JsdocTypeNamePath',
-        pathType: '.'
+        pathType: 'property'
       },
       right: {
         type: 'JsdocTypeName',
@@ -469,7 +469,7 @@ export const jsdocFixtures: Fixture[] = [
         }
       },
       type: 'JsdocTypeNamePath',
-      pathType: '.'
+      pathType: 'property'
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -1047,7 +1047,7 @@ export const jsdocFixtures: Fixture[] = [
                   }
                 },
                 type: 'JsdocTypeNamePath',
-                pathType: '.'
+                pathType: 'property'
               },
               right: {
                 type: 'JsdocTypeName',
@@ -1057,7 +1057,7 @@ export const jsdocFixtures: Fixture[] = [
                 }
               },
               type: 'JsdocTypeNamePath',
-              pathType: '.'
+              pathType: 'property'
             }
           },
           {
@@ -1076,7 +1076,7 @@ export const jsdocFixtures: Fixture[] = [
               }
             },
             type: 'JsdocTypeNamePath',
-            pathType: '.'
+            pathType: 'property'
           }
         ],
         arrow: false,

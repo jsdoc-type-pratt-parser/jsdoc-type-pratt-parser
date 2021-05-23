@@ -183,13 +183,13 @@ function getQuoteStyle (quote: 'single' | 'double' | undefined): JtpQuoteStyle {
   }
 }
 
-function getMemberType (type: '.' | '~' | '#'): JtpMemberResult['type'] {
+function getMemberType (type: 'property' | 'inner' | 'instance'): JtpMemberResult['type'] {
   switch (type) {
-    case '~':
+    case 'inner':
       return 'INNER_MEMBER'
-    case '#':
+    case 'instance':
       return 'INSTANCE_MEMBER'
-    case '.':
+    case 'property':
       return 'MEMBER'
   }
 }

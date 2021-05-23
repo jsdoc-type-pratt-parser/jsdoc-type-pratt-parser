@@ -6,7 +6,7 @@ import { UnexpectedTypeError } from '../errors'
 import { StringValueParslet } from './StringValueParslet'
 import { ParserEngine } from '../ParserEngine'
 import { IntermediateResult } from '../result/IntermediateResult'
-import { NameResult, SpecialNamePath, TerminalResult } from '../result/TerminalResult'
+import { NamePathResult, NameResult, SpecialNamePath, TerminalResult } from '../result/TerminalResult'
 import { NumberResult } from '..'
 
 interface NamePathParsletOptions {
@@ -31,9 +31,16 @@ export class NamePathParslet implements InfixParslet {
   }
 
   parseInfix (parser: ParserEngine, left: IntermediateResult): TerminalResult {
-    const type = parser.getToken().text as '#' | '~' | '.'
+    let type: NamePathResult['pathType']
 
-    parser.consume('.') || parser.consume('~') || parser.consume('#')
+    if (parser.consume('.')) {
+      type = 'property'
+    } else if (parser.consume('~')) {
+      type = 'inner'
+    } else {
+      parser.consume('#')
+      type = 'instance'
+    }
 
     let next
 

@@ -190,7 +190,7 @@ export interface NamePathResult {
   type: 'JsdocTypeNamePath'
   left: TerminalResult
   right: NameResult | NumberResult | StringValueResult | SpecialNamePath<'event'>
-  pathType: '~' | '#' | '.'
+  pathType: 'inner' | 'instance' | 'property'
 }
 
 /**

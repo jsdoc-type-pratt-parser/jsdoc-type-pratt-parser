@@ -266,7 +266,7 @@ export const functionFixtures: Fixture[] = [
                 }
               },
               type: 'JsdocTypeNamePath',
-              pathType: '.'
+              pathType: 'property'
             },
             right: {
               type: 'JsdocTypeName',
@@ -276,7 +276,7 @@ export const functionFixtures: Fixture[] = [
               }
             },
             type: 'JsdocTypeNamePath',
-            pathType: '.'
+            pathType: 'property'
           }
         }
       ],
@@ -326,7 +326,7 @@ export const functionFixtures: Fixture[] = [
                 }
               },
               type: 'JsdocTypeNamePath',
-              pathType: '.'
+              pathType: 'property'
             },
             right: {
               type: 'JsdocTypeName',
@@ -336,7 +336,7 @@ export const functionFixtures: Fixture[] = [
               }
             },
             type: 'JsdocTypeNamePath',
-            pathType: '.'
+            pathType: 'property'
           }
         },
         {
@@ -394,7 +394,7 @@ export const functionFixtures: Fixture[] = [
                 }
               },
               type: 'JsdocTypeNamePath',
-              pathType: '.'
+              pathType: 'property'
             },
             right: {
               type: 'JsdocTypeName',
@@ -404,7 +404,7 @@ export const functionFixtures: Fixture[] = [
               }
             },
             type: 'JsdocTypeNamePath',
-            pathType: '.'
+            pathType: 'property'
           }
         }
       ],
@@ -454,7 +454,7 @@ export const functionFixtures: Fixture[] = [
                 }
               },
               type: 'JsdocTypeNamePath',
-              pathType: '.'
+              pathType: 'property'
             },
             right: {
               type: 'JsdocTypeName',
@@ -464,7 +464,7 @@ export const functionFixtures: Fixture[] = [
               }
             },
             type: 'JsdocTypeNamePath',
-            pathType: '.'
+            pathType: 'property'
           }
         },
         {
@@ -521,7 +521,7 @@ export const functionFixtures: Fixture[] = [
                 }
               },
               type: 'JsdocTypeNamePath',
-              pathType: '.'
+              pathType: 'property'
             },
             right: {
               type: 'JsdocTypeName',
@@ -531,7 +531,7 @@ export const functionFixtures: Fixture[] = [
               }
             },
             type: 'JsdocTypeNamePath',
-            pathType: '.'
+            pathType: 'property'
           }
         },
         {
@@ -557,7 +557,7 @@ export const functionFixtures: Fixture[] = [
               }
             },
             type: 'JsdocTypeNamePath',
-            pathType: '.'
+            pathType: 'property'
           }
         }
       ],
@@ -797,7 +797,7 @@ export const functionFixtures: Fixture[] = [
                 }
               },
               type: 'JsdocTypeNamePath',
-              pathType: '.'
+              pathType: 'property'
             },
             right: {
               type: 'JsdocTypeName',
@@ -807,7 +807,7 @@ export const functionFixtures: Fixture[] = [
               }
             },
             type: 'JsdocTypeNamePath',
-            pathType: '.'
+            pathType: 'property'
           },
           {
             type: 'JsdocTypeGeneric',
@@ -914,7 +914,7 @@ export const functionFixtures: Fixture[] = [
                 }
               },
               type: 'JsdocTypeNamePath',
-              pathType: '.'
+              pathType: 'property'
             },
             right: {
               type: 'JsdocTypeName',
@@ -924,7 +924,7 @@ export const functionFixtures: Fixture[] = [
               }
             },
             type: 'JsdocTypeNamePath',
-            pathType: '.'
+            pathType: 'property'
           },
           {
             type: 'JsdocTypeGeneric',

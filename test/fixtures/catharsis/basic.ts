@@ -65,7 +65,7 @@ export const basicFixtures: Fixture[] = [
           }
         },
         type: 'JsdocTypeNamePath',
-        pathType: '.'
+        pathType: 'property'
       },
       right: {
         type: 'JsdocTypeName',
@@ -75,7 +75,7 @@ export const basicFixtures: Fixture[] = [
         }
       },
       type: 'JsdocTypeNamePath',
-      pathType: '.'
+      pathType: 'property'
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -109,7 +109,7 @@ export const basicFixtures: Fixture[] = [
           }
         },
         type: 'JsdocTypeNamePath',
-        pathType: '.'
+        pathType: 'property'
       },
       right: {
         type: 'JsdocTypeName',
@@ -119,7 +119,7 @@ export const basicFixtures: Fixture[] = [
         }
       },
       type: 'JsdocTypeNamePath',
-      pathType: '.'
+      pathType: 'property'
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -153,7 +153,7 @@ export const basicFixtures: Fixture[] = [
           }
         },
         type: 'JsdocTypeNamePath',
-        pathType: '.'
+        pathType: 'property'
       },
       right: {
         type: 'JsdocTypeName',
@@ -163,7 +163,7 @@ export const basicFixtures: Fixture[] = [
         }
       },
       type: 'JsdocTypeNamePath',
-      pathType: '.'
+      pathType: 'property'
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -197,7 +197,7 @@ export const basicFixtures: Fixture[] = [
           }
         },
         type: 'JsdocTypeNamePath',
-        pathType: '.'
+        pathType: 'property'
       },
       right: {
         type: 'JsdocTypeName',
@@ -207,7 +207,7 @@ export const basicFixtures: Fixture[] = [
         }
       },
       type: 'JsdocTypeNamePath',
-      pathType: '.'
+      pathType: 'property'
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -237,7 +237,7 @@ export const basicFixtures: Fixture[] = [
         value: 12345
       },
       type: 'JsdocTypeNamePath',
-      pathType: '.'
+      pathType: 'property'
     },
     modes: ['typescript', 'jsdoc', 'closure'],
     catharsis: {
@@ -618,7 +618,7 @@ export const basicFixtures: Fixture[] = [
           reservedWord: false
         }
       },
-      pathType: '~'
+      pathType: 'inner'
     },
     modes: ['jsdoc'],
     catharsis: {

@@ -91,7 +91,7 @@ export const eventExternalFixtures: Fixture[] = [
           quote: undefined
         }
       },
-      pathType: '.'
+      pathType: 'property'
     },
     modes: ['jsdoc'],
     catharsis: {
@@ -127,7 +127,7 @@ export const eventExternalFixtures: Fixture[] = [
             reservedWord: false
           }
         },
-        pathType: '#'
+        pathType: 'instance'
       },
       right: {
         type: 'JsdocTypeSpecialNamePath',
@@ -137,7 +137,7 @@ export const eventExternalFixtures: Fixture[] = [
           quote: undefined
         }
       },
-      pathType: '.'
+      pathType: 'property'
     },
     modes: ['jsdoc'],
     catharsis: {

@@ -50,7 +50,10 @@ export function stringifyRules (): TransformRules<string> {
       ? '...'
       : applyPosition(result.meta.position, transform(result.element as NonTerminalResult), '...'),
 
-    JsdocTypeNamePath: (result, transform) => `${transform(result.left)}${result.pathType}${transform(result.right)}`,
+    JsdocTypeNamePath: (result, transform) => {
+      const joiner = result.pathType === 'inner' ? '~' : result.pathType === 'instance' ? '#' : '.'
+      return `${transform(result.left)}${joiner}${transform(result.right)}`
+    },
 
     JsdocTypeStringValue: result => quote(result.value, result.meta.quote),
 

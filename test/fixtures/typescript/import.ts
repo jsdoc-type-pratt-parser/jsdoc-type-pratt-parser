@@ -98,7 +98,7 @@ export const importFixtures: Fixture[] = [
           reservedWord: false
         }
       },
-      pathType: '.'
+      pathType: 'property'
     },
     modes: ['typescript'],
     catharsis: {
@@ -136,7 +136,7 @@ export const importFixtures: Fixture[] = [
             reservedWord: false
           }
         },
-        pathType: '.'
+        pathType: 'property'
       },
       right: {
         type: 'JsdocTypeName',
@@ -145,7 +145,7 @@ export const importFixtures: Fixture[] = [
           reservedWord: false
         }
       },
-      pathType: '.'
+      pathType: 'property'
     },
     modes: ['typescript'],
     catharsis: {
@@ -186,7 +186,7 @@ export const importFixtures: Fixture[] = [
               reservedWord: false
             }
           },
-          pathType: '.'
+          pathType: 'property'
         },
         right: {
           type: 'JsdocTypeName',
@@ -195,7 +195,7 @@ export const importFixtures: Fixture[] = [
             reservedWord: false
           }
         },
-        pathType: '.'
+        pathType: 'property'
       },
       elements: [
         {

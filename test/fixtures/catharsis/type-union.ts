@@ -158,7 +158,7 @@ export const unionFixtures: Fixture[] = [
                 }
               },
               type: 'JsdocTypeNamePath',
-              pathType: '.'
+              pathType: 'property'
             },
             right: {
               type: 'JsdocTypeName',
@@ -168,7 +168,7 @@ export const unionFixtures: Fixture[] = [
               }
             },
             type: 'JsdocTypeNamePath',
-            pathType: '.'
+            pathType: 'property'
           }
         ]
       }
@@ -743,7 +743,7 @@ export const unionFixtures: Fixture[] = [
                                     reservedWord: false
                                   }
                                 },
-                                pathType: '.',
+                                pathType: 'property',
                                 type: 'JsdocTypeNamePath'
                               },
                               meta: {

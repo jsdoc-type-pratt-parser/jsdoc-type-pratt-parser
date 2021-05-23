@@ -447,7 +447,7 @@ export const genericFixtures: Fixture[] = [
             reservedWord: false
           }
         },
-        pathType: '.',
+        pathType: 'property',
         type: 'JsdocTypeNamePath'
       },
       meta: {

@@ -249,7 +249,9 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
     const leftResult = transform(result.left) as CatharsisNameResult
     const rightResult = transform(result.right) as CatharsisNameResult
 
-    return makeName(`${leftResult.name}${result.pathType}${rightResult.name}`)
+    const joiner = result.pathType === 'inner' ? '~' : result.pathType === 'instance' ? '#' : '.'
+
+    return makeName(`${leftResult.name}${joiner}${rightResult.name}`)
   },
 
   JsdocTypeSymbol: result => {
