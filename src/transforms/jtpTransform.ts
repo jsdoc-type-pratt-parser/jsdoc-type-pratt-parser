@@ -1,5 +1,5 @@
 import { extractSpecialParams, notAvailableTransform, transform, TransformRules } from './transform'
-import { NameResult, NumberResult, ParseResult } from '../ParseResult'
+import { ParseResult } from '../ParseResult'
 import { assertTerminal } from '../assertTypes'
 
 export type JtpResult =
@@ -49,7 +49,7 @@ export interface JtpOptionalResult {
   type: 'OPTIONAL'
   value: JtpResult
   meta: {
-    syntax: 'PREFIX_EQUAL_SIGN' | 'SUFFIX_EQUALS_SIGN'
+    syntax: 'PREFIX_EQUAL_SIGN' | 'SUFFIX_EQUALS_SIGN' | 'SUFFIX_KEY_QUESTION_MARK'
   }
 }
 
@@ -295,9 +295,12 @@ const jtpRules: TransformRules<JtpResult> = {
       type: result.arrow ? 'ARROW' : 'FUNCTION',
       params: specialParams.params.map(param => {
         if (param.type === 'KEY_VALUE') {
+          if (param.right === undefined) {
+            throw new Error('Function parameter without \':\' is not expected to be \'KEY_VALUE\'')
+          }
           return {
             type: 'NAMED_PARAMETER',
-            name: param.left.value,
+            name: param.value,
             typeName: transform(param.right)
           }
         } else {
@@ -346,14 +349,32 @@ const jtpRules: TransformRules<JtpResult> = {
   },
 
   KEY_VALUE: (result, transform) => {
-    if (result.left.type !== 'NAME' && result.left.type !== 'NUMBER') {
-      throw new Error('In JTP mode only name and number left values are allowed for record entries.')
+    if (result.right === undefined) {
+      return {
+        type: 'RECORD_ENTRY',
+        key: result.value.toString(),
+        quoteStyle: getQuoteStyle(result.meta.quote),
+        value: null,
+        readonly: false
+      }
     }
+
+    let right = transform(result.right)
+    if (result.optional) {
+      right = {
+        type: 'OPTIONAL',
+        value: right,
+        meta: {
+          syntax: 'SUFFIX_KEY_QUESTION_MARK'
+        }
+      }
+    }
+
     return {
       type: 'RECORD_ENTRY',
-      key: result.left.value.toString(),
-      quoteStyle: 'none',
-      value: transform(result.right),
+      key: result.value.toString(),
+      quoteStyle: getQuoteStyle(result.meta.quote),
+      value: right,
       readonly: false
     }
   },
@@ -363,15 +384,8 @@ const jtpRules: TransformRules<JtpResult> = {
     for (const field of result.elements) {
       if (field.type === 'KEY_VALUE') {
         entries.push(transform(field) as JtpRecordEntryResult)
-      } else {
-        const key = (field as NameResult | NumberResult).value
-        entries.push({
-          type: 'RECORD_ENTRY',
-          key: `${key}`,
-          quoteStyle: 'none',
-          value: null,
-          readonly: false
-        })
+      } else if (field.type === 'JSDOC_OBJECT_KEY_VALUE') {
+        throw new Error(`jsdoctypeparser does not support type ${field.type} at this point`)
       }
     }
     return {
@@ -448,6 +462,8 @@ const jtpRules: TransformRules<JtpResult> = {
   }),
 
   INTERSECTION: (result, transform) => nestResults('INTERSECTION', result.elements.map(transform)),
+
+  JSDOC_OBJECT_KEY_VALUE: notAvailableTransform,
 
   NUMBER: notAvailableTransform,
   SYMBOL: notAvailableTransform

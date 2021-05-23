@@ -9,12 +9,10 @@ export const arrowFunctionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          left: {
-            type: 'NAME',
-            value: 'x',
-            meta: {
-              reservedWord: false
-            }
+          optional: false,
+          value: 'x',
+          meta: {
+            quote: undefined
           },
           right: {
             type: 'ANY'
@@ -47,12 +45,10 @@ export const arrowFunctionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          left: {
-            type: 'NAME',
-            value: 'x',
-            meta: {
-              reservedWord: false
-            }
+          optional: false,
+          value: 'x',
+          meta: {
+            quote: undefined
           },
           right: {
             type: 'NAME',
@@ -93,12 +89,10 @@ export const arrowFunctionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          left: {
-            type: 'NAME',
-            value: 'x',
-            meta: {
-              reservedWord: false
-            }
+          optional: false,
+          value: 'x',
+          meta: {
+            quote: undefined
           },
           right: {
             type: 'NAME',
@@ -110,12 +104,10 @@ export const arrowFunctionFixtures: Fixture[] = [
         },
         {
           type: 'KEY_VALUE',
-          left: {
-            type: 'NAME',
-            value: 'y',
-            meta: {
-              reservedWord: false
-            }
+          optional: false,
+          value: 'y',
+          meta: {
+            quote: undefined
           },
           right: {
             type: 'NAME',
@@ -127,12 +119,10 @@ export const arrowFunctionFixtures: Fixture[] = [
         },
         {
           type: 'KEY_VALUE',
-          left: {
-            type: 'NAME',
-            value: 'z',
-            meta: {
-              reservedWord: false
-            }
+          optional: false,
+          value: 'z',
+          meta: {
+            quote: undefined
           },
           right: {
             type: 'NAME',
@@ -278,12 +268,10 @@ export const arrowFunctionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          left: {
-            type: 'NAME',
-            value: 'arrow',
-            meta: {
-              reservedWord: false
-            }
+          optional: false,
+          value: 'arrow',
+          meta: {
+            quote: undefined
           },
           right: {
             type: 'NAME',
@@ -295,12 +283,10 @@ export const arrowFunctionFixtures: Fixture[] = [
         },
         {
           type: 'KEY_VALUE',
-          left: {
-            type: 'NAME',
-            value: 'with',
-            meta: {
-              reservedWord: true
-            }
+          optional: false,
+          value: 'with',
+          meta: {
+            quote: undefined
           },
           right: {
             type: 'NAME',
@@ -447,12 +433,10 @@ export const arrowFunctionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          left: {
-            type: 'NAME',
-            value: 'a',
-            meta: {
-              reservedWord: false
-            }
+          optional: false,
+          value: 'a',
+          meta: {
+            quote: undefined
           },
           right: {
             type: 'NAME',
@@ -468,12 +452,10 @@ export const arrowFunctionFixtures: Fixture[] = [
         parameters: [
           {
             type: 'KEY_VALUE',
-            left: {
-              type: 'NAME',
-              value: 'b',
-              meta: {
-                reservedWord: false
-              }
+            optional: false,
+            value: 'b',
+            meta: {
+              quote: undefined
             },
             right: {
               type: 'NAME',

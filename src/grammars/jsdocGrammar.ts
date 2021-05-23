@@ -10,6 +10,7 @@ import { VariadicParslet } from '../parslets/VariadicParslet'
 import { SpecialNamePathParslet } from '../parslets/SpecialNamePathParslet'
 import { NameParslet } from '../parslets/NameParslet'
 import { NotNullableParslet } from '../parslets/NotNullableParslet'
+import { ObjectParslet } from '../parslets/ObjectParslet'
 
 export const jsdocGrammar: Grammar = () => {
   const {
@@ -20,6 +21,9 @@ export const jsdocGrammar: Grammar = () => {
   return {
     prefixParslets: [
       ...prefixParslets,
+      new ObjectParslet({
+        allowKeyTypes: true
+      }),
       new FunctionParslet({
         allowWithoutParenthesis: true,
         allowNamedParameters: ['this', 'new'],
@@ -43,7 +47,8 @@ export const jsdocGrammar: Grammar = () => {
         allowJsdocNamePaths: true
       }),
       new KeyValueParslet({
-        allowOnlyNameOrNumberProperties: false
+        allowKeyTypes: true,
+        allowOptional: false
       }),
       new VariadicParslet({
         allowEnclosingBrackets: true

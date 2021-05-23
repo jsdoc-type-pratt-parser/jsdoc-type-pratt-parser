@@ -60,7 +60,14 @@ export function stringifyRules (): TransformRules<string> {
 
     IMPORT: (result, transform) => `import(${transform(result.element)})`,
 
-    KEY_VALUE: (result, transform) => `${transform(result.left)}: ${transform(result.right)}`,
+    KEY_VALUE: (result, transform) => {
+      const left = `${result.meta.quote ?? ''}${result.value}${result.meta.quote ?? ''}${result.optional ? '?' : ''}`
+      if (result.right === undefined) {
+        return left
+      } else {
+        return left + `: ${transform(result.right)}`
+      }
+    },
 
     SPECIAL_NAME_PATH: result => `${result.specialType}:${result.meta.quote ?? ''}${result.value}${result.meta.quote ?? ''}`,
 
@@ -86,7 +93,9 @@ export function stringifyRules (): TransformRules<string> {
 
     UNKNOWN: () => '?',
 
-    INTERSECTION: (result, transform) => result.elements.map(transform).join(' & ')
+    INTERSECTION: (result, transform) => result.elements.map(transform).join(' & '),
+
+    JSDOC_OBJECT_KEY_VALUE: (result, transform) => `${transform(result.left)}: ${transform(result.right)}`
   }
 }
 

@@ -176,12 +176,10 @@ export const intersectionFixtures: Fixture[] = [
           parameters: [
             {
               type: 'KEY_VALUE',
-              left: {
-                type: 'NAME',
-                value: 'a',
-                meta: {
-                  reservedWord: false
-                }
+              optional: false,
+              value: 'a',
+              meta: {
+                quote: undefined
               },
               right: {
                 type: 'NAME',

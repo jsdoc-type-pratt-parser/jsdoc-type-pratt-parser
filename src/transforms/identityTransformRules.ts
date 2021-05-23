@@ -1,6 +1,6 @@
 import { TransformRules } from './transform'
 import {
-  FunctionResult,
+  FunctionResult, JsdocObjectKeyValueResult,
   KeyValueResult,
   NameResult,
   NonTerminalResult,
@@ -65,7 +65,7 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
 
     OBJECT: (result, transform) => ({
       type: 'OBJECT',
-      elements: result.elements.map(transform) as Array<KeyValueResult<ParseResult | NumberResult> | ParseResult | NumberResult>
+      elements: result.elements.map(transform) as Array<KeyValueResult | JsdocObjectKeyValueResult>
     }),
 
     NUMBER: result => result,
@@ -84,8 +84,10 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
 
     KEY_VALUE: (result, transform) => ({
       type: 'KEY_VALUE',
-      left: transform(result.left) as ParseResult,
-      right: transform(result.right) as ParseResult
+      value: result.value,
+      right: result.right === undefined ? undefined : transform(result.right) as ParseResult,
+      optional: result.optional,
+      meta: result.meta
     }),
 
     IMPORT: (result, transform) => ({
@@ -145,6 +147,12 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
     PARENTHESIS: (result, transform) => ({
       type: 'PARENTHESIS',
       element: transform(result.element) as ParseResult
+    }),
+
+    JSDOC_OBJECT_KEY_VALUE: (result, transform) => ({
+      type: 'JSDOC_OBJECT_KEY_VALUE',
+      left: transform(result.left) as ParseResult,
+      right: transform(result.right) as ParseResult
     })
   }
 }

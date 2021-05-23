@@ -2,7 +2,7 @@ import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
 import { ParameterList, ParserEngine } from '../ParserEngine'
-import { KeyValueResult, ParenthesisResult } from '../ParseResult'
+import { ParenthesisResult } from '../ParseResult'
 import { assertTerminal } from '../assertTypes'
 
 export class ParenthesisParslet implements PrefixParslet {
@@ -27,10 +27,10 @@ export class ParenthesisParslet implements PrefixParslet {
       }
     } else if (result.type === 'PARAMETER_LIST') {
       return result
-    } else if (result.type === 'KEY_VALUE' && result.left.type === 'NAME') {
+    } else if (result.type === 'KEY_VALUE') {
       return {
         type: 'PARAMETER_LIST',
-        elements: [result as KeyValueResult]
+        elements: [result]
       }
     }
     return {

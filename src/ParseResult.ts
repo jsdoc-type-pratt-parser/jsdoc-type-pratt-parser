@@ -31,7 +31,8 @@ export type ParseResult =
  */
 export type NonTerminalResult =
   ParseResult
-  | KeyValueResult<ParseResult | NameResult | NumberResult>
+  | KeyValueResult
+  | JsdocObjectKeyValueResult
   | NumberResult
 
 /**
@@ -171,9 +172,19 @@ export interface FunctionResult {
  * A key value pair represented by a `:`. Can occur as a named parameter of a {@link FunctionResult} or as an entry for
  * an {@link ObjectResult}. Is a {@link NonTerminalResult}.
  */
-export interface KeyValueResult<KeyType = NameResult> {
+export interface KeyValueResult {
   type: 'KEY_VALUE'
-  left: KeyType
+  value: string
+  right: ParseResult | undefined
+  optional: boolean
+  meta: {
+    quote: '\'' | '"' | undefined
+  }
+}
+
+export interface JsdocObjectKeyValueResult {
+  type: 'JSDOC_OBJECT_KEY_VALUE'
+  left: ParseResult
   right: ParseResult
 }
 
@@ -184,7 +195,7 @@ export interface KeyValueResult<KeyType = NameResult> {
  */
 export interface ObjectResult {
   type: 'OBJECT'
-  elements: Array<KeyValueResult<ParseResult | NumberResult> | ParseResult | NumberResult>
+  elements: Array<KeyValueResult | JsdocObjectKeyValueResult>
 }
 
 /**

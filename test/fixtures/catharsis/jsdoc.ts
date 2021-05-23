@@ -760,7 +760,7 @@ export const jsdocFixtures: Fixture[] = [
       type: 'OBJECT',
       elements: [
         {
-          type: 'KEY_VALUE',
+          type: 'JSDOC_OBJECT_KEY_VALUE',
           left: {
             type: 'GENERIC',
             elements: [
@@ -814,7 +814,7 @@ export const jsdocFixtures: Fixture[] = [
       type: 'OBJECT',
       elements: [
         {
-          type: 'KEY_VALUE',
+          type: 'JSDOC_OBJECT_KEY_VALUE',
           left: {
             type: 'PARENTHESIS',
             element: {
@@ -875,12 +875,10 @@ export const jsdocFixtures: Fixture[] = [
       elements: [
         {
           type: 'KEY_VALUE',
-          left: {
-            type: 'NAME',
-            value: 'undefinedHTML',
-            meta: {
-              reservedWord: false
-            }
+          optional: false,
+          value: 'undefinedHTML',
+          meta: {
+            quote: undefined
           },
           right: {
             type: 'PARENTHESIS',
@@ -924,12 +922,10 @@ export const jsdocFixtures: Fixture[] = [
       elements: [
         {
           type: 'KEY_VALUE',
-          left: {
-            type: 'NAME',
-            value: 'foo',
-            meta: {
-              reservedWord: false
-            }
+          optional: false,
+          value: 'foo',
+          meta: {
+            quote: undefined
           },
           right: {
             type: 'FUNCTION',
@@ -961,12 +957,10 @@ export const jsdocFixtures: Fixture[] = [
       elements: [
         {
           type: 'KEY_VALUE',
-          left: {
-            type: 'NAME',
-            value: 'foo',
-            meta: {
-              reservedWord: false
-            }
+          optional: false,
+          value: 'foo',
+          meta: {
+            quote: undefined
           },
           right: {
             type: 'FUNCTION',
@@ -1028,12 +1022,13 @@ export const jsdocFixtures: Fixture[] = [
         parameters: [
           {
             type: 'KEY_VALUE',
-            left: {
-              type: 'NAME',
-              meta: {
-                reservedWord: true
-              },
-              value: 'this'
+            optional: false,
+            value: 'this',
+
+            meta: {
+
+              quote: undefined
+
             },
             right: {
               left: {

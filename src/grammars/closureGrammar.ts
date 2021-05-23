@@ -7,6 +7,7 @@ import { TypeOfParslet } from '../parslets/TypeOfParslet'
 import { VariadicParslet } from '../parslets/VariadicParslet'
 import { NameParslet } from '../parslets/NameParslet'
 import { NotNullableParslet } from '../parslets/NotNullableParslet'
+import { ObjectParslet } from '../parslets/ObjectParslet'
 
 export const closureGrammar: Grammar = () => {
   const {
@@ -17,6 +18,9 @@ export const closureGrammar: Grammar = () => {
   return {
     prefixParslets: [
       ...prefixParslets,
+      new ObjectParslet({
+        allowKeyTypes: false
+      }),
       new NameParslet({
         allowedAdditionalTokens: ['module', 'event', 'external']
       }),
@@ -40,7 +44,8 @@ export const closureGrammar: Grammar = () => {
         allowJsdocNamePaths: false
       }),
       new KeyValueParslet({
-        allowOnlyNameOrNumberProperties: true
+        allowKeyTypes: false,
+        allowOptional: false
       }),
       new NotNullableParslet()
     ]

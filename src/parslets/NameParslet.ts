@@ -3,45 +3,7 @@ import { TokenType } from '../lexer/Token'
 import { NameResult } from '../ParseResult'
 import { PrefixParslet } from './Parslet'
 import { Precedence } from '../Precedence'
-
-const reservedWords = [
-  'null',
-  'true',
-  'false',
-  'break',
-  'case',
-  'catch',
-  'class',
-  'const',
-  'continue',
-  'debugger',
-  'default',
-  'delete',
-  'do',
-  'else',
-  'export',
-  'extends',
-  'finally',
-  'for',
-  'function',
-  'if',
-  'import',
-  'in',
-  'instanceof',
-  'new',
-  'return',
-  'super',
-  'switch',
-  'this',
-  'throw',
-  'try',
-  'typeof',
-  'var',
-  'void',
-  'while',
-  'with',
-  'yield'
-]
+import { reservedWords } from '../transforms/catharsisTransform'
 
 interface NameParsletOptions {
   allowedAdditionalTokens: TokenType[]

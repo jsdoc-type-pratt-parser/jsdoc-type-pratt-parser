@@ -1,6 +1,6 @@
 import 'mocha'
 
-import { eventExternalFixtures } from './fixtures/namePaths'
+import { eventExternalFixtures } from './fixtures/misc/namePaths'
 import { testFixture } from './fixtures/Fixture'
 
 describe('Name paths', () => {

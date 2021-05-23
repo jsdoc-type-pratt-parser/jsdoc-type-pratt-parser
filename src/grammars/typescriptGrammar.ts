@@ -16,6 +16,7 @@ import { KeyValueParslet } from '../parslets/KeyValueParslet'
 import { VariadicParslet } from '../parslets/VariadicParslet'
 import { NameParslet } from '../parslets/NameParslet'
 import { IntersectionParslet } from '../parslets/IntersectionParslet'
+import { ObjectParslet } from '../parslets/ObjectParslet'
 
 export const typescriptGrammar: Grammar = () => {
   const {
@@ -31,6 +32,9 @@ export const typescriptGrammar: Grammar = () => {
   return {
     prefixParslets: [
       ...prefixParslets,
+      new ObjectParslet({
+        allowKeyTypes: false
+      }),
       new TypeOfParslet(),
       new KeyOfParslet(),
       new ImportParslet(),
@@ -59,7 +63,8 @@ export const typescriptGrammar: Grammar = () => {
         allowJsdocNamePaths: false
       }),
       new KeyValueParslet({
-        allowOnlyNameOrNumberProperties: true
+        allowKeyTypes: false,
+        allowOptional: true
       }),
       new IntersectionParslet()
     ]

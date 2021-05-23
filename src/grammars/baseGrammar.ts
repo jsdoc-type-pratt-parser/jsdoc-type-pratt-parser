@@ -1,7 +1,6 @@
 import { Grammar } from './Grammar'
 import { UnionParslet } from '../parslets/UnionParslets'
 import { SpecialTypesParslet } from '../parslets/SpecialTypesParslet'
-import { ObjectParslet } from '../parslets/ObjectParslet'
 import { GenericParslet } from '../parslets/GenericParslet'
 import { ParenthesisParslet } from '../parslets/ParenthesisParslet'
 import { NumberParslet } from '../parslets/NumberParslet'
@@ -14,7 +13,6 @@ export const baseGrammar: Grammar = () => {
     prefixParslets: [
       new NullablePrefixParslet(),
       new OptionalParslet(),
-      new ObjectParslet(),
       new NumberParslet(),
       new ParenthesisParslet(),
       new SpecialTypesParslet()

@@ -243,14 +243,12 @@ export const functionFixtures: Fixture[] = [
     expected: {
       parameters: [
         {
-          left: {
-            value: 'this',
-            type: 'NAME',
-            meta: {
-              reservedWord: true
-            }
+          value: 'this',
+          meta: {
+            quote: undefined
           },
           type: 'KEY_VALUE',
+          optional: false,
           right: {
             left: {
               left: {
@@ -305,14 +303,12 @@ export const functionFixtures: Fixture[] = [
     expected: {
       parameters: [
         {
-          left: {
-            value: 'this',
-            type: 'NAME',
-            meta: {
-              reservedWord: true
-            }
+          value: 'this',
+          meta: {
+            quote: undefined
           },
           type: 'KEY_VALUE',
+          optional: false,
           right: {
             left: {
               left: {
@@ -376,12 +372,10 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          left: {
-            type: 'NAME',
-            value: 'new',
-            meta: {
-              reservedWord: true
-            }
+          optional: false,
+          value: 'new',
+          meta: {
+            quote: undefined
           },
           right: {
             left: {
@@ -438,13 +432,11 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          left: {
-            type: 'NAME',
-            value: 'new',
-            meta: {
-              reservedWord: true
-            }
+          optional: false,
+          meta: {
+            quote: undefined
           },
+          value: 'new',
           right: {
             left: {
               left: {
@@ -507,12 +499,10 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          left: {
-            type: 'NAME',
-            value: 'new',
-            meta: {
-              reservedWord: true
-            }
+          optional: false,
+          value: 'new',
+          meta: {
+            quote: undefined
           },
           right: {
             left: {
@@ -546,12 +536,10 @@ export const functionFixtures: Fixture[] = [
         },
         {
           type: 'KEY_VALUE',
-          left: {
-            type: 'NAME',
-            value: 'this',
-            meta: {
-              reservedWord: true
-            }
+          optional: false,
+          value: 'this',
+          meta: {
+            quote: undefined
           },
           right: {
             left: {
@@ -757,12 +745,10 @@ export const functionFixtures: Fixture[] = [
         parameters: [
           {
             type: 'KEY_VALUE',
-            left: {
-              type: 'NAME',
-              value: 'new',
-              meta: {
-                reservedWord: true
-              }
+            optional: false,
+            value: 'new',
+            meta: {
+              quote: undefined
             },
             right: {
               type: 'NAME',
@@ -774,12 +760,10 @@ export const functionFixtures: Fixture[] = [
           },
           {
             type: 'KEY_VALUE',
-            left: {
-              type: 'NAME',
-              meta: {
-                reservedWord: true
-              },
-              value: 'this'
+            optional: false,
+            value: 'this',
+            meta: {
+              quote: undefined
             },
             right: {
               type: 'NAME',
@@ -878,12 +862,10 @@ export const functionFixtures: Fixture[] = [
         parameters: [
           {
             type: 'KEY_VALUE',
-            left: {
-              type: 'NAME',
-              value: 'new',
-              meta: {
-                reservedWord: true
-              }
+            optional: false,
+            value: 'new',
+            meta: {
+              quote: undefined
             },
             right: {
               type: 'NAME',
@@ -895,12 +877,10 @@ export const functionFixtures: Fixture[] = [
           },
           {
             type: 'KEY_VALUE',
-            left: {
-              type: 'NAME',
-              meta: {
-                reservedWord: true
-              },
-              value: 'this'
+            optional: false,
+            value: 'this',
+            meta: {
+              quote: undefined
             },
             right: {
               type: 'NAME',
@@ -1155,12 +1135,10 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          left: {
-            type: 'NAME',
-            meta: {
-              reservedWord: true
-            },
-            value: 'this'
+          optional: false,
+          value: 'this',
+          meta: {
+            quote: undefined
           },
           right: {
             type: 'NAME',
@@ -1217,12 +1195,13 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          left: {
-            type: 'NAME',
-            meta: {
-              reservedWord: true
-            },
-            value: 'this'
+          optional: false,
+          value: 'this',
+
+          meta: {
+
+            quote: undefined
+
           },
           right: {
             element: {
@@ -1295,12 +1274,10 @@ export const functionFixtures: Fixture[] = [
         parameters: [
           {
             type: 'KEY_VALUE',
-            left: {
-              type: 'NAME',
-              meta: {
-                reservedWord: true
-              },
-              value: 'new'
+            optional: false,
+            value: 'new',
+            meta: {
+              quote: undefined
             },
             right: {
               type: 'NAME',
@@ -1336,12 +1313,10 @@ export const functionFixtures: Fixture[] = [
         parameters: [
           {
             type: 'KEY_VALUE',
-            left: {
-              type: 'NAME',
-              meta: {
-                reservedWord: true
-              },
-              value: 'new'
+            optional: false,
+            value: 'new',
+            meta: {
+              quote: undefined
             },
             right: {
               type: 'NAME',
@@ -1399,12 +1374,10 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          left: {
-            type: 'NAME',
-            meta: {
-              reservedWord: true
-            },
-            value: 'new'
+          optional: false,
+          value: 'new',
+          meta: {
+            quote: undefined
           },
           right: {
             type: 'NAME',
@@ -1534,12 +1507,13 @@ export const functionFixtures: Fixture[] = [
       parameters: [
         {
           type: 'KEY_VALUE',
-          left: {
-            type: 'NAME',
-            meta: {
-              reservedWord: true
-            },
-            value: 'this'
+          optional: false,
+          value: 'this',
+
+          meta: {
+
+            quote: undefined
+
           },
           right: {
             type: 'NAME',
