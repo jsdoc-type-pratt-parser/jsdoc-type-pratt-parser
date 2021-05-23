@@ -23,14 +23,14 @@ export class ParenthesisParslet implements PrefixParslet {
     }
     if (result === undefined) {
       return {
-        type: 'PARAMETER_LIST',
+        type: 'JsdocTypeParameterList',
         elements: []
       }
-    } else if (result.type === 'PARAMETER_LIST') {
+    } else if (result.type === 'JsdocTypeParameterList') {
       return result
     } else if (result.type === 'JsdocTypeKeyValue' && 'value' in result) {
       return {
-        type: 'PARAMETER_LIST',
+        type: 'JsdocTypeParameterList',
         elements: [result]
       }
     }

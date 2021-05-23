@@ -2,7 +2,7 @@ import { KeyValueResult, NonTerminalResult } from './NonTerminalResult'
 import { TerminalResult } from './TerminalResult'
 
 export interface ParameterList {
-  type: 'PARAMETER_LIST'
+  type: 'JsdocTypeParameterList'
   elements: Array<KeyValueResult | TerminalResult>
 }
 

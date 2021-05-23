@@ -7,7 +7,7 @@ import { TerminalResult } from '../result/TerminalResult'
 export class BaseFunctionParslet {
   protected getParameters (value: IntermediateResult): Array<TerminalResult | KeyValueResult> {
     let parameters: NonTerminalResult[]
-    if (value.type === 'PARAMETER_LIST') {
+    if (value.type === 'JsdocTypeParameterList') {
       parameters = value.elements
     } else if (value.type === 'JsdocTypeParenthesis') {
       parameters = [value.element]

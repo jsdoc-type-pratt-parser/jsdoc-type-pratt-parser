@@ -50,7 +50,7 @@ export class ParameterListParslet implements InfixParslet {
     }
 
     return {
-      type: 'PARAMETER_LIST',
+      type: 'JsdocTypeParameterList',
       elements
     }
   }
