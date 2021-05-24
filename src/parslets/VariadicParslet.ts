@@ -29,27 +29,31 @@ export class VariadicParslet implements PrefixParslet, InfixParslet {
     parser.consume('...')
 
     const brackets = this.allowEnclosingBrackets && parser.consume('[')
-    const value = parser.tryParseType(Precedence.PREFIX)
-    if (brackets && !parser.consume(']')) {
-      throw new Error('Unterminated variadic type. Missing \']\'')
-    }
 
-    if (value !== undefined) {
-      return {
-        type: 'JsdocTypeVariadic',
-        element: assertTerminal(value),
-        meta: {
-          position: 'prefix',
-          squareBrackets: brackets
-        }
+    if (!parser.canParseType()) {
+      if (brackets) {
+        throw new Error('Empty square brackets for variadic are not allowed.')
       }
-    } else {
       return {
         type: 'JsdocTypeVariadic',
         meta: {
           position: undefined,
           squareBrackets: false
         }
+      }
+    }
+
+    const element = parser.parseType(Precedence.PREFIX)
+    if (brackets && !parser.consume(']')) {
+      throw new Error('Unterminated variadic type. Missing \']\'')
+    }
+
+    return {
+      type: 'JsdocTypeVariadic',
+      element: assertTerminal(element),
+      meta: {
+        position: 'prefix',
+        squareBrackets: brackets
       }
     }
   }

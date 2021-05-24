@@ -17,16 +17,17 @@ export class ParenthesisParslet implements PrefixParslet {
 
   parsePrefix (parser: Parser): ParenthesisResult | ParameterList {
     parser.consume('(')
-    const result = parser.tryParseType(Precedence.ALL)
-    if (!parser.consume(')')) {
-      throw new Error('Unterminated parenthesis')
-    }
-    if (result === undefined) {
+    if (parser.consume(')')) {
       return {
         type: 'JsdocTypeParameterList',
         elements: []
       }
-    } else if (result.type === 'JsdocTypeParameterList') {
+    }
+    const result = parser.parseIntermediateType(Precedence.ALL)
+    if (!parser.consume(')')) {
+      throw new Error('Unterminated parenthesis')
+    }
+    if (result.type === 'JsdocTypeParameterList') {
       return result
     } else if (result.type === 'JsdocTypeKeyValue' && 'value' in result) {
       return {
