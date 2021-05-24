@@ -3,6 +3,8 @@ const catharsisParse = require('catharsis').parse
 const jtppParse = require('../dist/index').parse
 const jtpParse = require('jsdoctypeparser').parse
 
+Benchmark.options.minSamples = 1000
+
 const testCases = [
   'Name',
   'Array<number>',

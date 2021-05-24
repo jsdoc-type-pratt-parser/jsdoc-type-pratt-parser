@@ -40,7 +40,7 @@ export interface OptionalResult<T extends TerminalResult> {
 }
 
 /**
- * `element` is nullable.
+ * A nullable type.
  */
 export interface NullableResult<T extends TerminalResult> {
   type: 'JsdocTypeNullable'
@@ -51,7 +51,7 @@ export interface NullableResult<T extends TerminalResult> {
 }
 
 /**
- * `element` is not nullable.
+ * A not nullable type.
  */
 export interface NotNullableResult<T extends TerminalResult> {
   type: 'JsdocTypeNotNullable'
@@ -62,7 +62,9 @@ export interface NotNullableResult<T extends TerminalResult> {
 }
 
 /**
- * `element` is a rest parameter or a spreaded value.
+ * A rest or spreaded parameter. It can either occur in `@param` tags or as last parameter of a function,
+ * or it is a spreaded tuple or object type and can occur inside these. For any mode that is not `jsdoc` this can
+ * only occur in position `'suffix'`.
  */
 export interface VariadicResult<T extends TerminalResult> {
   type: 'JsdocTypeVariadic'
@@ -74,7 +76,7 @@ export interface VariadicResult<T extends TerminalResult> {
 }
 
 /**
- * Is a type name.
+ * A type name.
  */
 export interface NameResult {
   type: 'JsdocTypeName'
@@ -82,7 +84,7 @@ export interface NameResult {
 }
 
 /**
- * Is a type union of `elements`.
+ * A type union.
  */
 export interface UnionResult {
   type: 'JsdocTypeUnion'
@@ -90,7 +92,7 @@ export interface UnionResult {
 }
 
 /**
- * `left` is a generic type that has `elements` as type values for its type parameters.
+ * A generic type. The property `left` is the generic type that has `elements` as type values for its type parameters.
  * Array types that are written as `Type[]` always have the name `Array` as the `left` type and `elements` will contain
  * only one element (in this case the name `Type`). To differentiate `Type[]` and `Array<Type>` there is the meta property
  * `brackets`.
@@ -117,35 +119,35 @@ export interface StringValueResult {
 }
 
 /**
- * Is `null`.
+ * The `null` type.
  */
 export interface NullResult {
   type: 'JsdocTypeNull'
 }
 
 /**
- * Is `undefined`.
+ * The `undefined` type.
  */
 export interface UndefinedResult {
   type: 'JsdocTypeUndefined'
 }
 
 /**
- * An any result that is represented by `*`.
+ * The any type, represented by `*` (`any` is parsed as a name).
  */
 export interface AnyResult {
   type: 'JsdocTypeAny'
 }
 
 /**
- * An unknown result that is represented by `?`.
+ * The unknown type, represented by `?` (`unknown` is parsed as a name).
  */
 export interface UnknownResult {
   type: 'JsdocTypeUnknown'
 }
 
 /**
- * Is a function. Has `parameters` which can be named, if the grammar supports it. Some grammars only allow named
+ * A function type. Has `parameters` which can be named, if the grammar supports it. Some grammars only allow named
  * `this` and `new` parameters. Named parameters are returned as {@link KeyValueResult}s. It can have a `returnType`.
  * It can be a normal function type or an arrow, which is indicated by `arrow`. If `parenthesis` is false, it is any
  * kind of function without specified parameters or return type.
@@ -159,7 +161,7 @@ export interface FunctionResult {
 }
 
 /**
- * An object. Contains entries which can be {@link KeyValueResult}s or {@link NameResult}s. In most grammars the keys
+ * An object type. Contains entries which can be {@link KeyValueResult}s or {@link NameResult}s. In most grammars the keys
  * need to be {@link NameResult}s. In some grammars it possible that an entry is only a {@link TerminalResult} or a
  * {@link NumberResult} without a key.
  */
@@ -169,7 +171,7 @@ export interface ObjectResult {
 }
 
 /**
- * A module. Often this is a `left` type of a {@link NamePathResult}.
+ * A module type. Often this is a `left` type of a {@link NamePathResult}.
  */
 export interface SpecialNamePath<Type = 'module' | 'event' | 'external'> {
   type: 'JsdocTypeSpecialNamePath'
@@ -181,7 +183,7 @@ export interface SpecialNamePath<Type = 'module' | 'event' | 'external'> {
 }
 
 /**
- * A name path. This can be a property path separated by `.` or an inner or static member (`~`, `#`).
+ * A name path type. This can be a property path separated by `.` or an inner or static member (`~`, `#`).
  */
 export interface NamePathResult {
   type: 'JsdocTypeNamePath'
@@ -191,7 +193,7 @@ export interface NamePathResult {
 }
 
 /**
- * A symbol.
+ * A symbol type. Only available in `jsdoc` mode.
  */
 export interface SymbolResult {
   type: 'JsdocTypeSymbol'
@@ -200,7 +202,7 @@ export interface SymbolResult {
 }
 
 /**
- * A typeof. The `element` normally should be a name.
+ * A typeof type. The `element` normally should be a name.
  */
 export interface TypeOfResult {
   type: 'JsdocTypeTypeof'
@@ -208,7 +210,7 @@ export interface TypeOfResult {
 }
 
 /**
- * A keyof. The `element` normally should be a name.
+ * A keyof type. The `element` normally should be a name.
  */
 export interface KeyOfResult {
   type: 'JsdocTypeKeyof'
@@ -216,7 +218,7 @@ export interface KeyOfResult {
 }
 
 /**
- * An import. The `element` is {@link StringValueResult} representing the path. Often the `left` side of an
+ * An import type. The `element` is {@link StringValueResult} representing the path. Often the `left` side of an
  * {@link NamePathResult}.
  */
 export interface ImportResult {
@@ -225,7 +227,7 @@ export interface ImportResult {
 }
 
 /**
- * A tuple containing multiple `elements`.
+ * A tuple type containing multiple `elements`.
  */
 export interface TupleResult {
   type: 'JsdocTypeTuple'
@@ -233,7 +235,7 @@ export interface TupleResult {
 }
 
 /**
- * An `element` that is enclosed in parenthesis. Often {@link UnionResult}s.
+ * A type enclosed in parenthesis. Often {@link UnionResult}s ot {@link IntersectionResult}s.
  */
 export interface ParenthesisResult {
   type: 'JsdocTypeParenthesis'
@@ -241,7 +243,7 @@ export interface ParenthesisResult {
 }
 
 /**
- * An intersection.
+ * An intersection type.
  */
 export interface IntersectionResult {
   type: 'JsdocTypeIntersection'

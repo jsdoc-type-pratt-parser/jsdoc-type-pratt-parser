@@ -196,7 +196,7 @@ export const functionFixtures: Fixture[] = [
     jtp: {
       closure: 'closure',
       jsdoc: 'jsdoc',
-      typescript: 'differ', // NOTE: This seems to be a JTP error
+      typescript: 'typescript',
       permissive: 'closure'
     }
   },
