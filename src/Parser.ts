@@ -8,11 +8,11 @@ import { Precedence } from './Precedence'
 import { TerminalResult } from './result/TerminalResult'
 import { IntermediateResult } from './result/IntermediateResult'
 
-export class ParserEngine {
+export class Parser {
   private readonly prefixParslets: PrefixParslet[]
   private readonly infixParslets: InfixParslet[]
 
-  private lexer: Lexer
+  private readonly lexer: Lexer
 
   constructor (grammar: Grammar) {
     this.lexer = new Lexer()
@@ -46,18 +46,8 @@ export class ParserEngine {
     })
   }
 
-  public tryParseType (precedence: Precedence): IntermediateResult | undefined {
-    const preserve = this.lexer.clone()
-    try {
-      return this.parseIntermediateType(precedence)
-    } catch (e) {
-      if (e instanceof NoParsletFoundError) {
-        this.lexer = preserve
-        return undefined
-      } else {
-        throw e
-      }
-    }
+  public canParseType (): boolean {
+    return this.getPrefixParslet() !== undefined
   }
 
   public parseType (precedence: Precedence): TerminalResult {

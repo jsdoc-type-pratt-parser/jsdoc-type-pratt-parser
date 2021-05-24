@@ -3,7 +3,7 @@ import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
 import { BaseFunctionParslet } from './BaseFunctionParslet'
 import { assertKeyValueOrName } from '../assertTypes'
-import { ParserEngine } from '../ParserEngine'
+import { Parser } from '../Parser'
 import { FunctionResult } from '../result/TerminalResult'
 import { IntermediateResult } from '../result/IntermediateResult'
 
@@ -16,7 +16,7 @@ export class ArrowFunctionWithoutParametersParslet implements PrefixParslet {
     return Precedence.ARROW
   }
 
-  parsePrefix (parser: ParserEngine): FunctionResult {
+  parsePrefix (parser: Parser): FunctionResult {
     const hasParenthesis = parser.consume('(')
     parser.consume(')')
     if (!parser.consume('=>')) {
@@ -42,7 +42,7 @@ export class ArrowFunctionWithParametersParslet extends BaseFunctionParslet impl
     return Precedence.ARROW
   }
 
-  parseInfix (parser: ParserEngine, left: IntermediateResult): FunctionResult {
+  parseInfix (parser: Parser, left: IntermediateResult): FunctionResult {
     parser.consume('=>')
 
     return {

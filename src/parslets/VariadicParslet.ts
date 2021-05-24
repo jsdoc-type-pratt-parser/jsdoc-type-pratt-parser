@@ -2,7 +2,7 @@ import { InfixParslet, PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
 import { assertTerminal } from '../assertTypes'
-import { ParserEngine } from '../ParserEngine'
+import { Parser } from '../Parser'
 import { TerminalResult, VariadicResult } from '../result/TerminalResult'
 import { IntermediateResult } from '../result/IntermediateResult'
 
@@ -25,25 +25,15 @@ export class VariadicParslet implements PrefixParslet, InfixParslet {
     return Precedence.PREFIX
   }
 
-  parsePrefix (parser: ParserEngine): VariadicResult<TerminalResult> {
+  parsePrefix (parser: Parser): VariadicResult<TerminalResult> {
     parser.consume('...')
 
     const brackets = this.allowEnclosingBrackets && parser.consume('[')
-    const value = parser.tryParseType(Precedence.PREFIX)
-    if (brackets && !parser.consume(']')) {
-      throw new Error('Unterminated variadic type. Missing \']\'')
-    }
 
-    if (value !== undefined) {
-      return {
-        type: 'JsdocTypeVariadic',
-        element: assertTerminal(value),
-        meta: {
-          position: 'prefix',
-          squareBrackets: brackets
-        }
+    if (!parser.canParseType()) {
+      if (brackets) {
+        throw new Error('Empty square brackets for variadic are not allowed.')
       }
-    } else {
       return {
         type: 'JsdocTypeVariadic',
         meta: {
@@ -52,9 +42,23 @@ export class VariadicParslet implements PrefixParslet, InfixParslet {
         }
       }
     }
+
+    const element = parser.parseType(Precedence.PREFIX)
+    if (brackets && !parser.consume(']')) {
+      throw new Error('Unterminated variadic type. Missing \']\'')
+    }
+
+    return {
+      type: 'JsdocTypeVariadic',
+      element: assertTerminal(element),
+      meta: {
+        position: 'prefix',
+        squareBrackets: brackets
+      }
+    }
   }
 
-  parseInfix (parser: ParserEngine, left: IntermediateResult): TerminalResult {
+  parseInfix (parser: Parser, left: IntermediateResult): TerminalResult {
     parser.consume('...')
     return {
       type: 'JsdocTypeVariadic',

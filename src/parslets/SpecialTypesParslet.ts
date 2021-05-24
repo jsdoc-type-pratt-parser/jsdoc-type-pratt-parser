@@ -1,6 +1,6 @@
 import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
-import { ParserEngine } from '../ParserEngine'
+import { Parser } from '../Parser'
 import { Precedence } from '../Precedence'
 import { isQuestionMarkUnknownType } from './isQuestionMarkUnkownType'
 import { TerminalResult } from '../result/TerminalResult'
@@ -14,7 +14,7 @@ export class SpecialTypesParslet implements PrefixParslet {
     return Precedence.SPECIAL_TYPES
   }
 
-  parsePrefix (parser: ParserEngine): TerminalResult {
+  parsePrefix (parser: Parser): TerminalResult {
     if (parser.consume('null')) {
       return {
         type: 'JsdocTypeNull'

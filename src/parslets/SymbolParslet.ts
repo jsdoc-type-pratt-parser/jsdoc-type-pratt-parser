@@ -2,7 +2,7 @@ import { InfixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
 import { assertNumberOrVariadicName } from '../assertTypes'
-import { ParserEngine } from '../ParserEngine'
+import { Parser } from '../Parser'
 import { IntermediateResult } from '../result/IntermediateResult'
 import { SymbolResult, TerminalResult } from '../result/TerminalResult'
 
@@ -15,7 +15,7 @@ export class SymbolParslet implements InfixParslet {
     return Precedence.SYMBOL
   }
 
-  parseInfix (parser: ParserEngine, left: IntermediateResult): TerminalResult {
+  parseInfix (parser: Parser, left: IntermediateResult): TerminalResult {
     if (left.type !== 'JsdocTypeName') {
       throw new Error('Symbol expects a name on the left side. (Reacting on \'(\')')
     }

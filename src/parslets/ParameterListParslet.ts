@@ -3,7 +3,7 @@ import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
 import { assertKeyValueOrTerminal } from '../assertTypes'
 import { NoParsletFoundError } from '../errors'
-import { ParserEngine } from '../ParserEngine'
+import { Parser } from '../Parser'
 import { IntermediateResult, ParameterList } from '../result/IntermediateResult'
 import { KeyValueResult } from '..'
 import { TerminalResult } from '../result/TerminalResult'
@@ -27,7 +27,7 @@ export class ParameterListParslet implements InfixParslet {
     return Precedence.PARAMETER_LIST
   }
 
-  parseInfix (parser: ParserEngine, left: IntermediateResult): ParameterList {
+  parseInfix (parser: Parser, left: IntermediateResult): ParameterList {
     const elements: Array<TerminalResult|KeyValueResult> = [
       assertKeyValueOrTerminal(left)
     ]
