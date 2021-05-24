@@ -119,24 +119,23 @@ Performance
 A simple performance [comparision](benchmark/benchmark.js) using [Benchmark.js](https://benchmarkjs.com/) produced the following results:
 ```
 Testing expression: Name
-catharsis x 10,194 ops/sec ±22.98% (58 runs sampled)
-jsdoc-type-pratt-parser x 238,233 ops/sec ±2.11% (84 runs sampled)
-jsdoctypeparser x 29,201 ops/sec ±15.65% (76 runs sampled)
+catharsis x 36,338 ops/sec ±1.10% (1071 runs sampled)
+jsdoc-type-pratt-parser x 400,260 ops/sec ±0.87% (1070 runs sampled)
+jsdoctypeparser x 61,847 ops/sec ±1.18% (1071 runs sampled)
 The fastest was jsdoc-type-pratt-parser
 
 Testing expression: Array<number>
-catharsis x 5,063 ops/sec ±2.89% (82 runs sampled)
-jsdoc-type-pratt-parser x 84,744 ops/sec ±5.34% (77 runs sampled)
-jsdoctypeparser x 10,964 ops/sec ±24.98% (52 runs sampled)
+catharsis x 7,969 ops/sec ±1.05% (1079 runs sampled)
+jsdoc-type-pratt-parser x 159,001 ops/sec ±0.95% (1074 runs sampled)
+jsdoctypeparser x 42,278 ops/sec ±1.01% (1070 runs sampled)
 The fastest was jsdoc-type-pratt-parser
 
 Testing expression: { keyA: Type<A | "string val" >, keyB: function(string, B): A }
-catharsis x 206 ops/sec ±17.93% (59 runs sampled)
-jsdoc-type-pratt-parser x 7,706 ops/sec ±12.20% (54 runs sampled)
-jsdoctypeparser x 2,456 ops/sec ±22.06% (49 runs sampled)
+catharsis x 933 ops/sec ±1.15% (1070 runs sampled)
+jsdoc-type-pratt-parser x 29,596 ops/sec ±0.90% (1068 runs sampled)
+jsdoctypeparser x 16,206 ops/sec ±1.38% (1055 runs sampled)
 The fastest was jsdoc-type-pratt-parser
-
 ```
 
-catharsis was used without cache, as this is just a simple lookup table that could easily be implemented for any parser.
+the test uses catharsis without cache, as this is just a simple lookup table that could easily be implemented for any parser.
  
