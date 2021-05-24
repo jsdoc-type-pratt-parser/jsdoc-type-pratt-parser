@@ -1,3 +1,10 @@
+# [1.0.0-alpha.23](https://github.com/simonseyock/jsdoc-type-pratt-parser/compare/v1.0.0-alpha.22...v1.0.0-alpha.23) (2021-05-24)
+
+
+### Features
+
+* removed submodules ([dc87398](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/dc87398c90b81f8d104111686333a49dfe682719))
+
 # [1.0.0-alpha.22](https://github.com/simonseyock/jsdoc-type-pratt-parser/compare/v1.0.0-alpha.21...v1.0.0-alpha.22) (2021-05-23)
 
 
