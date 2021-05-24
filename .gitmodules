@@ -1,6 +1,0 @@
-[submodule "submodules/catharsis"]
-	path = submodules/catharsis
-	url = git@github.com:hegemonic/catharsis.git
-[submodule "submodules/jsdoc-tester"]
-	path = submodules/jsdoc-tester
-	url = git@github.com:simonseyock/jsdoc-tester.git
