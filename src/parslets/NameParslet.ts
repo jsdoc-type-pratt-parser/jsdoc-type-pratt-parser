@@ -1,4 +1,4 @@
-import { ParserEngine } from '../ParserEngine'
+import { Parser } from '../Parser'
 import { TokenType } from '../lexer/Token'
 import { PrefixParslet } from './Parslet'
 import { Precedence } from '../Precedence'
@@ -23,7 +23,7 @@ export class NameParslet implements PrefixParslet {
     return Precedence.PREFIX
   }
 
-  parsePrefix (parser: ParserEngine): NameResult {
+  parsePrefix (parser: Parser): NameResult {
     const token = parser.getToken()
     parser.consume('Identifier') || parser.consume('this') || parser.consume('new') ||
       this.allowedAdditionalTokens.some(type => parser.consume(type))

@@ -8,7 +8,7 @@ import { Precedence } from './Precedence'
 import { TerminalResult } from './result/TerminalResult'
 import { IntermediateResult } from './result/IntermediateResult'
 
-export class ParserEngine {
+export class Parser {
   private readonly prefixParslets: PrefixParslet[]
   private readonly infixParslets: InfixParslet[]
 

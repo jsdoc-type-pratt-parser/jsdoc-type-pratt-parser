@@ -2,7 +2,7 @@ import { InfixParslet, PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
 import { assertTerminal } from '../assertTypes'
-import { ParserEngine } from '../ParserEngine'
+import { Parser } from '../Parser'
 import { TerminalResult, VariadicResult } from '../result/TerminalResult'
 import { IntermediateResult } from '../result/IntermediateResult'
 
@@ -25,7 +25,7 @@ export class VariadicParslet implements PrefixParslet, InfixParslet {
     return Precedence.PREFIX
   }
 
-  parsePrefix (parser: ParserEngine): VariadicResult<TerminalResult> {
+  parsePrefix (parser: Parser): VariadicResult<TerminalResult> {
     parser.consume('...')
 
     const brackets = this.allowEnclosingBrackets && parser.consume('[')
@@ -54,7 +54,7 @@ export class VariadicParslet implements PrefixParslet, InfixParslet {
     }
   }
 
-  parseInfix (parser: ParserEngine, left: IntermediateResult): TerminalResult {
+  parseInfix (parser: Parser, left: IntermediateResult): TerminalResult {
     parser.consume('...')
     return {
       type: 'JsdocTypeVariadic',

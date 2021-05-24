@@ -1,6 +1,6 @@
 import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
-import { ParserEngine } from '../ParserEngine'
+import { Parser } from '../Parser'
 import { Precedence } from '../Precedence'
 import { UnexpectedTypeError } from '../errors'
 import { ObjectResult, TerminalResult } from '../result/TerminalResult'
@@ -24,7 +24,7 @@ export class ObjectParslet implements PrefixParslet {
     return Precedence.OBJECT
   }
 
-  parsePrefix (parser: ParserEngine): TerminalResult {
+  parsePrefix (parser: Parser): TerminalResult {
     parser.consume('{')
     const result: ObjectResult = {
       type: 'JsdocTypeObject',

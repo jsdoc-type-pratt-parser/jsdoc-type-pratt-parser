@@ -1,7 +1,7 @@
 import { InfixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
-import { ParserEngine } from '../ParserEngine'
+import { Parser } from '../Parser'
 import { JsdocObjectKeyValueResult, KeyValueResult } from '../result/NonTerminalResult'
 import { assertTerminal } from '../assertTypes'
 import { UnexpectedTypeError } from '../errors'
@@ -29,7 +29,7 @@ export class KeyValueParslet implements InfixParslet {
     return Precedence.KEY_VALUE
   }
 
-  parseInfix (parser: ParserEngine, left: IntermediateResult): KeyValueResult | JsdocObjectKeyValueResult {
+  parseInfix (parser: Parser, left: IntermediateResult): KeyValueResult | JsdocObjectKeyValueResult {
     let optional = false
 
     if (this.allowOptional && left.type === 'JsdocTypeNullable') {

@@ -1,6 +1,6 @@
 import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
-import { ParserEngine } from '../ParserEngine'
+import { Parser } from '../Parser'
 import { Precedence } from '../Precedence'
 import { assertTerminal } from '../assertTypes'
 import { KeyOfResult } from '../result/TerminalResult'
@@ -14,7 +14,7 @@ export class KeyOfParslet implements PrefixParslet {
     return Precedence.KEY_OF_TYPE_OF
   }
 
-  parsePrefix (parser: ParserEngine): KeyOfResult {
+  parsePrefix (parser: Parser): KeyOfResult {
     parser.consume('keyof')
     return {
       type: 'JsdocTypeKeyof',

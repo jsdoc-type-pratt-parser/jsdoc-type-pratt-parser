@@ -4,7 +4,7 @@ import { Precedence } from '../Precedence'
 import { assertTerminal } from '../assertTypes'
 import { UnexpectedTypeError } from '../errors'
 import { StringValueParslet } from './StringValueParslet'
-import { ParserEngine } from '../ParserEngine'
+import { Parser } from '../Parser'
 import { IntermediateResult } from '../result/IntermediateResult'
 import { NamePathResult, NameResult, SpecialNamePath, TerminalResult } from '../result/TerminalResult'
 import { NumberResult } from '..'
@@ -30,7 +30,7 @@ export class NamePathParslet implements InfixParslet {
     return Precedence.NAME_PATH
   }
 
-  parseInfix (parser: ParserEngine, left: IntermediateResult): TerminalResult {
+  parseInfix (parser: Parser, left: IntermediateResult): TerminalResult {
     let type: NamePathResult['pathType']
 
     if (parser.consume('.')) {

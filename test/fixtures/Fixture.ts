@@ -4,17 +4,17 @@ import { parse as catharsisParse } from 'catharsis'
 import { parse as jtpParse } from 'jsdoctypeparser'
 import { jtpTransform } from '../../src/transforms/jtpTransform'
 import { simplify } from '../../src/transforms/simplify'
-import { catharsisTransform, parse, TerminalResult, ParserMode, stringify } from '../../src'
+import { catharsisTransform, parse, TerminalResult, ParseMode, stringify } from '../../src'
 
 type JtpMode = 'jsdoc' | 'closure' | 'typescript' | 'permissive'
 
 type CatharsisMode = 'jsdoc' | 'closure'
 
-type CompareMode = ParserMode | 'fail' | 'differ'
+type CompareMode = ParseMode | 'fail' | 'differ'
 
 export interface Fixture {
   description: string
-  modes: ParserMode[]
+  modes: ParseMode[]
   jtp: {
     [K in JtpMode]: CompareMode
   }
@@ -23,17 +23,17 @@ export interface Fixture {
   }
   expected?: TerminalResult
   diffExpected?: {
-    [K in ParserMode]?: TerminalResult
+    [K in ParseMode]?: TerminalResult
   }
   input: string
   stringified?: string
 }
 
 type Results = {
-  [K in ParserMode]?: TerminalResult
+  [K in ParseMode]?: TerminalResult
 }
 
-function testParser (mode: ParserMode, fixture: Fixture): TerminalResult | undefined {
+function testParser (mode: ParseMode, fixture: Fixture): TerminalResult | undefined {
   if (fixture.modes.includes(mode)) {
     it(`is parsed in '${mode}' mode`, () => {
       const result = parse(fixture.input, mode)
@@ -121,7 +121,7 @@ export function testFixture (fixture: Fixture): void {
     it('should stringify', () => {
       // TODO: at the moment this does only test one possible stringification
 
-      const mode: ParserMode | undefined = (results.jsdoc !== undefined)
+      const mode: ParseMode | undefined = (results.jsdoc !== undefined)
         ? 'jsdoc' : (results.closure !== undefined)
           ? 'closure' : (results.typescript !== undefined)
             ? 'typescript' : undefined

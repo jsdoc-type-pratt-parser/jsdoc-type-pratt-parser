@@ -1,6 +1,6 @@
 import { assertTerminal } from '../assertTypes'
 import { TokenType } from '../lexer/Token'
-import { ParserEngine } from '../ParserEngine'
+import { Parser } from '../Parser'
 import { PrefixParslet } from './Parslet'
 import { Precedence } from '../Precedence'
 import { TupleResult } from '../result/TerminalResult'
@@ -24,7 +24,7 @@ export class TupleParslet implements PrefixParslet {
     return Precedence.TUPLE
   }
 
-  parsePrefix (parser: ParserEngine): TupleResult {
+  parsePrefix (parser: Parser): TupleResult {
     parser.consume('[')
     const result: TupleResult = {
       type: 'JsdocTypeTuple',

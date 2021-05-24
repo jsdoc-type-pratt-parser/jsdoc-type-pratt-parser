@@ -1,7 +1,7 @@
 import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
-import { ParserEngine } from '../ParserEngine'
+import { Parser } from '../Parser'
 import { NonTerminalResult } from '../result/NonTerminalResult'
 
 export class NumberParslet implements PrefixParslet {
@@ -13,7 +13,7 @@ export class NumberParslet implements PrefixParslet {
     return Precedence.PREFIX
   }
 
-  parsePrefix (parser: ParserEngine): NonTerminalResult {
+  parsePrefix (parser: Parser): NonTerminalResult {
     const token = parser.getToken()
     parser.consume('Number')
     return {

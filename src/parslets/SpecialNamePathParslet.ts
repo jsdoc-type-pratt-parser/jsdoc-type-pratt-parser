@@ -1,7 +1,7 @@
 import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
-import { ParserEngine } from '../ParserEngine'
+import { Parser } from '../Parser'
 import { NameResult, SpecialNamePath } from '../result/TerminalResult'
 
 export class SpecialNamePathParslet implements PrefixParslet {
@@ -13,7 +13,7 @@ export class SpecialNamePathParslet implements PrefixParslet {
     return Precedence.PREFIX
   }
 
-  parsePrefix (parser: ParserEngine): SpecialNamePath | NameResult {
+  parsePrefix (parser: Parser): SpecialNamePath | NameResult {
     const type = parser.getToken().text as 'module' | 'event' | 'external'
     parser.consume('module') || parser.consume('event') || parser.consume('external')
     if (!parser.consume(':')) {

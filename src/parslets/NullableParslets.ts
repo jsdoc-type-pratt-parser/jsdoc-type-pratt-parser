@@ -3,7 +3,7 @@ import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
 import { isQuestionMarkUnknownType } from './isQuestionMarkUnkownType'
 import { assertTerminal } from '../assertTypes'
-import { ParserEngine } from '../ParserEngine'
+import { Parser } from '../Parser'
 import { IntermediateResult } from '../result/IntermediateResult'
 import { TerminalResult } from '../result/TerminalResult'
 
@@ -16,7 +16,7 @@ export class NullablePrefixParslet implements PrefixParslet {
     return Precedence.NULLABLE
   }
 
-  parsePrefix (parser: ParserEngine): TerminalResult {
+  parsePrefix (parser: Parser): TerminalResult {
     parser.consume('?')
     return {
       type: 'JsdocTypeNullable',
@@ -37,7 +37,7 @@ export class NullableInfixParslet implements InfixParslet {
     return Precedence.NULLABLE
   }
 
-  parseInfix (parser: ParserEngine, left: IntermediateResult): TerminalResult {
+  parseInfix (parser: Parser, left: IntermediateResult): TerminalResult {
     parser.consume('?')
     return {
       type: 'JsdocTypeNullable',
