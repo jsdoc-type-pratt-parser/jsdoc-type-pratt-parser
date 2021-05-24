@@ -6,7 +6,6 @@ import { KeyValueParslet } from '../parslets/KeyValueParslet'
 import { TypeOfParslet } from '../parslets/TypeOfParslet'
 import { VariadicParslet } from '../parslets/VariadicParslet'
 import { NameParslet } from '../parslets/NameParslet'
-import { NotNullableParslet } from '../parslets/NotNullableParslet'
 import { ObjectParslet } from '../parslets/ObjectParslet'
 
 export const closureGrammar: Grammar = () => {
@@ -35,8 +34,7 @@ export const closureGrammar: Grammar = () => {
       }),
       new NameParslet({
         allowedAdditionalTokens: ['keyof']
-      }),
-      new NotNullableParslet()
+      })
     ],
     infixParslets: [
       ...infixParslets,
@@ -46,8 +44,7 @@ export const closureGrammar: Grammar = () => {
       new KeyValueParslet({
         allowKeyTypes: false,
         allowOptional: false
-      }),
-      new NotNullableParslet()
+      })
     ]
   }
 }

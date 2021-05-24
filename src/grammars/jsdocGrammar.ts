@@ -9,7 +9,6 @@ import { KeyValueParslet } from '../parslets/KeyValueParslet'
 import { VariadicParslet } from '../parslets/VariadicParslet'
 import { SpecialNamePathParslet } from '../parslets/SpecialNamePathParslet'
 import { NameParslet } from '../parslets/NameParslet'
-import { NotNullableParslet } from '../parslets/NotNullableParslet'
 import { ObjectParslet } from '../parslets/ObjectParslet'
 
 export const jsdocGrammar: Grammar = () => {
@@ -36,8 +35,7 @@ export const jsdocGrammar: Grammar = () => {
       }),
       new NameParslet({
         allowedAdditionalTokens: ['keyof']
-      }),
-      new NotNullableParslet()
+      })
     ],
     infixParslets: [
       ...infixParslets,
@@ -52,8 +50,7 @@ export const jsdocGrammar: Grammar = () => {
       }),
       new VariadicParslet({
         allowEnclosingBrackets: true
-      }),
-      new NotNullableParslet()
+      })
     ]
   }
 }

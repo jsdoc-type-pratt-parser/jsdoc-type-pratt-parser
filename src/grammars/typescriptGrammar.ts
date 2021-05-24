@@ -24,9 +24,6 @@ export const typescriptGrammar: Grammar = () => {
     infixParslets
   } = baseGrammar()
 
-  // typescript does not support explicit non nullability
-  // https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html#patterns-that-are-known-not-to-be-supported
-
   // module seems not to be supported
 
   return {

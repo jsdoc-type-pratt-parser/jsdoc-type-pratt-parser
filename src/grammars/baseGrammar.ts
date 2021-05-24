@@ -7,6 +7,7 @@ import { NumberParslet } from '../parslets/NumberParslet'
 import { ParameterListParslet } from '../parslets/ParameterListParslet'
 import { NullableInfixParslet, NullablePrefixParslet } from '../parslets/NullableParslets'
 import { OptionalParslet } from '../parslets/OptionalParslet'
+import { NotNullableParslet } from '../parslets/NotNullableParslet'
 
 export const baseGrammar: Grammar = () => {
   return {
@@ -15,7 +16,8 @@ export const baseGrammar: Grammar = () => {
       new OptionalParslet(),
       new NumberParslet(),
       new ParenthesisParslet(),
-      new SpecialTypesParslet()
+      new SpecialTypesParslet(),
+      new NotNullableParslet()
     ],
     infixParslets: [
       new ParameterListParslet({
@@ -24,7 +26,8 @@ export const baseGrammar: Grammar = () => {
       new GenericParslet(),
       new UnionParslet(),
       new OptionalParslet(),
-      new NullableInfixParslet()
+      new NullableInfixParslet(),
+      new NotNullableParslet()
     ]
   }
 }
