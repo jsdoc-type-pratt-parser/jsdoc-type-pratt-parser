@@ -8,7 +8,7 @@ Benchmark.options.minSamples = 1000
 const testCases = [
   'Name',
   'Array<number>',
-  '{ keyA: Type<A | "string val" >, keyB: function(string, B): A }',
+  '{ keyA: Type<A | "string val" >, keyB: function(string, B): A }'
   // '{ keyA: Type<(typeof A) | "string val" | X<function(F, L): (X | D)>>, keyB: function(string, B): A<B, C> }'
 ]
 
