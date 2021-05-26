@@ -2,11 +2,21 @@ import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
 import { Parser } from '../Parser'
-import { NameResult, SpecialNamePath } from '../result/TerminalResult'
+import { NameResult, SpecialNamePath, SpecialNamePathType } from '../result/TerminalResult'
+
+interface SpecialNamePathParsletOptions {
+  allowedTypes: SpecialNamePathType[]
+}
 
 export class SpecialNamePathParslet implements PrefixParslet {
+  private readonly allowedTypes: SpecialNamePathType[]
+
+  constructor (opts: SpecialNamePathParsletOptions) {
+    this.allowedTypes = opts.allowedTypes
+  }
+
   accepts (type: TokenType, next: TokenType): boolean {
-    return type === 'module' || type === 'event' || type === 'external'
+    return (this.allowedTypes as TokenType[]).includes(type)
   }
 
   getPrecedence (): Precedence {
@@ -14,14 +24,15 @@ export class SpecialNamePathParslet implements PrefixParslet {
   }
 
   parsePrefix (parser: Parser): SpecialNamePath | NameResult {
-    const type = parser.getToken().text as 'module' | 'event' | 'external'
-    parser.consume('module') || parser.consume('event') || parser.consume('external')
+    const type = this.allowedTypes.find(type => parser.consume(type)) as SpecialNamePathType
+
     if (!parser.consume(':')) {
       return {
         type: 'JsdocTypeName',
         value: type
       }
     }
+
     let token = parser.getToken()
     if (parser.consume('StringValue')) {
       return {

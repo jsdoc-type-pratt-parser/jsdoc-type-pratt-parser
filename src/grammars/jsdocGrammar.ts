@@ -1,4 +1,4 @@
-import { Grammar } from './Grammar'
+import { GrammarFactory } from './Grammar'
 import { SymbolParslet } from '../parslets/SymbolParslet'
 import { ArrayBracketsParslet } from '../parslets/ArrayBracketsParslet'
 import { StringValueParslet } from '../parslets/StringValueParslet'
@@ -11,7 +11,7 @@ import { SpecialNamePathParslet } from '../parslets/SpecialNamePathParslet'
 import { NameParslet } from '../parslets/NameParslet'
 import { ObjectParslet } from '../parslets/ObjectParslet'
 
-export const jsdocGrammar: Grammar = () => {
+export const jsdocGrammar: GrammarFactory = () => {
   const {
     prefixParslets,
     infixParslets
@@ -29,7 +29,9 @@ export const jsdocGrammar: Grammar = () => {
         allowNoReturnType: true
       }),
       new StringValueParslet(),
-      new SpecialNamePathParslet(),
+      new SpecialNamePathParslet({
+        allowedTypes: ['module', 'external', 'event']
+      }),
       new VariadicParslet({
         allowEnclosingBrackets: true
       }),

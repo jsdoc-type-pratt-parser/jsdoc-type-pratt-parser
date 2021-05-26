@@ -1,5 +1,5 @@
 import { TupleParslet } from '../parslets/TupleParslet'
-import { Grammar } from './Grammar'
+import { GrammarFactory } from './Grammar'
 import { ArrayBracketsParslet } from '../parslets/ArrayBracketsParslet'
 import { baseGrammar } from './baseGrammar'
 import { TypeOfParslet } from '../parslets/TypeOfParslet'
@@ -17,8 +17,9 @@ import { VariadicParslet } from '../parslets/VariadicParslet'
 import { NameParslet } from '../parslets/NameParslet'
 import { IntersectionParslet } from '../parslets/IntersectionParslet'
 import { ObjectParslet } from '../parslets/ObjectParslet'
+import { moduleGrammar } from './moduleGrammar'
 
-export const typescriptGrammar: Grammar = () => {
+export const typescriptGrammar: GrammarFactory = () => {
   const {
     prefixParslets,
     infixParslets
@@ -27,6 +28,9 @@ export const typescriptGrammar: Grammar = () => {
   // module seems not to be supported
 
   return {
+    parallel: [
+      moduleGrammar()
+    ],
     prefixParslets: [
       ...prefixParslets,
       new ObjectParslet({

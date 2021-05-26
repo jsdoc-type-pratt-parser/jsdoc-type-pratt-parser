@@ -1,4 +1,4 @@
-import { Grammar } from './Grammar'
+import { GrammarFactory } from './Grammar'
 import { baseGrammar } from './baseGrammar'
 import { FunctionParslet } from '../parslets/FunctionParslet'
 import { NamePathParslet } from '../parslets/NamePathParslet'
@@ -8,7 +8,7 @@ import { VariadicParslet } from '../parslets/VariadicParslet'
 import { NameParslet } from '../parslets/NameParslet'
 import { ObjectParslet } from '../parslets/ObjectParslet'
 
-export const closureGrammar: Grammar = () => {
+export const closureGrammar: GrammarFactory = () => {
   const {
     prefixParslets,
     infixParslets

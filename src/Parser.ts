@@ -2,7 +2,7 @@ import { EarlyEndOfParseError, NoParsletFoundError } from './errors'
 import { Token, TokenType } from './lexer/Token'
 import { Lexer } from './lexer/Lexer'
 import { InfixParslet, PrefixParslet } from './parslets/Parslet'
-import { Grammar } from './grammars/Grammar'
+import { JoinableGrammar } from './grammars/Grammar'
 import { assertTerminal } from './assertTypes'
 import { Precedence } from './Precedence'
 import { TerminalResult } from './result/TerminalResult'
@@ -13,27 +13,49 @@ export class Parser {
   private readonly infixParslets: InfixParslet[]
 
   private readonly lexer: Lexer
+  private parallelParsers: Parser[] | undefined
 
-  constructor (grammar: Grammar) {
+  constructor (grammar: JoinableGrammar) {
     this.lexer = new Lexer()
 
     const {
+      parallel,
       prefixParslets,
       infixParslets
-    } = grammar()
+    } = grammar
 
     this.prefixParslets = prefixParslets
 
     this.infixParslets = infixParslets
+
+    this.parallelParsers = parallel?.map(g => new Parser(g))
   }
 
   parseText (text: string): TerminalResult {
-    this.lexer.lex(text)
-    const result = this.parseType(Precedence.ALL)
-    if (!this.consume('EOF')) {
-      throw new EarlyEndOfParseError(this.getToken())
+    const errors: Error[] = []
+    if (this.parallelParsers !== undefined) {
+      for (const joinedParser of this.parallelParsers) {
+        try {
+          return joinedParser.parseText(text)
+        } catch (e) {
+          errors.push(e)
+        }
+      }
     }
-    return result
+    try {
+      this.lexer.lex(text)
+      const result = this.parseType(Precedence.ALL)
+      if (!this.consume('EOF')) {
+        throw new EarlyEndOfParseError(this.getToken())
+      }
+      return result
+    } catch (e) {
+      if (errors.length === 0) {
+        throw e
+      } else {
+        throw new AggregateError(errors.concat(e))
+      }
+    }
   }
 
   getPrefixParslet (): PrefixParslet | undefined {
