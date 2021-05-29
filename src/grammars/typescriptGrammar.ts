@@ -18,6 +18,7 @@ import { NameParslet } from '../parslets/NameParslet'
 import { IntersectionParslet } from '../parslets/IntersectionParslet'
 import { ObjectParslet } from '../parslets/ObjectParslet'
 import { moduleGrammar } from './moduleGrammar'
+import { SpecialNamePathParslet } from '../parslets/SpecialNamePathParslet'
 
 export const typescriptGrammar: GrammarFactory = () => {
   const {
@@ -42,7 +43,7 @@ export const typescriptGrammar: GrammarFactory = () => {
       new StringValueParslet(),
       new ArrowFunctionWithoutParametersParslet(),
       new FunctionParslet({
-        allowWithoutParenthesis: false,
+        allowWithoutParenthesis: true,
         allowNoReturnType: false,
         allowNamedParameters: ['this', 'new']
       }),
@@ -53,7 +54,10 @@ export const typescriptGrammar: GrammarFactory = () => {
         allowEnclosingBrackets: false
       }),
       new NameParslet({
-        allowedAdditionalTokens: ['module', 'event', 'external']
+        allowedAdditionalTokens: ['event', 'external']
+      }),
+      new SpecialNamePathParslet({
+        allowedTypes: ['module']
       })
     ],
     infixParslets: [

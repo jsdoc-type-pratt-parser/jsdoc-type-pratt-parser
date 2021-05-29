@@ -7,6 +7,8 @@ import { TypeOfParslet } from '../parslets/TypeOfParslet'
 import { VariadicParslet } from '../parslets/VariadicParslet'
 import { NameParslet } from '../parslets/NameParslet'
 import { ObjectParslet } from '../parslets/ObjectParslet'
+import { SpecialNamePathParslet } from '../parslets/SpecialNamePathParslet'
+import { SymbolParslet } from '../parslets/SymbolParslet'
 
 export const closureGrammar: GrammarFactory = () => {
   const {
@@ -21,7 +23,7 @@ export const closureGrammar: GrammarFactory = () => {
         allowKeyTypes: false
       }),
       new NameParslet({
-        allowedAdditionalTokens: ['module', 'event', 'external']
+        allowedAdditionalTokens: ['event', 'external']
       }),
       new TypeOfParslet(),
       new FunctionParslet({
@@ -34,17 +36,21 @@ export const closureGrammar: GrammarFactory = () => {
       }),
       new NameParslet({
         allowedAdditionalTokens: ['keyof']
+      }),
+      new SpecialNamePathParslet({
+        allowedTypes: ['module']
       })
     ],
     infixParslets: [
       ...infixParslets,
       new NamePathParslet({
-        allowJsdocNamePaths: false
+        allowJsdocNamePaths: true
       }),
       new KeyValueParslet({
         allowKeyTypes: false,
         allowOptional: false
-      })
+      }),
+      new SymbolParslet()
     ]
   }
 }

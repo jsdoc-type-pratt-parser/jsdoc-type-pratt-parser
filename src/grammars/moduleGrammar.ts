@@ -8,10 +8,10 @@ import { StringValueParslet } from '../parslets/StringValueParslet'
 export const moduleGrammar: GrammarFactory = () => ({
   prefixParslets: [
     new SpecialNamePathParslet({
-      allowedTypes: ['module']
+      allowedTypes: ['event']
     }),
     new NameParslet({
-      allowedAdditionalTokens: ['event', 'external']
+      allowedAdditionalTokens: ['module', 'external']
     }),
     new NumberParslet(),
     new StringValueParslet()
