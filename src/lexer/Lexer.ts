@@ -231,6 +231,4 @@ export class Lexer {
     }
     throw new Error('Unexpected Token')
   }
-
-
 }
