@@ -1,3 +1,19 @@
+# [1.0.0-alpha.24](https://github.com/simonseyock/jsdoc-type-pratt-parser/compare/v1.0.0-alpha.23...v1.0.0-alpha.24) (2021-05-29)
+
+
+### Bug Fixes
+
+* tsconfig.json no lib ([6df24dc](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/6df24dc0e0d7eb8c642c1943731dff2b1a024389))
+
+
+### Features
+
+* `function` is of type `JsdocTypeName` now. ([225c337](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/225c33762a6c9c7a47fe4b4b5ce1b357f20d98a1))
+* add module grammar, add parallel grammar ([2fe4fd7](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/2fe4fd7417261b5f32171b8f8b80d64f74187151))
+* add not nullable to base grammar ([7d0910f](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/7d0910f33c7ee9bfde82231a86d11e2ea2b11e25))
+* Parser exposes infixParse and accepts Lexer ([415b7c9](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/415b7c9333ab8dd60177ac94820022d829d0c5eb))
+* SpecialNamePathParslet switches to other grammar. Allow `module:` in typescript and closure. ([25edc18](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/25edc18f9f666e065666381fa7bbf1a57d3a7ced))
+
 # [1.0.0-alpha.23](https://github.com/simonseyock/jsdoc-type-pratt-parser/compare/v1.0.0-alpha.22...v1.0.0-alpha.23) (2021-05-24)
 
 
