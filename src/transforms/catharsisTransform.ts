@@ -200,7 +200,16 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
 
   JsdocTypeSpecialNamePath: result => makeName(result.specialType + ':' + quote(result.value, result.meta.quote)),
 
-  JsdocTypeName: result => makeName(result.value),
+  JsdocTypeName: result => {
+    if (result.value !== 'function') {
+      return makeName(result.value)
+    } else {
+      return {
+        type: 'FunctionType',
+        params: []
+      }
+    }
+  },
 
   JsdocTypeNumber: result => makeName(result.value.toString()),
 

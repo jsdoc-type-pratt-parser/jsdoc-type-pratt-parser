@@ -64,7 +64,7 @@ export const nullableFixtures: Fixture[] = [
         position: 'prefix'
       }
     },
-    modes: ['jsdoc', 'closure'],
+    modes: ['jsdoc', 'closure', 'typescript'],
     catharsis: {
       closure: 'closure',
       jsdoc: 'jsdoc'
@@ -72,7 +72,7 @@ export const nullableFixtures: Fixture[] = [
     jtp: {
       closure: 'closure',
       jsdoc: 'jsdoc',
-      typescript: 'differ',
+      typescript: 'typescript',
       permissive: 'closure'
     }
   },
@@ -89,7 +89,7 @@ export const nullableFixtures: Fixture[] = [
         position: 'suffix'
       }
     },
-    modes: ['jsdoc', 'closure'],
+    modes: ['jsdoc', 'closure', 'typescript'],
     catharsis: {
       closure: 'closure',
       jsdoc: 'jsdoc'
@@ -97,7 +97,7 @@ export const nullableFixtures: Fixture[] = [
     jtp: {
       closure: 'closure',
       jsdoc: 'jsdoc',
-      typescript: 'differ',
+      typescript: 'typescript',
       permissive: 'closure'
     }
   },
@@ -185,7 +185,7 @@ export const nullableFixtures: Fixture[] = [
         squareBrackets: false
       }
     },
-    modes: ['jsdoc', 'closure'],
+    modes: ['jsdoc', 'closure', 'typescript'],
     catharsis: {
       closure: 'closure',
       jsdoc: 'jsdoc'
@@ -193,7 +193,7 @@ export const nullableFixtures: Fixture[] = [
     jtp: {
       closure: 'closure',
       jsdoc: 'jsdoc',
-      typescript: 'differ',
+      typescript: 'typescript',
       permissive: 'closure'
     }
   },
@@ -217,7 +217,7 @@ export const nullableFixtures: Fixture[] = [
         squareBrackets: false
       }
     },
-    modes: ['jsdoc', 'closure'],
+    modes: ['jsdoc', 'closure', 'typescript'],
     catharsis: {
       closure: 'closure',
       jsdoc: 'jsdoc'
@@ -225,7 +225,7 @@ export const nullableFixtures: Fixture[] = [
     jtp: {
       closure: 'closure',
       jsdoc: 'jsdoc',
-      typescript: 'differ',
+      typescript: 'typescript',
       permissive: 'closure'
     }
   },
@@ -348,7 +348,7 @@ export const nullableFixtures: Fixture[] = [
         position: 'suffix'
       }
     },
-    modes: ['jsdoc', 'closure'],
+    modes: ['jsdoc', 'closure', 'typescript'],
     catharsis: {
       closure: 'closure',
       jsdoc: 'jsdoc'
@@ -379,7 +379,7 @@ export const nullableFixtures: Fixture[] = [
         position: 'suffix'
       }
     },
-    modes: ['jsdoc', 'closure'],
+    modes: ['jsdoc', 'closure', 'typescript'],
     catharsis: {
       closure: 'closure',
       jsdoc: 'jsdoc'
@@ -387,7 +387,7 @@ export const nullableFixtures: Fixture[] = [
     jtp: {
       closure: 'closure',
       jsdoc: 'jsdoc',
-      typescript: 'differ',
+      typescript: 'typescript',
       permissive: 'closure'
     }
   },
@@ -417,7 +417,7 @@ export const nullableFixtures: Fixture[] = [
         squareBrackets: false
       }
     },
-    modes: ['jsdoc', 'closure'],
+    modes: ['jsdoc', 'closure', 'typescript'],
     catharsis: {
       closure: 'closure',
       jsdoc: 'jsdoc'
@@ -425,7 +425,7 @@ export const nullableFixtures: Fixture[] = [
     jtp: {
       closure: 'closure',
       jsdoc: 'jsdoc',
-      typescript: 'differ',
+      typescript: 'typescript',
       permissive: 'closure'
     }
   }

@@ -14,13 +14,13 @@ export class Parser {
 
   private readonly lexer: Lexer
 
-  constructor (grammar: Grammar) {
-    this.lexer = new Lexer()
+  constructor (grammar: Grammar, lexer?: Lexer) {
+    this.lexer = lexer ?? new Lexer()
 
     const {
       prefixParslets,
       infixParslets
-    } = grammar()
+    } = grammar
 
     this.prefixParslets = prefixParslets
 
@@ -55,19 +55,23 @@ export class Parser {
   }
 
   public parseIntermediateType (precedence: Precedence): IntermediateResult {
-    const pParslet = this.getPrefixParslet()
+    const parslet = this.getPrefixParslet()
 
-    if (pParslet === undefined) {
+    if (parslet === undefined) {
       throw new NoParsletFoundError(this.getToken())
     }
 
-    let result = pParslet.parsePrefix(this)
+    const result = parslet.parsePrefix(this)
 
-    let iParslet = this.getInfixParslet(precedence)
+    return this.parseInfixIntermediateType(result, precedence)
+  }
 
-    while (iParslet !== undefined) {
-      result = iParslet.parseInfix(this, result)
-      iParslet = this.getInfixParslet(precedence)
+  public parseInfixIntermediateType (result: IntermediateResult, precedence: Precedence): IntermediateResult {
+    let parslet = this.getInfixParslet(precedence)
+
+    while (parslet !== undefined) {
+      result = parslet.parseInfix(this, result)
+      parslet = this.getInfixParslet(precedence)
     }
 
     return result
@@ -91,5 +95,9 @@ export class Parser {
 
   public previousToken (): Token | undefined {
     return this.lexer.last()
+  }
+
+  getLexer (): Lexer {
+    return this.lexer
   }
 }

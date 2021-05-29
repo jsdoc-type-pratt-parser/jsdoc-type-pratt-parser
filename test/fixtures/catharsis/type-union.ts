@@ -219,7 +219,7 @@ export const unionFixtures: Fixture[] = [
         position: 'prefix'
       }
     },
-    modes: ['jsdoc', 'closure'],
+    modes: ['jsdoc', 'closure', 'typescript'],
     catharsis: {
       closure: 'closure',
       jsdoc: 'jsdoc'
@@ -227,7 +227,7 @@ export const unionFixtures: Fixture[] = [
     jtp: {
       closure: 'closure',
       jsdoc: 'jsdoc',
-      typescript: 'differ',
+      typescript: 'typescript',
       permissive: 'closure'
     }
   },
@@ -474,7 +474,7 @@ export const unionFixtures: Fixture[] = [
         }
       ]
     },
-    modes: ['jsdoc', 'closure'],
+    modes: ['jsdoc', 'closure', 'typescript'],
     catharsis: {
       closure: 'closure',
       jsdoc: 'jsdoc'
@@ -482,7 +482,7 @@ export const unionFixtures: Fixture[] = [
     jtp: {
       closure: 'closure',
       jsdoc: 'jsdoc',
-      typescript: 'differ',
+      typescript: 'typescript',
       permissive: 'closure'
     }
   },

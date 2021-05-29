@@ -93,10 +93,10 @@ export const eventExternalFixtures: Fixture[] = [
       },
       pathType: 'property'
     },
-    modes: ['jsdoc'],
+    modes: ['jsdoc', 'closure', 'typescript'],
     catharsis: {
       jsdoc: 'jsdoc',
-      closure: 'differ'
+      closure: 'closure'
     },
     jtp: {
       jsdoc: 'fail',
@@ -136,10 +136,10 @@ export const eventExternalFixtures: Fixture[] = [
       },
       pathType: 'property'
     },
-    modes: ['jsdoc'],
+    modes: ['jsdoc', 'closure', 'typescript'],
     catharsis: {
       jsdoc: 'jsdoc',
-      closure: 'differ'
+      closure: 'closure'
     },
     jtp: {
       jsdoc: 'fail',

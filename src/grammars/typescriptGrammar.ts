@@ -1,5 +1,5 @@
 import { TupleParslet } from '../parslets/TupleParslet'
-import { Grammar } from './Grammar'
+import { GrammarFactory } from './Grammar'
 import { ArrayBracketsParslet } from '../parslets/ArrayBracketsParslet'
 import { baseGrammar } from './baseGrammar'
 import { TypeOfParslet } from '../parslets/TypeOfParslet'
@@ -17,19 +17,21 @@ import { VariadicParslet } from '../parslets/VariadicParslet'
 import { NameParslet } from '../parslets/NameParslet'
 import { IntersectionParslet } from '../parslets/IntersectionParslet'
 import { ObjectParslet } from '../parslets/ObjectParslet'
+import { moduleGrammar } from './moduleGrammar'
+import { SpecialNamePathParslet } from '../parslets/SpecialNamePathParslet'
 
-export const typescriptGrammar: Grammar = () => {
+export const typescriptGrammar: GrammarFactory = () => {
   const {
     prefixParslets,
     infixParslets
   } = baseGrammar()
 
-  // typescript does not support explicit non nullability
-  // https://www.typescriptlang.org/docs/handbook/jsdoc-supported-types.html#patterns-that-are-known-not-to-be-supported
-
   // module seems not to be supported
 
   return {
+    parallel: [
+      moduleGrammar()
+    ],
     prefixParslets: [
       ...prefixParslets,
       new ObjectParslet({
@@ -41,7 +43,7 @@ export const typescriptGrammar: Grammar = () => {
       new StringValueParslet(),
       new ArrowFunctionWithoutParametersParslet(),
       new FunctionParslet({
-        allowWithoutParenthesis: false,
+        allowWithoutParenthesis: true,
         allowNoReturnType: false,
         allowNamedParameters: ['this', 'new']
       }),
@@ -52,7 +54,10 @@ export const typescriptGrammar: Grammar = () => {
         allowEnclosingBrackets: false
       }),
       new NameParslet({
-        allowedAdditionalTokens: ['module', 'event', 'external']
+        allowedAdditionalTokens: ['event', 'external']
+      }),
+      new SpecialNamePathParslet({
+        allowedTypes: ['module']
       })
     ],
     infixParslets: [

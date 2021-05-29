@@ -170,10 +170,12 @@ export interface ObjectResult {
   elements: Array<KeyValueResult | JsdocObjectKeyValueResult>
 }
 
+export type SpecialNamePathType = 'module' | 'event' | 'external'
+
 /**
  * A module type. Often this is a `left` type of a {@link NamePathResult}.
  */
-export interface SpecialNamePath<Type = 'module' | 'event' | 'external'> {
+export interface SpecialNamePath<Type extends SpecialNamePathType = SpecialNamePathType> {
   type: 'JsdocTypeSpecialNamePath'
   value: string
   specialType: Type

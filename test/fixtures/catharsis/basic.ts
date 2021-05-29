@@ -512,14 +512,14 @@ export const basicFixtures: Fixture[] = [
         quote: 'single'
       }
     },
-    modes: ['jsdoc'],
+    modes: ['jsdoc', 'closure', 'typescript'],
     catharsis: {
       jsdoc: 'jsdoc',
-      closure: 'differ'
+      closure: 'closure'
     },
     jtp: {
       jsdoc: 'jsdoc',
-      closure: 'differ',
+      closure: 'closure',
       typescript: 'fail',
       permissive: 'jsdoc'
     }
@@ -535,14 +535,14 @@ export const basicFixtures: Fixture[] = [
         quote: 'double'
       }
     },
-    modes: ['jsdoc'],
+    modes: ['jsdoc', 'closure', 'typescript'],
     catharsis: {
       jsdoc: 'jsdoc',
-      closure: 'differ'
+      closure: 'closure'
     },
     jtp: {
       jsdoc: 'jsdoc',
-      closure: 'differ',
+      closure: 'closure',
       typescript: 'fail',
       permissive: 'jsdoc'
     }
@@ -566,9 +566,9 @@ export const basicFixtures: Fixture[] = [
       },
       pathType: 'inner'
     },
-    modes: ['jsdoc'],
+    modes: ['jsdoc', 'closure', 'typescript'],
     catharsis: {
-      closure: 'differ', // this seems to be a catharsis error
+      closure: 'closure',
       jsdoc: 'jsdoc'
     },
     jtp: {

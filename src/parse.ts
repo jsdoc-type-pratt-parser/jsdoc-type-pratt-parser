@@ -7,9 +7,9 @@ import { TerminalResult } from './result/TerminalResult'
 export type ParseMode = 'closure' | 'jsdoc' | 'typescript'
 
 const parsers = {
-  jsdoc: new Parser(jsdocGrammar),
-  closure: new Parser(closureGrammar),
-  typescript: new Parser(typescriptGrammar)
+  jsdoc: new Parser(jsdocGrammar()),
+  closure: new Parser(closureGrammar()),
+  typescript: new Parser(typescriptGrammar())
 }
 
 /**

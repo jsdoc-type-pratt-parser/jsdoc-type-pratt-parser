@@ -1,4 +1,4 @@
-import { Grammar } from './Grammar'
+import { GrammarFactory } from './Grammar'
 import { SymbolParslet } from '../parslets/SymbolParslet'
 import { ArrayBracketsParslet } from '../parslets/ArrayBracketsParslet'
 import { StringValueParslet } from '../parslets/StringValueParslet'
@@ -9,10 +9,9 @@ import { KeyValueParslet } from '../parslets/KeyValueParslet'
 import { VariadicParslet } from '../parslets/VariadicParslet'
 import { SpecialNamePathParslet } from '../parslets/SpecialNamePathParslet'
 import { NameParslet } from '../parslets/NameParslet'
-import { NotNullableParslet } from '../parslets/NotNullableParslet'
 import { ObjectParslet } from '../parslets/ObjectParslet'
 
-export const jsdocGrammar: Grammar = () => {
+export const jsdocGrammar: GrammarFactory = () => {
   const {
     prefixParslets,
     infixParslets
@@ -30,14 +29,15 @@ export const jsdocGrammar: Grammar = () => {
         allowNoReturnType: true
       }),
       new StringValueParslet(),
-      new SpecialNamePathParslet(),
+      new SpecialNamePathParslet({
+        allowedTypes: ['module', 'external', 'event']
+      }),
       new VariadicParslet({
         allowEnclosingBrackets: true
       }),
       new NameParslet({
         allowedAdditionalTokens: ['keyof']
-      }),
-      new NotNullableParslet()
+      })
     ],
     infixParslets: [
       ...infixParslets,
@@ -52,8 +52,7 @@ export const jsdocGrammar: Grammar = () => {
       }),
       new VariadicParslet({
         allowEnclosingBrackets: true
-      }),
-      new NotNullableParslet()
+      })
     ]
   }
 }

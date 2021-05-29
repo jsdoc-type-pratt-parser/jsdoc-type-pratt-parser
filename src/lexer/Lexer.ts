@@ -231,22 +231,4 @@ export class Lexer {
     }
     throw new Error('Unexpected Token')
   }
-
-  public clone (): Lexer {
-    const lexer = new Lexer()
-    lexer.text = this.text
-    lexer.previous = this.previous === undefined ? undefined : {
-      type: this.previous.type,
-      text: this.previous.text
-    }
-    lexer.current = this.current === undefined ? undefined : {
-      type: this.current.type,
-      text: this.current.text
-    }
-    lexer.next = this.next === undefined ? undefined : {
-      type: this.next.type,
-      text: this.next.text
-    }
-    return lexer
-  }
 }
