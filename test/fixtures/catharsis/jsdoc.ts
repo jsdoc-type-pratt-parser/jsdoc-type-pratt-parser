@@ -530,10 +530,8 @@ export const jsdocFixtures: Fixture[] = [
       type: 'JsdocTypeGeneric',
       elements: [
         {
-          type: 'JsdocTypeFunction',
-          parameters: [],
-          arrow: false,
-          parenthesis: false
+          type: 'JsdocTypeName',
+          value: 'function'
         }
       ],
       left: {
@@ -871,13 +869,11 @@ export const jsdocFixtures: Fixture[] = [
     }
   },
   {
-    description: 'function type with no trailing pathentheses',
+    description: 'function type with no trailing parenthesis',
     input: 'function',
     expected: {
-      type: 'JsdocTypeFunction',
-      parameters: [],
-      arrow: false,
-      parenthesis: false
+      type: 'JsdocTypeName',
+      value: 'function'
     },
     modes: ['jsdoc'],
     catharsis: {

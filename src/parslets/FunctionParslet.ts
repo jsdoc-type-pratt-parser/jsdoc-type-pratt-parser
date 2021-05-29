@@ -36,9 +36,17 @@ export class FunctionParslet extends BaseFunctionParslet implements PrefixParsle
 
     const hasParenthesis = parser.getToken().type === '('
 
-    if (!this.allowWithoutParenthesis && !hasParenthesis) {
-      throw new Error('function is missing parameter list')
+    if (!hasParenthesis) {
+      if (!this.allowWithoutParenthesis) {
+        throw new Error('function is missing parameter list')
+      }
+
+      return {
+        type: 'JsdocTypeName',
+        value: 'function'
+      }
     }
+
     const result: FunctionResult = {
       type: 'JsdocTypeFunction',
       parameters: [],
@@ -46,26 +54,24 @@ export class FunctionParslet extends BaseFunctionParslet implements PrefixParsle
       parenthesis: hasParenthesis
     }
 
-    if (hasParenthesis) {
-      const value = parser.parseIntermediateType(Precedence.FUNCTION)
+    const value = parser.parseIntermediateType(Precedence.FUNCTION)
 
-      if (this.allowNamedParameters === undefined) {
-        result.parameters = this.getUnnamedParameters(value)
-      } else {
-        result.parameters = this.getParameters(value)
-        for (const p of result.parameters) {
-          if (p.type === 'JsdocTypeKeyValue' && (!this.allowNamedParameters.includes(p.value) || p.meta.quote !== undefined)) {
-            throw new Error(`only allowed named parameters are ${this.allowNamedParameters.join(',')} but got ${p.type}`)
-          }
+    if (this.allowNamedParameters === undefined) {
+      result.parameters = this.getUnnamedParameters(value)
+    } else {
+      result.parameters = this.getParameters(value)
+      for (const p of result.parameters) {
+        if (p.type === 'JsdocTypeKeyValue' && (!this.allowNamedParameters.includes(p.value) || p.meta.quote !== undefined)) {
+          throw new Error(`only allowed named parameters are ${this.allowNamedParameters.join(',')} but got ${p.type}`)
         }
       }
+    }
 
-      if (parser.consume(':')) {
-        result.returnType = parser.parseType(Precedence.PREFIX)
-      } else {
-        if (!this.allowNoReturnType) {
-          throw new Error('function is missing return type')
-        }
+    if (parser.consume(':')) {
+      result.returnType = parser.parseType(Precedence.PREFIX)
+    } else {
+      if (!this.allowNoReturnType) {
+        throw new Error('function is missing return type')
       }
     }
 
