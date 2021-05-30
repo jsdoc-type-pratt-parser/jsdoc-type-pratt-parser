@@ -59,12 +59,7 @@
   },
   "release": {
     "branches": [
-      "stable",
-      {
-        "name": "main",
-        "prerelease": "alpha",
-        "channel": "alpha"
-      }
+      "main"
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",
