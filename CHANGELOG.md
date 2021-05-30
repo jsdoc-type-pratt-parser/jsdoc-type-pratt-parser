@@ -1,3 +1,49 @@
+# 1.0.0 (2021-05-30)
+
+
+### Bug Fixes
+
+* tsconfig.json no lib ([6df24dc](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/6df24dc0e0d7eb8c642c1943731dff2b1a024389))
+* **gh-pages:** set author ([a28b3dd](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/a28b3dd6d88e469abe2ea34920a0d98fa6f7b587))
+* **gh-pages:** use actor ([74256b1](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/74256b1e9a309d5b64edbae999fbb2137d1b6f91))
+* **gh-pages:** whitespace ([16e97c4](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/16e97c4eb6c7fd96b3d24104c695179eb7d07ab6))
+* **github actions:** rename test workflow ([d70f819](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/d70f8191eef3d37da82084fa04999975cf99deb3))
+* **pages:** fix deploy script ([1e04ebb](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/1e04ebba96e6e28938c0bb08597581978af7829a))
+* **pages:** move deployment to release.yaml ([748c18a](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/748c18a09c3f3c1150f0387ef31a2bd49f70aee8))
+* **readme:** performance text ([824bdad](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/824bdad1fa56488ce55bef5699bc106de6eb135b))
+* **readme:** test badge pointing to correct workflow ([dacfe87](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/dacfe87ca7b6ce7f917313b2e12041032d8dbcd5))
+* **readme:** use npm links to alpha channel ([cf13883](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/cf13883a1a29bda25c74dbb12def52a851321944))
+
+
+### Features
+
+* `function` is of type `JsdocTypeName` now. ([225c337](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/225c33762a6c9c7a47fe4b4b5ce1b357f20d98a1))
+* add module grammar, add parallel grammar ([2fe4fd7](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/2fe4fd7417261b5f32171b8f8b80d64f74187151))
+* add not nullable to base grammar ([7d0910f](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/7d0910f33c7ee9bfde82231a86d11e2ea2b11e25))
+* Keys of `KEY_VALUE` are now static values and no ParseResults. ([c2bfa24](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/c2bfa24ebe0f6b18ba7784fdfa7b2a9decc04d2b))
+* make types eslint friendly ([497cd59](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/497cd59f2b87c460a46c6c97b2ae496ca6a19b5f))
+* meta brackets change ([4bbc137](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/4bbc137ed0ac057007d4e94664a7b35c6a13c2b6))
+* meta position change ([f85ce88](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/f85ce8867e32b3bfb0ecbb9c26dbdece7210ebbb))
+* meta quotes changed ([3faf6c1](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/3faf6c11e67ed1fcf4343c3e79d39805d6d5eb79))
+* Parser exposes infixParse and accepts Lexer ([415b7c9](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/415b7c9333ab8dd60177ac94820022d829d0c5eb))
+* path type change ([7601ce5](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/7601ce5bb2899e273cf686b2b37083328a8eadde))
+* remove reservedWord meta ([d73d64d](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/d73d64d1040980a0c2cdaa625057d4a62f0d5651))
+* removed submodules ([dc87398](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/dc87398c90b81f8d104111686333a49dfe682719))
+* SpecialNamePathParslet switches to other grammar. Allow `module:` in typescript and closure. ([25edc18](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/25edc18f9f666e065666381fa7bbf1a57d3a7ced))
+* use `KEY_VALUE` for typed record entries ([80fd550](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/80fd550ec95ba4ae1e1d08f908146d89d8fcc9ea))
+
+
+### BREAKING CHANGES
+
+* Names no longer have the meta property `reservedWord`
+* `pathType` property uses `'instance'`, `'inner'` and `'property'` now
+* `brackets` property uses `'square'` and `'angle'` now
+* position property is lowercase. example: `'suffix'`
+* For meta properties use 'single' and 'double' instead of '\'' and '"'
+* All types are now prefixed with `JsdocType` and are made CamelCase
+* `JSDOC_OBJECT_KEY_VALUE` is now `KEY_VALUE`.
+* key `left` was removed from `KEY_VALUE` and is replaced by `value`. For the special record entries of `jsdoc` mode a new type `JSDOC_OBJECT_KEY_VALUE` was introduced.
+
 # [1.0.0-alpha.24](https://github.com/simonseyock/jsdoc-type-pratt-parser/compare/v1.0.0-alpha.23...v1.0.0-alpha.24) (2021-05-29)
 
 
