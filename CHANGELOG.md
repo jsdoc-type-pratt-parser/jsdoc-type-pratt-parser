@@ -1,3 +1,11 @@
+## [1.0.2](https://github.com/simonseyock/jsdoc-type-pratt-parser/compare/v1.0.1...v1.0.2) (2021-05-31)
+
+
+### Bug Fixes
+
+* Make NumberResult terminal ([9dc78b5](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/9dc78b5b0b9268186e1d78d5b34f035f5af1a6a0))
+* Name paths have properties not names on the right side. ([34c85a7](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/34c85a70eaa7cc5e9fbeac7bff2d0670e521aeb1))
+
 ## [1.0.1](https://github.com/simonseyock/jsdoc-type-pratt-parser/compare/v1.0.0...v1.0.1) (2021-05-31)
 
 
