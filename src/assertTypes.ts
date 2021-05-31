@@ -1,13 +1,13 @@
-import { KeyValueResult, NumberResult } from './result/NonTerminalResult'
+import { KeyValueResult } from './result/NonTerminalResult'
 import { UnexpectedTypeError } from './errors'
-import { NameResult, TerminalResult, VariadicResult } from './result/TerminalResult'
+import { NameResult, NumberResult, TerminalResult, VariadicResult } from './result/TerminalResult'
 import { IntermediateResult } from './result/IntermediateResult'
 
 export function assertTerminal (result?: IntermediateResult): TerminalResult {
   if (result === undefined) {
     throw new Error('Unexpected undefined')
   }
-  if (result.type === 'JsdocTypeKeyValue' || result.type === 'JsdocTypeNumber' || result.type === 'JsdocTypeParameterList') {
+  if (result.type === 'JsdocTypeKeyValue' || result.type === 'JsdocTypeParameterList' || result.type === 'JsdocTypeProperty') {
     throw new UnexpectedTypeError(result)
   }
   return result

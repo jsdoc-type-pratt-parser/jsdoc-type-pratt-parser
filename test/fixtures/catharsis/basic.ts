@@ -49,14 +49,14 @@ export const basicFixtures: Fixture[] = [
           type: 'JsdocTypeName'
         },
         right: {
-          type: 'JsdocTypeName',
+          type: 'JsdocTypeProperty',
           value: 'ui'
         },
         type: 'JsdocTypeNamePath',
         pathType: 'property'
       },
       right: {
-        type: 'JsdocTypeName',
+        type: 'JsdocTypeProperty',
         value: 'Menu'
       },
       type: 'JsdocTypeNamePath',
@@ -84,17 +84,14 @@ export const basicFixtures: Fixture[] = [
           type: 'JsdocTypeName'
         },
         right: {
-          type: 'JsdocTypeStringValue',
-          value: 'myProp',
-          meta: {
-            quote: 'single'
-          }
+          type: 'JsdocTypeProperty',
+          value: '\'myProp\''
         },
         type: 'JsdocTypeNamePath',
         pathType: 'property'
       },
       right: {
-        type: 'JsdocTypeName',
+        type: 'JsdocTypeProperty',
         value: 'foo'
       },
       type: 'JsdocTypeNamePath',
@@ -122,17 +119,14 @@ export const basicFixtures: Fixture[] = [
           type: 'JsdocTypeName'
         },
         right: {
-          type: 'JsdocTypeStringValue',
-          value: 'myProp',
-          meta: {
-            quote: 'double'
-          }
+          type: 'JsdocTypeProperty',
+          value: '"myProp"'
         },
         type: 'JsdocTypeNamePath',
         pathType: 'property'
       },
       right: {
-        type: 'JsdocTypeName',
+        type: 'JsdocTypeProperty',
         value: 'foo'
       },
       type: 'JsdocTypeNamePath',
@@ -160,17 +154,14 @@ export const basicFixtures: Fixture[] = [
           type: 'JsdocTypeName'
         },
         right: {
-          type: 'JsdocTypeStringValue',
-          value: '#weirdProp',
-          meta: {
-            quote: 'double'
-          }
+          type: 'JsdocTypeProperty',
+          value: '"#weirdProp"'
         },
         type: 'JsdocTypeNamePath',
         pathType: 'property'
       },
       right: {
-        type: 'JsdocTypeName',
+        type: 'JsdocTypeProperty',
         value: 'foo'
       },
       type: 'JsdocTypeNamePath',
@@ -197,8 +188,8 @@ export const basicFixtures: Fixture[] = [
         type: 'JsdocTypeName'
       },
       right: {
-        type: 'JsdocTypeNumber',
-        value: 12345
+        type: 'JsdocTypeProperty',
+        value: '12345'
       },
       type: 'JsdocTypeNamePath',
       pathType: 'property'
@@ -561,7 +552,7 @@ export const basicFixtures: Fixture[] = [
         }
       },
       right: {
-        type: 'JsdocTypeName',
+        type: 'JsdocTypeProperty',
         value: 'myCallback'
       },
       pathType: 'inner'

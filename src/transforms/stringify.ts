@@ -112,7 +112,9 @@ export function stringifyRules (): TransformRules<string> {
 
     JsdocTypeUnknown: () => '?',
 
-    JsdocTypeIntersection: (result, transform) => result.elements.map(transform).join(' & ')
+    JsdocTypeIntersection: (result, transform) => result.elements.map(transform).join(' & '),
+
+    JsdocTypeProperty: result => result.value
   }
 }
 

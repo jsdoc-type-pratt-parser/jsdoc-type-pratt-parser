@@ -127,14 +127,14 @@ export const unionFixtures: Fixture[] = [
                 type: 'JsdocTypeName'
               },
               right: {
-                type: 'JsdocTypeName',
+                type: 'JsdocTypeProperty',
                 value: 'ui'
               },
               type: 'JsdocTypeNamePath',
               pathType: 'property'
             },
             right: {
-              type: 'JsdocTypeName',
+              type: 'JsdocTypeProperty',
               value: 'Menu'
             },
             type: 'JsdocTypeNamePath',
@@ -611,7 +611,7 @@ export const unionFixtures: Fixture[] = [
                                   type: 'JsdocTypeName'
                                 },
                                 right: {
-                                  type: 'JsdocTypeName',
+                                  type: 'JsdocTypeProperty',
                                   value: 'event'
                                 },
                                 pathType: 'property',

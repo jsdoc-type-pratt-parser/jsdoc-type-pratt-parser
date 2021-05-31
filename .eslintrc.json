@@ -2,6 +2,6 @@
   "extends": ["standard-with-typescript"],
   "parserOptions": {
     "project": "./tsconfig.json",
-    "tsconfigRootDir": "jsdoc-type-pratt-parser"
+    "tsconfigRootDir": "./"
   }
 }

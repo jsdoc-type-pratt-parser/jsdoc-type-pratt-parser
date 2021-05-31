@@ -1,4 +1,4 @@
-import { JsdocObjectKeyValueResult, KeyValueResult, NumberResult } from './NonTerminalResult'
+import { JsdocObjectKeyValueResult, KeyValueResult, PropertyResult } from './NonTerminalResult'
 
 /**
  * A parse result that corresponds to a valid type expression.
@@ -27,6 +27,9 @@ export type TerminalResult =
   | VariadicResult<TerminalResult>
   | ParenthesisResult
   | IntersectionResult
+  | NumberResult
+
+export type QuoteStyle = 'single' | 'double'
 
 /**
  * `element` is optional.
@@ -114,7 +117,7 @@ export interface StringValueResult {
   type: 'JsdocTypeStringValue'
   value: string
   meta: {
-    quote: 'single' | 'double'
+    quote: QuoteStyle
   }
 }
 
@@ -180,7 +183,7 @@ export interface SpecialNamePath<Type extends SpecialNamePathType = SpecialNameP
   value: string
   specialType: Type
   meta: {
-    quote: 'single' | 'double' | undefined
+    quote: QuoteStyle | undefined
   }
 }
 
@@ -190,7 +193,7 @@ export interface SpecialNamePath<Type extends SpecialNamePathType = SpecialNameP
 export interface NamePathResult {
   type: 'JsdocTypeNamePath'
   left: TerminalResult
-  right: NameResult | NumberResult | StringValueResult | SpecialNamePath<'event'>
+  right: PropertyResult | SpecialNamePath<'event'>
   pathType: 'inner' | 'instance' | 'property'
 }
 
@@ -250,4 +253,13 @@ export interface ParenthesisResult {
 export interface IntersectionResult {
   type: 'JsdocTypeIntersection'
   elements: TerminalResult[]
+}
+
+/**
+ * A number. Can be the key of an {@link ObjectResult} entry or the parameter of a {@link SymbolResult}.
+ * Is a {@link NonTerminalResult}.
+ */
+export interface NumberResult {
+  type: 'JsdocTypeNumber'
+  value: number
 }

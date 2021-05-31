@@ -256,11 +256,16 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
 
   JsdocTypeNamePath: (result, transform) => {
     const leftResult = transform(result.left) as CatharsisNameResult
-    const rightResult = transform(result.right) as CatharsisNameResult
+    let rightValue
+    if (result.right.type === 'JsdocTypeSpecialNamePath') {
+      rightValue = (transform(result.right) as CatharsisNameResult).name
+    } else {
+      rightValue = result.right.value
+    }
 
     const joiner = result.pathType === 'inner' ? '~' : result.pathType === 'instance' ? '#' : '.'
 
-    return makeName(`${leftResult.name}${joiner}${rightResult.name}`)
+    return makeName(`${leftResult.name}${joiner}${rightValue}`)
   },
 
   JsdocTypeSymbol: result => {
@@ -297,7 +302,8 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
   JsdocTypeKeyof: notAvailableTransform,
   JsdocTypeTuple: notAvailableTransform,
   JsdocTypeTypeof: notAvailableTransform,
-  JsdocTypeIntersection: notAvailableTransform
+  JsdocTypeIntersection: notAvailableTransform,
+  JsdocTypeProperty: notAvailableTransform
 }
 
 export function catharsisTransform (result: TerminalResult): CatharsisParseResult {
