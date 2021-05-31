@@ -239,7 +239,8 @@ const jtpRules: TransformRules<JtpResult> = {
     const transformed: JtpVariadicResult = {
       type: 'VARIADIC',
       meta: {
-        syntax: result.meta.position === 'prefix' ? 'PREFIX_DOTS'
+        syntax: result.meta.position === 'prefix'
+          ? 'PREFIX_DOTS'
           : result.meta.position === 'suffix' ? 'SUFFIX_DOTS' : 'ONLY_DOTS'
       }
     }
