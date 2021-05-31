@@ -26,6 +26,7 @@ export type JtpResult =
   | JtpModuleResult
   | JtpFilePath
   | JtpIntersectionResult
+  | JtpNumberResult
 
 type JtpQuoteStyle = 'single' | 'double' | 'none'
 
@@ -170,6 +171,11 @@ export interface JtpFilePath {
   type: 'FILE_PATH'
   quoteStyle: JtpQuoteStyle
   path: string
+}
+
+export interface JtpNumberResult {
+  type: 'NUMBER_VALUE'
+  number: string
 }
 
 function getQuoteStyle (quote: 'single' | 'double' | undefined): JtpQuoteStyle {
@@ -466,7 +472,11 @@ const jtpRules: TransformRules<JtpResult> = {
 
   JsdocTypeIntersection: (result, transform) => nestResults('INTERSECTION', result.elements.map(transform)),
 
-  JsdocTypeNumber: notAvailableTransform,
+  JsdocTypeNumber: result => ({
+    type: 'NUMBER_VALUE',
+    number: result.value.toString()
+  }),
+
   JsdocTypeSymbol: notAvailableTransform
 }
 

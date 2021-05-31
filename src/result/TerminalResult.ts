@@ -1,4 +1,4 @@
-import { JsdocObjectKeyValueResult, KeyValueResult, NumberResult } from './NonTerminalResult'
+import { JsdocObjectKeyValueResult, KeyValueResult } from './NonTerminalResult'
 
 /**
  * A parse result that corresponds to a valid type expression.
@@ -27,6 +27,7 @@ export type TerminalResult =
   | VariadicResult<TerminalResult>
   | ParenthesisResult
   | IntersectionResult
+  | NumberResult
 
 /**
  * `element` is optional.
@@ -250,4 +251,13 @@ export interface ParenthesisResult {
 export interface IntersectionResult {
   type: 'JsdocTypeIntersection'
   elements: TerminalResult[]
+}
+
+/**
+ * A number. Can be the key of an {@link ObjectResult} entry or the parameter of a {@link SymbolResult}.
+ * Is a {@link NonTerminalResult}.
+ */
+export interface NumberResult {
+  type: 'JsdocTypeNumber'
+  value: number
 }

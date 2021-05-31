@@ -2,8 +2,7 @@ import { TransformRules } from './transform'
 import {
   JsdocObjectKeyValueResult,
   KeyValueResult,
-  NonTerminalResult,
-  NumberResult
+  NonTerminalResult
 } from '../result/NonTerminalResult'
 import {
   FunctionResult,
@@ -11,7 +10,8 @@ import {
   StringValueResult,
   SymbolResult,
   TerminalResult,
-  VariadicResult
+  VariadicResult,
+  NumberResult
 } from '../result/TerminalResult'
 
 export function identityTransformRules (): TransformRules<NonTerminalResult> {

@@ -7,7 +7,6 @@ export type NonTerminalResult =
   TerminalResult
   | KeyValueResult
   | JsdocObjectKeyValueResult
-  | NumberResult
 
 /**
  * A key value pair represented by a `:`. Can occur as a named parameter of a {@link FunctionResult} or as an entry for
@@ -33,13 +32,4 @@ export interface JsdocObjectKeyValueResult {
   type: 'JsdocTypeKeyValue'
   left: TerminalResult
   right: TerminalResult
-}
-
-/**
- * A number. Can be the key of an {@link ObjectResult} entry or the parameter of a {@link SymbolResult}.
- * Is a {@link NonTerminalResult}.
- */
-export interface NumberResult {
-  type: 'JsdocTypeNumber'
-  value: number
 }
