@@ -149,8 +149,3 @@ export const eventExternalFixtures: Fixture[] = [
     } // this seems to be a JTP error
   }
 ]
-
-//
-//
-//
-//
