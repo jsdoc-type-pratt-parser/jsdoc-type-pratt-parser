@@ -39,8 +39,10 @@ function getQuoted (text: string): string|null {
   return text.slice(0, position)
 }
 
-const identifierStartRegex = /[a-zA-Z]/
-const identifierContinueRegex = /[a-zA-Z_\-0-9]/
+const identifierStartRegex = /\p{ID_Start}/u
+// A hyphen is not technically allowed, but to keep it liberal for now,
+//  adding it here
+const identifierContinueRegex = /[\p{ID_Continue}-]/u
 function getIdentifier (text: string): string|null {
   let char = text[0]
   if (!identifierStartRegex.test(char)) {
@@ -229,6 +231,6 @@ export class Lexer {
         return token
       }
     }
-    throw new Error('Unexpected Token')
+    throw new Error('Unexpected Token ' + text)
   }
 }
