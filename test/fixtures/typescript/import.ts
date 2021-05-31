@@ -92,7 +92,7 @@ export const importFixtures: Fixture[] = [
         }
       },
       right: {
-        type: 'JsdocTypeName',
+        type: 'JsdocTypeProperty',
         value: 'T'
       },
       pathType: 'property'
@@ -127,13 +127,13 @@ export const importFixtures: Fixture[] = [
           }
         },
         right: {
-          type: 'JsdocTypeName',
+          type: 'JsdocTypeProperty',
           value: 'T'
         },
         pathType: 'property'
       },
       right: {
-        type: 'JsdocTypeName',
+        type: 'JsdocTypeProperty',
         value: 'U'
       },
       pathType: 'property'
@@ -171,13 +171,13 @@ export const importFixtures: Fixture[] = [
             }
           },
           right: {
-            type: 'JsdocTypeName',
+            type: 'JsdocTypeProperty',
             value: 'T'
           },
           pathType: 'property'
         },
         right: {
-          type: 'JsdocTypeName',
+          type: 'JsdocTypeProperty',
           value: 'U'
         },
         pathType: 'property'

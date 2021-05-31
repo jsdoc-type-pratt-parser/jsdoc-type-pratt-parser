@@ -1,5 +1,5 @@
 import { extractSpecialParams, notAvailableTransform, transform, TransformRules } from './transform'
-import { TerminalResult } from '../result/TerminalResult'
+import { QuoteStyle, TerminalResult } from '../result/TerminalResult'
 import { assertTerminal } from '../assertTypes'
 
 export type JtpResult =
@@ -178,7 +178,7 @@ export interface JtpNumberResult {
   number: string
 }
 
-function getQuoteStyle (quote: 'single' | 'double' | undefined): JtpQuoteStyle {
+function getQuoteStyle (quote: QuoteStyle | undefined): JtpQuoteStyle {
   switch (quote) {
     case undefined:
       return 'none'
@@ -426,8 +426,17 @@ const jtpRules: TransformRules<JtpResult> = {
       name = result.right.value
       quoteStyle = getQuoteStyle(result.right.meta.quote)
     } else {
-      name = `${result.right.value}`
-      quoteStyle = result.right.type === 'JsdocTypeStringValue' ? getQuoteStyle(result.right.meta.quote) : 'none'
+      let quote: QuoteStyle | undefined
+      let value = result.right.value
+      if (value[0] === '\'') {
+        quote = 'single'
+        value = value.slice(1, -1)
+      } else if (value[0] === '"') {
+        quote = 'double'
+        value = value.slice(1, -1)
+      }
+      name = `${value}`
+      quoteStyle = getQuoteStyle(quote)
     }
 
     const transformed: JtpMemberResult = {
@@ -477,7 +486,9 @@ const jtpRules: TransformRules<JtpResult> = {
     number: result.value.toString()
   }),
 
-  JsdocTypeSymbol: notAvailableTransform
+  JsdocTypeSymbol: notAvailableTransform,
+
+  JsdocTypeProperty: notAvailableTransform
 }
 
 export function jtpTransform (result: TerminalResult): JtpResult {

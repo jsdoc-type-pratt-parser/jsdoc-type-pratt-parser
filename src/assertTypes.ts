@@ -7,7 +7,7 @@ export function assertTerminal (result?: IntermediateResult): TerminalResult {
   if (result === undefined) {
     throw new Error('Unexpected undefined')
   }
-  if (result.type === 'JsdocTypeKeyValue' || result.type === 'JsdocTypeParameterList') {
+  if (result.type === 'JsdocTypeKeyValue' || result.type === 'JsdocTypeParameterList' || result.type === 'JsdocTypeProperty') {
     throw new UnexpectedTypeError(result)
   }
   return result

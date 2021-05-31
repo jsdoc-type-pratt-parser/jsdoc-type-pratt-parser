@@ -30,7 +30,7 @@ export const jsdocFixtures: Fixture[] = [
         value: 'MyClass'
       },
       right: {
-        type: 'JsdocTypeName',
+        type: 'JsdocTypeProperty',
         value: 'myMember'
       },
       pathType: 'instance'
@@ -57,7 +57,7 @@ export const jsdocFixtures: Fixture[] = [
         value: 'MyClass'
       },
       right: {
-        type: 'JsdocTypeName',
+        type: 'JsdocTypeProperty',
         value: 'myMember'
       },
       pathType: 'inner'
@@ -88,19 +88,19 @@ export const jsdocFixtures: Fixture[] = [
             value: 'MyClass'
           },
           right: {
-            type: 'JsdocTypeName',
+            type: 'JsdocTypeProperty',
             value: 'myMember'
           },
           pathType: 'instance'
         },
         right: {
-          type: 'JsdocTypeName',
+          type: 'JsdocTypeProperty',
           value: 'yourMember'
         },
         pathType: 'instance'
       },
       right: {
-        type: 'JsdocTypeName',
+        type: 'JsdocTypeProperty',
         value: 'theirMember'
       },
       pathType: 'inner'
@@ -131,7 +131,7 @@ export const jsdocFixtures: Fixture[] = [
         }
       },
       right: {
-        type: 'JsdocTypeName',
+        type: 'JsdocTypeProperty',
         value: 'Qux'
       },
       pathType: 'inner'
@@ -162,7 +162,7 @@ export const jsdocFixtures: Fixture[] = [
         }
       },
       right: {
-        type: 'JsdocTypeName',
+        type: 'JsdocTypeProperty',
         value: 'Qux'
       },
       pathType: 'inner'
@@ -363,17 +363,14 @@ export const jsdocFixtures: Fixture[] = [
           type: 'JsdocTypeName'
         },
         right: {
-          type: 'JsdocTypeStringValue',
-          value: 'bar.baz',
-          meta: {
-            quote: 'double'
-          }
+          type: 'JsdocTypeProperty',
+          value: '"bar.baz"'
         },
         type: 'JsdocTypeNamePath',
         pathType: 'property'
       },
       right: {
-        type: 'JsdocTypeName',
+        type: 'JsdocTypeProperty',
         value: 'qux'
       },
       type: 'JsdocTypeNamePath',
@@ -401,17 +398,14 @@ export const jsdocFixtures: Fixture[] = [
           type: 'JsdocTypeName'
         },
         right: {
-          type: 'JsdocTypeStringValue',
-          value: 'bar.baz',
-          meta: {
-            quote: 'single'
-          }
+          type: 'JsdocTypeProperty',
+          value: '\'bar.baz\''
         },
         type: 'JsdocTypeNamePath',
         pathType: 'property'
       },
       right: {
-        type: 'JsdocTypeName',
+        type: 'JsdocTypeProperty',
         value: 'qux'
       },
       type: 'JsdocTypeNamePath',
@@ -913,14 +907,14 @@ export const jsdocFixtures: Fixture[] = [
                   type: 'JsdocTypeName'
                 },
                 right: {
-                  type: 'JsdocTypeName',
+                  type: 'JsdocTypeProperty',
                   value: 'namespace'
                 },
                 type: 'JsdocTypeNamePath',
                 pathType: 'property'
               },
               right: {
-                type: 'JsdocTypeName',
+                type: 'JsdocTypeProperty',
                 value: 'Class'
               },
               type: 'JsdocTypeNamePath',
@@ -933,7 +927,7 @@ export const jsdocFixtures: Fixture[] = [
               type: 'JsdocTypeName'
             },
             right: {
-              type: 'JsdocTypeName',
+              type: 'JsdocTypeProperty',
               value: 'Class'
             },
             type: 'JsdocTypeNamePath',

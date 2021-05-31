@@ -160,6 +160,8 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
     JsdocTypeParenthesis: (result, transform) => ({
       type: 'JsdocTypeParenthesis',
       element: transform(result.element) as TerminalResult
-    })
+    }),
+
+    JsdocTypeProperty: result => result
   }
 }

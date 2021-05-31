@@ -372,7 +372,7 @@ export const genericFixtures: Fixture[] = [
           type: 'JsdocTypeName'
         },
         right: {
-          type: 'JsdocTypeName',
+          type: 'JsdocTypeProperty',
           value: 'Promise'
         },
         pathType: 'property',

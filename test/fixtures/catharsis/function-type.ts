@@ -220,14 +220,14 @@ export const functionFixtures: Fixture[] = [
                 type: 'JsdocTypeName'
               },
               right: {
-                type: 'JsdocTypeName',
+                type: 'JsdocTypeProperty',
                 value: 'ui'
               },
               type: 'JsdocTypeNamePath',
               pathType: 'property'
             },
             right: {
-              type: 'JsdocTypeName',
+              type: 'JsdocTypeProperty',
               value: 'Menu'
             },
             type: 'JsdocTypeNamePath',
@@ -271,14 +271,14 @@ export const functionFixtures: Fixture[] = [
                 type: 'JsdocTypeName'
               },
               right: {
-                type: 'JsdocTypeName',
+                type: 'JsdocTypeProperty',
                 value: 'ui'
               },
               type: 'JsdocTypeNamePath',
               pathType: 'property'
             },
             right: {
-              type: 'JsdocTypeName',
+              type: 'JsdocTypeProperty',
               value: 'Menu'
             },
             type: 'JsdocTypeNamePath',
@@ -327,14 +327,14 @@ export const functionFixtures: Fixture[] = [
                 type: 'JsdocTypeName'
               },
               right: {
-                type: 'JsdocTypeName',
+                type: 'JsdocTypeProperty',
                 value: 'ui'
               },
               type: 'JsdocTypeNamePath',
               pathType: 'property'
             },
             right: {
-              type: 'JsdocTypeName',
+              type: 'JsdocTypeProperty',
               value: 'Menu'
             },
             type: 'JsdocTypeNamePath',
@@ -378,14 +378,14 @@ export const functionFixtures: Fixture[] = [
                 type: 'JsdocTypeName'
               },
               right: {
-                type: 'JsdocTypeName',
+                type: 'JsdocTypeProperty',
                 value: 'ui'
               },
               type: 'JsdocTypeNamePath',
               pathType: 'property'
             },
             right: {
-              type: 'JsdocTypeName',
+              type: 'JsdocTypeProperty',
               value: 'Menu'
             },
             type: 'JsdocTypeNamePath',
@@ -433,14 +433,14 @@ export const functionFixtures: Fixture[] = [
                 type: 'JsdocTypeName'
               },
               right: {
-                type: 'JsdocTypeName',
+                type: 'JsdocTypeProperty',
                 value: 'ui'
               },
               type: 'JsdocTypeNamePath',
               pathType: 'property'
             },
             right: {
-              type: 'JsdocTypeName',
+              type: 'JsdocTypeProperty',
               value: 'Menu'
             },
             type: 'JsdocTypeNamePath',
@@ -460,7 +460,7 @@ export const functionFixtures: Fixture[] = [
               type: 'JsdocTypeName'
             },
             right: {
-              type: 'JsdocTypeName',
+              type: 'JsdocTypeProperty',
               value: 'ui'
             },
             type: 'JsdocTypeNamePath',
@@ -667,14 +667,14 @@ export const functionFixtures: Fixture[] = [
                 type: 'JsdocTypeName'
               },
               right: {
-                type: 'JsdocTypeName',
+                type: 'JsdocTypeProperty',
                 value: 'ui'
               },
               type: 'JsdocTypeNamePath',
               pathType: 'property'
             },
             right: {
-              type: 'JsdocTypeName',
+              type: 'JsdocTypeProperty',
               value: 'Menu'
             },
             type: 'JsdocTypeNamePath',
@@ -754,14 +754,14 @@ export const functionFixtures: Fixture[] = [
                 type: 'JsdocTypeName'
               },
               right: {
-                type: 'JsdocTypeName',
+                type: 'JsdocTypeProperty',
                 value: 'ui'
               },
               type: 'JsdocTypeNamePath',
               pathType: 'property'
             },
             right: {
-              type: 'JsdocTypeName',
+              type: 'JsdocTypeProperty',
               value: 'Menu'
             },
             type: 'JsdocTypeNamePath',

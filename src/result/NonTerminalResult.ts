@@ -1,4 +1,4 @@
-import { TerminalResult } from './TerminalResult'
+import { QuoteStyle, TerminalResult } from './TerminalResult'
 
 /**
  * A parse sub result that might not be a valid type expression on its own.
@@ -7,6 +7,7 @@ export type NonTerminalResult =
   TerminalResult
   | KeyValueResult
   | JsdocObjectKeyValueResult
+  | PropertyResult
 
 /**
  * A key value pair represented by a `:`. Can occur as a named parameter of a {@link FunctionResult} or as an entry for
@@ -19,7 +20,7 @@ export interface KeyValueResult {
   right: TerminalResult | undefined
   optional: boolean
   meta: {
-    quote: 'single' | 'double' | undefined
+    quote: QuoteStyle | undefined
   }
 }
 
@@ -32,4 +33,9 @@ export interface JsdocObjectKeyValueResult {
   type: 'JsdocTypeKeyValue'
   left: TerminalResult
   right: TerminalResult
+}
+
+export interface PropertyResult {
+  type: 'JsdocTypeProperty'
+  value: string
 }

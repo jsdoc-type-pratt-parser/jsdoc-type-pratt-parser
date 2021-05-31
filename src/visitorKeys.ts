@@ -29,5 +29,6 @@ export const visitorKeys: VisitorKeys = {
   JsdocTypeUndefined: [],
   JsdocTypeUnion: ['elements'],
   JsdocTypeUnknown: [],
-  JsdocTypeVariadic: ['element']
+  JsdocTypeVariadic: ['element'],
+  JsdocTypeProperty: []
 }
