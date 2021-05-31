@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/simonseyock/jsdoc-type-pratt-parser/compare/v1.0.0...v1.0.1) (2021-05-31)
+
+
+### Bug Fixes
+
+* liberalize ID start and continue values as per Unicode (keeping hyphen as part of continue) ([67f0929](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/67f0929cfbcc6a808962e396743661ed4d37da03))
+
 # 1.0.0 (2021-05-30)
 
 
