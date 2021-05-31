@@ -42,7 +42,7 @@ function getQuoted (text: string): string|null {
 const identifierStartRegex = /[\p{ID_Start}$_]/u
 // A hyphen is not technically allowed, but to keep it liberal for now,
 //  adding it here
-const identifierContinueRegex = /[\p{ID_Continue}\u200C\u200D$-]/u
+const identifierContinueRegex = /[$\-\p{ID_Continue}\u200C\u200D]/u
 function getIdentifier (text: string): string|null {
   let char = text[0]
   if (!identifierStartRegex.test(char)) {
