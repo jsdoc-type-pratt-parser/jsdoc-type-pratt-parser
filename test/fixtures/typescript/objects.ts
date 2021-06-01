@@ -81,5 +81,46 @@ export const objectsFixtures: Fixture[] = [
       typescript: 'typescript',
       permissive: 'typescript'
     }
+  },
+  {
+    description: 'An object with unenclosed union as type',
+    input: '{message: string|undefined}',
+    stringified: '{message: string | undefined}',
+    expected: {
+      type: 'JsdocTypeObject',
+      elements: [
+        {
+          type: 'JsdocTypeKeyValue',
+          value: 'message',
+          right: {
+            type: 'JsdocTypeUnion',
+            elements: [
+              {
+                type: 'JsdocTypeName',
+                value: 'string'
+              },
+              {
+                type: 'JsdocTypeUndefined'
+              }
+            ]
+          },
+          optional: false,
+          meta: {
+            quote: undefined
+          }
+        }
+      ]
+    },
+    modes: ['jsdoc', 'closure', 'typescript'],
+    catharsis: {
+      jsdoc: 'jsdoc',
+      closure: 'closure'
+    },
+    jtp: {
+      jsdoc: 'jsdoc',
+      closure: 'closure',
+      typescript: 'typescript',
+      permissive: 'typescript'
+    }
   }
 ]
