@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/simonseyock/jsdoc-type-pratt-parser/compare/v1.0.2...v1.0.3) (2021-06-01)
+
+
+### Bug Fixes
+
+* Precedence for key value pairs in objects ([ebde3ca](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/ebde3ca893cc06b09a2e2e9f5ddf59ab1252128d)), closes [#63](https://github.com/simonseyock/jsdoc-type-pratt-parser/issues/63)
+
 ## [1.0.2](https://github.com/simonseyock/jsdoc-type-pratt-parser/compare/v1.0.1...v1.0.2) (2021-05-31)
 
 
