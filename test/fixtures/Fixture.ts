@@ -22,6 +22,7 @@ export interface Fixture {
     [K in CatharsisMode]: CompareMode
   }
   expected?: TerminalResult
+  only?: number
   diffExpected?: {
     [K in ParseMode]?: TerminalResult
   }
@@ -34,15 +35,16 @@ type Results = {
 }
 
 function testParser (mode: ParseMode, fixture: Fixture): TerminalResult | undefined {
+  const testMethod = fixture?.only === 1 ? it.only.bind(it) : it
   if (fixture.modes.includes(mode)) {
-    it(`is parsed in '${mode}' mode`, () => {
+    testMethod(`is parsed in '${mode}' mode`, () => {
       const result = parse(fixture.input, mode)
       const expected = fixture.diffExpected?.[mode] ?? fixture.expected
       expect(result).to.deep.equal(expected)
     })
     return parse(fixture.input, mode)
   } else {
-    it(`fails to parse in '${mode}' mode`, () => {
+    testMethod(`fails to parse in '${mode}' mode`, () => {
       expect(() => parse(fixture.input, mode)).to.throw()
     })
   }
@@ -50,9 +52,10 @@ function testParser (mode: ParseMode, fixture: Fixture): TerminalResult | undefi
 
 function compareCatharsis (mode: CatharsisMode, results: Results, fixture: Fixture): void {
   const compareMode = fixture.catharsis[mode]
+  const testMethod = fixture?.only === 1 ? it.only.bind(it) : it
 
   if (compareMode !== 'fail') {
-    it(`compares to catharsis in '${mode}' mode`, () => {
+    testMethod(`compares to catharsis in '${mode}' mode`, () => {
       const catharsisResult = catharsisParse(fixture.input, {
         jsdoc: mode === 'jsdoc'
       })
@@ -65,7 +68,7 @@ function compareCatharsis (mode: CatharsisMode, results: Results, fixture: Fixtu
       }
     })
   } else {
-    it(`does not get parsed by catharsis in '${mode}' mode`, () => {
+    testMethod(`does not get parsed by catharsis in '${mode}' mode`, () => {
       expect(() => {
         catharsisParse(fixture.input, {
           jsdoc: mode === 'jsdoc'
@@ -77,9 +80,10 @@ function compareCatharsis (mode: CatharsisMode, results: Results, fixture: Fixtu
 
 function compareJtp (mode: JtpMode, results: Results, fixture: Fixture): void {
   const compareMode = fixture.jtp[mode]
+  const testMethod = fixture?.only === 1 ? it.only.bind(it) : it
 
   if (compareMode !== 'fail') {
-    it(`compares to jsdoctypeparser in '${mode}' mode`, () => {
+    testMethod(`compares to jsdoctypeparser in '${mode}' mode`, () => {
       const jtpResult = jtpParse(fixture.input, {
         mode: mode
       })
@@ -92,7 +96,7 @@ function compareJtp (mode: JtpMode, results: Results, fixture: Fixture): void {
       }
     })
   } else {
-    it(`does not get parsed by jsdoctypeparser in '${mode}' mode`, () => {
+    testMethod(`does not get parsed by jsdoctypeparser in '${mode}' mode`, () => {
       expect(() => {
         jtpParse(fixture.input, {
           mode: mode
@@ -118,13 +122,18 @@ export function testFixture (fixture: Fixture): void {
     compareJtp('typescript', results, fixture)
     compareJtp('permissive', results, fixture)
 
-    it('should stringify', () => {
+    const testMethod = fixture?.only === 1 ? it.only.bind(it) : it
+
+    testMethod('should stringify', () => {
       // TODO: at the moment this does only test one possible stringification
 
       const mode: ParseMode | undefined = (results.jsdoc !== undefined)
-        ? 'jsdoc' : (results.closure !== undefined)
-          ? 'closure' : (results.typescript !== undefined)
-            ? 'typescript' : undefined
+        ? 'jsdoc'
+        : results.closure !== undefined
+          ? 'closure'
+          : results.typescript !== undefined
+            ? 'typescript'
+            : undefined
 
       if (mode !== undefined) {
         const result = results[mode] as TerminalResult
