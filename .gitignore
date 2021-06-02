@@ -3,3 +3,5 @@
 /pages/
 /dist/
 /docs/
+/coverage/
+/.nyc-output/
