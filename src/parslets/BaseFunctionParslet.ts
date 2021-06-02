@@ -18,14 +18,6 @@ export class BaseFunctionParslet {
     return parameters.map(p => assertKeyValueOrTerminal(p))
   }
 
-  protected getNamedParameters (value: IntermediateResult): KeyValueResult[] {
-    const parameters = this.getParameters(value)
-    if (parameters.some(p => p.type !== 'JsdocTypeKeyValue')) {
-      throw new Error('All parameters should be named')
-    }
-    return parameters as KeyValueResult[]
-  }
-
   protected getUnnamedParameters (value: IntermediateResult): TerminalResult[] {
     const parameters = this.getParameters(value)
     if (parameters.some(p => p.type === 'JsdocTypeKeyValue')) {

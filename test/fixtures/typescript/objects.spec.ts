@@ -134,4 +134,40 @@ describe('typescript objects tests', () => {
       }
     })
   })
+
+  describe('An object an optional field without a type', () => {
+    testFixture({
+      input: '{ message?} ',
+      stringified: '{message?}',
+      expected: {
+        type: 'JsdocTypeObject',
+        elements: [
+          {
+            type: 'JsdocTypeKeyValue',
+            value: 'message',
+            right: undefined,
+            optional: true,
+            meta: {
+              quote: undefined
+            }
+          }
+        ]
+      },
+      modes: [
+        'jsdoc', // TODO: should this fail in closure or jsdoc?
+        'closure',
+        'typescript'
+      ],
+      catharsis: {
+        jsdoc: 'fail',
+        closure: 'fail'
+      },
+      jtp: {
+        jsdoc: 'fail',
+        closure: 'fail',
+        typescript: 'fail',
+        permissive: 'fail'
+      }
+    })
+  })
 })
