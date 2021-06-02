@@ -39,7 +39,7 @@ function getQuoted (text: string): string|null {
   return text.slice(0, position)
 }
 
-const identifierStartRegex = /[$_\p{ID_Start}]|\\u[a-f\d]{4}|\\u\{0*(?:[a-f\d]{1,5}|10[a-f\d]{4})\}/u
+const identifierStartRegex = /[$_\p{ID_Start}]|\\u\p{Hex_Digit}{4}|\\u\{0*(?:\p{Hex_Digit}{1,5}|10\p{Hex_Digit}{4})\}/u
 // A hyphen is not technically allowed, but to keep it liberal for now,
 //  adding it here
 const identifierContinueRegex = /[$\-\p{ID_Continue}\u200C\u200D]|\\u\{0*(?:[a-f\d]{1,5}|10[a-f\d]{4})\}/u
