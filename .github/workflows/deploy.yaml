@@ -5,7 +5,7 @@ on:
       - main
 jobs:
   release:
-    name: Release
+    name: Deploy
     runs-on: ubuntu-18.04
     steps:
       - name: Checkout
