@@ -1,5 +1,5 @@
-[![Test Status](https://github.com/simonseyock/jsdoc-type-pratt-parser/actions/workflows/test.js.yml/badge.svg?branch=main)](https://github.com/simonseyock/jsdoc-type-pratt-parser/actions?query=branch%3Amain)
-[![Npm Package](https://badgen.net/npm/v/jsdoc-type-pratt-parser/alpha)](https://www.npmjs.com/package/jsdoc-type-pratt-parser)
+[![Test Status](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/actions/workflows/test.js.yml/badge.svg?branch=main)](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/actions?query=branch%3Amain)
+[![Npm Package](https://badgen.net/npm/v/jsdoc-type-pratt-parser)](https://www.npmjs.com/package/jsdoc-type-pratt-parser)
 [![Code Style](https://badgen.net/badge/code%20style/ts-standard/blue?icon=typescript)](https://github.com/standard/ts-standard)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
@@ -13,7 +13,7 @@ This project is a parser for jsdoc types. It is heavily inspired by the existing
 Live Demo
 ---------
 
-A simple live demo to test expressions can be found at: https://simonseyock.github.io/jsdoc-type-pratt-parser/
+A simple live demo to test expressions can be found at: https://jsdoc-type-pratt-parser.github.io/jsdoc-type-pratt-parser/
 
 Getting started
 ---------------
@@ -111,7 +111,7 @@ This parser runs most tests of https://github.com/hegemonic/catharsis and
 
 API Documentation
 -----------------
-An API documentation can be found here: https://simonseyock.github.io/jsdoc-type-pratt-parser/docs/modules.html
+An API documentation can be found here: https://jsdoc-type-pratt-parser.github.io/jsdoc-type-pratt-parser/docs/modules.html
 
 Performance
 -----------
