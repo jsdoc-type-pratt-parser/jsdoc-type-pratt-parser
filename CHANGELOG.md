@@ -1,3 +1,11 @@
+## [1.0.4](https://github.com/simonseyock/jsdoc-type-pratt-parser/compare/v1.0.3...v1.0.4) (2021-06-02)
+
+
+### Bug Fixes
+
+* confine extended Unicode escapes to 0x10FFFF ([937bcfb](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/937bcfb74e69f552da5880c7c79eddce48054038))
+* support Unicode escape sequences for identifiers ([edb18a0](https://github.com/simonseyock/jsdoc-type-pratt-parser/commit/edb18a0cc3b4a4880e0d931b14fa4317f9e60e29))
+
 ## [1.0.3](https://github.com/simonseyock/jsdoc-type-pratt-parser/compare/v1.0.2...v1.0.3) (2021-06-01)
 
 
