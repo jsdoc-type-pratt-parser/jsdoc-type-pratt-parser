@@ -56,9 +56,6 @@ function getIdentifier (text: string): string|null {
     }
     position++
   } while (position < text.length)
-  if (position === 0) {
-    return null
-  }
   return text.slice(0, position)
 }
 
