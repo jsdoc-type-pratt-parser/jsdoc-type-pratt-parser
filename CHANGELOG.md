@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v1.0.4...v1.0.5) (2021-06-02)
+
+
+### Bug Fixes
+
+* test dev release ([4351ca4](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/4351ca456960eb39aa72338e011e389d36075832))
+
 ## [1.0.4](https://github.com/simonseyock/jsdoc-type-pratt-parser/compare/v1.0.3...v1.0.4) (2021-06-02)
 
 
