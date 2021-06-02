@@ -22,7 +22,3 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
-      - name: Deploy gh-pages
-        env:
-          REPOSITORY: "https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.REPOSITORY }}.git"
-        run: ./deploy-pages.sh
