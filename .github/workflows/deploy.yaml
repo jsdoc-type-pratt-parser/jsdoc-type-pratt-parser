@@ -14,7 +14,20 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12
-      - name: Deploy gh-pages
-        env:
-          REPOSITORY: "https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.REPOSITORY }}.git"
-        run: ./deploy-pages.sh
+      - name: Dependencies
+        run: npm ci
+      - name: Build
+        run: |
+          npm run build
+          npm run apidoc
+      - name: Assemble
+        run: |
+          mkdir -p page/lib/jsdoc-type-pratt-parser/
+          cp -r dist/* page/lib/jsdoc-type-pratt-parser/
+          cp -r docs page/
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: page
