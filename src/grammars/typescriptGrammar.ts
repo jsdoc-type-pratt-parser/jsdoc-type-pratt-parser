@@ -8,8 +8,7 @@ import { ImportParslet } from '../parslets/ImportParslet'
 import { StringValueParslet } from '../parslets/StringValueParslet'
 import { FunctionParslet } from '../parslets/FunctionParslet'
 import {
-  ArrowFunctionWithoutParametersParslet,
-  ArrowFunctionWithParametersParslet
+  ArrowFunctionParslet
 } from '../parslets/ArrowFunctionParslet'
 import { NamePathParslet } from '../parslets/NamePathParslet'
 import { KeyValueParslet } from '../parslets/KeyValueParslet'
@@ -41,7 +40,6 @@ export const typescriptGrammar: GrammarFactory = () => {
       new KeyOfParslet(),
       new ImportParslet(),
       new StringValueParslet(),
-      new ArrowFunctionWithoutParametersParslet(),
       new FunctionParslet({
         allowWithoutParenthesis: true,
         allowNoReturnType: false,
@@ -63,7 +61,7 @@ export const typescriptGrammar: GrammarFactory = () => {
     infixParslets: [
       ...infixParslets,
       new ArrayBracketsParslet(),
-      new ArrowFunctionWithParametersParslet(),
+      new ArrowFunctionParslet(),
       new NamePathParslet({
         allowJsdocNamePaths: false
       }),
