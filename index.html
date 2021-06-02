@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Parser tester</title>
+    <script src="lib/jsdoc-type-pratt-parser/index.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+            crossorigin="anonymous"></script>
+    <style>
+        #output {
+            height: 30em;
+        }
+
+        textarea {
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Jsdoc Type Pratt Parser Tester</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="mode" class="form-label">Type Syntax</label>
+                <select id="mode" class="form-control">
+                    <option value="closure">Google Closue</option>
+                    <option value="jsdoc">JsDoc</option>
+                    <option value="typescript" selected>TypeScript</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="compatMode" class="form-label">Compatibility Mode</label>
+                <select id="compatMode" class="form-control">
+                    <option value="native" selected>Native</option>
+                    <option value="catharsis">Catharsis</option>
+                    <option value="jtp">jsdoctypeparser</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="input" class="form-label">Type Expression</label>
+                <textarea id="input" class="form-control"></textarea>
+            </div>
+            <button id="parse" class="btn btn-primary">Parse</button>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="output" class="form-label">Parsed</label>
+                <textarea id="output" class="form-control"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var modeSelect = document.querySelector('#mode')
+    var compatModeSelect = document.querySelector('#compatMode')
+    var input = document.querySelector('#input')
+    var button = document.querySelector('#parse')
+    var output = document.querySelector('#output')
+
+    function getSelected(select) {
+        return Array.from(select.querySelectorAll('option')).find(o => o.selected).value
+    }
+
+    button.addEventListener('click', function () {
+        var mode = getSelected(modeSelect)
+        var compatMode = getSelected(compatModeSelect)
+        try {
+            var result = jtpp.parse(input.value, mode)
+            if (compatMode === 'catharsis') {
+                result = jtpp.catharsisTransform(result)
+            } else if (compatMode === 'jtp') {
+                result = jtpp.jtpTransform(result)
+            }
+            output.value = JSON.stringify(result, null, 2)
+        } catch (e) {
+            output.value = e.toString()
+        }
+    })
+</script>
+</body>
+</html>

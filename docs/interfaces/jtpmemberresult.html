@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>GenericResult | jsdoc-type-pratt-parser</title>
+	<title>JtpMemberResult | jsdoc-type-pratt-parser</title>
 	<meta name="description" content="Documentation for jsdoc-type-pratt-parser">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,31 +55,21 @@
 					<a href="../modules.html">jsdoc-type-pratt-parser</a>
 				</li>
 				<li>
-					<a href="genericresult.html">GenericResult</a>
+					<a href="jtpmemberresult.html">JtpMemberResult</a>
 				</li>
 			</ul>
-			<h1>Interface GenericResult</h1>
+			<h1>Interface JtpMemberResult</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>A generic type. The property <code>left</code> is the generic type that has <code>elements</code> as type values for its type parameters.
-							Array types that are written as <code>Type[]</code> always have the name <code>Array</code> as the <code>left</code> type and <code>elements</code> will contain
-							only one element (in this case the name <code>Type</code>). To differentiate <code>Type[]</code> and <code>Array&lt;Type&gt;</code> there is the meta property
-						<code>brackets</code>.</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">GenericResult</span>
+						<span class="target">JtpMemberResult</span>
 					</li>
 				</ul>
 			</section>
@@ -90,10 +80,11 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="genericresult.html#elements" class="tsd-kind-icon">elements</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="genericresult.html#left" class="tsd-kind-icon">left</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="genericresult.html#meta" class="tsd-kind-icon">meta</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="genericresult.html#type" class="tsd-kind-icon">type</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="jtpmemberresult.html#haseventprefix" class="tsd-kind-icon">has<wbr>Event<wbr>Prefix</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="jtpmemberresult.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="jtpmemberresult.html#owner" class="tsd-kind-icon">owner</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="jtpmemberresult.html#quotestyle" class="tsd-kind-icon">quote<wbr>Style</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="jtpmemberresult.html#type" class="tsd-kind-icon">type</a></li>
 							</ul>
 						</section>
 					</div>
@@ -102,53 +93,52 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="elements" class="tsd-anchor"></a>
-					<h3>elements</h3>
-					<div class="tsd-signature tsd-kind-icon">elements<span class="tsd-signature-symbol">:</span> <a href="../modules.html#terminalresult" class="tsd-signature-type" data-tsd-kind="Type alias">TerminalResult</a><span class="tsd-signature-symbol">[]</span></div>
+					<a name="haseventprefix" class="tsd-anchor"></a>
+					<h3>has<wbr>Event<wbr>Prefix</h3>
+					<div class="tsd-signature tsd-kind-icon">has<wbr>Event<wbr>Prefix<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">false</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/266370d/src/result/TerminalResult.ts#L106">result/TerminalResult.ts:106</a></li>
+							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/62ba474/src/transforms/jtpTransform.ts#L137">transforms/jtpTransform.ts:137</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="left" class="tsd-anchor"></a>
-					<h3>left</h3>
-					<div class="tsd-signature tsd-kind-icon">left<span class="tsd-signature-symbol">:</span> <a href="../modules.html#terminalresult" class="tsd-signature-type" data-tsd-kind="Type alias">TerminalResult</a></div>
+					<a name="name" class="tsd-anchor"></a>
+					<h3>name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/266370d/src/result/TerminalResult.ts#L105">result/TerminalResult.ts:105</a></li>
+							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/62ba474/src/transforms/jtpTransform.ts#L135">transforms/jtpTransform.ts:135</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="meta" class="tsd-anchor"></a>
-					<h3>meta</h3>
-					<div class="tsd-signature tsd-kind-icon">meta<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>brackets<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;angle&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;square&quot;</span><span class="tsd-signature-symbol">; </span>dot<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> }</span></div>
+					<a name="owner" class="tsd-anchor"></a>
+					<h3>owner</h3>
+					<div class="tsd-signature tsd-kind-icon">owner<span class="tsd-signature-symbol">:</span> <a href="../modules.html#jtpresult" class="tsd-signature-type" data-tsd-kind="Type alias">JtpResult</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/266370d/src/result/TerminalResult.ts#L107">result/TerminalResult.ts:107</a></li>
+							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/62ba474/src/transforms/jtpTransform.ts#L134">transforms/jtpTransform.ts:134</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter">
-								<h5>brackets<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;angle&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;square&quot;</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5>dot<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
-							</li>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="quotestyle" class="tsd-anchor"></a>
+					<h3>quote<wbr>Style</h3>
+					<div class="tsd-signature tsd-kind-icon">quote<wbr>Style<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">JtpQuoteStyle</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/62ba474/src/transforms/jtpTransform.ts#L136">transforms/jtpTransform.ts:136</a></li>
 						</ul>
-					</div>
+					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="type" class="tsd-anchor"></a>
 					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;JsdocTypeGeneric&quot;</span></div>
+					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;MEMBER&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;INNER_MEMBER&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;INSTANCE_MEMBER&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/266370d/src/result/TerminalResult.ts#L104">result/TerminalResult.ts:104</a></li>
+							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/62ba474/src/transforms/jtpTransform.ts#L133">transforms/jtpTransform.ts:133</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -167,19 +157,22 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface">
-						<a href="genericresult.html" class="tsd-kind-icon">Generic<wbr>Result</a>
+						<a href="jtpmemberresult.html" class="tsd-kind-icon">Jtp<wbr>Member<wbr>Result</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="genericresult.html#elements" class="tsd-kind-icon">elements</a>
+								<a href="jtpmemberresult.html#haseventprefix" class="tsd-kind-icon">has<wbr>Event<wbr>Prefix</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="genericresult.html#left" class="tsd-kind-icon">left</a>
+								<a href="jtpmemberresult.html#name" class="tsd-kind-icon">name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="genericresult.html#meta" class="tsd-kind-icon">meta</a>
+								<a href="jtpmemberresult.html#owner" class="tsd-kind-icon">owner</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="genericresult.html#type" class="tsd-kind-icon">type</a>
+								<a href="jtpmemberresult.html#quotestyle" class="tsd-kind-icon">quote<wbr>Style</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="jtpmemberresult.html#type" class="tsd-kind-icon">type</a>
 							</li>
 						</ul>
 					</li>
@@ -195,7 +188,14 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
 			</ul>
 		</div>
 	</div>
