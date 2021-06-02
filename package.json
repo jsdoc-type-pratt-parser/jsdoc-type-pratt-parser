@@ -64,10 +64,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/simonseyock/jsdoc-type-pratt-parser.git"
+    "url": "https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser.git"
   },
-  "bugs": "https://github.com/simonseyock/jsdoc-type-pratt-parser/issues",
-  "homepage": "https://github.com/simonseyock/jsdoc-type-pratt-parser",
+  "bugs": "https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/issues",
+  "homepage": "https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser",
   "keywords": [
     "jsdoc",
     "pratt",
