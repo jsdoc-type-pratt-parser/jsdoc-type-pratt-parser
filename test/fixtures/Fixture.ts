@@ -12,8 +12,7 @@ type CatharsisMode = 'jsdoc' | 'closure'
 
 type CompareMode = ParseMode | 'fail' | 'differ'
 
-export interface Fixture {
-  description: string
+export interface BaseFixture {
   modes: ParseMode[]
   jtp: {
     [K in JtpMode]: CompareMode
@@ -29,11 +28,15 @@ export interface Fixture {
   stringified?: string
 }
 
+export type Fixture = BaseFixture & {
+  description: string
+}
+
 type Results = {
   [K in ParseMode]?: TerminalResult
 }
 
-function testParser (mode: ParseMode, fixture: Fixture): TerminalResult | undefined {
+function testParser (mode: ParseMode, fixture: BaseFixture): TerminalResult | undefined {
   if (fixture.modes.includes(mode)) {
     it(`is parsed in '${mode}' mode`, () => {
       const result = parse(fixture.input, mode)
@@ -48,7 +51,7 @@ function testParser (mode: ParseMode, fixture: Fixture): TerminalResult | undefi
   }
 }
 
-function compareCatharsis (mode: CatharsisMode, results: Results, fixture: Fixture): void {
+function compareCatharsis (mode: CatharsisMode, results: Results, fixture: BaseFixture): void {
   const compareMode = fixture.catharsis[mode]
 
   if (compareMode !== 'fail') {
@@ -75,7 +78,7 @@ function compareCatharsis (mode: CatharsisMode, results: Results, fixture: Fixtu
   }
 }
 
-function compareJtp (mode: JtpMode, results: Results, fixture: Fixture): void {
+function compareJtp (mode: JtpMode, results: Results, fixture: BaseFixture): void {
   const compareMode = fixture.jtp[mode]
 
   if (compareMode !== 'fail') {
@@ -102,40 +105,44 @@ function compareJtp (mode: JtpMode, results: Results, fixture: Fixture): void {
   }
 }
 
+export function testFixtureBase (fixture: BaseFixture): void {
+  const results: Results = {
+    closure: testParser('closure', fixture),
+    typescript: testParser('typescript', fixture),
+    jsdoc: testParser('jsdoc', fixture)
+  }
+
+  compareCatharsis('jsdoc', results, fixture)
+  compareCatharsis('closure', results, fixture)
+
+  compareJtp('closure', results, fixture)
+  compareJtp('jsdoc', results, fixture)
+  compareJtp('typescript', results, fixture)
+  compareJtp('permissive', results, fixture)
+
+  it('should stringify', () => {
+    // TODO: at the moment this does only test one possible stringification
+
+    const mode: ParseMode | undefined = (results.jsdoc !== undefined)
+      ? 'jsdoc' : (results.closure !== undefined)
+        ? 'closure' : (results.typescript !== undefined)
+          ? 'typescript' : undefined
+
+    if (mode !== undefined) {
+      const result = results[mode] as TerminalResult
+      const stringified = stringify(result)
+
+      expect(stringified).to.equal(fixture.stringified ?? fixture.input)
+
+      const reparsed = parse(stringified, mode)
+
+      expect(simplify(reparsed)).to.deep.equal(simplify(result))
+    }
+  })
+}
+
 export function testFixture (fixture: Fixture): void {
   describe(fixture.description, () => {
-    const results: Results = {
-      closure: testParser('closure', fixture),
-      typescript: testParser('typescript', fixture),
-      jsdoc: testParser('jsdoc', fixture)
-    }
-
-    compareCatharsis('jsdoc', results, fixture)
-    compareCatharsis('closure', results, fixture)
-
-    compareJtp('closure', results, fixture)
-    compareJtp('jsdoc', results, fixture)
-    compareJtp('typescript', results, fixture)
-    compareJtp('permissive', results, fixture)
-
-    it('should stringify', () => {
-      // TODO: at the moment this does only test one possible stringification
-
-      const mode: ParseMode | undefined = (results.jsdoc !== undefined)
-        ? 'jsdoc' : (results.closure !== undefined)
-          ? 'closure' : (results.typescript !== undefined)
-            ? 'typescript' : undefined
-
-      if (mode !== undefined) {
-        const result = results[mode] as TerminalResult
-        const stringified = stringify(result)
-
-        expect(stringified).to.equal(fixture.stringified ?? fixture.input)
-
-        const reparsed = parse(stringified, mode)
-
-        expect(simplify(reparsed)).to.deep.equal(simplify(result))
-      }
-    })
+    testFixtureBase(fixture)
   })
 }
