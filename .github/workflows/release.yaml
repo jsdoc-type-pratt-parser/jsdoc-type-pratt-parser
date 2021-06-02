@@ -18,10 +18,10 @@ jobs:
         run: npm ci
       - name: Release
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
       - name: Deploy gh-pages
         env:
-          REPOSITORY: "https://${{ secrets.GH_TOKEN }}@github.com/${{ github.REPOSITORY }}.git"
+          REPOSITORY: "https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.REPOSITORY }}.git"
         run: ./deploy-pages.sh
