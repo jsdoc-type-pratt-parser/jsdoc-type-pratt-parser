@@ -1,8 +1,8 @@
-import { testFixtureBase } from '../Fixture'
+import { testFixture } from '../Fixture'
 
 describe('catharsis record type tests', () => {
   describe('empty record type', () => {
-    testFixtureBase({
+    testFixture({
       input: '{}',
       expected: {
         type: 'JsdocTypeObject',
@@ -27,7 +27,7 @@ describe('catharsis record type tests', () => {
   })
 
   describe('record type with 1 typed property', () => {
-    testFixtureBase({
+    testFixture({
       input: '{myNum: number}',
       expected: {
         type: 'JsdocTypeObject',
@@ -65,7 +65,7 @@ describe('catharsis record type tests', () => {
   })
 
   describe('repeatable record type with 1 typed property', () => {
-    testFixtureBase({
+    testFixture({
       input: '...{myNum: number}',
       expected: {
         type: 'JsdocTypeVariadic',
@@ -110,7 +110,7 @@ describe('catharsis record type tests', () => {
   })
 
   describe('optional record type with 1 typed property', () => {
-    testFixtureBase({
+    testFixture({
       input: '{myNum: number}=',
       expected: {
         type: 'JsdocTypeOptional',
@@ -154,7 +154,7 @@ describe('catharsis record type tests', () => {
   })
 
   describe('nullable record type with 1 typed property', () => {
-    testFixtureBase({
+    testFixture({
       input: '?{myNum: number}',
       expected: {
         type: 'JsdocTypeNullable',
@@ -198,7 +198,7 @@ describe('catharsis record type tests', () => {
   })
 
   describe('non-nullable record type with 1 typed property', () => {
-    testFixtureBase({
+    testFixture({
       input: '!{myNum: number}',
       expected: {
         type: 'JsdocTypeNotNullable',
@@ -242,7 +242,7 @@ describe('catharsis record type tests', () => {
   })
 
   describe('record type with 1 typed property and 1 untyped property', () => {
-    testFixtureBase({
+    testFixture({
       input: '{myNum: number, myObject}',
       expected: {
         type: 'JsdocTypeObject',
@@ -289,7 +289,7 @@ describe('catharsis record type tests', () => {
   })
 
   describe('record type with a property that uses a type application as a value', () => {
-    testFixtureBase({
+    testFixture({
       input: '{myArray: Array.<string>}',
       expected: {
         type: 'JsdocTypeObject',
@@ -340,7 +340,7 @@ describe('catharsis record type tests', () => {
   })
 
   describe('record type with a property that uses a type union as a value', () => {
-    testFixtureBase({
+    testFixture({
       input: '{myKey: (number|boolean|string)}',
       stringified: '{myKey: (number | boolean | string)}',
       expected: {
@@ -395,7 +395,7 @@ describe('catharsis record type tests', () => {
   })
 
   describe('record type with a property that uses a JavaScript keyword as a key', () => {
-    testFixtureBase({
+    testFixture({
       input: '{continue: string}',
       expected: {
         type: 'JsdocTypeObject',
@@ -433,7 +433,7 @@ describe('catharsis record type tests', () => {
   })
 
   describe('record type with a property that uses a JavaScript future reserved word as a key', () => {
-    testFixtureBase({
+    testFixture({
       input: '{class: string}',
       expected: {
         type: 'JsdocTypeObject',
@@ -471,7 +471,7 @@ describe('catharsis record type tests', () => {
   })
 
   describe('record type with a property that uses a string representation of a JavaScript boolean literal as a key', () => {
-    testFixtureBase({
+    testFixture({
       input: '{true: string}',
       expected: {
         type: 'JsdocTypeObject',
@@ -509,7 +509,7 @@ describe('catharsis record type tests', () => {
   })
 
   describe('record type with a property that uses a numeric key', () => {
-    testFixtureBase({
+    testFixture({
       input: '{0: string}',
       expected: {
         type: 'JsdocTypeObject',

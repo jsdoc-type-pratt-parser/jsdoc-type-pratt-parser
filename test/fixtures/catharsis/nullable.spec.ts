@@ -1,8 +1,8 @@
-import { testFixtureBase } from '../Fixture'
+import { testFixture } from '../Fixture'
 
 describe('catharsis nullable tests', () => {
   describe('nullable number', () => {
-    testFixtureBase({
+    testFixture({
       input: '?number',
       expected: {
         type: 'JsdocTypeNullable',
@@ -33,7 +33,7 @@ describe('catharsis nullable tests', () => {
   })
 
   describe('postfix nullable number', () => {
-    testFixtureBase({
+    testFixture({
       input: 'number?',
       expected: {
         type: 'JsdocTypeNullable',
@@ -64,7 +64,7 @@ describe('catharsis nullable tests', () => {
   })
 
   describe('non-nullable object', () => {
-    testFixtureBase({
+    testFixture({
       input: '!Object',
       expected: {
         type: 'JsdocTypeNotNullable',
@@ -95,7 +95,7 @@ describe('catharsis nullable tests', () => {
   })
 
   describe('postfix non-nullable object', () => {
-    testFixtureBase({
+    testFixture({
       input: 'Object!',
       expected: {
         type: 'JsdocTypeNotNullable',
@@ -126,7 +126,7 @@ describe('catharsis nullable tests', () => {
   })
 
   describe('repeatable nullable number', () => {
-    testFixtureBase({
+    testFixture({
       input: '...?number',
       expected: {
         type: 'JsdocTypeVariadic',
@@ -164,7 +164,7 @@ describe('catharsis nullable tests', () => {
   })
 
   describe('postfix repeatable nullable number', () => {
-    testFixtureBase({
+    testFixture({
       input: '...number?',
       expected: {
         type: 'JsdocTypeVariadic',
@@ -202,7 +202,7 @@ describe('catharsis nullable tests', () => {
   })
 
   describe('repeatable non-nullable object', () => {
-    testFixtureBase({
+    testFixture({
       input: '...!Object',
       expected: {
         type: 'JsdocTypeVariadic',
@@ -240,7 +240,7 @@ describe('catharsis nullable tests', () => {
   })
 
   describe('postfix repeatable non-nullable object', () => {
-    testFixtureBase({
+    testFixture({
       input: '...Object!',
       expected: {
         type: 'JsdocTypeVariadic',
@@ -278,7 +278,7 @@ describe('catharsis nullable tests', () => {
   })
 
   describe('postfix optional nullable number', () => {
-    testFixtureBase({
+    testFixture({
       input: 'number=?',
       expected: {
         type: 'JsdocTypeNullable',
@@ -315,7 +315,7 @@ describe('catharsis nullable tests', () => {
   })
 
   describe('postfix nullable optional number', () => {
-    testFixtureBase({
+    testFixture({
       input: 'number?=',
       expected: {
         type: 'JsdocTypeOptional',
@@ -352,7 +352,7 @@ describe('catharsis nullable tests', () => {
   })
 
   describe('postfix repeatable nullable optional number', () => {
-    testFixtureBase({
+    testFixture({
       input: '...number?=',
       expected: {
         type: 'JsdocTypeVariadic',
@@ -396,7 +396,7 @@ describe('catharsis nullable tests', () => {
   })
 
   describe('postfix optional non-nullable object', () => {
-    testFixtureBase({
+    testFixture({
       input: 'Object=!',
       expected: {
         type: 'JsdocTypeNotNullable',
@@ -433,7 +433,7 @@ describe('catharsis nullable tests', () => {
   })
 
   describe('postfix non-nullable optional object', () => {
-    testFixtureBase({
+    testFixture({
       input: 'Object!=',
       expected: {
         type: 'JsdocTypeOptional',
@@ -470,7 +470,7 @@ describe('catharsis nullable tests', () => {
   })
 
   describe('postfix repeatable non-nullable optional object', () => {
-    testFixtureBase({
+    testFixture({
       input: '...Object!=',
       expected: {
         type: 'JsdocTypeVariadic',

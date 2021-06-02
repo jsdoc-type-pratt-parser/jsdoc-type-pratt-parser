@@ -12,7 +12,7 @@ type CatharsisMode = 'jsdoc' | 'closure'
 
 type CompareMode = ParseMode | 'fail' | 'differ'
 
-export interface BaseFixture {
+export interface Fixture {
   modes: ParseMode[]
   jtp: {
     [K in JtpMode]: CompareMode
@@ -28,15 +28,11 @@ export interface BaseFixture {
   stringified?: string
 }
 
-export type Fixture = BaseFixture & {
-  description: string
-}
-
 type Results = {
   [K in ParseMode]?: TerminalResult
 }
 
-function testParser (mode: ParseMode, fixture: BaseFixture): TerminalResult | undefined {
+function testParser (mode: ParseMode, fixture: Fixture): TerminalResult | undefined {
   if (fixture.modes.includes(mode)) {
     it(`is parsed in '${mode}' mode`, () => {
       const result = parse(fixture.input, mode)
@@ -51,7 +47,7 @@ function testParser (mode: ParseMode, fixture: BaseFixture): TerminalResult | un
   }
 }
 
-function compareCatharsis (mode: CatharsisMode, results: Results, fixture: BaseFixture): void {
+function compareCatharsis (mode: CatharsisMode, results: Results, fixture: Fixture): void {
   const compareMode = fixture.catharsis[mode]
 
   if (compareMode !== 'fail') {
@@ -78,7 +74,7 @@ function compareCatharsis (mode: CatharsisMode, results: Results, fixture: BaseF
   }
 }
 
-function compareJtp (mode: JtpMode, results: Results, fixture: BaseFixture): void {
+function compareJtp (mode: JtpMode, results: Results, fixture: Fixture): void {
   const compareMode = fixture.jtp[mode]
 
   if (compareMode !== 'fail') {
@@ -105,7 +101,7 @@ function compareJtp (mode: JtpMode, results: Results, fixture: BaseFixture): voi
   }
 }
 
-export function testFixtureBase (fixture: BaseFixture): void {
+export function testFixture (fixture: Fixture): void {
   const results: Results = {
     closure: testParser('closure', fixture),
     typescript: testParser('typescript', fixture),
@@ -124,9 +120,12 @@ export function testFixtureBase (fixture: BaseFixture): void {
     // TODO: at the moment this does only test one possible stringification
 
     const mode: ParseMode | undefined = (results.jsdoc !== undefined)
-      ? 'jsdoc' : (results.closure !== undefined)
-        ? 'closure' : (results.typescript !== undefined)
-          ? 'typescript' : undefined
+      ? 'jsdoc'
+      : (results.closure !== undefined)
+          ? 'closure'
+          : (results.typescript !== undefined)
+              ? 'typescript'
+              : undefined
 
     if (mode !== undefined) {
       const result = results[mode] as TerminalResult
@@ -138,11 +137,5 @@ export function testFixtureBase (fixture: BaseFixture): void {
 
       expect(simplify(reparsed)).to.deep.equal(simplify(result))
     }
-  })
-}
-
-export function testFixture (fixture: Fixture): void {
-  describe(fixture.description, () => {
-    testFixtureBase(fixture)
   })
 }

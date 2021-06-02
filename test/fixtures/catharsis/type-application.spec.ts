@@ -1,8 +1,8 @@
-import { testFixtureBase } from '../Fixture'
+import { testFixture } from '../Fixture'
 
 describe('catharsis type application tests', () => {
   describe('array of strings, without a dot separator', () => {
-    testFixtureBase({
+    testFixture({
       input: 'Array<string>',
       expected: {
         type: 'JsdocTypeGeneric',
@@ -40,7 +40,7 @@ describe('catharsis type application tests', () => {
   })
 
   describe('array of strings, with a dot separator', () => {
-    testFixtureBase({
+    testFixture({
       input: 'Array.<string>',
       expected: {
         type: 'JsdocTypeGeneric',
@@ -78,7 +78,7 @@ describe('catharsis type application tests', () => {
   })
 
   describe('repeatable array of strings', () => {
-    testFixtureBase({
+    testFixture({
       input: '...Array.<string>',
       expected: {
         type: 'JsdocTypeVariadic',
@@ -123,7 +123,7 @@ describe('catharsis type application tests', () => {
   })
 
   describe('object whose properties are strings and property values are numbers', () => {
-    testFixtureBase({
+    testFixture({
       input: 'Object.<string, number>',
       expected: {
         type: 'JsdocTypeGeneric',
@@ -165,7 +165,7 @@ describe('catharsis type application tests', () => {
   })
 
   describe('object whose properties are a type application and property values are a type union', () => {
-    testFixtureBase({
+    testFixture({
       input: 'Object.<Array.<(boolean|{myKey: Error})>, (boolean|string|function(new:foo): string)>',
       stringified: 'Object.<Array.<(boolean | {myKey: Error})>, (boolean | string | function(new: foo): string)>',
       expected: {
@@ -281,7 +281,7 @@ describe('catharsis type application tests', () => {
   })
 
   describe('array of objects that have a length property', () => {
-    testFixtureBase({
+    testFixture({
       input: 'Array.<{length}>',
       expected: {
         type: 'JsdocTypeGeneric',
@@ -329,7 +329,7 @@ describe('catharsis type application tests', () => {
   })
 
   describe('array of unknown', () => {
-    testFixtureBase({
+    testFixture({
       input: 'Array.<?>',
       expected: {
         type: 'JsdocTypeGeneric',
@@ -366,7 +366,7 @@ describe('catharsis type application tests', () => {
   })
 
   describe('Promise containing string', () => {
-    testFixtureBase({
+    testFixture({
       input: 'Promise.<string>',
       expected: {
         type: 'JsdocTypeGeneric',
@@ -404,7 +404,7 @@ describe('catharsis type application tests', () => {
   })
 
   describe('foo.Promise containing string', () => {
-    testFixtureBase({
+    testFixture({
       input: 'foo.Promise.<string>',
       expected: {
         type: 'JsdocTypeGeneric',

@@ -1,8 +1,8 @@
-import { testFixtureBase } from '../Fixture'
+import { testFixture } from '../Fixture'
 
 describe('catharsis basic tests', () => {
   describe('boolean', () => {
-    testFixtureBase({
+    testFixture({
       input: 'boolean',
       expected: {
         type: 'JsdocTypeName',
@@ -27,7 +27,7 @@ describe('catharsis basic tests', () => {
   })
 
   describe('object', () => {
-    testFixtureBase({
+    testFixture({
       input: 'Window',
       expected: {
         type: 'JsdocTypeName',
@@ -52,7 +52,7 @@ describe('catharsis basic tests', () => {
   })
 
   describe('object with properties', () => {
-    testFixtureBase({
+    testFixture({
       input: 'goog.ui.Menu',
       expected: {
         left: {
@@ -93,7 +93,7 @@ describe('catharsis basic tests', () => {
   })
 
   describe('object with a single-quoted string-literal property', () => {
-    testFixtureBase({
+    testFixture({
       input: "myObj.'myProp'.foo",
       expected: {
         left: {
@@ -134,7 +134,7 @@ describe('catharsis basic tests', () => {
   })
 
   describe('object with a double-quoted string-literal property', () => {
-    testFixtureBase({
+    testFixture({
       input: 'myObj."myProp".foo',
       expected: {
         left: {
@@ -175,7 +175,7 @@ describe('catharsis basic tests', () => {
   })
 
   describe('object with a string-literal property that includes other punctuation', () => {
-    testFixtureBase({
+    testFixture({
       input: 'myObj."#weirdProp".foo',
       expected: {
         left: {
@@ -216,7 +216,7 @@ describe('catharsis basic tests', () => {
   })
 
   describe('object with a numeric property', () => {
-    testFixtureBase({
+    testFixture({
       input: 'myObj.12345',
       expected: {
         left: {
@@ -249,7 +249,7 @@ describe('catharsis basic tests', () => {
   })
 
   describe('variable number of parameters', () => {
-    testFixtureBase({
+    testFixture({
       input: '...number',
       expected: {
         type: 'JsdocTypeVariadic',
@@ -281,7 +281,7 @@ describe('catharsis basic tests', () => {
   })
 
   describe('optional number parameter', () => {
-    testFixtureBase({
+    testFixture({
       input: 'number=',
       expected: {
         type: 'JsdocTypeOptional',
@@ -312,7 +312,7 @@ describe('catharsis basic tests', () => {
   })
 
   describe('optional Object parameter', () => {
-    testFixtureBase({
+    testFixture({
       input: 'Object=',
       expected: {
         type: 'JsdocTypeOptional',
@@ -343,7 +343,7 @@ describe('catharsis basic tests', () => {
   })
 
   describe('null', () => {
-    testFixtureBase({
+    testFixture({
       input: 'null',
       expected: {
         type: 'JsdocTypeNull'
@@ -367,7 +367,7 @@ describe('catharsis basic tests', () => {
   })
 
   describe('repeatable null', () => {
-    testFixtureBase({
+    testFixture({
       input: '...null',
       expected: {
         type: 'JsdocTypeVariadic',
@@ -398,7 +398,7 @@ describe('catharsis basic tests', () => {
   })
 
   describe('undefined', () => {
-    testFixtureBase({
+    testFixture({
       input: 'undefined',
       expected: {
         type: 'JsdocTypeUndefined'
@@ -422,7 +422,7 @@ describe('catharsis basic tests', () => {
   })
 
   describe('repeatable undefined', () => {
-    testFixtureBase({
+    testFixture({
       input: '...undefined',
       expected: {
         type: 'JsdocTypeVariadic',
@@ -453,7 +453,7 @@ describe('catharsis basic tests', () => {
   })
 
   describe('all', () => {
-    testFixtureBase({
+    testFixture({
       input: '*',
       expected: {
         type: 'JsdocTypeAny'
@@ -477,7 +477,7 @@ describe('catharsis basic tests', () => {
   })
 
   describe('repeatable all', () => {
-    testFixtureBase({
+    testFixture({
       input: '...*',
       expected: {
         type: 'JsdocTypeVariadic',
@@ -508,7 +508,7 @@ describe('catharsis basic tests', () => {
   })
 
   describe('unknown', () => {
-    testFixtureBase({
+    testFixture({
       input: '?',
       expected: {
         type: 'JsdocTypeUnknown'
@@ -532,7 +532,7 @@ describe('catharsis basic tests', () => {
   })
 
   describe('repeatable unknown', () => {
-    testFixtureBase({
+    testFixture({
       input: '...?',
       expected: {
         type: 'JsdocTypeVariadic',
@@ -563,7 +563,7 @@ describe('catharsis basic tests', () => {
   })
 
   describe('name that starts with a reserved word', () => {
-    testFixtureBase({
+    testFixture({
       input: 'forsooth',
       expected: {
         type: 'JsdocTypeName',
@@ -588,7 +588,7 @@ describe('catharsis basic tests', () => {
   })
 
   describe('name that includes a hyphen and a numeral', () => {
-    testFixtureBase({
+    testFixture({
       input: 'My-1st-Class',
       expected: {
         type: 'JsdocTypeName',
@@ -613,7 +613,7 @@ describe('catharsis basic tests', () => {
   })
 
   describe('single quoted module path', () => {
-    testFixtureBase({
+    testFixture({
       input: "module:'some-path'",
       expected: {
         type: 'JsdocTypeSpecialNamePath',
@@ -642,7 +642,7 @@ describe('catharsis basic tests', () => {
   })
 
   describe('double quoted module path', () => {
-    testFixtureBase({
+    testFixture({
       input: 'module:"some-path"',
       expected: {
         type: 'JsdocTypeSpecialNamePath',
@@ -671,7 +671,7 @@ describe('catharsis basic tests', () => {
   })
 
   describe('name that includes an @ sign', () => {
-    testFixtureBase({
+    testFixture({
       input: 'module:@prefix/my-module~myCallback',
       expected: {
         type: 'JsdocTypeNamePath',

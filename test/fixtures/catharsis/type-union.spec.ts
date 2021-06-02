@@ -1,8 +1,8 @@
-import { testFixtureBase } from '../Fixture'
+import { testFixture } from '../Fixture'
 
 describe('catharsis type union tests', () => {
   describe('union with 2 types (number and boolean)', () => {
-    testFixtureBase({
+    testFixture({
       input: '(number|boolean)',
       stringified: '(number | boolean)',
       expected: {
@@ -40,7 +40,7 @@ describe('catharsis type union tests', () => {
   })
 
   describe('repeatable union with 2 types (number and boolean)', () => {
-    testFixtureBase({
+    testFixture({
       input: '...(number|boolean)',
       stringified: '...(number | boolean)',
       expected: {
@@ -85,7 +85,7 @@ describe('catharsis type union tests', () => {
   })
 
   describe('union with 2 types (Object and undefined)', () => {
-    testFixtureBase({
+    testFixture({
       input: '(Object|undefined)',
       stringified: '(Object | undefined)',
       expected: {
@@ -122,7 +122,7 @@ describe('catharsis type union tests', () => {
   })
 
   describe('union with 3 types (number, Window, and goog.ui.Menu)', () => {
-    testFixtureBase({
+    testFixture({
       input: '(number|Window|goog.ui.Menu)',
       stringified: '(number | Window | goog.ui.Menu)',
       expected: {
@@ -180,7 +180,7 @@ describe('catharsis type union tests', () => {
   })
 
   describe('nullable union with 2 types (number and boolean)', () => {
-    testFixtureBase({
+    testFixture({
       input: '?(number|boolean)',
       stringified: '?(number | boolean)',
       expected: {
@@ -224,7 +224,7 @@ describe('catharsis type union tests', () => {
   })
 
   describe('non-nullable union with 2 types (number and boolean)', () => {
-    testFixtureBase({
+    testFixture({
       input: '!(number|boolean)',
       stringified: '!(number | boolean)',
       expected: {
@@ -268,7 +268,7 @@ describe('catharsis type union tests', () => {
   })
 
   describe('optional union with 2 types (number and boolean)', () => {
-    testFixtureBase({
+    testFixture({
       input: '(number|boolean)=',
       stringified: '(number | boolean)=',
       expected: {
@@ -312,7 +312,7 @@ describe('catharsis type union tests', () => {
   })
 
   describe('union with 2 types (array and object with unknown value type)', () => {
-    testFixtureBase({
+    testFixture({
       input: '(Array|Object.<string, ?>)',
       stringified: '(Array | Object.<string, ?>)',
       expected: {
@@ -366,7 +366,7 @@ describe('catharsis type union tests', () => {
   })
 
   describe('union with 2 type applications', () => {
-    testFixtureBase({
+    testFixture({
       input: '(Array.<string>|Object.<string, ?>)',
       stringified: '(Array.<string> | Object.<string, ?>)',
       expected: {
@@ -433,7 +433,7 @@ describe('catharsis type union tests', () => {
   })
 
   describe('union with 2 types (an error, or a function that returns an error)', () => {
-    testFixtureBase({
+    testFixture({
       input: '(Error|function(): Error)',
       stringified: '(Error | function(): Error)',
       expected: {
@@ -477,7 +477,7 @@ describe('catharsis type union tests', () => {
   })
 
   describe('type union with no enclosing parentheses', () => {
-    testFixtureBase({
+    testFixture({
       input: 'number|string',
       stringified: 'number | string',
       expected: {
@@ -512,7 +512,7 @@ describe('catharsis type union tests', () => {
   })
 
   describe('type union with modifiers and no enclosing parentheses', () => {
-    testFixtureBase({
+    testFixture({
       input: '!number|!string',
       stringified: '!number | !string',
       expected: {
@@ -559,7 +559,7 @@ describe('catharsis type union tests', () => {
   })
 
   describe('optional union with multiple types', () => {
-    testFixtureBase({
+    testFixture({
       input: '(jQuerySelector|Element|Object|Array.<Element>|jQuery|string|function())=',
       stringified: '(jQuerySelector | Element | Object | Array.<Element> | jQuery | string | function())=',
       expected: {
@@ -637,7 +637,7 @@ describe('catharsis type union tests', () => {
   })
 
   describe('optional union with multiple types, including a nested union type', () => {
-    testFixtureBase({
+    testFixture({
       input: '(Element|Object|Document|Object.<string, (string|function(!jQuery.event=))>)=',
       stringified: '(Element | Object | Document | Object.<string, (string | function(!jQuery.event=))>)=',
       expected: {

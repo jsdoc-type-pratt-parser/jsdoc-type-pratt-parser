@@ -1,8 +1,8 @@
-import { testFixtureBase } from '../Fixture'
+import { testFixture } from '../Fixture'
 
 describe('catharsis jsdoc tests', () => {
   describe('name expression that starts with the word "function"', () => {
-    testFixtureBase({
+    testFixture({
       input: 'functional',
       expected: {
         type: 'JsdocTypeName',
@@ -27,7 +27,7 @@ describe('catharsis jsdoc tests', () => {
   })
 
   describe('name expression with instance scope punctuation', () => {
-    testFixtureBase({
+    testFixture({
       input: 'MyClass#myMember',
       expected: {
         type: 'JsdocTypeNamePath',
@@ -59,7 +59,7 @@ describe('catharsis jsdoc tests', () => {
   })
 
   describe('name expression with inner scope punctuation', () => {
-    testFixtureBase({
+    testFixture({
       input: 'MyClass~myMember',
       expected: {
         type: 'JsdocTypeNamePath',
@@ -91,7 +91,7 @@ describe('catharsis jsdoc tests', () => {
   })
 
   describe('name expression with instance and inner scope punctuation', () => {
-    testFixtureBase({
+    testFixture({
       input: 'MyClass#myMember#yourMember~theirMember',
       expected: {
         type: 'JsdocTypeNamePath',
@@ -139,7 +139,7 @@ describe('catharsis jsdoc tests', () => {
   })
 
   describe('name expression for a class within a module', () => {
-    testFixtureBase({
+    testFixture({
       input: 'module:foo/bar/baz~Qux',
       expected: {
         type: 'JsdocTypeNamePath',
@@ -176,7 +176,7 @@ describe('catharsis jsdoc tests', () => {
   })
 
   describe('name expression for a class within a module with hyphens', () => {
-    testFixtureBase({
+    testFixture({
       input: 'module:foo-bar/baz~Qux',
       expected: {
         type: 'JsdocTypeNamePath',
@@ -213,7 +213,7 @@ describe('catharsis jsdoc tests', () => {
   })
 
   describe('name expression containing a reserved word', () => {
-    testFixtureBase({
+    testFixture({
       input: 'this',
       expected: {
         type: 'JsdocTypeName',
@@ -238,7 +238,7 @@ describe('catharsis jsdoc tests', () => {
   })
 
   describe('name expression for a symbol variation whose name is an empty string', () => {
-    testFixtureBase({
+    testFixture({
       input: 'MyClass()',
       expected: {
         value: 'MyClass',
@@ -262,7 +262,7 @@ describe('catharsis jsdoc tests', () => {
   })
 
   describe('name expression for a symbol variation whose name is one numeral', () => {
-    testFixtureBase({
+    testFixture({
       input: 'MyClass(2)',
       expected: {
         value: 'MyClass',
@@ -290,7 +290,7 @@ describe('catharsis jsdoc tests', () => {
   })
 
   describe('name expression for a symbol variation whose name is multiple numerals', () => {
-    testFixtureBase({
+    testFixture({
       input: 'MyClass(23456)',
       expected: {
         value: 'MyClass',
@@ -318,7 +318,7 @@ describe('catharsis jsdoc tests', () => {
   })
 
   describe('name expression for a symbol variation whose name is one letter', () => {
-    testFixtureBase({
+    testFixture({
       input: 'MyClass(a)',
       expected: {
         value: 'MyClass',
@@ -346,7 +346,7 @@ describe('catharsis jsdoc tests', () => {
   })
 
   describe('name expression for a symbol variation whose name is multiple letters', () => {
-    testFixtureBase({
+    testFixture({
       input: 'MyClass(abcde)',
       expected: {
         value: 'MyClass',
@@ -374,7 +374,7 @@ describe('catharsis jsdoc tests', () => {
   })
 
   describe('name expression enclosed in double quotes', () => {
-    testFixtureBase({
+    testFixture({
       input: '"foo.bar.baz"',
       expected: {
         type: 'JsdocTypeStringValue',
@@ -401,7 +401,7 @@ describe('catharsis jsdoc tests', () => {
   })
 
   describe('name expression enclosed in single quotes', () => {
-    testFixtureBase({
+    testFixture({
       input: "'foo.bar.baz'",
       expected: {
         type: 'JsdocTypeStringValue',
@@ -428,7 +428,7 @@ describe('catharsis jsdoc tests', () => {
   })
 
   describe('name expression partially enclosed in double quotes', () => {
-    testFixtureBase({
+    testFixture({
       input: 'foo."bar.baz".qux',
       expected: {
         left: {
@@ -469,7 +469,7 @@ describe('catharsis jsdoc tests', () => {
   })
 
   describe('name expression partially enclosed in single quotes', () => {
-    testFixtureBase({
+    testFixture({
       input: "foo.'bar.baz'.qux",
       expected: {
         left: {
@@ -510,7 +510,7 @@ describe('catharsis jsdoc tests', () => {
   })
 
   describe('identifier with a repeatable param that is not enclosed in brackets', () => {
-    testFixtureBase({
+    testFixture({
       input: 'MyClass(...foo)',
       expected: {
         value: 'MyClass',
@@ -545,7 +545,7 @@ describe('catharsis jsdoc tests', () => {
   })
 
   describe('type application with no period', () => {
-    testFixtureBase({
+    testFixture({
       input: 'Array<string>',
       expected: {
         type: 'JsdocTypeGeneric',
@@ -583,7 +583,7 @@ describe('catharsis jsdoc tests', () => {
   })
 
   describe('Jsdoc Toolkit 2-style array notation for an array of strings', () => {
-    testFixtureBase({
+    testFixture({
       input: 'string[]',
       expected: {
         type: 'JsdocTypeGeneric',
@@ -620,7 +620,7 @@ describe('catharsis jsdoc tests', () => {
   })
 
   describe('Jsdoc Toolkit 2-style array notation for an array of functions', () => {
-    testFixtureBase({
+    testFixture({
       input: 'function[]',
       expected: {
         type: 'JsdocTypeGeneric',
@@ -657,7 +657,7 @@ describe('catharsis jsdoc tests', () => {
   })
 
   describe('Jsdoc Toolkit 2-style nested array (two levels)', () => {
-    testFixtureBase({
+    testFixture({
       input: 'number[][]',
       expected: {
         type: 'JsdocTypeGeneric',
@@ -707,7 +707,7 @@ describe('catharsis jsdoc tests', () => {
   })
 
   describe('Jsdoc Toolkit 2-style nested array (three levels)', () => {
-    testFixtureBase({
+    testFixture({
       input: 'number[][][]',
       expected: {
         type: 'JsdocTypeGeneric',
@@ -770,7 +770,7 @@ describe('catharsis jsdoc tests', () => {
   })
 
   describe('record type with a property that uses a type application as a key', () => {
-    testFixtureBase({
+    testFixture({
       input: '{Array.<string>: number}',
       expected: {
         type: 'JsdocTypeObject',
@@ -818,7 +818,7 @@ describe('catharsis jsdoc tests', () => {
   })
 
   describe('record type with a property that uses a type union as a key', () => {
-    testFixtureBase({
+    testFixture({
       input: '{(number|boolean|string): number}',
       stringified: '{(number | boolean | string): number}',
       expected: {
@@ -870,7 +870,7 @@ describe('catharsis jsdoc tests', () => {
   })
 
   describe('record type with a property name that starts with a literal', () => {
-    testFixtureBase({
+    testFixture({
       input: '{undefinedHTML: (string|undefined)}',
       stringified: '{undefinedHTML: (string | undefined)}',
       expected: {
@@ -920,7 +920,7 @@ describe('catharsis jsdoc tests', () => {
   })
 
   describe('record type with a property that contains a function with no preceding space', () => {
-    testFixtureBase({
+    testFixture({
       input: '{foo:function()}',
       stringified: '{foo: function()}',
       expected: {
@@ -960,7 +960,7 @@ describe('catharsis jsdoc tests', () => {
   })
 
   describe('record type with a property that contains a function with no preceding space that returns void', () => {
-    testFixtureBase({
+    testFixture({
       input: '{foo:function(): void}',
       stringified: '{foo: function(): void}',
       expected: {
@@ -1005,7 +1005,7 @@ describe('catharsis jsdoc tests', () => {
   })
 
   describe('function type with no trailing parenthesis', () => {
-    testFixtureBase({
+    testFixture({
       input: 'function',
       expected: {
         type: 'JsdocTypeName',
@@ -1029,7 +1029,7 @@ describe('catharsis jsdoc tests', () => {
   })
 
   describe('standard function type (should still parse if JSDoc expressions are allowed)', () => {
-    testFixtureBase({
+    testFixture({
       input: 'function(this:my.namespace.Class, my.Class)=',
       stringified: 'function(this: my.namespace.Class, my.Class)=',
       expected: {
@@ -1103,7 +1103,7 @@ describe('catharsis jsdoc tests', () => {
   })
 
   describe('type union with no parentheses, a repeatable param, and a JSDoc-style array', () => {
-    testFixtureBase({
+    testFixture({
       input: '...string|string[]',
       stringified: '...string | string[]',
       expected: {
