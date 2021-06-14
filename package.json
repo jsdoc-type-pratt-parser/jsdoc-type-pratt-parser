@@ -1,6 +1,6 @@
 {
   "name": "jsdoc-type-pratt-parser",
-  "version": "1.0.4",
+  "version": "1.0.8",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/src/index.d.ts",
@@ -77,7 +77,10 @@
   "release": {
     "branches": [
       "main",
-      "dev"
+      {
+        "name": "dev",
+        "prerelease": true
+      }
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",

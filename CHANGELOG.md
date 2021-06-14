@@ -1,3 +1,31 @@
+## [1.0.8](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v1.0.7...v1.0.8) (2021-06-02)
+
+
+### Reverts
+
+* fix: test release ([50e219c](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/50e219cb8e52e0af6ab858992cb497f5a14f3f96))
+
+## [1.0.7](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v1.0.6...v1.0.7) (2021-06-02)
+
+
+### Bug Fixes
+
+* test release ([3d8ccc9](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/3d8ccc960c41d5ad1ecace89a307317d58429afd))
+
+## [1.0.6](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v1.0.5...v1.0.6) (2021-06-02)
+
+
+### Bug Fixes
+
+* test release ([78308dc](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/78308dc9f76dcd49e36685a66867d61d4e2312a7))
+
+## [1.0.5](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v1.0.4...v1.0.5) (2021-06-02)
+
+
+### Bug Fixes
+
+* test dev release ([4351ca4](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/4351ca456960eb39aa72338e011e389d36075832))
+
 ## [1.0.4](https://github.com/simonseyock/jsdoc-type-pratt-parser/compare/v1.0.3...v1.0.4) (2021-06-02)
 
 
