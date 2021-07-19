@@ -2,7 +2,7 @@ import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Parser } from '../Parser'
 import { Precedence } from '../Precedence'
-import { InvalidSyntax, UnexpectedTypeError } from '../errors'
+import { UnexpectedTypeError } from '../errors'
 import { ObjectResult, TerminalResult } from '../result/TerminalResult'
 
 interface ObjectParsletOptions {
@@ -67,14 +67,8 @@ export class ObjectParslet implements PrefixParslet {
           throw new UnexpectedTypeError(field)
         }
         if (parser.consume(',')) {
-          if (separator === 'semicolon') {
-            throw new InvalidSyntax('Object should use either comma or semicolon, not both.')
-          }
           separator = 'comma'
         } else if (parser.consume(';')) {
-          if (separator === 'comma') {
-            throw new InvalidSyntax('Object should use either comma or semicolon, not both.')
-          }
           separator = 'semicolon'
         } else {
           break
