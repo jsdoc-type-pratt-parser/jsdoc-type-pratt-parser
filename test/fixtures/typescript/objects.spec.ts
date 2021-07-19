@@ -9,6 +9,9 @@ describe('typescript objects tests', () => {
       diffExpected: {
         typescript: {
           type: 'JsdocTypeObject',
+          meta: {
+            separator: 'comma'
+          },
           elements: [
             {
               type: 'JsdocTypeKeyValue',
@@ -38,6 +41,9 @@ describe('typescript objects tests', () => {
         },
         jsdoc: {
           type: 'JsdocTypeObject',
+          meta: {
+            separator: 'comma'
+          },
           elements: [
             {
               type: 'JsdocTypeKeyValue',
@@ -94,6 +100,9 @@ describe('typescript objects tests', () => {
       stringified: '{message: string | undefined}',
       expected: {
         type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
         elements: [
           {
             type: 'JsdocTypeKeyValue',
@@ -141,6 +150,9 @@ describe('typescript objects tests', () => {
       stringified: '{message?}',
       expected: {
         type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
         elements: [
           {
             type: 'JsdocTypeKeyValue',

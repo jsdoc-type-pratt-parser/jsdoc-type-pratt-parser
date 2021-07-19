@@ -185,6 +185,9 @@ describe('catharsis type application tests', () => {
                     },
                     {
                       type: 'JsdocTypeObject',
+                      meta: {
+                        separator: 'comma'
+                      },
                       elements: [
                         {
                           type: 'JsdocTypeKeyValue',
@@ -288,6 +291,9 @@ describe('catharsis type application tests', () => {
         elements: [
           {
             type: 'JsdocTypeObject',
+            meta: {
+              separator: 'comma'
+            },
             elements: [
               {
                 type: 'JsdocTypeKeyValue',
