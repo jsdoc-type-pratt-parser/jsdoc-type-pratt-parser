@@ -171,6 +171,9 @@ export interface FunctionResult {
 export interface ObjectResult {
   type: 'JsdocTypeObject'
   elements: Array<KeyValueResult | JsdocObjectKeyValueResult>
+  meta: {
+    separator: 'comma' | 'semicolon'
+  }
 }
 
 export type SpecialNamePathType = 'module' | 'event' | 'external'

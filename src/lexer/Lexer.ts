@@ -150,6 +150,7 @@ const rules = [
   makePunctuationRule('<'),
   makePunctuationRule('>'),
   makePunctuationRule(','),
+  makePunctuationRule(';'),
   makePunctuationRule('*'),
   makePunctuationRule('?'),
   makePunctuationRule('!'),

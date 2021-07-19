@@ -49,6 +49,14 @@ export class UnexpectedTypeError extends Error {
   }
 }
 
+export class InvalidSyntax extends Error {
+  constructor (message: string) {
+    super(`Invalid syntax: ${message}`)
+
+    Object.setPrototypeOf(this, InvalidSyntax.prototype)
+  }
+}
+
 // export class UnexpectedTokenError extends Error {
 //   private expected: Token
 //   private found: Token

@@ -2,7 +2,7 @@ import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Parser } from '../Parser'
 import { Precedence } from '../Precedence'
-import { UnexpectedTypeError } from '../errors'
+import { InvalidSyntax, UnexpectedTypeError } from '../errors'
 import { ObjectResult, TerminalResult } from '../result/TerminalResult'
 
 interface ObjectParsletOptions {
@@ -28,11 +28,16 @@ export class ObjectParslet implements PrefixParslet {
     parser.consume('{')
     const result: ObjectResult = {
       type: 'JsdocTypeObject',
+      meta: {
+        separator: 'comma'
+      },
       elements: []
     }
 
     if (!parser.consume('}')) {
-      do {
+      let separator: 'comma' | 'semicolon' | undefined
+
+      while (true) {
         let field = parser.parseIntermediateType(Precedence.OBJECT)
 
         let optional = false
@@ -61,7 +66,23 @@ export class ObjectParslet implements PrefixParslet {
         } else {
           throw new UnexpectedTypeError(field)
         }
-      } while (parser.consume(','))
+        if (parser.consume(',')) {
+          if (separator === 'semicolon') {
+            throw new InvalidSyntax('Object should use either comma or semicolon, not both.')
+          }
+          separator = 'comma'
+        } else if (parser.consume(';')) {
+          if (separator === 'comma') {
+            throw new InvalidSyntax('Object should use either comma or semicolon, not both.')
+          }
+          separator = 'semicolon'
+        } else {
+          break
+        }
+      }
+
+      result.meta.separator = separator ?? 'comma'
+
       if (!parser.consume('}')) {
         throw new Error('Unterminated record type. Missing \'}\'')
       }
