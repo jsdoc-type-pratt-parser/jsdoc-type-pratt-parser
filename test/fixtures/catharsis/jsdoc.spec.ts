@@ -774,6 +774,9 @@ describe('catharsis jsdoc tests', () => {
       input: '{Array.<string>: number}',
       expected: {
         type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
         elements: [
           {
             type: 'JsdocTypeKeyValue',
@@ -823,6 +826,9 @@ describe('catharsis jsdoc tests', () => {
       stringified: '{(number | boolean | string): number}',
       expected: {
         type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
         elements: [
           {
             type: 'JsdocTypeKeyValue',
@@ -875,6 +881,9 @@ describe('catharsis jsdoc tests', () => {
       stringified: '{undefinedHTML: (string | undefined)}',
       expected: {
         type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
         elements: [
           {
             type: 'JsdocTypeKeyValue',
@@ -925,6 +934,9 @@ describe('catharsis jsdoc tests', () => {
       stringified: '{foo: function()}',
       expected: {
         type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
         elements: [
           {
             type: 'JsdocTypeKeyValue',
@@ -965,6 +977,9 @@ describe('catharsis jsdoc tests', () => {
       stringified: '{foo: function(): void}',
       expected: {
         type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
         elements: [
           {
             type: 'JsdocTypeKeyValue',

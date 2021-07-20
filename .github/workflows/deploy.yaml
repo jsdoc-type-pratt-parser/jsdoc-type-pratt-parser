@@ -1,8 +1,8 @@
 name: Deploy
 on:
-  push:
-    branches:
-      - main
+  release:
+    types:
+      - published
 jobs:
   release:
     name: Deploy
@@ -14,7 +14,20 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12
-      - name: Deploy gh-pages
-        env:
-          REPOSITORY: "https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.REPOSITORY }}.git"
-        run: ./deploy-pages.sh
+      - name: Dependencies
+        run: npm ci
+      - name: Build
+        run: |
+          npm run build
+          npm run apidoc
+      - name: Assemble
+        run: |
+          mkdir -p pages/lib/jsdoc-type-pratt-parser/
+          cp -r dist/* pages/lib/jsdoc-type-pratt-parser/
+          cp -r docs pages/
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@4.3.1
+        with:
+          branch: gh-pages
+          folder: pages
+          clean-exclude: index.html

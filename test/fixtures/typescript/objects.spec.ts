@@ -9,6 +9,9 @@ describe('typescript objects tests', () => {
       diffExpected: {
         typescript: {
           type: 'JsdocTypeObject',
+          meta: {
+            separator: 'comma'
+          },
           elements: [
             {
               type: 'JsdocTypeKeyValue',
@@ -38,6 +41,9 @@ describe('typescript objects tests', () => {
         },
         jsdoc: {
           type: 'JsdocTypeObject',
+          meta: {
+            separator: 'comma'
+          },
           elements: [
             {
               type: 'JsdocTypeKeyValue',
@@ -94,6 +100,9 @@ describe('typescript objects tests', () => {
       stringified: '{message: string | undefined}',
       expected: {
         type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
         elements: [
           {
             type: 'JsdocTypeKeyValue',
@@ -131,6 +140,45 @@ describe('typescript objects tests', () => {
         closure: 'closure',
         typescript: 'typescript',
         permissive: 'typescript'
+      }
+    })
+  })
+
+  describe('An object an optional field without a type', () => {
+    testFixture({
+      input: '{ message?} ',
+      stringified: '{message?}',
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
+        elements: [
+          {
+            type: 'JsdocTypeKeyValue',
+            value: 'message',
+            right: undefined,
+            optional: true,
+            meta: {
+              quote: undefined
+            }
+          }
+        ]
+      },
+      modes: [
+        'jsdoc', // TODO: should this fail in closure or jsdoc?
+        'closure',
+        'typescript'
+      ],
+      catharsis: {
+        jsdoc: 'fail',
+        closure: 'fail'
+      },
+      jtp: {
+        jsdoc: 'fail',
+        closure: 'fail',
+        typescript: 'fail',
+        permissive: 'fail'
       }
     })
   })

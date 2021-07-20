@@ -68,6 +68,9 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
 
     JsdocTypeObject: (result, transform) => ({
       type: 'JsdocTypeObject',
+      meta: {
+        separator: 'comma'
+      },
       elements: result.elements.map(transform) as Array<KeyValueResult | JsdocObjectKeyValueResult>
     }),
 

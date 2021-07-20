@@ -6,6 +6,9 @@ describe('catharsis record type tests', () => {
       input: '{}',
       expected: {
         type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
         elements: []
       },
       modes: [
@@ -31,6 +34,9 @@ describe('catharsis record type tests', () => {
       input: '{myNum: number}',
       expected: {
         type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
         elements: [
           {
             type: 'JsdocTypeKeyValue',
@@ -71,6 +77,9 @@ describe('catharsis record type tests', () => {
         type: 'JsdocTypeVariadic',
         element: {
           type: 'JsdocTypeObject',
+          meta: {
+            separator: 'comma'
+          },
           elements: [
             {
               type: 'JsdocTypeKeyValue',
@@ -116,6 +125,9 @@ describe('catharsis record type tests', () => {
         type: 'JsdocTypeOptional',
         element: {
           type: 'JsdocTypeObject',
+          meta: {
+            separator: 'comma'
+          },
           elements: [
             {
               type: 'JsdocTypeKeyValue',
@@ -160,6 +172,9 @@ describe('catharsis record type tests', () => {
         type: 'JsdocTypeNullable',
         element: {
           type: 'JsdocTypeObject',
+          meta: {
+            separator: 'comma'
+          },
           elements: [
             {
               type: 'JsdocTypeKeyValue',
@@ -204,6 +219,9 @@ describe('catharsis record type tests', () => {
         type: 'JsdocTypeNotNullable',
         element: {
           type: 'JsdocTypeObject',
+          meta: {
+            separator: 'comma'
+          },
           elements: [
             {
               type: 'JsdocTypeKeyValue',
@@ -246,6 +264,9 @@ describe('catharsis record type tests', () => {
       input: '{myNum: number, myObject}',
       expected: {
         type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
         elements: [
           {
             type: 'JsdocTypeKeyValue',
@@ -288,11 +309,67 @@ describe('catharsis record type tests', () => {
     })
   })
 
+  describe('record type with 2 typed properties and semicolon separator', () => {
+    testFixture({
+      input: '{myNum: number; myObject: string}',
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: {
+          separator: 'semicolon'
+        },
+        elements: [
+          {
+            type: 'JsdocTypeKeyValue',
+            optional: false,
+            value: 'myNum',
+            meta: {
+              quote: undefined
+            },
+            right: {
+              type: 'JsdocTypeName',
+              value: 'number'
+            }
+          },
+          {
+            type: 'JsdocTypeKeyValue',
+            value: 'myObject',
+            optional: false,
+            meta: {
+              quote: undefined
+            },
+            right: {
+              type: 'JsdocTypeName',
+              value: 'string'
+            }
+          }
+        ]
+      },
+      modes: [
+        'typescript',
+        'jsdoc',
+        'closure'
+      ],
+      catharsis: {
+        closure: 'fail',
+        jsdoc: 'fail'
+      },
+      jtp: {
+        closure: 'closure',
+        jsdoc: 'jsdoc',
+        typescript: 'typescript',
+        permissive: 'closure'
+      }
+    })
+  })
+
   describe('record type with a property that uses a type application as a value', () => {
     testFixture({
       input: '{myArray: Array.<string>}',
       expected: {
         type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
         elements: [
           {
             type: 'JsdocTypeKeyValue',
@@ -345,6 +422,9 @@ describe('catharsis record type tests', () => {
       stringified: '{myKey: (number | boolean | string)}',
       expected: {
         type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
         elements: [
           {
             type: 'JsdocTypeKeyValue',
@@ -399,6 +479,9 @@ describe('catharsis record type tests', () => {
       input: '{continue: string}',
       expected: {
         type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
         elements: [
           {
             type: 'JsdocTypeKeyValue',
@@ -437,6 +520,9 @@ describe('catharsis record type tests', () => {
       input: '{class: string}',
       expected: {
         type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
         elements: [
           {
             type: 'JsdocTypeKeyValue',
@@ -475,6 +561,9 @@ describe('catharsis record type tests', () => {
       input: '{true: string}',
       expected: {
         type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
         elements: [
           {
             type: 'JsdocTypeKeyValue',
@@ -513,6 +602,9 @@ describe('catharsis record type tests', () => {
       input: '{0: string}',
       expected: {
         type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
         elements: [
           {
             type: 'JsdocTypeKeyValue',

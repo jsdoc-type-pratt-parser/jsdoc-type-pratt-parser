@@ -28,11 +28,16 @@ export class ObjectParslet implements PrefixParslet {
     parser.consume('{')
     const result: ObjectResult = {
       type: 'JsdocTypeObject',
+      meta: {
+        separator: 'comma'
+      },
       elements: []
     }
 
     if (!parser.consume('}')) {
-      do {
+      let separator: 'comma' | 'semicolon' | undefined
+
+      while (true) {
         let field = parser.parseIntermediateType(Precedence.OBJECT)
 
         let optional = false
@@ -61,7 +66,17 @@ export class ObjectParslet implements PrefixParslet {
         } else {
           throw new UnexpectedTypeError(field)
         }
-      } while (parser.consume(','))
+        if (parser.consume(',')) {
+          separator = 'comma'
+        } else if (parser.consume(';')) {
+          separator = 'semicolon'
+        } else {
+          break
+        }
+      }
+
+      result.meta.separator = separator ?? 'comma'
+
       if (!parser.consume('}')) {
         throw new Error('Unterminated record type. Missing \'}\'')
       }

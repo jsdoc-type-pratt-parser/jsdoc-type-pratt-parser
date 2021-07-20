@@ -98,7 +98,7 @@ export function stringifyRules (): TransformRules<string> {
 
     JsdocTypeNumber: result => result.value.toString(),
 
-    JsdocTypeObject: (result, transform) => `{${result.elements.map(transform).join(', ')}}`,
+    JsdocTypeObject: (result, transform) => `{${result.elements.map(transform).join((result.meta.separator === 'comma' ? ',' : ';') + ' ')}}`,
 
     JsdocTypeOptional: (result, transform) => applyPosition(result.meta.position, transform(result.element), '='),
 
