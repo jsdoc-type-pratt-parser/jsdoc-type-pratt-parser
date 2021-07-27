@@ -1,3 +1,12 @@
+## [1.0.5](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v1.0.4...v1.0.5) (2021-07-27)
+
+
+### Bug Fixes
+
+* Add chores token. ([dc1d3e9](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/dc1d3e93be974dbb87f253b3e02a806d85cf912b))
+* Allow semicolon as object entry separator. ([49b19a3](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/49b19a34f81542d5e508e9f59c77eb6c28db48b7))
+* Remove unneeded check. ([d7839ba](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/d7839bae6985e5dbfe276c3e8eef5d44f434e975))
+
 ## [1.0.9-dev.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v1.0.8...v1.0.9-dev.1) (2021-07-20)
 
 
