@@ -9,6 +9,7 @@ describe('typescript arrow function tests', () => {
         parameters: [
           {
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             optional: false,
             value: 'x',
             meta: {
@@ -49,6 +50,7 @@ describe('typescript arrow function tests', () => {
         parameters: [
           {
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             optional: false,
             value: 'x',
             meta: {
@@ -91,6 +93,7 @@ describe('typescript arrow function tests', () => {
         parameters: [
           {
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             optional: false,
             value: 'x',
             meta: {
@@ -103,6 +106,7 @@ describe('typescript arrow function tests', () => {
           },
           {
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             optional: false,
             value: 'y',
             meta: {
@@ -115,6 +119,7 @@ describe('typescript arrow function tests', () => {
           },
           {
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             optional: false,
             value: 'z',
             meta: {
@@ -262,6 +267,7 @@ describe('typescript arrow function tests', () => {
         parameters: [
           {
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             optional: false,
             value: 'arrow',
             meta: {
@@ -274,6 +280,7 @@ describe('typescript arrow function tests', () => {
           },
           {
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             optional: false,
             value: 'with',
             meta: {
@@ -422,6 +429,7 @@ describe('typescript arrow function tests', () => {
         parameters: [
           {
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             optional: false,
             value: 'a',
             meta: {
@@ -438,6 +446,7 @@ describe('typescript arrow function tests', () => {
           parameters: [
             {
               type: 'JsdocTypeKeyValue',
+              readonly: false,
               optional: false,
               value: 'b',
               meta: {

@@ -48,7 +48,8 @@ export const closureGrammar: GrammarFactory = () => {
       }),
       new KeyValueParslet({
         allowKeyTypes: false,
-        allowOptional: false
+        allowOptional: false,
+        allowReadonly: false
       }),
       new SymbolParslet()
     ]

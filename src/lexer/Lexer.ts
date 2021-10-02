@@ -172,6 +172,7 @@ const rules = [
   makeKeyWordRule('external'),
   makeKeyWordRule('typeof'),
   makeKeyWordRule('keyof'),
+  makeKeyWordRule('readonly'),
   makeKeyWordRule('import'),
   identifierRule,
   stringValueRule,

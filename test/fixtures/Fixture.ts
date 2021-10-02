@@ -14,10 +14,10 @@ type CompareMode = ParseMode | 'fail' | 'differ'
 
 export interface Fixture {
   modes: ParseMode[]
-  jtp: {
+  jtp?: {
     [K in JtpMode]: CompareMode
   }
-  catharsis: {
+  catharsis?: {
     [K in CatharsisMode]: CompareMode
   }
   expected?: TerminalResult
@@ -47,9 +47,7 @@ function testParser (mode: ParseMode, fixture: Fixture): TerminalResult | undefi
   }
 }
 
-function compareCatharsis (mode: CatharsisMode, results: Results, fixture: Fixture): void {
-  const compareMode = fixture.catharsis[mode]
-
+function compareCatharsis (mode: CatharsisMode, compareMode: CompareMode, results: Results, fixture: Fixture): void {
   if (compareMode !== 'fail') {
     it(`compares to catharsis in '${mode}' mode`, () => {
       const catharsisResult = catharsisParse(fixture.input, {
@@ -74,9 +72,7 @@ function compareCatharsis (mode: CatharsisMode, results: Results, fixture: Fixtu
   }
 }
 
-function compareJtp (mode: JtpMode, results: Results, fixture: Fixture): void {
-  const compareMode = fixture.jtp[mode]
-
+function compareJtp (mode: JtpMode, compareMode: CompareMode, results: Results, fixture: Fixture): void {
   if (compareMode !== 'fail') {
     it(`compares to jsdoctypeparser in '${mode}' mode`, () => {
       const jtpResult = jtpParse(fixture.input, {
@@ -108,13 +104,17 @@ export function testFixture (fixture: Fixture): void {
     jsdoc: testParser('jsdoc', fixture)
   }
 
-  compareCatharsis('jsdoc', results, fixture)
-  compareCatharsis('closure', results, fixture)
+  if (fixture.catharsis !== undefined) {
+    compareCatharsis('jsdoc', fixture.catharsis.jsdoc, results, fixture)
+    compareCatharsis('closure', fixture.catharsis.closure, results, fixture)
+  }
 
-  compareJtp('closure', results, fixture)
-  compareJtp('jsdoc', results, fixture)
-  compareJtp('typescript', results, fixture)
-  compareJtp('permissive', results, fixture)
+  if (fixture.jtp !== undefined) {
+    compareJtp('closure', fixture.jtp.closure, results, fixture)
+    compareJtp('jsdoc', fixture.jtp.jsdoc, results, fixture)
+    compareJtp('typescript', fixture.jtp.typescript, results, fixture)
+    compareJtp('permissive', fixture.jtp.permissive, results, fixture)
+  }
 
   it('should stringify', () => {
     // TODO: at the moment this does only test one possible stringification

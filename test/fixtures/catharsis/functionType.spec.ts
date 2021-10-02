@@ -245,6 +245,7 @@ describe('catharsis function type tests', () => {
               quote: undefined
             },
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             optional: false,
             right: {
               left: {
@@ -301,6 +302,7 @@ describe('catharsis function type tests', () => {
               quote: undefined
             },
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             optional: false,
             right: {
               left: {
@@ -358,6 +360,7 @@ describe('catharsis function type tests', () => {
         parameters: [
           {
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             optional: false,
             value: 'new',
             meta: {
@@ -414,6 +417,7 @@ describe('catharsis function type tests', () => {
         parameters: [
           {
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             optional: false,
             meta: {
               quote: undefined
@@ -474,6 +478,7 @@ describe('catharsis function type tests', () => {
         parameters: [
           {
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             optional: false,
             value: 'new',
             meta: {
@@ -502,6 +507,7 @@ describe('catharsis function type tests', () => {
           },
           {
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             optional: false,
             value: 'this',
             meta: {
@@ -705,6 +711,7 @@ describe('catharsis function type tests', () => {
           parameters: [
             {
               type: 'JsdocTypeKeyValue',
+              readonly: false,
               optional: false,
               value: 'new',
               meta: {
@@ -717,6 +724,7 @@ describe('catharsis function type tests', () => {
             },
             {
               type: 'JsdocTypeKeyValue',
+              readonly: false,
               optional: false,
               value: 'this',
               meta: {
@@ -792,6 +800,7 @@ describe('catharsis function type tests', () => {
           parameters: [
             {
               type: 'JsdocTypeKeyValue',
+              readonly: false,
               optional: false,
               value: 'new',
               meta: {
@@ -804,6 +813,7 @@ describe('catharsis function type tests', () => {
             },
             {
               type: 'JsdocTypeKeyValue',
+              readonly: false,
               optional: false,
               value: 'this',
               meta: {
@@ -1051,6 +1061,7 @@ describe('catharsis function type tests', () => {
         parameters: [
           {
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             optional: false,
             value: 'this',
             meta: {
@@ -1108,6 +1119,7 @@ describe('catharsis function type tests', () => {
         parameters: [
           {
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             optional: false,
             value: 'this',
             meta: {
@@ -1178,6 +1190,7 @@ describe('catharsis function type tests', () => {
           parameters: [
             {
               type: 'JsdocTypeKeyValue',
+              readonly: false,
               optional: false,
               value: 'new',
               meta: {
@@ -1211,6 +1224,7 @@ describe('catharsis function type tests', () => {
           parameters: [
             {
               type: 'JsdocTypeKeyValue',
+              readonly: false,
               optional: false,
               value: 'new',
               meta: {
@@ -1271,6 +1285,7 @@ describe('catharsis function type tests', () => {
         parameters: [
           {
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             optional: false,
             value: 'new',
             meta: {
@@ -1397,6 +1412,7 @@ describe('catharsis function type tests', () => {
         parameters: [
           {
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             optional: false,
             value: 'this',
             meta: {

@@ -77,11 +77,19 @@ export function stringifyRules (): TransformRules<string> {
 
     JsdocTypeKeyValue: (result, transform) => {
       if ('value' in result) {
-        const left = `${quote(result.value, result.meta.quote)}${result.optional ? '?' : ''}`
+        let text = ''
+        if (result.readonly) {
+          text += 'readonly '
+        }
+        text += quote(result.value, result.meta.quote)
+        if (result.optional) {
+          text += '?'
+        }
+
         if (result.right === undefined) {
-          return left
+          return text
         } else {
-          return left + `: ${transform(result.right)}`
+          return text + `: ${transform(result.right)}`
         }
       } else {
         return `${transform(result.left)}: ${transform(result.right)}`

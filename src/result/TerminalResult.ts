@@ -166,7 +166,7 @@ export interface FunctionResult {
 /**
  * An object type. Contains entries which can be {@link KeyValueResult}s or {@link NameResult}s. In most grammars the keys
  * need to be {@link NameResult}s. In some grammars it possible that an entry is only a {@link TerminalResult} or a
- * {@link NumberResult} without a key.
+ * {@link NumberResult} without a key. The seperator is `'comma'` by default.
  */
 export interface ObjectResult {
   type: 'JsdocTypeObject'

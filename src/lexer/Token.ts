@@ -33,6 +33,7 @@ export type TokenType =
   | 'external'
   | 'typeof'
   | 'keyof'
+  | 'readonly'
   | 'import'
   | 'Identifier'
   | 'StringValue'
