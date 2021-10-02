@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v1.1.1...v1.2.0) (2021-10-02)
+
+
+### Features
+
+* **parser:** add readonly modifier for object properties ([ad3f0c9](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/ad3f0c9dbca50f01b810065bb341d50efbbaca2c))
+
 ## [1.1.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v1.1.0...v1.1.1) (2021-07-27)
 
 
