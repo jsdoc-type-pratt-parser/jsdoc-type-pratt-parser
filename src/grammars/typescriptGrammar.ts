@@ -18,6 +18,7 @@ import { IntersectionParslet } from '../parslets/IntersectionParslet'
 import { ObjectParslet } from '../parslets/ObjectParslet'
 import { moduleGrammar } from './moduleGrammar'
 import { SpecialNamePathParslet } from '../parslets/SpecialNamePathParslet'
+import { ReadonlyPropertyParslet } from '../parslets/ReadonlyPropertyParslet'
 
 export const typescriptGrammar: GrammarFactory = () => {
   const {
@@ -56,7 +57,8 @@ export const typescriptGrammar: GrammarFactory = () => {
       }),
       new SpecialNamePathParslet({
         allowedTypes: ['module']
-      })
+      }),
+      new ReadonlyPropertyParslet()
     ],
     infixParslets: [
       ...infixParslets,
@@ -67,7 +69,8 @@ export const typescriptGrammar: GrammarFactory = () => {
       }),
       new KeyValueParslet({
         allowKeyTypes: false,
-        allowOptional: true
+        allowOptional: true,
+        allowReadonly: true
       }),
       new IntersectionParslet()
     ]

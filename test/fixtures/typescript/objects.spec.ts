@@ -2,7 +2,7 @@ import { testFixture } from '../Fixture'
 
 describe('typescript objects tests', () => {
   describe('optional entry', () => {
-  // there seems to be a catharsis error: https://github.com/hegemonic/catharsis/blob/222e8fc4350c346b47ca8395c37512290979df12/lib/parser.pegjs#L555
+    // there seems to be a catharsis error: https://github.com/hegemonic/catharsis/blob/222e8fc4350c346b47ca8395c37512290979df12/lib/parser.pegjs#L555
     testFixture({
       input: '{ object?: string, key: string }',
       stringified: '{object?: string, key: string}',
@@ -15,6 +15,7 @@ describe('typescript objects tests', () => {
           elements: [
             {
               type: 'JsdocTypeKeyValue',
+              readonly: false,
               value: 'object',
               meta: {
                 quote: undefined
@@ -27,6 +28,7 @@ describe('typescript objects tests', () => {
             },
             {
               type: 'JsdocTypeKeyValue',
+              readonly: false,
               value: 'key',
               meta: {
                 quote: undefined
@@ -64,6 +66,7 @@ describe('typescript objects tests', () => {
             },
             {
               type: 'JsdocTypeKeyValue',
+              readonly: false,
               value: 'key',
               meta: {
                 quote: undefined
@@ -106,6 +109,7 @@ describe('typescript objects tests', () => {
         elements: [
           {
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             value: 'message',
             right: {
               type: 'JsdocTypeUnion',
@@ -156,6 +160,7 @@ describe('typescript objects tests', () => {
         elements: [
           {
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             value: 'message',
             right: undefined,
             optional: true,

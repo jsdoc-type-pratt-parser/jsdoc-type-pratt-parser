@@ -10,15 +10,18 @@ import { IntermediateResult } from '../result/IntermediateResult'
 interface KeyValueParsletOptions {
   allowKeyTypes: boolean
   allowOptional: boolean
+  allowReadonly: boolean
 }
 
 export class KeyValueParslet implements InfixParslet {
   private readonly allowKeyTypes: boolean
   private readonly allowOptional: boolean
+  private readonly allowReadonly: boolean
 
   constructor (opts: KeyValueParsletOptions) {
     this.allowKeyTypes = opts.allowKeyTypes
     this.allowOptional = opts.allowOptional
+    this.allowReadonly = opts.allowReadonly
   }
 
   accepts (type: TokenType, next: TokenType): boolean {
@@ -31,9 +34,15 @@ export class KeyValueParslet implements InfixParslet {
 
   parseInfix (parser: Parser, left: IntermediateResult): KeyValueResult | JsdocObjectKeyValueResult {
     let optional = false
+    let readonlyProperty = false
 
     if (this.allowOptional && left.type === 'JsdocTypeNullable') {
       optional = true
+      left = left.element
+    }
+
+    if (this.allowReadonly && left.type === 'JsdocTypeReadonlyProperty') {
+      readonlyProperty = true
       left = left.element
     }
 
@@ -50,6 +59,7 @@ export class KeyValueParslet implements InfixParslet {
         value: left.value.toString(),
         right: parser.parseType(Precedence.KEY_VALUE),
         optional: optional,
+        readonly: readonlyProperty,
         meta: {
           quote
         }

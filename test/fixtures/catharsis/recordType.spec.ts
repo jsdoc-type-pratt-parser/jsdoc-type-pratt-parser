@@ -40,6 +40,7 @@ describe('catharsis record type tests', () => {
         elements: [
           {
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             optional: false,
             value: 'myNum',
             meta: {
@@ -83,6 +84,7 @@ describe('catharsis record type tests', () => {
           elements: [
             {
               type: 'JsdocTypeKeyValue',
+              readonly: false,
               optional: false,
               value: 'myNum',
               meta: {
@@ -131,6 +133,7 @@ describe('catharsis record type tests', () => {
           elements: [
             {
               type: 'JsdocTypeKeyValue',
+              readonly: false,
               optional: false,
               value: 'myNum',
               meta: {
@@ -178,6 +181,7 @@ describe('catharsis record type tests', () => {
           elements: [
             {
               type: 'JsdocTypeKeyValue',
+              readonly: false,
               optional: false,
               value: 'myNum',
               meta: {
@@ -225,6 +229,7 @@ describe('catharsis record type tests', () => {
           elements: [
             {
               type: 'JsdocTypeKeyValue',
+              readonly: false,
               optional: false,
               value: 'myNum',
               meta: {
@@ -270,6 +275,7 @@ describe('catharsis record type tests', () => {
         elements: [
           {
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             optional: false,
             value: 'myNum',
             meta: {
@@ -282,6 +288,7 @@ describe('catharsis record type tests', () => {
           },
           {
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             value: 'myObject',
             right: undefined,
             optional: false,
@@ -320,6 +327,7 @@ describe('catharsis record type tests', () => {
         elements: [
           {
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             optional: false,
             value: 'myNum',
             meta: {
@@ -332,6 +340,7 @@ describe('catharsis record type tests', () => {
           },
           {
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             value: 'myObject',
             optional: false,
             meta: {
@@ -373,6 +382,7 @@ describe('catharsis record type tests', () => {
         elements: [
           {
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             optional: false,
             value: 'myArray',
             meta: {
@@ -428,6 +438,7 @@ describe('catharsis record type tests', () => {
         elements: [
           {
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             optional: false,
             value: 'myKey',
             meta: {
@@ -485,6 +496,7 @@ describe('catharsis record type tests', () => {
         elements: [
           {
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             optional: false,
             value: 'continue',
             meta: {
@@ -526,6 +538,7 @@ describe('catharsis record type tests', () => {
         elements: [
           {
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             optional: false,
             value: 'class',
             meta: {
@@ -567,6 +580,7 @@ describe('catharsis record type tests', () => {
         elements: [
           {
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             optional: false,
             value: 'true',
             meta: {
@@ -608,6 +622,7 @@ describe('catharsis record type tests', () => {
         elements: [
           {
             type: 'JsdocTypeKeyValue',
+            readonly: false,
             optional: false,
             value: '0',
             meta: {

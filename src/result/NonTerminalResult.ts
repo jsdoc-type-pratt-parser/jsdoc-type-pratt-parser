@@ -19,6 +19,7 @@ export interface KeyValueResult {
   value: string
   right: TerminalResult | undefined
   optional: boolean
+  readonly: boolean
   meta: {
     quote: QuoteStyle | undefined
   }

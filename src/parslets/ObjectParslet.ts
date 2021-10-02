@@ -57,6 +57,7 @@ export class ObjectParslet implements PrefixParslet {
             value: field.value.toString(),
             right: undefined,
             optional: optional,
+            readonly: false,
             meta: {
               quote
             }

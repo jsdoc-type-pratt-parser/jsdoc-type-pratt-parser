@@ -48,7 +48,8 @@ export const jsdocGrammar: GrammarFactory = () => {
       }),
       new KeyValueParslet({
         allowKeyTypes: true,
-        allowOptional: false
+        allowOptional: false,
+        allowReadonly: false
       }),
       new VariadicParslet({
         allowEnclosingBrackets: true

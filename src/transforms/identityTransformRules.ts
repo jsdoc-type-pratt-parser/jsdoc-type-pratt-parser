@@ -95,6 +95,7 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
           value: result.value,
           right: result.right === undefined ? undefined : transform(result.right) as TerminalResult,
           optional: result.optional,
+          readonly: result.readonly,
           meta: result.meta
         }
       } else {
