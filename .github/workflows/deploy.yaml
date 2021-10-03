@@ -26,7 +26,7 @@ jobs:
           cp -r dist/* pages/lib/jsdoc-type-pratt-parser/
           cp -r docs pages/
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4.3.1
+        uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           branch: gh-pages
           folder: pages
