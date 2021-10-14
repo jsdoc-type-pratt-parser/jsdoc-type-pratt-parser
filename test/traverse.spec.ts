@@ -1,7 +1,18 @@
-import { expect } from 'chai'
+import { expect, use } from 'chai'
 import { SinonSpy, spy } from 'sinon'
-import { GenericResult, NameResult, TerminalResult, StringValueResult, UnionResult } from '../src'
+import sinonChai from 'sinon-chai'
+import {
+  GenericResult,
+  NameResult,
+  TerminalResult,
+  StringValueResult,
+  UnionResult,
+  FunctionResult,
+  TupleResult, KeyValueResult
+} from '../src'
 import { traverse } from '../src/traverse'
+
+use(sinonChai)
 
 function expectOrder (calls: Array<[SinonSpy, any[]]>): void {
   const callsCount: Map<SinonSpy, number> = new Map<SinonSpy, number>()
@@ -9,11 +20,11 @@ function expectOrder (calls: Array<[SinonSpy, any[]]>): void {
     const [cb, args] = calls[i]
     const count = (callsCount.has(cb) ? callsCount.get(cb) : 0) as number
     const call = cb.getCall(count)
-    expect(call.calledWithExactly(...args), 'called with correct arguments').to.be.equal(true)
+    expect(call, `call ${i} called with correct arguments`).to.have.been.calledWithExactly(...args)
     if (i > 0) {
       const cbBefore = calls[i - 1][0]
       const callBefore = cbBefore.getCall(cbBefore === cb ? count - 1 : (callsCount.get(cbBefore) as number - 1))
-      expect(callBefore.calledBefore(call), 'called in correct order').to.be.equal(true)
+      expect(callBefore, `call ${i} called in correct order`).to.have.been.calledBefore(call as unknown as SinonSpy)
     }
     callsCount.set(cb, count + 1)
   }
