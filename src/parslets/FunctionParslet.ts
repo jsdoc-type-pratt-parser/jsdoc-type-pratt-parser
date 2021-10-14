@@ -61,7 +61,7 @@ export class FunctionParslet extends BaseFunctionParslet implements PrefixParsle
     } else {
       result.parameters = this.getParameters(value)
       for (const p of result.parameters) {
-        if (p.type === 'JsdocTypeKeyValue' && (!this.allowNamedParameters.includes(p.value) || p.meta.quote !== undefined)) {
+        if (p.type === 'JsdocTypeKeyValue' && (!this.allowNamedParameters.includes(p.key) || p.meta.quote !== undefined)) {
           throw new Error(`only allowed named parameters are ${this.allowNamedParameters.join(',')} but got ${p.type}`)
         }
       }

@@ -56,12 +56,13 @@ export class KeyValueParslet implements InfixParslet {
 
       return {
         type: 'JsdocTypeKeyValue',
-        value: left.value.toString(),
+        key: left.value.toString(),
         right: parser.parseType(Precedence.KEY_VALUE),
         optional: optional,
         readonly: readonlyProperty,
         meta: {
-          quote
+          quote,
+          hasLeftSideExpression: false
         }
       }
     } else {
@@ -74,7 +75,10 @@ export class KeyValueParslet implements InfixParslet {
       return {
         type: 'JsdocTypeKeyValue',
         left: assertTerminal(left),
-        right: parser.parseType(Precedence.KEY_VALUE)
+        right: parser.parseType(Precedence.KEY_VALUE),
+        meta: {
+          hasLeftSideExpression: true
+        }
       }
     }
   }

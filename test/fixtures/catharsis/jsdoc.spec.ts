@@ -800,6 +800,9 @@ describe('catharsis jsdoc tests', () => {
             right: {
               type: 'JsdocTypeName',
               value: 'number'
+            },
+            meta: {
+              hasLeftSideExpression: true
             }
           }
         ]
@@ -855,6 +858,9 @@ describe('catharsis jsdoc tests', () => {
             right: {
               type: 'JsdocTypeName',
               value: 'number'
+            },
+            meta: {
+              hasLeftSideExpression: true
             }
           }
         ]
@@ -889,9 +895,10 @@ describe('catharsis jsdoc tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
-            value: 'undefinedHTML',
+            key: 'undefinedHTML',
             meta: {
-              quote: undefined
+              quote: undefined,
+              hasLeftSideExpression: false
             },
             right: {
               type: 'JsdocTypeParenthesis',
@@ -943,9 +950,10 @@ describe('catharsis jsdoc tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
-            value: 'foo',
+            key: 'foo',
             meta: {
-              quote: undefined
+              quote: undefined,
+              hasLeftSideExpression: false
             },
             right: {
               type: 'JsdocTypeFunction',
@@ -987,9 +995,10 @@ describe('catharsis jsdoc tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
-            value: 'foo',
+            key: 'foo',
             meta: {
-              quote: undefined
+              quote: undefined,
+              hasLeftSideExpression: false
             },
             right: {
               type: 'JsdocTypeFunction',
@@ -1059,9 +1068,10 @@ describe('catharsis jsdoc tests', () => {
               type: 'JsdocTypeKeyValue',
               readonly: false,
               optional: false,
-              value: 'this',
+              key: 'this',
               meta: {
-                quote: undefined
+                quote: undefined,
+                hasLeftSideExpression: false
               },
               right: {
                 left: {

@@ -11,9 +11,10 @@ describe('typescript arrow function tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
-            value: 'x',
+            key: 'x',
             meta: {
-              quote: undefined
+              quote: undefined,
+              hasLeftSideExpression: false
             },
             right: {
               type: 'JsdocTypeAny'
@@ -52,9 +53,10 @@ describe('typescript arrow function tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
-            value: 'x',
+            key: 'x',
             meta: {
-              quote: undefined
+              quote: undefined,
+              hasLeftSideExpression: false
             },
             right: {
               type: 'JsdocTypeName',
@@ -95,9 +97,10 @@ describe('typescript arrow function tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
-            value: 'x',
+            key: 'x',
             meta: {
-              quote: undefined
+              quote: undefined,
+              hasLeftSideExpression: false
             },
             right: {
               type: 'JsdocTypeName',
@@ -108,9 +111,10 @@ describe('typescript arrow function tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
-            value: 'y',
+            key: 'y',
             meta: {
-              quote: undefined
+              quote: undefined,
+              hasLeftSideExpression: false
             },
             right: {
               type: 'JsdocTypeName',
@@ -121,9 +125,10 @@ describe('typescript arrow function tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
-            value: 'z',
+            key: 'z',
             meta: {
-              quote: undefined
+              quote: undefined,
+              hasLeftSideExpression: false
             },
             right: {
               type: 'JsdocTypeName',
@@ -269,9 +274,10 @@ describe('typescript arrow function tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
-            value: 'arrow',
+            key: 'arrow',
             meta: {
-              quote: undefined
+              quote: undefined,
+              hasLeftSideExpression: false
             },
             right: {
               type: 'JsdocTypeName',
@@ -282,9 +288,10 @@ describe('typescript arrow function tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
-            value: 'with',
+            key: 'with',
             meta: {
-              quote: undefined
+              quote: undefined,
+              hasLeftSideExpression: false
             },
             right: {
               type: 'JsdocTypeName',
@@ -431,9 +438,10 @@ describe('typescript arrow function tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
-            value: 'a',
+            key: 'a',
             meta: {
-              quote: undefined
+              quote: undefined,
+              hasLeftSideExpression: false
             },
             right: {
               type: 'JsdocTypeName',
@@ -448,9 +456,10 @@ describe('typescript arrow function tests', () => {
               type: 'JsdocTypeKeyValue',
               readonly: false,
               optional: false,
-              value: 'b',
+              key: 'b',
               meta: {
-                quote: undefined
+                quote: undefined,
+                hasLeftSideExpression: false
               },
               right: {
                 type: 'JsdocTypeName',

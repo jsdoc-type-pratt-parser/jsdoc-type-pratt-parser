@@ -42,8 +42,12 @@ export class EarlyEndOfParseError extends Error {
 }
 
 export class UnexpectedTypeError extends Error {
-  constructor (result: IntermediateResult) {
-    super(`Unexpected type: '${result.type}'`)
+  constructor (result: IntermediateResult, message?: string) {
+    let error = `Unexpected type: '${result.type}'.`
+    if (message !== undefined) {
+      error += ` Message: ${message}`
+    }
+    super(error)
 
     Object.setPrototypeOf(this, UnexpectedTypeError.prototype)
   }

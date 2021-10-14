@@ -1,6 +1,7 @@
 import { extractSpecialParams, notAvailableTransform, transform, TransformRules } from './transform'
 import { QuoteStyle, TerminalResult } from '../result/TerminalResult'
-import { assertTerminal } from '../assertTypes'
+import { assertTerminal, isPlainKeyValue } from '../assertTypes'
+import { NonTerminalResult } from '../result/NonTerminalResult'
 
 export type JtpResult =
   JtpNameResult
@@ -307,7 +308,7 @@ const jtpRules: TransformRules<JtpResult> = {
           }
           return {
             type: 'NAMED_PARAMETER',
-            name: param.value,
+            name: param.key,
             typeName: transform(param.right)
           }
         } else {
@@ -356,14 +357,14 @@ const jtpRules: TransformRules<JtpResult> = {
   },
 
   JsdocTypeKeyValue: (result, transform) => {
-    if ('left' in result) {
+    if (!isPlainKeyValue(result)) {
       throw new Error('Keys may not be typed in jsdoctypeparser.')
     }
 
     if (result.right === undefined) {
       return {
         type: 'RECORD_ENTRY',
-        key: result.value.toString(),
+        key: result.key.toString(),
         quoteStyle: getQuoteStyle(result.meta.quote),
         value: null,
         readonly: false
@@ -383,7 +384,7 @@ const jtpRules: TransformRules<JtpResult> = {
 
     return {
       type: 'RECORD_ENTRY',
-      key: result.value.toString(),
+      key: result.key.toString(),
       quoteStyle: getQuoteStyle(result.meta.quote),
       value: right,
       readonly: false

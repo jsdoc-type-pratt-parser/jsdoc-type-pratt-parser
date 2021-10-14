@@ -160,9 +160,10 @@ describe('typescript intersection tests', () => {
                 type: 'JsdocTypeKeyValue',
                 readonly: false,
                 optional: false,
-                value: 'a',
+                key: 'a',
                 meta: {
-                  quote: undefined
+                  quote: undefined,
+                  hasLeftSideExpression: false
                 },
                 right: {
                   type: 'JsdocTypeName',

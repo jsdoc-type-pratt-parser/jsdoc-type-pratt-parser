@@ -1,7 +1,7 @@
 import { InfixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
-import { assertKeyValueOrTerminal } from '../assertTypes'
+import { assertPlainKeyValueOrTerminal } from '../assertTypes'
 import { NoParsletFoundError } from '../errors'
 import { Parser } from '../Parser'
 import { IntermediateResult, ParameterList } from '../result/IntermediateResult'
@@ -29,13 +29,13 @@ export class ParameterListParslet implements InfixParslet {
 
   parseInfix (parser: Parser, left: IntermediateResult): ParameterList {
     const elements: Array<TerminalResult|KeyValueResult> = [
-      assertKeyValueOrTerminal(left)
+      assertPlainKeyValueOrTerminal(left)
     ]
     parser.consume(',')
     do {
       try {
         const next = parser.parseIntermediateType(Precedence.PARAMETER_LIST)
-        elements.push(assertKeyValueOrTerminal(next))
+        elements.push(assertPlainKeyValueOrTerminal(next))
       } catch (e) {
         if (this.allowTrailingComma && e instanceof NoParsletFoundError) {
           break

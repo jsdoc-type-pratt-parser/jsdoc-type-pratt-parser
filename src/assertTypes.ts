@@ -13,18 +13,27 @@ export function assertTerminal (result?: IntermediateResult): TerminalResult {
   return result
 }
 
-export function assertKeyValueOrTerminal (result: IntermediateResult): KeyValueResult | TerminalResult {
-  if (result.type === 'JsdocTypeKeyValue' && 'value' in result) {
-    return result
+export function assertPlainKeyValueOrTerminal (result: IntermediateResult): KeyValueResult | TerminalResult {
+  if (result.type === 'JsdocTypeKeyValue') {
+    return assertPlainKeyValue(result)
   }
   return assertTerminal(result)
 }
 
-export function assertKeyValueOrName (result: IntermediateResult): KeyValueResult | NameResult {
-  if (result.type === 'JsdocTypeKeyValue' && 'value' in result) {
+export function assertPlainKeyValueOrName (result: IntermediateResult): KeyValueResult | NameResult {
+  if (result.type === 'JsdocTypeName') {
     return result
-  } else if (result.type !== 'JsdocTypeName') {
-    throw new UnexpectedTypeError(result)
+  }
+  return assertPlainKeyValue(result)
+}
+
+export function assertPlainKeyValue (result: IntermediateResult): KeyValueResult {
+  if (!isPlainKeyValue(result)) {
+    if (result.type === 'JsdocTypeKeyValue') {
+      throw new UnexpectedTypeError(result, 'Expecting no left side expression.')
+    } else {
+      throw new UnexpectedTypeError(result)
+    }
   }
   return result
 }
@@ -40,4 +49,8 @@ export function assertNumberOrVariadicName (result: IntermediateResult): NumberR
     throw new UnexpectedTypeError(result)
   }
   return result
+}
+
+export function isPlainKeyValue (result: IntermediateResult): result is KeyValueResult {
+  return result.type === 'JsdocTypeKeyValue' && !result.meta.hasLeftSideExpression
 }
