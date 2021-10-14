@@ -112,4 +112,85 @@ describe('traverse', () => {
       [onLeave, [union, undefined, undefined]]
     ])
   })
+
+  it('should traverse a nested expression with function and tuple', () => {
+    const onEnter = spy()
+    const onLeave = spy()
+
+    const nameA: NameResult = {
+      type: 'JsdocTypeName',
+      value: 'number'
+    }
+
+    const nameB: NameResult = {
+      type: 'JsdocTypeName',
+      value: 'string'
+    }
+
+    const keyValueA: KeyValueResult = {
+      type: 'JsdocTypeKeyValue',
+      key: 'a',
+      right: nameA,
+      optional: false,
+      readonly: false,
+      meta: {
+        quote: undefined,
+        hasLeftSideExpression: false
+      }
+    }
+
+    const keyValueB: KeyValueResult = {
+      type: 'JsdocTypeKeyValue',
+      key: 'b',
+      right: nameB,
+      optional: false,
+      readonly: false,
+      meta: {
+        quote: undefined,
+        hasLeftSideExpression: false
+      }
+    }
+
+    const tuple: TupleResult = {
+      type: 'JsdocTypeTuple',
+      elements: [
+        keyValueA,
+        keyValueB
+      ]
+    }
+
+    const parameter: NameResult = {
+      type: 'JsdocTypeName',
+      value: 'parameter'
+    }
+
+    const functionResult: FunctionResult = {
+      type: 'JsdocTypeFunction',
+      arrow: true,
+      parenthesis: true,
+      parameters: [
+        parameter
+      ],
+      returnType: tuple
+    }
+
+    traverse(functionResult, onEnter, onLeave)
+
+    expectOrder([
+      [onEnter, [functionResult, undefined, undefined]],
+      [onEnter, [parameter, functionResult, 'parameters']],
+      [onLeave, [parameter, functionResult, 'parameters']],
+      [onEnter, [tuple, functionResult, 'returnType']],
+      [onEnter, [keyValueA, tuple, 'elements']],
+      [onEnter, [nameA, keyValueA, 'right']],
+      [onLeave, [nameA, keyValueA, 'right']],
+      [onLeave, [keyValueA, tuple, 'elements']],
+      [onEnter, [keyValueB, tuple, 'elements']],
+      [onEnter, [nameB, keyValueB, 'right']],
+      [onLeave, [nameB, keyValueB, 'right']],
+      [onLeave, [keyValueB, tuple, 'elements']],
+      [onLeave, [tuple, functionResult, 'returnType']],
+      [onLeave, [functionResult, undefined, undefined]]
+    ])
+  })
 })

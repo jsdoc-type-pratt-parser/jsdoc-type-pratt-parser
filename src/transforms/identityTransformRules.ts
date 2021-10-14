@@ -138,7 +138,7 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
 
     JsdocTypeTuple: (result, transform) => ({
       type: 'JsdocTypeTuple',
-      elements: result.elements.map(transform) as TerminalResult[]
+      elements: (result.elements as NonTerminalResult[]).map(transform) as TerminalResult[]|KeyValueResult[]
     }),
 
     JsdocTypeName: result => result,

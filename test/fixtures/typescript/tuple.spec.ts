@@ -594,4 +594,77 @@ describe('typescript tuple tests', () => {
       }
     })
   })
+
+  describe('labeled tuple with one element', () => {
+    testFixture({
+      input: '[a: string]',
+      modes: ['typescript'],
+      expected: {
+        type: 'JsdocTypeTuple',
+        elements: [
+          {
+            type: 'JsdocTypeKeyValue',
+            key: 'a',
+            optional: false,
+            readonly: false,
+            meta: {
+              quote: undefined,
+              hasLeftSideExpression: false
+            },
+            right: {
+              type: 'JsdocTypeName',
+              value: 'string'
+            }
+          }
+        ]
+      }
+    })
+  })
+
+  describe('labeled tuple with two elements', () => {
+    testFixture({
+      input: '[a: string, b: number]',
+      modes: ['typescript'],
+      expected: {
+        type: 'JsdocTypeTuple',
+        elements: [
+          {
+            type: 'JsdocTypeKeyValue',
+            key: 'a',
+            optional: false,
+            readonly: false,
+            meta: {
+              quote: undefined,
+              hasLeftSideExpression: false
+            },
+            right: {
+              type: 'JsdocTypeName',
+              value: 'string'
+            }
+          },
+          {
+            type: 'JsdocTypeKeyValue',
+            key: 'b',
+            optional: false,
+            readonly: false,
+            meta: {
+              quote: undefined,
+              hasLeftSideExpression: false
+            },
+            right: {
+              type: 'JsdocTypeName',
+              value: 'number'
+            }
+          }
+        ]
+      }
+    })
+  })
+
+  describe('mixed labeled tuples', () => {
+    testFixture({
+      input: '[a: string, b]',
+      modes: []
+    })
+  })
 })

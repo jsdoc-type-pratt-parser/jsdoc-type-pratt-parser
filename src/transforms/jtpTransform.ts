@@ -270,7 +270,7 @@ const jtpRules: TransformRules<JtpResult> = {
 
   JsdocTypeTuple: (result, transform) => ({
     type: 'TUPLE',
-    entries: result.elements.map(transform)
+    entries: (result.elements as NonTerminalResult[]).map(transform)
   }),
 
   JsdocTypeKeyof: (result, transform) => ({

@@ -45,7 +45,7 @@ export function stringifyRules (): TransformRules<string> {
 
     JsdocTypeName: result => result.value,
 
-    JsdocTypeTuple: (result, transform) => `[${result.elements.map(transform).join(', ')}]`,
+    JsdocTypeTuple: (result, transform) => `[${(result.elements as NonTerminalResult[]).map(transform).join(', ')}]`,
 
     JsdocTypeVariadic: (result, transform) => result.meta.position === undefined
       ? '...'
