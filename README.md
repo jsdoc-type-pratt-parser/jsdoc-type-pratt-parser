@@ -29,6 +29,9 @@ import { parse } from 'jsdoc-type-pratt-parser'
 const result = parse('myType.<string>', 'closure')
 ```
 
+Transforms
+----------
+
 This library supports compatibility modes for catharsis and jsdoctypeparser. The provided transform functions attempt to
  transform the output to the expected output of the target library. This will not always be the same as some types are
  parsed differently. These modes are thought to make transition easier, but it is advised to use the native output as
