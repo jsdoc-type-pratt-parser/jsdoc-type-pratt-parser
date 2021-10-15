@@ -1,6 +1,7 @@
 import { transform, TransformRules } from './transform'
 import { NonTerminalResult } from '../result/NonTerminalResult'
 import { TerminalResult } from '../result/TerminalResult'
+import { isPlainKeyValue } from '../assertTypes'
 
 function applyPosition (position: 'prefix' | 'suffix', target: string, value: string): string {
   return position === 'prefix' ? value + target : target + value
@@ -44,7 +45,7 @@ export function stringifyRules (): TransformRules<string> {
 
     JsdocTypeName: result => result.value,
 
-    JsdocTypeTuple: (result, transform) => `[${result.elements.map(transform).join(', ')}]`,
+    JsdocTypeTuple: (result, transform) => `[${(result.elements as NonTerminalResult[]).map(transform).join(', ')}]`,
 
     JsdocTypeVariadic: (result, transform) => result.meta.position === undefined
       ? '...'
@@ -76,12 +77,12 @@ export function stringifyRules (): TransformRules<string> {
     JsdocTypeImport: (result, transform) => `import(${transform(result.element)})`,
 
     JsdocTypeKeyValue: (result, transform) => {
-      if ('value' in result) {
+      if (isPlainKeyValue(result)) {
         let text = ''
         if (result.readonly) {
           text += 'readonly '
         }
-        text += quote(result.value, result.meta.quote)
+        text += quote(result.key, result.meta.quote)
         if (result.optional) {
           text += '?'
         }

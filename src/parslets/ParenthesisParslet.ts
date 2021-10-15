@@ -1,7 +1,7 @@
 import { PrefixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
-import { assertTerminal } from '../assertTypes'
+import { assertTerminal, isPlainKeyValue } from '../assertTypes'
 import { Parser } from '../Parser'
 import { ParenthesisResult } from '../result/TerminalResult'
 import { ParameterList } from '../result/IntermediateResult'
@@ -29,7 +29,7 @@ export class ParenthesisParslet implements PrefixParslet {
     }
     if (result.type === 'JsdocTypeParameterList') {
       return result
-    } else if (result.type === 'JsdocTypeKeyValue' && 'value' in result) {
+    } else if (result.type === 'JsdocTypeKeyValue' && isPlainKeyValue(result)) {
       return {
         type: 'JsdocTypeParameterList',
         elements: [result]

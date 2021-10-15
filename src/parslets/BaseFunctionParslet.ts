@@ -1,5 +1,5 @@
 import { KeyValueResult, NonTerminalResult } from '../result/NonTerminalResult'
-import { assertKeyValueOrTerminal } from '../assertTypes'
+import { assertPlainKeyValueOrTerminal } from '../assertTypes'
 import { UnexpectedTypeError } from '../errors'
 import { IntermediateResult } from '../result/IntermediateResult'
 import { TerminalResult } from '../result/TerminalResult'
@@ -15,7 +15,7 @@ export class BaseFunctionParslet {
       throw new UnexpectedTypeError(value)
     }
 
-    return parameters.map(p => assertKeyValueOrTerminal(p))
+    return parameters.map(p => assertPlainKeyValueOrTerminal(p))
   }
 
   protected getUnnamedParameters (value: IntermediateResult): TerminalResult[] {

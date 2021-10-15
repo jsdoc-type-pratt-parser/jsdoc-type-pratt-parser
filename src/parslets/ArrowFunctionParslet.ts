@@ -2,7 +2,7 @@ import { InfixParslet } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
 import { BaseFunctionParslet } from './BaseFunctionParslet'
-import { assertKeyValueOrName } from '../assertTypes'
+import { assertPlainKeyValueOrName } from '../assertTypes'
 import { Parser } from '../Parser'
 import { FunctionResult } from '../result/TerminalResult'
 import { IntermediateResult } from '../result/IntermediateResult'
@@ -21,7 +21,7 @@ export class ArrowFunctionParslet extends BaseFunctionParslet implements InfixPa
 
     return {
       type: 'JsdocTypeFunction',
-      parameters: this.getParameters(left).map(assertKeyValueOrName),
+      parameters: this.getParameters(left).map(assertPlainKeyValueOrName),
       arrow: true,
       parenthesis: true,
       returnType: parser.parseType(Precedence.ALL)

@@ -239,7 +239,7 @@ export interface ImportResult {
  */
 export interface TupleResult {
   type: 'JsdocTypeTuple'
-  elements: TerminalResult[]
+  elements: TerminalResult[]|KeyValueResult[]
 }
 
 /**

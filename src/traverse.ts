@@ -1,33 +1,30 @@
 import { NonTerminalResult } from './result/NonTerminalResult'
 import { TerminalResult } from './result/TerminalResult'
+import { visitorKeys } from './visitorKeys'
 
 type NodeVisitor = (node: NonTerminalResult, parentNode?: NonTerminalResult, property?: string) => void
 
-function _traverse (node: NonTerminalResult, parentNode?: NonTerminalResult, property?: string, onEnter?: NodeVisitor, onLeave?: NodeVisitor): void {
-  onEnter?.(node, parentNode, property)
-  if ('left' in node && node.left !== undefined) {
-    _traverse(node.left, node, 'left', onEnter, onLeave)
-  }
-  if ('element' in node && node.element !== undefined) {
-    _traverse(node.element, node, 'element', onEnter, onLeave)
-  }
-  if ('elements' in node && node.elements !== undefined) {
-    for (const element of node.elements) {
-      _traverse(element, node, 'elements', onEnter, onLeave)
+function _traverse<T extends NonTerminalResult, U extends NonTerminalResult> (node: T, parentNode?: U, property?: keyof U, onEnter?: NodeVisitor, onLeave?: NodeVisitor): void {
+  onEnter?.(node, parentNode, property as string)
+
+  const keysToVisit = visitorKeys[node.type] as Array<keyof T>
+
+  if (keysToVisit !== undefined) {
+    for (const key of keysToVisit) {
+      const value = node[key]
+      if (value !== undefined) {
+        if (Array.isArray(value)) {
+          for (const element of value) {
+            _traverse(element as unknown as NonTerminalResult, node, key, onEnter, onLeave)
+          }
+        } else {
+          _traverse(value as unknown as NonTerminalResult, node, key, onEnter, onLeave)
+        }
+      }
     }
   }
-  if ('parameters' in node && node.parameters !== undefined) {
-    for (const param of node.parameters) {
-      _traverse(param, node, 'parameters', onEnter, onLeave)
-    }
-  }
-  if ('right' in node && node.right !== undefined) {
-    _traverse(node.right, node, 'right', onEnter, onLeave)
-  }
-  if ('returnType' in node && node.returnType !== undefined) {
-    _traverse(node.returnType, node, 'returnType', onEnter, onLeave)
-  }
-  onLeave?.(node, parentNode, property)
+
+  onLeave?.(node, parentNode, property as string)
 }
 
 export function traverse (node: TerminalResult, onEnter?: NodeVisitor, onLeave?: NodeVisitor): void {

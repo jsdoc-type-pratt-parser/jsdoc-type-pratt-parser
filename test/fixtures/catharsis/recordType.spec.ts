@@ -42,9 +42,10 @@ describe('catharsis record type tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
-            value: 'myNum',
+            key: 'myNum',
             meta: {
-              quote: undefined
+              quote: undefined,
+              hasLeftSideExpression: false
             },
             right: {
               type: 'JsdocTypeName',
@@ -86,9 +87,10 @@ describe('catharsis record type tests', () => {
               type: 'JsdocTypeKeyValue',
               readonly: false,
               optional: false,
-              value: 'myNum',
+              key: 'myNum',
               meta: {
-                quote: undefined
+                quote: undefined,
+                hasLeftSideExpression: false
               },
               right: {
                 type: 'JsdocTypeName',
@@ -135,9 +137,10 @@ describe('catharsis record type tests', () => {
               type: 'JsdocTypeKeyValue',
               readonly: false,
               optional: false,
-              value: 'myNum',
+              key: 'myNum',
               meta: {
-                quote: undefined
+                quote: undefined,
+                hasLeftSideExpression: false
               },
               right: {
                 type: 'JsdocTypeName',
@@ -183,9 +186,10 @@ describe('catharsis record type tests', () => {
               type: 'JsdocTypeKeyValue',
               readonly: false,
               optional: false,
-              value: 'myNum',
+              key: 'myNum',
               meta: {
-                quote: undefined
+                quote: undefined,
+                hasLeftSideExpression: false
               },
               right: {
                 type: 'JsdocTypeName',
@@ -231,9 +235,10 @@ describe('catharsis record type tests', () => {
               type: 'JsdocTypeKeyValue',
               readonly: false,
               optional: false,
-              value: 'myNum',
+              key: 'myNum',
               meta: {
-                quote: undefined
+                quote: undefined,
+                hasLeftSideExpression: false
               },
               right: {
                 type: 'JsdocTypeName',
@@ -277,9 +282,10 @@ describe('catharsis record type tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
-            value: 'myNum',
+            key: 'myNum',
             meta: {
-              quote: undefined
+              quote: undefined,
+              hasLeftSideExpression: false
             },
             right: {
               type: 'JsdocTypeName',
@@ -289,11 +295,12 @@ describe('catharsis record type tests', () => {
           {
             type: 'JsdocTypeKeyValue',
             readonly: false,
-            value: 'myObject',
+            key: 'myObject',
             right: undefined,
             optional: false,
             meta: {
-              quote: undefined
+              quote: undefined,
+              hasLeftSideExpression: false
             }
           }
         ]
@@ -329,9 +336,10 @@ describe('catharsis record type tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
-            value: 'myNum',
+            key: 'myNum',
             meta: {
-              quote: undefined
+              quote: undefined,
+              hasLeftSideExpression: false
             },
             right: {
               type: 'JsdocTypeName',
@@ -341,10 +349,11 @@ describe('catharsis record type tests', () => {
           {
             type: 'JsdocTypeKeyValue',
             readonly: false,
-            value: 'myObject',
+            key: 'myObject',
             optional: false,
             meta: {
-              quote: undefined
+              quote: undefined,
+              hasLeftSideExpression: false
             },
             right: {
               type: 'JsdocTypeName',
@@ -384,9 +393,10 @@ describe('catharsis record type tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
-            value: 'myArray',
+            key: 'myArray',
             meta: {
-              quote: undefined
+              quote: undefined,
+              hasLeftSideExpression: false
             },
             right: {
               type: 'JsdocTypeGeneric',
@@ -440,9 +450,10 @@ describe('catharsis record type tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
-            value: 'myKey',
+            key: 'myKey',
             meta: {
-              quote: undefined
+              quote: undefined,
+              hasLeftSideExpression: false
             },
             right: {
               type: 'JsdocTypeParenthesis',
@@ -498,9 +509,10 @@ describe('catharsis record type tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
-            value: 'continue',
+            key: 'continue',
             meta: {
-              quote: undefined
+              quote: undefined,
+              hasLeftSideExpression: false
             },
             right: {
               type: 'JsdocTypeName',
@@ -540,9 +552,10 @@ describe('catharsis record type tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
-            value: 'class',
+            key: 'class',
             meta: {
-              quote: undefined
+              quote: undefined,
+              hasLeftSideExpression: false
             },
             right: {
               type: 'JsdocTypeName',
@@ -582,9 +595,10 @@ describe('catharsis record type tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
-            value: 'true',
+            key: 'true',
             meta: {
-              quote: undefined
+              quote: undefined,
+              hasLeftSideExpression: false
             },
             right: {
               type: 'JsdocTypeName',
@@ -624,9 +638,10 @@ describe('catharsis record type tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
-            value: '0',
+            key: '0',
             meta: {
-              quote: undefined
+              quote: undefined,
+              hasLeftSideExpression: false
             },
             right: {
               type: 'JsdocTypeName',

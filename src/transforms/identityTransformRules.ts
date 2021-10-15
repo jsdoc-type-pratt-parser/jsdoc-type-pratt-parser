@@ -13,6 +13,7 @@ import {
   VariadicResult,
   NumberResult
 } from '../result/TerminalResult'
+import { isPlainKeyValue } from '../assertTypes'
 
 export function identityTransformRules (): TransformRules<NonTerminalResult> {
   return {
@@ -89,10 +90,10 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
     JsdocTypeSpecialNamePath: result => result,
 
     JsdocTypeKeyValue: (result, transform) => {
-      if ('value' in result) {
+      if (isPlainKeyValue(result)) {
         return {
           type: 'JsdocTypeKeyValue',
-          value: result.value,
+          key: result.key,
           right: result.right === undefined ? undefined : transform(result.right) as TerminalResult,
           optional: result.optional,
           readonly: result.readonly,
@@ -102,7 +103,8 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
         return {
           type: 'JsdocTypeKeyValue',
           left: transform(result.left) as TerminalResult,
-          right: transform(result.right) as TerminalResult
+          right: transform(result.right) as TerminalResult,
+          meta: result.meta
         }
       }
     },
@@ -136,7 +138,7 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
 
     JsdocTypeTuple: (result, transform) => ({
       type: 'JsdocTypeTuple',
-      elements: result.elements.map(transform) as TerminalResult[]
+      elements: (result.elements as NonTerminalResult[]).map(transform) as TerminalResult[]|KeyValueResult[]
     }),
 
     JsdocTypeName: result => result,

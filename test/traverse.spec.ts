@@ -1,7 +1,18 @@
-import { expect } from 'chai'
+import { expect, use } from 'chai'
 import { SinonSpy, spy } from 'sinon'
-import { GenericResult, NameResult, TerminalResult, StringValueResult, UnionResult } from '../src'
+import sinonChai from 'sinon-chai'
+import {
+  GenericResult,
+  NameResult,
+  TerminalResult,
+  StringValueResult,
+  UnionResult,
+  FunctionResult,
+  TupleResult, KeyValueResult
+} from '../src'
 import { traverse } from '../src/traverse'
+
+use(sinonChai)
 
 function expectOrder (calls: Array<[SinonSpy, any[]]>): void {
   const callsCount: Map<SinonSpy, number> = new Map<SinonSpy, number>()
@@ -9,11 +20,11 @@ function expectOrder (calls: Array<[SinonSpy, any[]]>): void {
     const [cb, args] = calls[i]
     const count = (callsCount.has(cb) ? callsCount.get(cb) : 0) as number
     const call = cb.getCall(count)
-    expect(call.calledWithExactly(...args), 'called with correct arguments').to.be.equal(true)
+    expect(call, `call ${i} called with correct arguments`).to.have.been.calledWithExactly(...args)
     if (i > 0) {
       const cbBefore = calls[i - 1][0]
       const callBefore = cbBefore.getCall(cbBefore === cb ? count - 1 : (callsCount.get(cbBefore) as number - 1))
-      expect(callBefore.calledBefore(call), 'called in correct order').to.be.equal(true)
+      expect(callBefore, `call ${i} called in correct order`).to.have.been.calledBefore(call as unknown as SinonSpy)
     }
     callsCount.set(cb, count + 1)
   }
@@ -99,6 +110,87 @@ describe('traverse', () => {
       [onEnter, [stringVal, union, 'elements']],
       [onLeave, [stringVal, union, 'elements']],
       [onLeave, [union, undefined, undefined]]
+    ])
+  })
+
+  it('should traverse a nested expression with function and tuple', () => {
+    const onEnter = spy()
+    const onLeave = spy()
+
+    const nameA: NameResult = {
+      type: 'JsdocTypeName',
+      value: 'number'
+    }
+
+    const nameB: NameResult = {
+      type: 'JsdocTypeName',
+      value: 'string'
+    }
+
+    const keyValueA: KeyValueResult = {
+      type: 'JsdocTypeKeyValue',
+      key: 'a',
+      right: nameA,
+      optional: false,
+      readonly: false,
+      meta: {
+        quote: undefined,
+        hasLeftSideExpression: false
+      }
+    }
+
+    const keyValueB: KeyValueResult = {
+      type: 'JsdocTypeKeyValue',
+      key: 'b',
+      right: nameB,
+      optional: false,
+      readonly: false,
+      meta: {
+        quote: undefined,
+        hasLeftSideExpression: false
+      }
+    }
+
+    const tuple: TupleResult = {
+      type: 'JsdocTypeTuple',
+      elements: [
+        keyValueA,
+        keyValueB
+      ]
+    }
+
+    const parameter: NameResult = {
+      type: 'JsdocTypeName',
+      value: 'parameter'
+    }
+
+    const functionResult: FunctionResult = {
+      type: 'JsdocTypeFunction',
+      arrow: true,
+      parenthesis: true,
+      parameters: [
+        parameter
+      ],
+      returnType: tuple
+    }
+
+    traverse(functionResult, onEnter, onLeave)
+
+    expectOrder([
+      [onEnter, [functionResult, undefined, undefined]],
+      [onEnter, [parameter, functionResult, 'parameters']],
+      [onLeave, [parameter, functionResult, 'parameters']],
+      [onEnter, [tuple, functionResult, 'returnType']],
+      [onEnter, [keyValueA, tuple, 'elements']],
+      [onEnter, [nameA, keyValueA, 'right']],
+      [onLeave, [nameA, keyValueA, 'right']],
+      [onLeave, [keyValueA, tuple, 'elements']],
+      [onEnter, [keyValueB, tuple, 'elements']],
+      [onEnter, [nameB, keyValueB, 'right']],
+      [onLeave, [nameB, keyValueB, 'right']],
+      [onLeave, [keyValueB, tuple, 'elements']],
+      [onLeave, [tuple, functionResult, 'returnType']],
+      [onLeave, [functionResult, undefined, undefined]]
     ])
   })
 })

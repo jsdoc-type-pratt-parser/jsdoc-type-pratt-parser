@@ -21,7 +21,7 @@ describe('typescript readonly tests', () => {
         elements: [
           {
             type: 'JsdocTypeKeyValue',
-            value: 'x',
+            key: 'x',
             right: {
               type: 'JsdocTypeName',
               value: 'number'
@@ -29,7 +29,8 @@ describe('typescript readonly tests', () => {
             optional: false,
             readonly: true,
             meta: {
-              quote: undefined
+              quote: undefined,
+              hasLeftSideExpression: false
             }
           }
         ]

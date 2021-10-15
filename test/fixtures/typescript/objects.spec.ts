@@ -16,9 +16,10 @@ describe('typescript objects tests', () => {
             {
               type: 'JsdocTypeKeyValue',
               readonly: false,
-              value: 'object',
+              key: 'object',
               meta: {
-                quote: undefined
+                quote: undefined,
+                hasLeftSideExpression: false
               },
               right: {
                 type: 'JsdocTypeName',
@@ -29,9 +30,10 @@ describe('typescript objects tests', () => {
             {
               type: 'JsdocTypeKeyValue',
               readonly: false,
-              value: 'key',
+              key: 'key',
               meta: {
-                quote: undefined
+                quote: undefined,
+                hasLeftSideExpression: false
               },
               right: {
                 type: 'JsdocTypeName',
@@ -62,14 +64,18 @@ describe('typescript objects tests', () => {
               right: {
                 type: 'JsdocTypeName',
                 value: 'string'
+              },
+              meta: {
+                hasLeftSideExpression: true
               }
             },
             {
               type: 'JsdocTypeKeyValue',
               readonly: false,
-              value: 'key',
+              key: 'key',
               meta: {
-                quote: undefined
+                quote: undefined,
+                hasLeftSideExpression: false
               },
               right: {
                 type: 'JsdocTypeName',
@@ -110,7 +116,7 @@ describe('typescript objects tests', () => {
           {
             type: 'JsdocTypeKeyValue',
             readonly: false,
-            value: 'message',
+            key: 'message',
             right: {
               type: 'JsdocTypeUnion',
               elements: [
@@ -125,7 +131,8 @@ describe('typescript objects tests', () => {
             },
             optional: false,
             meta: {
-              quote: undefined
+              quote: undefined,
+              hasLeftSideExpression: false
             }
           }
         ]
@@ -161,11 +168,12 @@ describe('typescript objects tests', () => {
           {
             type: 'JsdocTypeKeyValue',
             readonly: false,
-            value: 'message',
+            key: 'message',
             right: undefined,
             optional: true,
             meta: {
-              quote: undefined
+              quote: undefined,
+              hasLeftSideExpression: false
             }
           }
         ]

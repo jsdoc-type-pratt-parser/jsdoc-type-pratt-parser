@@ -1,5 +1,5 @@
 import { extractSpecialParams, notAvailableTransform, transform, TransformRules } from './transform'
-import { assertTerminal } from '../assertTypes'
+import { assertTerminal, isPlainKeyValue } from '../assertTypes'
 import { TerminalResult } from '../result/TerminalResult'
 import { quote } from './stringify'
 
@@ -239,10 +239,10 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
   }),
 
   JsdocTypeKeyValue: (result, transform) => {
-    if ('value' in result) {
+    if (isPlainKeyValue(result)) {
       return {
         type: 'FieldType',
-        key: makeName(quote(result.value, result.meta.quote)),
+        key: makeName(quote(result.key, result.meta.quote)),
         value: result.right === undefined ? undefined : transform(result.right)
       }
     } else {

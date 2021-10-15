@@ -16,12 +16,13 @@ export type NonTerminalResult =
  */
 export interface KeyValueResult {
   type: 'JsdocTypeKeyValue'
-  value: string
+  key: string
   right: TerminalResult | undefined
   optional: boolean
   readonly: boolean
   meta: {
     quote: QuoteStyle | undefined
+    hasLeftSideExpression: false
   }
 }
 
@@ -34,6 +35,9 @@ export interface JsdocObjectKeyValueResult {
   type: 'JsdocTypeKeyValue'
   left: TerminalResult
   right: TerminalResult
+  meta: {
+    hasLeftSideExpression: true
+  }
 }
 
 export interface PropertyResult {

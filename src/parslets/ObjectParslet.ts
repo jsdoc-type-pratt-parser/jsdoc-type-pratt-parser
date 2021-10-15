@@ -54,12 +54,13 @@ export class ObjectParslet implements PrefixParslet {
 
           result.elements.push({
             type: 'JsdocTypeKeyValue',
-            value: field.value.toString(),
+            key: field.value.toString(),
             right: undefined,
             optional: optional,
             readonly: false,
             meta: {
-              quote
+              quote,
+              hasLeftSideExpression: false
             }
           })
         } else if (field.type === 'JsdocTypeKeyValue') {
