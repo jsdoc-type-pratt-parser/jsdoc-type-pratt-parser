@@ -1,3 +1,17 @@
+# [2.0.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v1.2.0...v2.0.0) (2021-10-15)
+
+
+### Features
+
+* **KeyValue:** add discriminator for different KeyValue types and rename `value` to `key` ([4cb9dd0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/4cb9dd0508e32b8cd55274f74ebaa81031b53c84))
+* **KeyValue:** enable labeled KeyValue results ([576c2d8](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/576c2d87b626cd96f7c9976cd98fc6f679f0eca6))
+* **traverse:** use visitorKeys and sinon-chai for tests ([8a98f9a](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/8a98f9a2b8346c36e26cb8c292a13963f0b70af5))
+
+
+### BREAKING CHANGES
+
+* **KeyValue:** For `JsdocTypeKeyValue` results, if it is a key value with a string key. The key is no longer named `value` but `key` to avoid confusion.
+
 # [1.2.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v1.1.1...v1.2.0) (2021-10-02)
 
 
