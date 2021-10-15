@@ -89,11 +89,12 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="keyvalueresult.html#key" class="tsd-kind-icon">key</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="keyvalueresult.html#meta" class="tsd-kind-icon">meta</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="keyvalueresult.html#optional" class="tsd-kind-icon">optional</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="keyvalueresult.html#readonly" class="tsd-kind-icon">readonly</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="keyvalueresult.html#right" class="tsd-kind-icon">right</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="keyvalueresult.html#type" class="tsd-kind-icon">type</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="keyvalueresult.html#value" class="tsd-kind-icon">value</a></li>
 							</ul>
 						</section>
 					</div>
@@ -102,17 +103,30 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="meta" class="tsd-anchor"></a>
-					<h3>meta</h3>
-					<div class="tsd-signature tsd-kind-icon">meta<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>quote<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;single&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;double&quot;</span><span class="tsd-signature-symbol"> }</span></div>
+					<a name="key" class="tsd-anchor"></a>
+					<h3>key</h3>
+					<div class="tsd-signature tsd-kind-icon">key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/266370d/src/result/NonTerminalResult.ts#L22">result/NonTerminalResult.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/blob/efda425/src/result/NonTerminalResult.ts#L19">result/NonTerminalResult.ts:19</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="meta" class="tsd-anchor"></a>
+					<h3>meta</h3>
+					<div class="tsd-signature tsd-kind-icon">meta<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>hasLeftSideExpression<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol">; </span>quote<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;single&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;double&quot;</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/blob/efda425/src/result/NonTerminalResult.ts#L23">result/NonTerminalResult.ts:23</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>has<wbr>Left<wbr>Side<wbr>Expression<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">false</span></h5>
+							</li>
 							<li class="tsd-parameter">
 								<h5>quote<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;single&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;double&quot;</span></h5>
 							</li>
@@ -125,7 +139,17 @@
 					<div class="tsd-signature tsd-kind-icon">optional<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/266370d/src/result/NonTerminalResult.ts#L21">result/NonTerminalResult.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/blob/efda425/src/result/NonTerminalResult.ts#L21">result/NonTerminalResult.ts:21</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="readonly" class="tsd-anchor"></a>
+					<h3>readonly</h3>
+					<div class="tsd-signature tsd-kind-icon">readonly<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/blob/efda425/src/result/NonTerminalResult.ts#L22">result/NonTerminalResult.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -135,7 +159,7 @@
 					<div class="tsd-signature tsd-kind-icon">right<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="nameresult.html" class="tsd-signature-type" data-tsd-kind="Interface">NameResult</a><span class="tsd-signature-symbol"> | </span><a href="unionresult.html" class="tsd-signature-type" data-tsd-kind="Interface">UnionResult</a><span class="tsd-signature-symbol"> | </span><a href="genericresult.html" class="tsd-signature-type" data-tsd-kind="Interface">GenericResult</a><span class="tsd-signature-symbol"> | </span><a href="stringvalueresult.html" class="tsd-signature-type" data-tsd-kind="Interface">StringValueResult</a><span class="tsd-signature-symbol"> | </span><a href="nullresult.html" class="tsd-signature-type" data-tsd-kind="Interface">NullResult</a><span class="tsd-signature-symbol"> | </span><a href="undefinedresult.html" class="tsd-signature-type" data-tsd-kind="Interface">UndefinedResult</a><span class="tsd-signature-symbol"> | </span><a href="anyresult.html" class="tsd-signature-type" data-tsd-kind="Interface">AnyResult</a><span class="tsd-signature-symbol"> | </span><a href="unknownresult.html" class="tsd-signature-type" data-tsd-kind="Interface">UnknownResult</a><span class="tsd-signature-symbol"> | </span><a href="functionresult.html" class="tsd-signature-type" data-tsd-kind="Interface">FunctionResult</a><span class="tsd-signature-symbol"> | </span><a href="objectresult.html" class="tsd-signature-type" data-tsd-kind="Interface">ObjectResult</a><span class="tsd-signature-symbol"> | </span><a href="namepathresult.html" class="tsd-signature-type" data-tsd-kind="Interface">NamePathResult</a><span class="tsd-signature-symbol"> | </span><a href="symbolresult.html" class="tsd-signature-type" data-tsd-kind="Interface">SymbolResult</a><span class="tsd-signature-symbol"> | </span><a href="typeofresult.html" class="tsd-signature-type" data-tsd-kind="Interface">TypeOfResult</a><span class="tsd-signature-symbol"> | </span><a href="keyofresult.html" class="tsd-signature-type" data-tsd-kind="Interface">KeyOfResult</a><span class="tsd-signature-symbol"> | </span><a href="importresult.html" class="tsd-signature-type" data-tsd-kind="Interface">ImportResult</a><span class="tsd-signature-symbol"> | </span><a href="tupleresult.html" class="tsd-signature-type" data-tsd-kind="Interface">TupleResult</a><span class="tsd-signature-symbol"> | </span><a href="specialnamepath.html" class="tsd-signature-type" data-tsd-kind="Interface">SpecialNamePath</a><span class="tsd-signature-symbol">&lt;</span><a href="../modules.html#specialnamepathtype" class="tsd-signature-type" data-tsd-kind="Type alias">SpecialNamePathType</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="optionalresult.html" class="tsd-signature-type" data-tsd-kind="Interface">OptionalResult</a><span class="tsd-signature-symbol">&lt;</span><a href="../modules.html#terminalresult" class="tsd-signature-type" data-tsd-kind="Type alias">TerminalResult</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="nullableresult.html" class="tsd-signature-type" data-tsd-kind="Interface">NullableResult</a><span class="tsd-signature-symbol">&lt;</span><a href="../modules.html#terminalresult" class="tsd-signature-type" data-tsd-kind="Type alias">TerminalResult</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="notnullableresult.html" class="tsd-signature-type" data-tsd-kind="Interface">NotNullableResult</a><span class="tsd-signature-symbol">&lt;</span><a href="../modules.html#terminalresult" class="tsd-signature-type" data-tsd-kind="Type alias">TerminalResult</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="variadicresult.html" class="tsd-signature-type" data-tsd-kind="Interface">VariadicResult</a><span class="tsd-signature-symbol">&lt;</span><a href="../modules.html#terminalresult" class="tsd-signature-type" data-tsd-kind="Type alias">TerminalResult</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="parenthesisresult.html" class="tsd-signature-type" data-tsd-kind="Interface">ParenthesisResult</a><span class="tsd-signature-symbol"> | </span><a href="intersectionresult.html" class="tsd-signature-type" data-tsd-kind="Interface">IntersectionResult</a><span class="tsd-signature-symbol"> | </span><a href="numberresult.html" class="tsd-signature-type" data-tsd-kind="Interface">NumberResult</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/266370d/src/result/NonTerminalResult.ts#L20">result/NonTerminalResult.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/blob/efda425/src/result/NonTerminalResult.ts#L20">result/NonTerminalResult.ts:20</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -145,17 +169,7 @@
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;JsdocTypeKeyValue&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/266370d/src/result/NonTerminalResult.ts#L18">result/NonTerminalResult.ts:18</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="value" class="tsd-anchor"></a>
-					<h3>value</h3>
-					<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/simonseyock/jsdoc-type-pratt-parser/blob/266370d/src/result/NonTerminalResult.ts#L19">result/NonTerminalResult.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/blob/efda425/src/result/NonTerminalResult.ts#L18">result/NonTerminalResult.ts:18</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -177,19 +191,22 @@
 						<a href="keyvalueresult.html" class="tsd-kind-icon">Key<wbr>Value<wbr>Result</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="keyvalueresult.html#key" class="tsd-kind-icon">key</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="keyvalueresult.html#meta" class="tsd-kind-icon">meta</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="keyvalueresult.html#optional" class="tsd-kind-icon">optional</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="keyvalueresult.html#readonly" class="tsd-kind-icon">readonly</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="keyvalueresult.html#right" class="tsd-kind-icon">right</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="keyvalueresult.html#type" class="tsd-kind-icon">type</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="keyvalueresult.html#value" class="tsd-kind-icon">value</a>
 							</li>
 						</ul>
 					</li>
