@@ -1,2 +1,2 @@
-import { GrammarFactory } from './Grammar';
-export declare const moduleGrammar: GrammarFactory;
+import { Grammar } from './Grammar';
+export declare const moduleGrammar: Grammar;

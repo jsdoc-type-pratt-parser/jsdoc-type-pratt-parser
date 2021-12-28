@@ -1,2 +1,2 @@
-import { GrammarFactory } from './Grammar';
-export declare const closureGrammar: GrammarFactory;
+import { Grammar } from './Grammar';
+export declare const closureGrammar: Grammar;

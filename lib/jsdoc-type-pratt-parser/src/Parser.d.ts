@@ -5,11 +5,17 @@ import { Grammar } from './grammars/Grammar';
 import { Precedence } from './Precedence';
 import { TerminalResult } from './result/TerminalResult';
 import { IntermediateResult } from './result/IntermediateResult';
+interface ParserOptions {
+    grammar: Grammar;
+    lexer?: Lexer;
+    parent?: Parser;
+}
 export declare class Parser {
     private readonly prefixParslets;
     private readonly infixParslets;
     private readonly lexer;
-    constructor(grammar: Grammar, lexer?: Lexer);
+    private readonly parent?;
+    constructor({ grammar, lexer, parent }: ParserOptions);
     parseText(text: string): TerminalResult;
     getPrefixParslet(): PrefixParslet | undefined;
     getInfixParslet(precedence: Precedence): InfixParslet | undefined;
@@ -17,9 +23,11 @@ export declare class Parser {
     parseType(precedence: Precedence): TerminalResult;
     parseIntermediateType(precedence: Precedence): IntermediateResult;
     parseInfixIntermediateType(result: IntermediateResult, precedence: Precedence): IntermediateResult;
-    consume(type: TokenType): boolean;
+    consume(types: TokenType | TokenType[]): boolean;
     getToken(): Token;
     peekToken(): Token;
     previousToken(): Token | undefined;
     getLexer(): Lexer;
+    getParent(): Parser | undefined;
 }
+export {};

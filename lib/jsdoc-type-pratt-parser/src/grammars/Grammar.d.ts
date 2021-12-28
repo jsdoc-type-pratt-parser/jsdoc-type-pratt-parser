@@ -1,6 +1,5 @@
 import { InfixParslet, PrefixParslet } from '../parslets/Parslet';
-export interface Grammar {
+export declare type Grammar = () => {
     prefixParslets: PrefixParslet[];
     infixParslets: InfixParslet[];
-}
-export declare type GrammarFactory = () => Grammar;
+};
