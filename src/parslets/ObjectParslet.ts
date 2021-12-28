@@ -4,16 +4,17 @@ import { Parser } from '../Parser'
 import { Precedence } from '../Precedence'
 import { UnexpectedTypeError } from '../errors'
 import { ObjectResult, TerminalResult } from '../result/TerminalResult'
+import { Grammar } from '../grammars/Grammar'
 
 interface ObjectParsletOptions {
-  allowKeyTypes: boolean
+  objectFieldGrammar: Grammar
 }
 
 export class ObjectParslet implements PrefixParslet {
-  private readonly allowKeyTypes: boolean
+  private readonly objectFieldGrammar: Grammar
 
   constructor (opts: ObjectParsletOptions) {
-    this.allowKeyTypes = opts.allowKeyTypes
+    this.objectFieldGrammar = opts.objectFieldGrammar
   }
 
   accepts (type: TokenType): boolean {
@@ -37,13 +38,20 @@ export class ObjectParslet implements PrefixParslet {
     if (!parser.consume('}')) {
       let separator: 'comma' | 'semicolon' | undefined
 
+      const lexer = parser.getLexer()
+
+      const fieldParser = new Parser({
+        grammar: this.objectFieldGrammar,
+        lexer: lexer
+      })
+
       while (true) {
-        let field = parser.parseIntermediateType(Precedence.OBJECT)
+        let field = fieldParser.parseType(Precedence.OBJECT)
 
         let optional = false
-        if (field.type === 'JsdocTypeNullable') {
+        if (key.type === 'JsdocTypeNullable') {
           optional = true
-          field = field.element
+          key = key.element
         }
 
         if (field.type === 'JsdocTypeNumber' || field.type === 'JsdocTypeName' || field.type === 'JsdocTypeStringValue') {

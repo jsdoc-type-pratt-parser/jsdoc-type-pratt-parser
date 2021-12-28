@@ -8,14 +8,28 @@ import { Precedence } from './Precedence'
 import { TerminalResult } from './result/TerminalResult'
 import { IntermediateResult } from './result/IntermediateResult'
 
+interface ParserOptions {
+  grammar: Grammar
+  lexer?: Lexer
+  parent?: Parser
+  endOfParseTokens?: TokenType[]
+}
+
 export class Parser {
   private readonly prefixParslets: PrefixParslet[]
   private readonly infixParslets: InfixParslet[]
 
   private readonly lexer: Lexer
+  private readonly parent?: Parser
 
-  constructor (grammar: Grammar, lexer?: Lexer) {
+  private readonly endOfParseTokens: TokenType[]
+
+  constructor ({ grammar, lexer, parent, endOfParseTokens = ['EOF'] }: ParserOptions) {
     this.lexer = lexer ?? new Lexer()
+
+    this.parent = parent
+
+    this.endOfParseTokens = endOfParseTokens
 
     const {
       prefixParslets,
@@ -30,7 +44,7 @@ export class Parser {
   parseText (text: string): TerminalResult {
     this.lexer.lex(text)
     const result = this.parseType(Precedence.ALL)
-    if (!this.consume('EOF')) {
+    if (this.lexer.peek().type !== 'EOF') {
       throw new EarlyEndOfParseError(this.getToken())
     }
     return result
@@ -61,9 +75,15 @@ export class Parser {
       throw new NoParsletFoundError(this.getToken())
     }
 
-    const result = parslet.parsePrefix(this)
+    let result = parslet.parsePrefix(this)
 
-    return this.parseInfixIntermediateType(result, precedence)
+    result = this.parseInfixIntermediateType(result, precedence)
+
+    if (result === undefined && this.parent !== undefined) {
+      return this.parent.parseIntermediateType(precedence)
+    } else {
+      return result
+    }
   }
 
   public parseInfixIntermediateType (result: IntermediateResult, precedence: Precedence): IntermediateResult {
@@ -77,8 +97,11 @@ export class Parser {
     return result
   }
 
-  public consume (type: TokenType): boolean {
-    if (this.lexer.token().type !== type) {
+  public consume (types: TokenType|TokenType[]): boolean {
+    if (!Array.isArray(types)) {
+      types = [types]
+    }
+    if (!types.includes(this.lexer.token().type)) {
       return false
     }
     this.lexer.advance()
@@ -99,5 +122,9 @@ export class Parser {
 
   getLexer (): Lexer {
     return this.lexer
+  }
+
+  getParent (): Parser | undefined {
+    return this.parent
   }
 }
