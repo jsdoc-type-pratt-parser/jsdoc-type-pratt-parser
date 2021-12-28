@@ -2,26 +2,35 @@ import { expect } from 'chai'
 import { Lexer } from '../src/lexer/Lexer'
 import { Token } from '../src/lexer/Token'
 
+function expectTokens (text: string, tokens: Token[]): void {
+  const lexer = new Lexer()
+  lexer.lex(text)
+
+  let position = 0
+
+  while (lexer.token().type !== 'EOF') {
+    const nextToken = lexer.token()
+    const nextExpected = tokens[position]
+    expect(nextToken).to.deep.equal(nextExpected)
+    lexer.advance()
+    position++
+  }
+
+  expect(tokens.length).to.equal(position)
+}
+
 describe('lexer', () => {
   it('should lex name', () => {
-    const typeString = 'sometype'
-    const expected: Token = {
-      type: 'Identifier',
-      text: 'sometype'
-    }
-
-    const lexer = new Lexer()
-    lexer.lex(typeString)
-    const token = lexer.token()
-    lexer.advance()
-
-    expect(token).to.deep.equal(expected)
-    expect(lexer.token().type).to.equal('EOF')
+    expectTokens('sometype', [
+      {
+        type: 'Identifier',
+        text: 'sometype'
+      }
+    ])
   })
 
   it('should parse a complex expression', () => {
-    const typeString = 'Array<(AType|OtherType)>|\'test\'|undefined'
-    const expected: Token[] = [
+    expectTokens('Array<(AType|OtherType)>|\'test\'|undefined', [
       {
         type: 'Identifier',
         text: 'Array'
@@ -70,18 +79,66 @@ describe('lexer', () => {
         type: 'undefined',
         text: 'undefined'
       }
-    ]
+    ])
+  })
 
-    const lexer = new Lexer()
-    lexer.lex(typeString)
+  it('should parse numbers', () => {
+    expectTokens('12345', [
+      {
+        type: 'Number',
+        text: '12345'
+      }
+    ])
 
-    while (lexer.token().type !== 'EOF') {
-      const nextToken = lexer.token()
-      const nextExpected = expected.shift()
-      expect(nextToken).to.deep.equal(nextExpected)
-      lexer.advance()
-    }
+    expectTokens('-12345', [
+      {
+        type: 'Number',
+        text: '-12345'
+      }
+    ])
 
-    expect(expected.length).to.equal(0)
+    expectTokens('Infinity', [
+      {
+        type: 'Number',
+        text: 'Infinity'
+      }
+    ])
+  })
+
+  it('should parse an expression containing multiple numbers', () => {
+    expectTokens('123|-Infinity|Array<NaN>', [
+      {
+        type: 'Number',
+        text: '123'
+      },
+      {
+        type: '|',
+        text: '|'
+      },
+      {
+        type: 'Number',
+        text: '-Infinity'
+      },
+      {
+        type: '|',
+        text: '|'
+      },
+      {
+        type: 'Identifier',
+        text: 'Array'
+      },
+      {
+        type: '<',
+        text: '<'
+      },
+      {
+        type: 'Number',
+        text: 'NaN'
+      },
+      {
+        type: '>',
+        text: '>'
+      }
+    ])
   })
 })
