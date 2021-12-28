@@ -172,7 +172,7 @@ export interface ObjectResult {
   type: 'JsdocTypeObject'
   elements: Array<KeyValueResult | JsdocObjectKeyValueResult>
   meta: {
-    separator: 'comma' | 'semicolon'
+    separator: 'comma' | 'semicolon' | undefined
   }
 }
 

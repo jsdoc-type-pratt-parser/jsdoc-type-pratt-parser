@@ -20,7 +20,8 @@ export class NamePathParslet implements InfixParslet {
     this.allowedPropertyTokenTypes = [
       'Identifier',
       'StringValue',
-      'Number'
+      'Number',
+      'module'
     ]
   }
 

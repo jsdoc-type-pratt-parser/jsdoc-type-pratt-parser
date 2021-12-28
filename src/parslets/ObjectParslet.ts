@@ -77,7 +77,7 @@ export class ObjectParslet implements PrefixParslet {
         }
       }
 
-      result.meta.separator = separator ?? 'comma'
+      result.meta.separator = separator
 
       if (!parser.consume('}')) {
         throw new Error('Unterminated record type. Missing \'}\'')

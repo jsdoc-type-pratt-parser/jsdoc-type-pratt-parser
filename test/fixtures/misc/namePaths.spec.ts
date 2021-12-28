@@ -171,4 +171,23 @@ describe('name paths tests', () => {
       }
     })
   })
+
+  describe('property named module', () => {
+    testFixture({
+      input: 'foo.module',
+      modes: ['jsdoc', 'closure', 'typescript'],
+      expected: {
+        type: 'JsdocTypeNamePath',
+        left: {
+          type: 'JsdocTypeName',
+          value: 'foo'
+        },
+        right: {
+          type: 'JsdocTypeProperty',
+          value: 'module'
+        },
+        pathType: 'property'
+      }
+    })
+  })
 })
