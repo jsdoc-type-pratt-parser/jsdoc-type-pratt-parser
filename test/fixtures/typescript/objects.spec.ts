@@ -219,7 +219,7 @@ describe('typescript objects tests', () => {
           }
         ],
         meta: {
-          separator: undefined
+          separator: 'comma'
         }
       }
     })

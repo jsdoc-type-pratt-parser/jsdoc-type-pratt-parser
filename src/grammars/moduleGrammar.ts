@@ -1,11 +1,11 @@
-import { GrammarFactory } from './Grammar'
+import { Grammar } from './Grammar'
 import { SpecialNamePathParslet } from '../parslets/SpecialNamePathParslet'
 import { NamePathParslet } from '../parslets/NamePathParslet'
 import { NameParslet } from '../parslets/NameParslet'
 import { NumberParslet } from '../parslets/NumberParslet'
 import { StringValueParslet } from '../parslets/StringValueParslet'
 
-export const moduleGrammar: GrammarFactory = () => ({
+export const moduleGrammar: Grammar = () => ({
   prefixParslets: [
     new SpecialNamePathParslet({
       allowedTypes: ['event']

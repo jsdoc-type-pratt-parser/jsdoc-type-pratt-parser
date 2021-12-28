@@ -12,7 +12,6 @@ interface ParserOptions {
   grammar: Grammar
   lexer?: Lexer
   parent?: Parser
-  endOfParseTokens?: TokenType[]
 }
 
 export class Parser {
@@ -22,19 +21,15 @@ export class Parser {
   private readonly lexer: Lexer
   private readonly parent?: Parser
 
-  private readonly endOfParseTokens: TokenType[]
-
-  constructor ({ grammar, lexer, parent, endOfParseTokens = ['EOF'] }: ParserOptions) {
+  constructor ({ grammar, lexer, parent }: ParserOptions) {
     this.lexer = lexer ?? new Lexer()
 
     this.parent = parent
 
-    this.endOfParseTokens = endOfParseTokens
-
     const {
       prefixParslets,
       infixParslets
-    } = grammar
+    } = grammar()
 
     this.prefixParslets = prefixParslets
 
@@ -44,7 +39,7 @@ export class Parser {
   parseText (text: string): TerminalResult {
     this.lexer.lex(text)
     const result = this.parseType(Precedence.ALL)
-    if (this.lexer.peek().type !== 'EOF') {
+    if (this.getToken().type !== 'EOF') {
       throw new EarlyEndOfParseError(this.getToken())
     }
     return result
@@ -75,15 +70,9 @@ export class Parser {
       throw new NoParsletFoundError(this.getToken())
     }
 
-    let result = parslet.parsePrefix(this)
+    const result = parslet.parsePrefix(this)
 
-    result = this.parseInfixIntermediateType(result, precedence)
-
-    if (result === undefined && this.parent !== undefined) {
-      return this.parent.parseIntermediateType(precedence)
-    } else {
-      return result
-    }
+    return this.parseInfixIntermediateType(result, precedence)
   }
 
   public parseInfixIntermediateType (result: IntermediateResult, precedence: Precedence): IntermediateResult {

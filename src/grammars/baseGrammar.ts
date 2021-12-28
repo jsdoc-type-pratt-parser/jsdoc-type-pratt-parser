@@ -1,4 +1,3 @@
-import { GrammarFactory } from './Grammar'
 import { UnionParslet } from '../parslets/UnionParslets'
 import { SpecialTypesParslet } from '../parslets/SpecialTypesParslet'
 import { GenericParslet } from '../parslets/GenericParslet'
@@ -8,8 +7,9 @@ import { ParameterListParslet } from '../parslets/ParameterListParslet'
 import { NullableInfixParslet, NullablePrefixParslet } from '../parslets/NullableParslets'
 import { OptionalParslet } from '../parslets/OptionalParslet'
 import { NotNullableParslet } from '../parslets/NotNullableParslet'
+import { Grammar } from './Grammar'
 
-export const baseGrammar: GrammarFactory = () => {
+export const baseGrammar: Grammar = () => {
   return {
     prefixParslets: [
       new NullablePrefixParslet(),

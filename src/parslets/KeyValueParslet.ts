@@ -46,6 +46,9 @@ export class KeyValueParslet implements InfixParslet {
       left = left.element
     }
 
+    // object parslet uses a special grammar and for the value we want to switch back to the parent
+    parser = parser.getParent() ?? parser
+
     if (left.type === 'JsdocTypeNumber' || left.type === 'JsdocTypeName' || left.type === 'JsdocTypeStringValue') {
       parser.consume(':')
 

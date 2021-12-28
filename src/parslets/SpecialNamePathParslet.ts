@@ -35,7 +35,10 @@ export class SpecialNamePathParslet implements PrefixParslet {
       }
     }
 
-    const moduleParser = new Parser(moduleGrammar(), parser.getLexer())
+    const moduleParser = new Parser({
+      grammar: moduleGrammar,
+      lexer: parser.getLexer()
+    })
 
     let result: SpecialNamePath
 

@@ -1,6 +1,6 @@
-import { GrammarFactory } from './Grammar'
+import { Grammar } from './Grammar'
 
-export function combineGrammars (grammarFactoryA: GrammarFactory, grammarFactoryB: GrammarFactory): GrammarFactory {
+export function combineGrammars (grammarFactoryA: Grammar, grammarFactoryB: Grammar): Grammar {
   return () => {
     const grammarA = grammarFactoryA()
     const grammarB = grammarFactoryB()
