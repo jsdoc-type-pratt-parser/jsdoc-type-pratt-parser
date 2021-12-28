@@ -59,21 +59,9 @@ function getIdentifier (text: string): string|null {
   return text.slice(0, position)
 }
 
-const numberRegex = /[0-9]/
+const numberRegex = /^(NaN|-?((\d*\.\d+|\d+)([Ee][+-]?\d+)?|Infinity))/
 function getNumber (text: string): string|null {
-  let position = 0
-  let char
-  do {
-    char = text[position]
-    if (!numberRegex.test(char)) {
-      break
-    }
-    position++
-  } while (position < text.length)
-  if (position === 0) {
-    return null
-  }
-  return text.slice(0, position)
+  return numberRegex.exec(text)?.[0] ?? null
 }
 
 const identifierRule: Rule = text => {
@@ -174,9 +162,9 @@ const rules = [
   makeKeyWordRule('keyof'),
   makeKeyWordRule('readonly'),
   makeKeyWordRule('import'),
+  numberRule,
   identifierRule,
-  stringValueRule,
-  numberRule
+  stringValueRule
 ]
 
 export class Lexer {
