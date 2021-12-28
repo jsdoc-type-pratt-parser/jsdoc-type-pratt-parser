@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v2.0.1...v2.0.2) (2021-12-28)
+
+
+### Bug Fixes
+
+* allow more numbers ([8f3d524](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/8f3d5249bff73e2b815e306f55bb71b91ba46098))
+
 ## [2.0.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v2.0.0...v2.0.1) (2021-12-28)
 
 
