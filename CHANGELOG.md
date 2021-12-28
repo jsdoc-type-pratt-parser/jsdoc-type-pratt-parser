@@ -1,3 +1,11 @@
+## [2.0.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v2.0.0...v2.0.1) (2021-12-28)
+
+
+### Bug Fixes
+
+* allow name module ([8794c1c](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/8794c1c0ba54d1fa43b788b76b31fe8481fec980))
+* allow property named module ([d54dea0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/d54dea0f6f3e2b4547484f07077c4d75fa1a5a88)), closes [#102](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/issues/102)
+
 # [2.0.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v1.2.0...v2.0.0) (2021-10-15)
 
 
