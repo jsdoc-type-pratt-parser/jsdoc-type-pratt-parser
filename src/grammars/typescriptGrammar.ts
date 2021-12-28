@@ -1,5 +1,4 @@
 import { TupleParslet } from '../parslets/TupleParslet'
-import { GrammarFactory } from './Grammar'
 import { ArrayBracketsParslet } from '../parslets/ArrayBracketsParslet'
 import { baseGrammar } from './baseGrammar'
 import { TypeOfParslet } from '../parslets/TypeOfParslet'
@@ -16,26 +15,41 @@ import { VariadicParslet } from '../parslets/VariadicParslet'
 import { NameParslet } from '../parslets/NameParslet'
 import { IntersectionParslet } from '../parslets/IntersectionParslet'
 import { ObjectParslet } from '../parslets/ObjectParslet'
-import { moduleGrammar } from './moduleGrammar'
 import { SpecialNamePathParslet } from '../parslets/SpecialNamePathParslet'
 import { ReadonlyPropertyParslet } from '../parslets/ReadonlyPropertyParslet'
+import { combineGrammars } from './combineGrammars'
+import { Grammar } from './Grammar'
+import { NullableInfixParslet, NullablePrefixParslet } from '../parslets/NullableParslets'
+import { NumberParslet } from '../parslets/NumberParslet'
+import { OptionalParslet } from '../parslets/OptionalParslet'
 
-export const typescriptGrammar: GrammarFactory = () => {
-  const {
-    prefixParslets,
-    infixParslets
-  } = baseGrammar()
-
-  // module seems not to be supported
+export const typescriptGrammar = combineGrammars(baseGrammar, () => {
+  const objectFieldGrammar: Grammar = () => ({
+    prefixParslets: [
+      new NameParslet({
+        allowedAdditionalTokens: ['module', 'event', 'keyof', 'event', 'external']
+      }),
+      new NullablePrefixParslet(),
+      new OptionalParslet(),
+      new StringValueParslet(),
+      new NumberParslet()
+    ],
+    infixParslets: [
+      new NullableInfixParslet(),
+      new OptionalParslet(),
+      new KeyValueParslet({
+        allowKeyTypes: false,
+        allowOptional: true,
+        allowReadonly: true
+      })
+    ]
+  })
 
   return {
-    parallel: [
-      moduleGrammar()
-    ],
     prefixParslets: [
-      ...prefixParslets,
       new ObjectParslet({
-        allowKeyTypes: false
+        allowKeyTypes: false,
+        objectFieldGrammar
       }),
       new TypeOfParslet(),
       new KeyOfParslet(),
@@ -61,7 +75,6 @@ export const typescriptGrammar: GrammarFactory = () => {
       new ReadonlyPropertyParslet()
     ],
     infixParslets: [
-      ...infixParslets,
       new ArrayBracketsParslet(),
       new ArrowFunctionParslet(),
       new NamePathParslet({
@@ -75,4 +88,4 @@ export const typescriptGrammar: GrammarFactory = () => {
       new IntersectionParslet()
     ]
   }
-}
+})

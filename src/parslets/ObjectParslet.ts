@@ -4,16 +4,20 @@ import { Parser } from '../Parser'
 import { Precedence } from '../Precedence'
 import { UnexpectedTypeError } from '../errors'
 import { ObjectResult, TerminalResult } from '../result/TerminalResult'
+import { Grammar } from '../grammars/Grammar'
 
 interface ObjectParsletOptions {
+  objectFieldGrammar: Grammar
   allowKeyTypes: boolean
 }
 
 export class ObjectParslet implements PrefixParslet {
+  private readonly objectFieldGrammar: Grammar
   private readonly allowKeyTypes: boolean
 
-  constructor (opts: ObjectParsletOptions) {
-    this.allowKeyTypes = opts.allowKeyTypes
+  constructor ({ objectFieldGrammar, allowKeyTypes }: ObjectParsletOptions) {
+    this.objectFieldGrammar = objectFieldGrammar
+    this.allowKeyTypes = allowKeyTypes
   }
 
   accepts (type: TokenType): boolean {
@@ -37,8 +41,20 @@ export class ObjectParslet implements PrefixParslet {
     if (!parser.consume('}')) {
       let separator: 'comma' | 'semicolon' | undefined
 
+      const lexer = parser.getLexer()
+
+      const fieldParser = new Parser({
+        grammar: this.objectFieldGrammar,
+        lexer: lexer,
+        parent: parser
+      })
+
       while (true) {
-        let field = parser.parseIntermediateType(Precedence.OBJECT)
+        let field = fieldParser.parseIntermediateType(Precedence.OBJECT)
+
+        if (field === undefined && this.allowKeyTypes) {
+          field = parser.parseIntermediateType(Precedence.OBJECT)
+        }
 
         let optional = false
         if (field.type === 'JsdocTypeNullable') {
@@ -77,7 +93,7 @@ export class ObjectParslet implements PrefixParslet {
         }
       }
 
-      result.meta.separator = separator ?? 'comma'
+      result.meta.separator = separator ?? 'comma' // TODO: use undefined here
 
       if (!parser.consume('}')) {
         throw new Error('Unterminated record type. Missing \'}\'')

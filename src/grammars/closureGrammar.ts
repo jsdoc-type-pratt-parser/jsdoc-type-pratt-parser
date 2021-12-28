@@ -1,4 +1,3 @@
-import { GrammarFactory } from './Grammar'
 import { baseGrammar } from './baseGrammar'
 import { FunctionParslet } from '../parslets/FunctionParslet'
 import { NamePathParslet } from '../parslets/NamePathParslet'
@@ -9,18 +8,40 @@ import { NameParslet } from '../parslets/NameParslet'
 import { ObjectParslet } from '../parslets/ObjectParslet'
 import { SpecialNamePathParslet } from '../parslets/SpecialNamePathParslet'
 import { SymbolParslet } from '../parslets/SymbolParslet'
+import { combineGrammars } from './combineGrammars'
+import { NullableInfixParslet, NullablePrefixParslet } from '../parslets/NullableParslets'
+import { Grammar } from './Grammar'
+import { StringValueParslet } from '../parslets/StringValueParslet'
+import { NumberParslet } from '../parslets/NumberParslet'
+import { OptionalParslet } from '../parslets/OptionalParslet'
 
-export const closureGrammar: GrammarFactory = () => {
-  const {
-    prefixParslets,
-    infixParslets
-  } = baseGrammar()
+export const closureGrammar = combineGrammars(baseGrammar, () => {
+  const objectFieldGrammar: Grammar = () => ({
+    prefixParslets: [
+      new NameParslet({
+        allowedAdditionalTokens: ['module', 'keyof', 'event', 'external']
+      }),
+      new NullablePrefixParslet(),
+      new OptionalParslet(),
+      new StringValueParslet(),
+      new NumberParslet()
+    ],
+    infixParslets: [
+      new NullableInfixParslet(),
+      new OptionalParslet(),
+      new KeyValueParslet({
+        allowKeyTypes: false,
+        allowOptional: false,
+        allowReadonly: false
+      })
+    ]
+  })
 
   return {
     prefixParslets: [
-      ...prefixParslets,
       new ObjectParslet({
-        allowKeyTypes: false
+        allowKeyTypes: false,
+        objectFieldGrammar
       }),
       new NameParslet({
         allowedAdditionalTokens: ['event', 'external']
@@ -34,6 +55,7 @@ export const closureGrammar: GrammarFactory = () => {
       new VariadicParslet({
         allowEnclosingBrackets: false
       }),
+      // additional name parslet is needed for some special cases
       new NameParslet({
         allowedAdditionalTokens: ['keyof']
       }),
@@ -42,7 +64,6 @@ export const closureGrammar: GrammarFactory = () => {
       })
     ],
     infixParslets: [
-      ...infixParslets,
       new NamePathParslet({
         allowJsdocNamePaths: true
       }),
@@ -54,4 +75,4 @@ export const closureGrammar: GrammarFactory = () => {
       new SymbolParslet()
     ]
   }
-}
+})

@@ -1,4 +1,3 @@
-import { GrammarFactory } from './Grammar'
 import { SymbolParslet } from '../parslets/SymbolParslet'
 import { ArrayBracketsParslet } from '../parslets/ArrayBracketsParslet'
 import { StringValueParslet } from '../parslets/StringValueParslet'
@@ -10,19 +9,12 @@ import { VariadicParslet } from '../parslets/VariadicParslet'
 import { SpecialNamePathParslet } from '../parslets/SpecialNamePathParslet'
 import { NameParslet } from '../parslets/NameParslet'
 import { ObjectParslet } from '../parslets/ObjectParslet'
+import { combineGrammars } from './combineGrammars'
+import { Grammar } from './Grammar'
 
-export const jsdocGrammar: GrammarFactory = () => {
-  const {
-    prefixParslets,
-    infixParslets
-  } = baseGrammar()
-
-  return {
+export const jsdocGrammar: Grammar = () => {
+  const jsdocBaseGrammar = combineGrammars(baseGrammar, () => ({
     prefixParslets: [
-      ...prefixParslets,
-      new ObjectParslet({
-        allowKeyTypes: true
-      }),
       new FunctionParslet({
         allowWithoutParenthesis: true,
         allowNamedParameters: ['this', 'new'],
@@ -40,7 +32,6 @@ export const jsdocGrammar: GrammarFactory = () => {
       })
     ],
     infixParslets: [
-      ...infixParslets,
       new SymbolParslet(),
       new ArrayBracketsParslet(),
       new NamePathParslet({
@@ -55,5 +46,24 @@ export const jsdocGrammar: GrammarFactory = () => {
         allowEnclosingBrackets: true
       })
     ]
-  }
+  }))
+
+  return combineGrammars(jsdocBaseGrammar, () => ({
+    prefixParslets: [
+      new ObjectParslet({
+        // jsdoc syntax allows full types as keys, so we need to pull in the full grammar here
+        // we leave out the object type deliberately
+        objectFieldGrammar: combineGrammars(() => ({
+          prefixParslets: [
+            new NameParslet({
+              allowedAdditionalTokens: ['module']
+            })
+          ],
+          infixParslets: []
+        }), jsdocBaseGrammar),
+        allowKeyTypes: true
+      })
+    ],
+    infixParslets: []
+  }))()
 }

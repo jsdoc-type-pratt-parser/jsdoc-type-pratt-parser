@@ -56,7 +56,12 @@ function testParser (mode: ParseMode, fixture: Fixture): TerminalResult | undefi
       const expected = fixture.diffExpected?.[mode] ?? fixture.expected
       expect(result).to.deep.equal(expected)
     })
-    return parse(fixture.input, mode)
+    try {
+      return parse(fixture.input, mode)
+    } catch (e) {
+      console.error(`Parse failed for mode '${mode}'`)
+      throw e
+    }
   } else {
     it(`fails to parse in '${mode}' mode`, () => {
       expect(() => parse(fixture.input, mode)).to.throw()

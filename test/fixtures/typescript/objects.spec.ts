@@ -195,4 +195,33 @@ describe('typescript objects tests', () => {
       }
     })
   })
+
+  describe('object property named module', () => {
+    testFixture({
+      input: '{module: type}',
+      modes: ['jsdoc', 'closure', 'typescript'],
+      expected: {
+        type: 'JsdocTypeObject',
+        elements: [
+          {
+            type: 'JsdocTypeKeyValue',
+            key: 'module',
+            right: {
+              type: 'JsdocTypeName',
+              value: 'type'
+            },
+            optional: false,
+            readonly: false,
+            meta: {
+              quote: undefined,
+              hasLeftSideExpression: false
+            }
+          }
+        ],
+        meta: {
+          separator: 'comma'
+        }
+      }
+    })
+  })
 })

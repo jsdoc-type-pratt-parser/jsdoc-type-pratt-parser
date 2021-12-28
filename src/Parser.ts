@@ -8,19 +8,28 @@ import { Precedence } from './Precedence'
 import { TerminalResult } from './result/TerminalResult'
 import { IntermediateResult } from './result/IntermediateResult'
 
+interface ParserOptions {
+  grammar: Grammar
+  lexer?: Lexer
+  parent?: Parser
+}
+
 export class Parser {
   private readonly prefixParslets: PrefixParslet[]
   private readonly infixParslets: InfixParslet[]
 
   private readonly lexer: Lexer
+  private readonly parent?: Parser
 
-  constructor (grammar: Grammar, lexer?: Lexer) {
+  constructor ({ grammar, lexer, parent }: ParserOptions) {
     this.lexer = lexer ?? new Lexer()
+
+    this.parent = parent
 
     const {
       prefixParslets,
       infixParslets
-    } = grammar
+    } = grammar()
 
     this.prefixParslets = prefixParslets
 
@@ -30,7 +39,7 @@ export class Parser {
   parseText (text: string): TerminalResult {
     this.lexer.lex(text)
     const result = this.parseType(Precedence.ALL)
-    if (!this.consume('EOF')) {
+    if (this.getToken().type !== 'EOF') {
       throw new EarlyEndOfParseError(this.getToken())
     }
     return result
@@ -77,8 +86,11 @@ export class Parser {
     return result
   }
 
-  public consume (type: TokenType): boolean {
-    if (this.lexer.token().type !== type) {
+  public consume (types: TokenType|TokenType[]): boolean {
+    if (!Array.isArray(types)) {
+      types = [types]
+    }
+    if (!types.includes(this.lexer.token().type)) {
       return false
     }
     this.lexer.advance()
@@ -99,5 +111,9 @@ export class Parser {
 
   getLexer (): Lexer {
     return this.lexer
+  }
+
+  getParent (): Parser | undefined {
+    return this.parent
   }
 }
