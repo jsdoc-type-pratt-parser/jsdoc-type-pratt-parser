@@ -178,7 +178,7 @@ while (results.length < parseInt(process.argv[2], 10)) {
     result.fuzzed = fuzz(4)
     result.parsed = parse(result.fuzzed, 'typescript')
   } catch (e) {
-    result.error = e.toString()
+    result.error = (e as Error).message
   }
   results.push(result)
 }
