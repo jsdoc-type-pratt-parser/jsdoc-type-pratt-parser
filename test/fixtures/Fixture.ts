@@ -147,10 +147,10 @@ export function testFixture (fixture: Fixture): void {
     const mode: ParseMode | undefined = (results.jsdoc !== undefined)
       ? 'jsdoc'
       : (results.closure !== undefined)
-        ? 'closure'
-        : (results.typescript !== undefined)
-          ? 'typescript'
-          : undefined
+          ? 'closure'
+          : (results.typescript !== undefined)
+              ? 'typescript'
+              : undefined
 
     if (mode !== undefined) {
       const result = results[mode] as TerminalResult
