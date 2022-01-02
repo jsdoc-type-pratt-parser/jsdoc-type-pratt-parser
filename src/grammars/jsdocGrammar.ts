@@ -11,6 +11,7 @@ import { NameParslet } from '../parslets/NameParslet'
 import { ObjectParslet } from '../parslets/ObjectParslet'
 import { combineGrammars } from './combineGrammars'
 import { Grammar } from './Grammar'
+import { pathGrammar } from './pathGrammar'
 
 export const jsdocGrammar: Grammar = () => {
   const jsdocBaseGrammar = combineGrammars(baseGrammar, () => ({
@@ -22,7 +23,8 @@ export const jsdocGrammar: Grammar = () => {
       }),
       new StringValueParslet(),
       new SpecialNamePathParslet({
-        allowedTypes: ['module', 'external', 'event']
+        allowedTypes: ['module', 'external', 'event'],
+        pathGrammar
       }),
       new VariadicParslet({
         allowEnclosingBrackets: true
@@ -35,7 +37,8 @@ export const jsdocGrammar: Grammar = () => {
       new SymbolParslet(),
       new ArrayBracketsParslet(),
       new NamePathParslet({
-        allowJsdocNamePaths: true
+        allowJsdocNamePaths: true,
+        pathGrammar
       }),
       new KeyValueParslet({
         allowKeyTypes: true,

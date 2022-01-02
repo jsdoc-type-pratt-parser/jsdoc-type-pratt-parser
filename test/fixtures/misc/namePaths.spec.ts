@@ -140,7 +140,10 @@ describe('name paths tests', () => {
           },
           right: {
             type: 'JsdocTypeProperty',
-            value: 'some-where'
+            value: 'some-where',
+            meta: {
+              quote: undefined
+            }
           },
           pathType: 'instance'
         },
@@ -184,9 +187,56 @@ describe('name paths tests', () => {
         },
         right: {
           type: 'JsdocTypeProperty',
-          value: 'module'
+          value: 'module',
+          meta: {
+            quote: undefined
+          }
         },
         pathType: 'property'
+      }
+    })
+  })
+
+  describe('property named external', () => {
+    testFixture({
+      input: 'foo.external',
+      modes: ['jsdoc', 'closure', 'typescript'],
+      expected: {
+        type: 'JsdocTypeNamePath',
+        left: {
+          type: 'JsdocTypeName',
+          value: 'foo'
+        },
+        right: {
+          type: 'JsdocTypeProperty',
+          value: 'external',
+          meta: {
+            quote: undefined
+          }
+        },
+        pathType: 'property'
+      }
+    })
+  })
+
+  describe('square properties', () => {
+    testFixture({
+      input: 'foo["text"]',
+      modes: ['jsdoc', 'closure', 'typescript'],
+      expected: {
+        type: 'JsdocTypeNamePath',
+        left: {
+          type: 'JsdocTypeName',
+          value: 'foo'
+        },
+        right: {
+          type: 'JsdocTypeProperty',
+          value: 'text',
+          meta: {
+            quote: 'double'
+          }
+        },
+        pathType: 'property-brackets'
       }
     })
   })

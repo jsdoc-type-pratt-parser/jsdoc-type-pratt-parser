@@ -256,14 +256,20 @@ describe('catharsis function type tests', () => {
                 },
                 right: {
                   type: 'JsdocTypeProperty',
-                  value: 'ui'
+                  value: 'ui',
+                  meta: {
+                    quote: undefined
+                  }
                 },
                 type: 'JsdocTypeNamePath',
                 pathType: 'property'
               },
               right: {
                 type: 'JsdocTypeProperty',
-                value: 'Menu'
+                value: 'Menu',
+                meta: {
+                  quote: undefined
+                }
               },
               type: 'JsdocTypeNamePath',
               pathType: 'property'
@@ -314,14 +320,20 @@ describe('catharsis function type tests', () => {
                 },
                 right: {
                   type: 'JsdocTypeProperty',
-                  value: 'ui'
+                  value: 'ui',
+                  meta: {
+                    quote: undefined
+                  }
                 },
                 type: 'JsdocTypeNamePath',
                 pathType: 'property'
               },
               right: {
                 type: 'JsdocTypeProperty',
-                value: 'Menu'
+                value: 'Menu',
+                meta: {
+                  quote: undefined
+                }
               },
               type: 'JsdocTypeNamePath',
               pathType: 'property'
@@ -377,14 +389,20 @@ describe('catharsis function type tests', () => {
                 },
                 right: {
                   type: 'JsdocTypeProperty',
-                  value: 'ui'
+                  value: 'ui',
+                  meta: {
+                    quote: undefined
+                  }
                 },
                 type: 'JsdocTypeNamePath',
                 pathType: 'property'
               },
               right: {
                 type: 'JsdocTypeProperty',
-                value: 'Menu'
+                value: 'Menu',
+                meta: {
+                  quote: undefined
+                }
               },
               type: 'JsdocTypeNamePath',
               pathType: 'property'
@@ -435,14 +453,20 @@ describe('catharsis function type tests', () => {
                 },
                 right: {
                   type: 'JsdocTypeProperty',
-                  value: 'ui'
+                  value: 'ui',
+                  meta: {
+                    quote: undefined
+                  }
                 },
                 type: 'JsdocTypeNamePath',
                 pathType: 'property'
               },
               right: {
                 type: 'JsdocTypeProperty',
-                value: 'Menu'
+                value: 'Menu',
+                meta: {
+                  quote: undefined
+                }
               },
               type: 'JsdocTypeNamePath',
               pathType: 'property'
@@ -497,14 +521,20 @@ describe('catharsis function type tests', () => {
                 },
                 right: {
                   type: 'JsdocTypeProperty',
-                  value: 'ui'
+                  value: 'ui',
+                  meta: {
+                    quote: undefined
+                  }
                 },
                 type: 'JsdocTypeNamePath',
                 pathType: 'property'
               },
               right: {
                 type: 'JsdocTypeProperty',
-                value: 'Menu'
+                value: 'Menu',
+                meta: {
+                  quote: undefined
+                }
               },
               type: 'JsdocTypeNamePath',
               pathType: 'property'
@@ -526,7 +556,10 @@ describe('catharsis function type tests', () => {
               },
               right: {
                 type: 'JsdocTypeProperty',
-                value: 'ui'
+                value: 'ui',
+                meta: {
+                  quote: undefined
+                }
               },
               type: 'JsdocTypeNamePath',
               pathType: 'property'
@@ -755,14 +788,20 @@ describe('catharsis function type tests', () => {
                 },
                 right: {
                   type: 'JsdocTypeProperty',
-                  value: 'ui'
+                  value: 'ui',
+                  meta: {
+                    quote: undefined
+                  }
                 },
                 type: 'JsdocTypeNamePath',
                 pathType: 'property'
               },
               right: {
                 type: 'JsdocTypeProperty',
-                value: 'Menu'
+                value: 'Menu',
+                meta: {
+                  quote: undefined
+                }
               },
               type: 'JsdocTypeNamePath',
               pathType: 'property'
@@ -846,14 +885,20 @@ describe('catharsis function type tests', () => {
                 },
                 right: {
                   type: 'JsdocTypeProperty',
-                  value: 'ui'
+                  value: 'ui',
+                  meta: {
+                    quote: undefined
+                  }
                 },
                 type: 'JsdocTypeNamePath',
                 pathType: 'property'
               },
               right: {
                 type: 'JsdocTypeProperty',
-                value: 'Menu'
+                value: 'Menu',
+                meta: {
+                  quote: undefined
+                }
               },
               type: 'JsdocTypeNamePath',
               pathType: 'property'

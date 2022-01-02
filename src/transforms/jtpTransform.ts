@@ -190,13 +190,15 @@ function getQuoteStyle (quote: QuoteStyle | undefined): JtpQuoteStyle {
   }
 }
 
-function getMemberType (type: 'property' | 'inner' | 'instance'): JtpMemberResult['type'] {
+function getMemberType (type: 'property' | 'inner' | 'instance' | 'property-brackets'): JtpMemberResult['type'] {
   switch (type) {
     case 'inner':
       return 'INNER_MEMBER'
     case 'instance':
       return 'INSTANCE_MEMBER'
     case 'property':
+      return 'MEMBER'
+    case 'property-brackets':
       return 'MEMBER'
   }
 }
@@ -427,17 +429,8 @@ const jtpRules: TransformRules<JtpResult> = {
       name = result.right.value
       quoteStyle = getQuoteStyle(result.right.meta.quote)
     } else {
-      let quote: QuoteStyle | undefined
-      let value = result.right.value
-      if (value[0] === '\'') {
-        quote = 'single'
-        value = value.slice(1, -1)
-      } else if (value[0] === '"') {
-        quote = 'double'
-        value = value.slice(1, -1)
-      }
-      name = `${value}`
-      quoteStyle = getQuoteStyle(quote)
+      name = result.right.value
+      quoteStyle = getQuoteStyle(result.right.meta.quote)
     }
 
     const transformed: JtpMemberResult = {

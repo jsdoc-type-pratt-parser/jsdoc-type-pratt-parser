@@ -260,7 +260,7 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
     if (result.right.type === 'JsdocTypeSpecialNamePath') {
       rightValue = (transform(result.right) as CatharsisNameResult).name
     } else {
-      rightValue = result.right.value
+      rightValue = quote(result.right.value, result.right.meta.quote)
     }
 
     const joiner = result.pathType === 'inner' ? '~' : result.pathType === 'instance' ? '#' : '.'

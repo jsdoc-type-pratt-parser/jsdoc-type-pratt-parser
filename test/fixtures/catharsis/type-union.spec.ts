@@ -146,14 +146,20 @@ describe('catharsis type union tests', () => {
                 },
                 right: {
                   type: 'JsdocTypeProperty',
-                  value: 'ui'
+                  value: 'ui',
+                  meta: {
+                    quote: undefined
+                  }
                 },
                 type: 'JsdocTypeNamePath',
                 pathType: 'property'
               },
               right: {
                 type: 'JsdocTypeProperty',
-                value: 'Menu'
+                value: 'Menu',
+                meta: {
+                  quote: undefined
+                }
               },
               type: 'JsdocTypeNamePath',
               pathType: 'property'
@@ -689,7 +695,10 @@ describe('catharsis type union tests', () => {
                                   },
                                   right: {
                                     type: 'JsdocTypeProperty',
-                                    value: 'event'
+                                    value: 'event',
+                                    meta: {
+                                      quote: undefined
+                                    }
                                   },
                                   pathType: 'property',
                                   type: 'JsdocTypeNamePath'

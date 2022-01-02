@@ -14,6 +14,7 @@ import { Grammar } from './Grammar'
 import { StringValueParslet } from '../parslets/StringValueParslet'
 import { NumberParslet } from '../parslets/NumberParslet'
 import { OptionalParslet } from '../parslets/OptionalParslet'
+import { pathGrammar } from './pathGrammar'
 
 export const closureGrammar = combineGrammars(baseGrammar, () => {
   const objectFieldGrammar: Grammar = () => ({
@@ -60,12 +61,14 @@ export const closureGrammar = combineGrammars(baseGrammar, () => {
         allowedAdditionalTokens: ['keyof']
       }),
       new SpecialNamePathParslet({
-        allowedTypes: ['module']
+        allowedTypes: ['module'],
+        pathGrammar
       })
     ],
     infixParslets: [
       new NamePathParslet({
-        allowJsdocNamePaths: true
+        allowJsdocNamePaths: true,
+        pathGrammar
       }),
       new KeyValueParslet({
         allowKeyTypes: false,

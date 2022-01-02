@@ -62,14 +62,20 @@ describe('catharsis basic tests', () => {
           },
           right: {
             type: 'JsdocTypeProperty',
-            value: 'ui'
+            value: 'ui',
+            meta: {
+              quote: undefined
+            }
           },
           type: 'JsdocTypeNamePath',
           pathType: 'property'
         },
         right: {
           type: 'JsdocTypeProperty',
-          value: 'Menu'
+          value: 'Menu',
+          meta: {
+            quote: undefined
+          }
         },
         type: 'JsdocTypeNamePath',
         pathType: 'property'
@@ -103,14 +109,20 @@ describe('catharsis basic tests', () => {
           },
           right: {
             type: 'JsdocTypeProperty',
-            value: "'myProp'"
+            value: 'myProp',
+            meta: {
+              quote: 'single'
+            }
           },
           type: 'JsdocTypeNamePath',
           pathType: 'property'
         },
         right: {
           type: 'JsdocTypeProperty',
-          value: 'foo'
+          value: 'foo',
+          meta: {
+            quote: undefined
+          }
         },
         type: 'JsdocTypeNamePath',
         pathType: 'property'
@@ -144,14 +156,20 @@ describe('catharsis basic tests', () => {
           },
           right: {
             type: 'JsdocTypeProperty',
-            value: '"myProp"'
+            value: 'myProp',
+            meta: {
+              quote: 'double'
+            }
           },
           type: 'JsdocTypeNamePath',
           pathType: 'property'
         },
         right: {
           type: 'JsdocTypeProperty',
-          value: 'foo'
+          value: 'foo',
+          meta: {
+            quote: undefined
+          }
         },
         type: 'JsdocTypeNamePath',
         pathType: 'property'
@@ -185,14 +203,20 @@ describe('catharsis basic tests', () => {
           },
           right: {
             type: 'JsdocTypeProperty',
-            value: '"#weirdProp"'
+            value: '#weirdProp',
+            meta: {
+              quote: 'double'
+            }
           },
           type: 'JsdocTypeNamePath',
           pathType: 'property'
         },
         right: {
           type: 'JsdocTypeProperty',
-          value: 'foo'
+          value: 'foo',
+          meta: {
+            quote: undefined
+          }
         },
         type: 'JsdocTypeNamePath',
         pathType: 'property'
@@ -225,7 +249,10 @@ describe('catharsis basic tests', () => {
         },
         right: {
           type: 'JsdocTypeProperty',
-          value: '12345'
+          value: '12345',
+          meta: {
+            quote: undefined
+          }
         },
         type: 'JsdocTypeNamePath',
         pathType: 'property'
@@ -685,7 +712,10 @@ describe('catharsis basic tests', () => {
         },
         right: {
           type: 'JsdocTypeProperty',
-          value: 'myCallback'
+          value: 'myCallback',
+          meta: {
+            quote: undefined
+          }
         },
         pathType: 'inner'
       },

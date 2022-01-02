@@ -22,6 +22,7 @@ import { Grammar } from './Grammar'
 import { NullableInfixParslet, NullablePrefixParslet } from '../parslets/NullableParslets'
 import { NumberParslet } from '../parslets/NumberParslet'
 import { OptionalParslet } from '../parslets/OptionalParslet'
+import { pathGrammar } from './pathGrammar'
 
 export const typescriptGrammar = combineGrammars(baseGrammar, () => {
   const objectFieldGrammar: Grammar = () => ({
@@ -70,7 +71,8 @@ export const typescriptGrammar = combineGrammars(baseGrammar, () => {
         allowedAdditionalTokens: ['event', 'external']
       }),
       new SpecialNamePathParslet({
-        allowedTypes: ['module']
+        allowedTypes: ['module'],
+        pathGrammar
       }),
       new ReadonlyPropertyParslet()
     ],
@@ -78,7 +80,8 @@ export const typescriptGrammar = combineGrammars(baseGrammar, () => {
       new ArrayBracketsParslet(),
       new ArrowFunctionParslet(),
       new NamePathParslet({
-        allowJsdocNamePaths: false
+        allowJsdocNamePaths: false,
+        pathGrammar
       }),
       new KeyValueParslet({
         allowKeyTypes: false,

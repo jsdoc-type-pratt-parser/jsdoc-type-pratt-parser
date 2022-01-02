@@ -37,7 +37,10 @@ describe('catharsis jsdoc tests', () => {
         },
         right: {
           type: 'JsdocTypeProperty',
-          value: 'myMember'
+          value: 'myMember',
+          meta: {
+            quote: undefined
+          }
         },
         pathType: 'instance'
       },
@@ -69,7 +72,10 @@ describe('catharsis jsdoc tests', () => {
         },
         right: {
           type: 'JsdocTypeProperty',
-          value: 'myMember'
+          value: 'myMember',
+          meta: {
+            quote: undefined
+          }
         },
         pathType: 'inner'
       },
@@ -105,19 +111,28 @@ describe('catharsis jsdoc tests', () => {
             },
             right: {
               type: 'JsdocTypeProperty',
-              value: 'myMember'
+              value: 'myMember',
+              meta: {
+                quote: undefined
+              }
             },
             pathType: 'instance'
           },
           right: {
             type: 'JsdocTypeProperty',
-            value: 'yourMember'
+            value: 'yourMember',
+            meta: {
+              quote: undefined
+            }
           },
           pathType: 'instance'
         },
         right: {
           type: 'JsdocTypeProperty',
-          value: 'theirMember'
+          value: 'theirMember',
+          meta: {
+            quote: undefined
+          }
         },
         pathType: 'inner'
       },
@@ -153,7 +168,10 @@ describe('catharsis jsdoc tests', () => {
         },
         right: {
           type: 'JsdocTypeProperty',
-          value: 'Qux'
+          value: 'Qux',
+          meta: {
+            quote: undefined
+          }
         },
         pathType: 'inner'
       },
@@ -190,7 +208,10 @@ describe('catharsis jsdoc tests', () => {
         },
         right: {
           type: 'JsdocTypeProperty',
-          value: 'Qux'
+          value: 'Qux',
+          meta: {
+            quote: undefined
+          }
         },
         pathType: 'inner'
       },
@@ -438,14 +459,20 @@ describe('catharsis jsdoc tests', () => {
           },
           right: {
             type: 'JsdocTypeProperty',
-            value: '"bar.baz"'
+            value: 'bar.baz',
+            meta: {
+              quote: 'double'
+            }
           },
           type: 'JsdocTypeNamePath',
           pathType: 'property'
         },
         right: {
           type: 'JsdocTypeProperty',
-          value: 'qux'
+          value: 'qux',
+          meta: {
+            quote: undefined
+          }
         },
         type: 'JsdocTypeNamePath',
         pathType: 'property'
@@ -479,14 +506,20 @@ describe('catharsis jsdoc tests', () => {
           },
           right: {
             type: 'JsdocTypeProperty',
-            value: "'bar.baz'"
+            value: 'bar.baz',
+            meta: {
+              quote: 'single'
+            }
           },
           type: 'JsdocTypeNamePath',
           pathType: 'property'
         },
         right: {
           type: 'JsdocTypeProperty',
-          value: 'qux'
+          value: 'qux',
+          meta: {
+            quote: undefined
+          }
         },
         type: 'JsdocTypeNamePath',
         pathType: 'property'
@@ -1081,14 +1114,20 @@ describe('catharsis jsdoc tests', () => {
                   },
                   right: {
                     type: 'JsdocTypeProperty',
-                    value: 'namespace'
+                    value: 'namespace',
+                    meta: {
+                      quote: undefined
+                    }
                   },
                   type: 'JsdocTypeNamePath',
                   pathType: 'property'
                 },
                 right: {
                   type: 'JsdocTypeProperty',
-                  value: 'Class'
+                  value: 'Class',
+                  meta: {
+                    quote: undefined
+                  }
                 },
                 type: 'JsdocTypeNamePath',
                 pathType: 'property'
@@ -1101,7 +1140,10 @@ describe('catharsis jsdoc tests', () => {
               },
               right: {
                 type: 'JsdocTypeProperty',
-                value: 'Class'
+                value: 'Class',
+                meta: {
+                  quote: undefined
+                }
               },
               type: 'JsdocTypeNamePath',
               pathType: 'property'

@@ -3,18 +3,21 @@ import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
 import { Parser } from '../Parser'
 import { SpecialNamePath, SpecialNamePathType, TerminalResult } from '../result/TerminalResult'
-import { moduleGrammar } from '../grammars/moduleGrammar'
 import { assertTerminal } from '../assertTypes'
+import { Grammar } from '../grammars/Grammar'
 
 interface SpecialNamePathParsletOptions {
   allowedTypes: SpecialNamePathType[]
+  pathGrammar: Grammar
 }
 
 export class SpecialNamePathParslet implements PrefixParslet {
   private readonly allowedTypes: SpecialNamePathType[]
+  private readonly pathGrammar: Grammar
 
-  constructor (opts: SpecialNamePathParsletOptions) {
-    this.allowedTypes = opts.allowedTypes
+  constructor ({ pathGrammar, allowedTypes }: SpecialNamePathParsletOptions) {
+    this.pathGrammar = pathGrammar
+    this.allowedTypes = allowedTypes
   }
 
   accepts (type: TokenType, next: TokenType): boolean {
@@ -36,7 +39,7 @@ export class SpecialNamePathParslet implements PrefixParslet {
     }
 
     const moduleParser = new Parser({
-      grammar: moduleGrammar,
+      grammar: this.pathGrammar,
       lexer: parser.getLexer()
     })
 

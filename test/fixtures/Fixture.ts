@@ -64,7 +64,9 @@ function testParser (mode: ParseMode, fixture: Fixture): TerminalResult | undefi
     }
   } else {
     it(`fails to parse in '${mode}' mode`, () => {
-      expect(() => parse(fixture.input, mode)).to.throw()
+      expect(() => {
+        parse(fixture.input, mode)
+      }).to.throw()
     })
   }
 }

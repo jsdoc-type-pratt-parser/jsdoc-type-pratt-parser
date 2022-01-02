@@ -433,7 +433,10 @@ describe('catharsis type application tests', () => {
           },
           right: {
             type: 'JsdocTypeProperty',
-            value: 'Promise'
+            value: 'Promise',
+            meta: {
+              quote: undefined
+            }
           },
           pathType: 'property',
           type: 'JsdocTypeNamePath'
