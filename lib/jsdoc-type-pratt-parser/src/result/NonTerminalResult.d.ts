@@ -35,4 +35,7 @@ export interface JsdocObjectKeyValueResult {
 export interface PropertyResult {
     type: 'JsdocTypeProperty';
     value: string;
+    meta: {
+        quote: QuoteStyle | undefined;
+    };
 }
