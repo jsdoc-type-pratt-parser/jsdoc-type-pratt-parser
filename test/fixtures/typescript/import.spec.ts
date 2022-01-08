@@ -105,7 +105,10 @@ describe('typescript import tests', () => {
         },
         right: {
           type: 'JsdocTypeProperty',
-          value: 'T'
+          value: 'T',
+          meta: {
+            quote: undefined
+          }
         },
         pathType: 'property'
       },
@@ -144,13 +147,19 @@ describe('typescript import tests', () => {
           },
           right: {
             type: 'JsdocTypeProperty',
-            value: 'T'
+            value: 'T',
+            meta: {
+              quote: undefined
+            }
           },
           pathType: 'property'
         },
         right: {
           type: 'JsdocTypeProperty',
-          value: 'U'
+          value: 'U',
+          meta: {
+            quote: undefined
+          }
         },
         pathType: 'property'
       },
@@ -192,13 +201,19 @@ describe('typescript import tests', () => {
             },
             right: {
               type: 'JsdocTypeProperty',
-              value: 'T'
+              value: 'T',
+              meta: {
+                quote: undefined
+              }
             },
             pathType: 'property'
           },
           right: {
             type: 'JsdocTypeProperty',
-            value: 'U'
+            value: 'U',
+            meta: {
+              quote: undefined
+            }
           },
           pathType: 'property'
         },

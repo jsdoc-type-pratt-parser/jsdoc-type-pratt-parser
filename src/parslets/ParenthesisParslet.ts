@@ -1,21 +1,11 @@
-import { PrefixParslet } from './Parslet'
-import { TokenType } from '../lexer/Token'
+import { composeParslet } from './Parslet'
 import { Precedence } from '../Precedence'
 import { assertTerminal, isPlainKeyValue } from '../assertTypes'
-import { Parser } from '../Parser'
-import { ParenthesisResult } from '../result/TerminalResult'
-import { ParameterList } from '../result/IntermediateResult'
 
-export class ParenthesisParslet implements PrefixParslet {
-  accepts (type: TokenType, next: TokenType): boolean {
-    return type === '('
-  }
-
-  getPrecedence (): Precedence {
-    return Precedence.PARENTHESIS
-  }
-
-  parsePrefix (parser: Parser): ParenthesisResult | ParameterList {
+export const parenthesisParslet = composeParslet({
+  name: 'parenthesisParslet',
+  accept: type => type === '(',
+  parsePrefix: parser => {
     parser.consume('(')
     if (parser.consume(')')) {
       return {
@@ -40,4 +30,4 @@ export class ParenthesisParslet implements PrefixParslet {
       element: assertTerminal(result)
     }
   }
-}
+})

@@ -1,23 +1,14 @@
-import { PrefixParslet } from './Parslet'
-import { TokenType } from '../lexer/Token'
+import { composeParslet } from './Parslet'
 import { Precedence } from '../Precedence'
-import { Parser } from '../Parser'
-import { IntermediateResult } from '../result/IntermediateResult'
 
-export class ReadonlyPropertyParslet implements PrefixParslet {
-  accepts (type: TokenType, next: TokenType): boolean {
-    return type === 'readonly'
-  }
-
-  getPrecedence (): Precedence {
-    return Precedence.PREFIX
-  }
-
-  parsePrefix (parser: Parser): IntermediateResult {
+export const readonlyPropertyParslet = composeParslet({
+  name: 'readonlyPropertyParslet',
+  accept: type => type === 'readonly',
+  parsePrefix: parser => {
     parser.consume('readonly')
     return {
       type: 'JsdocTypeReadonlyProperty',
       element: parser.parseType(Precedence.KEY_VALUE)
     }
   }
-}
+})

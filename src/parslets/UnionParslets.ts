@@ -1,21 +1,12 @@
-import { InfixParslet } from './Parslet'
-import { TokenType } from '../lexer/Token'
+import { composeParslet } from './Parslet'
 import { Precedence } from '../Precedence'
 import { assertTerminal } from '../assertTypes'
-import { Parser } from '../Parser'
-import { IntermediateResult } from '../result/IntermediateResult'
-import { TerminalResult } from '../result/TerminalResult'
 
-export class UnionParslet implements InfixParslet {
-  accepts (type: TokenType): boolean {
-    return type === '|'
-  }
-
-  getPrecedence (): Precedence {
-    return Precedence.UNION
-  }
-
-  parseInfix (parser: Parser, left: IntermediateResult): TerminalResult {
+export const unionParslet = composeParslet({
+  name: 'unionParslet',
+  accept: type => type === '|',
+  precedence: Precedence.UNION,
+  parseInfix: (parser, left) => {
     parser.consume('|')
 
     const elements = []
@@ -28,4 +19,4 @@ export class UnionParslet implements InfixParslet {
       elements: [assertTerminal(left), ...elements]
     }
   }
-}
+})

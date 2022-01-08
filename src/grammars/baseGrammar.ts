@@ -1,33 +1,25 @@
-import { UnionParslet } from '../parslets/UnionParslets'
-import { SpecialTypesParslet } from '../parslets/SpecialTypesParslet'
-import { GenericParslet } from '../parslets/GenericParslet'
-import { ParenthesisParslet } from '../parslets/ParenthesisParslet'
-import { NumberParslet } from '../parslets/NumberParslet'
-import { ParameterListParslet } from '../parslets/ParameterListParslet'
-import { NullableInfixParslet, NullablePrefixParslet } from '../parslets/NullableParslets'
-import { OptionalParslet } from '../parslets/OptionalParslet'
-import { NotNullableParslet } from '../parslets/NotNullableParslet'
 import { Grammar } from './Grammar'
+import { nullableParslet } from '../parslets/NullableParslets'
+import { optionalParslet } from '../parslets/OptionalParslet'
+import { numberParslet } from '../parslets/NumberParslet'
+import { parenthesisParslet } from '../parslets/ParenthesisParslet'
+import { specialTypesParslet } from '../parslets/SpecialTypesParslet'
+import { notNullableParslet } from '../parslets/NotNullableParslet'
+import { createParameterListParslet } from '../parslets/ParameterListParslet'
+import { genericParslet } from '../parslets/GenericParslet'
+import { unionParslet } from '../parslets/UnionParslets'
 
-export const baseGrammar: Grammar = () => {
-  return {
-    prefixParslets: [
-      new NullablePrefixParslet(),
-      new OptionalParslet(),
-      new NumberParslet(),
-      new ParenthesisParslet(),
-      new SpecialTypesParslet(),
-      new NotNullableParslet()
-    ],
-    infixParslets: [
-      new ParameterListParslet({
-        allowTrailingComma: true
-      }),
-      new GenericParslet(),
-      new UnionParslet(),
-      new OptionalParslet(),
-      new NullableInfixParslet(),
-      new NotNullableParslet()
-    ]
-  }
-}
+export const baseGrammar: Grammar = [
+  nullableParslet,
+  optionalParslet,
+  numberParslet,
+  parenthesisParslet,
+  specialTypesParslet,
+  notNullableParslet,
+  createParameterListParslet({
+    allowTrailingComma: true
+  }),
+  genericParslet,
+  unionParslet,
+  optionalParslet
+]

@@ -1,7 +1,6 @@
 import { EarlyEndOfParseError, NoParsletFoundError } from './errors'
 import { Token, TokenType } from './lexer/Token'
 import { Lexer } from './lexer/Lexer'
-import { InfixParslet, PrefixParslet } from './parslets/Parslet'
 import { Grammar } from './grammars/Grammar'
 import { assertTerminal } from './assertTypes'
 import { Precedence } from './Precedence'
@@ -15,8 +14,7 @@ interface ParserOptions {
 }
 
 export class Parser {
-  private readonly prefixParslets: PrefixParslet[]
-  private readonly infixParslets: InfixParslet[]
+  private readonly grammar: Grammar
 
   private readonly lexer: Lexer
   private readonly parent?: Parser
@@ -26,14 +24,7 @@ export class Parser {
 
     this.parent = parent
 
-    const {
-      prefixParslets,
-      infixParslets
-    } = grammar()
-
-    this.prefixParslets = prefixParslets
-
-    this.infixParslets = infixParslets
+    this.grammar = grammar
   }
 
   parseText (text: string): TerminalResult {
@@ -45,42 +36,36 @@ export class Parser {
     return result
   }
 
-  getPrefixParslet (): PrefixParslet | undefined {
-    return this.prefixParslets.find(p => p.accepts(this.getToken().type, this.peekToken().type))
-  }
-
-  getInfixParslet (precedence: Precedence): InfixParslet | undefined {
-    return this.infixParslets.find(p => {
-      return p.getPrecedence() > precedence && p.accepts(this.getToken().type, this.peekToken().type)
-    })
-  }
-
-  public canParseType (): boolean {
-    return this.getPrefixParslet() !== undefined
-  }
-
   public parseType (precedence: Precedence): TerminalResult {
     return assertTerminal(this.parseIntermediateType(precedence))
   }
 
-  public parseIntermediateType (precedence: Precedence): IntermediateResult {
-    const parslet = this.getPrefixParslet()
+  private tryParslets (precedence: Precedence, left: IntermediateResult | null): IntermediateResult | null {
+    for (const parslet of this.grammar) {
+      const result = parslet(this, precedence, left)
+      if (result !== null) {
+        return result
+      }
+    }
+    return null
+  }
 
-    if (parslet === undefined) {
+  public parseIntermediateType (precedence: Precedence): IntermediateResult {
+    const result = this.tryParslets(precedence, null)
+
+    if (result === null) {
       throw new NoParsletFoundError(this.getToken())
     }
-
-    const result = parslet.parsePrefix(this)
 
     return this.parseInfixIntermediateType(result, precedence)
   }
 
   public parseInfixIntermediateType (result: IntermediateResult, precedence: Precedence): IntermediateResult {
-    let parslet = this.getInfixParslet(precedence)
+    let newResult = this.tryParslets(precedence, result)
 
-    while (parslet !== undefined) {
-      result = parslet.parseInfix(this, result)
-      parslet = this.getInfixParslet(precedence)
+    while (newResult !== null) {
+      result = newResult
+      newResult = this.tryParslets(precedence, result)
     }
 
     return result

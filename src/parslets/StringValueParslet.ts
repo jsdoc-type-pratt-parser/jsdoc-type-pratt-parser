@@ -1,19 +1,9 @@
-import { PrefixParslet } from './Parslet'
-import { TokenType } from '../lexer/Token'
-import { Parser } from '../Parser'
-import { Precedence } from '../Precedence'
-import { StringValueResult } from '../result/TerminalResult'
+import { composeParslet } from './Parslet'
 
-export class StringValueParslet implements PrefixParslet {
-  accepts (type: TokenType): boolean {
-    return type === 'StringValue'
-  }
-
-  getPrecedence (): Precedence {
-    return Precedence.PREFIX
-  }
-
-  parsePrefix (parser: Parser): StringValueResult {
+export const stringValueParslet = composeParslet({
+  name: 'stringValueParslet',
+  accept: type => type === 'StringValue',
+  parsePrefix: parser => {
     const token = parser.getToken()
     parser.consume('StringValue')
     return {
@@ -24,4 +14,4 @@ export class StringValueParslet implements PrefixParslet {
       }
     }
   }
-}
+})

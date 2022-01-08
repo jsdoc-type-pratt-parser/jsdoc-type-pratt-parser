@@ -1,80 +1,85 @@
-import { PrefixParslet } from './Parslet'
-import { TokenType } from '../lexer/Token'
-import { Parser } from '../Parser'
+import { composeParslet, ParsletFunction } from './Parslet'
 import { Precedence } from '../Precedence'
-import { BaseFunctionParslet } from './BaseFunctionParslet'
 import { FunctionResult, TerminalResult } from '../result/TerminalResult'
+import { IntermediateResult } from '../result/IntermediateResult'
+import { KeyValueResult, NonTerminalResult } from '../result/NonTerminalResult'
+import { UnexpectedTypeError } from '../errors'
+import { assertPlainKeyValueOrTerminal } from '../assertTypes'
 
-export interface FunctionParsletOptions {
+export function getParameters (value: IntermediateResult): Array<TerminalResult | KeyValueResult> {
+  let parameters: NonTerminalResult[]
+  if (value.type === 'JsdocTypeParameterList') {
+    parameters = value.elements
+  } else if (value.type === 'JsdocTypeParenthesis') {
+    parameters = [value.element]
+  } else {
+    throw new UnexpectedTypeError(value)
+  }
+
+  return parameters.map(p => assertPlainKeyValueOrTerminal(p))
+}
+
+export function getUnnamedParameters (value: IntermediateResult): TerminalResult[] {
+  const parameters = getParameters(value)
+  if (parameters.some(p => p.type === 'JsdocTypeKeyValue')) {
+    throw new Error('No parameter should be named')
+  }
+  return parameters as TerminalResult[]
+}
+
+export function createFunctionParslet ({ allowNamedParameters, allowNoReturnType, allowWithoutParenthesis }: {
   allowNamedParameters?: string[]
   allowWithoutParenthesis: boolean
   allowNoReturnType: boolean
-}
+}): ParsletFunction {
+  return composeParslet({
+    name: 'functionParslet',
+    accept: type => type === 'function',
+    parsePrefix: parser => {
+      parser.consume('function')
 
-export class FunctionParslet extends BaseFunctionParslet implements PrefixParslet {
-  private readonly allowWithoutParenthesis: boolean
-  private readonly allowNamedParameters?: string[]
-  private readonly allowNoReturnType: boolean
+      const hasParenthesis = parser.getToken().type === '('
 
-  constructor (options: FunctionParsletOptions) {
-    super()
-    this.allowWithoutParenthesis = options.allowWithoutParenthesis
-    this.allowNamedParameters = options.allowNamedParameters
-    this.allowNoReturnType = options.allowNoReturnType
-  }
+      if (!hasParenthesis) {
+        if (!allowWithoutParenthesis) {
+          throw new Error('function is missing parameter list')
+        }
 
-  accepts (type: TokenType): boolean {
-    return type === 'function'
-  }
-
-  getPrecedence (): Precedence {
-    return Precedence.FUNCTION
-  }
-
-  parsePrefix (parser: Parser): TerminalResult {
-    parser.consume('function')
-
-    const hasParenthesis = parser.getToken().type === '('
-
-    if (!hasParenthesis) {
-      if (!this.allowWithoutParenthesis) {
-        throw new Error('function is missing parameter list')
-      }
-
-      return {
-        type: 'JsdocTypeName',
-        value: 'function'
-      }
-    }
-
-    const result: FunctionResult = {
-      type: 'JsdocTypeFunction',
-      parameters: [],
-      arrow: false,
-      parenthesis: hasParenthesis
-    }
-
-    const value = parser.parseIntermediateType(Precedence.FUNCTION)
-
-    if (this.allowNamedParameters === undefined) {
-      result.parameters = this.getUnnamedParameters(value)
-    } else {
-      result.parameters = this.getParameters(value)
-      for (const p of result.parameters) {
-        if (p.type === 'JsdocTypeKeyValue' && (!this.allowNamedParameters.includes(p.key) || p.meta.quote !== undefined)) {
-          throw new Error(`only allowed named parameters are ${this.allowNamedParameters.join(',')} but got ${p.type}`)
+        return {
+          type: 'JsdocTypeName',
+          value: 'function'
         }
       }
-    }
 
-    if (parser.consume(':')) {
-      result.returnType = parser.parseType(Precedence.PREFIX)
-    } else {
-      if (!this.allowNoReturnType) {
-        throw new Error('function is missing return type')
+      const result: FunctionResult = {
+        type: 'JsdocTypeFunction',
+        parameters: [],
+        arrow: false,
+        parenthesis: hasParenthesis
       }
-    }
 
-    return result
-  }
+      const value = parser.parseIntermediateType(Precedence.FUNCTION)
+
+      if (allowNamedParameters === undefined) {
+        result.parameters = getUnnamedParameters(value)
+      } else {
+        result.parameters = getParameters(value)
+        for (const p of result.parameters) {
+          if (p.type === 'JsdocTypeKeyValue' && (!allowNamedParameters.includes(p.key) || p.meta.quote !== undefined)) {
+            throw new Error(`only allowed named parameters are ${allowNamedParameters.join(',')} but got ${p.type}`)
+          }
+        }
+      }
+
+      if (parser.consume(':')) {
+        result.returnType = parser.parseType(Precedence.PREFIX)
+      } else {
+        if (!allowNoReturnType) {
+          throw new Error('function is missing return type')
+        }
+      }
+
+      return result
+    }
+  })
 }

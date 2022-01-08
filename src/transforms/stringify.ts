@@ -52,8 +52,18 @@ export function stringifyRules (): TransformRules<string> {
       : applyPosition(result.meta.position, transform(result.element as NonTerminalResult), '...'),
 
     JsdocTypeNamePath: (result, transform) => {
-      const joiner = result.pathType === 'inner' ? '~' : result.pathType === 'instance' ? '#' : '.'
-      return `${transform(result.left)}${joiner}${transform(result.right)}`
+      const left = transform(result.left)
+      const right = transform(result.right)
+      switch (result.pathType) {
+        case 'inner':
+          return `${left}~${right}`
+        case 'instance':
+          return `${left}#${right}`
+        case 'property':
+          return `${left}.${right}`
+        case 'property-brackets':
+          return `${left}[${right}]`
+      }
     },
 
     JsdocTypeStringValue: result => quote(result.value, result.meta.quote),
@@ -123,7 +133,7 @@ export function stringifyRules (): TransformRules<string> {
 
     JsdocTypeIntersection: (result, transform) => result.elements.map(transform).join(' & '),
 
-    JsdocTypeProperty: result => result.value
+    JsdocTypeProperty: result => quote(result.value, result.meta.quote)
   }
 }
 

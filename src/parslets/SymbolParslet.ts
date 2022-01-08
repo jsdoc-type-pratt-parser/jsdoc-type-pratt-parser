@@ -1,21 +1,13 @@
-import { InfixParslet } from './Parslet'
-import { TokenType } from '../lexer/Token'
+import { composeParslet } from './Parslet'
 import { Precedence } from '../Precedence'
 import { assertNumberOrVariadicName } from '../assertTypes'
-import { Parser } from '../Parser'
-import { IntermediateResult } from '../result/IntermediateResult'
-import { SymbolResult, TerminalResult } from '../result/TerminalResult'
+import { SymbolResult } from '../result/TerminalResult'
 
-export class SymbolParslet implements InfixParslet {
-  accepts (type: TokenType): boolean {
-    return type === '('
-  }
-
-  getPrecedence (): Precedence {
-    return Precedence.SYMBOL
-  }
-
-  parseInfix (parser: Parser, left: IntermediateResult): TerminalResult {
+export const symbolParslet = composeParslet({
+  name: 'symbolParslet',
+  accept: type => type === '(',
+  precedence: Precedence.SYMBOL,
+  parseInfix: (parser, left) => {
     if (left.type !== 'JsdocTypeName') {
       throw new Error('Symbol expects a name on the left side. (Reacting on \'(\')')
     }
@@ -34,4 +26,4 @@ export class SymbolParslet implements InfixParslet {
 
     return result
   }
-}
+})

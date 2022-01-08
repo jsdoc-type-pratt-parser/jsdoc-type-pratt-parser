@@ -197,7 +197,7 @@ export interface NamePathResult {
   type: 'JsdocTypeNamePath'
   left: TerminalResult
   right: PropertyResult | SpecialNamePath<'event'>
-  pathType: 'inner' | 'instance' | 'property'
+  pathType: 'inner' | 'instance' | 'property' | 'property-brackets'
 }
 
 /**

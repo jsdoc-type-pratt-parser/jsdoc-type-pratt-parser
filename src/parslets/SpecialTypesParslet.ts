@@ -1,20 +1,11 @@
-import { PrefixParslet } from './Parslet'
-import { TokenType } from '../lexer/Token'
-import { Parser } from '../Parser'
-import { Precedence } from '../Precedence'
+import { composeParslet } from './Parslet'
 import { isQuestionMarkUnknownType } from './isQuestionMarkUnkownType'
-import { TerminalResult } from '../result/TerminalResult'
 
-export class SpecialTypesParslet implements PrefixParslet {
-  accepts (type: TokenType, next: TokenType): boolean {
-    return (type === '?' && isQuestionMarkUnknownType(next)) || type === 'null' || type === 'undefined' || type === '*'
-  }
-
-  getPrecedence (): Precedence {
-    return Precedence.SPECIAL_TYPES
-  }
-
-  parsePrefix (parser: Parser): TerminalResult {
+export const specialTypesParslet = composeParslet({
+  name: 'specialTypesParslet',
+  accept: (type, next) => (type === '?' && isQuestionMarkUnknownType(next)) ||
+    type === 'null' || type === 'undefined' || type === '*',
+  parsePrefix: parser => {
     if (parser.consume('null')) {
       return {
         type: 'JsdocTypeNull'
@@ -41,4 +32,4 @@ export class SpecialTypesParslet implements PrefixParslet {
 
     throw new Error('Unacceptable token: ' + parser.getToken().text)
   }
-}
+})

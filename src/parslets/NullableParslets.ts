@@ -1,23 +1,22 @@
-import { InfixParslet, PrefixParslet } from './Parslet'
-import { TokenType } from '../lexer/Token'
+import { ParsletFunction } from './Parslet'
 import { Precedence } from '../Precedence'
 import { isQuestionMarkUnknownType } from './isQuestionMarkUnkownType'
 import { assertTerminal } from '../assertTypes'
-import { Parser } from '../Parser'
-import { IntermediateResult } from '../result/IntermediateResult'
-import { TerminalResult } from '../result/TerminalResult'
 
-export class NullablePrefixParslet implements PrefixParslet {
-  accepts (type: TokenType, next: TokenType): boolean {
-    return type === '?' && !isQuestionMarkUnknownType(next)
+export const nullableParslet: ParsletFunction = (parser, precedence, left) => {
+  const type = parser.getLexer().token().type
+  const next = parser.getLexer().peek().type
+
+  const accept = ((left == null) && type === '?' && !isQuestionMarkUnknownType(next)) ||
+    ((left != null) && type === '?')
+
+  if (!accept) {
+    return null
   }
 
-  getPrecedence (): Precedence {
-    return Precedence.NULLABLE
-  }
+  parser.consume('?')
 
-  parsePrefix (parser: Parser): TerminalResult {
-    parser.consume('?')
+  if (left == null) {
     return {
       type: 'JsdocTypeNullable',
       element: parser.parseType(Precedence.NULLABLE),
@@ -25,20 +24,7 @@ export class NullablePrefixParslet implements PrefixParslet {
         position: 'prefix'
       }
     }
-  }
-}
-
-export class NullableInfixParslet implements InfixParslet {
-  accepts (type: TokenType, next: TokenType): boolean {
-    return type === '?'
-  }
-
-  getPrecedence (): Precedence {
-    return Precedence.NULLABLE
-  }
-
-  parseInfix (parser: Parser, left: IntermediateResult): TerminalResult {
-    parser.consume('?')
+  } else {
     return {
       type: 'JsdocTypeNullable',
       element: assertTerminal(left),

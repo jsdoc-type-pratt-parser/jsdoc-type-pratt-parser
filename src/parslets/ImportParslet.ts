@@ -1,19 +1,10 @@
-import { PrefixParslet } from './Parslet'
-import { TokenType } from '../lexer/Token'
-import { Parser } from '../Parser'
+import { composeParslet } from './Parslet'
 import { Precedence } from '../Precedence'
-import { TerminalResult } from '../result/TerminalResult'
 
-export class ImportParslet implements PrefixParslet {
-  accepts (type: TokenType, next: TokenType): boolean {
-    return type === 'import'
-  }
-
-  getPrecedence (): Precedence {
-    return Precedence.PREFIX
-  }
-
-  parsePrefix (parser: Parser): TerminalResult {
+export const importParslet = composeParslet({
+  name: 'importParslet',
+  accept: type => type === 'import',
+  parsePrefix: parser => {
     parser.consume('import')
     if (!parser.consume('(')) {
       throw new Error('Missing parenthesis after import keyword')
@@ -30,4 +21,4 @@ export class ImportParslet implements PrefixParslet {
       element: path
     }
   }
-}
+})

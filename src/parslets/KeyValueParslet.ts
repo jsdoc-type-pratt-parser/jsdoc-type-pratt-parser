@@ -1,88 +1,69 @@
-import { InfixParslet } from './Parslet'
-import { TokenType } from '../lexer/Token'
+import { composeParslet, ParsletFunction } from './Parslet'
 import { Precedence } from '../Precedence'
-import { Parser } from '../Parser'
-import { JsdocObjectKeyValueResult, KeyValueResult } from '../result/NonTerminalResult'
 import { assertTerminal } from '../assertTypes'
 import { UnexpectedTypeError } from '../errors'
-import { IntermediateResult } from '../result/IntermediateResult'
 
-interface KeyValueParsletOptions {
+export function createKeyValueParslet ({ allowKeyTypes, allowReadonly, allowOptional }: {
   allowKeyTypes: boolean
   allowOptional: boolean
   allowReadonly: boolean
-}
+}): ParsletFunction {
+  return composeParslet({
+    name: 'keyValueParslet',
+    precedence: Precedence.KEY_VALUE,
+    accept: type => type === ':',
+    parseInfix: (parser, left) => {
+      let optional = false
+      let readonlyProperty = false
 
-export class KeyValueParslet implements InfixParslet {
-  private readonly allowKeyTypes: boolean
-  private readonly allowOptional: boolean
-  private readonly allowReadonly: boolean
-
-  constructor (opts: KeyValueParsletOptions) {
-    this.allowKeyTypes = opts.allowKeyTypes
-    this.allowOptional = opts.allowOptional
-    this.allowReadonly = opts.allowReadonly
-  }
-
-  accepts (type: TokenType, next: TokenType): boolean {
-    return type === ':'
-  }
-
-  getPrecedence (): Precedence {
-    return Precedence.KEY_VALUE
-  }
-
-  parseInfix (parser: Parser, left: IntermediateResult): KeyValueResult | JsdocObjectKeyValueResult {
-    let optional = false
-    let readonlyProperty = false
-
-    if (this.allowOptional && left.type === 'JsdocTypeNullable') {
-      optional = true
-      left = left.element
-    }
-
-    if (this.allowReadonly && left.type === 'JsdocTypeReadonlyProperty') {
-      readonlyProperty = true
-      left = left.element
-    }
-
-    // object parslet uses a special grammar and for the value we want to switch back to the parent
-    parser = parser.getParent() ?? parser
-
-    if (left.type === 'JsdocTypeNumber' || left.type === 'JsdocTypeName' || left.type === 'JsdocTypeStringValue') {
-      parser.consume(':')
-
-      let quote
-      if (left.type === 'JsdocTypeStringValue') {
-        quote = left.meta.quote
+      if (allowOptional && left.type === 'JsdocTypeNullable') {
+        optional = true
+        left = left.element
       }
 
-      return {
-        type: 'JsdocTypeKeyValue',
-        key: left.value.toString(),
-        right: parser.parseType(Precedence.KEY_VALUE),
-        optional: optional,
-        readonly: readonlyProperty,
-        meta: {
-          quote,
-          hasLeftSideExpression: false
+      if (allowReadonly && left.type === 'JsdocTypeReadonlyProperty') {
+        readonlyProperty = true
+        left = left.element
+      }
+
+      // object parslet uses a special grammar and for the value we want to switch back to the parent
+      parser = parser.getParent() ?? parser
+
+      if (left.type === 'JsdocTypeNumber' || left.type === 'JsdocTypeName' || left.type === 'JsdocTypeStringValue') {
+        parser.consume(':')
+
+        let quote
+        if (left.type === 'JsdocTypeStringValue') {
+          quote = left.meta.quote
         }
-      }
-    } else {
-      if (!this.allowKeyTypes) {
-        throw new UnexpectedTypeError(left)
-      }
 
-      parser.consume(':')
+        return {
+          type: 'JsdocTypeKeyValue',
+          key: left.value.toString(),
+          right: parser.parseType(Precedence.KEY_VALUE),
+          optional: optional,
+          readonly: readonlyProperty,
+          meta: {
+            quote,
+            hasLeftSideExpression: false
+          }
+        }
+      } else {
+        if (!allowKeyTypes) {
+          throw new UnexpectedTypeError(left)
+        }
 
-      return {
-        type: 'JsdocTypeKeyValue',
-        left: assertTerminal(left),
-        right: parser.parseType(Precedence.KEY_VALUE),
-        meta: {
-          hasLeftSideExpression: true
+        parser.consume(':')
+
+        return {
+          type: 'JsdocTypeKeyValue',
+          left: assertTerminal(left),
+          right: parser.parseType(Precedence.KEY_VALUE),
+          meta: {
+            hasLeftSideExpression: true
+          }
         }
       }
     }
-  }
+  })
 }

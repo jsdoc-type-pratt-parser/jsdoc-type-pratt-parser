@@ -1,81 +1,105 @@
-import { InfixParslet } from './Parslet'
-import { TokenType } from '../lexer/Token'
+import { ParsletFunction } from './Parslet'
 import { Precedence } from '../Precedence'
 import { assertTerminal } from '../assertTypes'
 import { Parser } from '../Parser'
-import { IntermediateResult } from '../result/IntermediateResult'
-import { NamePathResult, SpecialNamePath, TerminalResult } from '../result/TerminalResult'
-import { PropertyResult } from '..'
+import { NamePathResult, SpecialNamePath } from '../result/TerminalResult'
+import { UnexpectedTypeError } from '../errors'
+import { PropertyResult } from '../result/NonTerminalResult'
+import { Grammar } from '../grammars/Grammar'
 
-interface NamePathParsletOptions {
+export function createNamePathParslet ({ allowJsdocNamePaths, pathGrammar }: {
   allowJsdocNamePaths: boolean
-}
+  pathGrammar: Grammar | null
+}): ParsletFunction {
+  return function namePathParslet (parser, precedence, left) {
+    if ((left == null) || precedence >= Precedence.NAME_PATH) {
+      return null
+    }
+    const type = parser.getLexer().token().type
+    const next = parser.getLexer().peek().type
 
-export class NamePathParslet implements InfixParslet {
-  private readonly allowJsdocNamePaths: boolean
-  private readonly allowedPropertyTokenTypes: TokenType[]
+    const accept = (type === '.' && next !== '<') ||
+      (type === '[' && left.type === 'JsdocTypeName') ||
+      (allowJsdocNamePaths && (type === '~' || type === '#'))
 
-  constructor (opts: NamePathParsletOptions) {
-    this.allowJsdocNamePaths = opts.allowJsdocNamePaths
-    this.allowedPropertyTokenTypes = [
-      'Identifier',
-      'StringValue',
-      'Number',
-      'module'
-    ]
-  }
-
-  accepts (type: TokenType, next: TokenType): boolean {
-    return (type === '.' && next !== '<') || (this.allowJsdocNamePaths && (type === '~' || type === '#'))
-  }
-
-  getPrecedence (): Precedence {
-    return Precedence.NAME_PATH
-  }
-
-  parseInfix (parser: Parser, left: IntermediateResult): TerminalResult {
-    let type: NamePathResult['pathType']
-
-    if (parser.consume('.')) {
-      type = 'property'
-    } else if (parser.consume('~')) {
-      type = 'inner'
-    } else {
-      parser.consume('#')
-      type = 'instance'
+    if (!accept) {
+      return null
     }
 
-    let right: PropertyResult | SpecialNamePath<'event'> | undefined
-    const tokenType = this.allowedPropertyTokenTypes.find(token => parser.getToken().type === token)
-    if (tokenType !== undefined) {
-      const value = parser.getToken().text
-      parser.consume(tokenType)
+    let pathType: NamePathResult['pathType']
+    let brackets = false
 
-      right = {
-        type: 'JsdocTypeProperty',
-        value: value
-      }
+    if (parser.consume('.')) {
+      pathType = 'property'
+    } else if (parser.consume('[')) {
+      pathType = 'property-brackets'
+      brackets = true
+    } else if (parser.consume('~')) {
+      pathType = 'inner'
     } else {
-      const next = parser.parseIntermediateType(Precedence.NAME_PATH)
-      if (next.type === 'JsdocTypeName' && next.value === 'event') {
+      parser.consume('#')
+      pathType = 'instance'
+    }
+
+    const pathParser = pathGrammar !== null
+      ? new Parser({
+        grammar: pathGrammar,
+        lexer: parser.getLexer()
+      })
+      : parser
+
+    const parsed = pathParser.parseIntermediateType(Precedence.NAME_PATH)
+    let right: PropertyResult | SpecialNamePath<'event'>
+
+    switch (parsed.type) {
+      case 'JsdocTypeName':
         right = {
           type: 'JsdocTypeProperty',
-          value: 'event'
+          value: parsed.value,
+          meta: {
+            quote: undefined
+          }
         }
-      } else if (next.type === 'JsdocTypeSpecialNamePath' && next.specialType === 'event') {
-        right = next as SpecialNamePath<'event'>
-      } else {
-        const validTokens = this.allowedPropertyTokenTypes.join(', ')
-        throw new Error(`Unexpected property value. Expecting token of type ${validTokens} or 'event' ` +
-          `name path. Next token is of type: ${parser.getToken().type}`)
-      }
+        break
+      case 'JsdocTypeNumber':
+        right = {
+          type: 'JsdocTypeProperty',
+          value: parsed.value.toString(10),
+          meta: {
+            quote: undefined
+          }
+        }
+        break
+      case 'JsdocTypeStringValue':
+        right = {
+          type: 'JsdocTypeProperty',
+          value: parsed.value,
+          meta: {
+            quote: parsed.meta.quote
+          }
+        }
+        break
+      case 'JsdocTypeSpecialNamePath':
+        if (parsed.specialType === 'event') {
+          right = parsed as SpecialNamePath<'event'>
+        } else {
+          throw new UnexpectedTypeError(parsed, 'Type \'JsdocTypeSpecialNamePath\' is only allowed witch specialType \'event\'')
+        }
+        break
+      default:
+        throw new UnexpectedTypeError(parsed, 'Expecting \'JsdocTypeName\', \'JsdocTypeNumber\', \'JsdocStringValue\' or \'JsdocTypeSpecialNamePath\'')
+    }
+
+    if (brackets && !parser.consume(']')) {
+      throw new Error(`Unterminated square brackets. Next token is '${parser.getToken().type}' ` +
+        `with text '${parser.getToken().text}'`)
     }
 
     return {
       type: 'JsdocTypeNamePath',
       left: assertTerminal(left),
       right,
-      pathType: type
+      pathType: pathType
     }
   }
 }

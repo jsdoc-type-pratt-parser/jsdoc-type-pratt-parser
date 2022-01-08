@@ -1,6 +1,3 @@
-import { InfixParslet, PrefixParslet } from '../parslets/Parslet'
+import { ParsletFunction } from '../parslets/Parslet'
 
-export type Grammar = () => {
-  prefixParslets: PrefixParslet[]
-  infixParslets: InfixParslet[]
-}
+export type Grammar = ParsletFunction[]
