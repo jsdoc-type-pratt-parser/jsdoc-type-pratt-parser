@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v2.0.2...v2.1.0) (2022-01-08)
+
+
+### Features
+
+* add path grammar for NamePathParslet ([9bb29c4](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/9bb29c410814a5712f0f05e37712285b897c0f4b))
+
 ## [2.0.2](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v2.0.1...v2.0.2) (2021-12-28)
 
 
