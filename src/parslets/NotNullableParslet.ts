@@ -1,21 +1,12 @@
-import { InfixParslet, PrefixParslet } from './Parslet'
-import { TokenType } from '../lexer/Token'
+import { composeParslet } from './Parslet'
 import { Precedence } from '../Precedence'
 import { assertTerminal } from '../assertTypes'
-import { Parser } from '../Parser'
-import { IntermediateResult } from '../result/IntermediateResult'
-import { TerminalResult } from '../result/TerminalResult'
 
-export class NotNullableParslet implements PrefixParslet, InfixParslet {
-  accepts (type: TokenType, next: TokenType): boolean {
-    return type === '!'
-  }
-
-  getPrecedence (): Precedence {
-    return Precedence.NULLABLE
-  }
-
-  parsePrefix (parser: Parser): TerminalResult {
+export const notNullableParslet = composeParslet({
+  name: 'notNullableParslet',
+  accept: type => type === '!',
+  precedence: Precedence.NULLABLE,
+  parsePrefix: parser => {
     parser.consume('!')
     return {
       type: 'JsdocTypeNotNullable',
@@ -24,9 +15,8 @@ export class NotNullableParslet implements PrefixParslet, InfixParslet {
         position: 'prefix'
       }
     }
-  }
-
-  parseInfix (parser: Parser, left: IntermediateResult): TerminalResult {
+  },
+  parseInfix: (parser, left) => {
     parser.consume('!')
     return {
       type: 'JsdocTypeNotNullable',
@@ -36,4 +26,4 @@ export class NotNullableParslet implements PrefixParslet, InfixParslet {
       }
     }
   }
-}
+})

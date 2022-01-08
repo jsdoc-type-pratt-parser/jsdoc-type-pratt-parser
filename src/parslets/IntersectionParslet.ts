@@ -1,21 +1,12 @@
-import { InfixParslet } from './Parslet'
-import { TokenType } from '../lexer/Token'
+import { composeParslet } from './Parslet'
 import { Precedence } from '../Precedence'
 import { assertTerminal } from '../assertTypes'
-import { Parser } from '../Parser'
-import { IntermediateResult } from '../result/IntermediateResult'
-import { TerminalResult } from '../result/TerminalResult'
 
-export class IntersectionParslet implements InfixParslet {
-  accepts (type: TokenType): boolean {
-    return type === '&'
-  }
-
-  getPrecedence (): Precedence {
-    return Precedence.INTERSECTION
-  }
-
-  parseInfix (parser: Parser, left: IntermediateResult): TerminalResult {
+export const intersectionParslet = composeParslet({
+  name: 'intersectionParslet',
+  accept: type => type === '&',
+  precedence: Precedence.INTERSECTION,
+  parseInfix: (parser, left) => {
     parser.consume('&')
 
     const elements = []
@@ -28,4 +19,4 @@ export class IntersectionParslet implements InfixParslet {
       elements: [assertTerminal(left), ...elements]
     }
   }
-}
+})

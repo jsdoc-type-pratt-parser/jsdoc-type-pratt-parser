@@ -1,81 +1,70 @@
 import { baseGrammar } from './baseGrammar'
-import { FunctionParslet } from '../parslets/FunctionParslet'
-import { NamePathParslet } from '../parslets/NamePathParslet'
-import { KeyValueParslet } from '../parslets/KeyValueParslet'
-import { TypeOfParslet } from '../parslets/TypeOfParslet'
-import { VariadicParslet } from '../parslets/VariadicParslet'
-import { NameParslet } from '../parslets/NameParslet'
-import { ObjectParslet } from '../parslets/ObjectParslet'
-import { SpecialNamePathParslet } from '../parslets/SpecialNamePathParslet'
-import { SymbolParslet } from '../parslets/SymbolParslet'
-import { combineGrammars } from './combineGrammars'
-import { NullableInfixParslet, NullablePrefixParslet } from '../parslets/NullableParslets'
-import { Grammar } from './Grammar'
-import { StringValueParslet } from '../parslets/StringValueParslet'
-import { NumberParslet } from '../parslets/NumberParslet'
-import { OptionalParslet } from '../parslets/OptionalParslet'
 import { pathGrammar } from './pathGrammar'
+import { createNameParslet } from '../parslets/NameParslet'
+import { nullableParslet } from '../parslets/NullableParslets'
+import { Grammar } from './Grammar'
+import { optionalParslet } from '../parslets/OptionalParslet'
+import { stringValueParslet } from '../parslets/StringValueParslet'
+import { numberParslet } from '../parslets/NumberParslet'
+import { createKeyValueParslet } from '../parslets/KeyValueParslet'
+import { createObjectParslet } from '../parslets/ObjectParslet'
+import { typeOfParslet } from '../parslets/TypeOfParslet'
+import { createFunctionParslet } from '../parslets/FunctionParslet'
+import { createVariadicParslet } from '../parslets/VariadicParslet'
+import { createSpecialNamePathParslet } from '../parslets/SpecialNamePathParslet'
+import { createNamePathParslet } from '../parslets/NamePathParslet'
+import { symbolParslet } from '../parslets/SymbolParslet'
 
-export const closureGrammar = combineGrammars(baseGrammar, () => {
-  const objectFieldGrammar: Grammar = () => ({
-    prefixParslets: [
-      new NameParslet({
-        allowedAdditionalTokens: ['module', 'keyof', 'event', 'external']
-      }),
-      new NullablePrefixParslet(),
-      new OptionalParslet(),
-      new StringValueParslet(),
-      new NumberParslet()
-    ],
-    infixParslets: [
-      new NullableInfixParslet(),
-      new OptionalParslet(),
-      new KeyValueParslet({
-        allowKeyTypes: false,
-        allowOptional: false,
-        allowReadonly: false
-      })
-    ]
+const objectFieldGrammar: Grammar = [
+  createNameParslet({
+    allowedAdditionalTokens: ['module', 'keyof', 'event', 'external']
+  }),
+  nullableParslet,
+  optionalParslet,
+  stringValueParslet,
+  numberParslet,
+  createKeyValueParslet({
+    allowKeyTypes: false,
+    allowOptional: false,
+    allowReadonly: false
   })
+]
 
-  return {
-    prefixParslets: [
-      new ObjectParslet({
-        allowKeyTypes: false,
-        objectFieldGrammar
-      }),
-      new NameParslet({
-        allowedAdditionalTokens: ['event', 'external']
-      }),
-      new TypeOfParslet(),
-      new FunctionParslet({
-        allowWithoutParenthesis: false,
-        allowNamedParameters: ['this', 'new'],
-        allowNoReturnType: true
-      }),
-      new VariadicParslet({
-        allowEnclosingBrackets: false
-      }),
-      // additional name parslet is needed for some special cases
-      new NameParslet({
-        allowedAdditionalTokens: ['keyof']
-      }),
-      new SpecialNamePathParslet({
-        allowedTypes: ['module'],
-        pathGrammar
-      })
-    ],
-    infixParslets: [
-      new NamePathParslet({
-        allowJsdocNamePaths: true,
-        pathGrammar
-      }),
-      new KeyValueParslet({
-        allowKeyTypes: false,
-        allowOptional: false,
-        allowReadonly: false
-      }),
-      new SymbolParslet()
-    ]
-  }
-})
+export const closureGrammar = [
+  ...baseGrammar,
+  createObjectParslet({
+    allowKeyTypes: false,
+    objectFieldGrammar
+  }),
+  createNameParslet({
+    allowedAdditionalTokens: ['event', 'external']
+  }),
+  typeOfParslet,
+  createFunctionParslet({
+    allowWithoutParenthesis: false,
+    allowNamedParameters: ['this', 'new'],
+    allowNoReturnType: true
+  }),
+  createVariadicParslet({
+    allowEnclosingBrackets: false,
+    allowPostfix: false
+  }),
+  // additional name parslet is needed for some special cases
+  createNameParslet({
+    allowedAdditionalTokens: ['keyof']
+  }),
+  createSpecialNamePathParslet({
+    allowedTypes: ['module'],
+    pathGrammar
+  }),
+  createNamePathParslet({
+    allowJsdocNamePaths: true,
+    pathGrammar
+  }),
+  createKeyValueParslet({
+    allowKeyTypes: false,
+    allowOptional: false,
+    allowReadonly: false
+  }),
+  symbolParslet
+]

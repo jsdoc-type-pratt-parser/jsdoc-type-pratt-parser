@@ -1,35 +1,26 @@
 import { Grammar } from './Grammar'
-import { NameParslet } from '../parslets/NameParslet'
-import { StringValueParslet } from '../parslets/StringValueParslet'
-import { NumberParslet } from '../parslets/NumberParslet'
-import { SpecialNamePathParslet } from '../parslets/SpecialNamePathParslet'
-import { NamePathParslet } from '../parslets/NamePathParslet'
+import { createNamePathParslet } from '../parslets/NamePathParslet'
+import { createNameParslet } from '../parslets/NameParslet'
+import { stringValueParslet } from '../parslets/StringValueParslet'
+import { numberParslet } from '../parslets/NumberParslet'
+import { createSpecialNamePathParslet } from '../parslets/SpecialNamePathParslet'
 
-export const pathGrammar: Grammar = () => {
-  const basePathGrammar = {
-    prefixParslets: [
-      new NameParslet({
-        allowedAdditionalTokens: ['external', 'module']
-      }),
-      new StringValueParslet(),
-      new NumberParslet()
-    ],
-    infixParslets: [
-      new NamePathParslet({
-        allowJsdocNamePaths: true,
-        pathGrammar: null
-      })
-    ]
-  }
+const basePathGrammar: Grammar = [
+  createNameParslet({
+    allowedAdditionalTokens: ['external', 'module']
+  }),
+  stringValueParslet,
+  numberParslet,
+  createNamePathParslet({
+    allowJsdocNamePaths: true,
+    pathGrammar: null
+  })
+]
 
-  return {
-    prefixParslets: [
-      ...basePathGrammar.prefixParslets,
-      new SpecialNamePathParslet({
-        allowedTypes: ['event'],
-        pathGrammar: () => basePathGrammar
-      })
-    ],
-    infixParslets: basePathGrammar.infixParslets
-  }
-}
+export const pathGrammar: Grammar = [
+  ...basePathGrammar,
+  createSpecialNamePathParslet({
+    allowedTypes: ['event'],
+    pathGrammar: basePathGrammar
+  })
+]

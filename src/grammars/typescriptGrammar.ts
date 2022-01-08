@@ -1,94 +1,81 @@
-import { TupleParslet } from '../parslets/TupleParslet'
-import { ArrayBracketsParslet } from '../parslets/ArrayBracketsParslet'
 import { baseGrammar } from './baseGrammar'
-import { TypeOfParslet } from '../parslets/TypeOfParslet'
-import { KeyOfParslet } from '../parslets/KeyOfParslet'
-import { ImportParslet } from '../parslets/ImportParslet'
-import { StringValueParslet } from '../parslets/StringValueParslet'
-import { FunctionParslet } from '../parslets/FunctionParslet'
-import {
-  ArrowFunctionParslet
-} from '../parslets/ArrowFunctionParslet'
-import { NamePathParslet } from '../parslets/NamePathParslet'
-import { KeyValueParslet } from '../parslets/KeyValueParslet'
-import { VariadicParslet } from '../parslets/VariadicParslet'
-import { NameParslet } from '../parslets/NameParslet'
-import { IntersectionParslet } from '../parslets/IntersectionParslet'
-import { ObjectParslet } from '../parslets/ObjectParslet'
-import { SpecialNamePathParslet } from '../parslets/SpecialNamePathParslet'
-import { ReadonlyPropertyParslet } from '../parslets/ReadonlyPropertyParslet'
-import { combineGrammars } from './combineGrammars'
 import { Grammar } from './Grammar'
-import { NullableInfixParslet, NullablePrefixParslet } from '../parslets/NullableParslets'
-import { NumberParslet } from '../parslets/NumberParslet'
-import { OptionalParslet } from '../parslets/OptionalParslet'
 import { pathGrammar } from './pathGrammar'
+import { createNameParslet } from '../parslets/NameParslet'
+import { nullableParslet } from '../parslets/NullableParslets'
+import { optionalParslet } from '../parslets/OptionalParslet'
+import { stringValueParslet } from '../parslets/StringValueParslet'
+import { numberParslet } from '../parslets/NumberParslet'
+import { createKeyValueParslet } from '../parslets/KeyValueParslet'
+import { createFunctionParslet } from '../parslets/FunctionParslet'
+import { createObjectParslet } from '../parslets/ObjectParslet'
+import { createTupleParslet } from '../parslets/TupleParslet'
+import { createVariadicParslet } from '../parslets/VariadicParslet'
+import { typeOfParslet } from '../parslets/TypeOfParslet'
+import { keyOfParslet } from '../parslets/KeyOfParslet'
+import { importParslet } from '../parslets/ImportParslet'
+import { createSpecialNamePathParslet } from '../parslets/SpecialNamePathParslet'
+import { readonlyPropertyParslet } from '../parslets/ReadonlyPropertyParslet'
+import { arrayBracketsParslet } from '../parslets/ArrayBracketsParslet'
+import { arrowFunctionParslet } from '../parslets/ArrowFunctionParslet'
+import { createNamePathParslet } from '../parslets/NamePathParslet'
+import { intersectionParslet } from '../parslets/IntersectionParslet'
 
-export const typescriptGrammar = combineGrammars(baseGrammar, () => {
-  const objectFieldGrammar: Grammar = () => ({
-    prefixParslets: [
-      new NameParslet({
-        allowedAdditionalTokens: ['module', 'event', 'keyof', 'event', 'external']
-      }),
-      new NullablePrefixParslet(),
-      new OptionalParslet(),
-      new StringValueParslet(),
-      new NumberParslet()
-    ],
-    infixParslets: [
-      new NullableInfixParslet(),
-      new OptionalParslet(),
-      new KeyValueParslet({
-        allowKeyTypes: false,
-        allowOptional: true,
-        allowReadonly: true
-      })
-    ]
+const objectFieldGrammar: Grammar = [
+  createNameParslet({
+    allowedAdditionalTokens: ['module', 'event', 'keyof', 'event', 'external']
+  }),
+  nullableParslet,
+  optionalParslet,
+  stringValueParslet,
+  numberParslet,
+  createKeyValueParslet({
+    allowKeyTypes: false,
+    allowOptional: true,
+    allowReadonly: true
   })
+]
 
-  return {
-    prefixParslets: [
-      new ObjectParslet({
-        allowKeyTypes: false,
-        objectFieldGrammar
-      }),
-      new TypeOfParslet(),
-      new KeyOfParslet(),
-      new ImportParslet(),
-      new StringValueParslet(),
-      new FunctionParslet({
-        allowWithoutParenthesis: true,
-        allowNoReturnType: false,
-        allowNamedParameters: ['this', 'new']
-      }),
-      new TupleParslet({
-        allowQuestionMark: false
-      }),
-      new VariadicParslet({
-        allowEnclosingBrackets: false
-      }),
-      new NameParslet({
-        allowedAdditionalTokens: ['event', 'external']
-      }),
-      new SpecialNamePathParslet({
-        allowedTypes: ['module'],
-        pathGrammar
-      }),
-      new ReadonlyPropertyParslet()
-    ],
-    infixParslets: [
-      new ArrayBracketsParslet(),
-      new ArrowFunctionParslet(),
-      new NamePathParslet({
-        allowJsdocNamePaths: false,
-        pathGrammar
-      }),
-      new KeyValueParslet({
-        allowKeyTypes: false,
-        allowOptional: true,
-        allowReadonly: true
-      }),
-      new IntersectionParslet()
-    ]
-  }
-})
+export const typescriptGrammar: Grammar = [
+  ...baseGrammar,
+  createObjectParslet({
+    allowKeyTypes: false,
+    objectFieldGrammar
+  }),
+  typeOfParslet,
+  keyOfParslet,
+  importParslet,
+  stringValueParslet,
+  createFunctionParslet({
+    allowWithoutParenthesis: true,
+    allowNoReturnType: false,
+    allowNamedParameters: ['this', 'new']
+  }),
+  createTupleParslet({
+    allowQuestionMark: false
+  }),
+  createVariadicParslet({
+    allowEnclosingBrackets: false,
+    allowPostfix: false
+  }),
+  createNameParslet({
+    allowedAdditionalTokens: ['event', 'external']
+  }),
+  createSpecialNamePathParslet({
+    allowedTypes: ['module'],
+    pathGrammar
+  }),
+  readonlyPropertyParslet,
+  arrayBracketsParslet,
+  arrowFunctionParslet,
+  createNamePathParslet({
+    allowJsdocNamePaths: false,
+    pathGrammar
+  }),
+  createKeyValueParslet({
+    allowKeyTypes: false,
+    allowOptional: true,
+    allowReadonly: true
+  }),
+  intersectionParslet
+]

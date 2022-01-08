@@ -1,19 +1,9 @@
-import { PrefixParslet } from './Parslet'
-import { TokenType } from '../lexer/Token'
-import { Precedence } from '../Precedence'
-import { Parser } from '../Parser'
-import { NonTerminalResult } from '../result/NonTerminalResult'
+import { composeParslet } from './Parslet'
 
-export class NumberParslet implements PrefixParslet {
-  accepts (type: TokenType, next: TokenType): boolean {
-    return type === 'Number'
-  }
-
-  getPrecedence (): Precedence {
-    return Precedence.PREFIX
-  }
-
-  parsePrefix (parser: Parser): NonTerminalResult {
+export const numberParslet = composeParslet({
+  name: 'numberParslet',
+  accept: type => type === 'Number',
+  parsePrefix: parser => {
     const token = parser.getToken()
     parser.consume('Number')
     return {
@@ -21,4 +11,4 @@ export class NumberParslet implements PrefixParslet {
       value: parseInt(token.text, 10)
     }
   }
-}
+})

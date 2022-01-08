@@ -1,72 +1,64 @@
-import { InfixParslet, PrefixParslet } from './Parslet'
-import { TokenType } from '../lexer/Token'
+import { composeParslet, ParsletFunction } from './Parslet'
 import { Precedence } from '../Precedence'
 import { assertTerminal } from '../assertTypes'
-import { Parser } from '../Parser'
-import { TerminalResult, VariadicResult } from '../result/TerminalResult'
-import { IntermediateResult } from '../result/IntermediateResult'
+import { NoParsletFoundError } from '../errors'
 
-interface VariadicParsletOptions {
+export function createVariadicParslet ({ allowPostfix, allowEnclosingBrackets }: {
+  allowPostfix: boolean
   allowEnclosingBrackets: boolean
-}
+}): ParsletFunction {
+  return composeParslet({
+    name: 'variadicParslet',
+    accept: type => type === '...',
+    precedence: Precedence.PREFIX,
+    parsePrefix: parser => {
+      parser.consume('...')
 
-export class VariadicParslet implements PrefixParslet, InfixParslet {
-  private readonly allowEnclosingBrackets: boolean
+      const brackets = allowEnclosingBrackets && parser.consume('[')
 
-  constructor (opts: VariadicParsletOptions) {
-    this.allowEnclosingBrackets = opts.allowEnclosingBrackets
-  }
+      try {
+        const element = parser.parseType(Precedence.PREFIX)
+        if (brackets && !parser.consume(']')) {
+          throw new Error('Unterminated variadic type. Missing \']\'')
+        }
 
-  accepts (type: TokenType): boolean {
-    return type === '...'
-  }
-
-  getPrecedence (): Precedence {
-    return Precedence.PREFIX
-  }
-
-  parsePrefix (parser: Parser): VariadicResult<TerminalResult> {
-    parser.consume('...')
-
-    const brackets = this.allowEnclosingBrackets && parser.consume('[')
-
-    if (!parser.canParseType()) {
-      if (brackets) {
-        throw new Error('Empty square brackets for variadic are not allowed.')
-      }
-      return {
-        type: 'JsdocTypeVariadic',
-        meta: {
-          position: undefined,
-          squareBrackets: false
+        return {
+          type: 'JsdocTypeVariadic',
+          element: assertTerminal(element),
+          meta: {
+            position: 'prefix',
+            squareBrackets: brackets
+          }
+        }
+      } catch (e) {
+        if (e instanceof NoParsletFoundError) {
+          if (brackets) {
+            throw new Error('Empty square brackets for variadic are not allowed.')
+          }
+          return {
+            type: 'JsdocTypeVariadic',
+            meta: {
+              position: undefined,
+              squareBrackets: false
+            }
+          }
+        } else {
+          throw e
         }
       }
-    }
-
-    const element = parser.parseType(Precedence.PREFIX)
-    if (brackets && !parser.consume(']')) {
-      throw new Error('Unterminated variadic type. Missing \']\'')
-    }
-
-    return {
-      type: 'JsdocTypeVariadic',
-      element: assertTerminal(element),
-      meta: {
-        position: 'prefix',
-        squareBrackets: brackets
-      }
-    }
-  }
-
-  parseInfix (parser: Parser, left: IntermediateResult): TerminalResult {
-    parser.consume('...')
-    return {
-      type: 'JsdocTypeVariadic',
-      element: assertTerminal(left),
-      meta: {
-        position: 'suffix',
-        squareBrackets: false
-      }
-    }
-  }
+    },
+    parseInfix: allowPostfix
+      ? (parser, left) => {
+          parser.consume('...')
+          return {
+            type: 'JsdocTypeVariadic',
+            element: assertTerminal(left),
+            meta: {
+              position: 'suffix',
+              squareBrackets: false
+            }
+          }
+        }
+      : undefined
+  })
 }
