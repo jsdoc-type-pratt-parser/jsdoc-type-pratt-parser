@@ -2,7 +2,7 @@ import { Token, TokenType } from './lexer/Token';
 import { Lexer } from './lexer/Lexer';
 import { Grammar } from './grammars/Grammar';
 import { Precedence } from './Precedence';
-import { TerminalResult } from './result/TerminalResult';
+import { RootResult } from './result/RootResult';
 import { IntermediateResult } from './result/IntermediateResult';
 interface ParserOptions {
     grammar: Grammar;
@@ -14,8 +14,8 @@ export declare class Parser {
     private readonly lexer;
     private readonly parent?;
     constructor({ grammar, lexer, parent }: ParserOptions);
-    parseText(text: string): TerminalResult;
-    parseType(precedence: Precedence): TerminalResult;
+    parseText(text: string): RootResult;
+    parseType(precedence: Precedence): RootResult;
     private tryParslets;
     parseIntermediateType(precedence: Precedence): IntermediateResult;
     parseInfixIntermediateType(result: IntermediateResult, precedence: Precedence): IntermediateResult;

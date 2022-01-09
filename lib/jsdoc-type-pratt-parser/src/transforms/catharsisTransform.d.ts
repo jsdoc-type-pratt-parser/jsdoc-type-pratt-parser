@@ -1,4 +1,4 @@
-import { TerminalResult } from '../result/TerminalResult';
+import { RootResult } from '../result/RootResult';
 export declare const reservedWords: string[];
 interface ModifiableResult {
     optional?: boolean;
@@ -48,5 +48,5 @@ export declare type CatharsisRecordResult = ModifiableResult & {
     type: 'RecordType';
     fields: CatharsisFieldResult[];
 };
-export declare function catharsisTransform(result: TerminalResult): CatharsisParseResult;
+export declare function catharsisTransform(result: RootResult): CatharsisParseResult;
 export {};

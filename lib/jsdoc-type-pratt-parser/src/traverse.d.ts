@@ -1,5 +1,5 @@
-import { NonTerminalResult } from './result/NonTerminalResult';
-import { TerminalResult } from './result/TerminalResult';
-declare type NodeVisitor = (node: NonTerminalResult, parentNode?: NonTerminalResult, property?: string) => void;
-export declare function traverse(node: TerminalResult, onEnter?: NodeVisitor, onLeave?: NodeVisitor): void;
+import { NonRootResult } from './result/NonRootResult';
+import { RootResult } from './result/RootResult';
+declare type NodeVisitor = (node: NonRootResult, parentNode?: NonRootResult, property?: string) => void;
+export declare function traverse(node: RootResult, onEnter?: NodeVisitor, onLeave?: NodeVisitor): void;
 export {};

@@ -6,7 +6,7 @@ export declare enum Precedence {
     UNION = 4,
     INTERSECTION = 5,
     PREFIX = 6,
-    POSTFIX = 7,
+    INFIX = 7,
     TUPLE = 8,
     SYMBOL = 9,
     OPTIONAL = 10,

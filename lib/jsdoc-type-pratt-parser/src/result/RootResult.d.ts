@@ -1,13 +1,13 @@
-import { JsdocObjectKeyValueResult, KeyValueResult, PropertyResult } from './NonTerminalResult';
+import { JsdocObjectKeyValueResult, KeyValueResult, PropertyResult } from './NonRootResult';
 /**
  * A parse result that corresponds to a valid type expression.
  */
-export declare type TerminalResult = NameResult | UnionResult | GenericResult | StringValueResult | NullResult | UndefinedResult | AnyResult | UnknownResult | FunctionResult | ObjectResult | NamePathResult | SymbolResult | TypeOfResult | KeyOfResult | ImportResult | TupleResult | SpecialNamePath | OptionalResult<TerminalResult> | NullableResult<TerminalResult> | NotNullableResult<TerminalResult> | VariadicResult<TerminalResult> | ParenthesisResult | IntersectionResult | NumberResult;
+export declare type RootResult = NameResult | UnionResult | GenericResult | StringValueResult | NullResult | UndefinedResult | AnyResult | UnknownResult | FunctionResult | ObjectResult | NamePathResult | SymbolResult | TypeOfResult | KeyOfResult | ImportResult | TupleResult | SpecialNamePath | OptionalResult<RootResult> | NullableResult<RootResult> | NotNullableResult<RootResult> | VariadicResult<RootResult> | ParenthesisResult | IntersectionResult | NumberResult | PredicateResult;
 export declare type QuoteStyle = 'single' | 'double';
 /**
  * `element` is optional.
  */
-export interface OptionalResult<T extends TerminalResult> {
+export interface OptionalResult<T extends RootResult> {
     type: 'JsdocTypeOptional';
     element: T;
     meta: {
@@ -17,7 +17,7 @@ export interface OptionalResult<T extends TerminalResult> {
 /**
  * A nullable type.
  */
-export interface NullableResult<T extends TerminalResult> {
+export interface NullableResult<T extends RootResult> {
     type: 'JsdocTypeNullable';
     element: T;
     meta: {
@@ -27,7 +27,7 @@ export interface NullableResult<T extends TerminalResult> {
 /**
  * A not nullable type.
  */
-export interface NotNullableResult<T extends TerminalResult> {
+export interface NotNullableResult<T extends RootResult> {
     type: 'JsdocTypeNotNullable';
     element: T;
     meta: {
@@ -39,7 +39,7 @@ export interface NotNullableResult<T extends TerminalResult> {
  * or it is a spreaded tuple or object type and can occur inside these. For any mode that is not `jsdoc` this can
  * only occur in position `'suffix'`.
  */
-export interface VariadicResult<T extends TerminalResult> {
+export interface VariadicResult<T extends RootResult> {
     type: 'JsdocTypeVariadic';
     element?: T;
     meta: {
@@ -59,7 +59,7 @@ export interface NameResult {
  */
 export interface UnionResult {
     type: 'JsdocTypeUnion';
-    elements: TerminalResult[];
+    elements: RootResult[];
 }
 /**
  * A generic type. The property `left` is the generic type that has `elements` as type values for its type parameters.
@@ -69,8 +69,8 @@ export interface UnionResult {
  */
 export interface GenericResult {
     type: 'JsdocTypeGeneric';
-    left: TerminalResult;
-    elements: TerminalResult[];
+    left: RootResult;
+    elements: RootResult[];
     meta: {
         brackets: 'angle' | 'square';
         dot: boolean;
@@ -118,14 +118,14 @@ export interface UnknownResult {
  */
 export interface FunctionResult {
     type: 'JsdocTypeFunction';
-    parameters: Array<TerminalResult | KeyValueResult>;
-    returnType?: TerminalResult;
+    parameters: Array<RootResult | KeyValueResult>;
+    returnType?: RootResult;
     arrow: boolean;
     parenthesis: boolean;
 }
 /**
  * An object type. Contains entries which can be {@link KeyValueResult}s or {@link NameResult}s. In most grammars the keys
- * need to be {@link NameResult}s. In some grammars it possible that an entry is only a {@link TerminalResult} or a
+ * need to be {@link NameResult}s. In some grammars it possible that an entry is only a {@link RootResult} or a
  * {@link NumberResult} without a key. The seperator is `'comma'` by default.
  */
 export interface ObjectResult {
@@ -152,7 +152,7 @@ export interface SpecialNamePath<Type extends SpecialNamePathType = SpecialNameP
  */
 export interface NamePathResult {
     type: 'JsdocTypeNamePath';
-    left: TerminalResult;
+    left: RootResult;
     right: PropertyResult | SpecialNamePath<'event'>;
     pathType: 'inner' | 'instance' | 'property' | 'property-brackets';
 }
@@ -169,14 +169,14 @@ export interface SymbolResult {
  */
 export interface TypeOfResult {
     type: 'JsdocTypeTypeof';
-    element: TerminalResult;
+    element: RootResult;
 }
 /**
  * A keyof type. The `element` normally should be a name.
  */
 export interface KeyOfResult {
     type: 'JsdocTypeKeyof';
-    element: TerminalResult;
+    element: RootResult;
 }
 /**
  * An import type. The `element` is {@link StringValueResult} representing the path. Often the `left` side of an
@@ -191,27 +191,35 @@ export interface ImportResult {
  */
 export interface TupleResult {
     type: 'JsdocTypeTuple';
-    elements: TerminalResult[] | KeyValueResult[];
+    elements: RootResult[] | KeyValueResult[];
 }
 /**
  * A type enclosed in parenthesis. Often {@link UnionResult}s ot {@link IntersectionResult}s.
  */
 export interface ParenthesisResult {
     type: 'JsdocTypeParenthesis';
-    element: TerminalResult;
+    element: RootResult;
 }
 /**
  * An intersection type.
  */
 export interface IntersectionResult {
     type: 'JsdocTypeIntersection';
-    elements: TerminalResult[];
+    elements: RootResult[];
 }
 /**
  * A number. Can be the key of an {@link ObjectResult} entry or the parameter of a {@link SymbolResult}.
- * Is a {@link NonTerminalResult}.
+ * Is a {@link NonRootResult}.
  */
 export interface NumberResult {
     type: 'JsdocTypeNumber';
     value: number;
+}
+/**
+ * A typescript prediciate. Is used in return annotations like this: `@return {x is string}`.
+ */
+export interface PredicateResult {
+    type: 'JsdocTypePredicate';
+    left: NameResult;
+    right: RootResult;
 }

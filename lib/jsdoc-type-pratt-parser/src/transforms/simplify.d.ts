@@ -1,2 +1,2 @@
-import { TerminalResult } from '../result/TerminalResult';
-export declare function simplify(result: TerminalResult): TerminalResult;
+import { RootResult } from '../result/RootResult';
+export declare function simplify(result: RootResult): RootResult;

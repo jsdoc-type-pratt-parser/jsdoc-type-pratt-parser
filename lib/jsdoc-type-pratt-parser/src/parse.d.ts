@@ -1,11 +1,11 @@
-import { TerminalResult } from './result/TerminalResult';
+import { RootResult } from './result/RootResult';
 export declare type ParseMode = 'closure' | 'jsdoc' | 'typescript';
 /**
  * This function parses the given expression in the given mode and produces a {@link ParseResult}.
  * @param expression
  * @param mode
  */
-export declare function parse(expression: string, mode: ParseMode): TerminalResult;
+export declare function parse(expression: string, mode: ParseMode): RootResult;
 /**
  * This function tries to parse the given expression in multiple modes and returns the first successful
  * {@link ParseResult}. By default it tries `'typescript'`, `'closure'` and `'jsdoc'` in this order. If
@@ -13,4 +13,4 @@ export declare function parse(expression: string, mode: ParseMode): TerminalResu
  * @param expression
  * @param modes
  */
-export declare function tryParse(expression: string, modes?: ParseMode[]): TerminalResult;
+export declare function tryParse(expression: string, modes?: ParseMode[]): RootResult;

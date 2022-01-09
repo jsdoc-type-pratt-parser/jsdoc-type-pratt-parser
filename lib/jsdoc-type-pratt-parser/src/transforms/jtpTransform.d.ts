@@ -1,4 +1,4 @@
-import { TerminalResult } from '../result/TerminalResult';
+import { RootResult } from '../result/RootResult';
 export declare type JtpResult = JtpNameResult | JtpNullableResult | JtpNotNullableResult | JtpOptionalResult | JtpVariadicResult | JtpTypeOfResult | JtpTupleResult | JtpKeyOfResult | JtpStringValueResult | JtpImportResult | JtpAnyResult | JtpUnknownResult | JtpFunctionResult | JtpGenericResult | JtpRecordEntryResult | JtpRecordResult | JtpMemberResult | JtpUnionResult | JtpParenthesisResult | JtpNamedParameterResult | JtpModuleResult | JtpFilePath | JtpIntersectionResult | JtpNumberResult;
 declare type JtpQuoteStyle = 'single' | 'double' | 'none';
 export interface JtpNullableResult {
@@ -125,5 +125,5 @@ export interface JtpNumberResult {
     type: 'NUMBER_VALUE';
     number: string;
 }
-export declare function jtpTransform(result: TerminalResult): JtpResult;
+export declare function jtpTransform(result: RootResult): JtpResult;
 export {};

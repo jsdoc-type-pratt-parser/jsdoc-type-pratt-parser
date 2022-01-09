@@ -1,16 +1,16 @@
-import { KeyValueResult, NonTerminalResult } from '../result/NonTerminalResult';
-import { FunctionResult, TerminalResult } from '../result/TerminalResult';
-export declare type TransformFunction<TransformResult> = (parseResult: NonTerminalResult) => TransformResult;
-export declare type TransformRule<TransformResult, InputType extends NonTerminalResult> = (parseResult: InputType, transform: TransformFunction<TransformResult>) => TransformResult;
+import { KeyValueResult, NonRootResult } from '../result/NonRootResult';
+import { FunctionResult, RootResult } from '../result/RootResult';
+export declare type TransformFunction<TransformResult> = (parseResult: NonRootResult) => TransformResult;
+export declare type TransformRule<TransformResult, InputType extends NonRootResult> = (parseResult: InputType, transform: TransformFunction<TransformResult>) => TransformResult;
 export declare type TransformRules<TransformResult> = {
-    [P in NonTerminalResult as P['type']]: TransformRule<TransformResult, P>;
+    [P in NonRootResult as P['type']]: TransformRule<TransformResult, P>;
 };
-export declare function transform<TransformResult>(rules: TransformRules<TransformResult>, parseResult: NonTerminalResult): TransformResult;
-export declare function notAvailableTransform<TransformResult>(parseResult: NonTerminalResult): TransformResult;
+export declare function transform<TransformResult>(rules: TransformRules<TransformResult>, parseResult: NonRootResult): TransformResult;
+export declare function notAvailableTransform<TransformResult>(parseResult: NonRootResult): TransformResult;
 interface SpecialFunctionParams {
-    params: Array<TerminalResult | KeyValueResult>;
-    this?: TerminalResult;
-    new?: TerminalResult;
+    params: Array<RootResult | KeyValueResult>;
+    this?: RootResult;
+    new?: RootResult;
 }
 export declare function extractSpecialParams(source: FunctionResult): SpecialFunctionParams;
 export {};

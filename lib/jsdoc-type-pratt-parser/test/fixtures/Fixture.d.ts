@@ -1,5 +1,5 @@
 import 'mocha';
-import { TerminalResult, ParseMode } from '../../src';
+import { RootResult, ParseMode } from '../../src';
 declare type JtpMode = 'jsdoc' | 'closure' | 'typescript' | 'permissive';
 declare type CatharsisMode = 'jsdoc' | 'closure';
 declare type CompareMode = ParseMode | 'fail' | 'differ';
@@ -22,13 +22,13 @@ export interface Fixture {
      * The expected parse result object. If you expect different parse results for different parse modes please use
      * `diffExpected`.
      */
-    expected?: TerminalResult;
+    expected?: RootResult;
     /**
      * The expected parse results objects for different modes. If a mode is included in `modes` and as a key of
      * `diffExpected` the object in `diffExpected` is used over the result in `expected`.
      */
     diffExpected?: {
-        [K in ParseMode]?: TerminalResult;
+        [K in ParseMode]?: RootResult;
     };
     /**
      * If the stringified output differs from the input it can be provided here. These are mostly whitespace differences.
