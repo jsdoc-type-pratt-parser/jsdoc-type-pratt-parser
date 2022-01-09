@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v2.2.0...v2.2.1) (2022-01-09)
+
+
+### Bug Fixes
+
+* use `parseFloat` for number types ([09a0717](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/09a0717f9222321e12c121765dcb9b57988d4e63))
+
 # [2.2.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v2.1.0...v2.2.0) (2022-01-09)
 
 
