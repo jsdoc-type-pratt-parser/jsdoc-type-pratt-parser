@@ -168,6 +168,12 @@ export function identityTransformRules (): TransformRules<NonRootResult> {
       element: transform(result.element) as RootResult
     }),
 
-    JsdocTypeProperty: result => result
+    JsdocTypeProperty: result => result,
+
+    JsdocTypePredicate: (result, transform) => ({
+      type: 'JsdocTypePredicate',
+      left: transform(result.left) as NameResult,
+      right: transform(result.right) as RootResult
+    })
   }
 }

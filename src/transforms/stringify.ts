@@ -133,7 +133,9 @@ export function stringifyRules (): TransformRules<string> {
 
     JsdocTypeIntersection: (result, transform) => result.elements.map(transform).join(' & '),
 
-    JsdocTypeProperty: result => quote(result.value, result.meta.quote)
+    JsdocTypeProperty: result => quote(result.value, result.meta.quote),
+
+    JsdocTypePredicate: (result, transform) => `${transform(result.left)} is ${transform(result.right)}`
   }
 }
 

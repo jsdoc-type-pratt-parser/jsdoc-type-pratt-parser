@@ -1,6 +1,6 @@
 import { composeParslet } from './Parslet'
 import { Precedence } from '../Precedence'
-import { assertTerminal, isPlainKeyValue } from '../assertTypes'
+import { assertRootResult, isPlainKeyValue } from '../assertTypes'
 
 export const parenthesisParslet = composeParslet({
   name: 'parenthesisParslet',
@@ -27,7 +27,7 @@ export const parenthesisParslet = composeParslet({
     }
     return {
       type: 'JsdocTypeParenthesis',
-      element: assertTerminal(result)
+      element: assertRootResult(result)
     }
   }
 })

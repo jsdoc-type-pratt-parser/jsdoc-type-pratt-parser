@@ -1,6 +1,6 @@
 import { composeParslet, ParsletFunction } from './Parslet'
 import { Precedence } from '../Precedence'
-import { assertPlainKeyValueOrTerminal } from '../assertTypes'
+import { assertPlainKeyValueOrRootResult } from '../assertTypes'
 import { NoParsletFoundError } from '../errors'
 import { KeyValueResult } from '..'
 import { RootResult } from '../result/RootResult'
@@ -14,13 +14,13 @@ export function createParameterListParslet ({ allowTrailingComma }: {
     precedence: Precedence.PARAMETER_LIST,
     parseInfix: (parser, left) => {
       const elements: Array<RootResult|KeyValueResult> = [
-        assertPlainKeyValueOrTerminal(left)
+        assertPlainKeyValueOrRootResult(left)
       ]
       parser.consume(',')
       do {
         try {
           const next = parser.parseIntermediateType(Precedence.PARAMETER_LIST)
-          elements.push(assertPlainKeyValueOrTerminal(next))
+          elements.push(assertPlainKeyValueOrRootResult(next))
         } catch (e) {
           if (allowTrailingComma && e instanceof NoParsletFoundError) {
             break

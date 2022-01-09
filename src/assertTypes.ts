@@ -3,7 +3,7 @@ import { UnexpectedTypeError } from './errors'
 import { NameResult, NumberResult, RootResult, VariadicResult } from './result/RootResult'
 import { IntermediateResult } from './result/IntermediateResult'
 
-export function assertTerminal (result?: IntermediateResult): RootResult {
+export function assertRootResult (result?: IntermediateResult): RootResult {
   if (result === undefined) {
     throw new Error('Unexpected undefined')
   }
@@ -13,21 +13,21 @@ export function assertTerminal (result?: IntermediateResult): RootResult {
   return result
 }
 
-export function assertPlainKeyValueOrTerminal (result: IntermediateResult): KeyValueResult | RootResult {
+export function assertPlainKeyValueOrRootResult (result: IntermediateResult): KeyValueResult | RootResult {
   if (result.type === 'JsdocTypeKeyValue') {
-    return assertPlainKeyValue(result)
+    return assertPlainKeyValueResult(result)
   }
-  return assertTerminal(result)
+  return assertRootResult(result)
 }
 
-export function assertPlainKeyValueOrName (result: IntermediateResult): KeyValueResult | NameResult {
+export function assertPlainKeyValueOrNameResult (result: IntermediateResult): KeyValueResult | NameResult {
   if (result.type === 'JsdocTypeName') {
     return result
   }
-  return assertPlainKeyValue(result)
+  return assertPlainKeyValueResult(result)
 }
 
-export function assertPlainKeyValue (result: IntermediateResult): KeyValueResult {
+export function assertPlainKeyValueResult (result: IntermediateResult): KeyValueResult {
   if (!isPlainKeyValue(result)) {
     if (result.type === 'JsdocTypeKeyValue') {
       throw new UnexpectedTypeError(result, 'Expecting no left side expression.')
@@ -38,7 +38,7 @@ export function assertPlainKeyValue (result: IntermediateResult): KeyValueResult
   return result
 }
 
-export function assertNumberOrVariadicName (result: IntermediateResult): NumberResult | NameResult | VariadicResult<NameResult> {
+export function assertNumberOrVariadicNameResult (result: IntermediateResult): NumberResult | NameResult | VariadicResult<NameResult> {
   if (result.type === 'JsdocTypeVariadic') {
     if (result.element?.type === 'JsdocTypeName') {
       return result as VariadicResult<NameResult>

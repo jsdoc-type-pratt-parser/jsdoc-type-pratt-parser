@@ -1,7 +1,7 @@
 import { ParsletFunction } from './Parslet'
 import { Precedence } from '../Precedence'
 import { isQuestionMarkUnknownType } from './isQuestionMarkUnkownType'
-import { assertTerminal } from '../assertTypes'
+import { assertRootResult } from '../assertTypes'
 
 export const nullableParslet: ParsletFunction = (parser, precedence, left) => {
   const type = parser.getLexer().token().type
@@ -27,7 +27,7 @@ export const nullableParslet: ParsletFunction = (parser, precedence, left) => {
   } else {
     return {
       type: 'JsdocTypeNullable',
-      element: assertTerminal(left),
+      element: assertRootResult(left),
       meta: {
         position: 'suffix'
       }

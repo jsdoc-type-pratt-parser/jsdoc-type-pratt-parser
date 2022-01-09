@@ -2,7 +2,7 @@ import { EarlyEndOfParseError, NoParsletFoundError } from './errors'
 import { Token, TokenType } from './lexer/Token'
 import { Lexer } from './lexer/Lexer'
 import { Grammar } from './grammars/Grammar'
-import { assertTerminal } from './assertTypes'
+import { assertRootResult } from './assertTypes'
 import { Precedence } from './Precedence'
 import { RootResult } from './result/RootResult'
 import { IntermediateResult } from './result/IntermediateResult'
@@ -37,7 +37,7 @@ export class Parser {
   }
 
   public parseType (precedence: Precedence): RootResult {
-    return assertTerminal(this.parseIntermediateType(precedence))
+    return assertRootResult(this.parseIntermediateType(precedence))
   }
 
   private tryParslets (precedence: Precedence, left: IntermediateResult | null): IntermediateResult | null {

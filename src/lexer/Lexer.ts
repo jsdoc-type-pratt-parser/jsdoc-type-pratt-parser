@@ -162,6 +162,7 @@ const rules = [
   makeKeyWordRule('keyof'),
   makeKeyWordRule('readonly'),
   makeKeyWordRule('import'),
+  makeKeyWordRule('is'),
   numberRule,
   identifierRule,
   stringValueRule

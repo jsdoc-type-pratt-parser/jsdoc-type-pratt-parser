@@ -1,6 +1,6 @@
 import { composeParslet, ParsletFunction } from './Parslet'
 import { Precedence } from '../Precedence'
-import { assertTerminal } from '../assertTypes'
+import { assertRootResult } from '../assertTypes'
 import { NoParsletFoundError } from '../errors'
 
 export function createVariadicParslet ({ allowPostfix, allowEnclosingBrackets }: {
@@ -24,7 +24,7 @@ export function createVariadicParslet ({ allowPostfix, allowEnclosingBrackets }:
 
         return {
           type: 'JsdocTypeVariadic',
-          element: assertTerminal(element),
+          element: assertRootResult(element),
           meta: {
             position: 'prefix',
             squareBrackets: brackets
@@ -52,7 +52,7 @@ export function createVariadicParslet ({ allowPostfix, allowEnclosingBrackets }:
           parser.consume('...')
           return {
             type: 'JsdocTypeVariadic',
-            element: assertTerminal(left),
+            element: assertRootResult(left),
             meta: {
               position: 'suffix',
               squareBrackets: false

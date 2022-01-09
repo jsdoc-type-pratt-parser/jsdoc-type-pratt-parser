@@ -1,6 +1,6 @@
 import { composeParslet } from './Parslet'
 import { Precedence } from '../Precedence'
-import { assertTerminal } from '../assertTypes'
+import { assertRootResult } from '../assertTypes'
 
 export const optionalParslet = composeParslet({
   name: 'optionalParslet',
@@ -20,7 +20,7 @@ export const optionalParslet = composeParslet({
     parser.consume('=')
     return {
       type: 'JsdocTypeOptional',
-      element: assertTerminal(left),
+      element: assertRootResult(left),
       meta: {
         position: 'suffix'
       }

@@ -4,7 +4,7 @@ import { FunctionResult, RootResult } from '../result/RootResult'
 import { IntermediateResult } from '../result/IntermediateResult'
 import { KeyValueResult, NonRootResult } from '../result/NonRootResult'
 import { UnexpectedTypeError } from '../errors'
-import { assertPlainKeyValueOrTerminal } from '../assertTypes'
+import { assertPlainKeyValueOrRootResult } from '../assertTypes'
 
 export function getParameters (value: IntermediateResult): Array<RootResult | KeyValueResult> {
   let parameters: NonRootResult[]
@@ -16,7 +16,7 @@ export function getParameters (value: IntermediateResult): Array<RootResult | Ke
     throw new UnexpectedTypeError(value)
   }
 
-  return parameters.map(p => assertPlainKeyValueOrTerminal(p))
+  return parameters.map(p => assertPlainKeyValueOrRootResult(p))
 }
 
 export function getUnnamedParameters (value: IntermediateResult): RootResult[] {

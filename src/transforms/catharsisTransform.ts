@@ -1,5 +1,5 @@
 import { extractSpecialParams, notAvailableTransform, transform, TransformRules } from './transform'
-import { assertTerminal, isPlainKeyValue } from '../assertTypes'
+import { assertRootResult, isPlainKeyValue } from '../assertTypes'
 import { RootResult } from '../result/RootResult'
 import { quote } from './stringify'
 
@@ -296,14 +296,15 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
     return makeName(`${result.value}(${value})`)
   },
 
-  JsdocTypeParenthesis: (result, transform) => transform(assertTerminal(result.element)),
+  JsdocTypeParenthesis: (result, transform) => transform(assertRootResult(result.element)),
 
   JsdocTypeImport: notAvailableTransform,
   JsdocTypeKeyof: notAvailableTransform,
   JsdocTypeTuple: notAvailableTransform,
   JsdocTypeTypeof: notAvailableTransform,
   JsdocTypeIntersection: notAvailableTransform,
-  JsdocTypeProperty: notAvailableTransform
+  JsdocTypeProperty: notAvailableTransform,
+  JsdocTypePredicate: notAvailableTransform
 }
 
 export function catharsisTransform (result: RootResult): CatharsisParseResult {

@@ -1,6 +1,6 @@
 import { composeParslet } from './Parslet'
 import { Precedence } from '../Precedence'
-import { assertTerminal } from '../assertTypes'
+import { assertRootResult } from '../assertTypes'
 
 export const notNullableParslet = composeParslet({
   name: 'notNullableParslet',
@@ -20,7 +20,7 @@ export const notNullableParslet = composeParslet({
     parser.consume('!')
     return {
       type: 'JsdocTypeNotNullable',
-      element: assertTerminal(left),
+      element: assertRootResult(left),
       meta: {
         position: 'suffix'
       }

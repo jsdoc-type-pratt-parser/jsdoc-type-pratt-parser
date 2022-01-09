@@ -1,6 +1,6 @@
 import { extractSpecialParams, notAvailableTransform, transform, TransformRules } from './transform'
 import { QuoteStyle, RootResult } from '../result/RootResult'
-import { assertTerminal, isPlainKeyValue } from '../assertTypes'
+import { assertRootResult, isPlainKeyValue } from '../assertTypes'
 import { NonRootResult } from '../result/NonRootResult'
 
 export type JtpResult =
@@ -455,7 +455,7 @@ const jtpRules: TransformRules<JtpResult> = {
 
   JsdocTypeParenthesis: (result, transform) => ({
     type: 'PARENTHESIS',
-    value: transform(assertTerminal(result.element))
+    value: transform(assertRootResult(result.element))
   }),
 
   JsdocTypeNull: () => ({
@@ -482,7 +482,9 @@ const jtpRules: TransformRules<JtpResult> = {
 
   JsdocTypeSymbol: notAvailableTransform,
 
-  JsdocTypeProperty: notAvailableTransform
+  JsdocTypeProperty: notAvailableTransform,
+
+  JsdocTypePredicate: notAvailableTransform
 }
 
 export function jtpTransform (result: RootResult): JtpResult {

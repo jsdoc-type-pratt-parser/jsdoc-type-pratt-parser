@@ -1,6 +1,6 @@
 import { composeParslet } from './Parslet'
 import { Precedence } from '../Precedence'
-import { assertNumberOrVariadicName } from '../assertTypes'
+import { assertNumberOrVariadicNameResult } from '../assertTypes'
 import { SymbolResult } from '../result/RootResult'
 
 export const symbolParslet = composeParslet({
@@ -18,7 +18,7 @@ export const symbolParslet = composeParslet({
     }
     if (!parser.consume(')')) {
       const next = parser.parseIntermediateType(Precedence.SYMBOL)
-      result.element = assertNumberOrVariadicName(next)
+      result.element = assertNumberOrVariadicNameResult(next)
       if (!parser.consume(')')) {
         throw new Error('Symbol does not end after value')
       }

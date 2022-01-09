@@ -28,6 +28,7 @@ export type RootResult =
   | ParenthesisResult
   | IntersectionResult
   | NumberResult
+  | PredicateResult
 
 export type QuoteStyle = 'single' | 'double'
 
@@ -260,9 +261,18 @@ export interface IntersectionResult {
 
 /**
  * A number. Can be the key of an {@link ObjectResult} entry or the parameter of a {@link SymbolResult}.
- * Is a {@link NonTerminalResult}.
+ * Is a {@link NonRootResult}.
  */
 export interface NumberResult {
   type: 'JsdocTypeNumber'
   value: number
+}
+
+/**
+ * A typescript prediciate. Is used in return annotations like this: `@return {x is string}`.
+ */
+export interface PredicateResult {
+  type: 'JsdocTypePredicate'
+  left: NameResult
+  right: RootResult
 }

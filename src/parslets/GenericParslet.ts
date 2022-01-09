@@ -1,6 +1,6 @@
 import { composeParslet } from './Parslet'
 import { Precedence } from '../Precedence'
-import { assertTerminal } from '../assertTypes'
+import { assertRootResult } from '../assertTypes'
 
 export const genericParslet = composeParslet({
   name: 'genericParslet',
@@ -21,7 +21,7 @@ export const genericParslet = composeParslet({
 
     return {
       type: 'JsdocTypeGeneric',
-      left: assertTerminal(left),
+      left: assertRootResult(left),
       elements: objects,
       meta: {
         brackets: 'angle',

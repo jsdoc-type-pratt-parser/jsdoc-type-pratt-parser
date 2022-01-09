@@ -1,6 +1,6 @@
 import { composeParslet } from './Parslet'
 import { Precedence } from '../Precedence'
-import { assertTerminal } from '../assertTypes'
+import { assertRootResult } from '../assertTypes'
 
 export const intersectionParslet = composeParslet({
   name: 'intersectionParslet',
@@ -16,7 +16,7 @@ export const intersectionParslet = composeParslet({
 
     return {
       type: 'JsdocTypeIntersection',
-      elements: [assertTerminal(left), ...elements]
+      elements: [assertRootResult(left), ...elements]
     }
   }
 })

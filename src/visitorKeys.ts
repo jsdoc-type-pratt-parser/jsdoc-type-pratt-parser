@@ -30,5 +30,6 @@ export const visitorKeys: VisitorKeys = {
   JsdocTypeUnion: ['elements'],
   JsdocTypeUnknown: [],
   JsdocTypeVariadic: ['element'],
-  JsdocTypeProperty: []
+  JsdocTypeProperty: [],
+  JsdocTypePredicate: ['left', 'right']
 }
