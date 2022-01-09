@@ -1,7 +1,7 @@
 import { composeParslet } from './Parslet'
 import { Precedence } from '../Precedence'
 import { assertNumberOrVariadicName } from '../assertTypes'
-import { SymbolResult } from '../result/TerminalResult'
+import { SymbolResult } from '../result/RootResult'
 
 export const symbolParslet = composeParslet({
   name: 'symbolParslet',

@@ -1,7 +1,7 @@
 import { assertPlainKeyValue, assertTerminal } from '../assertTypes'
 import { composeParslet, ParsletFunction } from './Parslet'
 import { Precedence } from '../Precedence'
-import { TupleResult } from '../result/TerminalResult'
+import { TupleResult } from '../result/RootResult'
 import { IntermediateResult } from '../result/IntermediateResult'
 
 export function createTupleParslet ({ allowQuestionMark }: {

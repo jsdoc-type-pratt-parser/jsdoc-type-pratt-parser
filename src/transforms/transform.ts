@@ -1,16 +1,16 @@
-import { KeyValueResult, NonTerminalResult } from '../result/NonTerminalResult'
-import { FunctionResult, TerminalResult } from '../result/TerminalResult'
+import { KeyValueResult, NonRootResult } from '../result/NonRootResult'
+import { FunctionResult, RootResult } from '../result/RootResult'
 
-export type TransformFunction<TransformResult> = (parseResult: NonTerminalResult) => TransformResult
+export type TransformFunction<TransformResult> = (parseResult: NonRootResult) => TransformResult
 
-export type TransformRule<TransformResult, InputType extends NonTerminalResult> = (parseResult: InputType, transform: TransformFunction<TransformResult>) => TransformResult
+export type TransformRule<TransformResult, InputType extends NonRootResult> = (parseResult: InputType, transform: TransformFunction<TransformResult>) => TransformResult
 
 export type TransformRules<TransformResult> = {
-  [P in NonTerminalResult as P['type']]: TransformRule<TransformResult, P>
+  [P in NonRootResult as P['type']]: TransformRule<TransformResult, P>
 }
 
-export function transform<TransformResult> (rules: TransformRules<TransformResult>, parseResult: NonTerminalResult): TransformResult {
-  const rule = rules[parseResult.type] as TransformRule<TransformResult, NonTerminalResult>
+export function transform<TransformResult> (rules: TransformRules<TransformResult>, parseResult: NonRootResult): TransformResult {
+  const rule = rules[parseResult.type] as TransformRule<TransformResult, NonRootResult>
   if (rule === undefined) {
     throw new Error(`In this set of transform rules exists no rule for type ${parseResult.type}.`)
   }
@@ -18,14 +18,14 @@ export function transform<TransformResult> (rules: TransformRules<TransformResul
   return rule(parseResult, aParseResult => transform(rules, aParseResult))
 }
 
-export function notAvailableTransform<TransformResult> (parseResult: NonTerminalResult): TransformResult {
+export function notAvailableTransform<TransformResult> (parseResult: NonRootResult): TransformResult {
   throw new Error('This transform is not available. Are you trying the correct parsing mode?')
 }
 
 interface SpecialFunctionParams {
-  params: Array<TerminalResult | KeyValueResult>
-  this?: TerminalResult
-  new?: TerminalResult
+  params: Array<RootResult | KeyValueResult>
+  this?: RootResult
+  new?: RootResult
 }
 
 export function extractSpecialParams (source: FunctionResult): SpecialFunctionParams {

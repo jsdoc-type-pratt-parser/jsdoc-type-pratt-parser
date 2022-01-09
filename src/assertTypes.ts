@@ -1,9 +1,9 @@
-import { KeyValueResult } from './result/NonTerminalResult'
+import { KeyValueResult } from './result/NonRootResult'
 import { UnexpectedTypeError } from './errors'
-import { NameResult, NumberResult, TerminalResult, VariadicResult } from './result/TerminalResult'
+import { NameResult, NumberResult, RootResult, VariadicResult } from './result/RootResult'
 import { IntermediateResult } from './result/IntermediateResult'
 
-export function assertTerminal (result?: IntermediateResult): TerminalResult {
+export function assertTerminal (result?: IntermediateResult): RootResult {
   if (result === undefined) {
     throw new Error('Unexpected undefined')
   }
@@ -13,7 +13,7 @@ export function assertTerminal (result?: IntermediateResult): TerminalResult {
   return result
 }
 
-export function assertPlainKeyValueOrTerminal (result: IntermediateResult): KeyValueResult | TerminalResult {
+export function assertPlainKeyValueOrTerminal (result: IntermediateResult): KeyValueResult | RootResult {
   if (result.type === 'JsdocTypeKeyValue') {
     return assertPlainKeyValue(result)
   }

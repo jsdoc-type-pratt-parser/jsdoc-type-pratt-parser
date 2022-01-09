@@ -1,6 +1,6 @@
 import { extractSpecialParams, notAvailableTransform, transform, TransformRules } from './transform'
 import { assertTerminal, isPlainKeyValue } from '../assertTypes'
-import { TerminalResult } from '../result/TerminalResult'
+import { RootResult } from '../result/RootResult'
 import { quote } from './stringify'
 
 export const reservedWords = [
@@ -306,6 +306,6 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
   JsdocTypeProperty: notAvailableTransform
 }
 
-export function catharsisTransform (result: TerminalResult): CatharsisParseResult {
+export function catharsisTransform (result: RootResult): CatharsisParseResult {
   return transform(catharsisTransformRules, result)
 }

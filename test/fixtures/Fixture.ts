@@ -4,7 +4,7 @@ import { parse as catharsisParse } from 'catharsis'
 import { parse as jtpParse } from 'jsdoctypeparser'
 import { jtpTransform } from '../../src/transforms/jtpTransform'
 import { simplify } from '../../src/transforms/simplify'
-import { catharsisTransform, parse, TerminalResult, ParseMode, stringify } from '../../src'
+import { catharsisTransform, parse, RootResult, ParseMode, stringify } from '../../src'
 
 type JtpMode = 'jsdoc' | 'closure' | 'typescript' | 'permissive'
 
@@ -31,13 +31,13 @@ export interface Fixture {
    * The expected parse result object. If you expect different parse results for different parse modes please use
    * `diffExpected`.
    */
-  expected?: TerminalResult
+  expected?: RootResult
   /**
    * The expected parse results objects for different modes. If a mode is included in `modes` and as a key of
    * `diffExpected` the object in `diffExpected` is used over the result in `expected`.
    */
   diffExpected?: {
-    [K in ParseMode]?: TerminalResult
+    [K in ParseMode]?: RootResult
   }
   /**
    * If the stringified output differs from the input it can be provided here. These are mostly whitespace differences.
@@ -46,10 +46,10 @@ export interface Fixture {
 }
 
 type Results = {
-  [K in ParseMode]?: TerminalResult
+  [K in ParseMode]?: RootResult
 }
 
-function testParser (mode: ParseMode, fixture: Fixture): TerminalResult | undefined {
+function testParser (mode: ParseMode, fixture: Fixture): RootResult | undefined {
   if (fixture.modes.includes(mode)) {
     it(`is parsed in '${mode}' mode`, () => {
       const result = parse(fixture.input, mode)
@@ -81,7 +81,7 @@ function compareCatharsis (mode: CatharsisMode, compareMode: CompareMode, result
       expect(catharsisResult).not.to.be.equal(undefined)
 
       if (compareMode !== 'differ') {
-        const transformed = catharsisTransform(results[compareMode] as TerminalResult)
+        const transformed = catharsisTransform(results[compareMode] as RootResult)
         expect(transformed, 'matches the catharsis output').to.deep.equal(catharsisResult)
       }
     })
@@ -106,7 +106,7 @@ function compareJtp (mode: JtpMode, compareMode: CompareMode, results: Results, 
       expect(jtpResult).not.to.be.equal(undefined)
 
       if (compareMode !== 'differ') {
-        const transformed = jtpTransform(results[compareMode] as TerminalResult)
+        const transformed = jtpTransform(results[compareMode] as RootResult)
         expect(transformed, 'matches the jsdoctypeparser output').to.deep.equal(jtpResult)
       }
     })
@@ -155,7 +155,7 @@ export function testFixture (fixture: Fixture): void {
               : undefined
 
     if (mode !== undefined) {
-      const result = results[mode] as TerminalResult
+      const result = results[mode] as RootResult
       const stringified = stringify(result)
 
       expect(stringified).to.equal(fixture.stringified ?? fixture.input)

@@ -4,7 +4,7 @@ import { Lexer } from './lexer/Lexer'
 import { Grammar } from './grammars/Grammar'
 import { assertTerminal } from './assertTypes'
 import { Precedence } from './Precedence'
-import { TerminalResult } from './result/TerminalResult'
+import { RootResult } from './result/RootResult'
 import { IntermediateResult } from './result/IntermediateResult'
 
 interface ParserOptions {
@@ -27,7 +27,7 @@ export class Parser {
     this.grammar = grammar
   }
 
-  parseText (text: string): TerminalResult {
+  parseText (text: string): RootResult {
     this.lexer.lex(text)
     const result = this.parseType(Precedence.ALL)
     if (this.getToken().type !== 'EOF') {
@@ -36,7 +36,7 @@ export class Parser {
     return result
   }
 
-  public parseType (precedence: Precedence): TerminalResult {
+  public parseType (precedence: Precedence): RootResult {
     return assertTerminal(this.parseIntermediateType(precedence))
   }
 

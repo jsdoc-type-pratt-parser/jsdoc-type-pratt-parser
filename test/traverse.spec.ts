@@ -4,7 +4,7 @@ import sinonChai from 'sinon-chai'
 import {
   GenericResult,
   NameResult,
-  TerminalResult,
+  RootResult,
   StringValueResult,
   UnionResult,
   FunctionResult,
@@ -35,7 +35,7 @@ describe('traverse', () => {
     const onEnter = spy()
     const onLeave = spy()
 
-    const result: TerminalResult = {
+    const result: RootResult = {
       type: 'JsdocTypeName',
       value: 'test'
     }

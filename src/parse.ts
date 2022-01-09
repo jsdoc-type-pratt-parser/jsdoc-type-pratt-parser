@@ -2,7 +2,7 @@ import { Parser } from './Parser'
 import { jsdocGrammar } from './grammars/jsdocGrammar'
 import { closureGrammar } from './grammars/closureGrammar'
 import { typescriptGrammar } from './grammars/typescriptGrammar'
-import { TerminalResult } from './result/TerminalResult'
+import { RootResult } from './result/RootResult'
 
 export type ParseMode = 'closure' | 'jsdoc' | 'typescript'
 
@@ -23,7 +23,7 @@ const parsers = {
  * @param expression
  * @param mode
  */
-export function parse (expression: string, mode: ParseMode): TerminalResult {
+export function parse (expression: string, mode: ParseMode): RootResult {
   return parsers[mode].parseText(expression)
 }
 
@@ -34,7 +34,7 @@ export function parse (expression: string, mode: ParseMode): TerminalResult {
  * @param expression
  * @param modes
  */
-export function tryParse (expression: string, modes: ParseMode[] = ['typescript', 'closure', 'jsdoc']): TerminalResult {
+export function tryParse (expression: string, modes: ParseMode[] = ['typescript', 'closure', 'jsdoc']): RootResult {
   let error
   for (const mode of modes) {
     try {

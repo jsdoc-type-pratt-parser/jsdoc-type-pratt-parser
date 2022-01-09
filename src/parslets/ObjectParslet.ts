@@ -2,7 +2,7 @@ import { composeParslet, ParsletFunction } from './Parslet'
 import { Parser } from '../Parser'
 import { Precedence } from '../Precedence'
 import { UnexpectedTypeError } from '../errors'
-import { ObjectResult } from '../result/TerminalResult'
+import { ObjectResult } from '../result/RootResult'
 import { Grammar } from '../grammars/Grammar'
 
 export function createObjectParslet ({ objectFieldGrammar, allowKeyTypes }: {

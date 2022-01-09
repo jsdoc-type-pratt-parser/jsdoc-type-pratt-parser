@@ -1,6 +1,6 @@
 import { transform, TransformRules } from './transform'
-import { NonTerminalResult } from '../result/NonTerminalResult'
-import { TerminalResult } from '../result/TerminalResult'
+import { NonRootResult } from '../result/NonRootResult'
+import { RootResult } from '../result/RootResult'
 import { isPlainKeyValue } from '../assertTypes'
 
 function applyPosition (position: 'prefix' | 'suffix', target: string, value: string): string {
@@ -45,11 +45,11 @@ export function stringifyRules (): TransformRules<string> {
 
     JsdocTypeName: result => result.value,
 
-    JsdocTypeTuple: (result, transform) => `[${(result.elements as NonTerminalResult[]).map(transform).join(', ')}]`,
+    JsdocTypeTuple: (result, transform) => `[${(result.elements as NonRootResult[]).map(transform).join(', ')}]`,
 
     JsdocTypeVariadic: (result, transform) => result.meta.position === undefined
       ? '...'
-      : applyPosition(result.meta.position, transform(result.element as NonTerminalResult), '...'),
+      : applyPosition(result.meta.position, transform(result.element as NonRootResult), '...'),
 
     JsdocTypeNamePath: (result, transform) => {
       const left = transform(result.left)
@@ -139,6 +139,6 @@ export function stringifyRules (): TransformRules<string> {
 
 const storedStringifyRules = stringifyRules()
 
-export function stringify (result: TerminalResult): string {
+export function stringify (result: RootResult): string {
   return transform(storedStringifyRules, result)
 }
