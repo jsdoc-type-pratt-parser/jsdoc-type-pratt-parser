@@ -4,13 +4,13 @@ export const stringValueParslet = composeParslet({
   name: 'stringValueParslet',
   accept: type => type === 'StringValue',
   parsePrefix: parser => {
-    const token = parser.getToken()
+    const text = parser.getLexer().token().text
     parser.consume('StringValue')
     return {
       type: 'JsdocTypeStringValue',
-      value: token.text.slice(1, -1),
+      value: text.slice(1, -1),
       meta: {
-        quote: token.text[0] === '\'' ? 'single' : 'double'
+        quote: text[0] === '\'' ? 'single' : 'double'
       }
     }
   }

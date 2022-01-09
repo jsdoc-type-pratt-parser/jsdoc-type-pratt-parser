@@ -91,8 +91,9 @@ export function createNamePathParslet ({ allowJsdocNamePaths, pathGrammar }: {
     }
 
     if (brackets && !parser.consume(']')) {
-      throw new Error(`Unterminated square brackets. Next token is '${parser.getToken().type}' ` +
-        `with text '${parser.getToken().text}'`)
+      const token = parser.getLexer().token()
+      throw new Error(`Unterminated square brackets. Next token is '${token.type}' ` +
+        `with text '${token.text}'`)
     }
 
     return {

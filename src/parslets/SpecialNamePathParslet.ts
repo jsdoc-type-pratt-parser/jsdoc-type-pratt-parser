@@ -31,7 +31,7 @@ export function createSpecialNamePathParslet ({ pathGrammar, allowedTypes }: {
 
       let result: SpecialNamePath
 
-      let token = parser.getToken()
+      let token = parser.getLexer().token()
       if (parser.consume('StringValue')) {
         result = {
           type: 'JsdocTypeSpecialNamePath',
@@ -46,7 +46,7 @@ export function createSpecialNamePathParslet ({ pathGrammar, allowedTypes }: {
         const allowed: TokenType[] = ['Identifier', '@', '/']
         while (allowed.some(type => parser.consume(type))) {
           value += token.text
-          token = parser.getToken()
+          token = parser.getLexer().token()
         }
         result = {
           type: 'JsdocTypeSpecialNamePath',

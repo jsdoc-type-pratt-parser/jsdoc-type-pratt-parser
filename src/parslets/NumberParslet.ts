@@ -4,11 +4,11 @@ export const numberParslet = composeParslet({
   name: 'numberParslet',
   accept: type => type === 'Number',
   parsePrefix: parser => {
-    const token = parser.getToken()
+    const value = parseFloat(parser.getLexer().token().text)
     parser.consume('Number')
     return {
       type: 'JsdocTypeNumber',
-      value: parseInt(token.text, 10)
+      value
     }
   }
 })
