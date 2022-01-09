@@ -9,7 +9,7 @@ import { visitorKeys } from './visitorKeys'
  * @param property the property on the parent node that contains the visited node. It can be the node itself or
  *  an array of nodes.
  */
-type NodeVisitor = (node: NonRootResult, parentNode?: NonRootResult, property?: string) => void
+export type NodeVisitor = (node: NonRootResult, parentNode?: NonRootResult, property?: string) => void
 
 function _traverse<T extends NonRootResult, U extends NonRootResult> (node: T, parentNode?: U, property?: keyof U, onEnter?: NodeVisitor, onLeave?: NodeVisitor): void {
   onEnter?.(node, parentNode, property as string)
