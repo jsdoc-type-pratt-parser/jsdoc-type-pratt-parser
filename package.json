@@ -18,7 +18,8 @@
     "apidoc": "typedoc src/index.ts --out docs",
     "preversion": "npm test",
     "prepublishOnly": "npm run build",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "benchmark": "npm run build && node benchmark/benchmark.js"
   },
   "author": "Simon Seyock (https://github.com/simonseyock)",
   "contributors": [
