@@ -1,5 +1,5 @@
 import { EarlyEndOfParseError, NoParsletFoundError } from './errors'
-import { Token, TokenType } from './lexer/Token'
+import { TokenType } from './lexer/Token'
 import { Lexer } from './lexer/Lexer'
 import { Grammar } from './grammars/Grammar'
 import { assertRootResult } from './assertTypes'
