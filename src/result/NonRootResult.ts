@@ -1,23 +1,23 @@
-import { QuoteStyle, TerminalResult } from './TerminalResult'
+import { QuoteStyle, RootResult } from './RootResult'
 
 /**
  * A parse sub result that might not be a valid type expression on its own.
  */
-export type NonTerminalResult =
-  TerminalResult
+export type NonRootResult =
+  RootResult
   | KeyValueResult
   | JsdocObjectKeyValueResult
   | PropertyResult
 
 /**
  * A key value pair represented by a `:`. Can occur as a named parameter of a {@link FunctionResult} or as an entry for
- * an {@link ObjectResult}. Is a {@link NonTerminalResult}. {@link JsdocObjectKeyValueResult} uses the same type name
+ * an {@link ObjectResult}. Is a {@link NonRootResult}. {@link JsdocObjectKeyValueResult} uses the same type name
  * and will not have a `value` property.
  */
 export interface KeyValueResult {
   type: 'JsdocTypeKeyValue'
   key: string
-  right: TerminalResult | undefined
+  right: RootResult | undefined
   optional: boolean
   readonly: boolean
   meta: {
@@ -33,8 +33,8 @@ export interface KeyValueResult {
  */
 export interface JsdocObjectKeyValueResult {
   type: 'JsdocTypeKeyValue'
-  left: TerminalResult
-  right: TerminalResult
+  left: RootResult
+  right: RootResult
   meta: {
     hasLeftSideExpression: true
   }

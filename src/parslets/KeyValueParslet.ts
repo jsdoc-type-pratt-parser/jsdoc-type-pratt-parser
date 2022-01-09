@@ -1,6 +1,6 @@
 import { composeParslet, ParsletFunction } from './Parslet'
 import { Precedence } from '../Precedence'
-import { assertTerminal } from '../assertTypes'
+import { assertRootResult } from '../assertTypes'
 import { UnexpectedTypeError } from '../errors'
 
 export function createKeyValueParslet ({ allowKeyTypes, allowReadonly, allowOptional }: {
@@ -57,7 +57,7 @@ export function createKeyValueParslet ({ allowKeyTypes, allowReadonly, allowOpti
 
         return {
           type: 'JsdocTypeKeyValue',
-          left: assertTerminal(left),
+          left: assertRootResult(left),
           right: parser.parseType(Precedence.KEY_VALUE),
           meta: {
             hasLeftSideExpression: true

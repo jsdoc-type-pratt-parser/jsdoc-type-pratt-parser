@@ -2,9 +2,9 @@ import { EarlyEndOfParseError, NoParsletFoundError } from './errors'
 import { Token, TokenType } from './lexer/Token'
 import { Lexer } from './lexer/Lexer'
 import { Grammar } from './grammars/Grammar'
-import { assertTerminal } from './assertTypes'
+import { assertRootResult } from './assertTypes'
 import { Precedence } from './Precedence'
-import { TerminalResult } from './result/TerminalResult'
+import { RootResult } from './result/RootResult'
 import { IntermediateResult } from './result/IntermediateResult'
 
 interface ParserOptions {
@@ -27,7 +27,7 @@ export class Parser {
     this.grammar = grammar
   }
 
-  parseText (text: string): TerminalResult {
+  parseText (text: string): RootResult {
     this.lexer.lex(text)
     const result = this.parseType(Precedence.ALL)
     if (this.getToken().type !== 'EOF') {
@@ -36,8 +36,8 @@ export class Parser {
     return result
   }
 
-  public parseType (precedence: Precedence): TerminalResult {
-    return assertTerminal(this.parseIntermediateType(precedence))
+  public parseType (precedence: Precedence): RootResult {
+    return assertRootResult(this.parseIntermediateType(precedence))
   }
 
   private tryParslets (precedence: Precedence, left: IntermediateResult | null): IntermediateResult | null {

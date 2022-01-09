@@ -2,30 +2,30 @@ import { TransformRules } from './transform'
 import {
   JsdocObjectKeyValueResult,
   KeyValueResult,
-  NonTerminalResult
-} from '../result/NonTerminalResult'
+  NonRootResult
+} from '../result/NonRootResult'
 import {
   FunctionResult,
   NameResult,
   StringValueResult,
   SymbolResult,
-  TerminalResult,
+  RootResult,
   VariadicResult,
   NumberResult
-} from '../result/TerminalResult'
+} from '../result/RootResult'
 import { isPlainKeyValue } from '../assertTypes'
 
-export function identityTransformRules (): TransformRules<NonTerminalResult> {
+export function identityTransformRules (): TransformRules<NonRootResult> {
   return {
     JsdocTypeIntersection: (result, transform) => ({
       type: 'JsdocTypeIntersection',
-      elements: result.elements.map(transform) as TerminalResult[]
+      elements: result.elements.map(transform) as RootResult[]
     }),
 
     JsdocTypeGeneric: (result, transform) => ({
       type: 'JsdocTypeGeneric',
-      left: transform(result.left) as TerminalResult,
-      elements: result.elements.map(transform) as TerminalResult[],
+      left: transform(result.left) as RootResult,
+      elements: result.elements.map(transform) as RootResult[],
       meta: {
         dot: result.meta.dot,
         brackets: result.meta.brackets
@@ -36,7 +36,7 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
 
     JsdocTypeUnion: (result, transform) => ({
       type: 'JsdocTypeUnion',
-      elements: result.elements.map(transform) as TerminalResult[]
+      elements: result.elements.map(transform) as RootResult[]
     }),
 
     JsdocTypeUnknown: result => result,
@@ -45,7 +45,7 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
 
     JsdocTypeTypeof: (result, transform) => ({
       type: 'JsdocTypeTypeof',
-      element: transform(result.element) as TerminalResult
+      element: transform(result.element) as RootResult
     }),
 
     JsdocTypeSymbol: (result, transform) => {
@@ -61,7 +61,7 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
 
     JsdocTypeOptional: (result, transform) => ({
       type: 'JsdocTypeOptional',
-      element: transform(result.element) as TerminalResult,
+      element: transform(result.element) as RootResult,
       meta: {
         position: result.meta.position
       }
@@ -81,7 +81,7 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
 
     JsdocTypeNotNullable: (result, transform) => ({
       type: 'JsdocTypeNotNullable',
-      element: transform(result.element) as TerminalResult,
+      element: transform(result.element) as RootResult,
       meta: {
         position: result.meta.position
       }
@@ -94,7 +94,7 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
         return {
           type: 'JsdocTypeKeyValue',
           key: result.key,
-          right: result.right === undefined ? undefined : transform(result.right) as TerminalResult,
+          right: result.right === undefined ? undefined : transform(result.right) as RootResult,
           optional: result.optional,
           readonly: result.readonly,
           meta: result.meta
@@ -102,8 +102,8 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
       } else {
         return {
           type: 'JsdocTypeKeyValue',
-          left: transform(result.left) as TerminalResult,
-          right: transform(result.right) as TerminalResult,
+          left: transform(result.left) as RootResult,
+          right: transform(result.right) as RootResult,
           meta: result.meta
         }
       }
@@ -121,7 +121,7 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
     JsdocTypeNamePath: result => result,
 
     JsdocTypeVariadic: (result, transform) => {
-      const transformed: VariadicResult<TerminalResult> = {
+      const transformed: VariadicResult<RootResult> = {
         type: 'JsdocTypeVariadic',
         meta: {
           position: result.meta.position,
@@ -130,7 +130,7 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
       }
 
       if (result.element !== undefined) {
-        transformed.element = transform(result.element) as TerminalResult
+        transformed.element = transform(result.element) as RootResult
       }
 
       return transformed
@@ -138,7 +138,7 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
 
     JsdocTypeTuple: (result, transform) => ({
       type: 'JsdocTypeTuple',
-      elements: (result.elements as NonTerminalResult[]).map(transform) as TerminalResult[]|KeyValueResult[]
+      elements: (result.elements as NonRootResult[]).map(transform) as RootResult[]|KeyValueResult[]
     }),
 
     JsdocTypeName: result => result,
@@ -147,12 +147,12 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
       const transformed: FunctionResult = {
         type: 'JsdocTypeFunction',
         arrow: result.arrow,
-        parameters: result.parameters.map(transform) as TerminalResult[],
+        parameters: result.parameters.map(transform) as RootResult[],
         parenthesis: result.parenthesis
       }
 
       if (result.returnType !== undefined) {
-        transformed.returnType = transform(result.returnType) as TerminalResult
+        transformed.returnType = transform(result.returnType) as RootResult
       }
 
       return transformed
@@ -160,14 +160,20 @@ export function identityTransformRules (): TransformRules<NonTerminalResult> {
 
     JsdocTypeKeyof: (result, transform) => ({
       type: 'JsdocTypeKeyof',
-      element: transform(result.element) as TerminalResult
+      element: transform(result.element) as RootResult
     }),
 
     JsdocTypeParenthesis: (result, transform) => ({
       type: 'JsdocTypeParenthesis',
-      element: transform(result.element) as TerminalResult
+      element: transform(result.element) as RootResult
     }),
 
-    JsdocTypeProperty: result => result
+    JsdocTypeProperty: result => result,
+
+    JsdocTypePredicate: (result, transform) => ({
+      type: 'JsdocTypePredicate',
+      left: transform(result.left) as NameResult,
+      right: transform(result.right) as RootResult
+    })
   }
 }

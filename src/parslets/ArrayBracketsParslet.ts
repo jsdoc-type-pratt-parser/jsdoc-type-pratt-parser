@@ -1,6 +1,6 @@
 import { composeParslet } from './Parslet'
 import { Precedence } from '../Precedence'
-import { assertTerminal } from '../assertTypes'
+import { assertRootResult } from '../assertTypes'
 
 export const arrayBracketsParslet = composeParslet({
   name: 'arrayBracketsParslet',
@@ -16,7 +16,7 @@ export const arrayBracketsParslet = composeParslet({
         value: 'Array'
       },
       elements: [
-        assertTerminal(left)
+        assertRootResult(left)
       ],
       meta: {
         brackets: 'square',

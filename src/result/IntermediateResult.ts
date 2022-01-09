@@ -1,14 +1,14 @@
-import { KeyValueResult, NonTerminalResult } from './NonTerminalResult'
-import { TerminalResult } from './TerminalResult'
+import { KeyValueResult, NonRootResult } from './NonRootResult'
+import { RootResult } from './RootResult'
 
-export type IntermediateResult = NonTerminalResult | ParameterList | ReadonlyProperty
+export type IntermediateResult = NonRootResult | ParameterList | ReadonlyProperty
 
 export interface ParameterList {
   type: 'JsdocTypeParameterList'
-  elements: Array<KeyValueResult | TerminalResult>
+  elements: Array<KeyValueResult | RootResult>
 }
 
 export interface ReadonlyProperty {
   type: 'JsdocTypeReadonlyProperty'
-  element: TerminalResult
+  element: RootResult
 }

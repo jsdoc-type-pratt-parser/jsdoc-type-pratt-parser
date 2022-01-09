@@ -1,7 +1,7 @@
 import { extractSpecialParams, notAvailableTransform, transform, TransformRules } from './transform'
-import { QuoteStyle, TerminalResult } from '../result/TerminalResult'
-import { assertTerminal, isPlainKeyValue } from '../assertTypes'
-import { NonTerminalResult } from '../result/NonTerminalResult'
+import { QuoteStyle, RootResult } from '../result/RootResult'
+import { assertRootResult, isPlainKeyValue } from '../assertTypes'
+import { NonRootResult } from '../result/NonRootResult'
 
 export type JtpResult =
   JtpNameResult
@@ -272,7 +272,7 @@ const jtpRules: TransformRules<JtpResult> = {
 
   JsdocTypeTuple: (result, transform) => ({
     type: 'TUPLE',
-    entries: (result.elements as NonTerminalResult[]).map(transform)
+    entries: (result.elements as NonRootResult[]).map(transform)
   }),
 
   JsdocTypeKeyof: (result, transform) => ({
@@ -455,7 +455,7 @@ const jtpRules: TransformRules<JtpResult> = {
 
   JsdocTypeParenthesis: (result, transform) => ({
     type: 'PARENTHESIS',
-    value: transform(assertTerminal(result.element))
+    value: transform(assertRootResult(result.element))
   }),
 
   JsdocTypeNull: () => ({
@@ -482,9 +482,11 @@ const jtpRules: TransformRules<JtpResult> = {
 
   JsdocTypeSymbol: notAvailableTransform,
 
-  JsdocTypeProperty: notAvailableTransform
+  JsdocTypeProperty: notAvailableTransform,
+
+  JsdocTypePredicate: notAvailableTransform
 }
 
-export function jtpTransform (result: TerminalResult): JtpResult {
+export function jtpTransform (result: RootResult): JtpResult {
   return transform(jtpRules, result)
 }

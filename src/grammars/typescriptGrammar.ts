@@ -20,6 +20,7 @@ import { arrayBracketsParslet } from '../parslets/ArrayBracketsParslet'
 import { arrowFunctionParslet } from '../parslets/ArrowFunctionParslet'
 import { createNamePathParslet } from '../parslets/NamePathParslet'
 import { intersectionParslet } from '../parslets/IntersectionParslet'
+import { predicateParslet } from '../parslets/predicateParslet'
 
 const objectFieldGrammar: Grammar = [
   createNameParslet({
@@ -77,5 +78,6 @@ export const typescriptGrammar: Grammar = [
     allowOptional: true,
     allowReadonly: true
   }),
-  intersectionParslet
+  intersectionParslet,
+  predicateParslet
 ]

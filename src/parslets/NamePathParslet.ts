@@ -1,10 +1,10 @@
 import { ParsletFunction } from './Parslet'
 import { Precedence } from '../Precedence'
-import { assertTerminal } from '../assertTypes'
+import { assertRootResult } from '../assertTypes'
 import { Parser } from '../Parser'
-import { NamePathResult, SpecialNamePath } from '../result/TerminalResult'
+import { NamePathResult, SpecialNamePath } from '../result/RootResult'
 import { UnexpectedTypeError } from '../errors'
-import { PropertyResult } from '../result/NonTerminalResult'
+import { PropertyResult } from '../result/NonRootResult'
 import { Grammar } from '../grammars/Grammar'
 
 export function createNamePathParslet ({ allowJsdocNamePaths, pathGrammar }: {
@@ -97,7 +97,7 @@ export function createNamePathParslet ({ allowJsdocNamePaths, pathGrammar }: {
 
     return {
       type: 'JsdocTypeNamePath',
-      left: assertTerminal(left),
+      left: assertRootResult(left),
       right,
       pathType: pathType
     }

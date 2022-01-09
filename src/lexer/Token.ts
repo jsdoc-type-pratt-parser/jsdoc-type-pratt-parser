@@ -35,6 +35,7 @@ export type TokenType =
   | 'keyof'
   | 'readonly'
   | 'import'
+  | 'is'
   | 'Identifier'
   | 'StringValue'
   | 'Number'

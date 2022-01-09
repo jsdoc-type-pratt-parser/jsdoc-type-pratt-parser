@@ -2,8 +2,8 @@ import { composeParslet, ParsletFunction } from './Parslet'
 import { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
 import { Parser } from '../Parser'
-import { SpecialNamePath, SpecialNamePathType } from '../result/TerminalResult'
-import { assertTerminal } from '../assertTypes'
+import { SpecialNamePath, SpecialNamePathType } from '../result/RootResult'
+import { assertRootResult } from '../assertTypes'
 import { Grammar } from '../grammars/Grammar'
 
 export function createSpecialNamePathParslet ({ pathGrammar, allowedTypes }: {
@@ -58,7 +58,7 @@ export function createSpecialNamePathParslet ({ pathGrammar, allowedTypes }: {
         }
       }
 
-      return assertTerminal(moduleParser.parseInfixIntermediateType(result, Precedence.ALL))
+      return assertRootResult(moduleParser.parseInfixIntermediateType(result, Precedence.ALL))
     }
   })
 }

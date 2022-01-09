@@ -1,7 +1,7 @@
-import { assertPlainKeyValue, assertTerminal } from '../assertTypes'
+import { assertPlainKeyValueResult, assertRootResult } from '../assertTypes'
 import { composeParslet, ParsletFunction } from './Parslet'
 import { Precedence } from '../Precedence'
-import { TupleResult } from '../result/TerminalResult'
+import { TupleResult } from '../result/RootResult'
 import { IntermediateResult } from '../result/IntermediateResult'
 
 export function createTupleParslet ({ allowQuestionMark }: {
@@ -24,15 +24,15 @@ export function createTupleParslet ({ allowQuestionMark }: {
       const typeList = parser.parseIntermediateType(Precedence.ALL)
       if (typeList.type === 'JsdocTypeParameterList') {
         if (typeList.elements[0].type === 'JsdocTypeKeyValue') {
-          result.elements = typeList.elements.map(assertPlainKeyValue)
+          result.elements = typeList.elements.map(assertPlainKeyValueResult)
         } else {
-          result.elements = typeList.elements.map(assertTerminal)
+          result.elements = typeList.elements.map(assertRootResult)
         }
       } else {
         if (typeList.type === 'JsdocTypeKeyValue') {
-          result.elements = [assertPlainKeyValue(typeList)]
+          result.elements = [assertPlainKeyValueResult(typeList)]
         } else {
-          result.elements = [assertTerminal(typeList)]
+          result.elements = [assertRootResult(typeList)]
         }
       }
 

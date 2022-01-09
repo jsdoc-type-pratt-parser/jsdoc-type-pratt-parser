@@ -1,13 +1,13 @@
 import { composeParslet, ParsletFunction } from './Parslet'
 import { Precedence } from '../Precedence'
-import { FunctionResult, TerminalResult } from '../result/TerminalResult'
+import { FunctionResult, RootResult } from '../result/RootResult'
 import { IntermediateResult } from '../result/IntermediateResult'
-import { KeyValueResult, NonTerminalResult } from '../result/NonTerminalResult'
+import { KeyValueResult, NonRootResult } from '../result/NonRootResult'
 import { UnexpectedTypeError } from '../errors'
-import { assertPlainKeyValueOrTerminal } from '../assertTypes'
+import { assertPlainKeyValueOrRootResult } from '../assertTypes'
 
-export function getParameters (value: IntermediateResult): Array<TerminalResult | KeyValueResult> {
-  let parameters: NonTerminalResult[]
+export function getParameters (value: IntermediateResult): Array<RootResult | KeyValueResult> {
+  let parameters: NonRootResult[]
   if (value.type === 'JsdocTypeParameterList') {
     parameters = value.elements
   } else if (value.type === 'JsdocTypeParenthesis') {
@@ -16,15 +16,15 @@ export function getParameters (value: IntermediateResult): Array<TerminalResult 
     throw new UnexpectedTypeError(value)
   }
 
-  return parameters.map(p => assertPlainKeyValueOrTerminal(p))
+  return parameters.map(p => assertPlainKeyValueOrRootResult(p))
 }
 
-export function getUnnamedParameters (value: IntermediateResult): TerminalResult[] {
+export function getUnnamedParameters (value: IntermediateResult): RootResult[] {
   const parameters = getParameters(value)
   if (parameters.some(p => p.type === 'JsdocTypeKeyValue')) {
     throw new Error('No parameter should be named')
   }
-  return parameters as TerminalResult[]
+  return parameters as RootResult[]
 }
 
 export function createFunctionParslet ({ allowNamedParameters, allowNoReturnType, allowWithoutParenthesis }: {

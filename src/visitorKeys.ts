@@ -1,7 +1,7 @@
-import { NonTerminalResult } from './result/NonTerminalResult'
+import { NonRootResult } from './result/NonRootResult'
 
 type VisitorKeys = {
-  [P in NonTerminalResult as P['type']]: Array<keyof P>
+  [P in NonRootResult as P['type']]: Array<keyof P>
 }
 
 export const visitorKeys: VisitorKeys = {
@@ -30,5 +30,6 @@ export const visitorKeys: VisitorKeys = {
   JsdocTypeUnion: ['elements'],
   JsdocTypeUnknown: [],
   JsdocTypeVariadic: ['element'],
-  JsdocTypeProperty: []
+  JsdocTypeProperty: [],
+  JsdocTypePredicate: ['left', 'right']
 }
