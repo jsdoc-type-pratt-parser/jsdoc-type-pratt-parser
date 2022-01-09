@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v2.1.0...v2.2.0) (2022-01-09)
+
+
+### Features
+
+* add PredicateResult ([38bf20f](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/38bf20ffce79d86f449747c554bca7da6cdf2642))
+
 # [2.1.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v2.0.2...v2.1.0) (2022-01-08)
 
 
