@@ -9,7 +9,7 @@ export const predicateParslet = composeParslet({
   accept: type => type === 'is',
   parseInfix: (parser, left) => {
     if (left.type !== 'JsdocTypeName') {
-      throw new UnexpectedTypeError(left, 'Predicate always have to have names on the left side.')
+      throw new UnexpectedTypeError(left, 'A typescript predicate always has to have a name on the left side.')
     }
 
     parser.consume('is')
