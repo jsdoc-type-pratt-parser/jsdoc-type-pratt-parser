@@ -44,8 +44,8 @@ const result = parse('SomeType<string>', 'typescript')
 
 ## API Documentation
 
-An API documentation can be found [here](https://jsdoc-type-pratt-parser.github.io/jsdoc-type-pratt-parser/docs/modules.html).
-It is still lacking in some points. Feel free to create issues or PRs to improve this.
+An API documentation can be found [here](https://jsdoc-type-pratt-parser.github.io/jsdoc-type-pratt-parser/docs/).
+It is incomplete, but a good starting point. Please create issues or PRs if you don't find what you expect.
 
 ## Available Grammars
 
@@ -56,7 +56,7 @@ Three different modes (grammars) are supported: `'jsdoc'`, `'closure'` and `'typ
 A common task to do on ASTs are transforms, for example a stringification. This library includes some transform and
 utilities to implement your own.
 
-[`stringify`](https://jsdoc-type-pratt-parser.github.io/jsdoc-type-pratt-parser/docs/modules.html#stringify):
+[`stringify`](https://jsdoc-type-pratt-parser.github.io/jsdoc-type-pratt-parser/docs/index.html#stringify):
 
 ```js
 import { stringify } from 'jsdoc-type-pratt-parser'
@@ -64,8 +64,8 @@ import { stringify } from 'jsdoc-type-pratt-parser'
 const val = stringify({ type: 'JsdocTypeName', value: 'name'}) // -> 'name'
 ```
 
-You can customize the stringification by using [`stringifyRules`](https://jsdoc-type-pratt-parser.github.io/jsdoc-type-pratt-parser/docs/modules.html#stringifyRules)
-and [`transform`](https://jsdoc-type-pratt-parser.github.io/jsdoc-type-pratt-parser/docs/modules.html#transform):
+You can customize the stringification by using [`stringifyRules`](https://jsdoc-type-pratt-parser.github.io/jsdoc-type-pratt-parser/docs/index.html#stringifyRules)
+and [`transform`](https://jsdoc-type-pratt-parser.github.io/jsdoc-type-pratt-parser/docs/index.html#transform):
 
 ```js
 import { stringifyRules, transform } from 'jsdoc-type-pratt-parser'
@@ -78,8 +78,8 @@ rules.NAME = (result, transform) => 'something else'
 const val = transform(rules, { type: 'JsdocTypeName', value: 'name'}) // -> 'something else'
 ```
 
-You can also build your own transform rules by implementing the [`TransformRules<TransformResultType>`](https://jsdoc-type-pratt-parser.github.io/jsdoc-type-pratt-parser/docs/modules.html#TransformRules) interface or you
-can build upon the [identity ruleset](https://jsdoc-type-pratt-parser.github.io/jsdoc-type-pratt-parser/docs/modules.html#identityTransformRules) like this:
+You can also build your own transform rules by implementing the [`TransformRules<TransformResultType>`](https://jsdoc-type-pratt-parser.github.io/jsdoc-type-pratt-parser/docs/index.html#TransformRules) interface or you
+can build upon the [identity ruleset](https://jsdoc-type-pratt-parser.github.io/jsdoc-type-pratt-parser/docs/index.html#identityTransformRules) like this:
 
 ```js
 import { identityTransformRules, transform } from 'jsdoc-type-pratt-parser'
@@ -95,7 +95,7 @@ This library also supports compatibility modes for catharsis and jsdoctypeparser
  parsed differently. These modes are thought to make transition easier, but it is advised to use the native output as
  this will be more uniform and will contain more information.
  
-[Catharsis compat mode](https://jsdoc-type-pratt-parser.github.io/jsdoc-type-pratt-parser/docs/modules.html#catharsisTransform):
+[Catharsis compat mode](https://jsdoc-type-pratt-parser.github.io/jsdoc-type-pratt-parser/docs/index.html#catharsisTransform):
 
 ```js
 import { parse, catharsisTransform } from 'jsdoc-type-pratt-parser'
@@ -103,7 +103,7 @@ import { parse, catharsisTransform } from 'jsdoc-type-pratt-parser'
 const result = catharsisTransform(parse('myType.<string>', 'closure'))
 ```
 
-[Jsdoctypeparser compat mode](https://jsdoc-type-pratt-parser.github.io/jsdoc-type-pratt-parser/docs/modules.html#jtpTransform):
+[Jsdoctypeparser compat mode](https://jsdoc-type-pratt-parser.github.io/jsdoc-type-pratt-parser/docs/index.html#jtpTransform):
 
 ```js
 import { parse, jtpTransform } from 'jsdoc-type-pratt-parser'
@@ -113,7 +113,7 @@ const result = jtpTransform(parse('myType.<string>', 'closure'))
 
 ## Traverse
 
-You can traverse an AST with the [`traverse`](https://jsdoc-type-pratt-parser.github.io/jsdoc-type-pratt-parser/docs/modules.html#traverse) function:
+You can traverse an AST with the [`traverse`](https://jsdoc-type-pratt-parser.github.io/jsdoc-type-pratt-parser/docs/index.html#traverse) function:
 
 ```js
 import { traverse } from 'jsdoc-type-pratt-parser'
@@ -129,14 +129,14 @@ traverse({ type: 'JsdocTypeName', value: 'name'}, onEnter, console.log)
 
 ## Tests Status
 
-This parser runs most tests of https://github.com/hegemonic/catharsis and
-https://github.com/jsdoctypeparser/jsdoctypeparser. It compares the results of the different parsing libraries. If you
+This parser runs most tests of [catharsis](https://github.com/hegemonic/catharsis) and
+[jsdoctypeparser](https://github.com/jsdoctypeparser/jsdoctypeparser). It compares the results of the different parsing libraries. If you
 want to find out where the output differs, look in the tests for the comments `// This seems to be an error of ...` or
 the `differ` keyword which indicates that differing results are produced.
 
 ## Performance
 
-A simple [performance comparision](benchmark/benchmark.js) using [Benchmark.js](https://benchmarkjs.com/) produced the following results:
+A simple [performance comparison](benchmark/benchmark.js) using [Benchmark.js](https://benchmarkjs.com/) produced the following results:
 ```
 Testing expression: Name
 catharsis x 37,816 ops/sec ±1.22% (1086 runs sampled)

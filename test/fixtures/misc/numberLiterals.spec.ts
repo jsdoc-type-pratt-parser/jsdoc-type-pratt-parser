@@ -104,4 +104,24 @@ describe('number literals tests', () => {
       }
     })
   })
+
+  describe('should accept floating point numbers', () => {
+    testFixture({
+      input: '3.14 | 1.2e+104',
+      modes: ['typescript', 'jsdoc', 'closure'],
+      expected: {
+        type: 'JsdocTypeUnion',
+        elements: [
+          {
+            type: 'JsdocTypeNumber',
+            value: 3.14
+          },
+          {
+            type: 'JsdocTypeNumber',
+            value: 1.2e+104
+          }
+        ]
+      }
+    })
+  })
 })

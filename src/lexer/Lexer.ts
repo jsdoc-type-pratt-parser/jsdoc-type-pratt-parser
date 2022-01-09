@@ -59,6 +59,7 @@ function getIdentifier (text: string): string|null {
   return text.slice(0, position)
 }
 
+// we are a bit more liberal than TypeScript here and allow `NaN`, `Infinity` and `-Infinity`
 const numberRegex = /^(NaN|-?((\d*\.\d+|\d+)([Ee][+-]?\d+)?|Infinity))/
 function getNumber (text: string): string|null {
   return numberRegex.exec(text)?.[0] ?? null

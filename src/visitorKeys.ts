@@ -1,6 +1,6 @@
 import { NonRootResult } from './result/NonRootResult'
 
-type VisitorKeys = {
+export type VisitorKeys = {
   [P in NonRootResult as P['type']]: Array<keyof P>
 }
 

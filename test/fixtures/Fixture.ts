@@ -6,11 +6,11 @@ import { jtpTransform } from '../../src/transforms/jtpTransform'
 import { simplify } from '../../src/transforms/simplify'
 import { catharsisTransform, parse, RootResult, ParseMode, stringify } from '../../src'
 
-type JtpMode = 'jsdoc' | 'closure' | 'typescript' | 'permissive'
+export type JtpMode = 'jsdoc' | 'closure' | 'typescript' | 'permissive'
 
-type CatharsisMode = 'jsdoc' | 'closure'
+export type CatharsisMode = 'jsdoc' | 'closure'
 
-type CompareMode = ParseMode | 'fail' | 'differ'
+export type CompareMode = ParseMode | 'fail' | 'differ'
 
 export interface Fixture {
   /**

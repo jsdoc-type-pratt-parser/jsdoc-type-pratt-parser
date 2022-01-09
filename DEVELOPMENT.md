@@ -60,9 +60,9 @@ export interface PredicateResult {
  
 6. Add a test. To test we think about an example expression and how we expect it to be parsed. Then we specify these
    in a fixture test and use `testFixture` to do this. There the typing can guide us to fill all required fields.
-   Documentation about this function can be found in `test/fixtures/Fixture.ts`.
-   There already exist multiple files for different aspects, but for our case we create a new file
-   `test/fixtures/typescript/predicate.spec.ts`:
+   Check the [API docs](https://jsdoc-type-pratt-parser.github.io/jsdoc-type-pratt-parser/docs/interfaces/Fixture.html)
+   to find out more about the `Fixture` type.
+   We create a new test suite at `test/fixtures/typescript/predicate.spec.ts`:
 
 ```typescript
 import { testFixture } from '../Fixture'
@@ -90,9 +90,9 @@ describe('typescript predicates', () => {
 
 6. Add new tokens. If we run the test again we will get an error for our unit test and can actually start developing our
    feature. The message is `Error: The parsing ended early. The next token was: 'Identifier' with value 'is'`. It tells us
-   that the lexer was not able to parse the token `is`. To fix this we add `'is'` to the `TokenType` in `src/lexer/Token.ts`
-   and create a new lexing rule in `src/lexer/Lexer.ts`. As this is just a static text token, we can just add
-   `makeKeyWordRule('is')` to the `rules` array.
+   that the lexer was not able to parse `is` as a token, but treats it as an identifier. To fix this we add `'is'` to
+   the `TokenType` in `src/lexer/Token.ts` and create a new lexing rule in `src/lexer/Lexer.ts`. As this is just a static
+   text token, we can just add `makeKeyWordRule('is')` to the `rules` array.
 
 7. Add a parslet. The next error is `Error: The parsing ended early. The next token was: 'is' with value 'is'`, which
    tells us that a parslet is missing. We create a new file `src/parslets/predicateParslet.ts` and use `composeParslet` to
