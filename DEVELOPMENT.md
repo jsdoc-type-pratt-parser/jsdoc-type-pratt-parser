@@ -127,7 +127,7 @@ export const predicateParslet = composeParslet({
 
 9. Implement `parseInfix`. Here `parser` is the currently used parser and `left` is the already parsed part. So we ensure
    that `left` is indeed a name. If that is the case we can now safely `consume` the `is` token. With this we tell the parser
-   that we can continue parsing the next token and then proceed to assemble the ast and recursively continue parsing the `right` part of our
+   that we can continue parsing the next token and then proceed to assemble the AST and recursively continue parsing the `right` part of our
    expression. To ensure that we indeed get a `RootResult` for our right expression we can use the function `assertRoot`.
    This prevents us from getting special results like a `KeyValueResult` which is only valid in certain contexts
    (for example in object types or function parameter lists). The resulting file looks like this:
@@ -159,7 +159,7 @@ export const predicateParslet = composeParslet({
 ```
 
 10. Add parslet to grammar. Now we need to tell the parser that we actually want to use this parslet. For this we add
-    the parslet to the `typescriptGrammar` array in `src/grammars/typescriptGrammar.ts.
+    the parslet to the `typescriptGrammar` array in `src/grammars/typescriptGrammar.ts`.
 
 11. Run tests and debug until done. In the end we see that all tests pass, and we are done. We can now add some more tests 
     if we like.

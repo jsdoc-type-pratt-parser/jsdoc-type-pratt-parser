@@ -4,7 +4,7 @@ import { NameResult, NumberResult, RootResult, VariadicResult } from './result/R
 import { IntermediateResult } from './result/IntermediateResult'
 
 /**
- * throws an error if the provided result is not a {@link RootResult}
+ * Throws an error if the provided result is not a {@link RootResult}
  */
 export function assertRootResult (result?: IntermediateResult): RootResult {
   if (result === undefined) {
