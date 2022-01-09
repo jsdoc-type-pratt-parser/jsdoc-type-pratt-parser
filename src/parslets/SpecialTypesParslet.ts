@@ -30,6 +30,6 @@ export const specialTypesParslet = composeParslet({
       }
     }
 
-    throw new Error('Unacceptable token: ' + parser.getToken().text)
+    throw new Error('Unacceptable token: ' + parser.getLexer().token().text)
   }
 })

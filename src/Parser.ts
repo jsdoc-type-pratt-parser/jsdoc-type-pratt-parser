@@ -27,19 +27,28 @@ export class Parser {
     this.grammar = grammar
   }
 
+  /**
+   * Parses a given string and throws an error if the parse ended before the end of the string.
+   */
   parseText (text: string): RootResult {
     this.lexer.lex(text)
     const result = this.parseType(Precedence.ALL)
-    if (this.getToken().type !== 'EOF') {
-      throw new EarlyEndOfParseError(this.getToken())
+    if (this.lexer.token().type !== 'EOF') {
+      throw new EarlyEndOfParseError(this.lexer.token())
     }
     return result
   }
 
+  /**
+   * Parses with the current lexer and asserts that the result is a {@link RootResult}.
+   */
   public parseType (precedence: Precedence): RootResult {
     return assertRootResult(this.parseIntermediateType(precedence))
   }
 
+  /**
+   * Tries to parse the current state with all parslets in the grammar and returns the first non null result.
+   */
   private tryParslets (precedence: Precedence, left: IntermediateResult | null): IntermediateResult | null {
     for (const parslet of this.grammar) {
       const result = parslet(this, precedence, left)
@@ -50,16 +59,24 @@ export class Parser {
     return null
   }
 
+  /**
+   * The main parsing function. First it tries to parse the current state in the prefix step, and then it continues
+   * to parse the state in the infix step.
+   */
   public parseIntermediateType (precedence: Precedence): IntermediateResult {
     const result = this.tryParslets(precedence, null)
 
     if (result === null) {
-      throw new NoParsletFoundError(this.getToken())
+      throw new NoParsletFoundError(this.lexer.token())
     }
 
     return this.parseInfixIntermediateType(result, precedence)
   }
 
+  /**
+   * In the infix parsing step the parser continues to parse the current state with all parslets until none returns
+   * a result.
+   */
   public parseInfixIntermediateType (result: IntermediateResult, precedence: Precedence): IntermediateResult {
     let newResult = this.tryParslets(precedence, result)
 
@@ -71,6 +88,10 @@ export class Parser {
     return result
   }
 
+  /**
+   * If the given type equals the current type of the {@link Lexer} advance the lexer. Return true if the lexer was
+   * advanced.
+   */
   public consume (types: TokenType|TokenType[]): boolean {
     if (!Array.isArray(types)) {
       types = [types]
@@ -80,18 +101,6 @@ export class Parser {
     }
     this.lexer.advance()
     return true
-  }
-
-  public getToken (): Token {
-    return this.lexer.token()
-  }
-
-  public peekToken (): Token {
-    return this.lexer.peek()
-  }
-
-  public previousToken (): Token | undefined {
-    return this.lexer.last()
   }
 
   getLexer (): Lexer {

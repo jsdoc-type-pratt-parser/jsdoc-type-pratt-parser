@@ -3,6 +3,9 @@ import { UnexpectedTypeError } from './errors'
 import { NameResult, NumberResult, RootResult, VariadicResult } from './result/RootResult'
 import { IntermediateResult } from './result/IntermediateResult'
 
+/**
+ * throws an error if the provided result is not a {@link RootResult}
+ */
 export function assertRootResult (result?: IntermediateResult): RootResult {
   if (result === undefined) {
     throw new Error('Unexpected undefined')
