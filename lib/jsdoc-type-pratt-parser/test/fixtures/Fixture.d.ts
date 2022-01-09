@@ -1,8 +1,8 @@
 import 'mocha';
 import { RootResult, ParseMode } from '../../src';
-declare type JtpMode = 'jsdoc' | 'closure' | 'typescript' | 'permissive';
-declare type CatharsisMode = 'jsdoc' | 'closure';
-declare type CompareMode = ParseMode | 'fail' | 'differ';
+export declare type JtpMode = 'jsdoc' | 'closure' | 'typescript' | 'permissive';
+export declare type CatharsisMode = 'jsdoc' | 'closure';
+export declare type CompareMode = ParseMode | 'fail' | 'differ';
 export interface Fixture {
     /**
      * The input that should be parsed
@@ -39,4 +39,3 @@ export interface Fixture {
  * Function to run all relevant tests for a {@link Fixture}.
  */
 export declare function testFixture(fixture: Fixture): void;
-export {};

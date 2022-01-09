@@ -11,4 +11,4 @@ export { jtpTransform } from './transforms/jtpTransform';
 export { stringify, stringifyRules } from './transforms/stringify';
 export { identityTransformRules } from './transforms/identityTransformRules';
 export * from './traverse';
-export { visitorKeys } from './visitorKeys';
+export * from './visitorKeys';
