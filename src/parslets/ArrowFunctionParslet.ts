@@ -14,7 +14,7 @@ export const arrowFunctionParslet = composeParslet({
       parameters: getParameters(left).map(assertPlainKeyValueOrNameResult),
       arrow: true,
       parenthesis: true,
-      returnType: parser.parseType(Precedence.ALL)
+      returnType: parser.parseType(Precedence.OBJECT)
     }
   }
 })

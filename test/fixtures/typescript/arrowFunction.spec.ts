@@ -543,6 +543,55 @@ describe('typescript arrow function tests', () => {
       }
     })
   })
+
+  describe('arrow as first object property', () => {
+    testFixture({
+      input: '{x: () => void, y: string}',
+      modes: ['typescript'],
+      expected: {
+        type: 'JsdocTypeObject',
+        elements: [
+          {
+            type: 'JsdocTypeKeyValue',
+            key: 'x',
+            right: {
+              type: 'JsdocTypeFunction',
+              parameters: [],
+              returnType: {
+                type: 'JsdocTypeName',
+                value: 'void'
+              },
+              arrow: true,
+              parenthesis: true
+            },
+            optional: false,
+            readonly: false,
+            meta: {
+              quote: undefined,
+              hasLeftSideExpression: false
+            }
+          },
+          {
+            type: 'JsdocTypeKeyValue',
+            key: 'y',
+            right: {
+              type: 'JsdocTypeName',
+              value: 'string'
+            },
+            optional: false,
+            readonly: false,
+            meta: {
+              quote: undefined,
+              hasLeftSideExpression: false
+            }
+          }
+        ],
+        meta: {
+          separator: 'comma'
+        }
+      }
+    })
+  })
 })
 
 // TODO:
