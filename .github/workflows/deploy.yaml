@@ -30,4 +30,5 @@ jobs:
         with:
           branch: gh-pages
           folder: pages
-          clean-exclude: ./index.html
+          clean-exclude: |
+            index.html
