@@ -1,3 +1,11 @@
+## [2.2.2](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v2.2.1...v2.2.2) (2022-02-03)
+
+
+### Bug Fixes
+
+* **typescript:** ensure readonly discoverable within object context ([675e431](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/675e431c2f06f8f72dd07ea7e46fc90cecde228b))
+* use correct precedence for right side of arrow function ([6b0a410](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/6b0a410a004a4345503ee7ebb33ba9237a511a92))
+
 ## [2.2.2](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v2.2.1...v2.2.2) (2022-01-17)
 
 
