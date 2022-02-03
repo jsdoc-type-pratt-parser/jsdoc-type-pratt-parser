@@ -24,6 +24,20 @@ describe('typescript tuple tests', () => {
     })
   })
 
+  describe('Incomplete tuple', () => {
+    testFixture({
+      input: '[x',
+      modes: []
+    })
+  })
+
+  describe('Tuple with question mark', () => {
+    testFixture({
+      input: '[?,null]',
+      modes: []
+    })
+  })
+
   describe('Tuple with one element', () => {
     testFixture({
       input: '[x]',
