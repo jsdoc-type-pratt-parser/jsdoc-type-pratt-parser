@@ -23,6 +23,7 @@ import { intersectionParslet } from '../parslets/IntersectionParslet'
 import { predicateParslet } from '../parslets/predicateParslet'
 
 const objectFieldGrammar: Grammar = [
+  readonlyPropertyParslet,
   createNameParslet({
     allowedAdditionalTokens: ['module', 'event', 'keyof', 'event', 'external']
   }),
@@ -66,7 +67,6 @@ export const typescriptGrammar: Grammar = [
     allowedTypes: ['module'],
     pathGrammar
   }),
-  readonlyPropertyParslet,
   arrayBracketsParslet,
   arrowFunctionParslet,
   createNamePathParslet({
