@@ -141,4 +141,25 @@ describe('lexer', () => {
       }
     ])
   })
+
+  it('should throw when invoking token without first advancing', () => {
+    const lexer = new Lexer()
+    expect(() => {
+      lexer.token()
+    }).to.throw('Lexer not lexing')
+  })
+
+  it('should obtain last token', () => {
+    const text = '(null)'
+    const lexer = new Lexer()
+    lexer.lex(text)
+    const token1 = lexer.token()
+    lexer.advance()
+    const token2 = lexer.token()
+    lexer.advance()
+    const token3 = lexer.last() as Token
+    expect(token1.text).to.equal('(')
+    expect(token2.text).to.equal('null')
+    expect(token3.text).to.equal('null')
+  })
 })
