@@ -199,7 +199,7 @@ describe('catharsis basic tests', () => {
     })
   })
 
-  describe('failing unterimated string', () => {
+  describe('failing unterminated string', () => {
     testFixture({
       input: '"abc',
       modes: []

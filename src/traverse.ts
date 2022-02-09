@@ -16,17 +16,15 @@ function _traverse<T extends NonRootResult, U extends NonRootResult> (node: T, p
 
   const keysToVisit = visitorKeys[node.type] as Array<keyof T>
 
-  if (keysToVisit !== undefined) {
-    for (const key of keysToVisit) {
-      const value = node[key]
-      if (value !== undefined) {
-        if (Array.isArray(value)) {
-          for (const element of value) {
-            _traverse(element as unknown as NonRootResult, node, key, onEnter, onLeave)
-          }
-        } else {
-          _traverse(value as unknown as NonRootResult, node, key, onEnter, onLeave)
+  for (const key of keysToVisit) {
+    const value = node[key]
+    if (value !== undefined) {
+      if (Array.isArray(value)) {
+        for (const element of value) {
+          _traverse(element as unknown as NonRootResult, node, key, onEnter, onLeave)
         }
+      } else {
+        _traverse(value as unknown as NonRootResult, node, key, onEnter, onLeave)
       }
     }
   }
