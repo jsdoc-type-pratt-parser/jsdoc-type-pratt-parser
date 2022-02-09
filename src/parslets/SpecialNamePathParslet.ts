@@ -14,7 +14,7 @@ export function createSpecialNamePathParslet ({ pathGrammar, allowedTypes }: {
     name: 'specialNamePathParslet',
     accept: type => (allowedTypes as TokenType[]).includes(type),
     parsePrefix: parser => {
-      const type = parser.getLexer().token().type as SpecialNamePathType
+      const type = parser.lexer.current.type as SpecialNamePathType
       parser.consume(type)
 
       if (!parser.consume(':')) {
@@ -24,14 +24,9 @@ export function createSpecialNamePathParslet ({ pathGrammar, allowedTypes }: {
         }
       }
 
-      const moduleParser = new Parser({
-        grammar: pathGrammar,
-        lexer: parser.getLexer()
-      })
-
       let result: SpecialNamePath
 
-      let token = parser.getLexer().token()
+      let token = parser.lexer.current
       if (parser.consume('StringValue')) {
         result = {
           type: 'JsdocTypeSpecialNamePath',
@@ -46,7 +41,7 @@ export function createSpecialNamePathParslet ({ pathGrammar, allowedTypes }: {
         const allowed: TokenType[] = ['Identifier', '@', '/']
         while (allowed.some(type => parser.consume(type))) {
           value += token.text
-          token = parser.getLexer().token()
+          token = parser.lexer.current
         }
         result = {
           type: 'JsdocTypeSpecialNamePath',
@@ -58,7 +53,11 @@ export function createSpecialNamePathParslet ({ pathGrammar, allowedTypes }: {
         }
       }
 
-      return assertRootResult(moduleParser.parseInfixIntermediateType(result, Precedence.ALL))
+      const moduleParser = new Parser(pathGrammar, parser.lexer, parser)
+      const moduleResult = moduleParser.parseInfixIntermediateType(result, Precedence.ALL)
+      parser.acceptLexerState(moduleParser)
+
+      return assertRootResult(moduleResult)
     }
   })
 }

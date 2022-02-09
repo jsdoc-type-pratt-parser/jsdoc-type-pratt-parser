@@ -29,11 +29,11 @@ type ComposeInfixParsletOptions = BaseComposeParsletOptions & {
 export type ComposeParsletOptions = ComposePrefixParsletOptions | ComposeInfixParsletOptions | (ComposePrefixParsletOptions & ComposeInfixParsletOptions)
 
 export function composeParslet (options: ComposeParsletOptions): ParsletFunction {
-  const parslet = (parser: Parser, curPrecedence: Precedence, left: IntermediateResult | null): IntermediateResult | null => {
-    const type = parser.getLexer().token().type
-    const next = parser.getLexer().peek().type
+  const parslet: ParsletFunction = (parser, curPrecedence, left) => {
+    const type = parser.lexer.current.type
+    const next = parser.lexer.next.type
 
-    if (left == null) {
+    if (left === null) {
       if ('parsePrefix' in options) {
         if (options.accept(type, next)) {
           return options.parsePrefix(parser)
@@ -46,7 +46,6 @@ export function composeParslet (options: ComposeParsletOptions): ParsletFunction
         }
       }
     }
-
     return null
   }
   if (options.name !== undefined) {

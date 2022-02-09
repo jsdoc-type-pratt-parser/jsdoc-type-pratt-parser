@@ -170,56 +170,40 @@ const rules = [
 ]
 
 export class Lexer {
-  private text: string = ''
+  private readonly text: string = ''
+  public readonly current: Token
+  public readonly next: Token
+  public readonly previous: Token | undefined
 
-  private current: Token | undefined
-  private next: Token | undefined
-  private previous: Token | undefined
+  public static create (text: string): Lexer {
+    const current = this.read(text)
+    text = current.text
+    const next = this.read(text)
+    text = next.text
+    return new Lexer(text, undefined, current.token, next.token)
+  }
 
-  lex (text: string): void {
+  private constructor (text: string, previous: Token | undefined, current: Token, next: Token) {
     this.text = text
-    this.current = undefined
-    this.next = undefined
-    this.advance()
+    this.previous = previous
+    this.current = current
+    this.next = next
   }
 
-  token (): Token {
-    if (this.current === undefined) {
-      throw new Error('Lexer not lexing')
-    }
-    return this.current
-  }
-
-  peek (): Token {
-    if (this.next === undefined) {
-      this.next = this.read()
-    }
-    return this.next
-  }
-
-  last (): Token | undefined {
-    return this.previous
-  }
-
-  advance (): void {
-    this.previous = this.current
-    if (this.next !== undefined) {
-      this.current = this.next
-      this.next = undefined
-      return
-    }
-    this.current = this.read()
-  }
-
-  private read (): Token {
-    const text = this.text.trim()
+  private static read (text: string): { text: string, token: Token } {
+    text = text.trim()
     for (const rule of rules) {
       const token = rule(text)
       if (token !== null) {
-        this.text = text.slice(token.text.length)
-        return token
+        text = text.slice(token.text.length)
+        return { text, token }
       }
     }
     throw new Error('Unexpected Token ' + text)
+  }
+
+  advance (): Lexer {
+    const next = Lexer.read(this.text)
+    return new Lexer(next.text, this.current, this.next, next.token)
   }
 }

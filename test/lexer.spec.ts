@@ -3,16 +3,15 @@ import { Lexer } from '../src/lexer/Lexer'
 import { Token } from '../src/lexer/Token'
 
 function expectTokens (text: string, tokens: Token[]): void {
-  const lexer = new Lexer()
-  lexer.lex(text)
+  let lexer = Lexer.create(text)
 
   let position = 0
 
-  while (lexer.token().type !== 'EOF') {
-    const nextToken = lexer.token()
+  while (lexer.current.type !== 'EOF') {
+    const nextToken = lexer.current
     const nextExpected = tokens[position]
     expect(nextToken).to.deep.equal(nextExpected)
-    lexer.advance()
+    lexer = lexer.advance()
     position++
   }
 

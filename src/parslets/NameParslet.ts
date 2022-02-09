@@ -8,7 +8,7 @@ export function createNameParslet ({ allowedAdditionalTokens }: {
     name: 'nameParslet',
     accept: type => type === 'Identifier' || type === 'this' || type === 'new' || allowedAdditionalTokens.includes(type),
     parsePrefix: parser => {
-      const { type, text } = parser.getLexer().token()
+      const { type, text } = parser.lexer.current
       parser.consume(type)
 
       return {

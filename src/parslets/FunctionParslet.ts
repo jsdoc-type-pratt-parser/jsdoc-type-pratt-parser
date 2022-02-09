@@ -38,7 +38,7 @@ export function createFunctionParslet ({ allowNamedParameters, allowNoReturnType
     parsePrefix: parser => {
       parser.consume('function')
 
-      const hasParenthesis = parser.getLexer().token().type === '('
+      const hasParenthesis = parser.lexer.current.type === '('
 
       if (!hasParenthesis) {
         if (!allowWithoutParenthesis) {
