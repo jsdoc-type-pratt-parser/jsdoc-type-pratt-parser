@@ -47,6 +47,48 @@ describe('traverse', () => {
     expect(onEnter.getCall(0).calledBefore(onLeave.getCall(0))).to.be.equal(true)
   })
 
+  it('should traverse a simple expression without an expected key', () => {
+    const onEnter = spy()
+    const onLeave = spy()
+
+    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions -- Force missing key
+    const result: RootResult = {
+      type: 'JsdocTypeTypeof'
+    } as RootResult
+
+    traverse(result, onEnter, onLeave)
+
+    expect(onEnter.getCall(0).calledWith(result, undefined, undefined)).to.be.equal(true)
+    expect(onLeave.getCall(0).calledWith(result, undefined, undefined)).to.be.equal(true)
+    expect(onEnter.getCall(0).calledBefore(onLeave.getCall(0))).to.be.equal(true)
+  })
+
+  it('should traverse a simple expression without `onEnter`', () => {
+    const onLeave = spy()
+
+    const result: RootResult = {
+      type: 'JsdocTypeName',
+      value: 'test'
+    }
+
+    traverse(result, undefined, onLeave)
+
+    expect(onLeave.getCall(0).calledWith(result, undefined, undefined)).to.be.equal(true)
+  })
+
+  it('should traverse a simple expression without `onLeave`', () => {
+    const onEnter = spy()
+
+    const result: RootResult = {
+      type: 'JsdocTypeName',
+      value: 'test'
+    }
+
+    traverse(result, onEnter)
+
+    expect(onEnter.getCall(0).calledWith(result, undefined, undefined)).to.be.equal(true)
+  })
+
   it('should traverse a nested expression with union and generic', () => {
     const onEnter = spy()
     const onLeave = spy()

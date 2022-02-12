@@ -192,6 +192,20 @@ describe('catharsis basic tests', () => {
     })
   })
 
+  describe('failing string literal', () => {
+    testFixture({
+      input: '\u200B',
+      modes: []
+    })
+  })
+
+  describe('failing unterminated string', () => {
+    testFixture({
+      input: '"abc',
+      modes: []
+    })
+  })
+
   describe('object with a string-literal property that includes other punctuation', () => {
     testFixture({
       input: 'myObj."#weirdProp".foo',

@@ -49,11 +49,11 @@ export function composeParslet (options: ComposeParsletOptions): ParsletFunction
 
     return null
   }
-  if (options.name !== undefined) {
-    // for debugging
-    Object.defineProperty(parslet, 'name', {
-      value: options.name
-    })
-  }
+
+  // for debugging
+  Object.defineProperty(parslet, 'name', {
+    value: options.name
+  })
+
   return parslet
 }
