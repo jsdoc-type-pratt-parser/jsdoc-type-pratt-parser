@@ -18,4 +18,20 @@ describe('Error tests', () => {
       }
     })
   })
+
+  describe('should err with bad Parameter list', () => {
+    testFixture({
+      input: '...b, ...c',
+      errors: {
+        typescript: 'Only the last parameter may be a rest parameter'
+      }
+    })
+
+    testFixture({
+      input: '...b, ...\\',
+      errors: {
+        typescript: 'Unexpected Token \\'
+      }
+    })
+  })
 })
