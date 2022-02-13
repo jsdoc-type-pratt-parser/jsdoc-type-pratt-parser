@@ -30,4 +30,60 @@ describe('transform', () => {
       notAvailableTransform(result as NonRootResult)
     }).to.throw('This transform is not available. Are you trying the correct parsing mode?')
   })
+
+  it('Gets transform for `JsdocTypeParenthesis`', () => {
+    const expected = {
+      type: 'JsdocTypeParenthesis',
+      element: {
+        type: 'JsdocTypeName',
+        value: 'a'
+      }
+    }
+    const parseResult = {
+      type: 'JsdocTypeParenthesis',
+      element: {
+        type: 'JsdocTypeName',
+        value: 'a'
+      }
+    }
+    const xform = transform<NonRootResult>(identityTransformRules(), parseResult as NonRootResult)
+    expect(xform).to.deep.equal(expected)
+  })
+
+  it('Gets tranform for `JsdocTypeProperty`', () => {
+    const expected = {
+      type: 'JsdocTypeProperty',
+      value: 'abc',
+      meta: {
+        quote: 'double'
+      }
+    }
+    const parseResult = {
+      type: 'JsdocTypeProperty',
+      value: 'abc',
+      meta: {
+        quote: 'double'
+      }
+    }
+    const xform = transform<NonRootResult>(identityTransformRules(), parseResult as NonRootResult)
+    expect(xform).to.deep.equal(expected)
+  })
+
+  it('Gets tranform for empty `JsdocTypeVariadic`', () => {
+    const expected = {
+      type: 'JsdocTypeVariadic',
+      meta: {
+        position: undefined,
+        squareBrackets: false
+      }
+    }
+    const parseResult = {
+      type: 'JsdocTypeVariadic',
+      meta: {
+        squareBrackets: false
+      }
+    }
+    const xform = transform<NonRootResult>(identityTransformRules(), parseResult as NonRootResult)
+    expect(xform).to.deep.equal(expected)
+  })
 })
