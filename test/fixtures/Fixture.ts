@@ -20,7 +20,7 @@ export interface Fixture {
   /**
    * The {@link ParseMode}s that the expression is expected to get parsed in. In all other modes it is expected to fail.
    */
-  modes: ParseMode[]
+  modes?: ParseMode[]
   jtp?: {
     [K in JtpMode]: CompareMode
   }
@@ -53,17 +53,19 @@ type Results = {
 }
 
 function testParser (mode: ParseMode, fixture: Fixture): RootResult | undefined {
+  const expectedErrorForMode = fixture.errors?.[mode]
+  if (expectedErrorForMode !== undefined) {
+    it(`In '${mode}' mode, throws with: ${expectedErrorForMode}`, () => {
+      expect(() => {
+        parse(fixture.input, mode)
+      }).to.throw(expectedErrorForMode)
+    })
+    return
+  }
+  if (fixture.modes === undefined) {
+    return
+  }
   if (fixture.modes.includes(mode)) {
-    const expectedErrorForMode = fixture.errors?.[mode] ?? ''
-    if (expectedErrorForMode !== '') {
-      it(`In '${mode}' mode, throws with ${expectedErrorForMode}`, () => {
-        expect(() => {
-          parse(fixture.input, mode)
-        }).to.throw(expectedErrorForMode)
-      })
-      return
-    }
-
     it(`is parsed in '${mode}' mode`, () => {
       const result = parse(fixture.input, mode)
       const expected = fixture.diffExpected?.[mode] ?? fixture.expected

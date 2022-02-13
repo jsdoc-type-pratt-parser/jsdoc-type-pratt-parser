@@ -7,11 +7,7 @@ describe('Error tests', () => {
       errors: {
         jsdoc: 'Symbol does not end after value',
         closure: 'Symbol does not end after value'
-      },
-      modes: [
-        'jsdoc',
-        'closure'
-      ]
+      }
     })
 
     testFixture({
@@ -19,11 +15,7 @@ describe('Error tests', () => {
       errors: {
         closure: "Symbol expects a name on the left side. (Reacting on '(')",
         jsdoc: "Symbol expects a name on the left side. (Reacting on '(')"
-      },
-      modes: [
-        'jsdoc',
-        'closure'
-      ]
+      }
     })
   })
 })
