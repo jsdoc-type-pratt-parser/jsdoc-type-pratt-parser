@@ -82,4 +82,13 @@ describe('Error tests', () => {
       }
     })
   })
+
+  describe('should err with bad ObjectParslets', () => {
+    testFixture({
+      input: '{Array<string> string}',
+      errors: {
+        jsdoc: "Unexpected type: 'JsdocTypeGeneric'."
+      }
+    })
+  })
 })
