@@ -44,15 +44,26 @@ describe('Parser', () => {
   })
 
   it('should return token of error with `EarlyEndOfParseError.getToken`', () => {
-    const error = new EarlyEndOfParseError({
-      type: 'import',
-      text: 'import'
+    const parser = new Parser({
+      grammar: typescriptGrammar
     })
-    const token = error.getToken()
+
+    let error
+    try {
+      parser.parseText('name]')
+    } catch (err) {
+      error = err
+    }
+
+    if (error === undefined) {
+      throw new Error('Failed')
+    }
+
+    const token = (error as EarlyEndOfParseError).getToken()
 
     expect(token).to.deep.equal({
-      type: 'import',
-      text: 'import'
+      type: ']',
+      text: ']'
     })
   })
 })
