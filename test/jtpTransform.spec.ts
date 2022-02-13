@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 
 import { RootResult } from '../src/result/RootResult'
-import { jtpTransform } from '../src/transforms/jtpTransform'
+import { jtpTransform } from '../src/index'
 
 describe('transform', () => {
   it('Gets transform for `JsdocTypeNamePath` with `property-brackets`', () => {
