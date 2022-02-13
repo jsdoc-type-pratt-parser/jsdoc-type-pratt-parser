@@ -34,4 +34,27 @@ describe('Error tests', () => {
       }
     })
   })
+
+  describe('should err with bad imports', () => {
+    testFixture({
+      input: 'import',
+      errors: {
+        typescript: 'Missing parenthesis after import keyword'
+      }
+    })
+
+    testFixture({
+      input: 'import(123)',
+      errors: {
+        typescript: 'Only string values are allowed as paths for imports'
+      }
+    })
+
+    testFixture({
+      input: 'import("abc"',
+      errors: {
+        typescript: 'Missing closing parenthesis after import keyword'
+      }
+    })
+  })
 })
