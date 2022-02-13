@@ -91,4 +91,13 @@ describe('Error tests', () => {
       }
     })
   })
+
+  describe('should err with bad FunctionParslets', () => {
+    testFixture({
+      input: 'function(a: string, b: number)',
+      errors: {
+        jsdoc: 'only allowed named parameters are this, new but got JsdocTypeKeyValue'
+      }
+    })
+  })
 })
