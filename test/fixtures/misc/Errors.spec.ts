@@ -19,7 +19,7 @@ describe('Error tests', () => {
     })
   })
 
-  describe('should err with bad Parameter list', () => {
+  describe('should err with bad Parameter lists', () => {
     testFixture({
       input: '...b, ...c',
       errors: {
@@ -54,6 +54,31 @@ describe('Error tests', () => {
       input: 'import("abc"',
       errors: {
         typescript: 'Missing closing parenthesis after import keyword'
+      }
+    })
+  })
+
+  describe('should err with bad predicates', () => {
+    testFixture({
+      input: '123 is',
+      errors: {
+        typescript: 'A typescript predicate always has to have a name on the left side.'
+      }
+    })
+  })
+
+  describe('should err with bad variadics', () => {
+    testFixture({
+      input: '...[abc',
+      errors: {
+        jsdoc: 'Unterminated variadic type. Missing \']\''
+      }
+    })
+
+    testFixture({
+      input: '...[]',
+      errors: {
+        jsdoc: 'Empty square brackets for variadic are not allowed.'
       }
     })
   })
