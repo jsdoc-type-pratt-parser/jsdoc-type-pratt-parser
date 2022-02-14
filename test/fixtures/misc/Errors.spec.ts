@@ -100,4 +100,13 @@ describe('Error tests', () => {
       }
     })
   })
+
+  describe('should err with bad NamePathParslets', () => {
+    testFixture({
+      input: 'abc[def',
+      errors: {
+        jsdoc: 'Unterminated square brackets.'
+      }
+    })
+  })
 })
