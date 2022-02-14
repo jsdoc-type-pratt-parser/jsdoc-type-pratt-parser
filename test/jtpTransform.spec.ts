@@ -63,6 +63,75 @@ describe('transform', () => {
     expect(xform).to.deep.equal(expected)
   })
 
+  it('Gets transform for `JsdocTypeOptional` with prefix', () => {
+    const expected = {
+      meta: {
+        syntax: 'PREFIX_EQUAL_SIGN'
+      },
+      type: 'OPTIONAL',
+      value: {
+        name: 'abc',
+        type: 'NAME'
+      }
+    }
+    const parseResult = {
+      type: 'JsdocTypeOptional',
+      element: {
+        type: 'JsdocTypeName',
+        value: 'abc'
+      },
+      meta: {
+        position: 'prefix'
+      }
+    }
+    const xform = jtpTransform(parseResult as RootResult)
+    expect(xform).to.deep.equal(expected)
+  })
+
+  it('Gets transform for empty `JsdocTypeVariadic`', () => {
+    const expected = {
+      meta: {
+        syntax: 'ONLY_DOTS'
+      },
+      type: 'VARIADIC'
+    }
+    const parseResult = {
+      type: 'JsdocTypeVariadic',
+      meta: {
+        position: undefined,
+        squareBrackets: false
+      }
+    }
+    const xform = jtpTransform(parseResult as RootResult)
+    expect(xform).to.deep.equal(expected)
+  })
+
+  it('Gets transform for suffix `JsdocTypeVariadic`', () => {
+    const expected = {
+      meta: {
+        syntax: 'SUFFIX_DOTS'
+      },
+      type: 'VARIADIC',
+      value: {
+        name: 'abc',
+        type: 'NAME'
+      }
+    }
+    const parseResult = {
+      type: 'JsdocTypeVariadic',
+      element: {
+        type: 'JsdocTypeName',
+        value: 'abc'
+      },
+      meta: {
+        position: 'suffix',
+        squareBrackets: false
+      }
+    }
+    const xform = jtpTransform(parseResult as RootResult)
+    expect(xform).to.deep.equal(expected)
+  })
+
   it('Throws with `JsdocTypeKeyValue` and non-plain key', () => {
     const parseResult = {
       type: 'JsdocTypeObject',
