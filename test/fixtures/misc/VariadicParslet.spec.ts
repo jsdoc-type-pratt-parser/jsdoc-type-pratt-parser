@@ -20,4 +20,22 @@ describe('`VariadicParslet` tests', () => {
       ]
     })
   })
+
+  describe('should get postfix result', () => {
+    testFixture({
+      input: '...',
+      expected: {
+        type: 'JsdocTypeVariadic',
+        meta: {
+          position: undefined,
+          squareBrackets: false
+        }
+      },
+      modes: [
+        'jsdoc',
+        'closure',
+        'typescript'
+      ]
+    })
+  })
 })
