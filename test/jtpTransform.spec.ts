@@ -132,6 +132,73 @@ describe('transform', () => {
     expect(xform).to.deep.equal(expected)
   })
 
+  // Note: This does not seem possible through the normal generation of
+  //   `JsdocTypeObject`
+  it('Skips non-`JsdocTypeKeyValue` value', () => {
+    const expected = {
+      entries: [],
+      type: 'RECORD'
+    }
+
+    const parseResult = {
+      type: 'JsdocTypeObject',
+      elements: [
+        {
+          // Type not allowed
+          type: 'JsdocTypeNumber',
+          value: 100
+        }
+      ],
+      meta: {
+        separator: undefined
+      }
+    }
+    const xform = jtpTransform(parseResult as RootResult)
+    expect(xform).to.deep.equal(expected)
+  })
+
+  // Note: This does not seem possible through the normal generation of
+  //   `JsdocTypeFunction`
+  it('Gets transform for suffix `JsdocTypeGeneric`', () => {
+    const expected = {
+      type: 'GENERIC',
+      subject: {
+        name: 'Array',
+        type: 'NAME'
+      },
+      objects: [
+        {
+          type: 'NAME',
+          name: 'function'
+        }
+      ],
+      meta: {
+        syntax: 'SQUARE_BRACKET'
+      }
+    }
+    const parseResult = {
+      type: 'JsdocTypeGeneric',
+      left: {
+        type: 'JsdocTypeName',
+        value: 'Array'
+      },
+      elements: [
+        {
+          type: 'JsdocTypeFunction',
+          parameters: [],
+          arrow: false,
+          parenthesis: false
+        }
+      ],
+      meta: {
+        brackets: 'square',
+        dot: false
+      }
+    }
+    const xform = jtpTransform(parseResult as RootResult)
+    expect(xform).to.deep.equal(expected)
+  })
+
   it('Throws with `JsdocTypeKeyValue` and non-plain key', () => {
     const parseResult = {
       type: 'JsdocTypeObject',
@@ -185,5 +252,30 @@ describe('transform', () => {
     expect(() => {
       jtpTransform(parseResult as RootResult)
     }).to.throw('jsdoctypeparser does not support type external at this point.')
+  })
+
+  it('Throws with `JsdocTypeFunction` and `JsdocTypeKeyValue` with undefined `right`', () => {
+    const parseResult = {
+      type: 'JsdocTypeFunction',
+      arrow: false,
+      parenthesis: true,
+      parameters: [
+        {
+          type: 'JsdocTypeKeyValue',
+          key: 'abc',
+          right: undefined,
+          optional: false,
+          readonly: false,
+          meta: {
+            quote: undefined,
+            hasLeftSideExpression: false
+          }
+        }
+      ]
+    }
+
+    expect(() => {
+      jtpTransform(parseResult as RootResult)
+    }).to.throw("Function parameter without ':' is not expected to be 'KEY_VALUE'")
   })
 })
