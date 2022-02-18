@@ -1,19 +1,19 @@
 import { expect } from 'chai'
+import { stub, SinonStub } from 'sinon'
 
 import { jsdocGrammar } from '../src/grammars/jsdocGrammar'
 import { Parser } from '../src/Parser'
 import { Grammar } from '../src/grammars/Grammar'
 
 import { createObjectParslet } from '../src/parslets/ObjectParslet'
-import { IntermediateResult } from '../src/result/IntermediateResult'
-import { Precedence } from '../src/Precedence'
 import { RootResult } from '../src/result/RootResult'
 
-const pt = Parser.prototype.parseIntermediateType
-
 describe('`ObjectParslet`', () => {
-  after(() => {
-    Parser.prototype.parseIntermediateType = pt
+  beforeEach(() => {
+    stub(Parser.prototype, 'parseIntermediateType')
+  })
+  afterEach(() => {
+    (Parser.prototype.parseIntermediateType as SinonStub).restore()
   })
   it('Recovers after failing first intermediate parsing with `allowKeyTypes`', () => {
     // Limit the field grammar so it mostly fails
@@ -33,14 +33,13 @@ describe('`ObjectParslet`', () => {
       ]
     })
 
-    let i = 0
-    Parser.prototype.parseIntermediateType = (precedence: Precedence): IntermediateResult => {
-      if (i++ === 1) {
-        const ret: unknown = undefined
-        return ret as RootResult
-      }
-      return pt.call(parser, precedence)
-    }
+    const ret: unknown = undefined
+
+    const parseIntermediateType = Parser.prototype.parseIntermediateType;
+
+    (parseIntermediateType as SinonStub).callThrough().onSecondCall().returns(
+      ret as RootResult
+    )
 
     const rootResult = parser.parseText('{abc}')
 
