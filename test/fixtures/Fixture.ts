@@ -32,6 +32,7 @@ export interface Fixture {
    * `diffExpected`.
    */
   expected?: RootResult
+  error?: string
   errors?: {
     [K in ParseMode]?: string
   }
@@ -53,7 +54,7 @@ type Results = {
 }
 
 function testParser (mode: ParseMode, fixture: Fixture): RootResult | undefined {
-  const expectedErrorForMode = fixture.errors?.[mode]
+  const expectedErrorForMode = fixture.errors?.[mode] ?? fixture.error
   if (expectedErrorForMode !== undefined) {
     it(`In '${mode}' mode, throws with: ${expectedErrorForMode}`, () => {
       expect(() => {
@@ -62,9 +63,11 @@ function testParser (mode: ParseMode, fixture: Fixture): RootResult | undefined 
     })
     return
   }
+
   if (fixture.modes === undefined) {
-    return
+    throw new Error('`modes` expected if `error` or `errors` do not meet all conditions')
   }
+
   if (fixture.modes.includes(mode)) {
     it(`is parsed in '${mode}' mode`, () => {
       const result = parse(fixture.input, mode)
