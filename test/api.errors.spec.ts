@@ -33,12 +33,12 @@ describe('API errors', () => {
 
             // Exclude its `createSpecialNamePathParslet` to behave like
             //    `basePathGrammar` in the `pathGrammar` file
-            pathGrammar: pathGrammar.slice(0, -1)
+            pathGrammar: pathGrammar.filter(p => p.name !== 'specialNamePathParslet')
           }),
 
           // Exclude SpecialNamePath for which we already added our own
           //   replacement above
-          ...pathGrammar.slice(0, -1)
+          ...pathGrammar.filter(p => p.name !== 'specialNamePathParslet')
         ]
 
         const namePathParslet = createNamePathParslet({
@@ -69,7 +69,7 @@ describe('API errors', () => {
 
           // Exclude SpecialNamePath for which we already added our own
           //   replacement above
-          ...pathGrammar.slice(0, -1)
+          ...pathGrammar.filter(p => p.name !== 'specialNamePathParslet')
         ]
 
         const namePathParslet = createNamePathParslet({
