@@ -6,12 +6,14 @@ import { Parser } from '../src/Parser'
 function parse (text: string): void {
   // Replace other function parslet with one setting
   //   `allowNamedParameters: undefined`
-  const grammar = [...jsdocGrammar]
-  grammar.splice(-10, 1, createFunctionParslet({
-    allowWithoutParenthesis: true,
-    allowNamedParameters: undefined,
-    allowNoReturnType: true
-  }))
+  const grammar = [
+    ...jsdocGrammar.filter(p => p.name !== 'functionParslet'),
+    createFunctionParslet({
+      allowWithoutParenthesis: true,
+      allowNamedParameters: undefined,
+      allowNoReturnType: true
+    })
+  ]
   const parser = new Parser({ grammar })
   parser.parseText(text)
 }
