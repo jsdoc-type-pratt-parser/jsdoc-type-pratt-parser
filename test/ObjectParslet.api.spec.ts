@@ -9,8 +9,6 @@ import { IntermediateResult } from '../src/result/IntermediateResult'
 import { Precedence } from '../src/Precedence'
 import { RootResult } from '../src/result/RootResult'
 
-// import { createNameParslet } from '../src/parslets/NameParslet'
-
 const pt = Parser.prototype.parseIntermediateType
 
 describe('`ObjectParslet`', () => {
