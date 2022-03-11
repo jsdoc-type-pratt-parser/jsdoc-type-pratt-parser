@@ -1,3 +1,10 @@
+## [2.2.4](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v2.2.3...v2.2.4) (2022-03-11)
+
+
+### Bug Fixes
+
+* typos in error messages ([1c7c372](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/1c7c3727cc64f745f7a8813c273d44cb618956d3))
+
 ## [2.2.3](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v2.2.2...v2.2.3) (2022-02-12)
 
 
