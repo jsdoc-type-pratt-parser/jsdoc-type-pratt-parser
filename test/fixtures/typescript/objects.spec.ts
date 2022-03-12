@@ -1,6 +1,96 @@
 import { testFixture } from '../Fixture'
 
 describe('typescript objects tests', () => {
+  describe('simple object with trailing semicolon separator', () => {
+    testFixture({
+      input: '{ object: string; }',
+      stringified: '{object: string}',
+      diffExpected: {
+        typescript: {
+          type: 'JsdocTypeObject',
+          meta: {
+            separator: 'semicolon'
+          },
+          elements: [
+            {
+              type: 'JsdocTypeKeyValue',
+              key: 'object',
+              right: {
+                type: 'JsdocTypeName',
+                value: 'string'
+              },
+              optional: false,
+              readonly: false,
+              meta: {
+                quote: undefined,
+                hasLeftSideExpression: false
+              }
+            }
+          ]
+        },
+        jsdoc: {
+          type: 'JsdocTypeObject',
+          meta: {
+            separator: 'semicolon'
+          },
+          elements: [
+            {
+              type: 'JsdocTypeKeyValue',
+              key: 'object',
+              right: {
+                type: 'JsdocTypeName',
+                value: 'string'
+              },
+              optional: false,
+              readonly: false,
+              meta: {
+                quote: undefined,
+                hasLeftSideExpression: false
+              }
+            }
+          ]
+        },
+        closure: {
+          type: 'JsdocTypeObject',
+          meta: {
+            separator: 'semicolon'
+          },
+          elements: [
+            {
+              type: 'JsdocTypeKeyValue',
+              key: 'object',
+              right: {
+                type: 'JsdocTypeName',
+                value: 'string'
+              },
+              optional: false,
+              readonly: false,
+              meta: {
+                quote: undefined,
+                hasLeftSideExpression: false
+              }
+            }
+          ]
+        }
+      },
+      modes: [
+        'jsdoc',
+        'closure',
+        'typescript'
+      ],
+      catharsis: {
+        closure: 'fail',
+        jsdoc: 'fail'
+      },
+      jtp: {
+        closure: 'differ',
+        jsdoc: 'differ',
+        typescript: 'typescript',
+        permissive: 'typescript'
+      }
+    })
+  })
+
   describe('optional entry', () => {
     // there seems to be a catharsis error: https://github.com/hegemonic/catharsis/blob/222e8fc4350c346b47ca8395c37512290979df12/lib/parser.pegjs#L555
     testFixture({
