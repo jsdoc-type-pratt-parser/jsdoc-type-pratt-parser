@@ -5,73 +5,27 @@ describe('typescript objects tests', () => {
     testFixture({
       input: '{ object: string; }',
       stringified: '{object: string}',
-      diffExpected: {
-        typescript: {
-          type: 'JsdocTypeObject',
-          meta: {
-            separator: 'semicolon'
-          },
-          elements: [
-            {
-              type: 'JsdocTypeKeyValue',
-              key: 'object',
-              right: {
-                type: 'JsdocTypeName',
-                value: 'string'
-              },
-              optional: false,
-              readonly: false,
-              meta: {
-                quote: undefined,
-                hasLeftSideExpression: false
-              }
-            }
-          ]
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: {
+          separator: 'semicolon'
         },
-        jsdoc: {
-          type: 'JsdocTypeObject',
-          meta: {
-            separator: 'semicolon'
-          },
-          elements: [
-            {
-              type: 'JsdocTypeKeyValue',
-              key: 'object',
-              right: {
-                type: 'JsdocTypeName',
-                value: 'string'
-              },
-              optional: false,
-              readonly: false,
-              meta: {
-                quote: undefined,
-                hasLeftSideExpression: false
-              }
+        elements: [
+          {
+            type: 'JsdocTypeKeyValue',
+            key: 'object',
+            right: {
+              type: 'JsdocTypeName',
+              value: 'string'
+            },
+            optional: false,
+            readonly: false,
+            meta: {
+              quote: undefined,
+              hasLeftSideExpression: false
             }
-          ]
-        },
-        closure: {
-          type: 'JsdocTypeObject',
-          meta: {
-            separator: 'semicolon'
-          },
-          elements: [
-            {
-              type: 'JsdocTypeKeyValue',
-              key: 'object',
-              right: {
-                type: 'JsdocTypeName',
-                value: 'string'
-              },
-              optional: false,
-              readonly: false,
-              meta: {
-                quote: undefined,
-                hasLeftSideExpression: false
-              }
-            }
-          ]
-        }
+          }
+        ]
       },
       modes: [
         'jsdoc',
