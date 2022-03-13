@@ -1,3 +1,10 @@
+## [2.2.5](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v2.2.4...v2.2.5) (2022-03-13)
+
+
+### Bug Fixes
+
+* **ObjectParslet:** support trailing comma or semicolon ([58b057a](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/58b057aea903246a1d11c2fd15f12abc8925ff34))
+
 ## [2.2.4](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v2.2.3...v2.2.4) (2022-03-11)
 
 
