@@ -14,10 +14,7 @@ class BadParser extends Parser {
 describe('specialTypesParslet', () => {
   it('Errs with bad parser `consume()`', () => {
     expect(() => {
-      const parser = new BadParser({
-        grammar: typescriptGrammar
-      })
-      parser.parseText('null')
+      const parser = new BadParser(typescriptGrammar, 'null')
       specialTypesParslet(parser, Precedence.ALL, null)
     }).to.throw('Unacceptable token:')
   })

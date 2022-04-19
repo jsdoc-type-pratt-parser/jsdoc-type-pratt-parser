@@ -71,7 +71,7 @@ export function createObjectParslet ({ objectFieldGrammar, allowKeyTypes }: {
           } else {
             break
           }
-          const type = parser.getLexer().token().type
+          const type = parser.lexer.current.type
           if (type === '}') {
             break
           }

@@ -2,6 +2,7 @@ import { expect } from 'chai'
 import { jsdocGrammar } from '../src/grammars/jsdocGrammar'
 import { createFunctionParslet } from '../src/parslets/FunctionParslet'
 import { Parser } from '../src/Parser'
+import { Lexer } from '../src/lexer/Lexer'
 
 function parse (text: string): void {
   // Replace other function parslet with one setting
@@ -14,8 +15,8 @@ function parse (text: string): void {
       allowNoReturnType: true
     })
   ]
-  const parser = new Parser({ grammar })
-  parser.parseText(text)
+  const parser = new Parser(grammar, Lexer.create(text))
+  parser.parse()
 }
 
 describe('`createFunctionParslet`', () => {
