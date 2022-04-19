@@ -47,17 +47,18 @@ describe('API errors', () => {
           // Exclude name parslet
           pathGrammar: namePathGrammar
         })
-        const parser = new Parser({
-          grammar: [
+        const parser = new Parser(
+          [
             // These are all we need here
             namePathParslet,
             createNameParslet({
               allowedAdditionalTokens: []
             })
-          ]
-        })
+          ],
+          'aaa.module:bbb'
+        )
 
-        parser.parseText('aaa.module:bbb')
+        parser.parse()
       }).to.throw("Unexpected type: 'JsdocTypeSpecialNamePath'. Message: Type 'JsdocTypeSpecialNamePath' is only allowed with specialType 'event'")
     })
 
@@ -78,17 +79,17 @@ describe('API errors', () => {
           // Exclude name parslet
           pathGrammar: namePathGrammar
         })
-        const parser = new Parser({
-          grammar: [
+        const parser = new Parser(
+          [
             // These are all we need here
             namePathParslet,
             createNameParslet({
               allowedAdditionalTokens: []
             })
-          ]
-        })
-
-        parser.parseText('aaa.null')
+          ],
+          'aaa.null'
+        )
+        parser.parse()
       }).to.throw("Unexpected type: 'JsdocTypeNull'. Message: Expecting 'JsdocTypeName', 'JsdocTypeNumber', 'JsdocStringValue' or 'JsdocTypeSpecialNamePath")
     })
   })

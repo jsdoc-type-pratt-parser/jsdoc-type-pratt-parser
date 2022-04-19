@@ -4,13 +4,12 @@ import { Parser } from '../src/Parser'
 import { NoParsletFoundError, EarlyEndOfParseError } from '../src/errors'
 
 import { typescriptGrammar } from '../src/grammars/typescriptGrammar'
+import { Lexer } from '../src/lexer/Lexer'
 
 describe('Parser', () => {
   it('should consume an array of tokens', () => {
-    const parser = new Parser({
-      grammar: typescriptGrammar
-    })
-    parser.parseText('[test]')
+    const parser = new Parser(typescriptGrammar, Lexer.create('[test]'))
+    parser.parse()
 
     const twoTokens = parser.consume(['[', 'Identifier'])
     const finalTokens = parser.consume([']', 'EOF'])
@@ -20,13 +19,11 @@ describe('Parser', () => {
   })
 
   it('should return token of error with `NoParsletFoundError.getToken`', () => {
-    const parser = new Parser({
-      grammar: typescriptGrammar
-    })
+    const parser = new Parser(typescriptGrammar, Lexer.create('{'))
 
     let error
     try {
-      parser.parseText('{')
+      parser.parse()
     } catch (err) {
       error = err
     }
@@ -44,13 +41,11 @@ describe('Parser', () => {
   })
 
   it('should return token of error with `EarlyEndOfParseError.getToken`', () => {
-    const parser = new Parser({
-      grammar: typescriptGrammar
-    })
+    const parser = new Parser(typescriptGrammar, Lexer.create('name]'))
 
     let error
     try {
-      parser.parseText('name]')
+      parser.parse()
     } catch (err) {
       error = err
     }

@@ -7,6 +7,7 @@ import { Grammar } from '../src/grammars/Grammar'
 
 import { createObjectParslet } from '../src/parslets/ObjectParslet'
 import { RootResult } from '../src/result/RootResult'
+import { Lexer } from '../src/lexer/Lexer'
 
 describe('`ObjectParslet`', () => {
   beforeEach(() => {
@@ -26,12 +27,13 @@ describe('`ObjectParslet`', () => {
       objectFieldGrammar
     })
 
-    const parser = new Parser({
-      grammar: [
+    const parser = new Parser(
+      [
         objectParslet,
         ...jsdocGrammar
-      ]
-    })
+      ],
+      Lexer.create('{abc}')
+    )
 
     const ret: unknown = undefined
 
@@ -41,7 +43,7 @@ describe('`ObjectParslet`', () => {
       ret as RootResult
     )
 
-    const rootResult = parser.parseText('{abc}')
+    const rootResult = parser.parse()
 
     expect(rootResult).to.deep.equal({
       elements: [
