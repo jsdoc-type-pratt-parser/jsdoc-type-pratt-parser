@@ -1,13 +1,11 @@
 import { Token } from './Token';
 export declare class Lexer {
-    private text;
-    private current;
-    private next;
-    private previous;
-    lex(text: string): void;
-    token(): Token;
-    peek(): Token;
-    last(): Token | undefined;
-    advance(): void;
-    private read;
+    private readonly text;
+    readonly current: Token;
+    readonly next: Token;
+    readonly previous: Token | undefined;
+    static create(text: string): Lexer;
+    private constructor();
+    private static read;
+    advance(): Lexer;
 }
