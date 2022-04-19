@@ -132,7 +132,7 @@ export interface ObjectResult {
     type: 'JsdocTypeObject';
     elements: Array<KeyValueResult | JsdocObjectKeyValueResult>;
     meta: {
-        separator: 'comma' | 'semicolon' | undefined;
+        separator: 'comma' | 'semicolon' | 'linebreak' | undefined;
     };
 }
 export declare type SpecialNamePathType = 'module' | 'event' | 'external';

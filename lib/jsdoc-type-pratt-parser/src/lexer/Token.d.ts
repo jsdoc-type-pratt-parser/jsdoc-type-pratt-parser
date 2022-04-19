@@ -2,4 +2,5 @@ export declare type TokenType = '(' | ')' | '[' | ']' | '{' | '}' | '|' | '&' | 
 export interface Token {
     type: TokenType;
     text: string;
+    startOfLine: boolean;
 }
