@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v3.0.0...v3.0.1) (2022-04-19)
+
+
+### Bug Fixes
+
+* **ObjectParslet:** accept linebreaks ([99d4bae](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/99d4bae3225d75a98ee54d76d67fddf540a7a123))
+
 # [3.0.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v2.2.5...v3.0.0) (2022-04-19)
 
 
