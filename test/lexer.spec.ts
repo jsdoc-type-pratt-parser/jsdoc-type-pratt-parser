@@ -2,7 +2,7 @@ import { expect } from 'chai'
 import { Lexer } from '../src/lexer/Lexer'
 import { Token } from '../src/lexer/Token'
 
-function expectTokens (text: string, tokens: Token[]): void {
+function expectTokens (text: string, tokens: Array<Partial<Token>>): void {
   let lexer = Lexer.create(text)
 
   let position = 0
@@ -10,7 +10,8 @@ function expectTokens (text: string, tokens: Token[]): void {
   while (lexer.current.type !== 'EOF') {
     const nextToken = lexer.current
     const nextExpected = tokens[position]
-    expect(nextToken).to.deep.equal(nextExpected)
+    expect(nextToken.type).to.equal(nextExpected.type)
+    expect(nextToken.text).to.equal(nextExpected.text)
     lexer = lexer.advance()
     position++
   }

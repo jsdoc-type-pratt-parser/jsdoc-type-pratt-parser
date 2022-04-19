@@ -36,7 +36,8 @@ describe('Parser', () => {
 
     expect(token).to.deep.equal({
       type: 'EOF',
-      text: ''
+      text: '',
+      startOfLine: false
     })
   })
 
@@ -57,6 +58,7 @@ describe('Parser', () => {
     const token = (error as EarlyEndOfParseError).getToken()
 
     expect(token).to.deep.equal({
+      startOfLine: false,
       type: ']',
       text: ']'
     })

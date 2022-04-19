@@ -1,6 +1,8 @@
 import { Token, TokenType } from './Token'
 
-type Rule = (text: string) => Token|null
+type PartialToken = Omit<Token, 'startOfLine'>
+
+type Rule = (text: string) => PartialToken|null
 
 function makePunctuationRule (type: TokenType): Rule {
   return text => {
@@ -125,7 +127,7 @@ const numberRule: Rule = text => {
   }
 }
 
-const rules = [
+const rules: Rule[] = [
   eofRule,
   makePunctuationRule('=>'),
   makePunctuationRule('('),
@@ -169,6 +171,8 @@ const rules = [
   stringValueRule
 ]
 
+const breakingWhitespaceRegex = /^\s*\n\s*/
+
 export class Lexer {
   private readonly text: string = ''
   public readonly current: Token
@@ -190,11 +194,16 @@ export class Lexer {
     this.next = next
   }
 
-  private static read (text: string): { text: string, token: Token } {
+  private static read (text: string, startOfLine: boolean = false): { text: string, token: Token } {
+    startOfLine = startOfLine || breakingWhitespaceRegex.test(text)
     text = text.trim()
     for (const rule of rules) {
-      const token = rule(text)
-      if (token !== null) {
+      const partial = rule(text)
+      if (partial !== null) {
+        const token = {
+          ...partial,
+          startOfLine
+        }
         text = text.slice(token.text.length)
         return { text, token }
       }
