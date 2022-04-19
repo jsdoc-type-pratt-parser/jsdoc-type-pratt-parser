@@ -268,4 +268,52 @@ describe('typescript objects tests', () => {
       }
     })
   })
+
+  describe('linebreaks can be seperators', () => {
+    testFixture({
+      input:
+`{
+  range: boolean
+  loc: boolean
+}`,
+      stringified: '{range: boolean; loc: boolean}',
+      modes: ['typescript', 'jsdoc', 'closure'],
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: {
+          separator: 'linebreak'
+        },
+        elements: [
+          {
+            type: 'JsdocTypeKeyValue',
+            key: 'range',
+            right: {
+              type: 'JsdocTypeName',
+              value: 'boolean'
+            },
+            optional: false,
+            readonly: false,
+            meta: {
+              quote: undefined,
+              hasLeftSideExpression: false
+            }
+          },
+          {
+            type: 'JsdocTypeKeyValue',
+            key: 'loc',
+            right: {
+              type: 'JsdocTypeName',
+              value: 'boolean'
+            },
+            optional: false,
+            readonly: false,
+            meta: {
+              quote: undefined,
+              hasLeftSideExpression: false
+            }
+          }
+        ]
+      }
+    })
+  })
 })

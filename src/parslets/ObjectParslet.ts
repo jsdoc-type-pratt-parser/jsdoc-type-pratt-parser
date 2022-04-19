@@ -23,7 +23,7 @@ export function createObjectParslet ({ objectFieldGrammar, allowKeyTypes }: {
       }
 
       if (!parser.consume('}')) {
-        let separator: 'comma' | 'semicolon' | undefined
+        let separator: 'comma' | 'semicolon' | 'linebreak' | undefined
 
         const fieldParser = new Parser(objectFieldGrammar, parser.lexer, parser)
 
@@ -64,7 +64,9 @@ export function createObjectParslet ({ objectFieldGrammar, allowKeyTypes }: {
           } else {
             throw new UnexpectedTypeError(field)
           }
-          if (parser.consume(',')) {
+          if (parser.lexer.current.startOfLine) {
+            separator = 'linebreak'
+          } else if (parser.consume(',')) {
             separator = 'comma'
           } else if (parser.consume(';')) {
             separator = 'semicolon'
