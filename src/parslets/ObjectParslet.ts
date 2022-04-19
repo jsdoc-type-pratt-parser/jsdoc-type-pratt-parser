@@ -25,16 +25,12 @@ export function createObjectParslet ({ objectFieldGrammar, allowKeyTypes }: {
       if (!parser.consume('}')) {
         let separator: 'comma' | 'semicolon' | undefined
 
-        const lexer = parser.getLexer()
-
-        const fieldParser = new Parser({
-          grammar: objectFieldGrammar,
-          lexer: lexer,
-          parent: parser
-        })
+        const fieldParser = new Parser(objectFieldGrammar, parser.lexer, parser)
 
         while (true) {
+          fieldParser.acceptLexerState(parser)
           let field = fieldParser.parseIntermediateType(Precedence.OBJECT)
+          parser.acceptLexerState(fieldParser)
 
           if (field === undefined && allowKeyTypes) {
             field = parser.parseIntermediateType(Precedence.OBJECT)

@@ -6,25 +6,20 @@ import { RootResult } from './result/RootResult'
 
 export type ParseMode = 'closure' | 'jsdoc' | 'typescript'
 
-const parsers = {
-  jsdoc: new Parser({
-    grammar: jsdocGrammar
-  }),
-  closure: new Parser({
-    grammar: closureGrammar
-  }),
-  typescript: new Parser({
-    grammar: typescriptGrammar
-  })
-}
-
 /**
  * This function parses the given expression in the given mode and produces a {@link RootResult}.
  * @param expression
  * @param mode
  */
 export function parse (expression: string, mode: ParseMode): RootResult {
-  return parsers[mode].parseText(expression)
+  switch (mode) {
+    case 'closure':
+      return (new Parser(closureGrammar, expression)).parse()
+    case 'jsdoc':
+      return (new Parser(jsdocGrammar, expression)).parse()
+    case 'typescript':
+      return (new Parser(typescriptGrammar, expression)).parse()
+  }
 }
 
 /**
@@ -38,7 +33,7 @@ export function tryParse (expression: string, modes: ParseMode[] = ['typescript'
   let error
   for (const mode of modes) {
     try {
-      return parsers[mode].parseText(expression)
+      return parse(expression, mode)
     } catch (e) {
       error = e
     }

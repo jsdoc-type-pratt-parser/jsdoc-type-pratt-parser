@@ -15,8 +15,8 @@ export function createNamePathParslet ({ allowJsdocNamePaths, pathGrammar }: {
     if ((left == null) || precedence >= Precedence.NAME_PATH) {
       return null
     }
-    const type = parser.getLexer().token().type
-    const next = parser.getLexer().peek().type
+    const type = parser.lexer.current.type
+    const next = parser.lexer.next.type
 
     const accept = (type === '.' && next !== '<') ||
       (type === '[' && left.type === 'JsdocTypeName') ||
@@ -42,13 +42,11 @@ export function createNamePathParslet ({ allowJsdocNamePaths, pathGrammar }: {
     }
 
     const pathParser = pathGrammar !== null
-      ? new Parser({
-        grammar: pathGrammar,
-        lexer: parser.getLexer()
-      })
+      ? new Parser(pathGrammar, parser.lexer, parser)
       : parser
 
     const parsed = pathParser.parseIntermediateType(Precedence.NAME_PATH)
+    parser.acceptLexerState(pathParser)
     let right: PropertyResult | SpecialNamePath<'event'>
 
     switch (parsed.type) {
@@ -91,7 +89,7 @@ export function createNamePathParslet ({ allowJsdocNamePaths, pathGrammar }: {
     }
 
     if (brackets && !parser.consume(']')) {
-      const token = parser.getLexer().token()
+      const token = parser.lexer.current
       throw new Error(`Unterminated square brackets. Next token is '${token.type}' ` +
         `with text '${token.text}'`)
     }

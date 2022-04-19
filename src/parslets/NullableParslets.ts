@@ -4,8 +4,8 @@ import { isQuestionMarkUnknownType } from './isQuestionMarkUnkownType'
 import { assertRootResult } from '../assertTypes'
 
 export const nullableParslet: ParsletFunction = (parser, precedence, left) => {
-  const type = parser.getLexer().token().type
-  const next = parser.getLexer().peek().type
+  const type = parser.lexer.current.type
+  const next = parser.lexer.next.type
 
   const accept = ((left == null) && type === '?' && !isQuestionMarkUnknownType(next)) ||
     ((left != null) && type === '?')

@@ -27,20 +27,24 @@ export function createKeyValueParslet ({ allowKeyTypes, allowReadonly, allowOpti
       }
 
       // object parslet uses a special grammar and for the value we want to switch back to the parent
-      parser = parser.getParent() ?? parser
+      const parentParser = parser.parent ?? parser
+      parentParser.acceptLexerState(parser)
 
       if (left.type === 'JsdocTypeNumber' || left.type === 'JsdocTypeName' || left.type === 'JsdocTypeStringValue') {
-        parser.consume(':')
+        parentParser.consume(':')
 
         let quote
         if (left.type === 'JsdocTypeStringValue') {
           quote = left.meta.quote
         }
 
+        const right = parentParser.parseType(Precedence.KEY_VALUE)
+        parser.acceptLexerState(parentParser)
+
         return {
           type: 'JsdocTypeKeyValue',
           key: left.value.toString(),
-          right: parser.parseType(Precedence.KEY_VALUE),
+          right: right,
           optional: optional,
           readonly: readonlyProperty,
           meta: {
@@ -53,12 +57,15 @@ export function createKeyValueParslet ({ allowKeyTypes, allowReadonly, allowOpti
           throw new UnexpectedTypeError(left)
         }
 
-        parser.consume(':')
+        parentParser.consume(':')
+
+        const right = parentParser.parseType(Precedence.KEY_VALUE)
+        parser.acceptLexerState(parentParser)
 
         return {
           type: 'JsdocTypeKeyValue',
           left: assertRootResult(left),
-          right: parser.parseType(Precedence.KEY_VALUE),
+          right: right,
           meta: {
             hasLeftSideExpression: true
           }

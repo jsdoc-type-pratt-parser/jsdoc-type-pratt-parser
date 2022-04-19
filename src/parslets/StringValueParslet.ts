@@ -4,7 +4,7 @@ export const stringValueParslet = composeParslet({
   name: 'stringValueParslet',
   accept: type => type === 'StringValue',
   parsePrefix: parser => {
-    const text = parser.getLexer().token().text
+    const text = parser.lexer.current.text
     parser.consume('StringValue')
     return {
       type: 'JsdocTypeStringValue',
