@@ -1,3 +1,21 @@
+# [3.0.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v2.2.5...v3.0.0) (2022-04-19)
+
+
+### Bug Fixes
+
+* **Lexer:** use new lexer interface ([03ed15e](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/03ed15ebdd4d735560c379a885c29341c1ed73ee))
+
+
+### Features
+
+* Lexer has a readonly state ([13ec065](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/13ec065d3d2c0004aa183e8d35e7b94049794675))
+
+
+### BREAKING CHANGES
+
+* the advance function of the lexer does not change the internal state of the object, but does instead return a new Lexer object. The getters `token()`, `peek()` and `previous()` have been replaced with readonly properties `current`, `next`, `previous`.
+* the API of the Parser class has changed. It can't parse multiple expressions anymore, but needs to be instantiated for each expression. The expression is passed to the constructor. The current lexer can be accessed via the property `lexer`.
+
 ## [2.2.5](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v2.2.4...v2.2.5) (2022-03-13)
 
 
