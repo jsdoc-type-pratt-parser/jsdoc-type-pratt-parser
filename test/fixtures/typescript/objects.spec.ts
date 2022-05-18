@@ -20,6 +20,7 @@ describe('typescript objects tests', () => {
             },
             optional: false,
             readonly: false,
+            variadic: false,
             meta: {
               quote: undefined,
               hasLeftSideExpression: false
@@ -69,7 +70,8 @@ describe('typescript objects tests', () => {
                 type: 'JsdocTypeName',
                 value: 'string'
               },
-              optional: true
+              optional: true,
+              variadic: false
             },
             {
               type: 'JsdocTypeKeyValue',
@@ -83,7 +85,8 @@ describe('typescript objects tests', () => {
                 type: 'JsdocTypeName',
                 value: 'string'
               },
-              optional: false
+              optional: false,
+              variadic: false
             }
           ]
         },
@@ -125,7 +128,8 @@ describe('typescript objects tests', () => {
                 type: 'JsdocTypeName',
                 value: 'string'
               },
-              optional: false
+              optional: false,
+              variadic: false
             }
           ]
         }
@@ -174,6 +178,7 @@ describe('typescript objects tests', () => {
               ]
             },
             optional: false,
+            variadic: false,
             meta: {
               quote: undefined,
               hasLeftSideExpression: false
@@ -215,6 +220,7 @@ describe('typescript objects tests', () => {
             key: 'message',
             right: undefined,
             optional: true,
+            variadic: false,
             meta: {
               quote: undefined,
               hasLeftSideExpression: false
@@ -256,6 +262,7 @@ describe('typescript objects tests', () => {
             },
             optional: false,
             readonly: false,
+            variadic: false,
             meta: {
               quote: undefined,
               hasLeftSideExpression: false

@@ -19,6 +19,7 @@ describe('variadic tests', () => {
             },
             optional: false,
             readonly: false,
+            variadic: false,
             meta: {
               quote: 'double',
               hasLeftSideExpression: false

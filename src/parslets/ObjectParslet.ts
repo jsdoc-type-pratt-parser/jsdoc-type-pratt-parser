@@ -54,6 +54,7 @@ export function createObjectParslet ({ objectFieldGrammar, allowKeyTypes }: {
               right: undefined,
               optional: optional,
               readonly: false,
+              variadic: false,
               meta: {
                 quote,
                 hasLeftSideExpression: false

@@ -20,6 +20,7 @@ export interface KeyValueResult {
   right: RootResult | undefined
   optional: boolean
   readonly: boolean
+  variadic: boolean
   meta: {
     quote: QuoteStyle | undefined
     hasLeftSideExpression: false

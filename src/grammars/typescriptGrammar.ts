@@ -34,7 +34,8 @@ const objectFieldGrammar: Grammar = [
   createKeyValueParslet({
     allowKeyTypes: false,
     allowOptional: true,
-    allowReadonly: true
+    allowReadonly: true,
+    allowVariadic: false
   })
 ]
 
@@ -51,7 +52,7 @@ export const typescriptGrammar: Grammar = [
   createFunctionParslet({
     allowWithoutParenthesis: true,
     allowNoReturnType: false,
-    allowNamedParameters: ['this', 'new'],
+    allowNamedParameters: ['this', 'new', 'args'],
     allowNewAsFunctionKeyword: true
   }),
   createTupleParslet({
@@ -77,7 +78,8 @@ export const typescriptGrammar: Grammar = [
   createKeyValueParslet({
     allowKeyTypes: false,
     allowOptional: true,
-    allowReadonly: true
+    allowReadonly: true,
+    allowVariadic: true
   }),
   intersectionParslet,
   predicateParslet

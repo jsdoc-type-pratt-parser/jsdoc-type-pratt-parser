@@ -100,6 +100,9 @@ export function stringifyRules (): TransformRules<string> {
         if (result.optional) {
           text += '?'
         }
+        if (result.variadic) {
+          text = '...' + text
+        }
 
         if (result.right === undefined) {
           return text

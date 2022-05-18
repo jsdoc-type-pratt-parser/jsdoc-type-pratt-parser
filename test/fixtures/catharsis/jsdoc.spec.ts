@@ -928,6 +928,7 @@ describe('catharsis jsdoc tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
+            variadic: false,
             key: 'undefinedHTML',
             meta: {
               quote: undefined,
@@ -983,6 +984,7 @@ describe('catharsis jsdoc tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
+            variadic: false,
             key: 'foo',
             meta: {
               quote: undefined,
@@ -1029,6 +1031,7 @@ describe('catharsis jsdoc tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
+            variadic: false,
             key: 'foo',
             meta: {
               quote: undefined,
@@ -1103,6 +1106,7 @@ describe('catharsis jsdoc tests', () => {
               type: 'JsdocTypeKeyValue',
               readonly: false,
               optional: false,
+              variadic: false,
               key: 'this',
               meta: {
                 quote: undefined,

@@ -45,4 +45,47 @@ describe('typescript function test', () => {
       modes: ['typescript']
     })
   })
+
+  describe('allow typed variadic args', () => {
+    testFixture({
+      input: 'function(...args: any[]): object',
+      expected: {
+        type: 'JsdocTypeFunction',
+        arrow: false,
+        constructor: false,
+        parenthesis: true,
+        parameters: [{
+          type: 'JsdocTypeKeyValue',
+          key: 'args',
+          variadic: true,
+          optional: false,
+          readonly: false,
+          right: {
+            type: 'JsdocTypeGeneric',
+            left: {
+              type: 'JsdocTypeName',
+              value: 'Array'
+            },
+            elements: [{
+              type: 'JsdocTypeName',
+              value: 'any'
+            }],
+            meta: {
+              brackets: 'square',
+              dot: false
+            }
+          },
+          meta: {
+            quote: undefined,
+            hasLeftSideExpression: false
+          }
+        }],
+        returnType: {
+          type: 'JsdocTypeName',
+          value: 'object'
+        }
+      },
+      modes: ['typescript']
+    })
+  })
 })

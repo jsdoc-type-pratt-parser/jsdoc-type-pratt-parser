@@ -11,6 +11,7 @@ describe('typescript arrow function tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
+            variadic: false,
             key: 'x',
             meta: {
               quote: undefined,
@@ -54,6 +55,7 @@ describe('typescript arrow function tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
+            variadic: false,
             key: 'x',
             meta: {
               quote: undefined,
@@ -99,6 +101,7 @@ describe('typescript arrow function tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
+            variadic: false,
             key: 'x',
             meta: {
               quote: undefined,
@@ -113,6 +116,7 @@ describe('typescript arrow function tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
+            variadic: false,
             key: 'y',
             meta: {
               quote: undefined,
@@ -127,6 +131,7 @@ describe('typescript arrow function tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
+            variadic: false,
             key: 'z',
             meta: {
               quote: undefined,
@@ -282,6 +287,7 @@ describe('typescript arrow function tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
+            variadic: false,
             key: 'arrow',
             meta: {
               quote: undefined,
@@ -296,6 +302,7 @@ describe('typescript arrow function tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
+            variadic: false,
             key: 'with',
             meta: {
               quote: undefined,
@@ -451,6 +458,7 @@ describe('typescript arrow function tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
+            variadic: false,
             key: 'a',
             meta: {
               quote: undefined,
@@ -469,6 +477,7 @@ describe('typescript arrow function tests', () => {
               type: 'JsdocTypeKeyValue',
               readonly: false,
               optional: false,
+              variadic: false,
               key: 'b',
               meta: {
                 quote: undefined,
@@ -583,6 +592,7 @@ describe('typescript arrow function tests', () => {
             },
             optional: false,
             readonly: false,
+            variadic: false,
             meta: {
               quote: undefined,
               hasLeftSideExpression: false
@@ -597,6 +607,7 @@ describe('typescript arrow function tests', () => {
             },
             optional: false,
             readonly: false,
+            variadic: false,
             meta: {
               quote: undefined,
               hasLeftSideExpression: false

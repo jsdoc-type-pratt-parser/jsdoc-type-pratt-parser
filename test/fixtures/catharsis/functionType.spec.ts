@@ -254,6 +254,7 @@ describe('catharsis function type tests', () => {
             key: 'this',
             readonly: false,
             optional: false,
+            variadic: false,
             right: {
               left: {
                 left: {
@@ -319,6 +320,7 @@ describe('catharsis function type tests', () => {
             key: 'this',
             readonly: false,
             optional: false,
+            variadic: false,
             right: {
               left: {
                 left: {
@@ -384,6 +386,7 @@ describe('catharsis function type tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
+            variadic: false,
             key: 'new',
             meta: {
               quote: undefined,
@@ -450,6 +453,7 @@ describe('catharsis function type tests', () => {
             key: 'new',
             readonly: false,
             optional: false,
+            variadic: false,
             meta: {
               quote: undefined,
               hasLeftSideExpression: false
@@ -518,6 +522,7 @@ describe('catharsis function type tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
+            variadic: false,
             key: 'new',
             meta: {
               quote: undefined,
@@ -554,6 +559,7 @@ describe('catharsis function type tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
+            variadic: false,
             key: 'this',
             meta: {
               quote: undefined,
@@ -767,6 +773,7 @@ describe('catharsis function type tests', () => {
               type: 'JsdocTypeKeyValue',
               readonly: false,
               optional: false,
+              variadic: false,
               key: 'new',
               meta: {
                 quote: undefined,
@@ -781,6 +788,7 @@ describe('catharsis function type tests', () => {
               type: 'JsdocTypeKeyValue',
               readonly: false,
               optional: false,
+              variadic: false,
               key: 'this',
               meta: {
                 quote: undefined,
@@ -865,6 +873,7 @@ describe('catharsis function type tests', () => {
               type: 'JsdocTypeKeyValue',
               readonly: false,
               optional: false,
+              variadic: false,
               key: 'new',
               meta: {
                 quote: undefined,
@@ -879,6 +888,7 @@ describe('catharsis function type tests', () => {
               type: 'JsdocTypeKeyValue',
               readonly: false,
               optional: false,
+              variadic: false,
               key: 'this',
               meta: {
                 quote: undefined,
@@ -1139,6 +1149,7 @@ describe('catharsis function type tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
+            variadic: false,
             key: 'this',
             meta: {
               quote: undefined,
@@ -1199,6 +1210,7 @@ describe('catharsis function type tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
+            variadic: false,
             key: 'this',
             meta: {
               quote: undefined,
@@ -1272,6 +1284,7 @@ describe('catharsis function type tests', () => {
               type: 'JsdocTypeKeyValue',
               readonly: false,
               optional: false,
+              variadic: false,
               key: 'new',
               meta: {
                 quote: undefined,
@@ -1308,6 +1321,7 @@ describe('catharsis function type tests', () => {
               type: 'JsdocTypeKeyValue',
               readonly: false,
               optional: false,
+              variadic: false,
               key: 'new',
               meta: {
                 quote: undefined,
@@ -1371,6 +1385,7 @@ describe('catharsis function type tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
+            variadic: false,
             key: 'new',
             meta: {
               quote: undefined,
@@ -1502,6 +1517,7 @@ describe('catharsis function type tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
+            variadic: false,
             key: 'this',
             meta: {
               quote: undefined,

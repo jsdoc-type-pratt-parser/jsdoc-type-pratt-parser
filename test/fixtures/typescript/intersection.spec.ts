@@ -162,6 +162,7 @@ describe('typescript intersection tests', () => {
                 type: 'JsdocTypeKeyValue',
                 readonly: false,
                 optional: false,
+                variadic: false,
                 key: 'a',
                 meta: {
                   quote: undefined,

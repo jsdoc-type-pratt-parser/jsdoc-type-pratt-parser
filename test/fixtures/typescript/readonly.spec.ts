@@ -28,6 +28,7 @@ describe('typescript readonly tests', () => {
             },
             optional: false,
             readonly: true,
+            variadic: false,
             meta: {
               quote: undefined,
               hasLeftSideExpression: false
