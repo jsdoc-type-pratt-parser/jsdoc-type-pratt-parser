@@ -300,6 +300,7 @@ describe('typescript objects tests', () => {
             },
             optional: false,
             readonly: false,
+            variadic: false,
             meta: {
               quote: undefined,
               hasLeftSideExpression: false
@@ -314,6 +315,7 @@ describe('typescript objects tests', () => {
             },
             optional: false,
             readonly: false,
+            variadic: false,
             meta: {
               quote: undefined,
               hasLeftSideExpression: false

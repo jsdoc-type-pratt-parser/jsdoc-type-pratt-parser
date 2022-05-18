@@ -14,7 +14,8 @@ describe('ParameterListParslet', () => {
         createFunctionParslet({
           allowWithoutParenthesis: false,
           allowNamedParameters: undefined,
-          allowNoReturnType: true
+          allowNoReturnType: true,
+          allowNewAsFunctionKeyword: true
         }),
         createParameterListParslet({
           allowTrailingComma: false
