@@ -39,7 +39,11 @@ export function stringifyRules (): TransformRules<string> {
         if (result.returnType === undefined) {
           throw new Error('Arrow function needs a return type.')
         }
-        return `(${result.parameters.map(transform).join(', ')}) => ${transform(result.returnType)}`
+        let stringified = `(${result.parameters.map(transform).join(', ')}) => ${transform(result.returnType)}`
+        if (result.constructor) {
+          stringified = 'new ' + stringified
+        }
+        return stringified
       }
     },
 

@@ -27,4 +27,22 @@ describe('typescript function test', () => {
       modes: ['typescript']
     })
   })
+
+  describe('allows new as an arrow function', () => {
+    testFixture({
+      input: 'new () => SomeType',
+      expected: {
+        type: 'JsdocTypeFunction',
+        parameters: [],
+        arrow: true,
+        constructor: true,
+        parenthesis: true,
+        returnType: {
+          type: 'JsdocTypeName',
+          value: 'SomeType'
+        }
+      },
+      modes: ['typescript']
+    })
+  })
 })

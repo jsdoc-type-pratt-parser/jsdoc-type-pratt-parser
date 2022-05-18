@@ -53,7 +53,7 @@ export function createFunctionParslet ({ allowNamedParameters, allowNoReturnType
         }
       }
 
-      const result: FunctionResult = {
+      let result: FunctionResult = {
         type: 'JsdocTypeFunction',
         parameters: [],
         arrow: false,
@@ -65,6 +65,10 @@ export function createFunctionParslet ({ allowNamedParameters, allowNoReturnType
 
       if (allowNamedParameters === undefined) {
         result.parameters = getUnnamedParameters(value)
+      } else if (newKeyword && value.type === 'JsdocTypeFunction' && value.arrow) {
+        result = value
+        result.constructor = true
+        return result
       } else {
         result.parameters = getParameters(value)
         for (const p of result.parameters) {
