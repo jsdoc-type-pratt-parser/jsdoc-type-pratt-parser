@@ -210,6 +210,7 @@ describe('traverse', () => {
       type: 'JsdocTypeFunction',
       arrow: true,
       parenthesis: true,
+      constructor: false,
       parameters: [
         parameter
       ],

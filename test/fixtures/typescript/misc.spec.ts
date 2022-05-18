@@ -18,6 +18,7 @@ describe('typescript misc tests', () => {
           value: 'string'
         },
         arrow: false,
+        constructor: false,
         parenthesis: true
       },
       modes: [

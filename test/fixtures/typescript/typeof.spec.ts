@@ -323,6 +323,7 @@ describe('typescript typeof tests', () => {
           }
         ],
         arrow: false,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -360,6 +361,7 @@ describe('typescript typeof tests', () => {
           value: 'void'
         },
         arrow: false,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -402,6 +404,7 @@ describe('typescript typeof tests', () => {
           value: 'void'
         },
         arrow: false,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -444,6 +447,7 @@ describe('typescript typeof tests', () => {
           value: 'void'
         },
         arrow: false,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -477,6 +481,7 @@ describe('typescript typeof tests', () => {
           }
         },
         arrow: false,
+        constructor: false,
         parenthesis: true
       },
       modes: [

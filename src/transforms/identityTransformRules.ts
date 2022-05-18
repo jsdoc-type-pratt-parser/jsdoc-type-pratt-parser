@@ -148,6 +148,7 @@ export function identityTransformRules (): TransformRules<NonRootResult> {
         type: 'JsdocTypeFunction',
         arrow: result.arrow,
         parameters: result.parameters.map(transform) as RootResult[],
+        constructor: result.constructor,
         parenthesis: result.parenthesis
       }
 

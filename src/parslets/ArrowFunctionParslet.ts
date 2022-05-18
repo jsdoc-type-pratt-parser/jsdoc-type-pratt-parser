@@ -13,6 +13,7 @@ export const arrowFunctionParslet = composeParslet({
       type: 'JsdocTypeFunction',
       parameters: getParameters(left).map(assertPlainKeyValueOrNameResult),
       arrow: true,
+      constructor: false,
       parenthesis: true,
       returnType: parser.parseType(Precedence.OBJECT)
     }

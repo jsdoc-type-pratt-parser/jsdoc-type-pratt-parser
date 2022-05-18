@@ -88,6 +88,7 @@ describe('typescript intersection tests', () => {
               value: 'void'
             },
             arrow: false,
+            constructor: false,
             parenthesis: true
           },
           {
@@ -154,6 +155,7 @@ describe('typescript intersection tests', () => {
           {
             type: 'JsdocTypeFunction',
             arrow: true,
+            constructor: false,
             parenthesis: true,
             parameters: [
               {

@@ -27,15 +27,17 @@ export function getUnnamedParameters (value: IntermediateResult): RootResult[] {
   return parameters as RootResult[]
 }
 
-export function createFunctionParslet ({ allowNamedParameters, allowNoReturnType, allowWithoutParenthesis }: {
+export function createFunctionParslet ({ allowNamedParameters, allowNoReturnType, allowWithoutParenthesis, allowNewAsFunctionKeyword }: {
   allowNamedParameters?: string[]
   allowWithoutParenthesis: boolean
   allowNoReturnType: boolean
+  allowNewAsFunctionKeyword: boolean
 }): ParsletFunction {
   return composeParslet({
     name: 'functionParslet',
-    accept: type => type === 'function',
+    accept: (type, next) => type === 'function' || (allowNewAsFunctionKeyword && type === 'new' && next === '('),
     parsePrefix: parser => {
+      const newKeyword = parser.consume('new')
       parser.consume('function')
 
       const hasParenthesis = parser.lexer.current.type === '('
@@ -55,6 +57,7 @@ export function createFunctionParslet ({ allowNamedParameters, allowNoReturnType
         type: 'JsdocTypeFunction',
         parameters: [],
         arrow: false,
+        constructor: newKeyword,
         parenthesis: hasParenthesis
       }
 

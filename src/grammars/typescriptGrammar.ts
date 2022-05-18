@@ -51,7 +51,8 @@ export const typescriptGrammar: Grammar = [
   createFunctionParslet({
     allowWithoutParenthesis: true,
     allowNoReturnType: false,
-    allowNamedParameters: ['this', 'new']
+    allowNamedParameters: ['this', 'new'],
+    allowNewAsFunctionKeyword: true
   }),
   createTupleParslet({
     allowQuestionMark: false

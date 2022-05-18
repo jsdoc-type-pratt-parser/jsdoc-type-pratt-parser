@@ -459,6 +459,7 @@ describe('catharsis type union tests', () => {
                 value: 'Error'
               },
               arrow: false,
+              constructor: false,
               parenthesis: true
             }
           ]
@@ -616,6 +617,7 @@ describe('catharsis type union tests', () => {
                 type: 'JsdocTypeFunction',
                 parameters: [],
                 arrow: false,
+                constructor: false,
                 parenthesis: true
               }
             ]
@@ -713,6 +715,7 @@ describe('catharsis type union tests', () => {
                             }
                           ],
                           arrow: false,
+                          constructor: false,
                           parenthesis: true
                         }
                       ]

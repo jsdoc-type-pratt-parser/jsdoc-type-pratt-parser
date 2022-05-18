@@ -12,7 +12,8 @@ function parse (text: string): void {
     createFunctionParslet({
       allowWithoutParenthesis: true,
       allowNamedParameters: undefined,
-      allowNoReturnType: true
+      allowNoReturnType: true,
+      allowNewAsFunctionKeyword: false
     })
   ]
   const parser = new Parser(grammar, Lexer.create(text))

@@ -26,7 +26,7 @@ export function stringifyRules (): TransformRules<string> {
 
     JsdocTypeFunction: (result, transform) => {
       if (!result.arrow) {
-        let stringified = 'function'
+        let stringified = result.constructor ? 'new' : 'function'
         if (!result.parenthesis) {
           return stringified
         }

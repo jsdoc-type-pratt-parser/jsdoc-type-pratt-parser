@@ -254,6 +254,7 @@ describe('catharsis type application tests', () => {
                     value: 'string'
                   },
                   arrow: false,
+                  constructor: false,
                   parenthesis: true
                 }
               ]

@@ -17,6 +17,7 @@ describe('catharsis function type tests', () => {
           }
         ],
         arrow: false,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -54,6 +55,7 @@ describe('catharsis function type tests', () => {
             }
           ],
           arrow: false,
+          constructor: false,
           parenthesis: true
         },
         meta: {
@@ -98,6 +100,7 @@ describe('catharsis function type tests', () => {
           value: 'boolean'
         },
         arrow: false,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -140,6 +143,7 @@ describe('catharsis function type tests', () => {
             value: 'boolean'
           },
           arrow: false,
+          constructor: false,
           parenthesis: true
         },
         meta: {
@@ -179,6 +183,7 @@ describe('catharsis function type tests', () => {
             }
           ],
           arrow: false,
+          constructor: false,
           parenthesis: true
         },
         meta: {
@@ -213,6 +218,7 @@ describe('catharsis function type tests', () => {
           value: 'number'
         },
         arrow: false,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -278,6 +284,7 @@ describe('catharsis function type tests', () => {
         ],
         type: 'JsdocTypeFunction',
         arrow: false,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -346,6 +353,7 @@ describe('catharsis function type tests', () => {
         ],
         type: 'JsdocTypeFunction',
         arrow: false,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -410,6 +418,7 @@ describe('catharsis function type tests', () => {
           }
         ],
         arrow: false,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -478,6 +487,7 @@ describe('catharsis function type tests', () => {
           }
         ],
         arrow: false,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -567,6 +577,7 @@ describe('catharsis function type tests', () => {
           }
         ],
         arrow: false,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -615,6 +626,7 @@ describe('catharsis function type tests', () => {
             value: 'number'
           },
           arrow: false,
+          constructor: false,
           parenthesis: true
         },
         typescript: {
@@ -646,6 +658,7 @@ describe('catharsis function type tests', () => {
             value: 'number'
           },
           arrow: false,
+          constructor: false,
           parenthesis: true
         }
       },
@@ -685,6 +698,7 @@ describe('catharsis function type tests', () => {
           }
         ],
         arrow: false,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -722,6 +736,7 @@ describe('catharsis function type tests', () => {
           }
         ],
         arrow: false,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -840,6 +855,7 @@ describe('catharsis function type tests', () => {
             value: 'boolean'
           },
           arrow: false,
+          constructor: false,
           parenthesis: true
         },
         typescript: {
@@ -942,6 +958,7 @@ describe('catharsis function type tests', () => {
             value: 'boolean'
           },
           arrow: false,
+          constructor: false,
           parenthesis: true
         }
       },
@@ -981,6 +998,7 @@ describe('catharsis function type tests', () => {
           }
         ],
         arrow: false,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -1024,6 +1042,7 @@ describe('catharsis function type tests', () => {
           }
         },
         arrow: false,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -1051,6 +1070,7 @@ describe('catharsis function type tests', () => {
         type: 'JsdocTypeFunction',
         parameters: [],
         arrow: false,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -1089,6 +1109,7 @@ describe('catharsis function type tests', () => {
           }
         ],
         arrow: false,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -1146,6 +1167,7 @@ describe('catharsis function type tests', () => {
           type: 'JsdocTypeParenthesis'
         },
         arrow: false,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -1217,6 +1239,7 @@ describe('catharsis function type tests', () => {
           }
         },
         arrow: false,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -1275,6 +1298,7 @@ describe('catharsis function type tests', () => {
             value: 'Array'
           },
           arrow: false,
+          constructor: false,
           parenthesis: true
         },
         typescript: {
@@ -1315,6 +1339,7 @@ describe('catharsis function type tests', () => {
             value: 'Array'
           },
           arrow: false,
+          constructor: false,
           parenthesis: true
         }
       },
@@ -1371,6 +1396,7 @@ describe('catharsis function type tests', () => {
           value: 'boolean'
         },
         arrow: false,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -1416,6 +1442,7 @@ describe('catharsis function type tests', () => {
             value: 'boolean'
           },
           arrow: false,
+          constructor: false,
           parenthesis: true
         },
         typescript: {
@@ -1443,6 +1470,7 @@ describe('catharsis function type tests', () => {
             value: 'boolean'
           },
           arrow: false,
+          constructor: false,
           parenthesis: true
         }
       },
@@ -1510,6 +1538,7 @@ describe('catharsis function type tests', () => {
           }
         },
         arrow: false,
+        constructor: false,
         parenthesis: true
       },
       modes: [

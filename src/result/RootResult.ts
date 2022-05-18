@@ -160,6 +160,7 @@ export interface FunctionResult {
   type: 'JsdocTypeFunction'
   parameters: Array<RootResult | KeyValueResult>
   returnType?: RootResult
+  constructor: boolean
   arrow: boolean
   parenthesis: boolean
 }

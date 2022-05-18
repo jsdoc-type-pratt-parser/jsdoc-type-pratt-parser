@@ -365,6 +365,7 @@ describe('typescript keyof tests', () => {
           value: 'void'
         },
         arrow: false,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -406,6 +407,7 @@ describe('typescript keyof tests', () => {
           value: 'void'
         },
         arrow: false,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -447,6 +449,7 @@ describe('typescript keyof tests', () => {
           value: 'void'
         },
         arrow: false,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -479,6 +482,7 @@ describe('typescript keyof tests', () => {
           }
         },
         arrow: false,
+        constructor: false,
         parenthesis: true
       },
       modes: [

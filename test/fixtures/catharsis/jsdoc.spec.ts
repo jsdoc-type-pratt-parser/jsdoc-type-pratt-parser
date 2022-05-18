@@ -992,6 +992,7 @@ describe('catharsis jsdoc tests', () => {
               type: 'JsdocTypeFunction',
               parameters: [],
               arrow: false,
+              constructor: false,
               parenthesis: true
             }
           }
@@ -1037,6 +1038,7 @@ describe('catharsis jsdoc tests', () => {
               type: 'JsdocTypeFunction',
               parameters: [],
               arrow: false,
+              constructor: false,
               parenthesis: true,
               returnType: {
                 type: 'JsdocTypeName',
@@ -1150,6 +1152,7 @@ describe('catharsis jsdoc tests', () => {
             }
           ],
           arrow: false,
+          constructor: false,
           parenthesis: true
         },
         meta: {

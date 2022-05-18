@@ -17,7 +17,8 @@ const jsdocBaseGrammar = [
   createFunctionParslet({
     allowWithoutParenthesis: true,
     allowNamedParameters: ['this', 'new'],
-    allowNoReturnType: true
+    allowNoReturnType: true,
+    allowNewAsFunctionKeyword: false
   }),
   stringValueParslet,
   createSpecialNamePathParslet({

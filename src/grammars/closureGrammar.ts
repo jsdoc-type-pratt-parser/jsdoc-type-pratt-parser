@@ -43,7 +43,8 @@ export const closureGrammar = [
   createFunctionParslet({
     allowWithoutParenthesis: false,
     allowNamedParameters: ['this', 'new'],
-    allowNoReturnType: true
+    allowNoReturnType: true,
+    allowNewAsFunctionKeyword: false
   }),
   createVariadicParslet({
     allowEnclosingBrackets: false,

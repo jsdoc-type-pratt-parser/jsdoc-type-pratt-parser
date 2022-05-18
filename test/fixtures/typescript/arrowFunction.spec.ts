@@ -25,6 +25,7 @@ describe('typescript arrow function tests', () => {
           type: 'JsdocTypeAny'
         },
         arrow: true,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -69,6 +70,7 @@ describe('typescript arrow function tests', () => {
           value: 'string'
         },
         arrow: true,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -141,6 +143,7 @@ describe('typescript arrow function tests', () => {
           value: 'string'
         },
         arrow: true,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -170,6 +173,7 @@ describe('typescript arrow function tests', () => {
           value: 'string'
         },
         arrow: true,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -202,9 +206,11 @@ describe('typescript arrow function tests', () => {
             value: 'string'
           },
           arrow: true,
+          constructor: false,
           parenthesis: true
         },
         arrow: false,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -237,6 +243,7 @@ describe('typescript arrow function tests', () => {
               value: 'string'
             },
             arrow: true,
+            constructor: false,
             parenthesis: true
           }
         ],
@@ -245,6 +252,7 @@ describe('typescript arrow function tests', () => {
           value: 'void'
         },
         arrow: false,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -304,6 +312,7 @@ describe('typescript arrow function tests', () => {
           value: 'string'
         },
         arrow: true,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -340,6 +349,7 @@ describe('typescript arrow function tests', () => {
               value: 'string'
             },
             arrow: true,
+            constructor: false,
             parenthesis: true
           }
         ],
@@ -371,6 +381,7 @@ describe('typescript arrow function tests', () => {
         type: 'JsdocTypeFunction',
         parameters: [],
         arrow: true,
+        constructor: false,
         parenthesis: true,
         returnType: {
           type: 'JsdocTypeName',
@@ -407,9 +418,11 @@ describe('typescript arrow function tests', () => {
             value: 'void'
           },
           arrow: true,
+          constructor: false,
           parenthesis: true
         },
         arrow: true,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -472,9 +485,11 @@ describe('typescript arrow function tests', () => {
             value: 'boolean'
           },
           arrow: true,
+          constructor: false,
           parenthesis: true
         },
         arrow: true,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -509,6 +524,7 @@ describe('typescript arrow function tests', () => {
           value: 'void'
         },
         arrow: true,
+        constructor: false,
         parenthesis: true
       },
       modes: [
@@ -562,6 +578,7 @@ describe('typescript arrow function tests', () => {
                 value: 'void'
               },
               arrow: true,
+              constructor: false,
               parenthesis: true
             },
             optional: false,
