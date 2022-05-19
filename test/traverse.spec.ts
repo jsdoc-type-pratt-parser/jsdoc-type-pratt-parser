@@ -175,6 +175,7 @@ describe('traverse', () => {
       right: nameA,
       optional: false,
       readonly: false,
+      variadic: false,
       meta: {
         quote: undefined,
         hasLeftSideExpression: false
@@ -187,6 +188,7 @@ describe('traverse', () => {
       right: nameB,
       optional: false,
       readonly: false,
+      variadic: false,
       meta: {
         quote: undefined,
         hasLeftSideExpression: false
@@ -210,6 +212,7 @@ describe('traverse', () => {
       type: 'JsdocTypeFunction',
       arrow: true,
       parenthesis: true,
+      constructor: false,
       parameters: [
         parameter
       ],

@@ -55,6 +55,7 @@ describe('`ObjectParslet`', () => {
           },
           optional: false,
           readonly: false,
+          variadic: false,
           right: undefined,
           type: 'JsdocTypeKeyValue'
         }

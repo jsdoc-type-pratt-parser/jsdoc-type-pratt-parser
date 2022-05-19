@@ -3,10 +3,11 @@ import { Precedence } from '../Precedence'
 import { assertRootResult } from '../assertTypes'
 import { UnexpectedTypeError } from '../errors'
 
-export function createKeyValueParslet ({ allowKeyTypes, allowReadonly, allowOptional }: {
+export function createKeyValueParslet ({ allowKeyTypes, allowReadonly, allowOptional, allowVariadic }: {
   allowKeyTypes: boolean
   allowOptional: boolean
   allowReadonly: boolean
+  allowVariadic: boolean
 }): ParsletFunction {
   return composeParslet({
     name: 'keyValueParslet',
@@ -15,6 +16,7 @@ export function createKeyValueParslet ({ allowKeyTypes, allowReadonly, allowOpti
     parseInfix: (parser, left) => {
       let optional = false
       let readonlyProperty = false
+      let variadic = false
 
       if (allowOptional && left.type === 'JsdocTypeNullable') {
         optional = true
@@ -23,6 +25,11 @@ export function createKeyValueParslet ({ allowKeyTypes, allowReadonly, allowOpti
 
       if (allowReadonly && left.type === 'JsdocTypeReadonlyProperty') {
         readonlyProperty = true
+        left = left.element
+      }
+
+      if (allowVariadic && left.type === 'JsdocTypeVariadic' && left.element !== undefined) {
+        variadic = true
         left = left.element
       }
 
@@ -44,9 +51,10 @@ export function createKeyValueParslet ({ allowKeyTypes, allowReadonly, allowOpti
         return {
           type: 'JsdocTypeKeyValue',
           key: left.value.toString(),
-          right: right,
-          optional: optional,
+          right,
+          optional,
           readonly: readonlyProperty,
+          variadic,
           meta: {
             quote,
             hasLeftSideExpression: false

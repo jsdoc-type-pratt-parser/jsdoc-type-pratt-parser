@@ -97,6 +97,7 @@ export function identityTransformRules (): TransformRules<NonRootResult> {
           right: result.right === undefined ? undefined : transform(result.right) as RootResult,
           optional: result.optional,
           readonly: result.readonly,
+          variadic: result.variadic,
           meta: result.meta
         }
       } else {
@@ -148,6 +149,7 @@ export function identityTransformRules (): TransformRules<NonRootResult> {
         type: 'JsdocTypeFunction',
         arrow: result.arrow,
         parameters: result.parameters.map(transform) as RootResult[],
+        constructor: result.constructor,
         parenthesis: result.parenthesis
       }
 

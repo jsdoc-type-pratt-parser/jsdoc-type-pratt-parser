@@ -15,6 +15,7 @@ describe('`stringifyRules`', () => {
       type: 'JsdocTypeFunction',
       parameters: [],
       arrow: false,
+      constructor: false,
       parenthesis: false
     }
     const result = stringify(rootResult)
@@ -73,6 +74,7 @@ describe('`stringifyRules`', () => {
         type: 'JsdocTypeFunction',
         parameters: [],
         arrow: true,
+        constructor: false,
         parenthesis: false
       }
       stringify(rootResult)

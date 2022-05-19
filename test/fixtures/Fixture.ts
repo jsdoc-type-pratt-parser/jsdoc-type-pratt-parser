@@ -12,15 +12,11 @@ export type CatharsisMode = 'jsdoc' | 'closure'
 
 export type CompareMode = ParseMode | 'fail' | 'differ'
 
-export interface Fixture {
+interface BaseFixture {
   /**
    * The input that should be parsed
    */
   input: string
-  /**
-   * The {@link ParseMode}s that the expression is expected to get parsed in. In all other modes it is expected to fail.
-   */
-  modes?: ParseMode[]
   jtp?: {
     [K in JtpMode]: CompareMode
   }
@@ -32,10 +28,6 @@ export interface Fixture {
    * `diffExpected`.
    */
   expected?: RootResult
-  error?: string
-  errors?: {
-    [K in ParseMode]?: string
-  }
   /**
    * The expected parse results objects for different modes. If a mode is included in `modes` and as a key of
    * `diffExpected` the object in `diffExpected` is used over the result in `expected`.
@@ -49,43 +41,57 @@ export interface Fixture {
   stringified?: string
 }
 
+type SuccessFixture = BaseFixture & {
+  /**
+   * The {@link ParseMode}s that the expression is expected to get parsed in. In all other modes it is expected to fail.
+   */
+  modes: ParseMode[]
+}
+
+type ErrorFixture = BaseFixture & ({
+  error: string
+} | {
+  errors: {
+    [K in ParseMode]?: string
+  }
+})
+
+export type Fixture = SuccessFixture | ErrorFixture
+
 type Results = {
   [K in ParseMode]?: RootResult
 }
 
 function testParser (mode: ParseMode, fixture: Fixture): RootResult | undefined {
-  const expectedErrorForMode = fixture.errors?.[mode] ?? fixture.error
-  if (expectedErrorForMode !== undefined) {
-    it(`In '${mode}' mode, throws with: ${expectedErrorForMode}`, () => {
-      expect(() => {
-        parse(fixture.input, mode)
-      }).to.throw(expectedErrorForMode)
-    })
-    return
-  }
-
-  if (fixture.modes === undefined) {
-    throw new Error('`modes` expected if `error` or `errors` do not meet all conditions')
-  }
-
-  if (fixture.modes.includes(mode)) {
-    it(`is parsed in '${mode}' mode`, () => {
-      const result = parse(fixture.input, mode)
-      const expected = fixture.diffExpected?.[mode] ?? fixture.expected
-      expect(result).to.deep.equal(expected)
-    })
-    try {
-      return parse(fixture.input, mode)
-    } catch (e) {
-      console.error(`Parse failed for mode '${mode}'`)
-      throw e
+  if ('modes' in fixture) {
+    if (fixture.modes.includes(mode)) {
+      it(`is parsed in '${mode}' mode`, () => {
+        const result = parse(fixture.input, mode)
+        const expected = fixture.diffExpected?.[mode] ?? fixture.expected
+        expect(result).to.deep.equal(expected)
+      })
+      try {
+        return parse(fixture.input, mode)
+      } catch (e) {
+        console.error(`Parse failed for mode '${mode}'`)
+        throw e
+      }
+    } else {
+      it(`fails to parse in '${mode}' mode`, () => {
+        expect(() => {
+          parse(fixture.input, mode)
+        }).to.throw()
+      })
     }
   } else {
-    it(`fails to parse in '${mode}' mode`, () => {
-      expect(() => {
-        parse(fixture.input, mode)
-      }).to.throw()
-    })
+    const expectedErrorForMode = 'errors' in fixture ? fixture.errors[mode] : fixture.error
+    if (expectedErrorForMode !== undefined) {
+      it(`In '${mode}' mode, throws with: ${expectedErrorForMode}`, () => {
+        expect(() => {
+          parse(fixture.input, mode)
+        }).to.throw(expectedErrorForMode)
+      })
+    }
   }
 }
 

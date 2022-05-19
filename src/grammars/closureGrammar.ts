@@ -26,7 +26,8 @@ const objectFieldGrammar: Grammar = [
   createKeyValueParslet({
     allowKeyTypes: false,
     allowOptional: false,
-    allowReadonly: false
+    allowReadonly: false,
+    allowVariadic: false
   })
 ]
 
@@ -43,7 +44,8 @@ export const closureGrammar = [
   createFunctionParslet({
     allowWithoutParenthesis: false,
     allowNamedParameters: ['this', 'new'],
-    allowNoReturnType: true
+    allowNoReturnType: true,
+    allowNewAsFunctionKeyword: false
   }),
   createVariadicParslet({
     allowEnclosingBrackets: false,
@@ -64,7 +66,8 @@ export const closureGrammar = [
   createKeyValueParslet({
     allowKeyTypes: false,
     allowOptional: false,
-    allowReadonly: false
+    allowReadonly: false,
+    allowVariadic: false
   }),
   symbolParslet
 ]

@@ -42,6 +42,7 @@ describe('catharsis record type tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
+            variadic: false,
             key: 'myNum',
             meta: {
               quote: undefined,
@@ -87,6 +88,7 @@ describe('catharsis record type tests', () => {
               type: 'JsdocTypeKeyValue',
               readonly: false,
               optional: false,
+              variadic: false,
               key: 'myNum',
               meta: {
                 quote: undefined,
@@ -137,6 +139,7 @@ describe('catharsis record type tests', () => {
               type: 'JsdocTypeKeyValue',
               readonly: false,
               optional: false,
+              variadic: false,
               key: 'myNum',
               meta: {
                 quote: undefined,
@@ -186,6 +189,7 @@ describe('catharsis record type tests', () => {
               type: 'JsdocTypeKeyValue',
               readonly: false,
               optional: false,
+              variadic: false,
               key: 'myNum',
               meta: {
                 quote: undefined,
@@ -235,6 +239,7 @@ describe('catharsis record type tests', () => {
               type: 'JsdocTypeKeyValue',
               readonly: false,
               optional: false,
+              variadic: false,
               key: 'myNum',
               meta: {
                 quote: undefined,
@@ -282,6 +287,7 @@ describe('catharsis record type tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
+            variadic: false,
             key: 'myNum',
             meta: {
               quote: undefined,
@@ -298,6 +304,7 @@ describe('catharsis record type tests', () => {
             key: 'myObject',
             right: undefined,
             optional: false,
+            variadic: false,
             meta: {
               quote: undefined,
               hasLeftSideExpression: false
@@ -336,6 +343,7 @@ describe('catharsis record type tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
+            variadic: false,
             key: 'myNum',
             meta: {
               quote: undefined,
@@ -351,6 +359,7 @@ describe('catharsis record type tests', () => {
             readonly: false,
             key: 'myObject',
             optional: false,
+            variadic: false,
             meta: {
               quote: undefined,
               hasLeftSideExpression: false
@@ -393,6 +402,7 @@ describe('catharsis record type tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
+            variadic: false,
             key: 'myArray',
             meta: {
               quote: undefined,
@@ -450,6 +460,7 @@ describe('catharsis record type tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
+            variadic: false,
             key: 'myKey',
             meta: {
               quote: undefined,
@@ -509,6 +520,7 @@ describe('catharsis record type tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
+            variadic: false,
             key: 'continue',
             meta: {
               quote: undefined,
@@ -552,6 +564,7 @@ describe('catharsis record type tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
+            variadic: false,
             key: 'class',
             meta: {
               quote: undefined,
@@ -595,6 +608,7 @@ describe('catharsis record type tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
+            variadic: false,
             key: 'true',
             meta: {
               quote: undefined,
@@ -638,6 +652,7 @@ describe('catharsis record type tests', () => {
             type: 'JsdocTypeKeyValue',
             readonly: false,
             optional: false,
+            variadic: false,
             key: '0',
             meta: {
               quote: undefined,

@@ -26,7 +26,7 @@ export function stringifyRules (): TransformRules<string> {
 
     JsdocTypeFunction: (result, transform) => {
       if (!result.arrow) {
-        let stringified = 'function'
+        let stringified = result.constructor ? 'new' : 'function'
         if (!result.parenthesis) {
           return stringified
         }
@@ -39,7 +39,11 @@ export function stringifyRules (): TransformRules<string> {
         if (result.returnType === undefined) {
           throw new Error('Arrow function needs a return type.')
         }
-        return `(${result.parameters.map(transform).join(', ')}) => ${transform(result.returnType)}`
+        let stringified = `(${result.parameters.map(transform).join(', ')}) => ${transform(result.returnType)}`
+        if (result.constructor) {
+          stringified = 'new ' + stringified
+        }
+        return stringified
       }
     },
 
@@ -95,6 +99,9 @@ export function stringifyRules (): TransformRules<string> {
         text += quote(result.key, result.meta.quote)
         if (result.optional) {
           text += '?'
+        }
+        if (result.variadic) {
+          text = '...' + text
         }
 
         if (result.right === undefined) {

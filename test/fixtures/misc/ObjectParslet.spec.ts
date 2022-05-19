@@ -16,6 +16,7 @@ describe('`ObjectParslet`', () => {
             key: '123',
             optional: false,
             readonly: false,
+            variadic: false,
             meta: {
               quote: undefined,
               hasLeftSideExpression: false
@@ -46,6 +47,7 @@ describe('`ObjectParslet`', () => {
             key: 'abc',
             optional: false,
             readonly: false,
+            variadic: false,
             meta: {
               quote: 'double',
               hasLeftSideExpression: false

@@ -621,6 +621,7 @@ describe('typescript tuple tests', () => {
             key: 'a',
             optional: false,
             readonly: false,
+            variadic: false,
             meta: {
               quote: undefined,
               hasLeftSideExpression: false
@@ -647,6 +648,7 @@ describe('typescript tuple tests', () => {
             key: 'a',
             optional: false,
             readonly: false,
+            variadic: false,
             meta: {
               quote: undefined,
               hasLeftSideExpression: false
@@ -661,6 +663,7 @@ describe('typescript tuple tests', () => {
             key: 'b',
             optional: false,
             readonly: false,
+            variadic: false,
             meta: {
               quote: undefined,
               hasLeftSideExpression: false

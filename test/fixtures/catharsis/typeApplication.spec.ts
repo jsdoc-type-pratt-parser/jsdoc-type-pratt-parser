@@ -193,6 +193,7 @@ describe('catharsis type application tests', () => {
                           type: 'JsdocTypeKeyValue',
                           readonly: false,
                           optional: false,
+                          variadic: false,
                           key: 'myKey',
                           meta: {
                             quote: undefined,
@@ -238,6 +239,7 @@ describe('catharsis type application tests', () => {
                       type: 'JsdocTypeKeyValue',
                       readonly: false,
                       optional: false,
+                      variadic: false,
                       key: 'new',
                       meta: {
                         quote: undefined,
@@ -254,6 +256,7 @@ describe('catharsis type application tests', () => {
                     value: 'string'
                   },
                   arrow: false,
+                  constructor: false,
                   parenthesis: true
                 }
               ]
@@ -305,6 +308,7 @@ describe('catharsis type application tests', () => {
                 key: 'length',
                 right: undefined,
                 optional: false,
+                variadic: false,
                 meta: {
                   quote: undefined,
                   hasLeftSideExpression: false
