@@ -1,3 +1,17 @@
+# [3.1.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v3.0.1...v3.1.0) (2022-05-19)
+
+
+### Bug Fixes
+
+* tests ([ed172bc](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/ed172bc643ab7068ff07db1a5eb5e8eae61deb19))
+
+
+### Features
+
+* allow 'new' as a keyword for arrow functions ([5ab04e7](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/5ab04e7aa0792ccd8413d07e9c5c4b1dfc6e4f77))
+* allow new as a function keyword ([58ace96](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/58ace96e6976a3b77791bb86423814f1ca56611d))
+* allow typed args parameter for functions ([b538628](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/b538628a0092fc37e401fc979dfc877a994acb59))
+
 ## [3.0.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v3.0.0...v3.0.1) (2022-04-19)
 
 
