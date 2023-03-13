@@ -7,8 +7,9 @@ import { UnexpectedTypeError } from '../errors'
 import { type PropertyResult } from '../result/NonRootResult'
 import { type Grammar } from '../grammars/Grammar'
 
-export function createNamePathParslet ({ allowJsdocNamePaths, pathGrammar }: {
+export function createNamePathParslet ({ allowSquareBracketsOnAnyType, allowJsdocNamePaths, pathGrammar }: {
   allowJsdocNamePaths: boolean
+  allowSquareBracketsOnAnyType: boolean
   pathGrammar: Grammar | null
 }): ParsletFunction {
   return function namePathParslet (parser, precedence, left) {
@@ -19,7 +20,7 @@ export function createNamePathParslet ({ allowJsdocNamePaths, pathGrammar }: {
     const next = parser.lexer.next.type
 
     const accept = (type === '.' && next !== '<') ||
-      (type === '[' && left.type === 'JsdocTypeName') ||
+      (type === '[' && (allowSquareBracketsOnAnyType || left.type === 'JsdocTypeName')) ||
       (allowJsdocNamePaths && (type === '~' || type === '#'))
 
     if (!accept) {
