@@ -1,3 +1,11 @@
+# [3.2.0-dev.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v3.1.0...v3.2.0-dev.1) (2023-03-13)
+
+
+### Features
+
+* remove unneeded variadic property from `ObjectFieldResult` ([d392f93](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/d392f93afbf453da96dd7fd63a7c7a3aeda23e9a))
+* split KeyValueResult in different types for objects and other uses ([aa6c495](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/aa6c495665b71b6e44a322f1ab6e589373abad65))
+
 # [3.1.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v3.0.1...v3.1.0) (2022-05-19)
 
 
