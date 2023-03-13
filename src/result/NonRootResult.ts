@@ -1,6 +1,6 @@
 import {
-  QuoteStyle,
-  RootResult
+  type QuoteStyle,
+  type RootResult
 } from './RootResult'
 
 /**
@@ -19,7 +19,6 @@ export interface ObjectFieldResult {
   right: RootResult | undefined
   optional: boolean
   readonly: boolean
-  variadic: boolean
   meta: {
     quote: QuoteStyle | undefined
   }
@@ -41,8 +40,7 @@ export interface PropertyResult {
 
 /**
  * A key value pair represented by a `:`. Can occur as a named parameter of a {@link FunctionResult} or as an entry for
- * an {@link ObjectResult}. Is a {@link NonRootResult}. {@link JsdocObjectKeyValueResult} uses the same type name
- * and will not have a `value` property.
+ * an {@link TupleResult}. Is a {@link NonRootResult}.
  */
 export interface KeyValueResult {
   type: 'JsdocTypeKeyValue'

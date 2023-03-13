@@ -45,7 +45,6 @@ describe('catharsis record type tests', () => {
               quote: undefined
             },
             optional: false,
-            variadic: false,
             readonly: false,
             right: {
               type: 'JsdocTypeName',
@@ -90,7 +89,6 @@ describe('catharsis record type tests', () => {
                 quote: undefined
               },
               optional: false,
-              variadic: false,
               readonly: false,
               right: {
                 type: 'JsdocTypeName',
@@ -140,7 +138,6 @@ describe('catharsis record type tests', () => {
                 quote: undefined
               },
               optional: false,
-              variadic: false,
               readonly: false,
               right: {
                 type: 'JsdocTypeName',
@@ -189,7 +186,6 @@ describe('catharsis record type tests', () => {
                 quote: undefined
               },
               optional: false,
-              variadic: false,
               readonly: false,
               right: {
                 type: 'JsdocTypeName',
@@ -238,7 +234,6 @@ describe('catharsis record type tests', () => {
                 quote: undefined
               },
               optional: false,
-              variadic: false,
               readonly: false,
               right: {
                 type: 'JsdocTypeName',
@@ -285,7 +280,6 @@ describe('catharsis record type tests', () => {
               quote: undefined
             },
             optional: false,
-            variadic: false,
             readonly: false,
             right: {
               type: 'JsdocTypeName',
@@ -297,7 +291,6 @@ describe('catharsis record type tests', () => {
             key: 'myObject',
             right: undefined,
             optional: false,
-            variadic: false,
             readonly: false,
             meta: {
               quote: undefined
@@ -339,7 +332,6 @@ describe('catharsis record type tests', () => {
               quote: undefined
             },
             optional: false,
-            variadic: false,
             readonly: false,
             right: {
               type: 'JsdocTypeName',
@@ -353,7 +345,6 @@ describe('catharsis record type tests', () => {
               quote: undefined
             },
             optional: false,
-            variadic: false,
             readonly: false,
             right: {
               type: 'JsdocTypeName',
@@ -396,7 +387,6 @@ describe('catharsis record type tests', () => {
               quote: undefined
             },
             optional: false,
-            variadic: false,
             readonly: false,
             right: {
               type: 'JsdocTypeGeneric',
@@ -453,7 +443,6 @@ describe('catharsis record type tests', () => {
               quote: undefined
             },
             optional: false,
-            variadic: false,
             readonly: false,
             right: {
               type: 'JsdocTypeParenthesis',
@@ -512,7 +501,6 @@ describe('catharsis record type tests', () => {
               quote: undefined
             },
             optional: false,
-            variadic: false,
             readonly: false,
             right: {
               type: 'JsdocTypeName',
@@ -555,7 +543,6 @@ describe('catharsis record type tests', () => {
               quote: undefined
             },
             optional: false,
-            variadic: false,
             readonly: false,
             right: {
               type: 'JsdocTypeName',
@@ -598,7 +585,6 @@ describe('catharsis record type tests', () => {
               quote: undefined
             },
             optional: false,
-            variadic: false,
             readonly: false,
             right: {
               type: 'JsdocTypeName',
@@ -641,7 +627,6 @@ describe('catharsis record type tests', () => {
               quote: undefined
             },
             optional: false,
-            variadic: false,
             readonly: false,
             right: {
               type: 'JsdocTypeName',

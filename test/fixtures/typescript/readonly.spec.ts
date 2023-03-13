@@ -24,7 +24,6 @@ describe('typescript readonly tests', () => {
             key: 'x',
             readonly: true,
             optional: false,
-            variadic: false,
             right: {
               type: 'JsdocTypeName',
               value: 'number'

@@ -1,5 +1,5 @@
 import { baseGrammar } from './baseGrammar'
-import { Grammar } from './Grammar'
+import { type Grammar } from './Grammar'
 import { pathGrammar } from './pathGrammar'
 import { createNameParslet } from '../parslets/NameParslet'
 import { nullableParslet } from '../parslets/NullableParslets'
@@ -35,8 +35,7 @@ const objectFieldGrammar: Grammar = [
   createObjectFieldParslet({
     allowKeyTypes: false,
     allowOptional: true,
-    allowReadonly: true,
-    allowVariadic: false
+    allowReadonly: true
   })
 ]
 

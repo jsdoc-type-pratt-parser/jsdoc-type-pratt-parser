@@ -95,7 +95,6 @@ export function identityTransformRules (): TransformRules<NonRootResult> {
       right: result.right === undefined ? undefined : transform(result.right) as RootResult,
       optional: result.optional,
       readonly: result.readonly,
-      variadic: result.variadic,
       meta: result.meta
     }),
 

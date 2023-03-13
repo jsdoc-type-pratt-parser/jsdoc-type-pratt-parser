@@ -922,7 +922,6 @@ describe('catharsis jsdoc tests', () => {
             type: 'JsdocTypeObjectField',
             key: 'undefinedHTML',
             optional: false,
-            variadic: false,
             readonly: false,
             meta: {
               quote: undefined
@@ -977,7 +976,6 @@ describe('catharsis jsdoc tests', () => {
             type: 'JsdocTypeObjectField',
             key: 'foo',
             optional: false,
-            variadic: false,
             readonly: false,
             meta: {
               quote: undefined
@@ -1023,7 +1021,6 @@ describe('catharsis jsdoc tests', () => {
             type: 'JsdocTypeObjectField',
             key: 'foo',
             optional: false,
-            variadic: false,
             readonly: false,
             meta: {
               quote: undefined

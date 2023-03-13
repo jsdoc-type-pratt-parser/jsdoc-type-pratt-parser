@@ -1,12 +1,12 @@
 import { expect } from 'chai'
-import { stub, SinonStub } from 'sinon'
+import { stub, type SinonStub } from 'sinon'
 
 import { jsdocGrammar } from '../src/grammars/jsdocGrammar'
 import { Parser } from '../src/Parser'
-import { Grammar } from '../src/grammars/Grammar'
+import { type Grammar } from '../src/grammars/Grammar'
 
 import { createObjectParslet } from '../src/parslets/ObjectParslet'
-import { RootResult } from '../src/result/RootResult'
+import { type RootResult } from '../src/result/RootResult'
 import { Lexer } from '../src/lexer/Lexer'
 
 describe('`ObjectParslet`', () => {
@@ -53,7 +53,6 @@ describe('`ObjectParslet`', () => {
             quote: undefined
           },
           optional: false,
-          variadic: false,
           readonly: false,
           right: undefined,
           type: 'JsdocTypeObjectField'

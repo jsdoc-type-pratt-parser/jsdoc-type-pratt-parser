@@ -14,7 +14,6 @@ describe('variadic tests', () => {
             type: 'JsdocTypeObjectField',
             key: 'abc',
             optional: false,
-            variadic: false,
             readonly: false,
             right: {
               type: 'JsdocTypeName',

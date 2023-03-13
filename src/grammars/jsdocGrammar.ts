@@ -1,5 +1,5 @@
 import { baseGrammar } from './baseGrammar'
-import { Grammar } from './Grammar'
+import { type Grammar } from './Grammar'
 import { pathGrammar } from './pathGrammar'
 import { createFunctionParslet } from '../parslets/FunctionParslet'
 import { stringValueParslet } from '../parslets/StringValueParslet'
@@ -53,8 +53,7 @@ export const jsdocGrammar: Grammar = [
       createObjectFieldParslet({
         allowKeyTypes: true,
         allowOptional: false,
-        allowReadonly: false,
-        allowVariadic: false
+        allowReadonly: false
       }),
       ...jsdocBaseGrammar
     ],

@@ -196,7 +196,6 @@ describe('catharsis type application tests', () => {
                             quote: undefined
                           },
                           optional: false,
-                          variadic: false,
                           readonly: false,
                           right: {
                             type: 'JsdocTypeName',
@@ -300,7 +299,6 @@ describe('catharsis type application tests', () => {
                 type: 'JsdocTypeObjectField',
                 key: 'length',
                 optional: false,
-                variadic: false,
                 readonly: false,
                 right: undefined,
                 meta: {
