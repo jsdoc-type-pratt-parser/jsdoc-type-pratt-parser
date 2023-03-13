@@ -1,3 +1,10 @@
+# [3.2.0-dev.3](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v3.2.0-dev.2...v3.2.0-dev.3) (2023-03-13)
+
+
+### Features
+
+* allow square bracket property access ([e069109](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/e069109123b705e1659f1e712b83e436585171a6))
+
 # [3.2.0-dev.2](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v3.2.0-dev.1...v3.2.0-dev.2) (2023-03-13)
 
 
