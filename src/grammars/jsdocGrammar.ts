@@ -36,6 +36,7 @@ const jsdocBaseGrammar = [
   symbolParslet,
   arrayBracketsParslet,
   createNamePathParslet({
+    allowSquareBracketsOnAnyType: false,
     allowJsdocNamePaths: true,
     pathGrammar
   })

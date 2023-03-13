@@ -247,4 +247,55 @@ describe('typescript import tests', () => {
       }
     })
   })
+
+  describe('import square property access', () => {
+    testFixture({
+      input: 'import(\'focus-trap\').Options[\'setReturnFocus\']',
+      modes: ['typescript'],
+      expected: {
+        type: 'JsdocTypeNamePath',
+        left: {
+          type: 'JsdocTypeNamePath',
+          left: {
+            type: 'JsdocTypeImport',
+            element: {
+              type: 'JsdocTypeStringValue',
+              value: 'focus-trap',
+              meta: {
+                quote: 'single'
+              }
+            }
+          },
+          right: {
+            type: 'JsdocTypeProperty',
+            value: 'Options',
+            meta: {
+              quote: undefined
+            }
+          },
+          pathType: 'property'
+        },
+        right: {
+          type: 'JsdocTypeProperty',
+          value: 'setReturnFocus',
+          meta: {
+            quote: 'single'
+          }
+        },
+        pathType: 'property-brackets'
+      }
+    })
+  })
+
+  // describe('', () => {
+  //   testFixture({
+  //     input: '[ string, number ][0]'
+  //   })
+  // })
+  //
+  // describe('', () => {
+  //   testFixture({
+  //     input: 'Parameters<(a: string, b: number) => void>[0]'
+  //   })
+  // })
 })

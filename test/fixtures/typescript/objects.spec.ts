@@ -305,12 +305,38 @@ describe('typescript objects tests', () => {
     })
   })
 
-  // describe('multiple levels of square brackets', () => {
-  //   testFixture({
-  //     input: 'obj["level1"]["level2"]',
-  //     modes: ['typescript']
-  //   })
-  // })
+  describe('multiple levels of square brackets', () => {
+    testFixture({
+      input: 'obj["level1"]["level2"]',
+      modes: ['typescript'],
+      expected: {
+        type: 'JsdocTypeNamePath',
+        left: {
+          type: 'JsdocTypeNamePath',
+          left: {
+            type: 'JsdocTypeName',
+            value: 'obj'
+          },
+          right: {
+            type: 'JsdocTypeProperty',
+            value: 'level1',
+            meta: {
+              quote: 'double'
+            }
+          },
+          pathType: 'property-brackets'
+        },
+        right: {
+          type: 'JsdocTypeProperty',
+          value: 'level2',
+          meta: {
+            quote: 'double'
+          }
+        },
+        pathType: 'property-brackets'
+      }
+    })
+  })
 
   describe('index signatures', () => {
     testFixture({
