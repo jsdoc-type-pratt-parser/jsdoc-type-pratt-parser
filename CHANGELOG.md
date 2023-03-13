@@ -1,3 +1,10 @@
+# [3.2.0-dev.2](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v3.2.0-dev.1...v3.2.0-dev.2) (2023-03-13)
+
+
+### Features
+
+* parse index signatures and mapped types ([4373e01](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/4373e011964ba7a36e4f04397d4a92837986216a))
+
 # [3.2.0-dev.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v3.1.0...v3.2.0-dev.1) (2023-03-13)
 
 
