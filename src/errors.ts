@@ -42,8 +42,8 @@ export class EarlyEndOfParseError extends Error {
 }
 
 export class UnexpectedTypeError extends Error {
-  constructor (result: IntermediateResult, message?: string) {
-    let error = `Unexpected type: '${result.type}'.`
+  constructor (result?: IntermediateResult, message?: string) {
+    let error = `Unexpected type: '${result?.type ?? 'undefined'}'.`
     if (message !== undefined) {
       error += ` Message: ${message}`
     }

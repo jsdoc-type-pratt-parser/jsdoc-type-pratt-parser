@@ -620,12 +620,7 @@ describe('typescript tuple tests', () => {
             type: 'JsdocTypeKeyValue',
             key: 'a',
             optional: false,
-            readonly: false,
             variadic: false,
-            meta: {
-              quote: undefined,
-              hasLeftSideExpression: false
-            },
             right: {
               type: 'JsdocTypeName',
               value: 'string'
@@ -647,12 +642,7 @@ describe('typescript tuple tests', () => {
             type: 'JsdocTypeKeyValue',
             key: 'a',
             optional: false,
-            readonly: false,
             variadic: false,
-            meta: {
-              quote: undefined,
-              hasLeftSideExpression: false
-            },
             right: {
               type: 'JsdocTypeName',
               value: 'string'
@@ -662,12 +652,7 @@ describe('typescript tuple tests', () => {
             type: 'JsdocTypeKeyValue',
             key: 'b',
             optional: false,
-            readonly: false,
             variadic: false,
-            meta: {
-              quote: undefined,
-              hasLeftSideExpression: false
-            },
             right: {
               type: 'JsdocTypeName',
               value: 'number'

@@ -1,8 +1,9 @@
 import { type TransformRules } from './transform'
 import {
-  type JsdocObjectKeyValueResult,
+  type JsdocObjectFieldResult,
   type KeyValueResult,
-  type NonRootResult
+  type NonRootResult,
+  type ObjectFieldResult
 } from '../result/NonRootResult'
 import {
   type FunctionResult,
@@ -13,7 +14,6 @@ import {
   type VariadicResult,
   type NumberResult
 } from '../result/RootResult'
-import { isPlainKeyValue } from '../assertTypes'
 
 export function identityTransformRules (): TransformRules<NonRootResult> {
   return {
@@ -72,7 +72,7 @@ export function identityTransformRules (): TransformRules<NonRootResult> {
       meta: {
         separator: 'comma'
       },
-      elements: result.elements.map(transform) as Array<KeyValueResult | JsdocObjectKeyValueResult>
+      elements: result.elements.map(transform) as Array<ObjectFieldResult | JsdocObjectFieldResult>
     }),
 
     JsdocTypeNumber: result => result,
@@ -89,24 +89,29 @@ export function identityTransformRules (): TransformRules<NonRootResult> {
 
     JsdocTypeSpecialNamePath: result => result,
 
+    JsdocTypeObjectField: (result, transform) => ({
+      type: 'JsdocTypeObjectField',
+      key: result.key,
+      right: result.right === undefined ? undefined : transform(result.right) as RootResult,
+      optional: result.optional,
+      readonly: result.readonly,
+      variadic: result.variadic,
+      meta: result.meta
+    }),
+
+    JsdocTypeJsdocObjectField: (result, transform) => ({
+      type: 'JsdocTypeJsdocObjectField',
+      left: transform(result.left) as RootResult,
+      right: transform(result.right) as RootResult
+    }),
+
     JsdocTypeKeyValue: (result, transform) => {
-      if (isPlainKeyValue(result)) {
-        return {
-          type: 'JsdocTypeKeyValue',
-          key: result.key,
-          right: result.right === undefined ? undefined : transform(result.right) as RootResult,
-          optional: result.optional,
-          readonly: result.readonly,
-          variadic: result.variadic,
-          meta: result.meta
-        }
-      } else {
-        return {
-          type: 'JsdocTypeKeyValue',
-          left: transform(result.left) as RootResult,
-          right: transform(result.right) as RootResult,
-          meta: result.meta
-        }
+      return {
+        type: 'JsdocTypeKeyValue',
+        key: result.key,
+        right: result.right === undefined ? undefined : transform(result.right) as RootResult,
+        optional: result.optional,
+        variadic: result.variadic
       }
     },
 

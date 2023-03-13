@@ -812,7 +812,7 @@ describe('catharsis jsdoc tests', () => {
         },
         elements: [
           {
-            type: 'JsdocTypeKeyValue',
+            type: 'JsdocTypeJsdocObjectField',
             left: {
               type: 'JsdocTypeGeneric',
               elements: [
@@ -833,9 +833,6 @@ describe('catharsis jsdoc tests', () => {
             right: {
               type: 'JsdocTypeName',
               value: 'number'
-            },
-            meta: {
-              hasLeftSideExpression: true
             }
           }
         ]
@@ -867,7 +864,7 @@ describe('catharsis jsdoc tests', () => {
         },
         elements: [
           {
-            type: 'JsdocTypeKeyValue',
+            type: 'JsdocTypeJsdocObjectField',
             left: {
               type: 'JsdocTypeParenthesis',
               element: {
@@ -891,9 +888,6 @@ describe('catharsis jsdoc tests', () => {
             right: {
               type: 'JsdocTypeName',
               value: 'number'
-            },
-            meta: {
-              hasLeftSideExpression: true
             }
           }
         ]
@@ -925,14 +919,13 @@ describe('catharsis jsdoc tests', () => {
         },
         elements: [
           {
-            type: 'JsdocTypeKeyValue',
-            readonly: false,
+            type: 'JsdocTypeObjectField',
+            key: 'undefinedHTML',
             optional: false,
             variadic: false,
-            key: 'undefinedHTML',
+            readonly: false,
             meta: {
-              quote: undefined,
-              hasLeftSideExpression: false
+              quote: undefined
             },
             right: {
               type: 'JsdocTypeParenthesis',
@@ -981,14 +974,13 @@ describe('catharsis jsdoc tests', () => {
         },
         elements: [
           {
-            type: 'JsdocTypeKeyValue',
-            readonly: false,
+            type: 'JsdocTypeObjectField',
+            key: 'foo',
             optional: false,
             variadic: false,
-            key: 'foo',
+            readonly: false,
             meta: {
-              quote: undefined,
-              hasLeftSideExpression: false
+              quote: undefined
             },
             right: {
               type: 'JsdocTypeFunction',
@@ -1028,14 +1020,13 @@ describe('catharsis jsdoc tests', () => {
         },
         elements: [
           {
-            type: 'JsdocTypeKeyValue',
-            readonly: false,
+            type: 'JsdocTypeObjectField',
+            key: 'foo',
             optional: false,
             variadic: false,
-            key: 'foo',
+            readonly: false,
             meta: {
-              quote: undefined,
-              hasLeftSideExpression: false
+              quote: undefined
             },
             right: {
               type: 'JsdocTypeFunction',
@@ -1104,14 +1095,9 @@ describe('catharsis jsdoc tests', () => {
           parameters: [
             {
               type: 'JsdocTypeKeyValue',
-              readonly: false,
+              key: 'this',
               optional: false,
               variadic: false,
-              key: 'this',
-              meta: {
-                quote: undefined,
-                hasLeftSideExpression: false
-              },
               right: {
                 left: {
                   left: {

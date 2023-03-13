@@ -11,18 +11,17 @@ describe('variadic tests', () => {
         },
         elements: [
           {
-            type: 'JsdocTypeKeyValue',
+            type: 'JsdocTypeObjectField',
             key: 'abc',
+            optional: false,
+            variadic: false,
+            readonly: false,
             right: {
               type: 'JsdocTypeName',
               value: 'string'
             },
-            optional: false,
-            readonly: false,
-            variadic: false,
             meta: {
-              quote: 'double',
-              hasLeftSideExpression: false
+              quote: 'double'
             }
           }
         ]
