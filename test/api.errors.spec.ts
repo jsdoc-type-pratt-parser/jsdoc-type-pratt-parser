@@ -42,6 +42,7 @@ describe('API errors', () => {
         ]
 
         const namePathParslet = createNamePathParslet({
+          allowSquareBracketsOnAnyType: false,
           allowJsdocNamePaths: true,
 
           // Exclude name parslet
@@ -74,6 +75,7 @@ describe('API errors', () => {
         ]
 
         const namePathParslet = createNamePathParslet({
+          allowSquareBracketsOnAnyType: false,
           allowJsdocNamePaths: true,
 
           // Exclude name parslet

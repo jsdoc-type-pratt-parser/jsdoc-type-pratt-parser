@@ -75,6 +75,7 @@ export const typescriptGrammar: Grammar = [
   arrayBracketsParslet,
   arrowFunctionParslet,
   createNamePathParslet({
+    allowSquareBracketsOnAnyType: true,
     allowJsdocNamePaths: false,
     pathGrammar
   }),

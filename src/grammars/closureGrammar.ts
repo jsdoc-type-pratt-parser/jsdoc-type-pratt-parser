@@ -61,6 +61,7 @@ export const closureGrammar = [
     pathGrammar
   }),
   createNamePathParslet({
+    allowSquareBracketsOnAnyType: false,
     allowJsdocNamePaths: true,
     pathGrammar
   }),
