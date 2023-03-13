@@ -1,4 +1,4 @@
-import { JsdocObjectKeyValueResult, KeyValueResult, PropertyResult } from './NonRootResult'
+import { type JsdocObjectKeyValueResult, type KeyValueResult, type PropertyResult } from './NonRootResult'
 
 /**
  * A parse result that corresponds to a valid type expression.
@@ -241,7 +241,7 @@ export interface ImportResult {
  */
 export interface TupleResult {
   type: 'JsdocTypeTuple'
-  elements: RootResult[]|KeyValueResult[]
+  elements: RootResult[] | KeyValueResult[]
 }
 
 /**

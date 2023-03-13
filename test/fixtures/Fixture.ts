@@ -4,7 +4,7 @@ import { parse as catharsisParse } from 'catharsis'
 import { parse as jtpParse } from 'jsdoctypeparser'
 import { jtpTransform } from '../../src/transforms/jtpTransform'
 import { simplify } from '../../src/transforms/simplify'
-import { catharsisTransform, parse, RootResult, ParseMode, stringify } from '../../src'
+import { catharsisTransform, parse, type RootResult, type ParseMode, stringify } from '../../src'
 
 export type JtpMode = 'jsdoc' | 'closure' | 'typescript' | 'permissive'
 
@@ -124,7 +124,7 @@ function compareJtp (mode: JtpMode, compareMode: CompareMode, results: Results, 
   if (compareMode !== 'fail') {
     it(`compares to jsdoctypeparser in '${mode}' mode`, () => {
       const jtpResult = jtpParse(fixture.input, {
-        mode: mode
+        mode
       })
 
       expect(jtpResult).not.to.be.equal(undefined)
@@ -138,7 +138,7 @@ function compareJtp (mode: JtpMode, compareMode: CompareMode, results: Results, 
     it(`does not get parsed by jsdoctypeparser in '${mode}' mode`, () => {
       expect(() => {
         jtpParse(fixture.input, {
-          mode: mode
+          mode
         })
       }).to.throw()
     })

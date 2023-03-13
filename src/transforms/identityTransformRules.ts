@@ -1,17 +1,17 @@
-import { TransformRules } from './transform'
+import { type TransformRules } from './transform'
 import {
-  JsdocObjectKeyValueResult,
-  KeyValueResult,
-  NonRootResult
+  type JsdocObjectKeyValueResult,
+  type KeyValueResult,
+  type NonRootResult
 } from '../result/NonRootResult'
 import {
-  FunctionResult,
-  NameResult,
-  StringValueResult,
-  SymbolResult,
-  RootResult,
-  VariadicResult,
-  NumberResult
+  type FunctionResult,
+  type NameResult,
+  type StringValueResult,
+  type SymbolResult,
+  type RootResult,
+  type VariadicResult,
+  type NumberResult
 } from '../result/RootResult'
 import { isPlainKeyValue } from '../assertTypes'
 
@@ -139,7 +139,7 @@ export function identityTransformRules (): TransformRules<NonRootResult> {
 
     JsdocTypeTuple: (result, transform) => ({
       type: 'JsdocTypeTuple',
-      elements: (result.elements as NonRootResult[]).map(transform) as RootResult[]|KeyValueResult[]
+      elements: (result.elements as NonRootResult[]).map(transform) as RootResult[] | KeyValueResult[]
     }),
 
     JsdocTypeName: result => result,

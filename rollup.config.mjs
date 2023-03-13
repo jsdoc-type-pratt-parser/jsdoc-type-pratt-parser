@@ -1,4 +1,4 @@
-// rollup.config.js
+// rollup.config.mjs
 import typescript from '@rollup/plugin-typescript'
 
 export default {
