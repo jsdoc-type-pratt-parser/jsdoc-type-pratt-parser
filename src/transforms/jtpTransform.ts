@@ -1,6 +1,6 @@
 import { extractSpecialParams, notAvailableTransform, transform, TransformRules } from './transform'
 import { QuoteStyle, RootResult } from '../result/RootResult'
-import { assertRootResult, isPlainKeyValue } from '../assertTypes'
+import { assertRootResult } from '../assertTypes'
 import { NonRootResult } from '../result/NonRootResult'
 
 export type JtpResult =
@@ -358,15 +358,11 @@ const jtpRules: TransformRules<JtpResult> = {
     return transformed
   },
 
-  JsdocTypeKeyValue: (result, transform) => {
-    if (!isPlainKeyValue(result)) {
-      throw new Error('Keys may not be typed in jsdoctypeparser.')
-    }
-
+  JsdocTypeObjectField: (result, transform) => {
     if (result.right === undefined) {
       return {
         type: 'RECORD_ENTRY',
-        key: result.key.toString(),
+        key: result.key,
         quoteStyle: getQuoteStyle(result.meta.quote),
         value: null,
         readonly: false
@@ -393,10 +389,45 @@ const jtpRules: TransformRules<JtpResult> = {
     }
   },
 
+  JsdocTypeJsdocObjectField: () => {
+    throw new Error('Keys may not be typed in jsdoctypeparser.')
+  },
+
+  JsdocTypeKeyValue: (result, transform) => {
+    if (result.right === undefined) {
+      return {
+        type: 'RECORD_ENTRY',
+        key: result.key,
+        quoteStyle: 'none',
+        value: null,
+        readonly: false
+      }
+    }
+
+    let right = transform(result.right)
+    if (result.optional) {
+      right = {
+        type: 'OPTIONAL',
+        value: right,
+        meta: {
+          syntax: 'SUFFIX_KEY_QUESTION_MARK'
+        }
+      }
+    }
+
+    return {
+      type: 'RECORD_ENTRY',
+      key: result.key,
+      quoteStyle: 'none',
+      value: right,
+      readonly: false
+    }
+  },
+
   JsdocTypeObject: (result, transform) => {
     const entries: JtpRecordEntryResult[] = []
     for (const field of result.elements) {
-      if (field.type === 'JsdocTypeKeyValue') {
+      if (field.type === 'JsdocTypeObjectField' || field.type === 'JsdocTypeJsdocObjectField') {
         entries.push(transform(field) as JtpRecordEntryResult)
       }
     }

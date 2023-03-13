@@ -1,7 +1,6 @@
-import { transform, TransformRules } from './transform'
-import { NonRootResult } from '../result/NonRootResult'
-import { RootResult } from '../result/RootResult'
-import { isPlainKeyValue } from '../assertTypes'
+import { transform, type TransformRules } from './transform'
+import { type NonRootResult } from '../result/NonRootResult'
+import { type RootResult } from '../result/RootResult'
 
 function applyPosition (position: 'prefix' | 'suffix', target: string, value: string): string {
   return position === 'prefix' ? value + target : target + value
@@ -90,27 +89,40 @@ export function stringifyRules (): TransformRules<string> {
 
     JsdocTypeImport: (result, transform) => `import(${transform(result.element)})`,
 
-    JsdocTypeKeyValue: (result, transform) => {
-      if (isPlainKeyValue(result)) {
-        let text = ''
-        if (result.readonly) {
-          text += 'readonly '
-        }
-        text += quote(result.key, result.meta.quote)
-        if (result.optional) {
-          text += '?'
-        }
-        if (result.variadic) {
-          text = '...' + text
-        }
+    JsdocTypeObjectField: (result, transform) => {
+      let text = ''
+      if (result.readonly) {
+        text += 'readonly '
+      }
+      text += quote(result.key, result.meta.quote)
+      if (result.optional) {
+        text += '?'
+      }
 
-        if (result.right === undefined) {
-          return text
-        } else {
-          return text + `: ${transform(result.right)}`
-        }
+      if (result.right === undefined) {
+        return text
       } else {
-        return `${transform(result.left)}: ${transform(result.right)}`
+        return text + `: ${transform(result.right)}`
+      }
+    },
+
+    JsdocTypeJsdocObjectField: (result, transform) => {
+      return `${transform(result.left)}: ${transform(result.right)}`
+    },
+
+    JsdocTypeKeyValue: (result, transform) => {
+      let text = result.key
+      if (result.optional) {
+        text += '?'
+      }
+      if (result.variadic) {
+        text = '...' + text
+      }
+
+      if (result.right === undefined) {
+        return text
+      } else {
+        return text + `: ${transform(result.right)}`
       }
     },
 

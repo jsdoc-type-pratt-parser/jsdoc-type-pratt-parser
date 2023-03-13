@@ -1,5 +1,5 @@
 import { extractSpecialParams, notAvailableTransform, transform, TransformRules } from './transform'
-import { assertRootResult, isPlainKeyValue } from '../assertTypes'
+import { assertRootResult } from '../assertTypes'
 import { RootResult } from '../result/RootResult'
 import { quote } from './stringify'
 
@@ -219,7 +219,7 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
       fields: []
     }
     for (const field of result.elements) {
-      if (field.type !== 'JsdocTypeKeyValue') {
+      if (field.type !== 'JsdocTypeObjectField' && field.type !== 'JsdocTypeJsdocObjectField') {
         transformed.fields.push({
           type: 'FieldType',
           key: transform(field),
@@ -233,24 +233,28 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
     return transformed
   },
 
+  JsdocTypeObjectField: (result, transform) => ({
+    type: 'FieldType',
+    key: makeName(quote(result.key, result.meta.quote)),
+    value: result.right === undefined ? undefined : transform(result.right)
+  }),
+
+  JsdocTypeJsdocObjectField: (result, transform) => ({
+    type: 'FieldType',
+    key: transform(result.left),
+    value: transform(result.right)
+  }),
+
   JsdocTypeUnion: (result, transform) => ({
     type: 'TypeUnion',
     elements: result.elements.map(e => transform(e))
   }),
 
   JsdocTypeKeyValue: (result, transform) => {
-    if (isPlainKeyValue(result)) {
-      return {
-        type: 'FieldType',
-        key: makeName(quote(result.key, result.meta.quote)),
-        value: result.right === undefined ? undefined : transform(result.right)
-      }
-    } else {
-      return {
-        type: 'FieldType',
-        key: transform(result.left),
-        value: transform(result.right)
-      }
+    return {
+      type: 'FieldType',
+      key: makeName(result.key),
+      value: result.right === undefined ? undefined : transform(result.right)
     }
   },
 
