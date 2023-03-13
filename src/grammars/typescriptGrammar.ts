@@ -22,21 +22,24 @@ import { intersectionParslet } from '../parslets/IntersectionParslet'
 import { predicateParslet } from '../parslets/predicateParslet'
 import { createObjectFieldParslet } from '../parslets/ObjectFieldParslet'
 import { createKeyValueParslet } from '../parslets/KeyValueParslet'
+import { objectSquaredPropertyParslet } from '../parslets/ObjectSquaredPropertyParslet'
 
 const objectFieldGrammar: Grammar = [
   readonlyPropertyParslet,
   createNameParslet({
-    allowedAdditionalTokens: ['module', 'event', 'keyof', 'event', 'external']
+    allowedAdditionalTokens: ['module', 'event', 'keyof', 'event', 'external', 'in']
   }),
   nullableParslet,
   optionalParslet,
   stringValueParslet,
   numberParslet,
   createObjectFieldParslet({
+    allowSquaredProperties: true,
     allowKeyTypes: false,
     allowOptional: true,
     allowReadonly: true
-  })
+  }),
+  objectSquaredPropertyParslet
 ]
 
 export const typescriptGrammar: Grammar = [
@@ -63,7 +66,7 @@ export const typescriptGrammar: Grammar = [
     allowPostfix: false
   }),
   createNameParslet({
-    allowedAdditionalTokens: ['event', 'external']
+    allowedAdditionalTokens: ['event', 'external', 'in']
   }),
   createSpecialNamePathParslet({
     allowedTypes: ['module'],

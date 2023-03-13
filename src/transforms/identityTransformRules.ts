@@ -180,6 +180,18 @@ export function identityTransformRules (): TransformRules<NonRootResult> {
       type: 'JsdocTypePredicate',
       left: transform(result.left) as NameResult,
       right: transform(result.right) as RootResult
+    }),
+
+    JsdocTypeIndexSignature: (result, transform) => ({
+      type: 'JsdocTypeIndexSignature',
+      key: result.key,
+      right: transform(result.right) as RootResult
+    }),
+
+    JsdocTypeMappedType: (result, transform) => ({
+      type: 'JsdocTypeMappedType',
+      key: result.key,
+      right: transform(result.right) as RootResult
     })
   }
 }

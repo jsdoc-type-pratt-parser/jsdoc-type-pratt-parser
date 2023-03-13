@@ -1,9 +1,10 @@
 import { composeParslet, type ParsletFunction } from './Parslet'
 import { Precedence } from '../Precedence'
 import { UnexpectedTypeError } from '../errors'
-import { assertRootResult } from '../assertTypes'
+import { assertRootResult, isSquaredProperty } from '../assertTypes'
 
-export function createObjectFieldParslet ({ allowKeyTypes, allowReadonly, allowOptional }: {
+export function createObjectFieldParslet ({ allowSquaredProperties, allowKeyTypes, allowReadonly, allowOptional }: {
+  allowSquaredProperties: boolean
   allowKeyTypes: boolean
   allowOptional: boolean
   allowReadonly: boolean
@@ -30,7 +31,14 @@ export function createObjectFieldParslet ({ allowKeyTypes, allowReadonly, allowO
       const parentParser = parser.baseParser ?? parser
       parentParser.acceptLexerState(parser)
 
-      if (left.type === 'JsdocTypeNumber' || left.type === 'JsdocTypeName' || left.type === 'JsdocTypeStringValue') {
+      if (
+        left.type === 'JsdocTypeNumber' || left.type === 'JsdocTypeName' || left.type === 'JsdocTypeStringValue' ||
+        isSquaredProperty(left)
+      ) {
+        if (isSquaredProperty(left) && !allowSquaredProperties) {
+          throw new UnexpectedTypeError(left)
+        }
+
         parentParser.consume(':')
 
         let quote
@@ -43,7 +51,7 @@ export function createObjectFieldParslet ({ allowKeyTypes, allowReadonly, allowO
 
         return {
           type: 'JsdocTypeObjectField',
-          key: left.value.toString(),
+          key: isSquaredProperty(left) ? left : left.value.toString(),
           right,
           optional,
           readonly: readonlyProperty,

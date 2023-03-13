@@ -1,7 +1,7 @@
-import { extractSpecialParams, notAvailableTransform, transform, TransformRules } from './transform'
-import { QuoteStyle, RootResult } from '../result/RootResult'
+import { extractSpecialParams, notAvailableTransform, transform, type TransformRules } from './transform'
+import { type QuoteStyle, type RootResult } from '../result/RootResult'
 import { assertRootResult } from '../assertTypes'
-import { NonRootResult } from '../result/NonRootResult'
+import { type NonRootResult } from '../result/NonRootResult'
 
 export type JtpResult =
   JtpNameResult
@@ -359,6 +359,10 @@ const jtpRules: TransformRules<JtpResult> = {
   },
 
   JsdocTypeObjectField: (result, transform) => {
+    if (typeof result.key !== 'string') {
+      throw new Error('Index signatures and mapped types are not supported')
+    }
+
     if (result.right === undefined) {
       return {
         type: 'RECORD_ENTRY',
@@ -515,7 +519,11 @@ const jtpRules: TransformRules<JtpResult> = {
 
   JsdocTypeProperty: notAvailableTransform,
 
-  JsdocTypePredicate: notAvailableTransform
+  JsdocTypePredicate: notAvailableTransform,
+
+  JsdocTypeMappedType: notAvailableTransform,
+
+  JsdocTypeIndexSignature: notAvailableTransform
 }
 
 export function jtpTransform (result: RootResult): JtpResult {

@@ -1,6 +1,6 @@
-import { extractSpecialParams, notAvailableTransform, transform, TransformRules } from './transform'
+import { extractSpecialParams, notAvailableTransform, transform, type TransformRules } from './transform'
 import { assertRootResult } from '../assertTypes'
-import { RootResult } from '../result/RootResult'
+import { type RootResult } from '../result/RootResult'
 import { quote } from './stringify'
 
 export const reservedWords = [
@@ -233,11 +233,16 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
     return transformed
   },
 
-  JsdocTypeObjectField: (result, transform) => ({
-    type: 'FieldType',
-    key: makeName(quote(result.key, result.meta.quote)),
-    value: result.right === undefined ? undefined : transform(result.right)
-  }),
+  JsdocTypeObjectField: (result, transform) => {
+    if (typeof result.key !== 'string') {
+      throw new Error('Index signatures and mapped types are not supported')
+    }
+    return {
+      type: 'FieldType',
+      key: makeName(quote(result.key, result.meta.quote)),
+      value: result.right === undefined ? undefined : transform(result.right)
+    }
+  },
 
   JsdocTypeJsdocObjectField: (result, transform) => ({
     type: 'FieldType',
@@ -302,6 +307,8 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
 
   JsdocTypeParenthesis: (result, transform) => transform(assertRootResult(result.element)),
 
+  JsdocTypeMappedType: notAvailableTransform,
+  JsdocTypeIndexSignature: notAvailableTransform,
   JsdocTypeImport: notAvailableTransform,
   JsdocTypeKeyof: notAvailableTransform,
   JsdocTypeTuple: notAvailableTransform,

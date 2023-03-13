@@ -1,7 +1,7 @@
-import { KeyValueResult } from './result/NonRootResult'
+import { type IndexSignatureResult, type KeyValueResult, type MappedTypeResult } from './result/NonRootResult'
 import { UnexpectedTypeError } from './errors'
-import { NameResult, NumberResult, RootResult, VariadicResult } from './result/RootResult'
-import { IntermediateResult } from './result/IntermediateResult'
+import { type NameResult, type NumberResult, type RootResult, type VariadicResult } from './result/RootResult'
+import { type IntermediateResult } from './result/IntermediateResult'
 
 /**
  * Throws an error if the provided result is not a {@link RootResult}
@@ -13,7 +13,8 @@ export function assertRootResult (result?: IntermediateResult): RootResult {
   if (
     result.type === 'JsdocTypeKeyValue' || result.type === 'JsdocTypeParameterList' ||
     result.type === 'JsdocTypeProperty' || result.type === 'JsdocTypeReadonlyProperty' ||
-    result.type === 'JsdocTypeObjectField' || result.type === 'JsdocTypeJsdocObjectField'
+    result.type === 'JsdocTypeObjectField' || result.type === 'JsdocTypeJsdocObjectField' ||
+    result.type === 'JsdocTypeIndexSignature' || result.type === 'JsdocTypeMappedType'
   ) {
     throw new UnexpectedTypeError(result)
   }
@@ -52,4 +53,8 @@ export function assertNumberOrVariadicNameResult (result: IntermediateResult): N
     throw new UnexpectedTypeError(result)
   }
   return result
+}
+
+export function isSquaredProperty (result: IntermediateResult): result is IndexSignatureResult | MappedTypeResult {
+  return result.type === 'JsdocTypeIndexSignature' || result.type === 'JsdocTypeMappedType'
 }

@@ -166,6 +166,7 @@ const rules: Rule[] = [
   makeKeyWordRule('readonly'),
   makeKeyWordRule('import'),
   makeKeyWordRule('is'),
+  makeKeyWordRule('in'),
   numberRule,
   identifierRule,
   stringValueRule
