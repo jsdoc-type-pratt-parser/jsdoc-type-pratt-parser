@@ -11,15 +11,14 @@ describe('`ObjectParslet`', () => {
         },
         elements: [
           {
-            type: 'JsdocTypeKeyValue',
+            type: 'JsdocTypeObjectField',
             right: undefined,
             key: '123',
             optional: false,
-            readonly: false,
             variadic: false,
+            readonly: false,
             meta: {
-              quote: undefined,
-              hasLeftSideExpression: false
+              quote: undefined
             }
           }
         ]
@@ -42,15 +41,14 @@ describe('`ObjectParslet`', () => {
         },
         elements: [
           {
-            type: 'JsdocTypeKeyValue',
+            type: 'JsdocTypeObjectField',
             right: undefined,
             key: 'abc',
             optional: false,
-            readonly: false,
             variadic: false,
+            readonly: false,
             meta: {
-              quote: 'double',
-              hasLeftSideExpression: false
+              quote: 'double'
             }
           }
         ]

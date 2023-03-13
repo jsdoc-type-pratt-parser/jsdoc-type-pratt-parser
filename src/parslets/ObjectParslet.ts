@@ -49,18 +49,17 @@ export function createObjectParslet ({ objectFieldGrammar, allowKeyTypes }: {
             }
 
             result.elements.push({
-              type: 'JsdocTypeKeyValue',
+              type: 'JsdocTypeObjectField',
               key: field.value.toString(),
               right: undefined,
               optional,
               readonly: false,
               variadic: false,
               meta: {
-                quote,
-                hasLeftSideExpression: false
+                quote
               }
             })
-          } else if (field.type === 'JsdocTypeKeyValue') {
+          } else if (field.type === 'JsdocTypeObjectField' || field.type === 'JsdocTypeJsdocObjectField') {
             result.elements.push(field)
           } else {
             throw new UnexpectedTypeError(field)

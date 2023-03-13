@@ -14,6 +14,7 @@ import { createVariadicParslet } from '../parslets/VariadicParslet'
 import { createSpecialNamePathParslet } from '../parslets/SpecialNamePathParslet'
 import { createNamePathParslet } from '../parslets/NamePathParslet'
 import { symbolParslet } from '../parslets/SymbolParslet'
+import { createObjectFieldParslet } from '../parslets/ObjectFieldParslet'
 
 const objectFieldGrammar: Grammar = [
   createNameParslet({
@@ -23,7 +24,7 @@ const objectFieldGrammar: Grammar = [
   optionalParslet,
   stringValueParslet,
   numberParslet,
-  createKeyValueParslet({
+  createObjectFieldParslet({
     allowKeyTypes: false,
     allowOptional: false,
     allowReadonly: false,
@@ -64,9 +65,7 @@ export const closureGrammar = [
     pathGrammar
   }),
   createKeyValueParslet({
-    allowKeyTypes: false,
     allowOptional: false,
-    allowReadonly: false,
     allowVariadic: false
   }),
   symbolParslet

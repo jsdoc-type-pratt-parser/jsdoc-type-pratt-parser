@@ -6,7 +6,6 @@ import { nullableParslet } from '../parslets/NullableParslets'
 import { optionalParslet } from '../parslets/OptionalParslet'
 import { stringValueParslet } from '../parslets/StringValueParslet'
 import { numberParslet } from '../parslets/NumberParslet'
-import { createKeyValueParslet } from '../parslets/KeyValueParslet'
 import { createFunctionParslet } from '../parslets/FunctionParslet'
 import { createObjectParslet } from '../parslets/ObjectParslet'
 import { createTupleParslet } from '../parslets/TupleParslet'
@@ -21,6 +20,8 @@ import { arrowFunctionParslet } from '../parslets/ArrowFunctionParslet'
 import { createNamePathParslet } from '../parslets/NamePathParslet'
 import { intersectionParslet } from '../parslets/IntersectionParslet'
 import { predicateParslet } from '../parslets/predicateParslet'
+import { createObjectFieldParslet } from '../parslets/ObjectFieldParslet'
+import { createKeyValueParslet } from '../parslets/KeyValueParslet'
 
 const objectFieldGrammar: Grammar = [
   readonlyPropertyParslet,
@@ -31,7 +32,7 @@ const objectFieldGrammar: Grammar = [
   optionalParslet,
   stringValueParslet,
   numberParslet,
-  createKeyValueParslet({
+  createObjectFieldParslet({
     allowKeyTypes: false,
     allowOptional: true,
     allowReadonly: true,
@@ -75,12 +76,10 @@ export const typescriptGrammar: Grammar = [
     allowJsdocNamePaths: false,
     pathGrammar
   }),
-  createKeyValueParslet({
-    allowKeyTypes: false,
-    allowOptional: true,
-    allowReadonly: true,
-    allowVariadic: true
-  }),
   intersectionParslet,
-  predicateParslet
+  predicateParslet,
+  createKeyValueParslet({
+    allowVariadic: true,
+    allowOptional: true
+  })
 ]
