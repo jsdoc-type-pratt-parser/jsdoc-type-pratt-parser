@@ -186,7 +186,7 @@ while (results.length < parseInt(process.argv[2], 10)) {
 const valid = results.filter(r => r.parsed !== undefined).length
 
 results.push({
-  valid: valid,
+  valid,
   invalid: results.length - valid
 })
 
