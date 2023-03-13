@@ -1,4 +1,4 @@
-import { NonRootResult } from './result/NonRootResult'
+import { type NonRootResult } from './result/NonRootResult'
 
 export type VisitorKeys = {
   [P in NonRootResult as P['type']]: Array<keyof P>
@@ -9,9 +9,11 @@ export const visitorKeys: VisitorKeys = {
   JsdocTypeFunction: ['parameters', 'returnType'],
   JsdocTypeGeneric: ['left', 'elements'],
   JsdocTypeImport: [],
+  JsdocTypeIndexSignature: ['right'],
   JsdocTypeIntersection: ['elements'],
   JsdocTypeKeyof: ['element'],
   JsdocTypeKeyValue: ['right'],
+  JsdocTypeMappedType: ['right'],
   JsdocTypeName: [],
   JsdocTypeNamePath: ['left', 'right'],
   JsdocTypeNotNullable: ['element'],

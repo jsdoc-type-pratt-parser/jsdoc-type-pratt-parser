@@ -48,9 +48,10 @@ export const jsdocGrammar: Grammar = [
     // we leave out the object type deliberately
     objectFieldGrammar: [
       createNameParslet({
-        allowedAdditionalTokens: ['module']
+        allowedAdditionalTokens: ['module', 'in']
       }),
       createObjectFieldParslet({
+        allowSquaredProperties: false,
         allowKeyTypes: true,
         allowOptional: false,
         allowReadonly: false

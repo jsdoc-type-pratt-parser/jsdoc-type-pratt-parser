@@ -312,42 +312,73 @@ describe('typescript objects tests', () => {
   //   })
   // })
 
-  // describe('index signatures', () => {
-  //   testFixture({
-  //     input: '{ [key: string]: number }',
-  //     modes: ['typescript'],
-  //     expected: {
-  //       type: 'JsdocTypeObject',
-  //       meta: {
-  //         separator: undefined
-  //       },
-  //       elements: [
-  //         {
-  //           type: 'JsdocTypeObjectField',
-  //           key: {
-  //             type: 'JsdocTypeIndexSignature',
-  //             element: {
-  //               type: 'JsdocTypeObjectField',
-  //               key: 'key',
-  //               right: {
-  //                 type: 'JsdocTypeName',
-  //                 value: 'string'
-  //               },
-  //               meta: {
-  //                 quote: undefined
-  //               }
-  //             }
-  //           },
-  //           right: {
-  //             type: 'JsdocTypeName',
-  //             value: 'number'
-  //           },
-  //           meta: {
-  //             quote: undefined
-  //           }
-  //         }
-  //       ]
-  //     }
-  //   })
-  // })
+  describe('index signatures', () => {
+    testFixture({
+      input: '{[key: string]: number}',
+      modes: ['typescript'],
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
+        elements: [
+          {
+            type: 'JsdocTypeObjectField',
+            key: {
+              type: 'JsdocTypeIndexSignature',
+              key: 'key',
+              right: {
+                type: 'JsdocTypeName',
+                value: 'string'
+              }
+            },
+            optional: false,
+            readonly: false,
+            right: {
+              type: 'JsdocTypeName',
+              value: 'number'
+            },
+            meta: {
+              quote: undefined
+            }
+          }
+        ]
+      }
+    })
+  })
+
+  describe('index signatures', () => {
+    testFixture({
+      input: '{[key in Type]: number}',
+      modes: ['typescript'],
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
+        elements: [
+          {
+            type: 'JsdocTypeObjectField',
+            key: {
+              type: 'JsdocTypeMappedType',
+              key: 'key',
+              right: {
+                type: 'JsdocTypeName',
+                value: 'Type'
+              }
+            },
+            optional: false,
+            readonly: false,
+            right: {
+              type: 'JsdocTypeName',
+              value: 'number'
+            },
+            meta: {
+              quote: undefined
+            }
+          }
+        ]
+      }
+    })
+  })
 })
