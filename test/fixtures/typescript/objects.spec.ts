@@ -15,7 +15,6 @@ describe('typescript objects tests', () => {
             type: 'JsdocTypeObjectField',
             key: 'object',
             optional: false,
-            variadic: false,
             readonly: false,
             right: {
               type: 'JsdocTypeName',
@@ -61,7 +60,6 @@ describe('typescript objects tests', () => {
               type: 'JsdocTypeObjectField',
               key: 'object',
               optional: true,
-              variadic: false,
               readonly: false,
               meta: {
                 quote: undefined
@@ -75,7 +73,6 @@ describe('typescript objects tests', () => {
               type: 'JsdocTypeObjectField',
               key: 'key',
               optional: false,
-              variadic: false,
               readonly: false,
               meta: {
                 quote: undefined
@@ -114,7 +111,6 @@ describe('typescript objects tests', () => {
               type: 'JsdocTypeObjectField',
               key: 'key',
               optional: false,
-              variadic: false,
               readonly: false,
               meta: {
                 quote: undefined
@@ -158,7 +154,6 @@ describe('typescript objects tests', () => {
             type: 'JsdocTypeObjectField',
             key: 'message',
             optional: false,
-            variadic: false,
             readonly: false,
             right: {
               type: 'JsdocTypeUnion',
@@ -210,7 +205,6 @@ describe('typescript objects tests', () => {
             type: 'JsdocTypeObjectField',
             key: 'message',
             optional: true,
-            variadic: false,
             readonly: false,
             right: undefined,
             meta: {
@@ -248,7 +242,6 @@ describe('typescript objects tests', () => {
             type: 'JsdocTypeObjectField',
             key: 'module',
             optional: false,
-            variadic: false,
             readonly: false,
             right: {
               type: 'JsdocTypeName',
@@ -285,7 +278,6 @@ describe('typescript objects tests', () => {
             type: 'JsdocTypeObjectField',
             key: 'range',
             optional: false,
-            variadic: false,
             readonly: false,
             right: {
               type: 'JsdocTypeName',
@@ -299,7 +291,6 @@ describe('typescript objects tests', () => {
             type: 'JsdocTypeObjectField',
             key: 'loc',
             optional: false,
-            variadic: false,
             readonly: false,
             right: {
               type: 'JsdocTypeName',

@@ -1,13 +1,12 @@
-import { composeParslet, ParsletFunction } from './Parslet'
+import { composeParslet, type ParsletFunction } from './Parslet'
 import { Precedence } from '../Precedence'
 import { UnexpectedTypeError } from '../errors'
 import { assertRootResult } from '../assertTypes'
 
-export function createObjectFieldParslet ({ allowKeyTypes, allowReadonly, allowOptional, allowVariadic }: {
+export function createObjectFieldParslet ({ allowKeyTypes, allowReadonly, allowOptional }: {
   allowKeyTypes: boolean
   allowOptional: boolean
   allowReadonly: boolean
-  allowVariadic: boolean
 }): ParsletFunction {
   return composeParslet({
     name: 'objectFieldParslet',
@@ -16,7 +15,6 @@ export function createObjectFieldParslet ({ allowKeyTypes, allowReadonly, allowO
     parseInfix: (parser, left) => {
       let optional = false
       let readonlyProperty = false
-      let variadic = false
 
       if (allowOptional && left.type === 'JsdocTypeNullable') {
         optional = true
@@ -25,11 +23,6 @@ export function createObjectFieldParslet ({ allowKeyTypes, allowReadonly, allowO
 
       if (allowReadonly && left.type === 'JsdocTypeReadonlyProperty') {
         readonlyProperty = true
-        left = left.element
-      }
-
-      if (allowVariadic && left.type === 'JsdocTypeVariadic' && left.element !== undefined) {
-        variadic = true
         left = left.element
       }
 
@@ -54,7 +47,6 @@ export function createObjectFieldParslet ({ allowKeyTypes, allowReadonly, allowO
           right,
           optional,
           readonly: readonlyProperty,
-          variadic,
           meta: {
             quote
           }
@@ -72,7 +64,7 @@ export function createObjectFieldParslet ({ allowKeyTypes, allowReadonly, allowO
         return {
           type: 'JsdocTypeJsdocObjectField',
           left: assertRootResult(left),
-          right: right
+          right
         }
       }
     }

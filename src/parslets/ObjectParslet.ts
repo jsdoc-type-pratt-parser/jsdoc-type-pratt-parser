@@ -54,7 +54,6 @@ export function createObjectParslet ({ objectFieldGrammar, allowKeyTypes }: {
               right: undefined,
               optional,
               readonly: false,
-              variadic: false,
               meta: {
                 quote
               }

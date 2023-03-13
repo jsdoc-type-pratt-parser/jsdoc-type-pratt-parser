@@ -1,6 +1,6 @@
-import { transform, TransformRules } from './transform'
-import { NonRootResult } from '../result/NonRootResult'
-import { RootResult } from '../result/RootResult'
+import { transform, type TransformRules } from './transform'
+import { type NonRootResult } from '../result/NonRootResult'
+import { type RootResult } from '../result/RootResult'
 
 function applyPosition (position: 'prefix' | 'suffix', target: string, value: string): string {
   return position === 'prefix' ? value + target : target + value
@@ -97,9 +97,6 @@ export function stringifyRules (): TransformRules<string> {
       text += quote(result.key, result.meta.quote)
       if (result.optional) {
         text += '?'
-      }
-      if (result.variadic) {
-        text = '...' + text
       }
 
       if (result.right === undefined) {

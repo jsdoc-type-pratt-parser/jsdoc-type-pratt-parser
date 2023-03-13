@@ -1,5 +1,5 @@
-import { Token } from './lexer/Token'
-import { IntermediateResult } from './result/IntermediateResult'
+import { type Token } from './lexer/Token'
+import { type IntermediateResult } from './result/IntermediateResult'
 
 function tokenToString (token: Token): string {
   if (token.text !== undefined && token.text !== '') {
@@ -42,8 +42,8 @@ export class EarlyEndOfParseError extends Error {
 }
 
 export class UnexpectedTypeError extends Error {
-  constructor (result?: IntermediateResult, message?: string) {
-    let error = `Unexpected type: '${result?.type ?? 'undefined'}'.`
+  constructor (result: IntermediateResult, message?: string) {
+    let error = `Unexpected type: '${result.type}'.`
     if (message !== undefined) {
       error += ` Message: ${message}`
     }

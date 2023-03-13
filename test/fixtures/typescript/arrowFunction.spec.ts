@@ -534,7 +534,6 @@ describe('typescript arrow function tests', () => {
           {
             type: 'JsdocTypeObjectField',
             optional: false,
-            variadic: false,
             readonly: false,
             key: 'x',
             right: {
@@ -563,14 +562,49 @@ describe('typescript arrow function tests', () => {
             right: {
               type: 'JsdocTypeName',
               value: 'string'
-            },
-            variadic: false
+            }
           }
         ],
         meta: {
           separator: 'comma'
         }
       }
+    })
+  })
+
+  describe('optional parameters for functions', () => {
+    testFixture({
+      input: '(param1: string, param2?: string) => number',
+      expected: {
+        type: 'JsdocTypeFunction',
+        arrow: true,
+        constructor: false,
+        parenthesis: true,
+        parameters: [{
+          type: 'JsdocTypeKeyValue',
+          key: 'param1',
+          right: {
+            type: 'JsdocTypeName',
+            value: 'string'
+          },
+          optional: false,
+          variadic: false
+        }, {
+          type: 'JsdocTypeKeyValue',
+          key: 'param2',
+          right: {
+            type: 'JsdocTypeName',
+            value: 'string'
+          },
+          optional: true,
+          variadic: false
+        }],
+        returnType: {
+          type: 'JsdocTypeName',
+          value: 'number'
+        }
+      },
+      modes: ['typescript']
     })
   })
 })
