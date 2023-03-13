@@ -1,4 +1,4 @@
-import { ParsletFunction } from './Parslet';
+import { type ParsletFunction } from './Parslet';
 export declare function createKeyValueParslet({ allowKeyTypes, allowReadonly, allowOptional, allowVariadic }: {
     allowKeyTypes: boolean;
     allowOptional: boolean;

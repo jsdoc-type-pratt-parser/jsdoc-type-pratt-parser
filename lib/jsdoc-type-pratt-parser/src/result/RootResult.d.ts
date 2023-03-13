@@ -1,9 +1,9 @@
-import { JsdocObjectKeyValueResult, KeyValueResult, PropertyResult } from './NonRootResult';
+import { type JsdocObjectKeyValueResult, type KeyValueResult, type PropertyResult } from './NonRootResult';
 /**
  * A parse result that corresponds to a valid type expression.
  */
-export declare type RootResult = NameResult | UnionResult | GenericResult | StringValueResult | NullResult | UndefinedResult | AnyResult | UnknownResult | FunctionResult | ObjectResult | NamePathResult | SymbolResult | TypeOfResult | KeyOfResult | ImportResult | TupleResult | SpecialNamePath | OptionalResult<RootResult> | NullableResult<RootResult> | NotNullableResult<RootResult> | VariadicResult<RootResult> | ParenthesisResult | IntersectionResult | NumberResult | PredicateResult;
-export declare type QuoteStyle = 'single' | 'double';
+export type RootResult = NameResult | UnionResult | GenericResult | StringValueResult | NullResult | UndefinedResult | AnyResult | UnknownResult | FunctionResult | ObjectResult | NamePathResult | SymbolResult | TypeOfResult | KeyOfResult | ImportResult | TupleResult | SpecialNamePath | OptionalResult<RootResult> | NullableResult<RootResult> | NotNullableResult<RootResult> | VariadicResult<RootResult> | ParenthesisResult | IntersectionResult | NumberResult | PredicateResult;
+export type QuoteStyle = 'single' | 'double';
 /**
  * `element` is optional.
  */
@@ -136,7 +136,7 @@ export interface ObjectResult {
         separator: 'comma' | 'semicolon' | 'linebreak' | undefined;
     };
 }
-export declare type SpecialNamePathType = 'module' | 'event' | 'external';
+export type SpecialNamePathType = 'module' | 'event' | 'external';
 /**
  * A module type. Often this is a `left` type of a {@link NamePathResult}.
  */

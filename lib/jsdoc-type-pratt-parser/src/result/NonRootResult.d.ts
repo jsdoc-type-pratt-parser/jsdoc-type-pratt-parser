@@ -2,7 +2,7 @@ import { QuoteStyle, RootResult } from './RootResult';
 /**
  * A parse sub result that might not be a valid type expression on its own.
  */
-export declare type NonRootResult = RootResult | KeyValueResult | JsdocObjectKeyValueResult | PropertyResult;
+export type NonRootResult = RootResult | KeyValueResult | JsdocObjectKeyValueResult | PropertyResult;
 /**
  * A key value pair represented by a `:`. Can occur as a named parameter of a {@link FunctionResult} or as an entry for
  * an {@link ObjectResult}. Is a {@link NonRootResult}. {@link JsdocObjectKeyValueResult} uses the same type name
