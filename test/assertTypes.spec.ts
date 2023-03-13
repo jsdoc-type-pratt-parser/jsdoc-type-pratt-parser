@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { assertRootResult, assertNumberOrVariadicNameResult, assertPlainKeyValueResult } from '../src/assertTypes'
-import { NonRootResult } from '../src'
+import { type NonRootResult } from '../src'
 
 describe('assertTypes', () => {
   it('should see `assertRootResult` throw with an undefined result', () => {
@@ -36,7 +36,7 @@ describe('assertTypes', () => {
     }
     expect(() => {
       assertPlainKeyValueResult(objectWithKeyValue)
-    }).to.throw('Expecting no left side expression.')
+    }).to.throw('Unexpected type: \'JsdocTypeJsdocObjectField\'.')
   })
 
   it('should see `assertNumberOrVariadicNameResult` throw with a non-name `JsdocTypeVariadic`', () => {
