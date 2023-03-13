@@ -18,13 +18,14 @@ import { createObjectFieldParslet } from '../parslets/ObjectFieldParslet'
 
 const objectFieldGrammar: Grammar = [
   createNameParslet({
-    allowedAdditionalTokens: ['module', 'keyof', 'event', 'external']
+    allowedAdditionalTokens: ['module', 'keyof', 'event', 'external', 'in']
   }),
   nullableParslet,
   optionalParslet,
   stringValueParslet,
   numberParslet,
   createObjectFieldParslet({
+    allowSquaredProperties: false,
     allowKeyTypes: false,
     allowOptional: false,
     allowReadonly: false
@@ -38,7 +39,7 @@ export const closureGrammar = [
     objectFieldGrammar
   }),
   createNameParslet({
-    allowedAdditionalTokens: ['event', 'external']
+    allowedAdditionalTokens: ['event', 'external', 'in']
   }),
   typeOfParslet,
   createFunctionParslet({

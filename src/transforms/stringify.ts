@@ -94,7 +94,12 @@ export function stringifyRules (): TransformRules<string> {
       if (result.readonly) {
         text += 'readonly '
       }
-      text += quote(result.key, result.meta.quote)
+      if (typeof result.key === 'string') {
+        text += quote(result.key, result.meta.quote)
+      } else {
+        text += transform(result.key)
+      }
+
       if (result.optional) {
         text += '?'
       }
@@ -154,7 +159,11 @@ export function stringifyRules (): TransformRules<string> {
 
     JsdocTypeProperty: result => quote(result.value, result.meta.quote),
 
-    JsdocTypePredicate: (result, transform) => `${transform(result.left)} is ${transform(result.right)}`
+    JsdocTypePredicate: (result, transform) => `${transform(result.left)} is ${transform(result.right)}`,
+
+    JsdocTypeIndexSignature: (result, transform) => `[${result.key}: ${transform(result.right)}]`,
+
+    JsdocTypeMappedType: (result, transform) => `[${result.key} in ${transform(result.right)}]`
   }
 }
 

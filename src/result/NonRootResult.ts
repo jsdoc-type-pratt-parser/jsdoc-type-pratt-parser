@@ -12,10 +12,12 @@ export type NonRootResult =
   | ObjectFieldResult
   | JsdocObjectFieldResult
   | KeyValueResult
+  | MappedTypeResult
+  | IndexSignatureResult
 
 export interface ObjectFieldResult {
   type: 'JsdocTypeObjectField'
-  key: string
+  key: string | MappedTypeResult | IndexSignatureResult
   right: RootResult | undefined
   optional: boolean
   readonly: boolean
@@ -48,4 +50,16 @@ export interface KeyValueResult {
   right: RootResult | undefined
   optional: boolean
   variadic: boolean
+}
+
+export interface IndexSignatureResult {
+  type: 'JsdocTypeIndexSignature'
+  key: string
+  right: RootResult
+}
+
+export interface MappedTypeResult {
+  type: 'JsdocTypeMappedType'
+  key: string
+  right: RootResult
 }
