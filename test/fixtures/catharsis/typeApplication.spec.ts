@@ -190,15 +190,14 @@ describe('catharsis type application tests', () => {
                       },
                       elements: [
                         {
-                          type: 'JsdocTypeKeyValue',
-                          readonly: false,
-                          optional: false,
-                          variadic: false,
+                          type: 'JsdocTypeObjectField',
                           key: 'myKey',
                           meta: {
-                            quote: undefined,
-                            hasLeftSideExpression: false
+                            quote: undefined
                           },
+                          optional: false,
+                          variadic: false,
+                          readonly: false,
                           right: {
                             type: 'JsdocTypeName',
                             value: 'Error'
@@ -237,14 +236,9 @@ describe('catharsis type application tests', () => {
                   parameters: [
                     {
                       type: 'JsdocTypeKeyValue',
-                      readonly: false,
+                      key: 'new',
                       optional: false,
                       variadic: false,
-                      key: 'new',
-                      meta: {
-                        quote: undefined,
-                        hasLeftSideExpression: false
-                      },
                       right: {
                         type: 'JsdocTypeName',
                         value: 'foo'
@@ -303,15 +297,14 @@ describe('catharsis type application tests', () => {
             },
             elements: [
               {
-                type: 'JsdocTypeKeyValue',
-                readonly: false,
+                type: 'JsdocTypeObjectField',
                 key: 'length',
-                right: undefined,
                 optional: false,
                 variadic: false,
+                readonly: false,
+                right: undefined,
                 meta: {
-                  quote: undefined,
-                  hasLeftSideExpression: false
+                  quote: undefined
                 }
               }
             ]

@@ -45,19 +45,18 @@ describe('`ObjectParslet`', () => {
 
     const rootResult = parser.parse()
 
-    expect(rootResult).to.deep.equal({
+    const expected: RootResult = {
       elements: [
         {
           key: 'abc',
           meta: {
-            hasLeftSideExpression: false,
             quote: undefined
           },
           optional: false,
-          readonly: false,
           variadic: false,
+          readonly: false,
           right: undefined,
-          type: 'JsdocTypeKeyValue'
+          type: 'JsdocTypeObjectField'
         }
       ],
       meta: {
@@ -65,6 +64,7 @@ describe('`ObjectParslet`', () => {
       },
       type: 'JsdocTypeObject'
     }
-    )
+
+    expect(rootResult).to.deep.equal(expected)
   })
 })

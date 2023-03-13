@@ -174,12 +174,7 @@ describe('traverse', () => {
       key: 'a',
       right: nameA,
       optional: false,
-      readonly: false,
-      variadic: false,
-      meta: {
-        quote: undefined,
-        hasLeftSideExpression: false
-      }
+      variadic: false
     }
 
     const keyValueB: KeyValueResult = {
@@ -187,12 +182,7 @@ describe('traverse', () => {
       key: 'b',
       right: nameB,
       optional: false,
-      readonly: false,
-      variadic: false,
-      meta: {
-        quote: undefined,
-        hasLeftSideExpression: false
-      }
+      variadic: false
     }
 
     const tuple: TupleResult = {

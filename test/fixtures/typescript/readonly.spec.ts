@@ -20,18 +20,17 @@ describe('typescript readonly tests', () => {
         },
         elements: [
           {
-            type: 'JsdocTypeKeyValue',
+            type: 'JsdocTypeObjectField',
             key: 'x',
+            readonly: true,
+            optional: false,
+            variadic: false,
             right: {
               type: 'JsdocTypeName',
               value: 'number'
             },
-            optional: false,
-            readonly: true,
-            variadic: false,
             meta: {
-              quote: undefined,
-              hasLeftSideExpression: false
+              quote: undefined
             }
           }
         ]
