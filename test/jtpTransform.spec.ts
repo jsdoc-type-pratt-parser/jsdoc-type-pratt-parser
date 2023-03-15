@@ -1,8 +1,8 @@
 import { expect } from 'chai'
 
-import { RootResult } from '../src/result/RootResult'
+import { type RootResult } from '../src/result/RootResult'
 import { jtpTransform } from '../src/index'
-import { JtpResult } from '../src/transforms/jtpTransform'
+import { type JtpResult } from '../src/transforms/jtpTransform'
 
 describe('transform', () => {
   it('Gets transform for `JsdocTypeNamePath` with `property-brackets`', () => {
@@ -147,7 +147,7 @@ describe('transform', () => {
       type: 'JsdocTypeObject',
       elements: [
         {
-          // @ts-expect-error
+          // @ts-expect-error In JTP this is a valid configuration
           type: 'JsdocTypeNumber',
           value: 100
         }
@@ -277,5 +277,40 @@ describe('transform', () => {
     expect(() => {
       jtpTransform(parseResult)
     }).to.throw("Function parameter without ':' is not expected to be 'KEY_VALUE'")
+  })
+
+  it('Does not accept IndexSignatures', () => {
+    const parseResult: RootResult = {
+      type: 'JsdocTypeObject',
+      meta: {
+        separator: 'comma'
+      },
+      elements: [
+        {
+          type: 'JsdocTypeObjectField',
+          meta: {
+            quote: undefined
+          },
+          key: {
+            type: 'JsdocTypeIndexSignature',
+            key: 'some',
+            right: {
+              type: 'JsdocTypeName',
+              value: 'value'
+            }
+          },
+          right: {
+            type: 'JsdocTypeName',
+            value: 'more'
+          },
+          optional: false,
+          readonly: false
+        }
+      ]
+    }
+
+    expect(() => {
+      jtpTransform(parseResult)
+    }).to.throw('Index signatures and mapped types are not supported')
   })
 })
