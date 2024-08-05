@@ -1,3 +1,15 @@
+# [4.1.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v4.0.0...v4.1.0) (2024-08-05)
+
+
+### Bug Fixes
+
+* allow unions in index signatures ([aeba637](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/aeba6373334a229637efae00519fa5badde81eb6))
+
+
+### Features
+
+* adds asserts keyword ([9e518af](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/9e518aff999762dd0d58ec2474e4e1ab9d6dfa46))
+
 # [4.0.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v3.1.0...v4.0.0) (2023-03-15)
 
 
