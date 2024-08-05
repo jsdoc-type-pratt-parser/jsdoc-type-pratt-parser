@@ -1,4 +1,9 @@
-import { JsdocObjectKeyValueResult, KeyValueResult, PropertyResult } from './NonRootResult'
+import {
+  type JsdocObjectFieldResult,
+  type KeyValueResult,
+  type ObjectFieldResult,
+  type PropertyResult
+} from './NonRootResult'
 
 /**
  * A parse result that corresponds to a valid type expression.
@@ -29,6 +34,7 @@ export type RootResult =
   | IntersectionResult
   | NumberResult
   | PredicateResult
+  | AssertsResult
 
 export type QuoteStyle = 'single' | 'double'
 
@@ -66,8 +72,8 @@ export interface NotNullableResult<T extends RootResult> {
 }
 
 /**
- * A rest or spreaded parameter. It can either occur in `@param` tags or as last parameter of a function,
- * or it is a spreaded tuple or object type and can occur inside these. For any mode that is not `jsdoc` this can
+ * A rest or spread parameter. It can either occur in `@param` tags or as last parameter of a function,
+ * or it is a spread tuple or object type and can occur inside these. For any mode that is not `jsdoc` this can
  * only occur in position `'suffix'`.
  */
 export interface VariadicResult<T extends RootResult> {
@@ -98,7 +104,8 @@ export interface UnionResult {
 /**
  * A generic type. The property `left` is the generic type that has `elements` as type values for its type parameters.
  * Array types that are written as `Type[]` always have the name `Array` as the `left` type and `elements` will contain
- * only one element (in this case the name `Type`). To differentiate `Type[]` and `Array<Type>` there is the meta property
+ * only one element (in this case the name `Type`). To differentiate `Type[]` and `Array<Type>` there is the meta
+ * property
  * `brackets`.
  */
 export interface GenericResult {
@@ -137,7 +144,7 @@ export interface UndefinedResult {
 }
 
 /**
- * The any type, represented by `*` (`any` is parsed as a name).
+ * The `any` type, represented by `*` (`any` is parsed as a name).
  */
 export interface AnyResult {
   type: 'JsdocTypeAny'
@@ -166,13 +173,13 @@ export interface FunctionResult {
 }
 
 /**
- * An object type. Contains entries which can be {@link KeyValueResult}s or {@link NameResult}s. In most grammars the keys
- * need to be {@link NameResult}s. In some grammars it possible that an entry is only a {@link RootResult} or a
- * {@link NumberResult} without a key. The seperator is `'comma'` by default.
+ * An object type. Contains entries which can be {@link KeyValueResult}s or {@link NameResult}s. In most grammars the
+ * keys need to be {@link NameResult}s. In some grammars it possible that an entry is only a {@link RootResult} or a
+ * {@link NumberResult} without a key. The separator is `'comma'` by default.
  */
 export interface ObjectResult {
   type: 'JsdocTypeObject'
-  elements: Array<KeyValueResult | JsdocObjectKeyValueResult>
+  elements: Array<ObjectFieldResult | JsdocObjectFieldResult>
   meta: {
     separator: 'comma' | 'semicolon' | 'linebreak' | undefined
   }
@@ -181,7 +188,7 @@ export interface ObjectResult {
 export type SpecialNamePathType = 'module' | 'event' | 'external'
 
 /**
- * A module type. Often this is a `left` type of a {@link NamePathResult}.
+ * A module type. Often this is a `left` type of {@link NamePathResult}.
  */
 export interface SpecialNamePath<Type extends SpecialNamePathType = SpecialNamePathType> {
   type: 'JsdocTypeSpecialNamePath'
@@ -241,7 +248,7 @@ export interface ImportResult {
  */
 export interface TupleResult {
   type: 'JsdocTypeTuple'
-  elements: RootResult[]|KeyValueResult[]
+  elements: RootResult[] | KeyValueResult[]
 }
 
 /**
@@ -270,10 +277,19 @@ export interface NumberResult {
 }
 
 /**
- * A typescript prediciate. Is used in return annotations like this: `@return {x is string}`.
+ * A typescript predicate. Is used in return annotations like this: `@return {x is string}`.
  */
 export interface PredicateResult {
   type: 'JsdocTypePredicate'
+  left: NameResult
+  right: RootResult
+}
+
+/**
+ * An asserts result. Is used like this: `@return {asserts foo is Bar}`
+ */
+export interface AssertsResult {
+  type: 'JsdocTypeAsserts'
   left: NameResult
   right: RootResult
 }

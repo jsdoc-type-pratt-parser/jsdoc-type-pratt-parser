@@ -1,5 +1,5 @@
 declare module 'catharsis' {
-  export const parse: (input: string, options?: { jsdoc?: boolean}) => any
+  export const parse: (input: string, options?: { jsdoc?: boolean }) => any
 }
 
 declare module 'jsdoctypeparser' {

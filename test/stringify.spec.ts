@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 
 import { stringifyRules, stringify } from '../src/index'
-import { FunctionResult, GenericResult, ParenthesisResult } from '../src/result/RootResult'
+import { type FunctionResult, type GenericResult, type ParenthesisResult } from '../src/result/RootResult'
 
 describe('`stringifyRules`', () => {
   it('should exist on index export', () => {

@@ -57,9 +57,6 @@ describe('typescript function test', () => {
         parameters: [{
           type: 'JsdocTypeKeyValue',
           key: 'args',
-          variadic: true,
-          optional: false,
-          readonly: false,
           right: {
             type: 'JsdocTypeGeneric',
             left: {
@@ -75,10 +72,8 @@ describe('typescript function test', () => {
               dot: false
             }
           },
-          meta: {
-            quote: undefined,
-            hasLeftSideExpression: false
-          }
+          optional: false,
+          variadic: true
         }],
         returnType: {
           type: 'JsdocTypeName',

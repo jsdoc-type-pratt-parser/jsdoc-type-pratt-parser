@@ -1,12 +1,12 @@
 import { expect } from 'chai'
-import { stub, SinonStub } from 'sinon'
+import { stub, type SinonStub } from 'sinon'
 
 import { jsdocGrammar } from '../src/grammars/jsdocGrammar'
 import { Parser } from '../src/Parser'
-import { Grammar } from '../src/grammars/Grammar'
+import { type Grammar } from '../src/grammars/Grammar'
 
 import { createObjectParslet } from '../src/parslets/ObjectParslet'
-import { RootResult } from '../src/result/RootResult'
+import { type RootResult } from '../src/result/RootResult'
 import { Lexer } from '../src/lexer/Lexer'
 
 describe('`ObjectParslet`', () => {
@@ -45,19 +45,17 @@ describe('`ObjectParslet`', () => {
 
     const rootResult = parser.parse()
 
-    expect(rootResult).to.deep.equal({
+    const expected: RootResult = {
       elements: [
         {
           key: 'abc',
           meta: {
-            hasLeftSideExpression: false,
             quote: undefined
           },
           optional: false,
           readonly: false,
-          variadic: false,
           right: undefined,
-          type: 'JsdocTypeKeyValue'
+          type: 'JsdocTypeObjectField'
         }
       ],
       meta: {
@@ -65,6 +63,7 @@ describe('`ObjectParslet`', () => {
       },
       type: 'JsdocTypeObject'
     }
-    )
+
+    expect(rootResult).to.deep.equal(expected)
   })
 })

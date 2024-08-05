@@ -1,3 +1,169 @@
+# [4.0.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v3.1.0...v4.0.0) (2023-03-15)
+
+
+### Features
+
+* allow square bracket property access ([cc01ccf](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/cc01ccfb8df4ef44cf47eea51203c9d796ea86d3))
+* parse index signatures and mapped types ([dd49463](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/dd49463bda73dfe4b75f33a5541d850919c10743))
+* remove unneeded variadic property from `ObjectFieldResult` ([20bf77d](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/20bf77d93401aa702261d094a03307d8f44b595a))
+* split KeyValueResult in different types for objects and other uses ([6b388d3](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/6b388d3c9f4d1ed7537ce08049ff195ec893cc82))
+
+
+### BREAKING CHANGES
+
+* `ObjectResult` no longer contains `KeyValueResult`, but uses the new types `ObjectFieldResult` and `JsdocObjectFieldResult`.
+
+For mode `typescript` this basically means a simple rename of type `JsdocTypeKeyValue` to `JsdocTypeObjectField`:
+input: `{ key: string }`
+before:
+```
+{
+  "type": "JsdocTypeObject",
+  "meta": {
+    "separator": "comma"
+  },
+  "elements": [
+    {
+      "type": "JsdocTypeKeyValue",
+      "key": "key",
+      "right": {
+        "type": "JsdocTypeName",
+        "value": "string"
+      },
+      "optional": false,
+      "readonly": false,
+      "variadic": false,
+      "meta": {
+        "hasLeftSideExpression": false
+      }
+    }
+  ]
+}
+```
+after:
+```
+{
+  "type": "JsdocTypeObject",
+  "meta": {
+    "separator": "comma"
+  },
+  "elements": [
+    {
+      "type": "JsdocTypeObjectField",
+      "key": "key",
+      "right": {
+        "type": "JsdocTypeName",
+        "value": "string"
+      },
+      "optional": false,
+      "readonly": false,
+      "variadic": false,
+      "meta": {
+        "quote": undefined
+      }
+    }
+  ]
+}
+```
+
+for `jsdoc` mode the `JsdocTypeKeyValue` can now be either `JsdocTypeObjectField` or `JsdocTypeJsdocObjectField`:
+input: `{ Array<string>: string }`
+before:
+```
+{
+  "type": "JsdocTypeObject",
+  "meta": {
+    "separator": "comma"
+  },
+  "elements": [
+    {
+      "type": "JsdocTypeKeyValue",
+      "left": {
+        "type": "JsdocTypeGeneric",
+        "left": {
+          "type": "JsdocTypeName",
+          "value": "Array"
+        },
+        "elements": [
+          {
+            "type": "JsdocTypeName",
+            "value": "string"
+          }
+        ],
+        "meta": {
+          "brackets": "angle",
+          "dot": false
+        }
+      },
+      "right": {
+        "type": "JsdocTypeName",
+        "value": "string"
+      },
+      "meta": {
+        "hasLeftSideExpression": true
+      }
+    }
+  ]
+}
+```
+after:
+```
+{
+  "type": "JsdocTypeObject",
+  "meta": {
+    "separator": "comma"
+  },
+  "elements": [
+    {
+      "type": "JsdocTypeJsdocObjectField",
+      "left": {
+        "type": "JsdocTypeGeneric",
+        "left": {
+          "type": "JsdocTypeName",
+          "value": "Array"
+        },
+        "elements": [
+          {
+            "type": "JsdocTypeName",
+            "value": "string"
+          }
+        ],
+        "meta": {
+          "brackets": "angle",
+          "dot": false
+        }
+      },
+      "right": {
+        "type": "JsdocTypeName",
+        "value": "string"
+      }
+    }
+  ]
+}
+```
+
+# [3.2.0-dev.3](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v3.2.0-dev.2...v3.2.0-dev.3) (2023-03-13)
+
+
+### Features
+
+* allow square bracket property access ([e069109](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/e069109123b705e1659f1e712b83e436585171a6))
+
+# [3.2.0-dev.2](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v3.2.0-dev.1...v3.2.0-dev.2) (2023-03-13)
+
+
+### Features
+
+* parse index signatures and mapped types ([4373e01](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/4373e011964ba7a36e4f04397d4a92837986216a))
+
+# [3.2.0-dev.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v3.1.0...v3.2.0-dev.1) (2023-03-13)
+
+
+### Features
+
+* remove unneeded variadic property from `ObjectFieldResult` ([d392f93](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/d392f93afbf453da96dd7fd63a7c7a3aeda23e9a))
+* split KeyValueResult in different types for objects and other uses ([aa6c495](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/aa6c495665b71b6e44a322f1ab6e589373abad65))
+
 # [3.1.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v3.0.1...v3.1.0) (2022-05-19)
 
 

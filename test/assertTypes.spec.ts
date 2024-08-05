@@ -1,6 +1,6 @@
 import { expect } from 'chai'
-import { assertRootResult, assertPlainKeyValueResult, assertNumberOrVariadicNameResult } from '../src/assertTypes'
-import { IntermediateResult } from '../src/result/IntermediateResult'
+import { assertRootResult, assertNumberOrVariadicNameResult, assertPlainKeyValueResult } from '../src/assertTypes'
+import { type NonRootResult } from '../src'
 
 describe('assertTypes', () => {
   it('should see `assertRootResult` throw with an undefined result', () => {
@@ -10,44 +10,33 @@ describe('assertTypes', () => {
   })
 
   it('should see `assertPlainKeyValueResult` throw with a left side `JsdocTypeKeyValue` expression ``', () => {
-    const objectWithKeyValue = {
-      type: 'JsdocTypeObject',
-      meta: {
-        separator: 'comma'
-      },
-      elements: [
-        {
-          type: 'JsdocTypeKeyValue',
-          left: {
-            type: 'JsdocTypeGeneric',
-            left: {
-              type: 'JsdocTypeName',
-              value: 'Array'
-            },
-            elements: [
-              {
-                type: 'JsdocTypeName',
-                value: 'string'
-              }
-            ],
-            meta: {
-              brackets: 'angle',
-              dot: true
-            }
-          },
-          right: {
+    const objectWithKeyValue: NonRootResult = {
+      type: 'JsdocTypeJsdocObjectField',
+      left: {
+        type: 'JsdocTypeGeneric',
+        left: {
+          type: 'JsdocTypeName',
+          value: 'Array'
+        },
+        elements: [
+          {
             type: 'JsdocTypeName',
-            value: 'number'
-          },
-          meta: {
-            hasLeftSideExpression: true
+            value: 'string'
           }
+        ],
+        meta: {
+          brackets: 'angle',
+          dot: true
         }
-      ]
+      },
+      right: {
+        type: 'JsdocTypeName',
+        value: 'number'
+      }
     }
     expect(() => {
-      assertPlainKeyValueResult(objectWithKeyValue.elements[0] as IntermediateResult)
-    }).to.throw('Expecting no left side expression.')
+      assertPlainKeyValueResult(objectWithKeyValue)
+    }).to.throw('Unexpected type: \'JsdocTypeJsdocObjectField\'.')
   })
 
   it('should see `assertNumberOrVariadicNameResult` throw with a non-name `JsdocTypeVariadic`', () => {

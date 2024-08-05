@@ -12,18 +12,16 @@ describe('typescript objects tests', () => {
         },
         elements: [
           {
-            type: 'JsdocTypeKeyValue',
+            type: 'JsdocTypeObjectField',
             key: 'object',
+            optional: false,
+            readonly: false,
             right: {
               type: 'JsdocTypeName',
               value: 'string'
             },
-            optional: false,
-            readonly: false,
-            variadic: false,
             meta: {
-              quote: undefined,
-              hasLeftSideExpression: false
+              quote: undefined
             }
           }
         ]
@@ -59,34 +57,30 @@ describe('typescript objects tests', () => {
           },
           elements: [
             {
-              type: 'JsdocTypeKeyValue',
-              readonly: false,
+              type: 'JsdocTypeObjectField',
               key: 'object',
+              optional: true,
+              readonly: false,
               meta: {
-                quote: undefined,
-                hasLeftSideExpression: false
+                quote: undefined
               },
               right: {
                 type: 'JsdocTypeName',
                 value: 'string'
-              },
-              optional: true,
-              variadic: false
+              }
             },
             {
-              type: 'JsdocTypeKeyValue',
-              readonly: false,
+              type: 'JsdocTypeObjectField',
               key: 'key',
+              optional: false,
+              readonly: false,
               meta: {
-                quote: undefined,
-                hasLeftSideExpression: false
+                quote: undefined
               },
               right: {
                 type: 'JsdocTypeName',
                 value: 'string'
-              },
-              optional: false,
-              variadic: false
+              }
             }
           ]
         },
@@ -97,7 +91,7 @@ describe('typescript objects tests', () => {
           },
           elements: [
             {
-              type: 'JsdocTypeKeyValue',
+              type: 'JsdocTypeJsdocObjectField',
               left: {
                 type: 'JsdocTypeNullable',
                 element: {
@@ -111,25 +105,20 @@ describe('typescript objects tests', () => {
               right: {
                 type: 'JsdocTypeName',
                 value: 'string'
-              },
-              meta: {
-                hasLeftSideExpression: true
               }
             },
             {
-              type: 'JsdocTypeKeyValue',
-              readonly: false,
+              type: 'JsdocTypeObjectField',
               key: 'key',
+              optional: false,
+              readonly: false,
               meta: {
-                quote: undefined,
-                hasLeftSideExpression: false
+                quote: undefined
               },
               right: {
                 type: 'JsdocTypeName',
                 value: 'string'
-              },
-              optional: false,
-              variadic: false
+              }
             }
           ]
         }
@@ -162,9 +151,10 @@ describe('typescript objects tests', () => {
         },
         elements: [
           {
-            type: 'JsdocTypeKeyValue',
-            readonly: false,
+            type: 'JsdocTypeObjectField',
             key: 'message',
+            optional: false,
+            readonly: false,
             right: {
               type: 'JsdocTypeUnion',
               elements: [
@@ -177,11 +167,8 @@ describe('typescript objects tests', () => {
                 }
               ]
             },
-            optional: false,
-            variadic: false,
             meta: {
-              quote: undefined,
-              hasLeftSideExpression: false
+              quote: undefined
             }
           }
         ]
@@ -215,15 +202,13 @@ describe('typescript objects tests', () => {
         },
         elements: [
           {
-            type: 'JsdocTypeKeyValue',
-            readonly: false,
+            type: 'JsdocTypeObjectField',
             key: 'message',
-            right: undefined,
             optional: true,
-            variadic: false,
+            readonly: false,
+            right: undefined,
             meta: {
-              quote: undefined,
-              hasLeftSideExpression: false
+              quote: undefined
             }
           }
         ]
@@ -254,18 +239,16 @@ describe('typescript objects tests', () => {
         type: 'JsdocTypeObject',
         elements: [
           {
-            type: 'JsdocTypeKeyValue',
+            type: 'JsdocTypeObjectField',
             key: 'module',
+            optional: false,
+            readonly: false,
             right: {
               type: 'JsdocTypeName',
               value: 'type'
             },
-            optional: false,
-            readonly: false,
-            variadic: false,
             meta: {
-              quote: undefined,
-              hasLeftSideExpression: false
+              quote: undefined
             }
           }
         ],
@@ -276,10 +259,10 @@ describe('typescript objects tests', () => {
     })
   })
 
-  describe('linebreaks can be seperators', () => {
+  describe('linebreaks can be separators', () => {
     testFixture({
       input:
-`{
+        `{
   range: boolean
   loc: boolean
 }`,
@@ -292,33 +275,132 @@ describe('typescript objects tests', () => {
         },
         elements: [
           {
-            type: 'JsdocTypeKeyValue',
+            type: 'JsdocTypeObjectField',
             key: 'range',
+            optional: false,
+            readonly: false,
             right: {
               type: 'JsdocTypeName',
               value: 'boolean'
             },
-            optional: false,
-            readonly: false,
-            variadic: false,
             meta: {
-              quote: undefined,
-              hasLeftSideExpression: false
+              quote: undefined
             }
           },
           {
-            type: 'JsdocTypeKeyValue',
+            type: 'JsdocTypeObjectField',
             key: 'loc',
+            optional: false,
+            readonly: false,
             right: {
               type: 'JsdocTypeName',
               value: 'boolean'
             },
+            meta: {
+              quote: undefined
+            }
+          }
+        ]
+      }
+    })
+  })
+
+  describe('multiple levels of square brackets', () => {
+    testFixture({
+      input: 'obj["level1"]["level2"]',
+      modes: ['typescript'],
+      expected: {
+        type: 'JsdocTypeNamePath',
+        left: {
+          type: 'JsdocTypeNamePath',
+          left: {
+            type: 'JsdocTypeName',
+            value: 'obj'
+          },
+          right: {
+            type: 'JsdocTypeProperty',
+            value: 'level1',
+            meta: {
+              quote: 'double'
+            }
+          },
+          pathType: 'property-brackets'
+        },
+        right: {
+          type: 'JsdocTypeProperty',
+          value: 'level2',
+          meta: {
+            quote: 'double'
+          }
+        },
+        pathType: 'property-brackets'
+      }
+    })
+  })
+
+  describe('index signatures', () => {
+    testFixture({
+      input: '{[key: string]: number}',
+      modes: ['typescript'],
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
+        elements: [
+          {
+            type: 'JsdocTypeObjectField',
+            key: {
+              type: 'JsdocTypeIndexSignature',
+              key: 'key',
+              right: {
+                type: 'JsdocTypeName',
+                value: 'string'
+              }
+            },
             optional: false,
             readonly: false,
-            variadic: false,
+            right: {
+              type: 'JsdocTypeName',
+              value: 'number'
+            },
             meta: {
-              quote: undefined,
-              hasLeftSideExpression: false
+              quote: undefined
+            }
+          }
+        ]
+      }
+    })
+  })
+
+  describe('index signatures', () => {
+    testFixture({
+      input: '{[key in Type]: number}',
+      modes: ['typescript'],
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
+        elements: [
+          {
+            type: 'JsdocTypeObjectField',
+            key: {
+              type: 'JsdocTypeMappedType',
+              key: 'key',
+              right: {
+                type: 'JsdocTypeName',
+                value: 'Type'
+              }
+            },
+            optional: false,
+            readonly: false,
+            right: {
+              type: 'JsdocTypeName',
+              value: 'number'
+            },
+            meta: {
+              quote: undefined
             }
           }
         ]

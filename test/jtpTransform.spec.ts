@@ -1,11 +1,12 @@
 import { expect } from 'chai'
 
-import { RootResult } from '../src/result/RootResult'
+import { type RootResult } from '../src/result/RootResult'
 import { jtpTransform } from '../src/index'
+import { type JtpResult } from '../src/transforms/jtpTransform'
 
 describe('transform', () => {
   it('Gets transform for `JsdocTypeNamePath` with `property-brackets`', () => {
-    const expected = {
+    const expected: JtpResult = {
       hasEventPrefix: false,
       name: 'text',
       owner: {
@@ -15,7 +16,7 @@ describe('transform', () => {
       quoteStyle: 'double',
       type: 'MEMBER'
     }
-    const parseResult = {
+    const parseResult: RootResult = {
       type: 'JsdocTypeNamePath',
       left: {
         type: 'JsdocTypeName',
@@ -30,12 +31,12 @@ describe('transform', () => {
       },
       pathType: 'property-brackets'
     }
-    const xform = jtpTransform(parseResult as RootResult)
+    const xform = jtpTransform(parseResult)
     expect(xform).to.deep.equal(expected)
   })
 
   it('Gets transform for `JsdocTypeNamePath` with `property-brackets`', () => {
-    const expected = {
+    const expected: JtpResult = {
       hasEventPrefix: true,
       name: 'def',
       owner: {
@@ -45,7 +46,7 @@ describe('transform', () => {
       quoteStyle: 'none',
       type: 'INSTANCE_MEMBER'
     }
-    const parseResult = {
+    const parseResult: RootResult = {
       type: 'JsdocTypeNamePath',
       left: {
         type: 'JsdocTypeName',
@@ -55,16 +56,18 @@ describe('transform', () => {
         type: 'JsdocTypeSpecialNamePath',
         value: 'def',
         specialType: 'event',
-        meta: {}
+        meta: {
+          quote: undefined
+        }
       },
       pathType: 'instance'
     }
-    const xform = jtpTransform(parseResult as RootResult)
+    const xform = jtpTransform(parseResult)
     expect(xform).to.deep.equal(expected)
   })
 
   it('Gets transform for `JsdocTypeOptional` with prefix', () => {
-    const expected = {
+    const expected: JtpResult = {
       meta: {
         syntax: 'PREFIX_EQUAL_SIGN'
       },
@@ -74,7 +77,7 @@ describe('transform', () => {
         type: 'NAME'
       }
     }
-    const parseResult = {
+    const parseResult: RootResult = {
       type: 'JsdocTypeOptional',
       element: {
         type: 'JsdocTypeName',
@@ -84,30 +87,30 @@ describe('transform', () => {
         position: 'prefix'
       }
     }
-    const xform = jtpTransform(parseResult as RootResult)
+    const xform = jtpTransform(parseResult)
     expect(xform).to.deep.equal(expected)
   })
 
   it('Gets transform for empty `JsdocTypeVariadic`', () => {
-    const expected = {
+    const expected: JtpResult = {
       meta: {
         syntax: 'ONLY_DOTS'
       },
       type: 'VARIADIC'
     }
-    const parseResult = {
+    const parseResult: RootResult = {
       type: 'JsdocTypeVariadic',
       meta: {
         position: undefined,
         squareBrackets: false
       }
     }
-    const xform = jtpTransform(parseResult as RootResult)
+    const xform = jtpTransform(parseResult)
     expect(xform).to.deep.equal(expected)
   })
 
   it('Gets transform for suffix `JsdocTypeVariadic`', () => {
-    const expected = {
+    const expected: JtpResult = {
       meta: {
         syntax: 'SUFFIX_DOTS'
       },
@@ -117,7 +120,7 @@ describe('transform', () => {
         type: 'NAME'
       }
     }
-    const parseResult = {
+    const parseResult: RootResult = {
       type: 'JsdocTypeVariadic',
       element: {
         type: 'JsdocTypeName',
@@ -128,23 +131,23 @@ describe('transform', () => {
         squareBrackets: false
       }
     }
-    const xform = jtpTransform(parseResult as RootResult)
+    const xform = jtpTransform(parseResult)
     expect(xform).to.deep.equal(expected)
   })
 
   // Note: This does not seem possible through the normal generation of
   //   `JsdocTypeObject`
   it('Skips non-`JsdocTypeKeyValue` value', () => {
-    const expected = {
+    const expected: JtpResult = {
       entries: [],
       type: 'RECORD'
     }
 
-    const parseResult = {
+    const parseResult: RootResult = {
       type: 'JsdocTypeObject',
       elements: [
         {
-          // Type not allowed
+          // @ts-expect-error In JTP this is a valid configuration
           type: 'JsdocTypeNumber',
           value: 100
         }
@@ -153,14 +156,14 @@ describe('transform', () => {
         separator: undefined
       }
     }
-    const xform = jtpTransform(parseResult as RootResult)
+    const xform = jtpTransform(parseResult)
     expect(xform).to.deep.equal(expected)
   })
 
   // Note: This does not seem possible through the normal generation of
   //   `JsdocTypeFunction`
   it('Gets transform for suffix `JsdocTypeGeneric`', () => {
-    const expected = {
+    const expected: JtpResult = {
       type: 'GENERIC',
       subject: {
         name: 'Array',
@@ -176,7 +179,7 @@ describe('transform', () => {
         syntax: 'SQUARE_BRACKET'
       }
     }
-    const parseResult = {
+    const parseResult: RootResult = {
       type: 'JsdocTypeGeneric',
       left: {
         type: 'JsdocTypeName',
@@ -187,7 +190,8 @@ describe('transform', () => {
           type: 'JsdocTypeFunction',
           parameters: [],
           arrow: false,
-          parenthesis: false
+          parenthesis: false,
+          constructor: false
         }
       ],
       meta: {
@@ -195,19 +199,19 @@ describe('transform', () => {
         dot: false
       }
     }
-    const xform = jtpTransform(parseResult as RootResult)
+    const xform = jtpTransform(parseResult)
     expect(xform).to.deep.equal(expected)
   })
 
   it('Throws with `JsdocTypeKeyValue` and non-plain key', () => {
-    const parseResult = {
+    const parseResult: RootResult = {
       type: 'JsdocTypeObject',
       meta: {
         separator: 'comma'
       },
       elements: [
         {
-          type: 'JsdocTypeKeyValue',
+          type: 'JsdocTypeJsdocObjectField',
           left: {
             type: 'JsdocTypeGeneric',
             left: {
@@ -228,54 +232,85 @@ describe('transform', () => {
           right: {
             type: 'JsdocTypeName',
             value: 'number'
-          },
-          meta: {
-            hasLeftSideExpression: true
           }
         }
       ]
     }
 
     expect(() => {
-      jtpTransform(parseResult as RootResult)
+      jtpTransform(parseResult)
     }).to.throw('Keys may not be typed in jsdoctypeparser.')
   })
 
   it('Throws with `JsdocTypeSpecialNamePath` and external `specialType`', () => {
-    const parseResult = {
+    const parseResult: RootResult = {
       type: 'JsdocTypeSpecialNamePath',
       value: 'abc',
       specialType: 'external',
-      meta: {}
+      meta: {
+        quote: undefined
+      }
     }
 
     expect(() => {
-      jtpTransform(parseResult as RootResult)
+      jtpTransform(parseResult)
     }).to.throw('jsdoctypeparser does not support type external at this point.')
   })
 
   it('Throws with `JsdocTypeFunction` and `JsdocTypeKeyValue` with undefined `right`', () => {
-    const parseResult = {
+    const parseResult: RootResult = {
       type: 'JsdocTypeFunction',
       arrow: false,
       parenthesis: true,
+      constructor: false,
       parameters: [
         {
           type: 'JsdocTypeKeyValue',
           key: 'abc',
           right: undefined,
           optional: false,
-          readonly: false,
-          meta: {
-            quote: undefined,
-            hasLeftSideExpression: false
-          }
+          variadic: false
         }
       ]
     }
 
     expect(() => {
-      jtpTransform(parseResult as RootResult)
+      jtpTransform(parseResult)
     }).to.throw("Function parameter without ':' is not expected to be 'KEY_VALUE'")
+  })
+
+  it('Does not accept IndexSignatures', () => {
+    const parseResult: RootResult = {
+      type: 'JsdocTypeObject',
+      meta: {
+        separator: 'comma'
+      },
+      elements: [
+        {
+          type: 'JsdocTypeObjectField',
+          meta: {
+            quote: undefined
+          },
+          key: {
+            type: 'JsdocTypeIndexSignature',
+            key: 'some',
+            right: {
+              type: 'JsdocTypeName',
+              value: 'value'
+            }
+          },
+          right: {
+            type: 'JsdocTypeName',
+            value: 'more'
+          },
+          optional: false,
+          readonly: false
+        }
+      ]
+    }
+
+    expect(() => {
+      jtpTransform(parseResult)
+    }).to.throw('Index signatures and mapped types are not supported')
   })
 })
