@@ -407,4 +407,48 @@ describe('typescript objects tests', () => {
       }
     })
   })
+
+  describe('union in index signature', () => {
+    testFixture({
+      input: '{[key: string | number]: boolean}',
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
+        elements: [
+          {
+            type: 'JsdocTypeObjectField',
+            key: {
+              type: 'JsdocTypeIndexSignature',
+              key: 'key',
+              right: {
+                type: 'JsdocTypeUnion',
+                elements: [
+                  {
+                    type: 'JsdocTypeName',
+                    value: 'string'
+                  },
+                  {
+                    type: 'JsdocTypeName',
+                    value: 'number'
+                  }
+                ]
+              }
+            },
+            right: {
+              type: 'JsdocTypeName',
+              value: 'boolean'
+            },
+            optional: false,
+            readonly: false,
+            meta: {
+              quote: undefined
+            }
+          }
+        ]
+      },
+      modes: ['typescript']
+    })
+  })
 })
