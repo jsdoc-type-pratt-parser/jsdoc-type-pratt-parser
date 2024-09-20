@@ -1,10 +1,12 @@
 import { expect } from 'chai'
 import 'mocha'
-import { parse as catharsisParse } from 'catharsis'
+import catharsis from 'catharsis'
 import { parse as jtpParse } from 'jsdoctypeparser'
 import { jtpTransform } from '../../src/transforms/jtpTransform'
 import { simplify } from '../../src/transforms/simplify'
 import { catharsisTransform, parse, type RootResult, type ParseMode, stringify } from '../../src'
+
+const { parse: catharsisParse } = catharsis
 
 export type JtpMode = 'jsdoc' | 'closure' | 'typescript' | 'permissive'
 
