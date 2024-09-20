@@ -1,10 +1,10 @@
 // rollup.config.mjs
 import typescript from '@rollup/plugin-typescript'
 
-export default {
+export default [{
   input: 'src/index.ts',
   output: {
-    dir: 'dist',
+    file: 'dist/index.umd.js',
     format: 'umd',
     name: 'jtpp'
   },
@@ -13,4 +13,4 @@ export default {
       './**/*.spec.ts'
     ]
   })]
-}
+}]

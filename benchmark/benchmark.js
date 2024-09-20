@@ -1,7 +1,7 @@
-const Benchmark = require('benchmark')
-const catharsisParse = require('catharsis').parse
-const jtppParse = require('../dist/index').parse
-const jtpParse = require('jsdoctypeparser').parse
+import Benchmark from 'benchmark'
+import catharsisParse from 'catharsis'
+import { parse as jtppParse } from '../dist/esm/index.js'
+import jtpParse from 'jsdoctypeparser'
 
 Benchmark.options.minSamples = 1000
 
