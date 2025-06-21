@@ -182,6 +182,7 @@ export interface ObjectResult {
   elements: Array<ObjectFieldResult | JsdocObjectFieldResult>
   meta: {
     separator: 'comma' | 'semicolon' | 'linebreak' | undefined
+    propertyIndent?: string
   }
 }
 
