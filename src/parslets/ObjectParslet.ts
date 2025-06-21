@@ -79,6 +79,10 @@ export function createObjectParslet ({ objectFieldGrammar, allowKeyTypes }: {
         }
 
         result.meta.separator = separator ?? 'comma' // TODO: use undefined here
+        if (separator === 'linebreak') {
+          // TODO: Consume appropriate whitespace
+          result.meta.propertyIndent = '  '
+        }
 
         if (!parser.consume('}')) {
           throw new Error('Unterminated record type. Missing \'}\'')

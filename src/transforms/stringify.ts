@@ -141,7 +141,17 @@ export function stringifyRules (): TransformRules<string> {
 
     JsdocTypeNumber: result => result.value.toString(),
 
-    JsdocTypeObject: (result, transform) => `{${result.elements.map(transform).join((result.meta.separator === 'comma' ? ', ' : result.meta.separator === 'linebreak' ? '\n' : '; '))}}`,
+    JsdocTypeObject: (result, transform) => `{${
+      (result.meta.separator === 'linebreak'
+       ? '\n' + (result.meta.propertyIndent ?? '')
+       : '') +
+      result.elements.map(transform).join(
+        (result.meta.separator === 'comma' ? ', ' : result.meta.separator === 'linebreak' ? '\n' + (result.meta.propertyIndent ?? '') : '; ')
+      ) +
+      (result.meta.separator === 'linebreak'
+       ? '\n'
+       : '')
+    }}`,
 
     JsdocTypeOptional: (result, transform) => applyPosition(result.meta.position, transform(result.element), '='),
 
