@@ -266,7 +266,7 @@ describe('typescript objects tests', () => {
   range: boolean
   loc: boolean
 }`,
-      stringified: '{range: boolean; loc: boolean}',
+      stringified: '{range: boolean\nloc: boolean}',
       modes: ['typescript', 'jsdoc', 'closure'],
       expected: {
         type: 'JsdocTypeObject',
