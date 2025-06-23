@@ -6,7 +6,7 @@ This project works best with a test-driven design. This is a write-up of the nec
 For example let's say we want to add TypeScript predicates i.e. `@returns {x is string}`. To do that it makes sense to
 follow these steps:
 
-1. Add a new result type. In this case it is a `RootResult` which means that can appear as a root node of an AST. 
+1. Add a new result type. In this case it is a `RootResult` which means that can appear as a root node of an AST.
    It is important that we use a type that is not used yet and is prefixed with `JsdocType`. We choose `JsdocTypePredicate`.
    A predicate can have two child elements, we call them `left` and `right`. `left` always has to be a name.
    We add the following to the file `src/result/RootResult.ts`:
@@ -57,7 +57,7 @@ export interface PredicateResult {
 
 5. Specify visitor keys. This is the next type error that will occur in file `src/visitorKeys.ts`. These are the
    properties of our new type which should be visited by tree traversing functions. In our case these are `['left', 'right']`.
- 
+
 6. Add a test. To test we think about an example expression and how we expect it to be parsed. Then we specify these
    in a fixture test and use `testFixture` to do this. There the typing can guide us to fill all required fields.
    Check the [API docs](https://jsdoc-type-pratt-parser.github.io/jsdoc-type-pratt-parser/docs/interfaces/Fixture.html)
@@ -120,7 +120,7 @@ export const predicateParslet = composeParslet({
   precedence: Precedence.INFIX,
   accept: type => type === 'is',
   parseInfix: (parser, left) => {
-    
+
   }
 })
 ```
@@ -146,9 +146,9 @@ export const predicateParslet = composeParslet({
     if (left.type !== 'JsdocTypeName') {
       throw new UnexpectedTypeError(left, 'A TypeScript predicate always has to have a name on the left side.')
     }
-    
+
     parser.consume('is')
-    
+
     return {
       type: 'JsdocTypePredicate',
       left,
@@ -161,7 +161,7 @@ export const predicateParslet = composeParslet({
 10. Add parslet to grammar. Now we need to tell the parser that we actually want to use this parslet. For this we add
     the parslet to the `typescriptGrammar` array in `src/grammars/typescriptGrammar.ts`.
 
-11. Run tests and debug until done. In the end we see that all tests pass, and we are done. We can now add some more tests 
+11. Run tests and debug until done. In the end we see that all tests pass, and we are done. We can now add some more tests
     if we like.
 
 12. If there are any problems with this guide, feel free to open an issue!
