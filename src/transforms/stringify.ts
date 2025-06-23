@@ -175,7 +175,9 @@ export function stringifyRules (): TransformRules<string> {
 
     JsdocTypeMappedType: (result, transform) => `[${result.key} in ${transform(result.right)}]`,
 
-    JsdocTypeAsserts: (result, transform) => `asserts ${transform(result.left)} is ${transform(result.right)}`
+    JsdocTypeAsserts: (result, transform) => `asserts ${transform(result.left)} is ${transform(result.right)}`,
+
+    JsdocTypeReadonlyArray: (result, transform) => `readonly ${transform(result.element)}`
   }
 }
 

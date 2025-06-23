@@ -35,6 +35,7 @@ export type RootResult =
   | NumberResult
   | PredicateResult
   | AssertsResult
+  | ReadonlyArrayResult
 
 export type QuoteStyle = 'single' | 'double'
 
@@ -293,4 +294,12 @@ export interface AssertsResult {
   type: 'JsdocTypeAsserts'
   left: NameResult
   right: RootResult
+}
+
+/**
+ * A TypeScript readonly modifier. Is used like this: `readonly string[]`.
+ */
+export interface ReadonlyArrayResult {
+  type: 'JsdocTypeReadonlyArray'
+  element: RootResult
 }

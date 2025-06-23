@@ -1,6 +1,6 @@
 import { type IndexSignatureResult, type KeyValueResult, type MappedTypeResult } from './result/NonRootResult'
 import { UnexpectedTypeError } from './errors'
-import { type NameResult, type NumberResult, type RootResult, type VariadicResult } from './result/RootResult'
+import { type NameResult, type NumberResult, type RootResult, type VariadicResult, type TupleResult, type GenericResult } from './result/RootResult'
 import { type IntermediateResult } from './result/IntermediateResult'
 
 /**
@@ -53,6 +53,18 @@ export function assertNumberOrVariadicNameResult (result: IntermediateResult): N
     throw new UnexpectedTypeError(result)
   }
   return result
+}
+
+export function assertArrayOrTupleResult (result: IntermediateResult): TupleResult | GenericResult {
+  if (result.type === 'JsdocTypeTuple') {
+    return result
+  }
+
+  if (result.type === 'JsdocTypeGeneric' && result.meta.brackets === 'square') {
+    return result
+  }
+
+  throw new UnexpectedTypeError(result)
 }
 
 export function isSquaredProperty (result: IntermediateResult): result is IndexSignatureResult | MappedTypeResult {

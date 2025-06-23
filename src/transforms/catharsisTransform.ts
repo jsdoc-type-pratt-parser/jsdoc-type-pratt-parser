@@ -316,7 +316,8 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
   JsdocTypeIntersection: notAvailableTransform,
   JsdocTypeProperty: notAvailableTransform,
   JsdocTypePredicate: notAvailableTransform,
-  JsdocTypeAsserts: notAvailableTransform
+  JsdocTypeAsserts: notAvailableTransform,
+  JsdocTypeReadonlyArray: notAvailableTransform
 }
 
 export function catharsisTransform (result: RootResult): CatharsisParseResult {

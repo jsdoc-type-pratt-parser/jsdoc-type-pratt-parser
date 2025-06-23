@@ -24,6 +24,7 @@ import { predicateParslet } from '../parslets/predicateParslet'
 import { createObjectFieldParslet } from '../parslets/ObjectFieldParslet'
 import { createKeyValueParslet } from '../parslets/KeyValueParslet'
 import { objectSquaredPropertyParslet } from '../parslets/ObjectSquaredPropertyParslet'
+import { readonlyArrayParslet } from '../parslets/ReadonlyArrayParslet'
 
 const objectFieldGrammar: Grammar = [
   readonlyPropertyParslet,
@@ -49,6 +50,7 @@ export const typescriptGrammar: Grammar = [
     allowKeyTypes: false,
     objectFieldGrammar
   }),
+  readonlyArrayParslet,
   typeOfParslet,
   keyOfParslet,
   importParslet,
