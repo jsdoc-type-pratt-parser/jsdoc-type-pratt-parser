@@ -203,6 +203,11 @@ export function identityTransformRules (): TransformRules<NonRootResult> {
     JsdocTypeReadonlyArray: (result, transform) => ({
       type: 'JsdocTypeReadonlyArray',
       element: transform(result.element) as RootResult
+    }),
+
+    JsdocTypeAssertsPlain: (result, transform) => ({
+      type: 'JsdocTypeAssertsPlain',
+      element: transform(result.element) as NameResult
     })
   }
 }
