@@ -452,4 +452,85 @@ describe('typescript objects tests', () => {
       modes: ['typescript']
     })
   })
+
+  describe('readonly in index signatures', () => {
+    testFixture({
+      input: '{readonly [key: string]: number}',
+      modes: ['typescript'],
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
+        elements: [
+          {
+            type: 'JsdocTypeObjectField',
+            key: {
+              type: 'JsdocTypeIndexSignature',
+              key: 'key',
+              right: {
+                type: 'JsdocTypeName',
+                value: 'string'
+              }
+            },
+            optional: false,
+            readonly: true,
+            right: {
+              type: 'JsdocTypeName',
+              value: 'number'
+            },
+            meta: {
+              quote: undefined
+            }
+          }
+        ]
+      }
+    })
+
+    testFixture({
+      input: '{readonly [type: string]: ReadonlyArray<string>}',
+      modes: ['typescript'],
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
+        elements: [
+          {
+            type: 'JsdocTypeObjectField',
+            key: {
+              type: 'JsdocTypeIndexSignature',
+              key: 'type',
+              right: {
+                type: 'JsdocTypeName',
+                value: 'string'
+              }
+            },
+            right: {
+              type: 'JsdocTypeGeneric',
+              left: {
+                type: 'JsdocTypeName',
+                value: 'ReadonlyArray'
+              },
+              elements: [
+                {
+                  type: 'JsdocTypeName',
+                  value: 'string'
+                }
+              ],
+              meta: {
+                brackets: 'angle',
+                dot: false
+              }
+            },
+            optional: false,
+            readonly: true,
+            meta: {
+              quote: undefined
+            }
+          }
+        ]
+      }
+    })
+  })
 })

@@ -10,5 +10,5 @@ export interface ParameterList {
 
 export interface ReadonlyProperty {
   type: 'JsdocTypeReadonlyProperty'
-  element: RootResult
+  element: IntermediateResult
 }
