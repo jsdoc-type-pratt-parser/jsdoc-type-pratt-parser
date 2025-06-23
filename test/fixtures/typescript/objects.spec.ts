@@ -305,6 +305,70 @@ describe('typescript objects tests', () => {
     })
   })
 
+  describe('commas can follow linebreaks', () => {
+    testFixture({
+      input:
+        `{
+  range: boolean
+,}`,
+      stringified: '{range: boolean}',
+      modes: ['typescript', 'jsdoc', 'closure'],
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: {
+          separator: 'linebreak'
+        },
+        elements: [
+          {
+            type: 'JsdocTypeObjectField',
+            key: 'range',
+            optional: false,
+            readonly: false,
+            right: {
+              type: 'JsdocTypeName',
+              value: 'boolean'
+            },
+            meta: {
+              quote: undefined
+            }
+          }
+        ]
+      }
+    })
+  })
+
+  describe('semicolons can follow linebreaks', () => {
+    testFixture({
+      input:
+        `{
+  range: boolean
+;}`,
+      stringified: '{range: boolean}',
+      modes: ['typescript', 'jsdoc', 'closure'],
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: {
+          separator: 'linebreak'
+        },
+        elements: [
+          {
+            type: 'JsdocTypeObjectField',
+            key: 'range',
+            optional: false,
+            readonly: false,
+            right: {
+              type: 'JsdocTypeName',
+              value: 'boolean'
+            },
+            meta: {
+              quote: undefined
+            }
+          }
+        ]
+      }
+    })
+  })
+
   describe('multiple levels of square brackets', () => {
     testFixture({
       input: 'obj["level1"]["level2"]',

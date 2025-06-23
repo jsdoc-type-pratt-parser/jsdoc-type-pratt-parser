@@ -65,6 +65,8 @@ export function createObjectParslet ({ objectFieldGrammar, allowKeyTypes }: {
           }
           if (parser.lexer.current.startOfLine) {
             separator = 'linebreak'
+            // Handle single stray comma/semi-colon
+            parser.consume(',') || parser.consume(';')
           } else if (parser.consume(',')) {
             separator = 'comma'
           } else if (parser.consume(';')) {
