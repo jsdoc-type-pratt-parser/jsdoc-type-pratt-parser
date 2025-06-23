@@ -527,7 +527,9 @@ const jtpRules: TransformRules<JtpResult> = {
 
   JsdocTypeAsserts: notAvailableTransform,
 
-  JsdocTypeReadonlyArray: notAvailableTransform
+  JsdocTypeReadonlyArray: notAvailableTransform,
+
+  JsdocTypeAssertsPlain: notAvailableTransform
 }
 
 export function jtpTransform (result: RootResult): JtpResult {

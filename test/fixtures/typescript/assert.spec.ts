@@ -18,4 +18,18 @@ describe('typescript assert result tests', () => {
       modes: ['typescript']
     })
   })
+
+  describe('assert without `is` as return type', () => {
+    testFixture({
+      input: 'asserts foo',
+      expected: {
+        type: 'JsdocTypeAssertsPlain',
+        element: {
+          type: 'JsdocTypeName',
+          value: 'foo'
+        }
+      },
+      modes: ['typescript']
+    })
+  })
 })

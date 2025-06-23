@@ -36,6 +36,7 @@ export type RootResult =
   | PredicateResult
   | AssertsResult
   | ReadonlyArrayResult
+  | AssertsPlainResult
 
 export type QuoteStyle = 'single' | 'double'
 
@@ -302,4 +303,12 @@ export interface AssertsResult {
 export interface ReadonlyArrayResult {
   type: 'JsdocTypeReadonlyArray'
   element: RootResult
+}
+
+/**
+ * An asserts result without `is`. Is used like this: `@return {asserts foo}`
+ */
+export interface AssertsPlainResult {
+  type: 'JsdocTypeAssertsPlain'
+  element: NameResult
 }

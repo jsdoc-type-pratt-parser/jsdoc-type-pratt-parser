@@ -15,7 +15,12 @@ export const assertsParslet = composeParslet({
       throw new UnexpectedTypeError(left, 'A typescript asserts always has to have a name on the left side.')
     }
 
-    parser.consume('is')
+    if (!parser.consume('is')) {
+      return {
+        type: 'JsdocTypeAssertsPlain',
+        element: left
+      }
+    }
 
     return {
       type: 'JsdocTypeAsserts',
