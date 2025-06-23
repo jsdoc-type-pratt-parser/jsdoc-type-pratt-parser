@@ -18,7 +18,7 @@ import { createObjectFieldParslet } from '../parslets/ObjectFieldParslet'
 
 const objectFieldGrammar: Grammar = [
   createNameParslet({
-    allowedAdditionalTokens: ['module', 'keyof', 'event', 'external', 'in']
+    allowedAdditionalTokens: ['typeof', 'module', 'keyof', 'event', 'external', 'in']
   }),
   nullableParslet,
   optionalParslet,

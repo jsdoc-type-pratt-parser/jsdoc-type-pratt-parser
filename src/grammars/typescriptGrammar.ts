@@ -29,7 +29,7 @@ import { readonlyArrayParslet } from '../parslets/ReadonlyArrayParslet'
 const objectFieldGrammar: Grammar = [
   readonlyPropertyParslet,
   createNameParslet({
-    allowedAdditionalTokens: ['module', 'event', 'keyof', 'event', 'external', 'in']
+    allowedAdditionalTokens: ['typeof', 'module', 'keyof', 'event', 'external', 'in']
   }),
   nullableParslet,
   optionalParslet,
