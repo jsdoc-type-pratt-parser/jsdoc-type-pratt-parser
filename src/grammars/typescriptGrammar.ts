@@ -28,7 +28,7 @@ import { objectSquaredPropertyParslet } from '../parslets/ObjectSquaredPropertyP
 const objectFieldGrammar: Grammar = [
   readonlyPropertyParslet,
   createNameParslet({
-    allowedAdditionalTokens: ['module', 'event', 'keyof', 'event', 'external', 'in']
+    allowedAdditionalTokens: ['typeof', 'module', 'keyof', 'event', 'external', 'in']
   }),
   nullableParslet,
   optionalParslet,

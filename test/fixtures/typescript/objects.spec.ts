@@ -259,6 +259,34 @@ describe('typescript objects tests', () => {
     })
   })
 
+  describe('object property named typeof', () => {
+    testFixture({
+      input: '{typeof: type}',
+      modes: ['jsdoc', 'closure', 'typescript'],
+      expected: {
+        type: 'JsdocTypeObject',
+        elements: [
+          {
+            type: 'JsdocTypeObjectField',
+            key: 'typeof',
+            optional: false,
+            readonly: false,
+            right: {
+              type: 'JsdocTypeName',
+              value: 'type'
+            },
+            meta: {
+              quote: undefined
+            }
+          }
+        ],
+        meta: {
+          separator: 'comma'
+        }
+      }
+    })
+  })
+
   describe('linebreaks can be separators', () => {
     testFixture({
       input:
