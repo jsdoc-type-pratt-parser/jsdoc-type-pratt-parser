@@ -8,7 +8,7 @@ export const readonlyPropertyParslet = composeParslet({
     parser.consume('readonly')
     return {
       type: 'JsdocTypeReadonlyProperty',
-      element: parser.parseType(Precedence.KEY_VALUE)
+      element: parser.parseIntermediateType(Precedence.KEY_VALUE)
     }
   }
 })
