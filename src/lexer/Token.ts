@@ -36,6 +36,7 @@ export type TokenType =
   | 'keyof'
   | 'readonly'
   | 'import'
+  | 'infer'
   | 'is'
   | 'in'
   | 'asserts'

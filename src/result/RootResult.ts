@@ -115,6 +115,7 @@ export interface GenericResult {
   type: 'JsdocTypeGeneric'
   left: RootResult
   elements: RootResult[]
+  infer?: boolean
   meta: {
     brackets: 'angle' | 'square'
     dot: boolean
