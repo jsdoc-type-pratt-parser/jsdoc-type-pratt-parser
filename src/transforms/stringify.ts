@@ -179,7 +179,9 @@ export function stringifyRules (): TransformRules<string> {
 
     JsdocTypeReadonlyArray: (result, transform) => `readonly ${transform(result.element)}`,
 
-    JsdocTypeAssertsPlain: (result, transform) => `asserts ${transform(result.element)}`
+    JsdocTypeAssertsPlain: (result, transform) => `asserts ${transform(result.element)}`,
+
+    JsdocTypeConditional: (result, transform) => `${transform(result.checksType)} extends ${transform(result.extendsType)} ? ${transform(result.trueType)} : ${transform(result.falseType)}`
   }
 }
 

@@ -25,6 +25,7 @@ import { createObjectFieldParslet } from '../parslets/ObjectFieldParslet'
 import { createKeyValueParslet } from '../parslets/KeyValueParslet'
 import { objectSquaredPropertyParslet } from '../parslets/ObjectSquaredPropertyParslet'
 import { readonlyArrayParslet } from '../parslets/ReadonlyArrayParslet'
+import { conditionalParslet } from '../parslets/ConditionalParslet'
 
 const objectFieldGrammar: Grammar = [
   readonlyPropertyParslet,
@@ -69,6 +70,7 @@ export const typescriptGrammar: Grammar = [
     allowPostfix: false
   }),
   assertsParslet,
+  conditionalParslet,
   createNameParslet({
     allowedAdditionalTokens: ['event', 'external', 'in']
   }),

@@ -160,6 +160,7 @@ const rules: Rule[] = [
   makeKeyWordRule('new'),
   makeKeyWordRule('module'),
   makeKeyWordRule('event'),
+  makeKeyWordRule('extends'),
   makeKeyWordRule('external'),
   makeKeyWordRule('typeof'),
   makeKeyWordRule('keyof'),

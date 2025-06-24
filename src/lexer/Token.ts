@@ -30,6 +30,7 @@ export type TokenType =
   | 'new'
   | 'module'
   | 'event'
+  | 'extends'
   | 'external'
   | 'typeof'
   | 'keyof'
