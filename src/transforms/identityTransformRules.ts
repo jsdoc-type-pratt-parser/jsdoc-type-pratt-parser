@@ -208,6 +208,14 @@ export function identityTransformRules (): TransformRules<NonRootResult> {
     JsdocTypeAssertsPlain: (result, transform) => ({
       type: 'JsdocTypeAssertsPlain',
       element: transform(result.element) as NameResult
+    }),
+
+    JsdocTypeConditional: (result, transform) => ({
+      type: 'JsdocTypeConditional',
+      checksType: transform(result.checksType) as RootResult,
+      extendsType: transform(result.extendsType) as RootResult,
+      trueType: transform(result.trueType) as RootResult,
+      falseType: transform(result.falseType) as RootResult
     })
   }
 }

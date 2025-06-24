@@ -37,6 +37,7 @@ export type RootResult =
   | AssertsResult
   | ReadonlyArrayResult
   | AssertsPlainResult
+  | ConditionalResult
 
 export type QuoteStyle = 'single' | 'double'
 
@@ -311,4 +312,15 @@ export interface ReadonlyArrayResult {
 export interface AssertsPlainResult {
   type: 'JsdocTypeAssertsPlain'
   element: NameResult
+}
+
+/**
+ * A TypeScript conditional. Is used like this: `A extends B ? C : D`.
+ */
+export interface ConditionalResult {
+  type: 'JsdocTypeConditional'
+  checksType: RootResult
+  extendsType: RootResult
+  trueType: RootResult
+  falseType: RootResult
 }

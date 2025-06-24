@@ -38,5 +38,6 @@ export const visitorKeys: VisitorKeys = {
   JsdocTypePredicate: ['left', 'right'],
   JsdocTypeAsserts: ['left', 'right'],
   JsdocTypeReadonlyArray: ['element'],
-  JsdocTypeAssertsPlain: ['element']
+  JsdocTypeAssertsPlain: ['element'],
+  JsdocTypeConditional: ['checksType', 'extendsType', 'trueType', 'falseType']
 }
