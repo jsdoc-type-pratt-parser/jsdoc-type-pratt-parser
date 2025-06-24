@@ -259,6 +259,33 @@ describe('typescript objects tests', () => {
     })
   })
 
+  describe('object property set to question mark unknown', () => {
+    testFixture({
+      input: '{abc: ?}',
+      modes: ['jsdoc', 'closure', 'typescript'],
+      expected: {
+        type: 'JsdocTypeObject',
+        elements: [
+          {
+            type: 'JsdocTypeObjectField',
+            key: 'abc',
+            optional: false,
+            readonly: false,
+            right: {
+              type: 'JsdocTypeUnknown'
+            },
+            meta: {
+              quote: undefined
+            }
+          }
+        ],
+        meta: {
+          separator: 'comma'
+        }
+      }
+    })
+  })
+
   describe('object property named typeof', () => {
     testFixture({
       input: '{typeof: type}',
