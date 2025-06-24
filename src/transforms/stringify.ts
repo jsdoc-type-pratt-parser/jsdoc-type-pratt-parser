@@ -83,7 +83,7 @@ export function stringifyRules (): TransformRules<string> {
           return `${transformed}[]`
         }
       } else {
-        return `${transform(result.left)}${result.meta.dot ? '.' : ''}<${result.elements.map(transform).join(', ')}>`
+        return `${transform(result.left)}${result.meta.dot ? '.' : ''}<${result.infer === true ? 'infer ' : ''}${result.elements.map(transform).join(', ')}>`
       }
     },
 

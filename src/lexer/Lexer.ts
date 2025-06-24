@@ -162,6 +162,7 @@ const rules: Rule[] = [
   makeKeyWordRule('event'),
   makeKeyWordRule('extends'),
   makeKeyWordRule('external'),
+  makeKeyWordRule('infer'),
   makeKeyWordRule('typeof'),
   makeKeyWordRule('keyof'),
   makeKeyWordRule('readonly'),
