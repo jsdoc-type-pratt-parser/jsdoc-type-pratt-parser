@@ -216,6 +216,13 @@ export function identityTransformRules (): TransformRules<NonRootResult> {
       extendsType: transform(result.extendsType) as RootResult,
       trueType: transform(result.trueType) as RootResult,
       falseType: transform(result.falseType) as RootResult
+    }),
+
+    JsdocTypeTypeParameter: (result, transform) => ({
+      type: 'JsdocTypeTypeParameter',
+      name: transform(result.name) as NameResult,
+      constraint: result.constraint !== undefined ? transform(result.constraint) as RootResult : undefined,
+      defaultValue: result.defaultValue !== undefined ? transform(result.defaultValue) as RootResult : undefined
     })
   }
 }

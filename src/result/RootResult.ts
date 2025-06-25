@@ -2,7 +2,8 @@ import {
   type JsdocObjectFieldResult,
   type KeyValueResult,
   type ObjectFieldResult,
-  type PropertyResult
+  type PropertyResult,
+  type TypeParameterResult
 } from './NonRootResult'
 
 /**
@@ -174,6 +175,7 @@ export interface FunctionResult {
   constructor: boolean
   arrow: boolean
   parenthesis: boolean
+  typeParameters?: TypeParameterResult[]
 }
 
 /**

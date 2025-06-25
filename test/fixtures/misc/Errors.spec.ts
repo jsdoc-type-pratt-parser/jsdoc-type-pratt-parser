@@ -152,4 +152,15 @@ describe('Error tests', () => {
       }
     })
   })
+
+  describe('should err with bad ', () => {
+    testFixture({
+      input: '<abc<def>>',
+      errors: {
+        jsdoc: 'No parslet found for token: \'<\' with value \'<\'',
+        closure: 'No parslet found for token: \'<\' with value \'<\'',
+        typescript: 'Unexpected type: \'JsdocTypeGeneric\'.'
+      }
+    })
+  })
 })

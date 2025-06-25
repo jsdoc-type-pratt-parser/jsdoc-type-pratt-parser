@@ -607,6 +607,82 @@ describe('typescript arrow function tests', () => {
       modes: ['typescript']
     })
   })
+
+  describe('arrow with one parameter and return type and type params', () => {
+    testFixture({
+      input: '<T, U extends V = string, W = string>(x: T) => U',
+      expected: {
+        type: 'JsdocTypeFunction',
+        typeParameters: [
+          {
+            type: 'JsdocTypeTypeParameter',
+            name: {
+              type: 'JsdocTypeName',
+              value: 'T'
+            }
+          },
+          {
+            type: 'JsdocTypeTypeParameter',
+            name: {
+              type: 'JsdocTypeName',
+              value: 'U'
+            },
+            constraint: {
+              type: 'JsdocTypeName',
+              value: 'V'
+            },
+            defaultValue: {
+              type: 'JsdocTypeName',
+              value: 'string'
+            }
+          },
+          {
+            type: 'JsdocTypeTypeParameter',
+            name: {
+              type: 'JsdocTypeName',
+              value: 'W'
+            },
+            defaultValue: {
+              type: 'JsdocTypeName',
+              value: 'string'
+            }
+          }
+        ],
+        parameters: [
+          {
+            type: 'JsdocTypeKeyValue',
+            key: 'x',
+            optional: false,
+            variadic: false,
+            right: {
+              type: 'JsdocTypeName',
+              value: 'T'
+            }
+          }
+        ],
+        returnType: {
+          type: 'JsdocTypeName',
+          value: 'U'
+        },
+        arrow: true,
+        constructor: false,
+        parenthesis: true
+      },
+      modes: [
+        'typescript'
+      ],
+      catharsis: {
+        closure: 'fail',
+        jsdoc: 'fail'
+      },
+      jtp: {
+        closure: 'fail',
+        jsdoc: 'fail',
+        typescript: 'fail',
+        permissive: 'fail'
+      }
+    })
+  })
 })
 
 // TODO:
