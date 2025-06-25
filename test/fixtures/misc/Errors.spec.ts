@@ -134,4 +134,22 @@ describe('Error tests', () => {
       error: "Unterminated square brackets. Next token is 'EOF' with text ''"
     })
   })
+
+  describe('should err with unterminated brackets', () => {
+    testFixture({
+      input: '{[a: string: string}',
+      errors: {
+        typescript: 'Unterminated square brackets'
+      }
+    })
+  })
+
+  describe('should err with bad asserts', () => {
+    testFixture({
+      input: 'asserts 5',
+      errors: {
+        typescript: 'A typescript asserts always has to have a name on the left side.'
+      }
+    })
+  })
 })
