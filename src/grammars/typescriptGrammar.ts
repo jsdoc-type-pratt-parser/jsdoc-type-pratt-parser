@@ -18,6 +18,7 @@ import { createSpecialNamePathParslet } from '../parslets/SpecialNamePathParslet
 import { readonlyPropertyParslet } from '../parslets/ReadonlyPropertyParslet'
 import { arrayBracketsParslet } from '../parslets/ArrayBracketsParslet'
 import { arrowFunctionParslet } from '../parslets/ArrowFunctionParslet'
+import { genericArrowFunctionParslet } from '../parslets/GenericArrowFunctionParslet'
 import { createNamePathParslet } from '../parslets/NamePathParslet'
 import { intersectionParslet } from '../parslets/IntersectionParslet'
 import { predicateParslet } from '../parslets/predicateParslet'
@@ -80,6 +81,7 @@ export const typescriptGrammar: Grammar = [
   }),
   arrayBracketsParslet,
   arrowFunctionParslet,
+  genericArrowFunctionParslet,
   createNamePathParslet({
     allowSquareBracketsOnAnyType: true,
     allowJsdocNamePaths: false,

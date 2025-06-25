@@ -1,6 +1,7 @@
 import {
   type QuoteStyle,
-  type RootResult
+  type RootResult,
+  type NameResult
 } from './RootResult'
 
 /**
@@ -14,6 +15,7 @@ export type NonRootResult =
   | KeyValueResult
   | MappedTypeResult
   | IndexSignatureResult
+  | TypeParameterResult
 
 export interface ObjectFieldResult {
   type: 'JsdocTypeObjectField'
@@ -62,4 +64,11 @@ export interface MappedTypeResult {
   type: 'JsdocTypeMappedType'
   key: string
   right: RootResult
+}
+
+export interface TypeParameterResult {
+  type: 'JsdocTypeTypeParameter'
+  defaultValue?: RootResult
+  name: NameResult
+  constraint?: RootResult
 }

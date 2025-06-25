@@ -38,7 +38,11 @@ export function stringifyRules (): TransformRules<string> {
         if (result.returnType === undefined) {
           throw new Error('Arrow function needs a return type.')
         }
-        let stringified = `(${result.parameters.map(transform).join(', ')}) => ${transform(result.returnType)}`
+        let stringified = `${
+          result.typeParameters !== undefined
+            ? `<${result.typeParameters.map(transform).join(', ') ?? ''}>`
+            : ''
+        }(${result.parameters.map(transform).join(', ')}) => ${transform(result.returnType)}`
         if (result.constructor) {
           stringified = 'new ' + stringified
         }
@@ -181,7 +185,14 @@ export function stringifyRules (): TransformRules<string> {
 
     JsdocTypeAssertsPlain: (result, transform) => `asserts ${transform(result.element)}`,
 
-    JsdocTypeConditional: (result, transform) => `${transform(result.checksType)} extends ${transform(result.extendsType)} ? ${transform(result.trueType)} : ${transform(result.falseType)}`
+    JsdocTypeConditional: (result, transform) => `${transform(result.checksType)} extends ${transform(result.extendsType)} ? ${transform(result.trueType)} : ${transform(result.falseType)}`,
+
+    JsdocTypeTypeParameter: (result, transform) => `${
+      transform(result.name)}${
+        result.constraint !== undefined ? ` extends ${transform(result.constraint)}` : ''
+      }${
+        result.defaultValue !== undefined ? ` = ${transform(result.defaultValue)}` : ''
+      }`
   }
 }
 
