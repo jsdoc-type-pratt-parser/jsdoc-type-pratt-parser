@@ -1,10 +1,10 @@
-import { composeParslet, ParsletFunction } from './Parslet'
-import { TokenType } from '../lexer/Token'
+import { composeParslet, type ParsletFunction } from './Parslet'
+import type { TokenType } from '../lexer/Token'
 import { Precedence } from '../Precedence'
 import { Parser } from '../Parser'
-import { SpecialNamePath, SpecialNamePathType } from '../result/RootResult'
+import type { SpecialNamePath, SpecialNamePathType } from '../result/RootResult'
 import { assertRootResult } from '../assertTypes'
-import { Grammar } from '../grammars/Grammar'
+import type { Grammar } from '../grammars/Grammar'
 
 export function createSpecialNamePathParslet ({ pathGrammar, allowedTypes }: {
   allowedTypes: SpecialNamePathType[]

@@ -1,8 +1,8 @@
-import { composeParslet, ParsletFunction } from './Parslet'
+import { composeParslet, type ParsletFunction } from './Parslet'
 import { Precedence } from '../Precedence'
-import { FunctionResult, RootResult } from '../result/RootResult'
-import { IntermediateResult } from '../result/IntermediateResult'
-import { KeyValueResult, NonRootResult } from '../result/NonRootResult'
+import type { FunctionResult, RootResult } from '../result/RootResult'
+import type { IntermediateResult } from '../result/IntermediateResult'
+import type { KeyValueResult, NonRootResult } from '../result/NonRootResult'
 import { UnexpectedTypeError } from '../errors'
 import { assertPlainKeyValueOrRootResult } from '../assertTypes'
 

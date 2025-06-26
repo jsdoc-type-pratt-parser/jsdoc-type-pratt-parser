@@ -1,11 +1,11 @@
 import { EarlyEndOfParseError, NoParsletFoundError } from './errors'
 import { Lexer } from './lexer/Lexer'
-import { Grammar } from './grammars/Grammar'
+import type { Grammar } from './grammars/Grammar'
 import { assertRootResult } from './assertTypes'
 import { Precedence } from './Precedence'
-import { RootResult } from './result/RootResult'
-import { IntermediateResult } from './result/IntermediateResult'
-import { TokenType } from './lexer/Token'
+import type { RootResult } from './result/RootResult'
+import type { IntermediateResult } from './result/IntermediateResult'
+import type { TokenType } from './lexer/Token'
 
 export class Parser {
   private readonly grammar: Grammar

@@ -2,7 +2,7 @@ import { Parser } from './Parser'
 import { jsdocGrammar } from './grammars/jsdocGrammar'
 import { closureGrammar } from './grammars/closureGrammar'
 import { typescriptGrammar } from './grammars/typescriptGrammar'
-import { RootResult } from './result/RootResult'
+import type { RootResult } from './result/RootResult'
 
 export type ParseMode = 'closure' | 'jsdoc' | 'typescript'
 

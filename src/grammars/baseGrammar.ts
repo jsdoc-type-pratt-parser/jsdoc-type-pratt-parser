@@ -1,4 +1,4 @@
-import { Grammar } from './Grammar'
+import type { Grammar } from './Grammar'
 import { nullableParslet } from '../parslets/NullableParslets'
 import { optionalParslet } from '../parslets/OptionalParslet'
 import { numberParslet } from '../parslets/NumberParslet'

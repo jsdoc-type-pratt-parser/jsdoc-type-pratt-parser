@@ -1,4 +1,4 @@
-import { composeParslet, ParsletFunction } from './Parslet'
+import { composeParslet, type ParsletFunction } from './Parslet'
 import { Precedence } from '../Precedence'
 import { assertRootResult } from '../assertTypes'
 import { NoParsletFoundError } from '../errors'

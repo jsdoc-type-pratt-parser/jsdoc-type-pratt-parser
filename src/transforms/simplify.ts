@@ -1,6 +1,6 @@
 import { identityTransformRules } from './identityTransformRules'
 import { transform } from './transform'
-import { RootResult } from '../result/RootResult'
+import type { RootResult } from '../result/RootResult'
 
 const simplifyRules = identityTransformRules()
 
