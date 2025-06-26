@@ -12,7 +12,7 @@
     "test:spec": "mocha",
     "test:coverage": "nyc --all npm run test:spec",
     "test:coveralls": "nyc report --reporter=lcov && coveralls",
-    "lint": "ts-standard",
+    "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "build": "rollup -c",
     "apidoc": "typedoc --options typedoc.json",

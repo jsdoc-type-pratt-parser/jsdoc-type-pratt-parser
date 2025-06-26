@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 
-import { RootResult } from '../src/result/RootResult'
+import type { RootResult } from '../src/result/RootResult'
 import { catharsisTransform } from '../src/transforms/catharsisTransform'
 
 describe('transform', () => {

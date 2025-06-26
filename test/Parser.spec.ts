@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import { Parser } from '../src/Parser'
 
-import { NoParsletFoundError, EarlyEndOfParseError } from '../src/errors'
+import type { NoParsletFoundError, EarlyEndOfParseError } from '../src/errors'
 
 import { typescriptGrammar } from '../src/grammars/typescriptGrammar'
 import { Lexer } from '../src/lexer/Lexer'

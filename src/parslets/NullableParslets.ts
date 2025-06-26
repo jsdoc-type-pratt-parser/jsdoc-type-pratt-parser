@@ -1,4 +1,4 @@
-import { ParsletFunction } from './Parslet'
+import type { ParsletFunction } from './Parslet'
 import { Precedence } from '../Precedence'
 import { isQuestionMarkUnknownType } from './isQuestionMarkUnkownType'
 import { assertRootResult } from '../assertTypes'

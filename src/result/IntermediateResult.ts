@@ -1,5 +1,5 @@
-import { KeyValueResult, NonRootResult } from './NonRootResult'
-import { RootResult } from './RootResult'
+import type { KeyValueResult, NonRootResult } from './NonRootResult'
+import type { RootResult } from './RootResult'
 
 export type IntermediateResult = NonRootResult | ParameterList | ReadonlyProperty
 

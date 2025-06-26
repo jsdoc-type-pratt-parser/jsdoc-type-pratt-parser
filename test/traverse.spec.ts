@@ -1,7 +1,7 @@
 import { expect, use } from 'chai'
-import { SinonSpy, spy } from 'sinon'
+import { type SinonSpy, spy } from 'sinon'
 import sinonChai from 'sinon-chai'
-import {
+import type {
   GenericResult,
   NameResult,
   RootResult,
