@@ -1,5 +1,5 @@
 import { composeParslet } from './Parslet'
-import { isQuestionMarkUnknownType } from './isQuestionMarkUnkownType'
+import { isQuestionMarkUnknownType } from './isQuestionMarkUnknownType'
 
 export const specialTypesParslet = composeParslet({
   name: 'specialTypesParslet',

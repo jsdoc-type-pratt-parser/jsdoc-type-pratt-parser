@@ -1,6 +1,6 @@
 import type { ParsletFunction } from './Parslet'
 import { Precedence } from '../Precedence'
-import { isQuestionMarkUnknownType } from './isQuestionMarkUnkownType'
+import { isQuestionMarkUnknownType } from './isQuestionMarkUnknownType'
 import { assertRootResult } from '../assertTypes'
 
 export const nullableParslet: ParsletFunction = (parser, precedence, left) => {
