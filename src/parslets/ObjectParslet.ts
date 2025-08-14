@@ -23,7 +23,7 @@ export function createObjectParslet ({ objectFieldGrammar, allowKeyTypes }: {
       }
 
       if (!parser.consume('}')) {
-        let separator: 'comma' | 'semicolon' | 'linebreak' | undefined
+        let separator: 'comma' | 'semicolon' | 'linebreak' | 'comma-and-linebreak' | 'semicolon-and-linebreak' | undefined
 
         const fieldParser = new Parser(objectFieldGrammar, parser.lexer, parser)
 
@@ -64,13 +64,21 @@ export function createObjectParslet ({ objectFieldGrammar, allowKeyTypes }: {
             throw new UnexpectedTypeError(field)
           }
           if (parser.lexer.current.startOfLine) {
-            separator = 'linebreak'
+            separator ??= 'linebreak';
             // Handle single stray comma/semi-colon
             parser.consume(',') || parser.consume(';')
           } else if (parser.consume(',')) {
-            separator = 'comma'
+            if (parser.lexer.current.startOfLine) {
+              separator = 'comma-and-linebreak'
+            } else {
+              separator = 'comma'
+            }
           } else if (parser.consume(';')) {
-            separator = 'semicolon'
+            if (parser.lexer.current.startOfLine) {
+              separator = 'semicolon-and-linebreak'
+            } else {
+              separator = 'semicolon'
+            }
           } else {
             break
           }
@@ -81,7 +89,7 @@ export function createObjectParslet ({ objectFieldGrammar, allowKeyTypes }: {
         }
 
         result.meta.separator = separator ?? 'comma' // TODO: use undefined here
-        if (separator === 'linebreak') {
+        if ((separator ?? '').endsWith('linebreak')) {
           // TODO: Consume appropriate whitespace
           result.meta.propertyIndent = '  '
         }

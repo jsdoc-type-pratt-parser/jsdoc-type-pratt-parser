@@ -144,19 +144,33 @@ export function stringifyRules (): TransformRules<string> {
 
     JsdocTypeNumber: result => result.value.toString(),
 
-    JsdocTypeObject: (result, transform) => `{${
-      (result.meta.separator === 'linebreak' && result.elements.length > 1
+    JsdocTypeObject: (result, transform) => {
       /* c8 ignore next -- Guard */
-       ? '\n' + (result.meta.propertyIndent ?? '')
-       : '') +
+      const lbType = (result.meta.separator ?? '').endsWith('linebreak')
+      const lbEnding = result.meta.separator === 'comma-and-linebreak'
+        ? ',\n'
+        : result.meta.separator === 'semicolon-and-linebreak'
+          ? ';\n'
+          : result.meta.separator === 'linebreak' ? '\n' : ''
+
+      const separatorForSingleObjectField = result.meta.separatorForSingleObjectField ?? false
+
+      return `{${
+      /* c8 ignore next -- Guard */
+      (lbType && (separatorForSingleObjectField || result.elements.length > 1) ? '\n' + (result.meta.propertyIndent ?? '') : '') +
       result.elements.map(transform).join(
-        /* c8 ignore next -- Guard */
-        (result.meta.separator === 'comma' ? ', ' : result.meta.separator === 'linebreak' ? '\n' + (result.meta.propertyIndent ?? '') : '; ')
+        (result.meta.separator === 'comma' ? ', ' : lbType
+          ? lbEnding +
+            /* c8 ignore next -- Guard */
+            (result.meta.propertyIndent ?? '')
+          : '; ')
       ) +
-      (result.meta.separator === 'linebreak' && result.elements.length > 1
-       ? '\n'
-       : '')
-    }}`,
+      (separatorForSingleObjectField && result.elements.length === 1
+        ? (result.meta.separator === 'comma' ? ',' : lbType ? lbEnding : ';')
+        : '') +
+      (lbType && result.elements.length > 1 ? '\n' : '')
+    }}`
+    },
 
     JsdocTypeOptional: (result, transform) => applyPosition(result.meta.position, transform(result.element), '='),
 

@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 
 import { stringifyRules, stringify } from '../src/index'
-import type { RootResult, FunctionResult, GenericResult, ParenthesisResult } from '../src/result/RootResult'
+import type { RootResult, ObjectResult, FunctionResult, GenericResult, ParenthesisResult } from '../src/result/RootResult'
 import type { KeyValueResult } from '../src/result/NonRootResult'
 
 describe('`stringifyRules`', () => {
@@ -72,13 +72,162 @@ describe('`stringifyRules`', () => {
 
   // Note: This should not occur as the `element` should not be undefined per
   //    `ParenthesisResult`
-  it('should transform a generic with a union element', () => {
+  it('should transform a set of parentheses', () => {
     const expected = '()'
     const rootResult: unknown = {
       type: 'JsdocTypeParenthesis',
       element: undefined
     }
     const result = stringify(rootResult as ParenthesisResult)
+    expect(result).to.equal(expected)
+  })
+
+  it('should transform a single object field with linebreaks', () => {
+    const expected = `{
+  range: boolean
+}`
+    const rootResult: ObjectResult = {
+      type: 'JsdocTypeObject',
+      meta: {
+        separator: 'linebreak',
+        propertyIndent: '  ',
+        separatorForSingleObjectField: true
+      },
+      elements: [
+        {
+          type: 'JsdocTypeObjectField',
+          key: 'range',
+          optional: false,
+          readonly: false,
+          right: {
+            type: 'JsdocTypeName',
+            value: 'boolean'
+          },
+          meta: {
+            quote: undefined
+          }
+        }
+      ]
+    }
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  })
+
+  it('should transform a single object field with dropped comma and linebreak', () => {
+    const expected = `{range: boolean}`
+    const rootResult: ObjectResult = {
+      type: 'JsdocTypeObject',
+      meta: {
+        separator: 'comma-and-linebreak',
+        propertyIndent: '  ',
+        separatorForSingleObjectField: false
+      },
+      elements: [
+        {
+          type: 'JsdocTypeObjectField',
+          key: 'range',
+          optional: false,
+          readonly: false,
+          right: {
+            type: 'JsdocTypeName',
+            value: 'boolean'
+          },
+          meta: {
+            quote: undefined
+          }
+        }
+      ]
+    }
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  })
+
+  it('should transform a single object field with comma and linebreak', () => {
+    const expected = `{
+  range: boolean,
+}`
+    const rootResult: ObjectResult = {
+      type: 'JsdocTypeObject',
+      meta: {
+        separator: 'comma-and-linebreak',
+        propertyIndent: '  ',
+        separatorForSingleObjectField: true
+      },
+      elements: [
+        {
+          type: 'JsdocTypeObjectField',
+          key: 'range',
+          optional: false,
+          readonly: false,
+          right: {
+            type: 'JsdocTypeName',
+            value: 'boolean'
+          },
+          meta: {
+            quote: undefined
+          }
+        }
+      ]
+    }
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  })
+
+  it('should transform a single object field with comma', () => {
+    const expected = `{range: boolean,}`
+    const rootResult: ObjectResult = {
+      type: 'JsdocTypeObject',
+      meta: {
+        separator: 'comma',
+        propertyIndent: '  ',
+        separatorForSingleObjectField: true
+      },
+      elements: [
+        {
+          type: 'JsdocTypeObjectField',
+          key: 'range',
+          optional: false,
+          readonly: false,
+          right: {
+            type: 'JsdocTypeName',
+            value: 'boolean'
+          },
+          meta: {
+            quote: undefined
+          }
+        }
+      ]
+    }
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  })
+
+  it('should transform a single object field with semicolon', () => {
+    const expected = `{range: boolean;}`
+    const rootResult: ObjectResult = {
+      type: 'JsdocTypeObject',
+      meta: {
+        separator: 'semicolon',
+        propertyIndent: '  ',
+        separatorForSingleObjectField: true
+      },
+      elements: [
+        {
+          type: 'JsdocTypeObjectField',
+          key: 'range',
+          optional: false,
+          readonly: false,
+          right: {
+            type: 'JsdocTypeName',
+            value: 'boolean'
+          },
+          meta: {
+            quote: undefined
+          }
+        }
+      ]
+    }
+    const result = stringify(rootResult)
     expect(result).to.equal(expected)
   })
 

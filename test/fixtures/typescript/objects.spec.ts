@@ -427,6 +427,100 @@ describe('typescript objects tests', () => {
     })
   })
 
+  describe('comma-and-linebreaks can be separators', () => {
+    testFixture({
+      input:
+        `{
+  range: boolean,
+  loc: boolean
+}`,
+      stringified: '{\n  range: boolean,\n  loc: boolean\n}',
+      modes: ['typescript', 'jsdoc', 'closure'],
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma-and-linebreak',
+          propertyIndent: '  '
+        },
+        elements: [
+          {
+            type: 'JsdocTypeObjectField',
+            key: 'range',
+            optional: false,
+            readonly: false,
+            right: {
+              type: 'JsdocTypeName',
+              value: 'boolean'
+            },
+            meta: {
+              quote: undefined
+            }
+          },
+          {
+            type: 'JsdocTypeObjectField',
+            key: 'loc',
+            optional: false,
+            readonly: false,
+            right: {
+              type: 'JsdocTypeName',
+              value: 'boolean'
+            },
+            meta: {
+              quote: undefined
+            }
+          }
+        ]
+      }
+    })
+  })
+
+  describe('semicolon-and-linebreaks can be separators', () => {
+    testFixture({
+      input:
+        `{
+  range: boolean;
+  loc: boolean
+}`,
+      stringified: '{\n  range: boolean;\n  loc: boolean\n}',
+      modes: ['typescript', 'jsdoc', 'closure'],
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: {
+          separator: 'semicolon-and-linebreak',
+          propertyIndent: '  '
+        },
+        elements: [
+          {
+            type: 'JsdocTypeObjectField',
+            key: 'range',
+            optional: false,
+            readonly: false,
+            right: {
+              type: 'JsdocTypeName',
+              value: 'boolean'
+            },
+            meta: {
+              quote: undefined
+            }
+          },
+          {
+            type: 'JsdocTypeObjectField',
+            key: 'loc',
+            optional: false,
+            readonly: false,
+            right: {
+              type: 'JsdocTypeName',
+              value: 'boolean'
+            },
+            meta: {
+              quote: undefined
+            }
+          }
+        ]
+      }
+    })
+  })
+
   describe('multiple levels of square brackets', () => {
     testFixture({
       input: 'obj["level1"]["level2"]',
