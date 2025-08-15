@@ -345,7 +345,8 @@ describe('typescript objects tests', () => {
       expected: {
         type: 'JsdocTypeObject',
         meta: {
-          separator: 'linebreak'
+          separator: 'linebreak',
+          propertyIndent: '  '
         },
         elements: [
           {
@@ -377,7 +378,8 @@ describe('typescript objects tests', () => {
       expected: {
         type: 'JsdocTypeObject',
         meta: {
-          separator: 'linebreak'
+          separator: 'linebreak',
+          propertyIndent: '  '
         },
         elements: [
           {
