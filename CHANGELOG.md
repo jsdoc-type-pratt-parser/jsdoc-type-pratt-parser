@@ -1,3 +1,10 @@
+# [4.8.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v4.7.0...v4.8.0) (2025-08-15)
+
+
+### Features
+
+* add generic arrow function ([cf665a9](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/cf665a90e6143cb5bf4b195d50c48efeac39f4ca))
+
 # [4.7.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v4.6.0...v4.7.0) (2025-08-15)
 
 
