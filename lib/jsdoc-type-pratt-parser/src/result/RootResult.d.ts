@@ -2,7 +2,7 @@ import { type JsdocObjectFieldResult, type KeyValueResult, type ObjectFieldResul
 /**
  * A parse result that corresponds to a valid type expression.
  */
-export type RootResult = NameResult | UnionResult | GenericResult | StringValueResult | NullResult | UndefinedResult | AnyResult | UnknownResult | FunctionResult | ObjectResult | NamePathResult | SymbolResult | TypeOfResult | KeyOfResult | ImportResult | TupleResult | SpecialNamePath | OptionalResult<RootResult> | NullableResult<RootResult> | NotNullableResult<RootResult> | VariadicResult<RootResult> | ParenthesisResult | IntersectionResult | NumberResult | PredicateResult | AssertsResult | ReadonlyArrayResult;
+export type RootResult = NameResult | UnionResult | GenericResult | StringValueResult | NullResult | UndefinedResult | AnyResult | UnknownResult | FunctionResult | ObjectResult | NamePathResult | SymbolResult | TypeOfResult | KeyOfResult | ImportResult | TupleResult | SpecialNamePath | OptionalResult<RootResult> | NullableResult<RootResult> | NotNullableResult<RootResult> | VariadicResult<RootResult> | ParenthesisResult | IntersectionResult | NumberResult | PredicateResult | AssertsResult | ReadonlyArrayResult | AssertsPlainResult;
 export type QuoteStyle = 'single' | 'double';
 /**
  * `element` is optional.
@@ -240,4 +240,11 @@ export interface AssertsResult {
 export interface ReadonlyArrayResult {
     type: 'JsdocTypeReadonlyArray';
     element: RootResult;
+}
+/**
+ * An asserts result without `is`. Is used like this: `@return {asserts foo}`
+ */
+export interface AssertsPlainResult {
+    type: 'JsdocTypeAssertsPlain';
+    element: NameResult;
 }
