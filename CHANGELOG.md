@@ -1,3 +1,10 @@
+# [4.6.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v4.5.0...v4.6.0) (2025-08-15)
+
+
+### Features
+
+* allow question mark as object property ([cb98813](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/cb98813708e506af80f4055b8340885af12718dc))
+
 # [4.5.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v4.4.1...v4.5.0) (2025-08-15)
 
 
