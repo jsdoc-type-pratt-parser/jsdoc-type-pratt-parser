@@ -1,3 +1,10 @@
+# [4.4.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v4.3.0...v4.4.0) (2025-08-15)
+
+
+### Features
+
+* readonly index signature ([2560b7d](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/2560b7d44cd3dacd63879a448edc34ed6e7d6987))
+
 # [4.3.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v4.2.0...v4.3.0) (2025-08-15)
 
 
