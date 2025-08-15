@@ -1,3 +1,15 @@
+# [4.2.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v4.1.0...v4.2.0) (2025-08-15)
+
+
+### Bug Fixes
+
+* **`stringify`:** allow for linebreak separator ([cb5007b](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/cb5007bfc18340974a5a744aeba2d8e028374a7d))
+
+
+### Features
+
+* add `propertyIndent` meta ([5016448](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/501644849cee0a437c24461e11722f21eb762c77))
+
 # [4.1.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v4.0.0...v4.1.0) (2024-08-05)
 
 
