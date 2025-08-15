@@ -2,7 +2,7 @@ import { type JsdocObjectFieldResult, type KeyValueResult, type ObjectFieldResul
 /**
  * A parse result that corresponds to a valid type expression.
  */
-export type RootResult = NameResult | UnionResult | GenericResult | StringValueResult | NullResult | UndefinedResult | AnyResult | UnknownResult | FunctionResult | ObjectResult | NamePathResult | SymbolResult | TypeOfResult | KeyOfResult | ImportResult | TupleResult | SpecialNamePath | OptionalResult<RootResult> | NullableResult<RootResult> | NotNullableResult<RootResult> | VariadicResult<RootResult> | ParenthesisResult | IntersectionResult | NumberResult | PredicateResult | AssertsResult | ReadonlyArrayResult | AssertsPlainResult;
+export type RootResult = NameResult | UnionResult | GenericResult | StringValueResult | NullResult | UndefinedResult | AnyResult | UnknownResult | FunctionResult | ObjectResult | NamePathResult | SymbolResult | TypeOfResult | KeyOfResult | ImportResult | TupleResult | SpecialNamePath | OptionalResult<RootResult> | NullableResult<RootResult> | NotNullableResult<RootResult> | VariadicResult<RootResult> | ParenthesisResult | IntersectionResult | NumberResult | PredicateResult | AssertsResult | ReadonlyArrayResult | AssertsPlainResult | ConditionalResult;
 export type QuoteStyle = 'single' | 'double';
 /**
  * `element` is optional.
@@ -72,6 +72,7 @@ export interface GenericResult {
     type: 'JsdocTypeGeneric';
     left: RootResult;
     elements: RootResult[];
+    infer?: boolean;
     meta: {
         brackets: 'angle' | 'square';
         dot: boolean;
@@ -247,4 +248,14 @@ export interface ReadonlyArrayResult {
 export interface AssertsPlainResult {
     type: 'JsdocTypeAssertsPlain';
     element: NameResult;
+}
+/**
+ * A TypeScript conditional. Is used like this: `A extends B ? C : D`.
+ */
+export interface ConditionalResult {
+    type: 'JsdocTypeConditional';
+    checksType: RootResult;
+    extendsType: RootResult;
+    trueType: RootResult;
+    falseType: RootResult;
 }
