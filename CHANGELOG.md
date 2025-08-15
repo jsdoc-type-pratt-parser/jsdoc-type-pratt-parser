@@ -1,3 +1,10 @@
+# [4.5.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v4.4.1...v4.5.0) (2025-08-15)
+
+
+### Features
+
+* `asserts` without `is` ([8a5ca3d](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/8a5ca3d3a05cb12dbcb6ea2b27186c5204b1292e))
+
 ## [4.4.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v4.4.0...v4.4.1) (2025-08-15)
 
 
