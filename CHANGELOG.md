@@ -1,3 +1,12 @@
+## [4.4.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v4.4.0...v4.4.1) (2025-08-15)
+
+
+### Bug Fixes
+
+* allow typeof as object key ([fc3db3e](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/fc3db3e5cafffc456805e33645fd0490907643c9))
+* avoid adding linebreaks to linebreak separator when not > 1 item ([482bb4d](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/482bb4d1bfb0da9f6fef8f58e793665710a72152))
+* handle stray commas/semi-colons in objects ([6764127](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/676412710e6cb0fbd733f5f72aba7002c64a862d))
+
 # [4.4.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v4.3.0...v4.4.0) (2025-08-15)
 
 
