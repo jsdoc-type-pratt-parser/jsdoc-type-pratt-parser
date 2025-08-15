@@ -1,8 +1,8 @@
-import { type QuoteStyle, type RootResult } from './RootResult';
+import { type QuoteStyle, type RootResult, type NameResult } from './RootResult';
 /**
  * A parse sub result that might not be a valid type expression on its own.
  */
-export type NonRootResult = RootResult | PropertyResult | ObjectFieldResult | JsdocObjectFieldResult | KeyValueResult | MappedTypeResult | IndexSignatureResult;
+export type NonRootResult = RootResult | PropertyResult | ObjectFieldResult | JsdocObjectFieldResult | KeyValueResult | MappedTypeResult | IndexSignatureResult | TypeParameterResult;
 export interface ObjectFieldResult {
     type: 'JsdocTypeObjectField';
     key: string | MappedTypeResult | IndexSignatureResult;
@@ -45,4 +45,10 @@ export interface MappedTypeResult {
     type: 'JsdocTypeMappedType';
     key: string;
     right: RootResult;
+}
+export interface TypeParameterResult {
+    type: 'JsdocTypeTypeParameter';
+    defaultValue?: RootResult;
+    name: NameResult;
+    constraint?: RootResult;
 }

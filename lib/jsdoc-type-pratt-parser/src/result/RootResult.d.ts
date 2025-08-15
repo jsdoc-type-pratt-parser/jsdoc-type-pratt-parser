@@ -1,4 +1,4 @@
-import { type JsdocObjectFieldResult, type KeyValueResult, type ObjectFieldResult, type PropertyResult } from './NonRootResult';
+import { type JsdocObjectFieldResult, type KeyValueResult, type ObjectFieldResult, type PropertyResult, type TypeParameterResult } from './NonRootResult';
 /**
  * A parse result that corresponds to a valid type expression.
  */
@@ -125,6 +125,7 @@ export interface FunctionResult {
     constructor: boolean;
     arrow: boolean;
     parenthesis: boolean;
+    typeParameters?: TypeParameterResult[];
 }
 /**
  * An object type. Contains entries which can be {@link KeyValueResult}s or {@link NameResult}s. In most grammars the
