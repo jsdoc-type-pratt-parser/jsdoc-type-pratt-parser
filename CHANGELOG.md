@@ -1,3 +1,11 @@
+# [4.7.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v4.6.0...v4.7.0) (2025-08-15)
+
+
+### Features
+
+* add `infer` support ([6ffcdc6](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/6ffcdc6d9964b82a3ba99c332535034e28897a08))
+* make `ConditionalResult` ([28ace4a](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/28ace4a9f9bbdc4fd746bca7636185606b5e3695))
+
 # [4.6.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v4.5.0...v4.6.0) (2025-08-15)
 
 
