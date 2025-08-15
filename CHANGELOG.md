@@ -1,3 +1,10 @@
+# [4.3.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v4.2.0...v4.3.0) (2025-08-15)
+
+
+### Features
+
+* add `JsdocTypeReadonlyArray` type ([ef64e00](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/ef64e004feaf83b7be38f54b183bf8435a80759e))
+
 # [4.2.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v4.1.0...v4.2.0) (2025-08-15)
 
 
