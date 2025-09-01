@@ -1,5 +1,5 @@
-import { NonRootResult } from './result/NonRootResult';
-import { RootResult } from './result/RootResult';
+import type { NonRootResult } from './result/NonRootResult';
+import type { RootResult } from './result/RootResult';
 /**
  * A node visitor function.
  * @param node the visited node.

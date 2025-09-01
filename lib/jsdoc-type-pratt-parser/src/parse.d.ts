@@ -1,4 +1,4 @@
-import { RootResult } from './result/RootResult';
+import type { RootResult } from './result/RootResult';
 export type ParseMode = 'closure' | 'jsdoc' | 'typescript';
 /**
  * This function parses the given expression in the given mode and produces a {@link RootResult}.

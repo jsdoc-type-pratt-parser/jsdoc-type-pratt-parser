@@ -1,2 +1,2 @@
-import { ParsletFunction } from '../parslets/Parslet';
+import type { ParsletFunction } from '../parslets/Parslet';
 export type Grammar = ParsletFunction[];
