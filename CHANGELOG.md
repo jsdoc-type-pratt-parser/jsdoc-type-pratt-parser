@@ -1,3 +1,15 @@
+# [5.0.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v4.8.0...v5.0.0) (2025-09-05)
+
+
+### Features
+
+* add ESM export; fixes [#173](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/issues/173) ([f5f4155](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/f5f4155e70630f994b70e3ad1c99801ade5b0cef))
+
+
+### BREAKING CHANGES
+
+* Adds `exports`
+
 # [4.8.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v4.7.0...v4.8.0) (2025-08-15)
 
 
