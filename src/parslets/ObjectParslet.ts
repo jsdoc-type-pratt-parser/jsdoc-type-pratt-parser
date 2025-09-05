@@ -2,8 +2,8 @@ import { composeParslet, type ParsletFunction } from './Parslet'
 import { Parser } from '../Parser'
 import { Precedence } from '../Precedence'
 import { UnexpectedTypeError } from '../errors'
-import { type ObjectResult } from '../result/RootResult'
-import { type Grammar } from '../grammars/Grammar'
+import type { ObjectResult } from '../result/RootResult'
+import type { Grammar } from '../grammars/Grammar'
 
 export function createObjectParslet ({ objectFieldGrammar, allowKeyTypes }: {
   objectFieldGrammar: Grammar

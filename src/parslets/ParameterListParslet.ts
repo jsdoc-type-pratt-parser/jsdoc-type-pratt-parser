@@ -2,8 +2,8 @@ import { composeParslet, type ParsletFunction } from './Parslet'
 import { Precedence } from '../Precedence'
 import { assertPlainKeyValueOrRootResult } from '../assertTypes'
 import { NoParsletFoundError } from '../errors'
-import { type KeyValueResult } from '..'
-import { type RootResult } from '../result/RootResult'
+import type { KeyValueResult } from '..'
+import type { RootResult } from '../result/RootResult'
 
 export function createParameterListParslet ({ allowTrailingComma }: {
   allowTrailingComma: boolean

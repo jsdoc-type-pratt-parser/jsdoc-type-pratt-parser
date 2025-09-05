@@ -33,7 +33,7 @@ export function createSpecialNamePathParslet ({ pathGrammar, allowedTypes }: {
           value: token.text.slice(1, -1),
           specialType: type,
           meta: {
-            quote: token.text[0] === '\'' ? 'single' : 'double'
+            quote: token.text.startsWith('\'') ? 'single' : 'double'
           }
         }
       } else {

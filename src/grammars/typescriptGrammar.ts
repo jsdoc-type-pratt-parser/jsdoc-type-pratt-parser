@@ -1,6 +1,6 @@
 import { assertsParslet } from '../parslets/assertsParslet'
 import { baseGrammar } from './baseGrammar'
-import { type Grammar } from './Grammar'
+import type { Grammar } from './Grammar'
 import { pathGrammar } from './pathGrammar'
 import { createNameParslet } from '../parslets/NameParslet'
 import { nullableParslet } from '../parslets/NullableParslets'

@@ -1,7 +1,7 @@
-import {
-  type QuoteStyle,
-  type RootResult,
-  type NameResult
+import type {
+  QuoteStyle,
+  RootResult,
+  NameResult
 } from './RootResult'
 
 /**

@@ -1,18 +1,18 @@
-import { type TransformRules } from './transform'
-import {
-  type JsdocObjectFieldResult,
-  type KeyValueResult,
-  type NonRootResult,
-  type ObjectFieldResult
+import type { TransformRules } from './transform'
+import type {
+  JsdocObjectFieldResult,
+  KeyValueResult,
+  NonRootResult,
+  ObjectFieldResult
 } from '../result/NonRootResult'
-import {
-  type FunctionResult,
-  type NameResult,
-  type StringValueResult,
-  type SymbolResult,
-  type RootResult,
-  type VariadicResult,
-  type NumberResult
+import type {
+  FunctionResult,
+  NameResult,
+  StringValueResult,
+  SymbolResult,
+  RootResult,
+  VariadicResult,
+  NumberResult
 } from '../result/RootResult'
 
 export function identityTransformRules (): TransformRules<NonRootResult> {
@@ -104,15 +104,13 @@ export function identityTransformRules (): TransformRules<NonRootResult> {
       right: transform(result.right) as RootResult
     }),
 
-    JsdocTypeKeyValue: (result, transform) => {
-      return {
-        type: 'JsdocTypeKeyValue',
-        key: result.key,
-        right: result.right === undefined ? undefined : transform(result.right) as RootResult,
-        optional: result.optional,
-        variadic: result.variadic
-      }
-    },
+    JsdocTypeKeyValue: (result, transform) => ({
+      type: 'JsdocTypeKeyValue',
+      key: result.key,
+      right: result.right === undefined ? undefined : transform(result.right) as RootResult,
+      optional: result.optional,
+      variadic: result.variadic
+    }),
 
     JsdocTypeImport: (result, transform) => ({
       type: 'JsdocTypeImport',

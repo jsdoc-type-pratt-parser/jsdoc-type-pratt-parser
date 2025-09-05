@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 
-import { type NonRootResult } from '../src/result/NonRootResult'
+import type { NonRootResult } from '../src/result/NonRootResult'
 import { transform, identityTransformRules } from '../src/index'
 import { notAvailableTransform } from '../src/transforms/transform'
 

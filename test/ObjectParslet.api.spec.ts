@@ -3,10 +3,10 @@ import { stub, type SinonStub } from 'sinon'
 
 import { jsdocGrammar } from '../src/grammars/jsdocGrammar'
 import { Parser } from '../src/Parser'
-import { type Grammar } from '../src/grammars/Grammar'
+import type { Grammar } from '../src/grammars/Grammar'
 
 import { createObjectParslet } from '../src/parslets/ObjectParslet'
-import { type RootResult } from '../src/result/RootResult'
+import type { RootResult } from '../src/result/RootResult'
 import { Lexer } from '../src/lexer/Lexer'
 
 describe('`ObjectParslet`', () => {
@@ -37,6 +37,7 @@ describe('`ObjectParslet`', () => {
 
     const ret: unknown = undefined
 
+    // eslint-disable-next-line @typescript-eslint/unbound-method -- Ok here
     const parseIntermediateType = Parser.prototype.parseIntermediateType;
 
     (parseIntermediateType as SinonStub).callThrough().onSecondCall().returns(

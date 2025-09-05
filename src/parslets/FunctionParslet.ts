@@ -7,7 +7,7 @@ import { UnexpectedTypeError } from '../errors'
 import { assertPlainKeyValueOrRootResult } from '../assertTypes'
 
 export function getParameters (value: IntermediateResult): Array<RootResult | KeyValueResult> {
-  let parameters: NonRootResult[]
+  let parameters: NonRootResult[] = []
   if (value.type === 'JsdocTypeParameterList') {
     parameters = value.elements
   } else if (value.type === 'JsdocTypeParenthesis') {

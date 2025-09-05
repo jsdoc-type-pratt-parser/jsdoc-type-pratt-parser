@@ -12,7 +12,7 @@ export const genericArrowFunctionParslet = composeParslet({
     parser.consume('<')
 
     do {
-      let defaultValue
+      let defaultValue = undefined
       let name = parser.parseIntermediateType(Precedence.SYMBOL)
       if (name.type === 'JsdocTypeOptional') {
         name = name.element
@@ -21,7 +21,7 @@ export const genericArrowFunctionParslet = composeParslet({
       if (name.type !== 'JsdocTypeName') {
         throw new UnexpectedTypeError(name)
       }
-      let constraint
+      let constraint = undefined
       if (parser.consume('extends')) {
         constraint = parser.parseType(Precedence.SYMBOL)
         // Got an equal sign

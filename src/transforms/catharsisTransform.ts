@@ -1,6 +1,6 @@
 import { extractSpecialParams, notAvailableTransform, transform, type TransformRules } from './transform'
 import { assertRootResult } from '../assertTypes'
-import { type RootResult } from '../result/RootResult'
+import type { RootResult } from '../result/RootResult'
 import { quote } from './stringify'
 
 export const reservedWords = [
@@ -255,13 +255,11 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
     elements: result.elements.map(e => transform(e))
   }),
 
-  JsdocTypeKeyValue: (result, transform) => {
-    return {
-      type: 'FieldType',
-      key: makeName(result.key),
-      value: result.right === undefined ? undefined : transform(result.right)
-    }
-  },
+  JsdocTypeKeyValue: (result, transform) => ({
+    type: 'FieldType',
+    key: makeName(result.key),
+    value: result.right === undefined ? undefined : transform(result.right)
+  }),
 
   JsdocTypeNamePath: (result, transform) => {
     const leftResult = transform(result.left) as CatharsisNameResult

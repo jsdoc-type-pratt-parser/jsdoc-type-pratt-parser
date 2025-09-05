@@ -10,7 +10,7 @@ export const stringValueParslet = composeParslet({
       type: 'JsdocTypeStringValue',
       value: text.slice(1, -1),
       meta: {
-        quote: text[0] === '\'' ? 'single' : 'double'
+        quote: text.startsWith('\'') ? 'single' : 'double'
       }
     }
   }

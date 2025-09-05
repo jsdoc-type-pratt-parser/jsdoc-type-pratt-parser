@@ -1,5 +1,5 @@
 import { composeParslet } from './Parslet'
-import { type IndexSignatureResult, type MappedTypeResult } from '../result/NonRootResult'
+import type { IndexSignatureResult, MappedTypeResult } from '../result/NonRootResult'
 import { Precedence } from '../Precedence'
 
 export const objectSquaredPropertyParslet = composeParslet({

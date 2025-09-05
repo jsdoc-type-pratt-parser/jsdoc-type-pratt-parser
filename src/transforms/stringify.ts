@@ -1,6 +1,6 @@
 import { transform, type TransformRules } from './transform'
-import { type NonRootResult } from '../result/NonRootResult'
-import { type RootResult } from '../result/RootResult'
+import type { NonRootResult } from '../result/NonRootResult'
+import type { RootResult } from '../result/RootResult'
 
 function applyPosition (position: 'prefix' | 'suffix', target: string, value: string): string {
   return position === 'prefix' ? value + target : target + value
@@ -115,9 +115,7 @@ export function stringifyRules (): TransformRules<string> {
       }
     },
 
-    JsdocTypeJsdocObjectField: (result, transform) => {
-      return `${transform(result.left)}: ${transform(result.right)}`
-    },
+    JsdocTypeJsdocObjectField: (result, transform) => `${transform(result.left)}: ${transform(result.right)}`,
 
     JsdocTypeKeyValue: (result, transform) => {
       let text = result.key

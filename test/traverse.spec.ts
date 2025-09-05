@@ -14,12 +14,14 @@ import { traverse } from '../src/traverse'
 
 use(sinonChai)
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- Testing
 function expectOrder (calls: Array<[SinonSpy, any[]]>): void {
   const callsCount: Map<SinonSpy, number> = new Map<SinonSpy, number>()
   for (let i = 0; i < calls.length; i++) {
     const [cb, args] = calls[i]
     const count = (callsCount.has(cb) ? callsCount.get(cb) : 0) as number
     const call = cb.getCall(count)
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- Testing
     expect(call, `call ${i} called with correct arguments`).to.have.been.calledWithExactly(...args)
     if (i > 0) {
       const cbBefore = calls[i - 1][0]

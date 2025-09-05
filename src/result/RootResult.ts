@@ -1,9 +1,9 @@
-import {
-  type JsdocObjectFieldResult,
-  type KeyValueResult,
-  type ObjectFieldResult,
-  type PropertyResult,
-  type TypeParameterResult
+import type {
+  JsdocObjectFieldResult,
+  KeyValueResult,
+  ObjectFieldResult,
+  PropertyResult,
+  TypeParameterResult
 } from './NonRootResult'
 
 /**

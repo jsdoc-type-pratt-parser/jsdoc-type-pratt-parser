@@ -1,5 +1,5 @@
 import { baseGrammar } from './baseGrammar'
-import { type Grammar } from './Grammar'
+import type { Grammar } from './Grammar'
 import { pathGrammar } from './pathGrammar'
 import { createFunctionParslet } from '../parslets/FunctionParslet'
 import { stringValueParslet } from '../parslets/StringValueParslet'

@@ -1,4 +1,4 @@
-import { type Token, type TokenType } from './Token'
+import type { Token, TokenType } from './Token'
 
 type PartialToken = Omit<Token, 'startOfLine'>
 
@@ -16,7 +16,7 @@ function makePunctuationRule (type: TokenType): Rule {
 
 function getQuoted (text: string): string | null {
   let position = 0
-  let char
+  let char = undefined
   const mark = text[0]
   let escaped = false
 
@@ -198,8 +198,8 @@ export class Lexer {
     this.next = next
   }
 
-  private static read (text: string, startOfLine: boolean = false): { text: string, token: Token } {
-    startOfLine = startOfLine || breakingWhitespaceRegex.test(text)
+  private static read (text: string, startOfLine = false): { text: string, token: Token } {
+    startOfLine ||= breakingWhitespaceRegex.test(text)
     text = text.trim()
     for (const rule of rules) {
       const partial = rule(text)

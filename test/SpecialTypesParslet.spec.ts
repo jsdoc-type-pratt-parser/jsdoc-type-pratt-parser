@@ -6,6 +6,7 @@ import { Precedence } from '../src/Precedence'
 import { typescriptGrammar } from '../src/grammars/typescriptGrammar'
 
 class BadParser extends Parser {
+  // eslint-disable-next-line @typescript-eslint/class-methods-use-this -- Testing
   consume (): boolean {
     return false
   }

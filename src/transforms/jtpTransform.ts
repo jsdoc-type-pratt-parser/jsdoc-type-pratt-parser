@@ -1,7 +1,7 @@
 import { extractSpecialParams, notAvailableTransform, transform, type TransformRules } from './transform'
-import { type QuoteStyle, type RootResult } from '../result/RootResult'
+import type { QuoteStyle, RootResult } from '../result/RootResult'
 import { assertRootResult } from '../assertTypes'
-import { type NonRootResult } from '../result/NonRootResult'
+import type { NonRootResult } from '../result/NonRootResult'
 
 export type JtpResult =
   JtpNameResult
@@ -386,7 +386,7 @@ const jtpRules: TransformRules<JtpResult> = {
 
     return {
       type: 'RECORD_ENTRY',
-      key: result.key.toString(),
+      key: result.key,
       quoteStyle: getQuoteStyle(result.meta.quote),
       value: right,
       readonly: false

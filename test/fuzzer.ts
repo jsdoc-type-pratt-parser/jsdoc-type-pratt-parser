@@ -1,4 +1,5 @@
 import { parse } from '../src/parse'
+import type { RootResult } from '../src/result/RootResult'
 
 interface BaseFuzzingRule {
   getString: () => string
@@ -46,7 +47,7 @@ function makeFixedRule (weight: number, open: string, close?: string): FuzzingRu
 function createCharRange (start: string, end: string): string[] {
   const startNumber = start.charCodeAt(0)
   const endNumber = end.charCodeAt(0)
-  return [...Array(endNumber - startNumber + 1)]
+  return [...Array(endNumber - startNumber + 1) as undefined[]]
     .map((el, index) => String.fromCharCode(index + startNumber))
 }
 
@@ -145,7 +146,7 @@ function chooseWeighted (): FuzzingRule {
   return found
 }
 
-export function fuzz (length: number, closingP: number = 0.3): string {
+export function fuzz (length: number, closingP = 0.3): string {
   const shouldClose: ClosingFuzzingRule[] = []
   let result = ''
   for (let i = 0; i < length; i++) {
@@ -166,14 +167,23 @@ export function fuzz (length: number, closingP: number = 0.3): string {
 }
 
 if (process.argv.length !== 3) {
+  // eslint-disable-next-line no-console -- Testing
   console.error('How many fuzzes do you want?')
   process.exit(1)
 }
 
-const results: any[] = []
+interface Result {
+  fuzzed?: string,
+  parsed?: RootResult,
+  error?: string,
+  valid?: number,
+  invalid?: number
+}
+
+const results: Result[] = []
 
 while (results.length < parseInt(process.argv[2], 10)) {
-  const result: any = {}
+  const result: Result = {}
   try {
     result.fuzzed = fuzz(4)
     result.parsed = parse(result.fuzzed, 'typescript')
@@ -190,4 +200,5 @@ results.push({
   invalid: results.length - valid
 })
 
+// eslint-disable-next-line no-console -- Testing
 console.log(JSON.stringify(results, null, 2))

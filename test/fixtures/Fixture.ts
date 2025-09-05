@@ -19,12 +19,8 @@ interface BaseFixture {
    * The input that should be parsed
    */
   input: string
-  jtp?: {
-    [K in JtpMode]: CompareMode
-  }
-  catharsis?: {
-    [K in CatharsisMode]: CompareMode
-  }
+  jtp?: Record<JtpMode, CompareMode>
+  catharsis?: Record<CatharsisMode, CompareMode>
   /**
    * The expected parse result object. If you expect different parse results for different parse modes please use
    * `diffExpected`.
@@ -34,9 +30,7 @@ interface BaseFixture {
    * The expected parse results objects for different modes. If a mode is included in `modes` and as a key of
    * `diffExpected` the object in `diffExpected` is used over the result in `expected`.
    */
-  diffExpected?: {
-    [K in ParseMode]?: RootResult
-  }
+  diffExpected?: Partial<Record<ParseMode, RootResult>>
   /**
    * If the stringified output differs from the input it can be provided here. These are mostly whitespace differences.
    */
@@ -53,16 +47,12 @@ type SuccessFixture = BaseFixture & {
 type ErrorFixture = BaseFixture & ({
   error: string
 } | {
-  errors: {
-    [K in ParseMode]?: string
-  }
+  errors: Partial<Record<ParseMode, string>>
 })
 
 export type Fixture = SuccessFixture | ErrorFixture
 
-type Results = {
-  [K in ParseMode]?: RootResult
-}
+type Results = Partial<Record<ParseMode, RootResult>>
 
 function testParser (mode: ParseMode, fixture: Fixture): RootResult | undefined {
   if ('modes' in fixture) {
@@ -75,6 +65,7 @@ function testParser (mode: ParseMode, fixture: Fixture): RootResult | undefined 
       try {
         return parse(fixture.input, mode)
       } catch (e) {
+        // eslint-disable-next-line no-console -- Testing
         console.error(`Parse failed for mode '${mode}'`)
         throw e
       }
@@ -100,6 +91,7 @@ function testParser (mode: ParseMode, fixture: Fixture): RootResult | undefined 
 function compareCatharsis (mode: CatharsisMode, compareMode: CompareMode, results: Results, fixture: Fixture): void {
   if (compareMode !== 'fail') {
     it(`compares to catharsis in '${mode}' mode`, () => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- Overly broad possibilities
       const catharsisResult = catharsisParse(fixture.input, {
         jsdoc: mode === 'jsdoc'
       })
@@ -125,6 +117,7 @@ function compareCatharsis (mode: CatharsisMode, compareMode: CompareMode, result
 function compareJtp (mode: JtpMode, compareMode: CompareMode, results: Results, fixture: Fixture): void {
   if (compareMode !== 'fail') {
     it(`compares to jsdoctypeparser in '${mode}' mode`, () => {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment -- Overly broad possibilities
       const jtpResult = jtpParse(fixture.input, {
         mode
       })

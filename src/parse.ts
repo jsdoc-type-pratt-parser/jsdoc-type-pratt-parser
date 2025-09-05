@@ -38,5 +38,6 @@ export function tryParse (expression: string, modes: ParseMode[] = ['typescript'
       error = e
     }
   }
+  // eslint-disable-next-line @typescript-eslint/only-throw-error -- Ok
   throw error
 }
