@@ -1,4 +1,4 @@
-import { type RootResult } from '../result/RootResult';
+import type { RootResult } from '../result/RootResult';
 export declare const reservedWords: string[];
 interface ModifiableResult {
     optional?: boolean;

@@ -1,4 +1,4 @@
-import { type QuoteStyle, type RootResult, type NameResult } from './RootResult';
+import type { QuoteStyle, RootResult, NameResult } from './RootResult';
 /**
  * A parse sub result that might not be a valid type expression on its own.
  */

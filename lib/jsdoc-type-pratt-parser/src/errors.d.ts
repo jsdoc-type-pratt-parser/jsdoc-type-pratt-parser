@@ -1,5 +1,5 @@
-import { type Token } from './lexer/Token';
-import { type IntermediateResult } from './result/IntermediateResult';
+import type { Token } from './lexer/Token';
+import type { IntermediateResult } from './result/IntermediateResult';
 export declare class NoParsletFoundError extends Error {
     private readonly token;
     constructor(token: Token);

@@ -1,6 +1,6 @@
-import { type IndexSignatureResult, type KeyValueResult, type MappedTypeResult } from './result/NonRootResult';
-import { type NameResult, type NumberResult, type RootResult, type VariadicResult, type TupleResult, type GenericResult } from './result/RootResult';
-import { type IntermediateResult } from './result/IntermediateResult';
+import type { IndexSignatureResult, KeyValueResult, MappedTypeResult } from './result/NonRootResult';
+import type { NameResult, NumberResult, RootResult, VariadicResult, TupleResult, GenericResult } from './result/RootResult';
+import type { IntermediateResult } from './result/IntermediateResult';
 /**
  * Throws an error if the provided result is not a {@link RootResult}
  */

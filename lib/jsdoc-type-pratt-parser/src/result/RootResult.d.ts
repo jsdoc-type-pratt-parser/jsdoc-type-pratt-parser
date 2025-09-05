@@ -1,4 +1,4 @@
-import { type JsdocObjectFieldResult, type KeyValueResult, type ObjectFieldResult, type PropertyResult, type TypeParameterResult } from './NonRootResult';
+import type { JsdocObjectFieldResult, KeyValueResult, ObjectFieldResult, PropertyResult, TypeParameterResult } from './NonRootResult';
 /**
  * A parse result that corresponds to a valid type expression.
  */

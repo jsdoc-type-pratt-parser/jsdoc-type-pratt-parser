@@ -8,12 +8,8 @@ interface BaseFixture {
      * The input that should be parsed
      */
     input: string;
-    jtp?: {
-        [K in JtpMode]: CompareMode;
-    };
-    catharsis?: {
-        [K in CatharsisMode]: CompareMode;
-    };
+    jtp?: Record<JtpMode, CompareMode>;
+    catharsis?: Record<CatharsisMode, CompareMode>;
     /**
      * The expected parse result object. If you expect different parse results for different parse modes please use
      * `diffExpected`.
@@ -23,9 +19,7 @@ interface BaseFixture {
      * The expected parse results objects for different modes. If a mode is included in `modes` and as a key of
      * `diffExpected` the object in `diffExpected` is used over the result in `expected`.
      */
-    diffExpected?: {
-        [K in ParseMode]?: RootResult;
-    };
+    diffExpected?: Partial<Record<ParseMode, RootResult>>;
     /**
      * If the stringified output differs from the input it can be provided here. These are mostly whitespace differences.
      */
@@ -40,9 +34,7 @@ type SuccessFixture = BaseFixture & {
 type ErrorFixture = BaseFixture & ({
     error: string;
 } | {
-    errors: {
-        [K in ParseMode]?: string;
-    };
+    errors: Partial<Record<ParseMode, string>>;
 });
 export type Fixture = SuccessFixture | ErrorFixture;
 /**

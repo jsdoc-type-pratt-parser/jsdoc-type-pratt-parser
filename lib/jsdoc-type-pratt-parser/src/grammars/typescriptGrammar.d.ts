@@ -1,2 +1,2 @@
-import { type Grammar } from './Grammar';
+import type { Grammar } from './Grammar';
 export declare const typescriptGrammar: Grammar;
