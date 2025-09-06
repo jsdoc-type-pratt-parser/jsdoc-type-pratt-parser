@@ -1,3 +1,10 @@
+# [5.1.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v5.0.0...v5.1.0) (2025-09-06)
+
+
+### Features
+
+* **typescript:** allow missing return type; fixes [#81](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/issues/81) ([f3aa55b](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/f3aa55b8ce97191fb4ed47c78eb31778c7842b87))
+
 # [5.0.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v4.8.0...v5.0.0) (2025-09-05)
 
 
