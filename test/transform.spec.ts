@@ -129,6 +129,25 @@ describe('transform', () => {
     expect(xform).to.deep.equal(expected)
   })
 
+  it('Gets transform for `JsdocTypeKeyValue`', () => {
+    const expected = {
+      type: 'JsdocTypeKeyValue',
+      key: 'a',
+      right: undefined,
+      optional: false,
+      variadic: false
+    }
+    const parseResult = {
+      type: 'JsdocTypeKeyValue',
+      key: 'a',
+      right: undefined,
+      optional: false,
+      variadic: false
+    }
+    const xform = transform<NonRootResult>(identityTransformRules(), parseResult as NonRootResult)
+    expect(xform).to.deep.equal(expected)
+  })
+
   it('Gets transform for `JsdocTypeTypeParameter`', () => {
     const expected = {
       type: 'JsdocTypeTypeParameter',

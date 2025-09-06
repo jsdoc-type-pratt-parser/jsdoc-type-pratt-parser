@@ -40,6 +40,7 @@ export function stringifyRules (): TransformRules<string> {
         }
         let stringified = `${
           result.typeParameters !== undefined
+            /* c8 ignore next -- Guard */
             ? `<${result.typeParameters.map(transform).join(', ') ?? ''}>`
             : ''
         }(${result.parameters.map(transform).join(', ')}) => ${transform(result.returnType)}`
@@ -145,9 +146,11 @@ export function stringifyRules (): TransformRules<string> {
 
     JsdocTypeObject: (result, transform) => `{${
       (result.meta.separator === 'linebreak' && result.elements.length > 1
+      /* c8 ignore next -- Guard */
        ? '\n' + (result.meta.propertyIndent ?? '')
        : '') +
       result.elements.map(transform).join(
+        /* c8 ignore next -- Guard */
         (result.meta.separator === 'comma' ? ', ' : result.meta.separator === 'linebreak' ? '\n' + (result.meta.propertyIndent ?? '') : '; ')
       ) +
       (result.meta.separator === 'linebreak' && result.elements.length > 1

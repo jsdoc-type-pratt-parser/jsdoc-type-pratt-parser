@@ -1,7 +1,8 @@
 import { expect } from 'chai'
 
 import { stringifyRules, stringify } from '../src/index'
-import type { FunctionResult, GenericResult, ParenthesisResult } from '../src/result/RootResult'
+import type { RootResult, FunctionResult, GenericResult, ParenthesisResult } from '../src/result/RootResult'
+import type { KeyValueResult } from '../src/result/NonRootResult'
 
 describe('`stringifyRules`', () => {
   it('should exist on index export', () => {
@@ -19,6 +20,19 @@ describe('`stringifyRules`', () => {
       parenthesis: false
     }
     const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  })
+
+  it('should stringify `right` undefined `JsdocTypeKeyValue`', () => {
+    const expected = 'a'
+    const nonRootResult: KeyValueResult = {
+      type: 'JsdocTypeKeyValue',
+      key: 'a',
+      right: undefined,
+      optional: false,
+      variadic: false
+    }
+    const result = stringify(nonRootResult as unknown as RootResult)
     expect(result).to.equal(expected)
   })
 
