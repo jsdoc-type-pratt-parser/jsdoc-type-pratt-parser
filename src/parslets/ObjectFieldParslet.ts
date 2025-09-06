@@ -35,6 +35,7 @@ export function createObjectFieldParslet ({ allowSquaredProperties, allowKeyType
         left.type === 'JsdocTypeNumber' || left.type === 'JsdocTypeName' || left.type === 'JsdocTypeStringValue' ||
         isSquaredProperty(left)
       ) {
+        /* c8 ignore next 3 -- Guard */
         if (isSquaredProperty(left) && !allowSquaredProperties) {
           throw new UnexpectedTypeError(left)
         }

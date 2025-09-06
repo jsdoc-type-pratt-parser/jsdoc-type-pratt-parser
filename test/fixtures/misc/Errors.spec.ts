@@ -148,7 +148,7 @@ describe('Error tests', () => {
     testFixture({
       input: 'asserts 5',
       errors: {
-        typescript: 'A typescript asserts always has to have a name on the left side.'
+        typescript: 'A typescript asserts always has to have a name.'
       }
     })
   })
