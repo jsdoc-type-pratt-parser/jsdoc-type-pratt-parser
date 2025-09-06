@@ -27,6 +27,7 @@ export function createObjectFieldParslet ({ allowSquaredProperties, allowKeyType
         left = left.element
       }
 
+      /* c8 ignore next 2 -- Always has base parser? */
       // object parslet uses a special grammar and for the value we want to switch back to the parent
       const parentParser = parser.baseParser ?? parser
       parentParser.acceptLexerState(parser)
