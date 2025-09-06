@@ -992,7 +992,8 @@ describe('catharsis jsdoc tests', () => {
       },
       modes: [
         'jsdoc',
-        'closure'
+        'closure',
+        'typescript'
       ],
       catharsis: {
         closure: 'closure',
@@ -1148,7 +1149,8 @@ describe('catharsis jsdoc tests', () => {
       },
       modes: [
         'jsdoc',
-        'closure'
+        'closure',
+        'typescript'
       ],
       catharsis: {
         closure: 'closure',

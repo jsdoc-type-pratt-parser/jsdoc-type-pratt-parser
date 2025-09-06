@@ -327,7 +327,8 @@ describe('typescript typeof tests', () => {
         parenthesis: true
       },
       modes: [
-        'closure'
+        'closure',
+        'typescript'
       ],
       catharsis: {
         closure: 'fail',

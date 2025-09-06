@@ -4,7 +4,7 @@ import { createFunctionParslet } from '../src/parslets/FunctionParslet'
 import { Parser } from '../src/Parser'
 import { Lexer } from '../src/lexer/Lexer'
 
-function parse (text: string): void {
+function parse (text: string, allowNoReturnType = true): void {
   // Replace other function parslet with one setting
   //   `allowNamedParameters: undefined`
   const grammar = [
@@ -12,7 +12,7 @@ function parse (text: string): void {
     createFunctionParslet({
       allowWithoutParenthesis: true,
       allowNamedParameters: undefined,
-      allowNoReturnType: true,
+      allowNoReturnType,
       allowNewAsFunctionKeyword: false
     })
   ]
@@ -31,5 +31,11 @@ describe('`createFunctionParslet`', () => {
     expect(() => {
       parse('function(someName)')
     }).not.to.throw()
+  })
+
+  it('Errs with allowNoReturnType set to `false`', () => {
+    expect(() => {
+      parse('function(someName)', false)
+    }).to.throw('function is missing return type')
   })
 })
