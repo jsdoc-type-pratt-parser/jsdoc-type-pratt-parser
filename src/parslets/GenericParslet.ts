@@ -18,7 +18,7 @@ export const genericParslet = composeParslet({
       const left = parser.parseIntermediateType(Precedence.SYMBOL)
 
       if (left.type !== 'JsdocTypeName') {
-        throw new UnexpectedTypeError(left, 'A typescript asserts always has to have a name on the left side.')
+        throw new UnexpectedTypeError(left, 'A typescript infer always has to have a name.')
       }
       objects.push(left)
     } else {

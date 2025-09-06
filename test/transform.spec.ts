@@ -50,7 +50,7 @@ describe('transform', () => {
     expect(xform).to.deep.equal(expected)
   })
 
-  it('Gets tranform for `JsdocTypeProperty`', () => {
+  it('Gets transform for `JsdocTypeProperty`', () => {
     const expected = {
       type: 'JsdocTypeProperty',
       value: 'abc',
@@ -69,7 +69,7 @@ describe('transform', () => {
     expect(xform).to.deep.equal(expected)
   })
 
-  it('Gets tranform for empty `JsdocTypeVariadic`', () => {
+  it('Gets transform for empty `JsdocTypeVariadic`', () => {
     const expected = {
       type: 'JsdocTypeVariadic',
       meta: {
@@ -81,6 +81,104 @@ describe('transform', () => {
       type: 'JsdocTypeVariadic',
       meta: {
         squareBrackets: false
+      }
+    }
+    const xform = transform<NonRootResult>(identityTransformRules(), parseResult as NonRootResult)
+    expect(xform).to.deep.equal(expected)
+  })
+
+  it('Gets transform for `JsdocTypeIndexSignature`', () => {
+    const expected = {
+      type: 'JsdocTypeIndexSignature',
+      key: 'key',
+      right: {
+        type: 'JsdocTypeName',
+        value: 'string'
+      }
+    }
+    const parseResult = {
+      type: 'JsdocTypeIndexSignature',
+      key: 'key',
+      right: {
+        type: 'JsdocTypeName',
+        value: 'string'
+      }
+    }
+    const xform = transform<NonRootResult>(identityTransformRules(), parseResult as NonRootResult)
+    expect(xform).to.deep.equal(expected)
+  })
+
+  it('Gets transform for `JsdocTypeMappedType`', () => {
+    const expected = {
+      type: 'JsdocTypeMappedType',
+      key: 'key',
+      right: {
+        type: 'JsdocTypeName',
+        value: 'Type'
+      }
+    }
+    const parseResult = {
+      type: 'JsdocTypeMappedType',
+      key: 'key',
+      right: {
+        type: 'JsdocTypeName',
+        value: 'Type'
+      }
+    }
+    const xform = transform<NonRootResult>(identityTransformRules(), parseResult as NonRootResult)
+    expect(xform).to.deep.equal(expected)
+  })
+
+  it('Gets transform for `JsdocTypeTypeParameter`', () => {
+    const expected = {
+      type: 'JsdocTypeTypeParameter',
+      name: {
+        type: 'JsdocTypeName',
+        value: 'T'
+      },
+      constraint: undefined,
+      defaultValue: undefined
+    }
+    const parseResult = {
+      type: 'JsdocTypeTypeParameter',
+      name: {
+        type: 'JsdocTypeName',
+        value: 'T'
+      }
+    }
+    const xform = transform<NonRootResult>(identityTransformRules(), parseResult as NonRootResult)
+    expect(xform).to.deep.equal(expected)
+  })
+
+  it('Gets transform for `JsdocTypeTypeParameter` with `constraint` and `defaultValue`', () => {
+    const expected = {
+      type: 'JsdocTypeTypeParameter',
+      name: {
+        type: 'JsdocTypeName',
+        value: 'T'
+      },
+      constraint: {
+        type: 'JsdocTypeName',
+        value: 'V'
+      },
+      defaultValue: {
+        type: 'JsdocTypeName',
+        value: 'string'
+      }
+    }
+    const parseResult = {
+      type: 'JsdocTypeTypeParameter',
+      name: {
+        type: 'JsdocTypeName',
+        value: 'T'
+      },
+      constraint: {
+        type: 'JsdocTypeName',
+        value: 'V'
+      },
+      defaultValue: {
+        type: 'JsdocTypeName',
+        value: 'string'
       }
     }
     const xform = transform<NonRootResult>(identityTransformRules(), parseResult as NonRootResult)

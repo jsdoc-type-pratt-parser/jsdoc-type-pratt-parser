@@ -8,6 +8,8 @@
     "src"
   ],
   "exclude": [
-    "src/result"
+    "src/grammars/Grammar.ts",
+    "src/result",
+    "src/lexer/Token.ts"
   ]
 }

@@ -66,4 +66,44 @@ describe('typescript conditional', () => {
       }
     })
   })
+
+  describe('should throw with bad `infer` within a conditional', () => {
+    testFixture({
+      input: 'A extends B<infer 5> ? b : C',
+      modes: [],
+      expected: {
+        type: 'JsdocTypeConditional',
+        checksType: {
+          type: 'JsdocTypeName',
+          value: 'A'
+        },
+        extendsType: {
+          type: 'JsdocTypeGeneric',
+          left: {
+            type: 'JsdocTypeName',
+            value: 'B'
+          },
+          infer: true,
+          elements: [
+            {
+              type: 'JsdocTypeName',
+              value: 'b'
+            }
+          ],
+          meta: {
+            brackets: 'angle',
+            dot: false
+          }
+        },
+        trueType: {
+          type: 'JsdocTypeName',
+          value: 'b'
+        },
+        falseType: {
+          type: 'JsdocTypeName',
+          value: 'C'
+        }
+      }
+    })
+  })
 })

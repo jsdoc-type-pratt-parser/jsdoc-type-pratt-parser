@@ -94,7 +94,7 @@ This library also supports compatibility modes for catharsis and jsdoctypeparser
  transform the output to the expected output of the target library. This will not always be the same as some types are
  parsed differently. These modes are thought to make transition easier, but it is advised to use the native output as
  this will be more uniform and will contain more information.
- 
+
 [Catharsis compat mode](https://jsdoc-type-pratt-parser.github.io/jsdoc-type-pratt-parser/docs/index.html#catharsisTransform):
 
 ```js
@@ -158,7 +158,7 @@ The fastest was jsdoc-type-pratt-parser
 ```
 
 The benchmark test uses catharsis without cache.
- 
+
 ## Development
 
 If you want to contribute see the [Development Guide](DEVELOPMENT.md) to get some pointers. Feel free to create issues if
