@@ -59,7 +59,7 @@ export const typescriptGrammar: Grammar = [
   stringValueParslet,
   createFunctionParslet({
     allowWithoutParenthesis: true,
-    allowNoReturnType: false,
+    allowNoReturnType: true,
     allowNamedParameters: ['this', 'new', 'args'],
     allowNewAsFunctionKeyword: true
   }),

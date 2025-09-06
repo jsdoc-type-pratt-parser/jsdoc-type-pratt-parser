@@ -329,10 +329,27 @@ describe('typescript keyof tests', () => {
     })
   })
 
-  describe('keyof as function parameter without return should fail', () => {
+  describe('keyof as function parameter without return', () => {
     testFixture({
       input: 'function(keyof A)',
-      modes: [],
+      modes: [
+        'typescript'
+      ],
+      expected: {
+        type: 'JsdocTypeFunction',
+        parameters: [
+          {
+            type: 'JsdocTypeKeyof',
+            element: {
+              type: 'JsdocTypeName',
+              value: 'A'
+            }
+          }
+        ],
+        arrow: false,
+        constructor: false,
+        parenthesis: true
+      },
       catharsis: {
         closure: 'fail',
         jsdoc: 'fail'

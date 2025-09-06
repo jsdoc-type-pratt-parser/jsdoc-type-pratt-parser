@@ -6,5 +6,8 @@
   "statements": 95,
   "include": [
     "src"
+  ],
+  "exclude": [
+    "src/result"
   ]
 }

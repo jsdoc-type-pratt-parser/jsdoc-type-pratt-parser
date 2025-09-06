@@ -629,7 +629,8 @@ describe('catharsis type union tests', () => {
       },
       modes: [
         'jsdoc',
-        'closure'
+        'closure',
+        'typescript'
       ],
       catharsis: {
         closure: 'closure',
@@ -740,7 +741,8 @@ describe('catharsis type union tests', () => {
       },
       modes: [
         'jsdoc',
-        'closure'
+        'closure',
+        'typescript'
       ],
       catharsis: {
         closure: 'closure',

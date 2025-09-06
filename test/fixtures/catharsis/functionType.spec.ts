@@ -22,7 +22,8 @@ describe('catharsis function type tests', () => {
       },
       modes: [
         'jsdoc',
-        'closure'
+        'closure',
+        'typescript'
       ],
       catharsis: {
         closure: 'closure',
@@ -65,7 +66,8 @@ describe('catharsis function type tests', () => {
       },
       modes: [
         'jsdoc',
-        'closure'
+        'closure',
+        'typescript'
       ],
       catharsis: {
         closure: 'closure',
@@ -192,7 +194,8 @@ describe('catharsis function type tests', () => {
       },
       modes: [
         'jsdoc',
-        'closure'
+        'closure',
+        'typescript'
       ],
       catharsis: {
         closure: 'closure',
@@ -285,7 +288,8 @@ describe('catharsis function type tests', () => {
       },
       modes: [
         'jsdoc',
-        'closure'
+        'closure',
+        'typescript'
       ],
       catharsis: {
         closure: 'closure',
@@ -350,7 +354,8 @@ describe('catharsis function type tests', () => {
       },
       modes: [
         'jsdoc',
-        'closure'
+        'closure',
+        'typescript'
       ],
       catharsis: {
         closure: 'closure',
@@ -411,7 +416,8 @@ describe('catharsis function type tests', () => {
       },
       modes: [
         'jsdoc',
-        'closure'
+        'closure',
+        'typescript'
       ],
       catharsis: {
         closure: 'closure',
@@ -476,7 +482,8 @@ describe('catharsis function type tests', () => {
       },
       modes: [
         'jsdoc',
-        'closure'
+        'closure',
+        'typescript'
       ],
       catharsis: {
         closure: 'closure',
@@ -558,7 +565,8 @@ describe('catharsis function type tests', () => {
       },
       modes: [
         'jsdoc',
-        'closure'
+        'closure',
+        'typescript'
       ],
       catharsis: {
         closure: 'closure',
@@ -659,26 +667,52 @@ describe('catharsis function type tests', () => {
     testFixture({
       input: 'function(...[null])',
       stringified: 'function(...null)',
-      expected: {
-        type: 'JsdocTypeFunction',
-        parameters: [
-          {
-            type: 'JsdocTypeVariadic',
-            element: {
-              type: 'JsdocTypeNull'
-            },
-            meta: {
-              squareBrackets: true,
-              position: 'prefix'
+      diffExpected: {
+        jsdoc: {
+          type: 'JsdocTypeFunction',
+          parameters: [
+            {
+              type: 'JsdocTypeVariadic',
+              element: {
+                type: 'JsdocTypeNull'
+              },
+              meta: {
+                squareBrackets: true,
+                position: 'prefix'
+              }
             }
-          }
-        ],
-        arrow: false,
-        constructor: false,
-        parenthesis: true
+          ],
+          arrow: false,
+          constructor: false,
+          parenthesis: true
+        },
+        typescript: {
+          type: 'JsdocTypeFunction',
+          parameters: [
+            {
+              type: 'JsdocTypeVariadic',
+              element: {
+                elements: [
+                {
+                  type: 'JsdocTypeNull'
+                }
+              ],
+                type: 'JsdocTypeTuple'
+              },
+              meta: {
+                squareBrackets: false,
+                position: 'prefix'
+              }
+            }
+          ],
+          arrow: false,
+          constructor: false,
+          parenthesis: true
+        }
       },
       modes: [
-        'jsdoc'
+        'jsdoc',
+        'typescript'
       ],
       catharsis: {
         closure: 'differ',
@@ -697,26 +731,52 @@ describe('catharsis function type tests', () => {
     testFixture({
       input: 'function(...[undefined])',
       stringified: 'function(...undefined)',
-      expected: {
-        type: 'JsdocTypeFunction',
-        parameters: [
-          {
-            type: 'JsdocTypeVariadic',
-            element: {
-              type: 'JsdocTypeUndefined'
-            },
-            meta: {
-              position: 'prefix',
-              squareBrackets: true
+      diffExpected: {
+        jsdoc: {
+          type: 'JsdocTypeFunction',
+          parameters: [
+            {
+              type: 'JsdocTypeVariadic',
+              element: {
+                type: 'JsdocTypeUndefined'
+              },
+              meta: {
+                position: 'prefix',
+                squareBrackets: true
+              }
             }
-          }
-        ],
-        arrow: false,
-        constructor: false,
-        parenthesis: true
+          ],
+          arrow: false,
+          constructor: false,
+          parenthesis: true
+        },
+        typescript: {
+          type: 'JsdocTypeFunction',
+          parameters: [
+            {
+              type: 'JsdocTypeVariadic',
+              element: {
+                elements: [
+                  {
+                    type: 'JsdocTypeUndefined'
+                  }
+                ],
+                type: 'JsdocTypeTuple'
+              },
+              meta: {
+                position: 'prefix',
+                squareBrackets: false
+              }
+            }
+          ],
+          arrow: false,
+          constructor: false,
+          parenthesis: true
+        }
       },
       modes: [
-        'jsdoc'
+        'jsdoc',
+        'typescript'
       ],
       catharsis: {
         closure: 'differ',
@@ -963,7 +1023,8 @@ describe('catharsis function type tests', () => {
       },
       modes: [
         'jsdoc',
-        'closure'
+        'closure',
+        'typescript'
       ],
       catharsis: {
         closure: 'closure',
@@ -1035,7 +1096,8 @@ describe('catharsis function type tests', () => {
       },
       modes: [
         'jsdoc',
-        'closure'
+        'closure',
+        'typescript'
       ],
       catharsis: {
         closure: 'closure',
@@ -1054,26 +1116,52 @@ describe('catharsis function type tests', () => {
     testFixture({
       input: 'function(...[*])',
       stringified: 'function(...*)',
-      expected: {
-        type: 'JsdocTypeFunction',
-        parameters: [
-          {
-            type: 'JsdocTypeVariadic',
-            element: {
-              type: 'JsdocTypeAny'
-            },
-            meta: {
-              squareBrackets: true,
-              position: 'prefix'
+      diffExpected: {
+        jsdoc: {
+          type: 'JsdocTypeFunction',
+          parameters: [
+            {
+              type: 'JsdocTypeVariadic',
+              element: {
+                type: 'JsdocTypeAny'
+              },
+              meta: {
+                squareBrackets: true,
+                position: 'prefix'
+              }
             }
-          }
-        ],
-        arrow: false,
-        constructor: false,
-        parenthesis: true
+          ],
+          arrow: false,
+          constructor: false,
+          parenthesis: true
+        },
+        typescript: {
+          type: 'JsdocTypeFunction',
+          parameters: [
+            {
+              type: 'JsdocTypeVariadic',
+              element: {
+                elements: [
+                  {
+                    type: 'JsdocTypeAny'
+                  }
+                ],
+                type: 'JsdocTypeTuple'
+              },
+              meta: {
+                squareBrackets: false,
+                position: 'prefix'
+              }
+            }
+          ],
+          arrow: false,
+          constructor: false,
+          parenthesis: true
+        }
       },
       modes: [
-        'jsdoc'
+        'jsdoc',
+        'typescript'
       ],
       catharsis: {
         closure: 'differ',
