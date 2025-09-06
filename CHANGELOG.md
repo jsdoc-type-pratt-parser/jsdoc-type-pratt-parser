@@ -1,3 +1,10 @@
+## [5.1.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v5.1.0...v5.1.1) (2025-09-06)
+
+
+### Bug Fixes
+
+* **asserts, infer:** bad error messages ([8c06711](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/8c0671121de3e4e170cff907bcd66ed91db17038))
+
 # [5.1.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v5.0.0...v5.1.0) (2025-09-06)
 
 
