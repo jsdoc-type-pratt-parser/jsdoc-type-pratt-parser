@@ -136,7 +136,8 @@ export interface ObjectResult {
     type: 'JsdocTypeObject';
     elements: Array<ObjectFieldResult | JsdocObjectFieldResult>;
     meta: {
-        separator: 'comma' | 'semicolon' | 'linebreak' | undefined;
+        separator: 'comma' | 'semicolon' | 'linebreak' | 'comma-and-linebreak' | 'semicolon-and-linebreak' | undefined;
+        separatorForSingleObjectField?: boolean;
         propertyIndent?: string;
     };
 }
