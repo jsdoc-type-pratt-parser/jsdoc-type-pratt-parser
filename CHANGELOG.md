@@ -1,3 +1,10 @@
+# [5.2.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v5.1.1...v5.2.0) (2025-09-08)
+
+
+### Features
+
+* allow `comma-and-linebreak` and `semicolon-and-linebreak` and `separatorForSingleObjectField: boolean` ([63e3451](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/63e345123ba0323303705f1a07533bf5356033a8))
+
 ## [5.1.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v5.1.0...v5.1.1) (2025-09-06)
 
 
