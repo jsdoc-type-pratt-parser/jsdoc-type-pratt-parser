@@ -154,6 +154,7 @@ export function stringifyRules (): TransformRules<string> {
           : result.meta.separator === 'linebreak' ? '\n' : ''
 
       const separatorForSingleObjectField = result.meta.separatorForSingleObjectField ?? false
+      const trailingPunctuation = result.meta.trailingPunctuation ?? false
 
       return `{${
       /* c8 ignore next -- Guard */
@@ -167,7 +168,13 @@ export function stringifyRules (): TransformRules<string> {
       ) +
       (separatorForSingleObjectField && result.elements.length === 1
         ? (result.meta.separator === 'comma' ? ',' : lbType ? lbEnding : ';')
-        : '') +
+        : trailingPunctuation && result.meta.separator !== undefined
+          ? result.meta.separator.startsWith('comma')
+            ? ','
+            : result.meta.separator.startsWith('semicolon')
+             ? ';'
+             : ''
+          : '') +
       (lbType && result.elements.length > 1 ? '\n' : '')
     }}`
     },
