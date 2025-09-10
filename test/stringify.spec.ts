@@ -70,6 +70,76 @@ describe('`stringifyRules`', () => {
     expect(result).to.equal(expected)
   })
 
+  it('should transform a generic with a union element with no spacing', () => {
+    const expected = '(a|b)[]'
+    const rootResult: GenericResult = {
+      type: 'JsdocTypeGeneric',
+      left: {
+        type: 'JsdocTypeName',
+        value: 'Array'
+      },
+      elements: [
+        {
+          type: 'JsdocTypeUnion',
+          meta: {
+            spacing: ''
+          },
+          elements: [
+            {
+              type: 'JsdocTypeName',
+              value: 'a'
+            },
+            {
+              type: 'JsdocTypeName',
+              value: 'b'
+            }
+          ]
+        }
+      ],
+      meta: {
+        brackets: 'square',
+        dot: false
+      }
+    }
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  })
+
+  it('should transform a generic with a union element with explicit spacing', () => {
+    const expected = '(a  |  b)[]'
+    const rootResult: GenericResult = {
+      type: 'JsdocTypeGeneric',
+      left: {
+        type: 'JsdocTypeName',
+        value: 'Array'
+      },
+      elements: [
+        {
+          type: 'JsdocTypeUnion',
+          meta: {
+            spacing: '  '
+          },
+          elements: [
+            {
+              type: 'JsdocTypeName',
+              value: 'a'
+            },
+            {
+              type: 'JsdocTypeName',
+              value: 'b'
+            }
+          ]
+        }
+      ],
+      meta: {
+        brackets: 'square',
+        dot: false
+      }
+    }
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  })
+
   // Note: This should not occur as the `element` should not be undefined per
   //    `ParenthesisResult`
   it('should transform a set of parentheses', () => {
