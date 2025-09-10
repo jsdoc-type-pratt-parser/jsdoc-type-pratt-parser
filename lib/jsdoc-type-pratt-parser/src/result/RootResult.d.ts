@@ -60,6 +60,9 @@ export interface NameResult {
 export interface UnionResult {
     type: 'JsdocTypeUnion';
     elements: RootResult[];
+    meta?: {
+        spacing: string;
+    };
 }
 /**
  * A generic type. The property `left` is the generic type that has `elements` as type values for its type parameters.
