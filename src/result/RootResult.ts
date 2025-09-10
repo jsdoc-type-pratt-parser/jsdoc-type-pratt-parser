@@ -103,6 +103,9 @@ export interface NameResult {
 export interface UnionResult {
   type: 'JsdocTypeUnion'
   elements: RootResult[]
+  meta?: {
+    spacing: string
+  }
 }
 
 /**

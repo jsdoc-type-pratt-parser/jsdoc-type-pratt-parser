@@ -187,7 +187,11 @@ export function stringifyRules (): TransformRules<string> {
 
     JsdocTypeUndefined: () => 'undefined',
 
-    JsdocTypeUnion: (result, transform) => result.elements.map(transform).join(' | '),
+    JsdocTypeUnion: (result, transform) => result.elements.map(transform).join(
+      result.meta?.spacing === undefined
+        ? ' | '
+        : `${result.meta.spacing}|${result.meta.spacing}`
+    ),
 
     JsdocTypeUnknown: () => '?',
 
