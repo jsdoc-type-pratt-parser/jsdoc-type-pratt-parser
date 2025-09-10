@@ -1,3 +1,10 @@
+# [5.4.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v5.3.0...v5.4.0) (2025-09-10)
+
+
+### Features
+
+* add `meta.spacing` option to `JsdocTypeUnion` ([06bdfbe](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/06bdfbe852dee0607726e12814660cfcd0be9f47))
+
 # [5.3.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v5.2.0...v5.3.0) (2025-09-10)
 
 
