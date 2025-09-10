@@ -142,6 +142,35 @@ describe('`stringifyRules`', () => {
     expect(result).to.equal(expected)
   })
 
+  it('should transform a single object field with dropped comma and linebreak (no trailingPunctuation)', () => {
+    const expected = `{range: boolean}`
+    const rootResult: ObjectResult = {
+      type: 'JsdocTypeObject',
+      meta: {
+        separator: 'comma-and-linebreak',
+        propertyIndent: '  ',
+        trailingPunctuation: false
+      },
+      elements: [
+        {
+          type: 'JsdocTypeObjectField',
+          key: 'range',
+          optional: false,
+          readonly: false,
+          right: {
+            type: 'JsdocTypeName',
+            value: 'boolean'
+          },
+          meta: {
+            quote: undefined
+          }
+        }
+      ]
+    }
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  })
+
   it('should transform a single object field with comma and linebreak', () => {
     const expected = `{
   range: boolean,
@@ -173,6 +202,215 @@ describe('`stringifyRules`', () => {
     expect(result).to.equal(expected)
   })
 
+  it('should transform multiple object fields with comma and linebreak (trailing)', () => {
+    const expected = `{
+  range: boolean,
+  loc: boolean,
+}`
+    const rootResult: ObjectResult = {
+      type: 'JsdocTypeObject',
+      meta: {
+        separator: 'comma-and-linebreak',
+        propertyIndent: '  ',
+        trailingPunctuation: true
+      },
+      elements: [
+        {
+          type: 'JsdocTypeObjectField',
+          key: 'range',
+          optional: false,
+          readonly: false,
+          right: {
+            type: 'JsdocTypeName',
+            value: 'boolean'
+          },
+          meta: {
+            quote: undefined
+          }
+        },
+        {
+          type: 'JsdocTypeObjectField',
+          key: 'loc',
+          optional: false,
+          readonly: false,
+          right: {
+            type: 'JsdocTypeName',
+            value: 'boolean'
+          },
+          meta: {
+            quote: undefined
+          }
+        }
+      ]
+    }
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  })
+
+  it('should transform multiple object fields with semicolon and linebreak (trailing)', () => {
+    const expected = `{
+  range: boolean;
+  loc: boolean;
+}`
+    const rootResult: ObjectResult = {
+      type: 'JsdocTypeObject',
+      meta: {
+        separator: 'semicolon-and-linebreak',
+        propertyIndent: '  ',
+        trailingPunctuation: true
+      },
+      elements: [
+        {
+          type: 'JsdocTypeObjectField',
+          key: 'range',
+          optional: false,
+          readonly: false,
+          right: {
+            type: 'JsdocTypeName',
+            value: 'boolean'
+          },
+          meta: {
+            quote: undefined
+          }
+        },
+        {
+          type: 'JsdocTypeObjectField',
+          key: 'loc',
+          optional: false,
+          readonly: false,
+          right: {
+            type: 'JsdocTypeName',
+            value: 'boolean'
+          },
+          meta: {
+            quote: undefined
+          }
+        }
+      ]
+    }
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  })
+
+  it('should transform multiple object fields with linebreak (trailing)', () => {
+    const expected = `{
+  range: boolean
+  loc: boolean
+}`
+    const rootResult: ObjectResult = {
+      type: 'JsdocTypeObject',
+      meta: {
+        separator: 'linebreak',
+        propertyIndent: '  ',
+        trailingPunctuation: true
+      },
+      elements: [
+        {
+          type: 'JsdocTypeObjectField',
+          key: 'range',
+          optional: false,
+          readonly: false,
+          right: {
+            type: 'JsdocTypeName',
+            value: 'boolean'
+          },
+          meta: {
+            quote: undefined
+          }
+        },
+        {
+          type: 'JsdocTypeObjectField',
+          key: 'loc',
+          optional: false,
+          readonly: false,
+          right: {
+            type: 'JsdocTypeName',
+            value: 'boolean'
+          },
+          meta: {
+            quote: undefined
+          }
+        }
+      ]
+    }
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  })
+
+  it('should transform multiple object fields with comma and linebreak (non-trailing)', () => {
+    const expected = `{
+  range: boolean,
+  loc: boolean
+}`
+    const rootResult: ObjectResult = {
+      type: 'JsdocTypeObject',
+      meta: {
+        separator: 'comma-and-linebreak',
+        propertyIndent: '  ',
+        trailingPunctuation: false
+      },
+      elements: [
+        {
+          type: 'JsdocTypeObjectField',
+          key: 'range',
+          optional: false,
+          readonly: false,
+          right: {
+            type: 'JsdocTypeName',
+            value: 'boolean'
+          },
+          meta: {
+            quote: undefined
+          }
+        },
+        {
+          type: 'JsdocTypeObjectField',
+          key: 'loc',
+          optional: false,
+          readonly: false,
+          right: {
+            type: 'JsdocTypeName',
+            value: 'boolean'
+          },
+          meta: {
+            quote: undefined
+          }
+        }
+      ]
+    }
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  })
+
+  it('should transform a single object field with comma and linebreak and trailing punctuation', () => {
+    const expected = `{range: boolean,}`
+    const rootResult: ObjectResult = {
+      type: 'JsdocTypeObject',
+      meta: {
+        separator: 'comma-and-linebreak',
+        propertyIndent: '  ',
+        trailingPunctuation: true
+      },
+      elements: [
+        {
+          type: 'JsdocTypeObjectField',
+          key: 'range',
+          optional: false,
+          readonly: false,
+          right: {
+            type: 'JsdocTypeName',
+            value: 'boolean'
+          },
+          meta: {
+            quote: undefined
+          }
+        }
+      ]
+    }
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  })
+
   it('should transform a single object field with comma', () => {
     const expected = `{range: boolean,}`
     const rootResult: ObjectResult = {
@@ -181,6 +419,35 @@ describe('`stringifyRules`', () => {
         separator: 'comma',
         propertyIndent: '  ',
         separatorForSingleObjectField: true
+      },
+      elements: [
+        {
+          type: 'JsdocTypeObjectField',
+          key: 'range',
+          optional: false,
+          readonly: false,
+          right: {
+            type: 'JsdocTypeName',
+            value: 'boolean'
+          },
+          meta: {
+            quote: undefined
+          }
+        }
+      ]
+    }
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  })
+
+  it('should transform a single object field with comma (trailingPunctuation)', () => {
+    const expected = `{range: boolean,}`
+    const rootResult: ObjectResult = {
+      type: 'JsdocTypeObject',
+      meta: {
+        separator: 'comma',
+        propertyIndent: '  ',
+        trailingPunctuation: true
       },
       elements: [
         {
