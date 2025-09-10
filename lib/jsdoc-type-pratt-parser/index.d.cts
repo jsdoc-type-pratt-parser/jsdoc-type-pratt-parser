@@ -191,6 +191,7 @@ interface ObjectResult {
     meta: {
         separator: 'comma' | 'semicolon' | 'linebreak' | 'comma-and-linebreak' | 'semicolon-and-linebreak' | undefined;
         separatorForSingleObjectField?: boolean;
+        trailingPunctuation?: boolean;
         propertyIndent?: string;
     };
 }
