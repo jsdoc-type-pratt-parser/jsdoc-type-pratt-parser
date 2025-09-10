@@ -1,3 +1,10 @@
+# [5.3.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v5.2.0...v5.3.0) (2025-09-10)
+
+
+### Features
+
+* `meta.trailingPunctuation` for `ObjectResult` ([63beb31](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/63beb31ddafa5e9f29792fbd52ca2cf8087c946f))
+
 # [5.2.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v5.1.1...v5.2.0) (2025-09-08)
 
 
