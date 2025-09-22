@@ -40,5 +40,8 @@ export const visitorKeys: VisitorKeys = {
   JsdocTypeReadonlyArray: ['element'],
   JsdocTypeAssertsPlain: ['element'],
   JsdocTypeConditional: ['checksType', 'extendsType', 'trueType', 'falseType'],
-  JsdocTypeTypeParameter: ['name', 'constraint', 'defaultValue']
+  JsdocTypeTypeParameter: ['name', 'constraint', 'defaultValue'],
+  JsdocTypeCallSignature: ['parameters', 'returnType'],
+  JsdocTypeConstructorSignature: ['parameters', 'returnType'],
+  JsdocTypeMethodSignature: ['parameters', 'returnType']
 }

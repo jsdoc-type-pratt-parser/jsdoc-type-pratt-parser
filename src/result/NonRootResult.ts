@@ -16,6 +16,10 @@ export type NonRootResult =
   | MappedTypeResult
   | IndexSignatureResult
   | TypeParameterResult
+  | CallSignatureResult
+  | ConstructorSignatureResult
+  | MethodSignatureResult
+
 
 export interface ObjectFieldResult {
   type: 'JsdocTypeObjectField'
@@ -71,4 +75,26 @@ export interface TypeParameterResult {
   defaultValue?: RootResult
   name: NameResult
   constraint?: RootResult
+}
+
+export interface CallSignatureResult {
+  type: 'JsdocTypeCallSignature'
+  parameters: Array<RootResult | KeyValueResult>
+  returnType: RootResult
+}
+
+export interface ConstructorSignatureResult {
+  type: 'JsdocTypeConstructorSignature'
+  parameters: Array<RootResult | KeyValueResult>
+  returnType: RootResult
+}
+
+export interface MethodSignatureResult {
+  type: 'JsdocTypeMethodSignature'
+  name: string
+  meta: {
+    quote: QuoteStyle | undefined
+  }
+  parameters: Array<RootResult | KeyValueResult>
+  returnType: RootResult
 }

@@ -9,6 +9,7 @@ import { stringValueParslet } from '../parslets/StringValueParslet'
 import { numberParslet } from '../parslets/NumberParslet'
 import { createFunctionParslet } from '../parslets/FunctionParslet'
 import { createObjectParslet } from '../parslets/ObjectParslet'
+import { functionPropertyParslet } from '../parslets/FunctionPropertyParslet'
 import { createTupleParslet } from '../parslets/TupleParslet'
 import { createVariadicParslet } from '../parslets/VariadicParslet'
 import { typeOfParslet } from '../parslets/TypeOfParslet'
@@ -29,6 +30,7 @@ import { readonlyArrayParslet } from '../parslets/ReadonlyArrayParslet'
 import { conditionalParslet } from '../parslets/ConditionalParslet'
 
 const objectFieldGrammar: Grammar = [
+  functionPropertyParslet,
   readonlyPropertyParslet,
   createNameParslet({
     allowedAdditionalTokens: ['typeof', 'module', 'keyof', 'event', 'external', 'in']
@@ -50,7 +52,14 @@ export const typescriptGrammar: Grammar = [
   ...baseGrammar,
   createObjectParslet({
     allowKeyTypes: false,
-    objectFieldGrammar
+    objectFieldGrammar,
+    signatureGrammar: [
+      createKeyValueParslet({
+        allowVariadic: true,
+        allowOptional: true,
+        acceptParameterList: true,
+      })
+    ]
   }),
   readonlyArrayParslet,
   typeOfParslet,
@@ -94,3 +103,4 @@ export const typescriptGrammar: Grammar = [
     allowOptional: true
   })
 ]
+

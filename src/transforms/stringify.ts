@@ -218,7 +218,33 @@ export function stringifyRules (): TransformRules<string> {
         result.constraint !== undefined ? ` extends ${transform(result.constraint)}` : ''
       }${
         result.defaultValue !== undefined ? ` = ${transform(result.defaultValue)}` : ''
+      }`,
+
+    JsdocTypeCallSignature: (result, transform) => `(${
+      result.parameters.map(transform).join(', ')
+    }): ${
+      transform(result.returnType)
+    }`,
+
+    JsdocTypeConstructorSignature: (result, transform) => `new (${
+      result.parameters.map(transform).join(', ')
+    }): ${
+      transform(result.returnType)
+    }`,
+
+    JsdocTypeMethodSignature: (result, transform) => {
+      const quote = result.meta.quote === 'double'
+        ? '"'
+        : result.meta.quote === 'single'
+          ? "'"
+          : '';
+
+      return `${quote}${result.name}${quote}(${
+        result.parameters.map(transform).join(', ')
+      }): ${
+        transform(result.returnType)
       }`
+    }
   }
 }
 

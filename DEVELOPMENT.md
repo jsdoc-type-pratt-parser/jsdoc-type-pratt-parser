@@ -29,7 +29,7 @@ export interface PredicateResult {
 2. Run the tests. With `npm test` we do a typecheck (`npm run typecheck`), linting (`npm run lint`) and the unit tests (`npm run test:spec`).
    If we run `npm test` we first see that there are multiple type problems in the transforms.
 
-3. For the `catharsisTransform` and the `jtpTransform` we can simply add `nonAvailableTransform` as these do not support TypeScript
+3. For the `catharsisTransform` and the `jtpTransform` we can simply add `notAvailableTransform` as these do not support TypeScript
    predicates (see the respective files for examples). The `identityTransform` simply needs to return the same type and the
    `stringify` transform should create a valid string output of a given type. These transforms look like this:
 
@@ -88,13 +88,13 @@ describe('typescript predicates', () => {
 })
 ```
 
-6. Add new tokens. If we run the test again we will get an error for our unit test and can actually start developing our
+7. Add new tokens. If we run the test again we will get an error for our unit test and can actually start developing our
    feature. The message is `Error: The parsing ended early. The next token was: 'Identifier' with value 'is'`. It tells us
    that the lexer was not able to parse `is` as a token, but treats it as an identifier. To fix this we add `'is'` to
    the `TokenType` in `src/lexer/Token.ts` and create a new lexing rule in `src/lexer/Lexer.ts`. As this is just a static
    text token, we can just add `makeKeyWordRule('is')` to the `rules` array.
 
-7. Add a parslet. The next error is `Error: The parsing ended early. The next token was: 'is' with value 'is'`, which
+8. Add a parslet. The next error is `Error: The parsing ended early. The next token was: 'is' with value 'is'`, which
    tells us that a parslet is missing. We create a new file `src/parslets/predicateParslet.ts` and use `composeParslet` to
    create a parslet.
 
@@ -105,7 +105,7 @@ export const predicateParslet = composeParslet({
   name: 'predicateParslet'
 })
 ```
-8. Decide if it is a prefix or infix parslet (postfix are also infix parslets). The token we recognize is the `is`. As
+9. Decide if it is a prefix or infix parslet (postfix are also infix parslets). The token we recognize is the `is`. As
    this is syntactically an infix operator we can use the `parseInfix` parameter of `composeParslet`. Also we need to add
    the `accept` parameter to indicate that we accept tokens of type `is`. For infix parslets we also need to specify the
    precedence which could be explained as the 'binding strength' of the infix operator. For now we will just choose
@@ -125,7 +125,7 @@ export const predicateParslet = composeParslet({
 })
 ```
 
-9. Implement `parseInfix`. Here `parser` is the currently used parser and `left` is the already parsed part. So we ensure
+10. Implement `parseInfix`. Here `parser` is the currently used parser and `left` is the already parsed part. So we ensure
    that `left` is indeed a name. If that is the case we can now safely `consume` the `is` token. With this we tell the parser
    that we can continue parsing the next token and then proceed to assemble the AST and recursively continue parsing the `right` part of our
    expression. To ensure that we indeed get a `RootResult` for our right expression we can use the function `assertRoot`.
@@ -158,10 +158,12 @@ export const predicateParslet = composeParslet({
 })
 ```
 
-10. Add parslet to grammar. Now we need to tell the parser that we actually want to use this parslet. For this we add
+11. Add parslet to grammar. Now we need to tell the parser that we actually want to use this parslet. For this we add
     the parslet to the `typescriptGrammar` array in `src/grammars/typescriptGrammar.ts`.
 
-11. Run tests and debug until done. In the end we see that all tests pass, and we are done. We can now add some more tests
-    if we like.
+12. Run tests and debug until done. In the end we see that all tests pass, and we are done. We can now add some more tests
+    if we like. If you want to run tests on just a particular file, you can temporarily
+    rename the file, e.g., to have the ending `.spec1.ts` and then temporarily
+    target "spec1" in `.mocharc.json`.
 
-12. If there are any problems with this guide, feel free to open an issue!
+13. If there are any problems with this guide, feel free to open an issue!

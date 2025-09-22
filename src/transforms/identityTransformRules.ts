@@ -3,7 +3,10 @@ import type {
   JsdocObjectFieldResult,
   KeyValueResult,
   NonRootResult,
-  ObjectFieldResult
+  ObjectFieldResult,
+  CallSignatureResult,
+  ConstructorSignatureResult,
+  MethodSignatureResult
 } from '../result/NonRootResult'
 import type {
   FunctionResult,
@@ -72,7 +75,7 @@ export function identityTransformRules (): TransformRules<NonRootResult> {
       meta: {
         separator: 'comma'
       },
-      elements: result.elements.map(transform) as Array<ObjectFieldResult | JsdocObjectFieldResult>
+      elements: result.elements.map(transform) as Array<ObjectFieldResult | JsdocObjectFieldResult | CallSignatureResult | ConstructorSignatureResult | MethodSignatureResult>
     }),
 
     JsdocTypeNumber: result => result,
@@ -221,6 +224,26 @@ export function identityTransformRules (): TransformRules<NonRootResult> {
       name: transform(result.name) as NameResult,
       constraint: result.constraint !== undefined ? transform(result.constraint) as RootResult : undefined,
       defaultValue: result.defaultValue !== undefined ? transform(result.defaultValue) as RootResult : undefined
+    }),
+
+    JsdocTypeCallSignature: (result, transform) => ({
+      type: 'JsdocTypeCallSignature',
+      parameters: result.parameters.map(transform) as RootResult[],
+      returnType: transform(result.returnType) as RootResult
+    }),
+
+    JsdocTypeConstructorSignature: (result, transform) => ({
+      type: 'JsdocTypeConstructorSignature',
+      parameters: result.parameters.map(transform) as RootResult[],
+      returnType: transform(result.returnType) as RootResult
+    }),
+
+    JsdocTypeMethodSignature: (result, transform) => ({
+      type: 'JsdocTypeMethodSignature',
+      name: result.name,
+      parameters: result.parameters.map(transform) as RootResult[],
+      returnType: transform(result.returnType) as RootResult,
+      meta: result.meta
     })
   }
 }

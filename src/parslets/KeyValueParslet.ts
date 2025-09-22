@@ -2,9 +2,10 @@ import { composeParslet, type ParsletFunction } from './Parslet'
 import { Precedence } from '../Precedence'
 import { UnexpectedTypeError } from '../errors'
 
-export function createKeyValueParslet ({ allowOptional, allowVariadic }: {
+export function createKeyValueParslet ({ allowOptional, allowVariadic, acceptParameterList }: {
   allowOptional: boolean
-  allowVariadic: boolean
+  allowVariadic: boolean,
+  acceptParameterList?: boolean
 }): ParsletFunction {
   return composeParslet({
     name: 'keyValueParslet',
@@ -25,6 +26,10 @@ export function createKeyValueParslet ({ allowOptional, allowVariadic }: {
       }
 
       if (left.type !== 'JsdocTypeName') {
+        if (acceptParameterList !== undefined && left.type === 'JsdocTypeParameterList') {
+          parser.consume(':')
+          return left
+        }
         throw new UnexpectedTypeError(left)
       }
 
