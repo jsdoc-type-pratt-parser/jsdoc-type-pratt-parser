@@ -4,8 +4,11 @@ import { Precedence } from '../Precedence'
 import { UnexpectedTypeError } from '../errors'
 import type { ObjectResult } from '../result/RootResult'
 import type { Grammar } from '../grammars/Grammar'
+import { typescriptGrammar } from '../grammars/typescriptGrammar'
+import { getParameters } from './FunctionParslet'
 
-export function createObjectParslet ({ objectFieldGrammar, allowKeyTypes }: {
+export function createObjectParslet ({ signatureGrammar, objectFieldGrammar, allowKeyTypes }: {
+  signatureGrammar?: Grammar
   objectFieldGrammar: Grammar
   allowKeyTypes: boolean
 }): ParsletFunction {
@@ -58,7 +61,42 @@ export function createObjectParslet ({ objectFieldGrammar, allowKeyTypes }: {
                 quote
               }
             })
-          } else if (field.type === 'JsdocTypeObjectField' || field.type === 'JsdocTypeJsdocObjectField') {
+          } else if (
+            signatureGrammar !== undefined &&
+            (field.type === 'JsdocTypeCallSignature' ||
+            field.type === 'JsdocTypeConstructorSignature' ||
+            field.type === 'JsdocTypeMethodSignature')
+          ) {
+
+            const signatureParser = new Parser(
+              [
+                ...signatureGrammar,
+                ...typescriptGrammar.flatMap((grammar) => {
+                  // We're supplying our own version
+                  if (grammar.name === 'keyValueParslet') {
+                    return []
+                  }
+                  return [grammar]
+                })
+              ],
+              parser.lexer,
+              parser
+            )
+
+            signatureParser.acceptLexerState(parser)
+            const params = signatureParser.parseIntermediateType(Precedence.OBJECT)
+            parser.acceptLexerState(signatureParser)
+
+            field.parameters = getParameters(params)
+
+            const returnType = parser.parseType(Precedence.OBJECT)
+            field.returnType = returnType
+
+            result.elements.push(field)
+          } else if (
+            field.type === 'JsdocTypeObjectField' ||
+            field.type === 'JsdocTypeJsdocObjectField'
+          ) {
             result.elements.push(field)
           } else {
             throw new UnexpectedTypeError(field)

@@ -533,7 +533,13 @@ const jtpRules: TransformRules<JtpResult> = {
 
   JsdocTypeConditional: notAvailableTransform,
 
-  JsdocTypeTypeParameter: notAvailableTransform
+  JsdocTypeTypeParameter: notAvailableTransform,
+
+  JsdocTypeCallSignature: notAvailableTransform,
+
+  JsdocTypeConstructorSignature: notAvailableTransform,
+
+  JsdocTypeMethodSignature: notAvailableTransform
 }
 
 export function jtpTransform (result: RootResult): JtpResult {

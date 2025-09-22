@@ -318,7 +318,10 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
   JsdocTypeReadonlyArray: notAvailableTransform,
   JsdocTypeAssertsPlain: notAvailableTransform,
   JsdocTypeConditional: notAvailableTransform,
-  JsdocTypeTypeParameter: notAvailableTransform
+  JsdocTypeTypeParameter: notAvailableTransform,
+  JsdocTypeCallSignature: notAvailableTransform,
+  JsdocTypeConstructorSignature: notAvailableTransform,
+  JsdocTypeMethodSignature: notAvailableTransform
 }
 
 export function catharsisTransform (result: RootResult): CatharsisParseResult {
