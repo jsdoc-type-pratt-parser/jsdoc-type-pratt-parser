@@ -43,5 +43,6 @@ export const visitorKeys: VisitorKeys = {
   JsdocTypeTypeParameter: ['name', 'constraint', 'defaultValue'],
   JsdocTypeCallSignature: ['parameters', 'returnType'],
   JsdocTypeConstructorSignature: ['parameters', 'returnType'],
-  JsdocTypeMethodSignature: ['parameters', 'returnType']
+  JsdocTypeMethodSignature: ['parameters', 'returnType'],
+  JsdocTypeIndexedAccessIndex: ['right']
 }

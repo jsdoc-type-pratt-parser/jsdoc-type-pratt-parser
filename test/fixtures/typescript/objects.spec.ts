@@ -554,6 +554,31 @@ describe('typescript objects tests', () => {
     })
   })
 
+  describe('indexed access type', () => {
+    testFixture({
+      input: 'obj[keyof a]',
+      modes: ['typescript'],
+      expected: {
+        type: 'JsdocTypeNamePath',
+        left: {
+          type: 'JsdocTypeName',
+          value: 'obj'
+        },
+        right: {
+          right: {
+            element: {
+              type: 'JsdocTypeName',
+              value: 'a'
+            },
+            type: 'JsdocTypeKeyof'
+          },
+          type: 'JsdocTypeIndexedAccessIndex',
+        },
+        pathType: 'property-brackets'
+      }
+    })
+  })
+
   describe('index signatures', () => {
     testFixture({
       input: '{[key: string]: number}',

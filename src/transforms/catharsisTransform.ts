@@ -264,6 +264,11 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
   JsdocTypeNamePath: (result, transform) => {
     const leftResult = transform(result.left) as CatharsisNameResult
     let rightValue
+
+    if (result.right.type === 'JsdocTypeIndexedAccessIndex') {
+      throw new TypeError('JsdocTypeIndexedAccessIndex is not supported in catharsis')
+    }
+
     if (result.right.type === 'JsdocTypeSpecialNamePath') {
       rightValue = (transform(result.right) as CatharsisNameResult).name
     } else {
@@ -321,7 +326,8 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
   JsdocTypeTypeParameter: notAvailableTransform,
   JsdocTypeCallSignature: notAvailableTransform,
   JsdocTypeConstructorSignature: notAvailableTransform,
-  JsdocTypeMethodSignature: notAvailableTransform
+  JsdocTypeMethodSignature: notAvailableTransform,
+  JsdocTypeIndexedAccessIndex: notAvailableTransform
 }
 
 export function catharsisTransform (result: RootResult): CatharsisParseResult {

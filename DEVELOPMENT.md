@@ -26,6 +26,9 @@ export interface PredicateResult {
 }
 ```
 
+If adding a `NonRootResult`, you will need to add an exclusion to
+`assertRootResult` in `src/assertTypes.ts`.
+
 2. Run the tests. With `npm test` we do a typecheck (`npm run typecheck`), linting (`npm run lint`) and the unit tests (`npm run test:spec`).
    If we run `npm test` we first see that there are multiple type problems in the transforms.
 

@@ -244,7 +244,9 @@ export function stringifyRules (): TransformRules<string> {
       }): ${
         transform(result.returnType)
       }`
-    }
+    },
+
+    JsdocTypeIndexedAccessIndex: (result, transform) => (transform(result.right))
   }
 }
 

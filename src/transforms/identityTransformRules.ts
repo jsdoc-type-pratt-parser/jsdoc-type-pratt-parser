@@ -244,6 +244,11 @@ export function identityTransformRules (): TransformRules<NonRootResult> {
       parameters: result.parameters.map(transform) as RootResult[],
       returnType: transform(result.returnType) as RootResult,
       meta: result.meta
+    }),
+
+    JsdocTypeIndexedAccessIndex: (result, transform) => ({
+      type: 'JsdocTypeIndexedAccessIndex',
+      right: transform(result.right) as RootResult
     })
   }
 }

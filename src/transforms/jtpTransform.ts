@@ -459,6 +459,11 @@ const jtpRules: TransformRules<JtpResult> = {
     let hasEventPrefix = false
     let name
     let quoteStyle
+
+    if (result.right.type === 'JsdocTypeIndexedAccessIndex') {
+      throw new TypeError('JsdocTypeIndexedAccessIndex not allowed in jtp')
+    }
+
     if (result.right.type === 'JsdocTypeSpecialNamePath' && result.right.specialType === 'event') {
       hasEventPrefix = true
       name = result.right.value
@@ -539,7 +544,9 @@ const jtpRules: TransformRules<JtpResult> = {
 
   JsdocTypeConstructorSignature: notAvailableTransform,
 
-  JsdocTypeMethodSignature: notAvailableTransform
+  JsdocTypeMethodSignature: notAvailableTransform,
+
+  JsdocTypeIndexedAccessIndex: notAvailableTransform
 }
 
 export function jtpTransform (result: RootResult): JtpResult {
