@@ -146,4 +146,28 @@ describe('transform', () => {
       catharsisTransform(parseResult as RootResult)
     }).to.throw('Index signatures and mapped types are not supported')
   })
+
+  it('Throws with JsdocTypeIndexedAccessIndex`', () => {
+    const parseResult = {
+      type: 'JsdocTypeNamePath',
+      left: {
+        type: 'JsdocTypeName',
+        value: 'obj'
+      },
+      right: {
+        right: {
+          element: {
+            type: 'JsdocTypeName',
+            value: 'a'
+          },
+          type: 'JsdocTypeKeyof'
+        },
+        type: 'JsdocTypeIndexedAccessIndex',
+      },
+      pathType: 'property-brackets'
+    }
+    expect(() => {
+      catharsisTransform(parseResult as RootResult)
+    }).to.throw('JsdocTypeIndexedAccessIndex is not supported in catharsis')
+  })
 })

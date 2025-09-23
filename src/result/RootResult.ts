@@ -6,7 +6,8 @@ import type {
   TypeParameterResult,
   CallSignatureResult,
   ConstructorSignatureResult,
-  MethodSignatureResult
+  MethodSignatureResult,
+  IndexedAccessIndexResult
 } from './NonRootResult'
 
 /**
@@ -220,7 +221,7 @@ export interface SpecialNamePath<Type extends SpecialNamePathType = SpecialNameP
 export interface NamePathResult {
   type: 'JsdocTypeNamePath'
   left: RootResult
-  right: PropertyResult | SpecialNamePath<'event'>
+  right: PropertyResult | SpecialNamePath<'event'> | IndexedAccessIndexResult
   pathType: 'inner' | 'instance' | 'property' | 'property-brackets'
 }
 

@@ -333,6 +333,31 @@ describe('transform', () => {
     }).to.throw('jsdoctypeparser does not support type external at this point.')
   })
 
+  it('Throws with `JsdocTypeIndexedAccessIndex`', () => {
+    const parseResult: RootResult = {
+      type: 'JsdocTypeNamePath',
+      left: {
+        type: 'JsdocTypeName',
+        value: 'obj'
+      },
+      right: {
+        right: {
+          element: {
+            type: 'JsdocTypeName',
+            value: 'a'
+          },
+          type: 'JsdocTypeKeyof'
+        },
+        type: 'JsdocTypeIndexedAccessIndex',
+      },
+      pathType: 'property-brackets'
+    }
+
+    expect(() => {
+      jtpTransform(parseResult)
+    }).to.throw('JsdocTypeIndexedAccessIndex not allowed in jtp')
+  })
+
   it('Throws with `JsdocTypeFunction` and `JsdocTypeKeyValue` with undefined `right`', () => {
     const parseResult: RootResult = {
       type: 'JsdocTypeFunction',

@@ -19,7 +19,7 @@ export type NonRootResult =
   | CallSignatureResult
   | ConstructorSignatureResult
   | MethodSignatureResult
-
+  | IndexedAccessIndexResult
 
 export interface ObjectFieldResult {
   type: 'JsdocTypeObjectField'
@@ -97,4 +97,9 @@ export interface MethodSignatureResult {
   }
   parameters: Array<RootResult | KeyValueResult>
   returnType: RootResult
+}
+
+export interface IndexedAccessIndexResult {
+  type: 'JsdocTypeIndexedAccessIndex',
+  right: RootResult
 }

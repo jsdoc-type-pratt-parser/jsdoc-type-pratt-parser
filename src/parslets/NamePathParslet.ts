@@ -4,7 +4,7 @@ import { assertRootResult } from '../assertTypes'
 import { Parser } from '../Parser'
 import type { NamePathResult, SpecialNamePath } from '../result/RootResult'
 import { UnexpectedTypeError } from '../errors'
-import type { PropertyResult } from '../result/NonRootResult'
+import type { PropertyResult, IndexedAccessIndexResult } from '../result/NonRootResult'
 import type { Grammar } from '../grammars/Grammar'
 
 export function createNamePathParslet ({ allowSquareBracketsOnAnyType, allowJsdocNamePaths, pathGrammar }: {
@@ -42,13 +42,15 @@ export function createNamePathParslet ({ allowSquareBracketsOnAnyType, allowJsdo
       pathType = 'instance'
     }
 
-    const pathParser = pathGrammar !== null
-      ? new Parser(pathGrammar, parser.lexer, parser)
-      : parser
+    const pathParser = brackets && allowSquareBracketsOnAnyType
+      ? parser
+      : pathGrammar !== null
+        ? new Parser(pathGrammar, parser.lexer, parser)
+        : parser
 
-    const parsed = pathParser.parseIntermediateType(Precedence.NAME_PATH)
+    const parsed = pathParser.parseType(Precedence.NAME_PATH)
     parser.acceptLexerState(pathParser)
-    let right: PropertyResult | SpecialNamePath<'event'>
+    let right: PropertyResult | SpecialNamePath<'event'> | IndexedAccessIndexResult
 
     switch (parsed.type) {
       case 'JsdocTypeName':
@@ -86,7 +88,14 @@ export function createNamePathParslet ({ allowSquareBracketsOnAnyType, allowJsdo
         }
         break
       default:
-        throw new UnexpectedTypeError(parsed, 'Expecting \'JsdocTypeName\', \'JsdocTypeNumber\', \'JsdocStringValue\' or \'JsdocTypeSpecialNamePath\'')
+        if (!brackets || !allowSquareBracketsOnAnyType) {
+          throw new UnexpectedTypeError(parsed, 'Expecting \'JsdocTypeName\', \'JsdocTypeNumber\', \'JsdocStringValue\' or \'JsdocTypeSpecialNamePath\'')
+        }
+
+        right = {
+          type: 'JsdocTypeIndexedAccessIndex',
+          right: parsed
+        }
     }
 
     if (brackets && !parser.consume(']')) {
