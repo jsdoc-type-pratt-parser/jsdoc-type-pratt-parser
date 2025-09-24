@@ -43,6 +43,7 @@ export type RootResult =
   | ReadonlyArrayResult
   | AssertsPlainResult
   | ConditionalResult
+  | TemplateLiteralResult
 
 export type QuoteStyle = 'single' | 'double'
 
@@ -335,4 +336,13 @@ export interface ConditionalResult {
   extendsType: RootResult
   trueType: RootResult
   falseType: RootResult
+}
+
+/**
+ * A TypeScript template literal. Is used like: `\`someText${someType}\``
+ */
+export interface TemplateLiteralResult {
+  type: 'JsdocTypeTemplateLiteral'
+  literals: string[],
+  interpolations: RootResult[]
 }

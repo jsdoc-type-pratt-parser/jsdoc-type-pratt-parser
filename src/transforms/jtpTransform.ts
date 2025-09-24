@@ -546,7 +546,9 @@ const jtpRules: TransformRules<JtpResult> = {
 
   JsdocTypeMethodSignature: notAvailableTransform,
 
-  JsdocTypeIndexedAccessIndex: notAvailableTransform
+  JsdocTypeIndexedAccessIndex: notAvailableTransform,
+
+  JsdocTypeTemplateLiteral: notAvailableTransform
 }
 
 export function jtpTransform (result: RootResult): JtpResult {

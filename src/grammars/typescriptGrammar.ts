@@ -28,6 +28,7 @@ import { createKeyValueParslet } from '../parslets/KeyValueParslet'
 import { objectSquaredPropertyParslet } from '../parslets/ObjectSquaredPropertyParslet'
 import { readonlyArrayParslet } from '../parslets/ReadonlyArrayParslet'
 import { conditionalParslet } from '../parslets/ConditionalParslet'
+import { templateLiteralParslet } from '../parslets/TemplateLiteralParslet'
 
 const objectFieldGrammar: Grammar = [
   functionPropertyParslet,
@@ -98,6 +99,7 @@ export const typescriptGrammar: Grammar = [
   }),
   intersectionParslet,
   predicateParslet,
+  templateLiteralParslet,
   createKeyValueParslet({
     allowVariadic: true,
     allowOptional: true

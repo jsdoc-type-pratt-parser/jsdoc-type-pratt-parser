@@ -41,6 +41,61 @@ function getQuoted (text: string): string | null {
   return text.slice(0, position)
 }
 
+/**
+ * Gets a full template literal (enclosed in backticks)
+ */
+function getTemplateLiteral (text: string): string | null {
+  let position = 0
+  let char = undefined
+  const mark = text[0]
+  let escaped = false
+
+  if (mark !== '`') {
+    return null
+  }
+
+  while (position < text.length) {
+    position++
+    char = text[position]
+    if (!escaped && char === mark) {
+      position++
+      break
+    }
+    escaped = !escaped && char === '\\'
+  }
+
+  if (char !== mark) {
+    throw new Error('Unterminated template literal')
+  }
+
+  return text.slice(0, position)
+}
+
+/**
+ * Gets the next literal (non-interpolation) portion of a text
+ */
+export function getTemplateLiteralLiteral (text: string): string | null {
+  let position = 0
+  let char = undefined
+  const start = text[0]
+  let escaped = false
+
+  if (start === '`' || (start === '$' && text[1] === '{')) {
+    return null
+  }
+
+  while (position < text.length) {
+    position++
+    char = text[position]
+    if (!escaped && (char === '`' || (char === '$' && text[position + 1] === '{'))) {
+      break
+    }
+    escaped = !escaped && char === '\\'
+  }
+
+  return text.slice(0, position)
+}
+
 const identifierStartRegex = /[$_\p{ID_Start}]|\\u\p{Hex_Digit}{4}|\\u\{0*(?:\p{Hex_Digit}{1,5}|10\p{Hex_Digit}{4})\}/u
 // A hyphen is not technically allowed, but to keep it liberal for now,
 //  adding it here
@@ -102,6 +157,17 @@ const stringValueRule: Rule = text => {
   }
   return {
     type: 'StringValue',
+    text: value
+  }
+}
+
+const templateLiteralRule: Rule = text => {
+  const value = getTemplateLiteral(text)
+  if (value == null) {
+    return null
+  }
+  return {
+    type: 'TemplateLiteral',
     text: value
   }
 }
@@ -172,7 +238,8 @@ const rules: Rule[] = [
   makeKeyWordRule('asserts'),
   numberRule,
   identifierRule,
-  stringValueRule
+  stringValueRule,
+  templateLiteralRule
 ]
 
 const breakingWhitespaceRegex = /^\s*\n\s*/
@@ -213,6 +280,10 @@ export class Lexer {
       }
     }
     throw new Error('Unexpected Token ' + text)
+  }
+
+  remaining (): string {
+    return this.next.text + this.text
   }
 
   advance (): Lexer {

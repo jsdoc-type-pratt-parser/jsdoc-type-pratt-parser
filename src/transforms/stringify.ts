@@ -246,7 +246,17 @@ export function stringifyRules (): TransformRules<string> {
       }`
     },
 
-    JsdocTypeIndexedAccessIndex: (result, transform) => (transform(result.right))
+    JsdocTypeIndexedAccessIndex: (result, transform) => (transform(result.right)),
+
+    JsdocTypeTemplateLiteral: (result, transform) => (`\`${
+      // starts with a literal (even empty string) then alternating
+      //    interpolations and literals and also ending in literal
+      //    (even empty string)
+      result.literals.slice(0, -1).map(
+        (literal, idx) =>
+          literal.replace(/`/gu, '\\`') + '${' + transform(result.interpolations[idx]) + '}'
+      ).join('') + result.literals.slice(-1)[0].replace(/`/gu, '\\`')
+    }\``)
   }
 }
 
