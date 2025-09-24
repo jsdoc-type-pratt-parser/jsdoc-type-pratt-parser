@@ -7,7 +7,9 @@ import type {
   CallSignatureResult,
   ConstructorSignatureResult,
   MethodSignatureResult,
-  IndexedAccessIndexResult
+  IndexedAccessIndexResult,
+  ComputedPropertyResult,
+  ComputedMethodResult
 } from './NonRootResult'
 
 /**
@@ -193,7 +195,7 @@ export interface FunctionResult {
  */
 export interface ObjectResult {
   type: 'JsdocTypeObject'
-  elements: Array<ObjectFieldResult | JsdocObjectFieldResult | CallSignatureResult | ConstructorSignatureResult | MethodSignatureResult>
+  elements: Array<ObjectFieldResult | JsdocObjectFieldResult | CallSignatureResult | ConstructorSignatureResult | MethodSignatureResult | ComputedPropertyResult | ComputedMethodResult>
   meta: {
     separator: 'comma' | 'semicolon' | 'linebreak' | 'comma-and-linebreak' | 'semicolon-and-linebreak' | undefined
     separatorForSingleObjectField?: boolean

@@ -133,6 +133,56 @@ describe('transform', () => {
     expect(xform).to.deep.equal(expected)
   })
 
+  it('Gets transform for `JsdocTypeComputedProperty`', () => {
+    const expected = {
+      type: 'JsdocTypeComputedProperty',
+      value: {
+        type: 'JsdocTypeName',
+        value: 'string'
+      }
+    }
+    const parseResult = {
+      type: 'JsdocTypeComputedProperty',
+      value: {
+        type: 'JsdocTypeName',
+        value: 'string'
+      }
+    }
+    const xform = transform<NonRootResult>(identityTransformRules(), parseResult as NonRootResult)
+    expect(xform).to.deep.equal(expected)
+  })
+
+  it('Gets transform for `JsdocTypeComputedMethod`', () => {
+    const expected = {
+      type: 'JsdocTypeComputedMethod',
+      parameters: [],
+      optional: true,
+      value: {
+        type: 'JsdocTypeName',
+        value: 'string'
+      },
+      returnType: {
+        type: 'JsdocTypeName',
+        value: 'SomeType'
+      }
+    }
+    const parseResult = {
+      type: 'JsdocTypeComputedMethod',
+      parameters: [],
+      optional: true,
+      value: {
+        type: 'JsdocTypeName',
+        value: 'string'
+      },
+      returnType: {
+        type: 'JsdocTypeName',
+        value: 'SomeType'
+      }
+    }
+    const xform = transform<NonRootResult>(identityTransformRules(), parseResult as NonRootResult)
+    expect(xform).to.deep.equal(expected)
+  })
+
   it('Gets transform for `JsdocTypeMappedType`', () => {
     const expected = {
       type: 'JsdocTypeMappedType',

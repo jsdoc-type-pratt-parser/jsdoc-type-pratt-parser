@@ -255,6 +255,19 @@ export function identityTransformRules (): TransformRules<NonRootResult> {
       type: 'JsdocTypeTemplateLiteral',
       literals: result.literals,
       interpolations: result.interpolations.map(transform) as RootResult[]
+    }),
+
+    JsdocTypeComputedProperty: (result, transform) => ({
+      type: 'JsdocTypeComputedProperty',
+      value: transform(result.value) as RootResult
+    }),
+
+    JsdocTypeComputedMethod: (result, transform) => ({
+      type: 'JsdocTypeComputedMethod',
+      value: transform(result.value) as RootResult,
+      optional: result.optional,
+      parameters: result.parameters.map(transform) as RootResult[],
+      returnType: transform(result.returnType) as RootResult
     })
   }
 }

@@ -17,7 +17,8 @@ export function assertRootResult (result?: IntermediateResult): RootResult {
     result.type === 'JsdocTypeIndexSignature' || result.type === 'JsdocTypeMappedType' ||
     result.type === 'JsdocTypeTypeParameter' || result.type === 'JsdocTypeCallSignature' ||
     result.type === 'JsdocTypeConstructorSignature' || result.type === 'JsdocTypeMethodSignature' ||
-    result.type === 'JsdocTypeIndexedAccessIndex'
+    result.type === 'JsdocTypeIndexedAccessIndex' || result.type === 'JsdocTypeComputedProperty' ||
+    result.type === 'JsdocTypeComputedMethod'
   ) {
     throw new UnexpectedTypeError(result)
   }
