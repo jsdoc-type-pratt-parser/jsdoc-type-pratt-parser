@@ -249,6 +249,12 @@ export function identityTransformRules (): TransformRules<NonRootResult> {
     JsdocTypeIndexedAccessIndex: (result, transform) => ({
       type: 'JsdocTypeIndexedAccessIndex',
       right: transform(result.right) as RootResult
+    }),
+
+    JsdocTypeTemplateLiteral: (result, transform) => ({
+      type: 'JsdocTypeTemplateLiteral',
+      literals: result.literals,
+      interpolations: result.interpolations.map(transform) as RootResult[]
     })
   }
 }

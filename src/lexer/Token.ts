@@ -42,6 +42,7 @@ export type TokenType =
   | 'asserts'
   | 'Identifier'
   | 'StringValue'
+  | 'TemplateLiteral'
   | 'Number'
   | 'EOF'
 
