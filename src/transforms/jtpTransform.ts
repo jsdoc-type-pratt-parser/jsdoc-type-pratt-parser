@@ -548,7 +548,11 @@ const jtpRules: TransformRules<JtpResult> = {
 
   JsdocTypeIndexedAccessIndex: notAvailableTransform,
 
-  JsdocTypeTemplateLiteral: notAvailableTransform
+  JsdocTypeTemplateLiteral: notAvailableTransform,
+
+  JsdocTypeComputedProperty: notAvailableTransform,
+
+  JsdocTypeComputedMethod: notAvailableTransform
 }
 
 export function jtpTransform (result: RootResult): JtpResult {

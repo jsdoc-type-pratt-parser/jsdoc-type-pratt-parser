@@ -225,6 +225,7 @@ describe('transform', () => {
         {
           // @ts-expect-error In JTP this is a valid configuration
           type: 'JsdocTypeNumber',
+          // @ts-expect-error In JTP this is a valid configuration
           value: 100
         }
       ],

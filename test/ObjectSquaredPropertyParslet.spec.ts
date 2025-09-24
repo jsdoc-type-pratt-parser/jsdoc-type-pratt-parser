@@ -3,6 +3,7 @@ import { objectSquaredPropertyParslet } from '../src/parslets/ObjectSquaredPrope
 import { Parser } from '../src/Parser'
 import type { Grammar } from '../src/grammars/Grammar'
 import { createObjectParslet } from '../src/parslets/ObjectParslet'
+import { createNameParslet } from '../src/parslets/NameParslet'
 
 describe('`ObjectSquaredPropertyParslet`', () => {
   it('throws without base parser', () => {
@@ -23,6 +24,9 @@ describe('`ObjectSquaredPropertyParslet`', () => {
 
   it('throws without `:` or `in`', () => {
     const objectFieldGrammar: Grammar = [
+      createNameParslet({
+        allowedAdditionalTokens: []
+      }),
       objectSquaredPropertyParslet
     ]
 
@@ -43,6 +47,6 @@ describe('`ObjectSquaredPropertyParslet`', () => {
 
       // eslint-disable-next-line no-console -- Testing
       console.log(parser);
-    }).to.throw('Missing \':\' or \'in\' inside square bracketed property.')
+    }).to.throw('Incomplete computed property: missing colon')
   })
 })

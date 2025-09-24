@@ -614,7 +614,7 @@ describe('typescript objects tests', () => {
     })
   })
 
-  describe('index signatures', () => {
+  describe('mapped type clauses', () => {
     testFixture({
       input: '{[key in Type]: number}',
       modes: ['typescript'],
@@ -636,6 +636,41 @@ describe('typescript objects tests', () => {
             },
             optional: false,
             readonly: false,
+            right: {
+              type: 'JsdocTypeName',
+              value: 'number'
+            },
+            meta: {
+              quote: undefined
+            }
+          }
+        ]
+      }
+    })
+  })
+
+  describe('readonly and optional mapped type clauses', () => {
+    testFixture({
+      input: '{readonly [key in Type]?: number}',
+      modes: ['typescript'],
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
+        elements: [
+          {
+            type: 'JsdocTypeObjectField',
+            key: {
+              type: 'JsdocTypeMappedType',
+              key: 'key',
+              right: {
+                type: 'JsdocTypeName',
+                value: 'Type'
+              }
+            },
+            optional: true,
+            readonly: true,
             right: {
               type: 'JsdocTypeName',
               value: 'number'

@@ -98,6 +98,16 @@ export function createObjectParslet ({ signatureGrammar, objectFieldGrammar, all
             field.type === 'JsdocTypeJsdocObjectField'
           ) {
             result.elements.push(field)
+          } else if (
+            field.type === 'JsdocTypeReadonlyProperty' &&
+            field.element.type === 'JsdocTypeObjectField'
+          ) {
+            if (typeof field.element.key === 'object' &&
+              field.element.key.type === 'JsdocTypeComputedMethod') {
+              throw new Error('Computed method may not be readonly');
+            }
+            field.element.readonly = true
+            result.elements.push(field.element)
           } else {
             throw new UnexpectedTypeError(field)
           }

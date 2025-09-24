@@ -20,10 +20,12 @@ export type NonRootResult =
   | ConstructorSignatureResult
   | MethodSignatureResult
   | IndexedAccessIndexResult
+  | ComputedPropertyResult
+  | ComputedMethodResult
 
 export interface ObjectFieldResult {
   type: 'JsdocTypeObjectField'
-  key: string | MappedTypeResult | IndexSignatureResult
+  key: string | MappedTypeResult | IndexSignatureResult | ComputedPropertyResult | ComputedMethodResult
   right: RootResult | undefined
   optional: boolean
   readonly: boolean
@@ -102,4 +104,17 @@ export interface MethodSignatureResult {
 export interface IndexedAccessIndexResult {
   type: 'JsdocTypeIndexedAccessIndex',
   right: RootResult
+}
+
+export interface ComputedPropertyResult {
+  type: 'JsdocTypeComputedProperty',
+  value: RootResult
+}
+
+export interface ComputedMethodResult {
+  type: 'JsdocTypeComputedMethod',
+  value: RootResult,
+  optional: boolean,
+  parameters: Array<RootResult | KeyValueResult>,
+  returnType: RootResult
 }

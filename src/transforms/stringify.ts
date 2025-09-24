@@ -99,13 +99,19 @@ export function stringifyRules (): TransformRules<string> {
       if (result.readonly) {
         text += 'readonly '
       }
+
+      let optionalBeforeParentheses = false
+
       if (typeof result.key === 'string') {
         text += quote(result.key, result.meta.quote)
       } else {
+        if (result.key.type === 'JsdocTypeComputedMethod') {
+          optionalBeforeParentheses = true;
+        }
         text += transform(result.key)
       }
 
-      if (result.optional) {
+      if (!optionalBeforeParentheses && result.optional) {
         text += '?'
       }
 
@@ -256,7 +262,15 @@ export function stringifyRules (): TransformRules<string> {
         (literal, idx) =>
           literal.replace(/`/gu, '\\`') + '${' + transform(result.interpolations[idx]) + '}'
       ).join('') + result.literals.slice(-1)[0].replace(/`/gu, '\\`')
-    }\``)
+    }\``),
+
+    JsdocTypeComputedProperty: (result, transform) => (`[${transform(result.value)}]`),
+
+    JsdocTypeComputedMethod: (result, transform) => (`[${transform(result.value)}]${
+      result.optional ? '?' : ''
+    }(${
+      result.parameters.map(transform).join(', ')
+    }): ${transform(result.returnType)}`)
   }
 }
 

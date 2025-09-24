@@ -137,9 +137,54 @@ describe('Error tests', () => {
 
   describe('should err with unterminated brackets', () => {
     testFixture({
-      input: '{[a: string: string}',
+      input: '{[a: string}',
       errors: {
         typescript: 'Unterminated square brackets'
+      }
+    })
+  })
+
+  describe('errs with unterminated square brackets', () => {
+    testFixture({
+      input: '{[someType}',
+      errors: {
+        typescript: 'Unterminated square brackets'
+      }
+    })
+  })
+
+  describe('should err with unterminated brackets', () => {
+    testFixture({
+      input: '{[key in string}',
+      errors: {
+        typescript: 'Unterminated square brackets'
+      }
+    })
+  })
+
+  describe('should err with incomplete index signature', () => {
+    testFixture({
+      input: '{[a: string]}',
+      errors: {
+        typescript: 'Incomplete index signature'
+      }
+    })
+  })
+
+  describe('should err with incomplete mapped type clause', () => {
+    testFixture({
+      input: '{[key in string]}',
+      errors: {
+        typescript: 'Incomplete mapped type clause: missing colon'
+      }
+    })
+  })
+
+  describe('should err inside square bracketed property', () => {
+    testFixture({
+      input: '{[a: string: string}',
+      errors: {
+        typescript: 'Error parsing value inside square bracketed property'
       }
     })
   })

@@ -53,6 +53,7 @@ export function createObjectFieldParslet ({ allowSquaredProperties, allowKeyType
 
         return {
           type: 'JsdocTypeObjectField',
+          /* c8 ignore next -- Guard; not needed anymore? */
           key: isSquaredProperty(left) ? left : left.value.toString(),
           right,
           optional,
