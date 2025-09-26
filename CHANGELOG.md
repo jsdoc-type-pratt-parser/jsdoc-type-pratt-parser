@@ -1,3 +1,10 @@
+# [5.8.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v5.7.0...v5.8.0) (2025-09-26)
+
+
+### Features
+
+* computed properties and methods ([b621584](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/b6215849d6f112e6e29008cbad9909889735ec88))
+
 # [5.7.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v5.6.0...v5.7.0) (2025-09-26)
 
 
