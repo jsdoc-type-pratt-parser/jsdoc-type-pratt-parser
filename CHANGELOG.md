@@ -1,3 +1,10 @@
+# [5.5.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v5.4.0...v5.5.0) (2025-09-26)
+
+
+### Features
+
+* add `JsdocTypeCallSignature`, `JsdocTypeConstructorSignature`, and `JsdocTypeMethodSignature` ([4ca386c](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/4ca386c4283eaf85c5e24873819d6da8e2e1be5e))
+
 # [5.4.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v5.3.0...v5.4.0) (2025-09-10)
 
 
