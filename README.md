@@ -142,7 +142,7 @@ import { generate } from '@es-joy/escodegen'
 const parsed = parse(
     input,
     mode,
-    computedPropertyParser: espree
+    { computedPropertyParser: espree }
 )
 
 const stringified = stringify(
