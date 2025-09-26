@@ -1,4 +1,4 @@
-import type { JsdocObjectFieldResult, KeyValueResult, ObjectFieldResult, PropertyResult, TypeParameterResult, CallSignatureResult, ConstructorSignatureResult, MethodSignatureResult, IndexedAccessIndexResult } from './NonRootResult';
+import type { JsdocObjectFieldResult, KeyValueResult, ObjectFieldResult, PropertyResult, TypeParameterResult, CallSignatureResult, ConstructorSignatureResult, MethodSignatureResult, IndexedAccessIndexResult, ComputedPropertyResult, ComputedMethodResult } from './NonRootResult';
 /**
  * A parse result that corresponds to a valid type expression.
  */
@@ -137,7 +137,7 @@ export interface FunctionResult {
  */
 export interface ObjectResult {
     type: 'JsdocTypeObject';
-    elements: Array<ObjectFieldResult | JsdocObjectFieldResult | CallSignatureResult | ConstructorSignatureResult | MethodSignatureResult>;
+    elements: Array<ObjectFieldResult | JsdocObjectFieldResult | CallSignatureResult | ConstructorSignatureResult | MethodSignatureResult | ComputedPropertyResult | ComputedMethodResult>;
     meta: {
         separator: 'comma' | 'semicolon' | 'linebreak' | 'comma-and-linebreak' | 'semicolon-and-linebreak' | undefined;
         separatorForSingleObjectField?: boolean;

@@ -1,10 +1,10 @@
 /**
  * A parse sub result that might not be a valid type expression on its own.
  */
-type NonRootResult = RootResult | PropertyResult | ObjectFieldResult | JsdocObjectFieldResult | KeyValueResult | MappedTypeResult | IndexSignatureResult | TypeParameterResult | CallSignatureResult | ConstructorSignatureResult | MethodSignatureResult | IndexedAccessIndexResult;
+type NonRootResult = RootResult | PropertyResult | ObjectFieldResult | JsdocObjectFieldResult | KeyValueResult | MappedTypeResult | IndexSignatureResult | TypeParameterResult | CallSignatureResult | ConstructorSignatureResult | MethodSignatureResult | IndexedAccessIndexResult | ComputedPropertyResult | ComputedMethodResult;
 interface ObjectFieldResult {
     type: 'JsdocTypeObjectField';
-    key: string | MappedTypeResult | IndexSignatureResult;
+    key: string | MappedTypeResult | IndexSignatureResult | ComputedPropertyResult | ComputedMethodResult;
     right: RootResult | undefined;
     optional: boolean;
     readonly: boolean;
@@ -73,6 +73,17 @@ interface MethodSignatureResult {
 interface IndexedAccessIndexResult {
     type: 'JsdocTypeIndexedAccessIndex';
     right: RootResult;
+}
+interface ComputedPropertyResult {
+    type: 'JsdocTypeComputedProperty';
+    value: RootResult;
+}
+interface ComputedMethodResult {
+    type: 'JsdocTypeComputedMethod';
+    value: RootResult;
+    optional: boolean;
+    parameters: Array<RootResult | KeyValueResult>;
+    returnType: RootResult;
 }
 
 /**
@@ -213,7 +224,7 @@ interface FunctionResult {
  */
 interface ObjectResult {
     type: 'JsdocTypeObject';
-    elements: Array<ObjectFieldResult | JsdocObjectFieldResult | CallSignatureResult | ConstructorSignatureResult | MethodSignatureResult>;
+    elements: Array<ObjectFieldResult | JsdocObjectFieldResult | CallSignatureResult | ConstructorSignatureResult | MethodSignatureResult | ComputedPropertyResult | ComputedMethodResult>;
     meta: {
         separator: 'comma' | 'semicolon' | 'linebreak' | 'comma-and-linebreak' | 'semicolon-and-linebreak' | undefined;
         separatorForSingleObjectField?: boolean;
@@ -577,4 +588,4 @@ type VisitorKeys = {
 };
 declare const visitorKeys: VisitorKeys;
 
-export { type AnyResult, type AssertsPlainResult, type AssertsResult, type CallSignatureResult, type ConditionalResult, type ConstructorSignatureResult, type FunctionResult, type GenericResult, type ImportResult, type IndexSignatureResult, type IndexedAccessIndexResult, type IntersectionResult, type JsdocObjectFieldResult, type KeyOfResult, type KeyValueResult, type MappedTypeResult, type MethodSignatureResult, type NamePathResult, type NameResult, type NodeVisitor, type NonRootResult, type NotNullableResult, type NullResult, type NullableResult, type NumberResult, type ObjectFieldResult, type ObjectResult, type OptionalResult, type ParenthesisResult, type ParseMode, type PredicateResult, type PropertyResult, type QuoteStyle, type ReadonlyArrayResult, type RootResult, type SpecialNamePath, type SpecialNamePathType, type StringValueResult, type SymbolResult, type TemplateLiteralResult, type TransformFunction, type TransformRule, type TransformRules, type TupleResult, type TypeOfResult, type TypeParameterResult, type UndefinedResult, type UnionResult, type UnknownResult, type VariadicResult, type VisitorKeys, catharsisTransform, identityTransformRules, jtpTransform, parse, stringify, stringifyRules, transform, traverse, tryParse, visitorKeys };
+export { type AnyResult, type AssertsPlainResult, type AssertsResult, type CallSignatureResult, type ComputedMethodResult, type ComputedPropertyResult, type ConditionalResult, type ConstructorSignatureResult, type FunctionResult, type GenericResult, type ImportResult, type IndexSignatureResult, type IndexedAccessIndexResult, type IntersectionResult, type JsdocObjectFieldResult, type KeyOfResult, type KeyValueResult, type MappedTypeResult, type MethodSignatureResult, type NamePathResult, type NameResult, type NodeVisitor, type NonRootResult, type NotNullableResult, type NullResult, type NullableResult, type NumberResult, type ObjectFieldResult, type ObjectResult, type OptionalResult, type ParenthesisResult, type ParseMode, type PredicateResult, type PropertyResult, type QuoteStyle, type ReadonlyArrayResult, type RootResult, type SpecialNamePath, type SpecialNamePathType, type StringValueResult, type SymbolResult, type TemplateLiteralResult, type TransformFunction, type TransformRule, type TransformRules, type TupleResult, type TypeOfResult, type TypeParameterResult, type UndefinedResult, type UnionResult, type UnknownResult, type VariadicResult, type VisitorKeys, catharsisTransform, identityTransformRules, jtpTransform, parse, stringify, stringifyRules, transform, traverse, tryParse, visitorKeys };
