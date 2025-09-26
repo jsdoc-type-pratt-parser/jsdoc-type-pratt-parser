@@ -155,6 +155,82 @@ describe('typescript computed method tests', () => {
     })
   })
 
+  describe('computed method object with namespaced property', () => {
+    testFixture({
+      input: '{[SomeObject.someType()](): AnotherType;}',
+      espree: true,
+      stringified: '{[SomeObject.someType()](): AnotherType}',
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: {
+          separator: 'semicolon'
+        },
+        elements: [
+          {
+            type: 'JsdocTypeObjectField',
+            key: {
+              type: 'JsdocTypeComputedMethod',
+              optional: false,
+              parameters: [],
+              value: {
+                body: [
+                  {
+                    end: 21,
+                    expression: {
+                      arguments: [],
+                      callee: {
+                        computed: false,
+                        end: 19,
+                        object: {
+                          // @ts-expect-error Not the same `Identifier`
+                          end: 10,
+                          name: 'SomeObject',
+                          start: 0,
+                          type: 'Identifier'
+                        },
+                        property: {
+                          // @ts-expect-error Not the same `Identifier`
+                          end: 19,
+                          name: 'someType',
+                          start: 11,
+                          type: 'Identifier'
+                        },
+                        start: 0,
+                        type: 'MemberExpression'
+                      },
+                      end: 21,
+                      start: 0,
+                      type: 'CallExpression'
+                    },
+                    start: 0,
+                    type: 'ExpressionStatement'
+                  }
+                ],
+                end: 21,
+                sourceType: 'script',
+                start: 0,
+                type: 'Program'
+              },
+              returnType: {
+                type: 'JsdocTypeName',
+                value: 'AnotherType'
+              }
+            },
+            optional: false,
+            readonly: false,
+            right: undefined,
+            meta: {
+              quote: undefined
+            }
+          }
+        ]
+      },
+      modes: [
+        'typescript'
+      ]
+    })
+  })
+
   describe('no readonly computed method object', () => {
     testFixture({
       input: '{readonly [someType](): string;}',

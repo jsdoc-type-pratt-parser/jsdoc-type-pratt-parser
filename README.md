@@ -22,6 +22,7 @@ You can find some more information about pratt parsers here:
 * [Available Grammars](#available-grammars)
 * [Transforms](#transforms)
 * [Traverse](#traverse)
+* [Custom Parsers and Stringifiers](#custom-parsers-and-stringifiers)
 * [Tests Status](#tests-status)
 * [Performance](#performance)
 * [Development](#development)
@@ -33,7 +34,7 @@ A simple live demo to test expressions can be found at: https://jsdoc-type-pratt
 ## Getting started
 
 ```
-npm install jsdoc-type-pratt-parser@alpha
+npm install jsdoc-type-pratt-parser
 ```
 
 ```js
@@ -125,6 +126,29 @@ function onEnter(node, parent, property) {
 
 // an onEnter and/or an onLeave function can be supplied
 traverse({ type: 'JsdocTypeName', value: 'name'}, onEnter, console.log)
+```
+
+## Custom Parsers and Stringifiers
+
+For TypeScript's computed property and methods, access to JavaScript
+(or TypeScript) parsing and stringification is required (beyond the
+types supported in `jsdoc-type-pratt-parser`). You can provide these
+by supplying the following optional arguments:
+
+```ts
+import { parse as espree } from 'espree'
+import { generate } from '@es-joy/escodegen'
+
+const parsed = parse(
+    input,
+    mode,
+    computedPropertyParser: espree
+)
+
+const stringified = stringify(
+    result,
+    generate
+)
 ```
 
 ## Tests Status

@@ -28,7 +28,14 @@ export function createObjectParslet ({ signatureGrammar, objectFieldGrammar, all
       if (!parser.consume('}')) {
         let separator: 'comma' | 'semicolon' | 'linebreak' | 'comma-and-linebreak' | 'semicolon-and-linebreak' | undefined
 
-        const fieldParser = new Parser(objectFieldGrammar, parser.lexer, parser)
+        const fieldParser = new Parser(
+          objectFieldGrammar,
+          parser.lexer,
+          parser,
+          parser.computedPropertyParser !== undefined
+            ? {computedPropertyParser: parser.computedPropertyParser}
+            : undefined
+        )
 
         while (true) {
           fieldParser.acceptLexerState(parser)

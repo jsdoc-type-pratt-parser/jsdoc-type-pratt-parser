@@ -152,6 +152,97 @@ describe('transform', () => {
     expect(xform).to.deep.equal(expected)
   })
 
+  it('Gets transform for `JsdocTypeComputedProperty` with custom parser', () => {
+    const expected = {
+      type: 'JsdocTypeComputedProperty',
+      value: {
+        type: 'JsdocTypeComputedProperty',
+        value: {
+          body: [
+            {
+              end: 21,
+              expression: {
+                arguments: [],
+                callee: {
+                  computed: false,
+                  end: 19,
+                  object: {
+                    end: 10,
+                    name: 'SomeObject',
+                    start: 0,
+                    type: 'Identifier'
+                  },
+                  property: {
+                    end: 19,
+                    name: 'someType',
+                    start: 11,
+                    type: 'Identifier'
+                  },
+                  start: 0,
+                  type: 'MemberExpression'
+                },
+                end: 21,
+                start: 0,
+                type: 'CallExpression'
+              },
+              start: 0,
+              type: 'ExpressionStatement'
+            }
+          ],
+          end: 21,
+          sourceType: 'script',
+          start: 0,
+          type: 'Program'
+        },
+      }
+    }
+    const parseResult = {
+      type: 'JsdocTypeComputedProperty',
+      value: {
+        type: 'JsdocTypeComputedProperty',
+        value: {
+          body: [
+            {
+              end: 21,
+              expression: {
+                arguments: [],
+                callee: {
+                  computed: false,
+                  end: 19,
+                  object: {
+                    end: 10,
+                    name: 'SomeObject',
+                    start: 0,
+                    type: 'Identifier'
+                  },
+                  property: {
+                    end: 19,
+                    name: 'someType',
+                    start: 11,
+                    type: 'Identifier'
+                  },
+                  start: 0,
+                  type: 'MemberExpression'
+                },
+                end: 21,
+                start: 0,
+                type: 'CallExpression'
+              },
+              start: 0,
+              type: 'ExpressionStatement'
+            }
+          ],
+          end: 21,
+          sourceType: 'script',
+          start: 0,
+          type: 'Program'
+        },
+      }
+    }
+    const xform = transform<NonRootResult>(identityTransformRules(), parseResult as NonRootResult)
+    expect(xform).to.deep.equal(expected)
+  })
+
   it('Gets transform for `JsdocTypeComputedMethod`', () => {
     const expected = {
       type: 'JsdocTypeComputedMethod',
@@ -182,6 +273,103 @@ describe('transform', () => {
     const xform = transform<NonRootResult>(identityTransformRules(), parseResult as NonRootResult)
     expect(xform).to.deep.equal(expected)
   })
+
+  it('Gets transform for `JsdocTypeComputedMethod` with custom parser', function () {
+    const expected = {
+      type: 'JsdocTypeComputedMethod',
+      parameters: [],
+      optional: true,
+      value: {
+        body: [
+          {
+            end: 21,
+            expression: {
+              arguments: [],
+              callee: {
+                computed: false,
+                end: 19,
+                object: {
+                  end: 10,
+                  name: 'SomeObject',
+                  start: 0,
+                  type: 'Identifier'
+                },
+                property: {
+                  end: 19,
+                  name: 'someType',
+                  start: 11,
+                  type: 'Identifier'
+                },
+                start: 0,
+                type: 'MemberExpression'
+              },
+              end: 21,
+              start: 0,
+              type: 'CallExpression'
+            },
+            start: 0,
+            type: 'ExpressionStatement'
+          }
+        ],
+        end: 21,
+        sourceType: 'script',
+        start: 0,
+        type: 'Program'
+      },
+      returnType: {
+        type: 'JsdocTypeName',
+        value: 'SomeType'
+      }
+    }
+    const parseResult = {
+      type: 'JsdocTypeComputedMethod',
+      parameters: [],
+      optional: true,
+      value: {
+        body: [
+          {
+            end: 21,
+            expression: {
+              arguments: [],
+              callee: {
+                computed: false,
+                end: 19,
+                object: {
+                  end: 10,
+                  name: 'SomeObject',
+                  start: 0,
+                  type: 'Identifier'
+                },
+                property: {
+                  end: 19,
+                  name: 'someType',
+                  start: 11,
+                  type: 'Identifier'
+                },
+                start: 0,
+                type: 'MemberExpression'
+              },
+              end: 21,
+              start: 0,
+              type: 'CallExpression'
+            },
+            start: 0,
+            type: 'ExpressionStatement'
+          }
+        ],
+        end: 21,
+        sourceType: 'script',
+        start: 0,
+        type: 'Program'
+      },
+      returnType: {
+        type: 'JsdocTypeName',
+        value: 'SomeType'
+      }
+    }
+    const xform = transform<NonRootResult>(identityTransformRules(), parseResult as NonRootResult)
+    expect(xform).to.deep.equal(expected)
+  });
 
   it('Gets transform for `JsdocTypeMappedType`', () => {
     const expected = {

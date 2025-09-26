@@ -4,6 +4,8 @@ import type {
   NameResult
 } from './RootResult'
 
+import type { Node } from 'estree'
+
 /**
  * A parse sub result that might not be a valid type expression on its own.
  */
@@ -108,12 +110,12 @@ export interface IndexedAccessIndexResult {
 
 export interface ComputedPropertyResult {
   type: 'JsdocTypeComputedProperty',
-  value: RootResult
+  value: RootResult | Node
 }
 
 export interface ComputedMethodResult {
   type: 'JsdocTypeComputedMethod',
-  value: RootResult,
+  value: RootResult | Node,
   optional: boolean,
   parameters: Array<RootResult | KeyValueResult>,
   returnType: RootResult
