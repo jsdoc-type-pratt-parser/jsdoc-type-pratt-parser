@@ -2,7 +2,7 @@ import type { QuoteStyle, RootResult, NameResult } from './RootResult';
 /**
  * A parse sub result that might not be a valid type expression on its own.
  */
-export type NonRootResult = RootResult | PropertyResult | ObjectFieldResult | JsdocObjectFieldResult | KeyValueResult | MappedTypeResult | IndexSignatureResult | TypeParameterResult | CallSignatureResult | ConstructorSignatureResult | MethodSignatureResult;
+export type NonRootResult = RootResult | PropertyResult | ObjectFieldResult | JsdocObjectFieldResult | KeyValueResult | MappedTypeResult | IndexSignatureResult | TypeParameterResult | CallSignatureResult | ConstructorSignatureResult | MethodSignatureResult | IndexedAccessIndexResult;
 export interface ObjectFieldResult {
     type: 'JsdocTypeObjectField';
     key: string | MappedTypeResult | IndexSignatureResult;
@@ -70,4 +70,8 @@ export interface MethodSignatureResult {
     };
     parameters: Array<RootResult | KeyValueResult>;
     returnType: RootResult;
+}
+export interface IndexedAccessIndexResult {
+    type: 'JsdocTypeIndexedAccessIndex';
+    right: RootResult;
 }

@@ -1,4 +1,4 @@
-import type { JsdocObjectFieldResult, KeyValueResult, ObjectFieldResult, PropertyResult, TypeParameterResult, CallSignatureResult, ConstructorSignatureResult, MethodSignatureResult } from './NonRootResult';
+import type { JsdocObjectFieldResult, KeyValueResult, ObjectFieldResult, PropertyResult, TypeParameterResult, CallSignatureResult, ConstructorSignatureResult, MethodSignatureResult, IndexedAccessIndexResult } from './NonRootResult';
 /**
  * A parse result that corresponds to a valid type expression.
  */
@@ -163,7 +163,7 @@ export interface SpecialNamePath<Type extends SpecialNamePathType = SpecialNameP
 export interface NamePathResult {
     type: 'JsdocTypeNamePath';
     left: RootResult;
-    right: PropertyResult | SpecialNamePath<'event'>;
+    right: PropertyResult | SpecialNamePath<'event'> | IndexedAccessIndexResult;
     pathType: 'inner' | 'instance' | 'property' | 'property-brackets';
 }
 /**
