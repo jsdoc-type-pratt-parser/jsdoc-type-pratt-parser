@@ -1,3 +1,10 @@
+# [5.9.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v5.8.0...v5.9.0) (2025-09-26)
+
+
+### Features
+
+* support `computedPropertyParser` and computed property stringifier options ([4d1bea3](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/4d1bea3b623429e0089541bdcaa15f2f4d696c2f))
+
 # [5.8.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v5.7.0...v5.8.0) (2025-09-26)
 
 
