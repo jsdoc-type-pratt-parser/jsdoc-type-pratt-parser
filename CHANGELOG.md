@@ -1,3 +1,10 @@
+# [5.6.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v5.5.0...v5.6.0) (2025-09-26)
+
+
+### Features
+
+* add `JsdocTypeIndexedAccessIndex`; fixes [#147](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/issues/147) ([2d54a4c](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/2d54a4c07795783bdac2b6841eec4318b8bbc863))
+
 # [5.5.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v5.4.0...v5.5.0) (2025-09-26)
 
 
