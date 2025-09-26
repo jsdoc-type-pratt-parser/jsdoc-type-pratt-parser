@@ -78,7 +78,7 @@ interface IndexedAccessIndexResult {
 /**
  * A parse result that corresponds to a valid type expression.
  */
-type RootResult = NameResult | UnionResult | GenericResult | StringValueResult | NullResult | UndefinedResult | AnyResult | UnknownResult | FunctionResult | ObjectResult | NamePathResult | SymbolResult | TypeOfResult | KeyOfResult | ImportResult | TupleResult | SpecialNamePath | OptionalResult<RootResult> | NullableResult<RootResult> | NotNullableResult<RootResult> | VariadicResult<RootResult> | ParenthesisResult | IntersectionResult | NumberResult | PredicateResult | AssertsResult | ReadonlyArrayResult | AssertsPlainResult | ConditionalResult;
+type RootResult = NameResult | UnionResult | GenericResult | StringValueResult | NullResult | UndefinedResult | AnyResult | UnknownResult | FunctionResult | ObjectResult | NamePathResult | SymbolResult | TypeOfResult | KeyOfResult | ImportResult | TupleResult | SpecialNamePath | OptionalResult<RootResult> | NullableResult<RootResult> | NotNullableResult<RootResult> | VariadicResult<RootResult> | ParenthesisResult | IntersectionResult | NumberResult | PredicateResult | AssertsResult | ReadonlyArrayResult | AssertsPlainResult | ConditionalResult | TemplateLiteralResult;
 type QuoteStyle = 'single' | 'double';
 /**
  * `element` is optional.
@@ -341,6 +341,14 @@ interface ConditionalResult {
     trueType: RootResult;
     falseType: RootResult;
 }
+/**
+ * A TypeScript template literal. Is used like: `\`someText${someType}\``
+ */
+interface TemplateLiteralResult {
+    type: 'JsdocTypeTemplateLiteral';
+    literals: string[];
+    interpolations: RootResult[];
+}
 
 type ParseMode = 'closure' | 'jsdoc' | 'typescript';
 /**
@@ -569,4 +577,4 @@ type VisitorKeys = {
 };
 declare const visitorKeys: VisitorKeys;
 
-export { type AnyResult, type AssertsPlainResult, type AssertsResult, type CallSignatureResult, type ConditionalResult, type ConstructorSignatureResult, type FunctionResult, type GenericResult, type ImportResult, type IndexSignatureResult, type IndexedAccessIndexResult, type IntersectionResult, type JsdocObjectFieldResult, type KeyOfResult, type KeyValueResult, type MappedTypeResult, type MethodSignatureResult, type NamePathResult, type NameResult, type NodeVisitor, type NonRootResult, type NotNullableResult, type NullResult, type NullableResult, type NumberResult, type ObjectFieldResult, type ObjectResult, type OptionalResult, type ParenthesisResult, type ParseMode, type PredicateResult, type PropertyResult, type QuoteStyle, type ReadonlyArrayResult, type RootResult, type SpecialNamePath, type SpecialNamePathType, type StringValueResult, type SymbolResult, type TransformFunction, type TransformRule, type TransformRules, type TupleResult, type TypeOfResult, type TypeParameterResult, type UndefinedResult, type UnionResult, type UnknownResult, type VariadicResult, type VisitorKeys, catharsisTransform, identityTransformRules, jtpTransform, parse, stringify, stringifyRules, transform, traverse, tryParse, visitorKeys };
+export { type AnyResult, type AssertsPlainResult, type AssertsResult, type CallSignatureResult, type ConditionalResult, type ConstructorSignatureResult, type FunctionResult, type GenericResult, type ImportResult, type IndexSignatureResult, type IndexedAccessIndexResult, type IntersectionResult, type JsdocObjectFieldResult, type KeyOfResult, type KeyValueResult, type MappedTypeResult, type MethodSignatureResult, type NamePathResult, type NameResult, type NodeVisitor, type NonRootResult, type NotNullableResult, type NullResult, type NullableResult, type NumberResult, type ObjectFieldResult, type ObjectResult, type OptionalResult, type ParenthesisResult, type ParseMode, type PredicateResult, type PropertyResult, type QuoteStyle, type ReadonlyArrayResult, type RootResult, type SpecialNamePath, type SpecialNamePathType, type StringValueResult, type SymbolResult, type TemplateLiteralResult, type TransformFunction, type TransformRule, type TransformRules, type TupleResult, type TypeOfResult, type TypeParameterResult, type UndefinedResult, type UnionResult, type UnknownResult, type VariadicResult, type VisitorKeys, catharsisTransform, identityTransformRules, jtpTransform, parse, stringify, stringifyRules, transform, traverse, tryParse, visitorKeys };

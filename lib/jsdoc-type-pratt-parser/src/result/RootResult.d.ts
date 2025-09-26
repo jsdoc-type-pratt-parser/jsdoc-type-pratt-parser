@@ -2,7 +2,7 @@ import type { JsdocObjectFieldResult, KeyValueResult, ObjectFieldResult, Propert
 /**
  * A parse result that corresponds to a valid type expression.
  */
-export type RootResult = NameResult | UnionResult | GenericResult | StringValueResult | NullResult | UndefinedResult | AnyResult | UnknownResult | FunctionResult | ObjectResult | NamePathResult | SymbolResult | TypeOfResult | KeyOfResult | ImportResult | TupleResult | SpecialNamePath | OptionalResult<RootResult> | NullableResult<RootResult> | NotNullableResult<RootResult> | VariadicResult<RootResult> | ParenthesisResult | IntersectionResult | NumberResult | PredicateResult | AssertsResult | ReadonlyArrayResult | AssertsPlainResult | ConditionalResult;
+export type RootResult = NameResult | UnionResult | GenericResult | StringValueResult | NullResult | UndefinedResult | AnyResult | UnknownResult | FunctionResult | ObjectResult | NamePathResult | SymbolResult | TypeOfResult | KeyOfResult | ImportResult | TupleResult | SpecialNamePath | OptionalResult<RootResult> | NullableResult<RootResult> | NotNullableResult<RootResult> | VariadicResult<RootResult> | ParenthesisResult | IntersectionResult | NumberResult | PredicateResult | AssertsResult | ReadonlyArrayResult | AssertsPlainResult | ConditionalResult | TemplateLiteralResult;
 export type QuoteStyle = 'single' | 'double';
 /**
  * `element` is optional.
@@ -264,4 +264,12 @@ export interface ConditionalResult {
     extendsType: RootResult;
     trueType: RootResult;
     falseType: RootResult;
+}
+/**
+ * A TypeScript template literal. Is used like: `\`someText${someType}\``
+ */
+export interface TemplateLiteralResult {
+    type: 'JsdocTypeTemplateLiteral';
+    literals: string[];
+    interpolations: RootResult[];
 }
