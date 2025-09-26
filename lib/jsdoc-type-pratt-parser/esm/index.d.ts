@@ -1,7 +1,7 @@
 /**
  * A parse sub result that might not be a valid type expression on its own.
  */
-type NonRootResult = RootResult | PropertyResult | ObjectFieldResult | JsdocObjectFieldResult | KeyValueResult | MappedTypeResult | IndexSignatureResult | TypeParameterResult;
+type NonRootResult = RootResult | PropertyResult | ObjectFieldResult | JsdocObjectFieldResult | KeyValueResult | MappedTypeResult | IndexSignatureResult | TypeParameterResult | CallSignatureResult | ConstructorSignatureResult | MethodSignatureResult;
 interface ObjectFieldResult {
     type: 'JsdocTypeObjectField';
     key: string | MappedTypeResult | IndexSignatureResult;
@@ -50,6 +50,25 @@ interface TypeParameterResult {
     defaultValue?: RootResult;
     name: NameResult;
     constraint?: RootResult;
+}
+interface CallSignatureResult {
+    type: 'JsdocTypeCallSignature';
+    parameters: Array<RootResult | KeyValueResult>;
+    returnType: RootResult;
+}
+interface ConstructorSignatureResult {
+    type: 'JsdocTypeConstructorSignature';
+    parameters: Array<RootResult | KeyValueResult>;
+    returnType: RootResult;
+}
+interface MethodSignatureResult {
+    type: 'JsdocTypeMethodSignature';
+    name: string;
+    meta: {
+        quote: QuoteStyle | undefined;
+    };
+    parameters: Array<RootResult | KeyValueResult>;
+    returnType: RootResult;
 }
 
 /**
@@ -190,7 +209,7 @@ interface FunctionResult {
  */
 interface ObjectResult {
     type: 'JsdocTypeObject';
-    elements: Array<ObjectFieldResult | JsdocObjectFieldResult>;
+    elements: Array<ObjectFieldResult | JsdocObjectFieldResult | CallSignatureResult | ConstructorSignatureResult | MethodSignatureResult>;
     meta: {
         separator: 'comma' | 'semicolon' | 'linebreak' | 'comma-and-linebreak' | 'semicolon-and-linebreak' | undefined;
         separatorForSingleObjectField?: boolean;
@@ -546,4 +565,4 @@ type VisitorKeys = {
 };
 declare const visitorKeys: VisitorKeys;
 
-export { type AnyResult, type AssertsPlainResult, type AssertsResult, type ConditionalResult, type FunctionResult, type GenericResult, type ImportResult, type IndexSignatureResult, type IntersectionResult, type JsdocObjectFieldResult, type KeyOfResult, type KeyValueResult, type MappedTypeResult, type NamePathResult, type NameResult, type NodeVisitor, type NonRootResult, type NotNullableResult, type NullResult, type NullableResult, type NumberResult, type ObjectFieldResult, type ObjectResult, type OptionalResult, type ParenthesisResult, type ParseMode, type PredicateResult, type PropertyResult, type QuoteStyle, type ReadonlyArrayResult, type RootResult, type SpecialNamePath, type SpecialNamePathType, type StringValueResult, type SymbolResult, type TransformFunction, type TransformRule, type TransformRules, type TupleResult, type TypeOfResult, type TypeParameterResult, type UndefinedResult, type UnionResult, type UnknownResult, type VariadicResult, type VisitorKeys, catharsisTransform, identityTransformRules, jtpTransform, parse, stringify, stringifyRules, transform, traverse, tryParse, visitorKeys };
+export { type AnyResult, type AssertsPlainResult, type AssertsResult, type CallSignatureResult, type ConditionalResult, type ConstructorSignatureResult, type FunctionResult, type GenericResult, type ImportResult, type IndexSignatureResult, type IntersectionResult, type JsdocObjectFieldResult, type KeyOfResult, type KeyValueResult, type MappedTypeResult, type MethodSignatureResult, type NamePathResult, type NameResult, type NodeVisitor, type NonRootResult, type NotNullableResult, type NullResult, type NullableResult, type NumberResult, type ObjectFieldResult, type ObjectResult, type OptionalResult, type ParenthesisResult, type ParseMode, type PredicateResult, type PropertyResult, type QuoteStyle, type ReadonlyArrayResult, type RootResult, type SpecialNamePath, type SpecialNamePathType, type StringValueResult, type SymbolResult, type TransformFunction, type TransformRule, type TransformRules, type TupleResult, type TypeOfResult, type TypeParameterResult, type UndefinedResult, type UnionResult, type UnknownResult, type VariadicResult, type VisitorKeys, catharsisTransform, identityTransformRules, jtpTransform, parse, stringify, stringifyRules, transform, traverse, tryParse, visitorKeys };

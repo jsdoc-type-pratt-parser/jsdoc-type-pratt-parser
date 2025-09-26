@@ -1,4 +1,4 @@
-import type { JsdocObjectFieldResult, KeyValueResult, ObjectFieldResult, PropertyResult, TypeParameterResult } from './NonRootResult';
+import type { JsdocObjectFieldResult, KeyValueResult, ObjectFieldResult, PropertyResult, TypeParameterResult, CallSignatureResult, ConstructorSignatureResult, MethodSignatureResult } from './NonRootResult';
 /**
  * A parse result that corresponds to a valid type expression.
  */
@@ -137,7 +137,7 @@ export interface FunctionResult {
  */
 export interface ObjectResult {
     type: 'JsdocTypeObject';
-    elements: Array<ObjectFieldResult | JsdocObjectFieldResult>;
+    elements: Array<ObjectFieldResult | JsdocObjectFieldResult | CallSignatureResult | ConstructorSignatureResult | MethodSignatureResult>;
     meta: {
         separator: 'comma' | 'semicolon' | 'linebreak' | 'comma-and-linebreak' | 'semicolon-and-linebreak' | undefined;
         separatorForSingleObjectField?: boolean;
