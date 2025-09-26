@@ -11,14 +11,21 @@ export type ParseMode = 'closure' | 'jsdoc' | 'typescript'
  * @param expression
  * @param mode
  */
-export function parse (expression: string, mode: ParseMode): RootResult {
+export function parse (
+  expression: string, mode: ParseMode, options?: {
+    computedPropertyParser: (
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Actual API
+      text: string, options?: any
+    ) => unknown
+  }
+): RootResult {
   switch (mode) {
     case 'closure':
       return (new Parser(closureGrammar, expression)).parse()
     case 'jsdoc':
       return (new Parser(jsdocGrammar, expression)).parse()
     case 'typescript':
-      return (new Parser(typescriptGrammar, expression)).parse()
+      return (new Parser(typescriptGrammar, expression, undefined, options)).parse()
   }
 }
 

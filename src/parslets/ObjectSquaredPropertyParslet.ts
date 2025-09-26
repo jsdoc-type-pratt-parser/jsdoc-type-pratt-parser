@@ -17,15 +17,19 @@ export const objectSquaredPropertyParslet = composeParslet({
     parser.consume('[')
 
     let innerBracketType;
-    try {
-      innerBracketType = parser.parseIntermediateType(Precedence.OBJECT)
-    } catch (err) {
-      throw new Error('Error parsing value inside square bracketed property.')
+
+    if (parser.computedPropertyParser === undefined) {
+      try {
+        innerBracketType = parser.parseIntermediateType(Precedence.OBJECT)
+      } catch (err) {
+        throw new Error('Error parsing value inside square bracketed property.')
+      }
     }
 
     let result: ObjectFieldResult
 
     if (
+      innerBracketType !== undefined &&
       // Looks like an object field because of `key: value`, but is
       //  shaping to be an index signature
       innerBracketType.type === 'JsdocTypeObjectField' &&
@@ -62,6 +66,7 @@ export const objectSquaredPropertyParslet = composeParslet({
 
       parser.acceptLexerState(parentParser)
     } else if (
+      innerBracketType !== undefined &&
       // Looks like a name, but is shaping to be a mapped type clause
       innerBracketType.type === 'JsdocTypeName' &&
       parser.consume('in')
@@ -99,6 +104,30 @@ export const objectSquaredPropertyParslet = composeParslet({
         right
       }
     } else {
+      if (parser.computedPropertyParser !== undefined) {
+        let remaining = parser.lexer.current.text + parser.lexer.remaining()
+        let checkingText = remaining
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- Deliberate string check
+        while (checkingText) {
+          try {
+            innerBracketType = parser.computedPropertyParser(checkingText)
+            break
+          } catch (err) {}
+          checkingText = checkingText.slice(0, -1)
+        }
+        remaining = remaining.slice(checkingText.length);
+
+        const remainingTextParser = new Parser(
+          parser.grammar,
+          remaining,
+          parser.baseParser,
+          {
+            computedPropertyParser: parser.computedPropertyParser
+          }
+        )
+        parser.acceptLexerState(remainingTextParser)
+      }
+
       if (!parser.consume(']')) {
         throw new Error('Unterminated square brackets')
       }

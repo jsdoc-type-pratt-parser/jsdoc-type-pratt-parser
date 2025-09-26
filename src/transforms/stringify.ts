@@ -1,6 +1,7 @@
 import { transform, type TransformRules } from './transform'
 import type { NonRootResult } from '../result/NonRootResult'
 import type { RootResult } from '../result/RootResult'
+import type { Node } from 'estree'
 
 function applyPosition (position: 'prefix' | 'suffix', target: string, value: string): string {
   return position === 'prefix' ? value + target : target + value
@@ -17,7 +18,12 @@ export function quote (value: string, quote: 'single' | 'double' | undefined): s
   }
 }
 
-export function stringifyRules (): TransformRules<string> {
+export function stringifyRules ({
+  computedPropertyStringifier
+}: {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Ok
+  computedPropertyStringifier?: (node: Node, options?: any) => string
+} = {}): TransformRules<string> {
   return {
     JsdocTypeParenthesis: (result, transform) => `(${result.element !== undefined ? transform(result.element) : ''})`,
 
@@ -264,18 +270,54 @@ export function stringifyRules (): TransformRules<string> {
       ).join('') + result.literals.slice(-1)[0].replace(/`/gu, '\\`')
     }\``),
 
-    JsdocTypeComputedProperty: (result, transform) => (`[${transform(result.value)}]`),
+    JsdocTypeComputedProperty: (result, transform) => {
+      if (result.value.type.startsWith('JsdocType')) {
+        return `[${
+          transform(result.value as RootResult)
+        }]`
+      } else {
+        if (computedPropertyStringifier === undefined) {
+          throw new Error('Must have a computed property stringifier')
+        }
+        return `[${
+          computedPropertyStringifier(result.value as Node).replace(/;$/u, '')
+        }]`
+      }
+    },
 
-    JsdocTypeComputedMethod: (result, transform) => (`[${transform(result.value)}]${
-      result.optional ? '?' : ''
-    }(${
-      result.parameters.map(transform).join(', ')
-    }): ${transform(result.returnType)}`)
+    JsdocTypeComputedMethod: (result, transform) => {
+      if (result.value.type.startsWith('JsdocType')) {
+        return `[${transform(result.value as RootResult)}]${
+          result.optional ? '?' : ''
+        }(${
+          result.parameters.map(transform).join(', ')
+        }): ${transform(result.returnType)}`
+      } else {
+        if (computedPropertyStringifier === undefined) {
+          throw new Error('Must have a computed property stringifier')
+        }
+        return `[${
+          computedPropertyStringifier(result.value as Node).replace(/;$/u, '')
+        }](${
+          result.parameters.map(transform).join(', ')
+        }): ${transform(result.returnType)}`
+      }
+    }
   }
 }
 
 const storedStringifyRules = stringifyRules()
 
-export function stringify (result: RootResult): string {
-  return transform(storedStringifyRules, result)
+export function stringify (
+  result: RootResult,
+  stringificationRules: TransformRules<string>|
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Ok
+    ((node: Node, options?: any) => string) = storedStringifyRules
+): string {
+  if (typeof stringificationRules === 'function') {
+    stringificationRules = stringifyRules({
+      computedPropertyStringifier: stringificationRules,
+    })
+  }
+  return transform(stringificationRules, result)
 }

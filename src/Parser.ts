@@ -8,11 +8,22 @@ import type { IntermediateResult } from './result/IntermediateResult'
 import type { TokenType } from './lexer/Token'
 
 export class Parser {
-  private readonly grammar: Grammar
+  public readonly grammar: Grammar
   private _lexer: Lexer
   public readonly baseParser?: Parser
+  public readonly computedPropertyParser?: (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Actual API
+    text: string, options?: any
+  ) => unknown
 
-  constructor (grammar: Grammar, textOrLexer: string | Lexer, baseParser?: Parser) {
+  constructor (grammar: Grammar, textOrLexer: string | Lexer, baseParser?: Parser, {
+    computedPropertyParser
+  }: {
+    computedPropertyParser?: (
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Actual API
+      text: string, options?: any
+    ) => unknown
+  } = {}) {
     this.grammar = grammar
     if (typeof textOrLexer === 'string') {
       this._lexer = Lexer.create(textOrLexer)
@@ -20,6 +31,7 @@ export class Parser {
       this._lexer = textOrLexer
     }
     this.baseParser = baseParser
+    this.computedPropertyParser = computedPropertyParser
   }
 
   get lexer (): Lexer {

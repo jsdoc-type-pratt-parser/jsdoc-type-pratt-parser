@@ -2,6 +2,9 @@ import { expect } from 'chai'
 import 'mocha'
 import catharsis from 'catharsis'
 import { parse as jtpParse } from 'jsdoctypeparser'
+import { parse as espree } from 'espree'
+// @ts-expect-error Just for testing
+import { generate } from '@es-joy/escodegen'
 import { jtpTransform } from '../../src/transforms/jtpTransform'
 import { simplify } from '../../src/transforms/simplify'
 import { catharsisTransform, parse, type RootResult, type ParseMode, stringify } from '../../src'
@@ -21,6 +24,7 @@ interface BaseFixture {
   input: string
   jtp?: Record<JtpMode, CompareMode>
   catharsis?: Record<CatharsisMode, CompareMode>
+  espree?: boolean
   /**
    * The expected parse result object. If you expect different parse results for different parse modes please use
    * `diffExpected`.
@@ -58,12 +62,24 @@ function testParser (mode: ParseMode, fixture: Fixture): RootResult | undefined 
   if ('modes' in fixture) {
     if (fixture.modes.includes(mode)) {
       it(`is parsed in '${mode}' mode`, () => {
-        const result = parse(fixture.input, mode)
+        const result = parse(
+          fixture.input,
+          mode,
+          fixture.espree !== undefined && fixture.espree ? {
+            computedPropertyParser: espree
+          } : undefined
+        )
         const expected = fixture.diffExpected?.[mode] ?? fixture.expected
         expect(result).to.deep.equal(expected)
       })
       try {
-        return parse(fixture.input, mode)
+        return parse(
+          fixture.input,
+          mode,
+          fixture.espree !== undefined && fixture.espree ? {
+            computedPropertyParser: espree
+          } : undefined
+        )
       } catch (e) {
         // eslint-disable-next-line no-console -- Testing
         console.error(`Parse failed for mode '${mode}'`)
@@ -175,11 +191,23 @@ export function testFixture (fixture: Fixture): void {
 
     if (mode !== undefined) {
       const result = results[mode] as RootResult
-      const stringified = stringify(result)
+      const stringified = stringify(
+        result,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- No types yet for our escodegen
+        fixture.espree !== undefined && fixture.espree
+          ? generate
+          : undefined
+      )
 
       expect(stringified).to.equal(fixture.stringified ?? fixture.input)
 
-      const reparsed = parse(stringified, mode)
+      const reparsed = parse(
+        stringified,
+        mode,
+        fixture.espree !== undefined && fixture.espree ? {
+          computedPropertyParser: espree
+        } : undefined
+      )
 
       expect(simplify(reparsed)).to.deep.equal(simplify(result))
     }

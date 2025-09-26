@@ -1,3 +1,4 @@
+import type { Node } from 'estree'
 import type { TransformRules } from './transform'
 import type {
   JsdocObjectFieldResult,
@@ -257,17 +258,38 @@ export function identityTransformRules (): TransformRules<NonRootResult> {
       interpolations: result.interpolations.map(transform) as RootResult[]
     }),
 
-    JsdocTypeComputedProperty: (result, transform) => ({
-      type: 'JsdocTypeComputedProperty',
-      value: transform(result.value) as RootResult
-    }),
+    JsdocTypeComputedProperty: (result, transform) => {
+      if (result.value.type.startsWith('JsdocType')) {
+        return {
+          type: 'JsdocTypeComputedProperty',
+          value: transform(result.value as RootResult) as RootResult
+        }
+      } else {
+        return {
+          type: 'JsdocTypeComputedProperty',
+          value: structuredClone(result.value) as Node
+        }
+      }
+    },
 
-    JsdocTypeComputedMethod: (result, transform) => ({
-      type: 'JsdocTypeComputedMethod',
-      value: transform(result.value) as RootResult,
-      optional: result.optional,
-      parameters: result.parameters.map(transform) as RootResult[],
-      returnType: transform(result.returnType) as RootResult
-    })
+    JsdocTypeComputedMethod: (result, transform) => {
+      if (result.value.type.startsWith('JsdocType')) {
+        return {
+          type: 'JsdocTypeComputedMethod',
+          value: transform(result.value as RootResult) as RootResult,
+          optional: result.optional,
+          parameters: result.parameters.map(transform) as RootResult[],
+          returnType: transform(result.returnType) as RootResult
+        }
+      } else {
+        return {
+          type: 'JsdocTypeComputedMethod',
+          value: structuredClone(result.value) as Node,
+          optional: result.optional,
+          parameters: result.parameters.map(transform) as RootResult[],
+          returnType: transform(result.returnType) as RootResult
+        }
+      }
+    }
   }
 }
