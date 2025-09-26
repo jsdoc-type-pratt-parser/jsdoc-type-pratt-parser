@@ -1,3 +1,10 @@
+# [5.7.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v5.6.0...v5.7.0) (2025-09-26)
+
+
+### Features
+
+* template literals; fixes [#166](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/issues/166) ([fc8a268](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/fc8a26860aaa088d8b3ca50c46b0747c9499f9cc))
+
 # [5.6.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v5.5.0...v5.6.0) (2025-09-26)
 
 
