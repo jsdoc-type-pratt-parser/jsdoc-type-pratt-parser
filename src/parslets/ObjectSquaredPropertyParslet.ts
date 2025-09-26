@@ -8,7 +8,7 @@ import type { RootResult } from '../result/RootResult'
 import { getParameters } from './FunctionParslet'
 
 export const objectSquaredPropertyParslet = composeParslet({
-  name: 'objectSquareBracketPropertyParslet',
+  name: 'objectSquarePropertyParslet',
   accept: type => type === '[',
   parsePrefix: parser => {
     if (parser.baseParser === undefined) {
