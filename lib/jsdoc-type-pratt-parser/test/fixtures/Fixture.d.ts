@@ -10,6 +10,7 @@ interface BaseFixture {
     input: string;
     jtp?: Record<JtpMode, CompareMode>;
     catharsis?: Record<CatharsisMode, CompareMode>;
+    espree?: boolean;
     /**
      * The expected parse result object. If you expect different parse results for different parse modes please use
      * `diffExpected`.

@@ -5,10 +5,13 @@ import type { RootResult } from './result/RootResult';
 import type { IntermediateResult } from './result/IntermediateResult';
 import type { TokenType } from './lexer/Token';
 export declare class Parser {
-    private readonly grammar;
+    readonly grammar: Grammar;
     private _lexer;
     readonly baseParser?: Parser;
-    constructor(grammar: Grammar, textOrLexer: string | Lexer, baseParser?: Parser);
+    readonly computedPropertyParser?: (text: string, options?: any) => unknown;
+    constructor(grammar: Grammar, textOrLexer: string | Lexer, baseParser?: Parser, { computedPropertyParser }?: {
+        computedPropertyParser?: (text: string, options?: any) => unknown;
+    });
     get lexer(): Lexer;
     /**
      * Parses a given string and throws an error if the parse ended before the end of the string.

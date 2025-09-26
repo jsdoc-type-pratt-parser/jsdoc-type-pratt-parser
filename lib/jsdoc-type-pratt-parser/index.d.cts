@@ -1,3 +1,5 @@
+import { Node } from 'estree';
+
 /**
  * A parse sub result that might not be a valid type expression on its own.
  */
@@ -76,11 +78,11 @@ interface IndexedAccessIndexResult {
 }
 interface ComputedPropertyResult {
     type: 'JsdocTypeComputedProperty';
-    value: RootResult;
+    value: RootResult | Node;
 }
 interface ComputedMethodResult {
     type: 'JsdocTypeComputedMethod';
-    value: RootResult;
+    value: RootResult | Node;
     optional: boolean;
     parameters: Array<RootResult | KeyValueResult>;
     returnType: RootResult;
@@ -367,7 +369,9 @@ type ParseMode = 'closure' | 'jsdoc' | 'typescript';
  * @param expression
  * @param mode
  */
-declare function parse(expression: string, mode: ParseMode): RootResult;
+declare function parse(expression: string, mode: ParseMode, options?: {
+    computedPropertyParser: (text: string, options?: any) => unknown;
+}): RootResult;
 /**
  * This function tries to parse the given expression in multiple modes and returns the first successful
  * {@link RootResult}. By default it tries `'typescript'`, `'closure'` and `'jsdoc'` in this order. If
@@ -562,8 +566,10 @@ interface JtpNumberResult {
 }
 declare function jtpTransform(result: RootResult): JtpResult;
 
-declare function stringifyRules(): TransformRules<string>;
-declare function stringify(result: RootResult): string;
+declare function stringifyRules({ computedPropertyStringifier }?: {
+    computedPropertyStringifier?: (node: Node, options?: any) => string;
+}): TransformRules<string>;
+declare function stringify(result: RootResult, stringificationRules?: TransformRules<string> | ((node: Node, options?: any) => string)): string;
 
 declare function identityTransformRules(): TransformRules<NonRootResult>;
 
