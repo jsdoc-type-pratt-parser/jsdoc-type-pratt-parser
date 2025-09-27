@@ -1,5 +1,5 @@
-import type { TokenType } from '../lexer/Token'
-import { composeParslet, type ParsletFunction } from './Parslet'
+import type { TokenType } from '../lexer/Token.js'
+import { composeParslet, type ParsletFunction } from './Parslet.js'
 
 export function createNameParslet ({ allowedAdditionalTokens }: {
   allowedAdditionalTokens: TokenType[]

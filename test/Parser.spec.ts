@@ -1,10 +1,10 @@
 import { expect } from 'chai'
-import { Parser } from '../src/Parser'
+import { Parser } from '../src/Parser.js'
 
-import type { NoParsletFoundError, EarlyEndOfParseError } from '../src/errors'
+import type { NoParsletFoundError, EarlyEndOfParseError } from '../src/errors.js'
 
-import { typescriptGrammar } from '../src/grammars/typescriptGrammar'
-import { Lexer } from '../src/lexer/Lexer'
+import { typescriptGrammar } from '../src/grammars/typescriptGrammar.js'
+import { Lexer } from '../src/lexer/Lexer.js'
 
 describe('Parser', () => {
   it('should consume an array of tokens', () => {

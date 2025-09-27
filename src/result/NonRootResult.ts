@@ -2,7 +2,7 @@ import type {
   QuoteStyle,
   RootResult,
   NameResult
-} from './RootResult'
+} from './RootResult.js'
 
 import type { Node } from 'estree'
 

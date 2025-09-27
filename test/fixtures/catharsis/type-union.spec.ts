@@ -1,4 +1,4 @@
-import { testFixture } from '../Fixture'
+import { testFixture } from '../Fixture.js'
 
 describe('catharsis type union tests', () => {
   describe('union with 2 types (number and boolean)', () => {

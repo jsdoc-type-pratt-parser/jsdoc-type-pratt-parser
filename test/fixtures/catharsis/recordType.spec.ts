@@ -1,4 +1,4 @@
-import { testFixture } from '../Fixture'
+import { testFixture } from '../Fixture.js'
 
 describe('catharsis record type tests', () => {
   describe('empty record type', () => {

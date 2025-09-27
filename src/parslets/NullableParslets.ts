@@ -1,7 +1,7 @@
-import type { ParsletFunction } from './Parslet'
-import { Precedence } from '../Precedence'
-import { isQuestionMarkUnknownType } from './isQuestionMarkUnknownType'
-import { assertRootResult } from '../assertTypes'
+import type { ParsletFunction } from './Parslet.js'
+import { Precedence } from '../Precedence.js'
+import { isQuestionMarkUnknownType } from './isQuestionMarkUnknownType.js'
+import { assertRootResult } from '../assertTypes.js'
 
 export const nullableParslet: ParsletFunction = (parser, precedence, left) => {
   const type = parser.lexer.current.type

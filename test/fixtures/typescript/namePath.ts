@@ -1,4 +1,4 @@
-import { testFixture } from '../Fixture'
+import { testFixture } from '../Fixture.js'
 
 describe('typescript array access test', () => {
   describe('array access of generic type', () => {

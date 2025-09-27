@@ -1,6 +1,6 @@
 import { expect } from 'chai'
-import { testFixture } from '../Fixture'
-import { parse } from '../../../src/parse'
+import { testFixture } from '../Fixture.js'
+import { parse } from '../../../src/parse.js'
 
 describe('typescript readonly arrays and tuples', () => {
   describe('should parse a readonly array', () => {

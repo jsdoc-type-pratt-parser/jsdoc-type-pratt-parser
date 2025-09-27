@@ -1,6 +1,6 @@
-import { composeParslet, type ParsletFunction } from './Parslet'
-import { Precedence } from '../Precedence'
-import { UnexpectedTypeError } from '../errors'
+import { composeParslet, type ParsletFunction } from './Parslet.js'
+import { Precedence } from '../Precedence.js'
+import { UnexpectedTypeError } from '../errors.js'
 
 export function createKeyValueParslet ({ allowOptional, allowVariadic, acceptParameterList }: {
   allowOptional: boolean

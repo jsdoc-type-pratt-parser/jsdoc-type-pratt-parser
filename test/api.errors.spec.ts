@@ -1,12 +1,12 @@
 import { expect } from 'chai'
 
-import { getParameters } from '../src/parslets/FunctionParslet'
-import { createNamePathParslet } from '../src/parslets/NamePathParslet'
-import { pathGrammar } from '../src/grammars/pathGrammar'
-import { Parser } from '../src/Parser'
-import { createSpecialNamePathParslet } from '../src/parslets/SpecialNamePathParslet'
-import { createNameParslet } from '../src/parslets/NameParslet'
-import { specialTypesParslet } from '../src/parslets/SpecialTypesParslet'
+import { getParameters } from '../src/parslets/FunctionParslet.js'
+import { createNamePathParslet } from '../src/parslets/NamePathParslet.js'
+import { pathGrammar } from '../src/grammars/pathGrammar.js'
+import { Parser } from '../src/Parser.js'
+import { createSpecialNamePathParslet } from '../src/parslets/SpecialNamePathParslet.js'
+import { createNameParslet } from '../src/parslets/NameParslet.js'
+import { specialTypesParslet } from '../src/parslets/SpecialTypesParslet.js'
 
 describe('API errors', () => {
   describe('`getParameters`', () => {

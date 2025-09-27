@@ -1,7 +1,7 @@
-import type { TokenType } from '../lexer/Token'
-import type { Parser } from '../Parser'
-import type { Precedence } from '../Precedence'
-import type { IntermediateResult } from '../result/IntermediateResult'
+import type { TokenType } from '../lexer/Token.js'
+import type { Parser } from '../Parser.js'
+import type { Precedence } from '../Precedence.js'
+import type { IntermediateResult } from '../result/IntermediateResult.js'
 
 /**
  * Each ParsletFunction can be called during the prefix or infix parsing step. In the prefix parsing step the `left` value

@@ -1,8 +1,8 @@
 import { expect } from 'chai'
 
-import type { NonRootResult } from '../src/result/NonRootResult'
-import { transform, identityTransformRules } from '../src/index'
-import { notAvailableTransform } from '../src/transforms/transform'
+import type { NonRootResult } from '../src/result/NonRootResult.js'
+import { transform, identityTransformRules } from '../src/index.js'
+import { notAvailableTransform } from '../src/transforms/transform.js'
 
 describe('transform', () => {
   it('Errs with missing rule for type', () => {

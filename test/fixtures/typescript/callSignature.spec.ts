@@ -1,4 +1,4 @@
-import { testFixture } from '../Fixture'
+import { testFixture } from '../Fixture.js'
 
 describe('typescript call signatures', () => {
   describe('should parse a call signature', () => {

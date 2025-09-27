@@ -1,7 +1,7 @@
-import { extractSpecialParams, notAvailableTransform, transform, type TransformRules } from './transform'
-import type { QuoteStyle, RootResult } from '../result/RootResult'
-import { assertRootResult } from '../assertTypes'
-import type { NonRootResult } from '../result/NonRootResult'
+import { extractSpecialParams, notAvailableTransform, transform, type TransformRules } from './transform.js'
+import type { QuoteStyle, RootResult } from '../result/RootResult.js'
+import { assertRootResult } from '../assertTypes.js'
+import type { NonRootResult } from '../result/NonRootResult.js'
 
 export type JtpResult =
   JtpNameResult

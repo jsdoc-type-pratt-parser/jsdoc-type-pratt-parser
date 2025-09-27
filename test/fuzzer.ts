@@ -1,5 +1,5 @@
-import { parse } from '../src/parse'
-import type { RootResult } from '../src/result/RootResult'
+import { parse } from '../src/parse.js'
+import type { RootResult } from '../src/result/RootResult.js'
 
 interface BaseFuzzingRule {
   getString: () => string

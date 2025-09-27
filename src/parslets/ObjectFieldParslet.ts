@@ -1,7 +1,7 @@
-import { composeParslet, type ParsletFunction } from './Parslet'
-import { Precedence } from '../Precedence'
-import { UnexpectedTypeError } from '../errors'
-import { assertRootResult, isSquaredProperty } from '../assertTypes'
+import { composeParslet, type ParsletFunction } from './Parslet.js'
+import { Precedence } from '../Precedence.js'
+import { UnexpectedTypeError } from '../errors.js'
+import { assertRootResult, isSquaredProperty } from '../assertTypes.js'
 
 export function createObjectFieldParslet ({ allowSquaredProperties, allowKeyTypes, allowReadonly, allowOptional }: {
   allowSquaredProperties: boolean

@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { tryParse } from '../src/parse'
+import { tryParse } from '../src/parse.js'
 
 describe('tryParse', () => {
   it('should parse a valid expression in jsdoc', () => {

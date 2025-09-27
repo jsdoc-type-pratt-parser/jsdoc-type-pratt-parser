@@ -1,5 +1,5 @@
 import type { Node } from 'estree'
-import type { TransformRules } from './transform'
+import type { TransformRules } from './transform.js'
 import type {
   JsdocObjectFieldResult,
   KeyValueResult,
@@ -8,7 +8,7 @@ import type {
   CallSignatureResult,
   ConstructorSignatureResult,
   MethodSignatureResult
-} from '../result/NonRootResult'
+} from '../result/NonRootResult.js'
 import type {
   FunctionResult,
   NameResult,
@@ -17,7 +17,7 @@ import type {
   RootResult,
   VariadicResult,
   NumberResult
-} from '../result/RootResult'
+} from '../result/RootResult.js'
 
 export function identityTransformRules (): TransformRules<NonRootResult> {
   return {

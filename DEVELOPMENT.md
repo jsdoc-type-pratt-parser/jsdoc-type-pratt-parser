@@ -68,7 +68,7 @@ If adding a `NonRootResult`, you will need to add an exclusion to
    We create a new test suite at `test/fixtures/typescript/predicate.spec.ts`:
 
 ```typescript
-import { testFixture } from '../Fixture'
+import { testFixture } from '../Fixture.js'
 
 describe('typescript predicates', () => {
   describe('should parse a predicate', () => {
@@ -102,7 +102,7 @@ describe('typescript predicates', () => {
    create a parslet.
 
 ```typescript
-import { composeParslet } from './Parslet'
+import { composeParslet } from './Parslet.js'
 
 export const predicateParslet = composeParslet({
   name: 'predicateParslet'
@@ -115,8 +115,8 @@ export const predicateParslet = composeParslet({
    `Precendence.INFIX` and see if something else fails.
 
 ```typescript
-import { composeParslet } from './Parslet'
-import { Precedence } from '../Precedence'
+import { composeParslet } from './Parslet.js'
+import { Precedence } from '../Precedence.js'
 
 export const predicateParslet = composeParslet({
   name: 'predicateParslet',
@@ -136,10 +136,10 @@ export const predicateParslet = composeParslet({
    (for example in object types or function parameter lists). The resulting file looks like this:
 
 ```typescript
-import { composeParslet } from './Parslet'
-import { Precedence } from '../Precedence'
-import { UnexpectedTypeError } from '../errors'
-import { assertRootResult } from '../assertTypes'
+import { composeParslet } from './Parslet.js'
+import { Precedence } from '../Precedence.js'
+import { UnexpectedTypeError } from '../errors.js'
+import { assertRootResult } from '../assertTypes.js'
 
 export const predicateParslet = composeParslet({
   name: 'predicateParslet',

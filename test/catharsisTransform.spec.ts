@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 
-import type { RootResult } from '../src/result/RootResult'
-import { catharsisTransform } from '../src/transforms/catharsisTransform'
+import type { RootResult } from '../src/result/RootResult.js'
+import { catharsisTransform } from '../src/transforms/catharsisTransform.js'
 
 describe('transform', () => {
   it('Gets transform for suffixed `JsdocTypeVariadic`', () => {

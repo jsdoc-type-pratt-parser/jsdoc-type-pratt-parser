@@ -1,11 +1,11 @@
-import type { ParsletFunction } from './Parslet'
-import { Precedence } from '../Precedence'
-import { assertRootResult } from '../assertTypes'
-import { Parser } from '../Parser'
-import type { NamePathResult, SpecialNamePath } from '../result/RootResult'
-import { UnexpectedTypeError } from '../errors'
-import type { PropertyResult, IndexedAccessIndexResult } from '../result/NonRootResult'
-import type { Grammar } from '../grammars/Grammar'
+import type { ParsletFunction } from './Parslet.js'
+import { Precedence } from '../Precedence.js'
+import { assertRootResult } from '../assertTypes.js'
+import { Parser } from '../Parser.js'
+import type { NamePathResult, SpecialNamePath } from '../result/RootResult.js'
+import { UnexpectedTypeError } from '../errors.js'
+import type { PropertyResult, IndexedAccessIndexResult } from '../result/NonRootResult.js'
+import type { Grammar } from '../grammars/Grammar.js'
 
 export function createNamePathParslet ({ allowSquareBracketsOnAnyType, allowJsdocNamePaths, pathGrammar }: {
   allowJsdocNamePaths: boolean

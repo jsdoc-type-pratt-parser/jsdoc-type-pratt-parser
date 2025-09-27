@@ -1,7 +1,7 @@
-import type { IndexSignatureResult, KeyValueResult, MappedTypeResult } from './result/NonRootResult'
-import { UnexpectedTypeError } from './errors'
-import type { NameResult, NumberResult, RootResult, VariadicResult, TupleResult, GenericResult } from './result/RootResult'
-import type { IntermediateResult } from './result/IntermediateResult'
+import type { IndexSignatureResult, KeyValueResult, MappedTypeResult } from './result/NonRootResult.js'
+import { UnexpectedTypeError } from './errors.js'
+import type { NameResult, NumberResult, RootResult, VariadicResult, TupleResult, GenericResult } from './result/RootResult.js'
+import type { IntermediateResult } from './result/IntermediateResult.js'
 
 /**
  * Throws an error if the provided result is not a {@link RootResult}

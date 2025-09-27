@@ -1,4 +1,4 @@
-import { testFixture } from '../Fixture'
+import { testFixture } from '../Fixture.js'
 
 describe('`VariadicParslet` tests', () => {
   describe('should get postfix result', () => {

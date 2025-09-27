@@ -1,7 +1,7 @@
-import { composeParslet } from './Parslet'
-import { Precedence } from '../Precedence'
-import { assertRootResult } from '../assertTypes'
-import { UnexpectedTypeError } from '../errors'
+import { composeParslet } from './Parslet.js'
+import { Precedence } from '../Precedence.js'
+import { assertRootResult } from '../assertTypes.js'
+import { UnexpectedTypeError } from '../errors.js'
 
 export const genericParslet = composeParslet({
   name: 'genericParslet',

@@ -35,7 +35,11 @@ export default [
       '@typescript-eslint/prefer-destructuring': 0,
       'complexity': 0,
       'max-lines': 0,
-      'max-nested-callbacks': 0
+      'max-nested-callbacks': 0,
+      'no-param-reassign': 0,
+      'no-plusplus': 0,
+      'no-negated-condition': 0,
+      'no-lonely-if': 0
     }
   }
 ];

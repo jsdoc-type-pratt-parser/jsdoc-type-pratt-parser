@@ -1,4 +1,4 @@
-import { testFixture } from '../Fixture'
+import { testFixture } from '../Fixture.js'
 
 describe('catharsis jsdoc tests', () => {
   describe('name expression that starts with the word "function"', () => {

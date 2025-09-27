@@ -1,9 +1,9 @@
-import { composeParslet } from './Parslet'
-import type { RootResult } from '../result/RootResult'
-import { Precedence } from '../Precedence'
-import { getTemplateLiteralLiteral } from '../lexer/Lexer'
-import { typescriptGrammar } from '../grammars/typescriptGrammar'
-import { Parser } from '../Parser'
+import { composeParslet } from './Parslet.js'
+import type { RootResult } from '../result/RootResult.js'
+import { Precedence } from '../Precedence.js'
+import { getTemplateLiteralLiteral } from '../lexer/Lexer.js'
+import { typescriptGrammar } from '../grammars/typescriptGrammar.js'
+import { Parser } from '../Parser.js'
 
 export const templateLiteralParslet = composeParslet({
   name: 'templateLiteralParslet',

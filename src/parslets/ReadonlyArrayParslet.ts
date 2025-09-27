@@ -1,6 +1,6 @@
-import { composeParslet } from './Parslet'
-import { Precedence } from '../Precedence'
-import { assertArrayOrTupleResult } from '../assertTypes'
+import { composeParslet } from './Parslet.js'
+import { Precedence } from '../Precedence.js'
+import { assertArrayOrTupleResult } from '../assertTypes.js'
 
 export const readonlyArrayParslet = composeParslet({
   name: 'readonlyArrayParslet',

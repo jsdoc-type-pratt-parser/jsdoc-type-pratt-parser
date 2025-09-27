@@ -1,4 +1,4 @@
-import { testFixture } from '../Fixture'
+import { testFixture } from '../Fixture.js'
 
 describe('catharsis function type tests', () => {
   describe('function with two basic parameters', () => {

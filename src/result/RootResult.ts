@@ -10,7 +10,7 @@ import type {
   IndexedAccessIndexResult,
   ComputedPropertyResult,
   ComputedMethodResult
-} from './NonRootResult'
+} from './NonRootResult.js'
 
 /**
  * A parse result that corresponds to a valid type expression.

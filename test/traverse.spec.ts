@@ -9,8 +9,8 @@ import type {
   UnionResult,
   FunctionResult,
   TupleResult, KeyValueResult
-} from '../src'
-import { traverse } from '../src/traverse'
+} from '../src/index.js'
+import { traverse } from '../src/traverse.js'
 
 use(sinonChai)
 

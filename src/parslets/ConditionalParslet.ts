@@ -1,8 +1,8 @@
-import { composeParslet } from './Parslet'
-import { Precedence } from '../Precedence'
-// import { UnexpectedTypeError } from '../errors'
-import { assertRootResult } from '../assertTypes'
-import type { RootResult, NullableResult } from '../result/RootResult'
+import { composeParslet } from './Parslet.js'
+import { Precedence } from '../Precedence.js'
+// import { UnexpectedTypeError } from '../errors.js'
+import { assertRootResult } from '../assertTypes.js'
+import type { RootResult, NullableResult } from '../result/RootResult.js'
 
 export const conditionalParslet = composeParslet({
   name: 'conditionalParslet',

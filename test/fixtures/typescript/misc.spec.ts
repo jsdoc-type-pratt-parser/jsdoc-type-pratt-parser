@@ -1,4 +1,4 @@
-import { testFixture } from '../Fixture'
+import { testFixture } from '../Fixture.js'
 
 describe('typescript misc tests', () => {
   describe('function parameter list with trailing comma', () => {

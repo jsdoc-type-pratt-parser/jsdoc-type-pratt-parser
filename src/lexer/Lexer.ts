@@ -1,4 +1,4 @@
-import type { Token, TokenType } from './Token'
+import type { Token, TokenType } from './Token.js'
 
 type PartialToken = Omit<Token, 'startOfLine'>
 

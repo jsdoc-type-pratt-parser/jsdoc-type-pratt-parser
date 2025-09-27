@@ -1,6 +1,6 @@
 import { expect } from 'chai'
-import { Lexer } from '../src/lexer/Lexer'
-import type { Token } from '../src/lexer/Token'
+import { Lexer } from '../src/lexer/Lexer.js'
+import type { Token } from '../src/lexer/Token.js'
 
 function expectTokens (text: string, tokens: Array<Partial<Token>>): void {
   let lexer = Lexer.create(text)

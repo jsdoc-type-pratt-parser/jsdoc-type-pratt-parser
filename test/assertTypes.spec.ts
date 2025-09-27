@@ -1,6 +1,6 @@
 import { expect } from 'chai'
-import { assertRootResult, assertNumberOrVariadicNameResult, assertPlainKeyValueResult } from '../src/assertTypes'
-import type { NonRootResult } from '../src'
+import { assertRootResult, assertNumberOrVariadicNameResult, assertPlainKeyValueResult } from '../src/assertTypes.js'
+import type { NonRootResult } from '../src/index.js'
 
 describe('assertTypes', () => {
   it('should see `assertRootResult` throw with an undefined result', () => {

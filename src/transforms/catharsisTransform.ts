@@ -1,7 +1,7 @@
-import { extractSpecialParams, notAvailableTransform, transform, type TransformRules } from './transform'
-import { assertRootResult } from '../assertTypes'
-import type { RootResult } from '../result/RootResult'
-import { quote } from './stringify'
+import { extractSpecialParams, notAvailableTransform, transform, type TransformRules } from './transform.js'
+import { assertRootResult } from '../assertTypes.js'
+import type { RootResult } from '../result/RootResult.js'
+import { quote } from './stringify.js'
 
 export const reservedWords = [
   'null',

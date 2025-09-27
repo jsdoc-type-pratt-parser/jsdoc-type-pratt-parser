@@ -1,8 +1,8 @@
-import { Parser } from './Parser'
-import { jsdocGrammar } from './grammars/jsdocGrammar'
-import { closureGrammar } from './grammars/closureGrammar'
-import { typescriptGrammar } from './grammars/typescriptGrammar'
-import type { RootResult } from './result/RootResult'
+import { Parser } from './Parser.js'
+import { jsdocGrammar } from './grammars/jsdocGrammar.js'
+import { closureGrammar } from './grammars/closureGrammar.js'
+import { typescriptGrammar } from './grammars/typescriptGrammar.js'
+import type { RootResult } from './result/RootResult.js'
 
 export type ParseMode = 'closure' | 'jsdoc' | 'typescript'
 

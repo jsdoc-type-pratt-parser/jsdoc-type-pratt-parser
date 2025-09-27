@@ -1,4 +1,4 @@
-import { testFixture } from '../Fixture'
+import { testFixture } from '../Fixture.js'
 
 describe('number literals tests', () => {
   describe('should accept numbers as types', () => {

@@ -1,9 +1,9 @@
 import { expect } from 'chai'
 
-import { specialTypesParslet } from '../src/parslets/SpecialTypesParslet'
-import { Parser } from '../src/Parser'
-import { Precedence } from '../src/Precedence'
-import { typescriptGrammar } from '../src/grammars/typescriptGrammar'
+import { specialTypesParslet } from '../src/parslets/SpecialTypesParslet.js'
+import { Parser } from '../src/Parser.js'
+import { Precedence } from '../src/Precedence.js'
+import { typescriptGrammar } from '../src/grammars/typescriptGrammar.js'
 
 class BadParser extends Parser {
   // eslint-disable-next-line @typescript-eslint/class-methods-use-this -- Testing

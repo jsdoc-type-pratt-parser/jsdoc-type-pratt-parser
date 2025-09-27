@@ -1,9 +1,9 @@
 import { expect } from 'chai'
-import { objectSquaredPropertyParslet } from '../src/parslets/ObjectSquaredPropertyParslet'
-import { Parser } from '../src/Parser'
-import type { Grammar } from '../src/grammars/Grammar'
-import { createObjectParslet } from '../src/parslets/ObjectParslet'
-import { createNameParslet } from '../src/parslets/NameParslet'
+import { objectSquaredPropertyParslet } from '../src/parslets/ObjectSquaredPropertyParslet.js'
+import { Parser } from '../src/Parser.js'
+import type { Grammar } from '../src/grammars/Grammar.js'
+import { createObjectParslet } from '../src/parslets/ObjectParslet.js'
+import { createNameParslet } from '../src/parslets/NameParslet.js'
 
 describe('`ObjectSquaredPropertyParslet`', () => {
   it('throws without base parser', () => {

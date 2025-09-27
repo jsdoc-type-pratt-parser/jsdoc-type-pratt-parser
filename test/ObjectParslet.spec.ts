@@ -1,13 +1,13 @@
 import { expect } from 'chai'
 import { stub, type SinonStub } from 'sinon'
 
-import { jsdocGrammar } from '../src/grammars/jsdocGrammar'
-import { Parser } from '../src/Parser'
-import type { Grammar } from '../src/grammars/Grammar'
+import { jsdocGrammar } from '../src/grammars/jsdocGrammar.js'
+import { Parser } from '../src/Parser.js'
+import type { Grammar } from '../src/grammars/Grammar.js'
 
-import { createObjectParslet } from '../src/parslets/ObjectParslet'
-import type { RootResult } from '../src/result/RootResult'
-import { Lexer } from '../src/lexer/Lexer'
+import { createObjectParslet } from '../src/parslets/ObjectParslet.js'
+import type { RootResult } from '../src/result/RootResult.js'
+import { Lexer } from '../src/lexer/Lexer.js'
 
 describe('`ObjectParslet`', () => {
   beforeEach(() => {

@@ -1,4 +1,4 @@
-import { testFixture } from '../Fixture'
+import { testFixture } from '../Fixture.js'
 
 describe('typescript readonly tests', () => {
   describe('should not parse readonly in front of a name', () => {

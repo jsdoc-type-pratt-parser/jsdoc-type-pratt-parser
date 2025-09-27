@@ -1,11 +1,11 @@
-import { createFunctionParslet } from '../src/parslets/FunctionParslet'
-import { Lexer } from '../src/lexer/Lexer'
+import { createFunctionParslet } from '../src/parslets/FunctionParslet.js'
+import { Lexer } from '../src/lexer/Lexer.js'
 import { expect } from 'chai'
-import { Parser } from '../src/Parser'
-import { createParameterListParslet } from '../src/parslets/ParameterListParslet'
-import { createNameParslet } from '../src/parslets/NameParslet'
-import { createObjectParslet } from '../src/parslets/ObjectParslet'
-import { parenthesisParslet } from '../src/parslets/ParenthesisParslet'
+import { Parser } from '../src/Parser.js'
+import { createParameterListParslet } from '../src/parslets/ParameterListParslet.js'
+import { createNameParslet } from '../src/parslets/NameParslet.js'
+import { createObjectParslet } from '../src/parslets/ObjectParslet.js'
+import { parenthesisParslet } from '../src/parslets/ParenthesisParslet.js'
 
 describe('ParameterListParslet', () => {
   it('rethrows errors', () => {

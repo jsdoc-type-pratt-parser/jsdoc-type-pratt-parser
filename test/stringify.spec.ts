@@ -1,8 +1,8 @@
 import { expect } from 'chai'
 
-import { stringifyRules, stringify } from '../src/index'
-import type { RootResult, ObjectResult, FunctionResult, GenericResult, ParenthesisResult } from '../src/result/RootResult'
-import type { KeyValueResult } from '../src/result/NonRootResult'
+import { stringifyRules, stringify } from '../src/index.js'
+import type { RootResult, ObjectResult, FunctionResult, GenericResult, ParenthesisResult } from '../src/result/RootResult.js'
+import type { KeyValueResult } from '../src/result/NonRootResult.js'
 
 describe('`stringifyRules`', () => {
   it('should exist on index export', () => {

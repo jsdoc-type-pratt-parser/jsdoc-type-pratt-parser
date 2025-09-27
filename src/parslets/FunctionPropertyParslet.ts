@@ -1,6 +1,6 @@
-import { composeParslet } from './Parslet'
-import type { CallSignatureResult, ConstructorSignatureResult, MethodSignatureResult } from '../result/NonRootResult'
-import type { NameResult } from '../result/RootResult'
+import { composeParslet } from './Parslet.js'
+import type { CallSignatureResult, ConstructorSignatureResult, MethodSignatureResult } from '../result/NonRootResult.js'
+import type { NameResult } from '../result/RootResult.js'
 
 // (optional new or optionally quoted other optional name) +
 //    (...args) + ":" + return value

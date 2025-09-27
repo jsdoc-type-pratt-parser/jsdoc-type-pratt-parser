@@ -1,8 +1,8 @@
-import { composeParslet } from './Parslet'
-import { Precedence } from '../Precedence'
-import { UnexpectedTypeError } from '../errors'
-import type { FunctionResult } from '../result/RootResult'
-import type { TypeParameterResult } from '../result/NonRootResult'
+import { composeParslet } from './Parslet.js'
+import { Precedence } from '../Precedence.js'
+import { UnexpectedTypeError } from '../errors.js'
+import type { FunctionResult } from '../result/RootResult.js'
+import type { TypeParameterResult } from '../result/NonRootResult.js'
 
 export const genericArrowFunctionParslet = composeParslet({
   name: 'genericArrowFunctionParslet',

@@ -1,11 +1,11 @@
-import { composeParslet } from './Parslet'
-import { Parser } from '../Parser'
-import type { ObjectFieldResult, ComputedPropertyResult, ComputedMethodResult } from '../result/NonRootResult'
-import { Precedence } from '../Precedence'
-import { typescriptGrammar } from '../grammars/typescriptGrammar'
-import { createKeyValueParslet } from '../parslets/KeyValueParslet'
-import type { RootResult } from '../result/RootResult'
-import { getParameters } from './FunctionParslet'
+import { composeParslet } from './Parslet.js'
+import { Parser } from '../Parser.js'
+import type { ObjectFieldResult, ComputedPropertyResult, ComputedMethodResult } from '../result/NonRootResult.js'
+import { Precedence } from '../Precedence.js'
+import { typescriptGrammar } from '../grammars/typescriptGrammar.js'
+import { createKeyValueParslet } from '../parslets/KeyValueParslet.js'
+import type { RootResult } from '../result/RootResult.js'
+import { getParameters } from './FunctionParslet.js'
 
 export const objectSquaredPropertyParslet = composeParslet({
   name: 'objectSquarePropertyParslet',
@@ -22,7 +22,9 @@ export const objectSquaredPropertyParslet = composeParslet({
       try {
         innerBracketType = parser.parseIntermediateType(Precedence.OBJECT)
       } catch (err) {
-        throw new Error('Error parsing value inside square bracketed property.')
+        throw new Error('Error parsing value inside square bracketed property.', {
+          cause: err
+        })
       }
     }
 

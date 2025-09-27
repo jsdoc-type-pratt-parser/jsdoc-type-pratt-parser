@@ -1,10 +1,10 @@
-import { composeParslet, type ParsletFunction } from './Parslet'
-import { Precedence } from '../Precedence'
-import type { FunctionResult, RootResult } from '../result/RootResult'
-import type { IntermediateResult } from '../result/IntermediateResult'
-import type { KeyValueResult, NonRootResult } from '../result/NonRootResult'
-import { UnexpectedTypeError } from '../errors'
-import { assertPlainKeyValueOrRootResult } from '../assertTypes'
+import { composeParslet, type ParsletFunction } from './Parslet.js'
+import { Precedence } from '../Precedence.js'
+import type { FunctionResult, RootResult } from '../result/RootResult.js'
+import type { IntermediateResult } from '../result/IntermediateResult.js'
+import type { KeyValueResult, NonRootResult } from '../result/NonRootResult.js'
+import { UnexpectedTypeError } from '../errors.js'
+import { assertPlainKeyValueOrRootResult } from '../assertTypes.js'
 
 export function getParameters (value: IntermediateResult): Array<RootResult | KeyValueResult> {
   let parameters: NonRootResult[] = []

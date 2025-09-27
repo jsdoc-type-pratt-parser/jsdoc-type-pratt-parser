@@ -3,11 +3,10 @@ import 'mocha'
 import catharsis from 'catharsis'
 import { parse as jtpParse } from 'jsdoctypeparser'
 import { parse as espree } from 'espree'
-// @ts-expect-error Just for testing
 import { generate } from '@es-joy/escodegen'
-import { jtpTransform } from '../../src/transforms/jtpTransform'
-import { simplify } from '../../src/transforms/simplify'
-import { catharsisTransform, parse, type RootResult, type ParseMode, stringify } from '../../src'
+import { jtpTransform } from '../../src/transforms/jtpTransform.js'
+import { simplify } from '../../src/transforms/simplify.js'
+import { catharsisTransform, parse, type RootResult, type ParseMode, stringify } from '../../src/index.js'
 
 const { parse: catharsisParse } = catharsis
 
@@ -193,7 +192,6 @@ export function testFixture (fixture: Fixture): void {
       const result = results[mode] as RootResult
       const stringified = stringify(
         result,
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument -- No types yet for our escodegen
         fixture.espree !== undefined && fixture.espree
           ? generate
           : undefined

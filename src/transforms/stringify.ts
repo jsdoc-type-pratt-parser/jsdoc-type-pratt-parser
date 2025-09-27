@@ -1,6 +1,6 @@
-import { transform, type TransformRules } from './transform'
-import type { NonRootResult } from '../result/NonRootResult'
-import type { RootResult } from '../result/RootResult'
+import { transform, type TransformRules } from './transform.js'
+import type { NonRootResult } from '../result/NonRootResult.js'
+import type { RootResult } from '../result/RootResult.js'
 import type { Node } from 'estree'
 
 function applyPosition (position: 'prefix' | 'suffix', target: string, value: string): string {

@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import 'mocha'
-import type { RootResult } from '../src/result/RootResult'
-import { parse } from '../src/parse'
+import type { RootResult } from '../src/result/RootResult.js'
+import { parse } from '../src/parse.js'
 
 describe('basics', () => {
   it('should parse names', () => {

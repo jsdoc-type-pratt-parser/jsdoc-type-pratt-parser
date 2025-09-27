@@ -1,8 +1,8 @@
 import { expect } from 'chai'
-import { jsdocGrammar } from '../src/grammars/jsdocGrammar'
-import { createFunctionParslet } from '../src/parslets/FunctionParslet'
-import { Parser } from '../src/Parser'
-import { Lexer } from '../src/lexer/Lexer'
+import { jsdocGrammar } from '../src/grammars/jsdocGrammar.js'
+import { createFunctionParslet } from '../src/parslets/FunctionParslet.js'
+import { Parser } from '../src/Parser.js'
+import { Lexer } from '../src/lexer/Lexer.js'
 
 function parse (text: string, allowNoReturnType = true): void {
   // Replace other function parslet with one setting

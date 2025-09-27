@@ -1,4 +1,4 @@
-import { testFixture } from '../Fixture'
+import { testFixture } from '../Fixture.js'
 
 describe('catharsis type application tests', () => {
   describe('array of strings, without a dot separator', () => {
