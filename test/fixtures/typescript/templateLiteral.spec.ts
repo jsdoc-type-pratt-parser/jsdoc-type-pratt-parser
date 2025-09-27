@@ -88,14 +88,14 @@ describe('typescript template literals', () => {
     })
   })
 
-  describe('should fail with unteriminated template literal', () => {
+  describe('should fail with unterminated template literal', () => {
     testFixture({
       input: '`abc',
       modes: [],
     })
   })
 
-  describe('should fail with unteriminated template literal interpolation', () => {
+  describe('should fail with unterminated template literal interpolation', () => {
     testFixture({
       input: '`ab${unterminated`',
       modes: [],
