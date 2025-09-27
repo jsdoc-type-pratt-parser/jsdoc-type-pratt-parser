@@ -684,6 +684,76 @@ describe('typescript objects tests', () => {
     })
   })
 
+  describe('mapped type clauses (more complex)', () => {
+    testFixture({
+      input: '{[key in AvailableArbitraryType]: Partial<TypeObject> | string[]}',
+      modes: ['typescript'],
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
+        elements: [
+          {
+            type: 'JsdocTypeObjectField',
+            key: {
+              type: 'JsdocTypeMappedType',
+              key: 'key',
+              right: {
+                type: 'JsdocTypeName',
+                value: 'AvailableArbitraryType'
+              }
+            },
+            optional: false,
+            readonly: false,
+            right: {
+              elements: [
+                {
+                  elements: [
+                    {
+                      type: 'JsdocTypeName',
+                      value: 'TypeObject'
+                    }
+                  ],
+                  left: {
+                    type: 'JsdocTypeName',
+                    value: 'Partial'
+                  },
+                  meta: {
+                    brackets: 'angle',
+                    dot: false
+                  },
+                  type: 'JsdocTypeGeneric'
+                },
+                {
+                  elements: [
+                    {
+                      type: 'JsdocTypeName',
+                      value: 'string'
+                    }
+                  ],
+                  left: {
+                    type: 'JsdocTypeName',
+                    value: 'Array'
+                  },
+                  meta: {
+                    brackets: 'square',
+                    dot: false
+                  },
+                  type: 'JsdocTypeGeneric'
+                }
+              ],
+              type: 'JsdocTypeUnion'
+            },
+            meta: {
+              quote: undefined
+            }
+          }
+        ]
+      }
+    })
+  })
+
   describe('union in index signature', () => {
     testFixture({
       input: '{[key: string | number]: boolean}',

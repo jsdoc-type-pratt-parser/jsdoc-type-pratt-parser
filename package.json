@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
-    "@es-joy/escodegen": "^4.0.0",
+    "@es-joy/escodegen": "^4.0.3",
     "@rollup/plugin-typescript": "^12.1.4",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
@@ -73,7 +73,7 @@
     "jsdoctypeparser": "^9.0.0",
     "mocha": "^11.7.2",
     "npm-upgrade": "^3.1.2",
-    "rollup": "^4.52.2",
+    "rollup": "^4.52.3",
     "semantic-release": "^24.2.9",
     "sinon": "^21.0.0",
     "sinon-chai": "^4.0.1",

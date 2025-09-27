@@ -78,19 +78,17 @@ export const objectSquaredPropertyParslet = composeParslet({
 
       const mappedTypeRight = parentParser.parseType(Precedence.ARRAY_BRACKETS)
 
-      parser.acceptLexerState(parentParser)
-
-      if (!parser.consume(']')) {
+      if (!parentParser.consume(']')) {
         throw new Error('Unterminated square brackets')
       }
 
-      const optional = parser.consume('?')
+      const optional = parentParser.consume('?')
 
-      if (!parser.consume(':')) {
+      if (!parentParser.consume(':')) {
         throw new Error('Incomplete mapped type clause: missing colon')
       }
 
-      const right = parser.parseType(Precedence.INDEX_BRACKETS)
+      const right = parentParser.parseType(Precedence.INDEX_BRACKETS)
       result = {
         type: 'JsdocTypeObjectField',
         optional,
@@ -105,6 +103,8 @@ export const objectSquaredPropertyParslet = composeParslet({
         },
         right
       }
+
+      parser.acceptLexerState(parentParser)
     } else {
       if (parser.computedPropertyParser !== undefined) {
         let remaining = parser.lexer.current.text + parser.lexer.remaining()

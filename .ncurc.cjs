@@ -3,6 +3,9 @@
 module.exports = {
   reject: [
     // Todo: Requires adjustments
-    'catharsis'
+    'catharsis',
+
+    // Peere dependency issues with `eslint-config-love`
+    '@typescript-eslint/eslint-plugin'
   ]
 };
