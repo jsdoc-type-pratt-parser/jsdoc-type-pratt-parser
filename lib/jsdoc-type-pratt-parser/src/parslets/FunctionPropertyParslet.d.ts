@@ -1,1 +1,1 @@
-export declare const functionPropertyParslet: import("./Parslet").ParsletFunction;
+export declare const functionPropertyParslet: import("./Parslet.js").ParsletFunction;

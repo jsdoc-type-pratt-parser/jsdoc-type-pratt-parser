@@ -1,4 +1,4 @@
-import type { Token } from './Token';
+import type { Token } from './Token.js';
 /**
  * Gets the next literal (non-interpolation) portion of a text
  */

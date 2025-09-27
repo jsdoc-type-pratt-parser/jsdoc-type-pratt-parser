@@ -1,5 +1,5 @@
-import { type TransformRules } from './transform';
-import type { RootResult } from '../result/RootResult';
+import { type TransformRules } from './transform.js';
+import type { RootResult } from '../result/RootResult.js';
 import type { Node } from 'estree';
 export declare function quote(value: string, quote: 'single' | 'double' | undefined): string;
 export declare function stringifyRules({ computedPropertyStringifier }?: {

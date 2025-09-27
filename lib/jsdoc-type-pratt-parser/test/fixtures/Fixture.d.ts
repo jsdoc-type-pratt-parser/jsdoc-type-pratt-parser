@@ -1,5 +1,5 @@
 import 'mocha';
-import { type RootResult, type ParseMode } from '../../src';
+import { type RootResult, type ParseMode } from '../../src/index.js';
 export type JtpMode = 'jsdoc' | 'closure' | 'typescript' | 'permissive';
 export type CatharsisMode = 'jsdoc' | 'closure';
 export type CompareMode = ParseMode | 'fail' | 'differ';

@@ -1,5 +1,5 @@
-import type { KeyValueResult, NonRootResult } from './NonRootResult';
-import type { RootResult } from './RootResult';
+import type { KeyValueResult, NonRootResult } from './NonRootResult.js';
+import type { RootResult } from './RootResult.js';
 export type IntermediateResult = NonRootResult | ParameterList | ReadonlyProperty;
 export interface ParameterList {
     type: 'JsdocTypeParameterList';

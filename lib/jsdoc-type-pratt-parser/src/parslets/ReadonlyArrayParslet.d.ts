@@ -1,1 +1,1 @@
-export declare const readonlyArrayParslet: import("./Parslet").ParsletFunction;
+export declare const readonlyArrayParslet: import("./Parslet.js").ParsletFunction;

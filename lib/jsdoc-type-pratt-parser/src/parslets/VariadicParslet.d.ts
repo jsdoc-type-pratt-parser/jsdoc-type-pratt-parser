@@ -1,4 +1,4 @@
-import { type ParsletFunction } from './Parslet';
+import { type ParsletFunction } from './Parslet.js';
 export declare function createVariadicParslet({ allowPostfix, allowEnclosingBrackets }: {
     allowPostfix: boolean;
     allowEnclosingBrackets: boolean;

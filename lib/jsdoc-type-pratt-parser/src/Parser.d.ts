@@ -1,9 +1,9 @@
-import { Lexer } from './lexer/Lexer';
-import type { Grammar } from './grammars/Grammar';
-import { Precedence } from './Precedence';
-import type { RootResult } from './result/RootResult';
-import type { IntermediateResult } from './result/IntermediateResult';
-import type { TokenType } from './lexer/Token';
+import { Lexer } from './lexer/Lexer.js';
+import type { Grammar } from './grammars/Grammar.js';
+import { Precedence } from './Precedence.js';
+import type { RootResult } from './result/RootResult.js';
+import type { IntermediateResult } from './result/IntermediateResult.js';
+import type { TokenType } from './lexer/Token.js';
 export declare class Parser {
     readonly grammar: Grammar;
     private _lexer;

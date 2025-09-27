@@ -1,1 +1,1 @@
-export declare const templateLiteralParslet: import("./Parslet").ParsletFunction;
+export declare const templateLiteralParslet: import("./Parslet.js").ParsletFunction;

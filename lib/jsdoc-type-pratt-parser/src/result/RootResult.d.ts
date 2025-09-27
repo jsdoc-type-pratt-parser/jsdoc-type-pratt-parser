@@ -1,4 +1,4 @@
-import type { JsdocObjectFieldResult, KeyValueResult, ObjectFieldResult, PropertyResult, TypeParameterResult, CallSignatureResult, ConstructorSignatureResult, MethodSignatureResult, IndexedAccessIndexResult, ComputedPropertyResult, ComputedMethodResult } from './NonRootResult';
+import type { JsdocObjectFieldResult, KeyValueResult, ObjectFieldResult, PropertyResult, TypeParameterResult, CallSignatureResult, ConstructorSignatureResult, MethodSignatureResult, IndexedAccessIndexResult, ComputedPropertyResult, ComputedMethodResult } from './NonRootResult.js';
 /**
  * A parse result that corresponds to a valid type expression.
  */

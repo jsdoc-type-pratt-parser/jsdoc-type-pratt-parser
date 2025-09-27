@@ -1,4 +1,4 @@
-import type { QuoteStyle, RootResult, NameResult } from './RootResult';
+import type { QuoteStyle, RootResult, NameResult } from './RootResult.js';
 import type { Node } from 'estree';
 /**
  * A parse sub result that might not be a valid type expression on its own.

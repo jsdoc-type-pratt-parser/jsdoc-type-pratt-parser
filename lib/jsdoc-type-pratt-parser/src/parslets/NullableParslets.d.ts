@@ -1,2 +1,2 @@
-import type { ParsletFunction } from './Parslet';
+import type { ParsletFunction } from './Parslet.js';
 export declare const nullableParslet: ParsletFunction;
