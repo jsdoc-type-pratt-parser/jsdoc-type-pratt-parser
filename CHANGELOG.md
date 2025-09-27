@@ -1,3 +1,10 @@
+## [5.9.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v5.9.0...v5.9.1) (2025-09-27)
+
+
+### Bug Fixes
+
+* **mapped type clauses:** handle more complete types ([a50f4a2](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/a50f4a2465d75d3444e31a21c856b31e1c3e7d90))
+
 # [5.9.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v5.8.0...v5.9.0) (2025-09-26)
 
 
