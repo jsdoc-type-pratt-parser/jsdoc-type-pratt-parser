@@ -46,7 +46,7 @@ export const templateLiteralParslet = composeParslet({
           try {
             templateParser = new Parser(
               typescriptGrammar,
-              Lexer.create(rules, snipped)
+              Lexer.create(parser.lexer.lexerRules, snipped)
             )
             interpolationType = templateParser.parseType(Precedence.ALL)
             break
