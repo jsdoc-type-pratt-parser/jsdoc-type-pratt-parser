@@ -1,3 +1,10 @@
+## [5.9.2](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v5.9.1...v5.9.2) (2025-09-28)
+
+
+### Bug Fixes
+
+* allow template literals to include non-token values (e.g., hyphens) as part of literal portions ([dcfae5b](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/dcfae5ba9b2bf54b1a05e5bf90b268857ebd7c83))
+
 ## [5.9.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v5.9.0...v5.9.1) (2025-09-27)
 
 
