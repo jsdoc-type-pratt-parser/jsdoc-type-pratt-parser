@@ -34,16 +34,31 @@ export const templateLiteralParslet = composeParslet({
       if (currentText.startsWith('${')) {
         currentText = currentText.slice(2)
 
-        const templateParser = new Parser(typescriptGrammar, currentText)
+        let templateParser
+        let interpolationType
 
-        const interpolationType = templateParser.parseType(Precedence.ALL)
+        let snipped = currentText
+        let remnant = ''
+        while (true) {
+          // Some tokens (like hyphen) may not be recognized by the parser,
+          //   so we avoid processing them (may be part of a literal)
+          try {
+            templateParser = new Parser(typescriptGrammar, snipped)
+            interpolationType = templateParser.parseType(Precedence.ALL)
+            break
+          } catch (err) {
+            remnant = snipped.slice(-1) + remnant
+            snipped = snipped.slice(0, -1)
+          }
+        }
+
         interpolations.push(interpolationType)
 
         if (templateParser.lexer.current.text !== '}') {
           throw new Error('unterminated interpolation')
         }
 
-        currentText = templateParser.lexer.remaining()
+        currentText = templateParser.lexer.remaining() + remnant
       } else { // currentText.startsWith('`')
         break;
       }

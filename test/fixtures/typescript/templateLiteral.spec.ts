@@ -40,6 +40,28 @@ describe('typescript template literals', () => {
     })
   })
 
+  describe('should parse a template literal (with hyphens)', () => {
+    testFixture({
+      // eslint-disable-next-line no-template-curly-in-string -- Template literal
+      input: '`${MyOwnType}-${string}`',
+      modes: ['typescript'],
+      expected: {
+        type: 'JsdocTypeTemplateLiteral',
+        literals: ['', '-', ''],
+        interpolations: [
+          {
+            type: 'JsdocTypeName',
+            value: 'MyOwnType'
+          },
+          {
+            type: 'JsdocTypeName',
+            value: 'string'
+          }
+        ]
+      }
+    })
+  })
+
   describe('should parse a template literal (no beginning or end interpolations)', () => {
     testFixture({
       // eslint-disable-next-line no-template-curly-in-string -- Template literal
