@@ -18,7 +18,7 @@ export const objectSquaredPropertyParslet = composeParslet({
 
     let innerBracketType;
 
-    if (parser.computedPropertyParser === undefined) {
+    if (parser.externalParsers?.computedPropertyParser === undefined) {
       try {
         innerBracketType = parser.parseIntermediateType(Precedence.OBJECT)
       } catch (err) {
@@ -106,13 +106,15 @@ export const objectSquaredPropertyParslet = composeParslet({
 
       parser.acceptLexerState(parentParser)
     } else {
-      if (parser.computedPropertyParser !== undefined) {
+      if (parser.externalParsers?.computedPropertyParser !== undefined) {
         let remaining = parser.lexer.current.text + parser.lexer.remaining()
         let checkingText = remaining
         // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- Deliberate string check
         while (checkingText) {
           try {
-            innerBracketType = parser.computedPropertyParser(checkingText)
+            innerBracketType = parser.externalParsers.computedPropertyParser(
+              checkingText
+            )
             break
           } catch (err) {}
           checkingText = checkingText.slice(0, -1)
@@ -124,7 +126,9 @@ export const objectSquaredPropertyParslet = composeParslet({
           remaining,
           parser.baseParser,
           {
-            computedPropertyParser: parser.computedPropertyParser
+            externalParsers: {
+              computedPropertyParser: parser.externalParsers.computedPropertyParser
+            }
           }
         )
         parser.acceptLexerState(remainingTextParser)

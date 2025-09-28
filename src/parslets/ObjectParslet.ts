@@ -32,8 +32,12 @@ export function createObjectParslet ({ signatureGrammar, objectFieldGrammar, all
           objectFieldGrammar,
           parser.lexer,
           parser,
-          parser.computedPropertyParser !== undefined
-            ? {computedPropertyParser: parser.computedPropertyParser}
+          parser.externalParsers?.computedPropertyParser !== undefined
+            ? {
+              externalParsers: {
+                computedPropertyParser: parser.externalParsers.computedPropertyParser
+              }
+            }
             : undefined
         )
 

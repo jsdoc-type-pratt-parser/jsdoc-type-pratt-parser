@@ -11,18 +11,18 @@ export class Parser {
   public readonly grammar: Grammar
   private _lexer: Lexer
   public readonly baseParser?: Parser
-  public readonly computedPropertyParser?: (
+  public readonly externalParsers?: Record<string, (
     // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Actual API
     text: string, options?: any
-  ) => unknown
+  ) => unknown>
 
   constructor (grammar: Grammar, textOrLexer: string | Lexer, baseParser?: Parser, {
-    computedPropertyParser
+    externalParsers
   }: {
-    computedPropertyParser?: (
+    externalParsers?: Record<string, (
       // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Actual API
       text: string, options?: any
-    ) => unknown
+    ) => unknown>
   } = {}) {
     this.grammar = grammar
     if (typeof textOrLexer === 'string') {
@@ -31,7 +31,7 @@ export class Parser {
       this._lexer = textOrLexer
     }
     this.baseParser = baseParser
-    this.computedPropertyParser = computedPropertyParser
+    this.externalParsers = externalParsers
   }
 
   get lexer (): Lexer {
