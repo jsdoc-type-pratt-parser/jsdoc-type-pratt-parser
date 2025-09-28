@@ -1,4 +1,4 @@
-import { Lexer } from './lexer/Lexer.js';
+import type { Lexer } from './lexer/Lexer.js';
 import type { Grammar } from './grammars/Grammar.js';
 import { Precedence } from './Precedence.js';
 import type { RootResult } from './result/RootResult.js';
@@ -9,7 +9,7 @@ export declare class Parser {
     private _lexer;
     readonly baseParser?: Parser;
     readonly externalParsers?: Record<string, (text: string, options?: any) => unknown>;
-    constructor(grammar: Grammar, textOrLexer: string | Lexer, baseParser?: Parser, { externalParsers }?: {
+    constructor(grammar: Grammar, lexer: Lexer, baseParser?: Parser, { externalParsers }?: {
         externalParsers?: Record<string, (text: string, options?: any) => unknown>;
     });
     get lexer(): Lexer;

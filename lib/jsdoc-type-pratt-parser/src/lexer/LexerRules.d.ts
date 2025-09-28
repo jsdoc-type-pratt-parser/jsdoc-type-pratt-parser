@@ -1,6 +1,6 @@
 import type { Token } from './Token.js';
 type PartialToken = Omit<Token, 'startOfLine'>;
-type Rule = (text: string) => PartialToken | null;
+export type Rule = (text: string) => PartialToken | null;
 /**
  * Gets the next literal (non-interpolation) portion of a text
  */
