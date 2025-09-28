@@ -121,7 +121,7 @@ import { traverse } from 'jsdoc-type-pratt-parser'
 
 // property is the name of the property on parent that contains node
 function onEnter(node, parent, property) {
-    console.log(node.type)
+  console.log(node.type)
 }
 
 // an onEnter and/or an onLeave function can be supplied
@@ -140,14 +140,14 @@ import { parse as espree } from 'espree'
 import { generate } from '@es-joy/escodegen'
 
 const parsed = parse(
-    input,
-    mode,
-    { computedPropertyParser: espree }
+  input,
+  mode,
+  { computedPropertyParser: espree }
 )
 
 const stringified = stringify(
-    result,
-    generate
+  result,
+  generate
 )
 ```
 

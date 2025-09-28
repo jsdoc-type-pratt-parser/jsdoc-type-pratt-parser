@@ -109,8 +109,7 @@ export const objectSquaredPropertyParslet = composeParslet({
       if (parser.externalParsers?.computedPropertyParser !== undefined) {
         let remaining = parser.lexer.current.text + parser.lexer.remaining()
         let checkingText = remaining
-        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions -- Deliberate string check
-        while (checkingText) {
+        while (checkingText !== '') {
           try {
             innerBracketType = parser.externalParsers.computedPropertyParser(
               checkingText
