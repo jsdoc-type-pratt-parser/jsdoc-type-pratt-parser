@@ -2,7 +2,7 @@ import type { Token, TokenType } from './Token.js'
 
 type PartialToken = Omit<Token, 'startOfLine'>
 
-type Rule = (text: string) => PartialToken | null
+export type Rule = (text: string) => PartialToken | null
 
 function makePunctuationRule (type: TokenType): Rule {
   return text => {

@@ -1,9 +1,10 @@
 import { composeParslet } from './Parslet.js'
 import type { RootResult } from '../result/RootResult.js'
 import { Precedence } from '../Precedence.js'
-import { getTemplateLiteralLiteral } from '../lexer/LexerRules.js'
+import { rules, getTemplateLiteralLiteral } from '../lexer/LexerRules.js'
 import { typescriptGrammar } from '../grammars/typescriptGrammar.js'
 import { Parser } from '../Parser.js'
+import { Lexer } from '../lexer/Lexer.js'
 
 export const templateLiteralParslet = composeParslet({
   name: 'templateLiteralParslet',
@@ -43,7 +44,10 @@ export const templateLiteralParslet = composeParslet({
           // Some tokens (like hyphen) may not be recognized by the parser,
           //   so we avoid processing them (may be part of a literal)
           try {
-            templateParser = new Parser(typescriptGrammar, snipped)
+            templateParser = new Parser(
+              typescriptGrammar,
+              Lexer.create(rules, snipped)
+            )
             interpolationType = templateParser.parseType(Precedence.ALL)
             break
           } catch (err) {

@@ -8,6 +8,7 @@ import type { Grammar } from '../src/grammars/Grammar.js'
 import { createObjectParslet } from '../src/parslets/ObjectParslet.js'
 import type { RootResult } from '../src/result/RootResult.js'
 import { Lexer } from '../src/lexer/Lexer.js'
+import { rules } from '../src/lexer/LexerRules.js'
 
 describe('`ObjectParslet`', () => {
   beforeEach(() => {
@@ -32,7 +33,7 @@ describe('`ObjectParslet`', () => {
         objectParslet,
         ...jsdocGrammar
       ],
-      Lexer.create('{abc}')
+      Lexer.create(rules, '{abc}')
     )
 
     const ret: unknown = undefined

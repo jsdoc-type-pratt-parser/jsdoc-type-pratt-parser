@@ -4,6 +4,8 @@ import { Parser } from '../src/Parser.js'
 import type { Grammar } from '../src/grammars/Grammar.js'
 import { createObjectParslet } from '../src/parslets/ObjectParslet.js'
 import { createNameParslet } from '../src/parslets/NameParslet.js'
+import { Lexer } from '../src/lexer/Lexer.js'
+import { rules } from '../src/lexer/LexerRules.js'
 
 describe('`ObjectSquaredPropertyParslet`', () => {
   it('throws without base parser', () => {
@@ -11,7 +13,7 @@ describe('`ObjectSquaredPropertyParslet`', () => {
       [
         objectSquaredPropertyParslet,
       ],
-      '[abc: string]'
+      Lexer.create(rules, '[abc: string]')
     )
 
     expect(() => {
@@ -39,7 +41,7 @@ describe('`ObjectSquaredPropertyParslet`', () => {
       [
         objectParslet
       ],
-      '{[abc]}'
+      Lexer.create(rules, '{[abc]}')
     )
 
     expect(() => {

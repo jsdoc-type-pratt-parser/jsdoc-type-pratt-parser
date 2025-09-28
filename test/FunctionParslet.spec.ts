@@ -3,6 +3,7 @@ import { jsdocGrammar } from '../src/grammars/jsdocGrammar.js'
 import { createFunctionParslet } from '../src/parslets/FunctionParslet.js'
 import { Parser } from '../src/Parser.js'
 import { Lexer } from '../src/lexer/Lexer.js'
+import { rules } from '../src/lexer/LexerRules.js'
 
 function parse (text: string, allowNoReturnType = true): void {
   // Replace other function parslet with one setting
@@ -16,7 +17,7 @@ function parse (text: string, allowNoReturnType = true): void {
       allowNewAsFunctionKeyword: false
     })
   ]
-  const parser = new Parser(grammar, Lexer.create(text))
+  const parser = new Parser(grammar, Lexer.create(rules, text))
   parser.parse()
 }
 

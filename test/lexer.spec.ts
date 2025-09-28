@@ -1,9 +1,10 @@
 import { expect } from 'chai'
 import { Lexer } from '../src/lexer/Lexer.js'
 import type { Token } from '../src/lexer/Token.js'
+import { rules } from '../src/lexer/LexerRules.js'
 
 function expectTokens (text: string, tokens: Array<Partial<Token>>): void {
-  let lexer = Lexer.create(text)
+  let lexer = Lexer.create(rules, text)
 
   let position = 0
 
@@ -143,7 +144,7 @@ describe('lexer', () => {
   })
 
   it('should obtain last token', () => {
-    let lexer = Lexer.create('(null)')
+    let lexer = Lexer.create(rules, '(null)')
     const token1 = lexer.current
     lexer = lexer.advance()
     const token2 = lexer.current

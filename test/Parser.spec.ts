@@ -5,10 +5,11 @@ import type { NoParsletFoundError, EarlyEndOfParseError } from '../src/errors.js
 
 import { typescriptGrammar } from '../src/grammars/typescriptGrammar.js'
 import { Lexer } from '../src/lexer/Lexer.js'
+import { rules } from '../src/lexer/LexerRules.js'
 
 describe('Parser', () => {
   it('should consume an array of tokens', () => {
-    const parser = new Parser(typescriptGrammar, Lexer.create('[test]'))
+    const parser = new Parser(typescriptGrammar, Lexer.create(rules, '[test]'))
     parser.parse()
 
     const twoTokens = parser.consume(['[', 'Identifier'])
@@ -19,7 +20,7 @@ describe('Parser', () => {
   })
 
   it('should return token of error with `NoParsletFoundError.getToken`', () => {
-    const parser = new Parser(typescriptGrammar, Lexer.create('{'))
+    const parser = new Parser(typescriptGrammar, Lexer.create(rules, '{'))
 
     let error
     try {
@@ -42,7 +43,7 @@ describe('Parser', () => {
   })
 
   it('should return token of error with `EarlyEndOfParseError.getToken`', () => {
-    const parser = new Parser(typescriptGrammar, Lexer.create('name]'))
+    const parser = new Parser(typescriptGrammar, Lexer.create(rules, 'name]'))
 
     let error
     try {

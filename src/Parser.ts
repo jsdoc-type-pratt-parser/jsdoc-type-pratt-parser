@@ -1,5 +1,5 @@
 import { EarlyEndOfParseError, NoParsletFoundError } from './errors.js'
-import { Lexer } from './lexer/Lexer.js'
+import type { Lexer } from './lexer/Lexer.js'
 import type { Grammar } from './grammars/Grammar.js'
 import { assertRootResult } from './assertTypes.js'
 import { Precedence } from './Precedence.js'
@@ -16,7 +16,7 @@ export class Parser {
     text: string, options?: any
   ) => unknown>
 
-  constructor (grammar: Grammar, textOrLexer: string | Lexer, baseParser?: Parser, {
+  constructor (grammar: Grammar, lexer: Lexer, baseParser?: Parser, {
     externalParsers
   }: {
     externalParsers?: Record<string, (
@@ -25,11 +25,7 @@ export class Parser {
     ) => unknown>
   } = {}) {
     this.grammar = grammar
-    if (typeof textOrLexer === 'string') {
-      this._lexer = Lexer.create(textOrLexer)
-    } else {
-      this._lexer = textOrLexer
-    }
+    this._lexer = lexer
     this.baseParser = baseParser
     this.externalParsers = externalParsers
   }

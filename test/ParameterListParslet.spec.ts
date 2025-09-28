@@ -1,5 +1,6 @@
 import { createFunctionParslet } from '../src/parslets/FunctionParslet.js'
 import { Lexer } from '../src/lexer/Lexer.js'
+import { rules } from '../src/lexer/LexerRules.js'
 import { expect } from 'chai'
 import { Parser } from '../src/Parser.js'
 import { createParameterListParslet } from '../src/parslets/ParameterListParslet.js'
@@ -29,7 +30,7 @@ describe('ParameterListParslet', () => {
         }),
         parenthesisParslet
       ],
-      Lexer.create('function(a, b, ")')
+      Lexer.create(rules, 'function(a, b, ")')
     )
     expect(() => {
       parser.parse()

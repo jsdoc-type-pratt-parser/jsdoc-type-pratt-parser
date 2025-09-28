@@ -7,6 +7,8 @@ import { Parser } from '../src/Parser.js'
 import { createSpecialNamePathParslet } from '../src/parslets/SpecialNamePathParslet.js'
 import { createNameParslet } from '../src/parslets/NameParslet.js'
 import { specialTypesParslet } from '../src/parslets/SpecialTypesParslet.js'
+import { Lexer } from '../src/lexer/Lexer.js'
+import { rules } from '../src/lexer/LexerRules.js'
 
 describe('API errors', () => {
   describe('`getParameters`', () => {
@@ -56,7 +58,7 @@ describe('API errors', () => {
               allowedAdditionalTokens: []
             })
           ],
-          'aaa.module:bbb'
+          Lexer.create(rules, 'aaa.module:bbb')
         )
 
         parser.parse()
@@ -89,7 +91,7 @@ describe('API errors', () => {
               allowedAdditionalTokens: []
             })
           ],
-          'aaa.null'
+          Lexer.create(rules, 'aaa.null')
         )
         parser.parse()
       }).to.throw("Unexpected type: 'JsdocTypeNull'. Message: Expecting 'JsdocTypeName', 'JsdocTypeNumber', 'JsdocStringValue' or 'JsdocTypeSpecialNamePath")

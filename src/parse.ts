@@ -3,6 +3,8 @@ import { jsdocGrammar } from './grammars/jsdocGrammar.js'
 import { closureGrammar } from './grammars/closureGrammar.js'
 import { typescriptGrammar } from './grammars/typescriptGrammar.js'
 import type { RootResult } from './result/RootResult.js'
+import { Lexer } from './lexer/Lexer.js'
+import { rules } from './lexer/LexerRules.js'
 
 export type ParseMode = 'closure' | 'jsdoc' | 'typescript'
 
@@ -23,13 +25,13 @@ export function parse (
 ): RootResult {
   switch (mode) {
     case 'closure':
-      return (new Parser(closureGrammar, expression)).parse()
+      return (new Parser(closureGrammar, Lexer.create(rules, expression))).parse()
     case 'jsdoc':
-      return (new Parser(jsdocGrammar, expression)).parse()
+      return (new Parser(jsdocGrammar, Lexer.create(rules, expression))).parse()
     case 'typescript':
       return (new Parser(
         typescriptGrammar,
-        expression,
+        Lexer.create(rules, expression),
         undefined,
         computedPropertyParser === undefined ? undefined : {
           externalParsers: {

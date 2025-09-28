@@ -6,6 +6,7 @@ import { typescriptGrammar } from '../grammars/typescriptGrammar.js'
 import { createKeyValueParslet } from '../parslets/KeyValueParslet.js'
 import type { RootResult } from '../result/RootResult.js'
 import { getParameters } from './FunctionParslet.js'
+import { Lexer } from '../lexer/Lexer.js'
 
 export const objectSquaredPropertyParslet = composeParslet({
   name: 'objectSquarePropertyParslet',
@@ -122,7 +123,7 @@ export const objectSquaredPropertyParslet = composeParslet({
 
         const remainingTextParser = new Parser(
           parser.grammar,
-          remaining,
+          Lexer.create(parser.lexer.lexerRules, remaining),
           parser.baseParser,
           {
             externalParsers: {
