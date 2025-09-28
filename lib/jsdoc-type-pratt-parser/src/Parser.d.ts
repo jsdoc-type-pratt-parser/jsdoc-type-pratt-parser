@@ -8,9 +8,9 @@ export declare class Parser {
     readonly grammar: Grammar;
     private _lexer;
     readonly baseParser?: Parser;
-    readonly computedPropertyParser?: (text: string, options?: any) => unknown;
-    constructor(grammar: Grammar, textOrLexer: string | Lexer, baseParser?: Parser, { computedPropertyParser }?: {
-        computedPropertyParser?: (text: string, options?: any) => unknown;
+    readonly externalParsers?: Record<string, (text: string, options?: any) => unknown>;
+    constructor(grammar: Grammar, textOrLexer: string | Lexer, baseParser?: Parser, { externalParsers }?: {
+        externalParsers?: Record<string, (text: string, options?: any) => unknown>;
     });
     get lexer(): Lexer;
     /**

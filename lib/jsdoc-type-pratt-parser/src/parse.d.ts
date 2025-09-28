@@ -5,8 +5,8 @@ export type ParseMode = 'closure' | 'jsdoc' | 'typescript';
  * @param expression
  * @param mode
  */
-export declare function parse(expression: string, mode: ParseMode, options?: {
-    computedPropertyParser: (text: string, options?: any) => unknown;
+export declare function parse(expression: string, mode: ParseMode, { computedPropertyParser }?: {
+    computedPropertyParser?: (text: string, options?: any) => unknown;
 }): RootResult;
 /**
  * This function tries to parse the given expression in multiple modes and returns the first successful
