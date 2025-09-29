@@ -1,3 +1,10 @@
+## [6.0.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.0.0...v6.0.1) (2025-09-29)
+
+
+### Bug Fixes
+
+* bump `engines`; fixes [#206](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/issues/206) ([2aa5954](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/2aa59541adb6727bb188e633b7b94bb2c0f7867f))
+
 # [6.0.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v5.9.2...v6.0.0) (2025-09-29)
 
 
