@@ -636,9 +636,8 @@ describe('catharsis basic tests', () => {
         value: 'My-1st-Class'
       },
       modes: [
-        'typescript',
         'jsdoc',
-        'closure'
+        'closure',
       ],
       catharsis: {
         closure: 'closure',
@@ -647,7 +646,7 @@ describe('catharsis basic tests', () => {
       jtp: {
         closure: 'closure',
         jsdoc: 'jsdoc',
-        typescript: 'typescript',
+        typescript: 'differ',
         permissive: 'closure'
       }
     })
@@ -736,7 +735,6 @@ describe('catharsis basic tests', () => {
       modes: [
         'jsdoc',
         'closure',
-        'typescript'
       ],
       catharsis: {
         closure: 'closure',

@@ -97,23 +97,27 @@ export function getTemplateLiteralLiteral (text: string): string | null {
 }
 
 const identifierStartRegex = /[$_\p{ID_Start}]|\\u\p{Hex_Digit}{4}|\\u\{0*(?:\p{Hex_Digit}{1,5}|10\p{Hex_Digit}{4})\}/u
-// A hyphen is not technically allowed, but to keep it liberal for now,
-//  adding it here
-const identifierContinueRegex = /[$\-\p{ID_Continue}\u200C\u200D]|\\u\p{Hex_Digit}{4}|\\u\{0*(?:\p{Hex_Digit}{1,5}|10\p{Hex_Digit}{4})\}/u
-function getIdentifier (text: string): string | null {
-  let char = text[0]
-  if (!identifierStartRegex.test(char)) {
-    return null
-  }
-  let position = 1
-  do {
-    char = text[position]
-    if (!identifierContinueRegex.test(char)) {
-      break
+const identifierContinueRegex = /[$\p{ID_Continue}\u200C\u200D]|\\u\p{Hex_Digit}{4}|\\u\{0*(?:\p{Hex_Digit}{1,5}|10\p{Hex_Digit}{4})\}/u
+const identifierContinueRegexLoose = /[$\-\p{ID_Continue}\u200C\u200D]|\\u\p{Hex_Digit}{4}|\\u\{0*(?:\p{Hex_Digit}{1,5}|10\p{Hex_Digit}{4})\}/u
+
+function makeGetIdentifier (
+  identifierContinueRegex: RegExp
+) {
+  return function (text: string): string | null {
+    let char = text[0]
+    if (!identifierStartRegex.test(char)) {
+      return null
     }
-    position++
-  } while (position < text.length)
-  return text.slice(0, position)
+    let position = 1
+    do {
+      char = text[position]
+      if (!identifierContinueRegex.test(char)) {
+        break
+      }
+      position++
+    } while (position < text.length)
+    return text.slice(0, position)
+  }
 }
 
 // we are a bit more liberal than TypeScript here and allow `NaN`, `Infinity` and `-Infinity`
@@ -122,8 +126,20 @@ function getNumber (text: string): string | null {
   return numberRegex.exec(text)?.[0] ?? null
 }
 
+const looseIdentifierRule: Rule = text => {
+  const value = makeGetIdentifier(identifierContinueRegexLoose)(text)
+  if (value == null) {
+    return null
+  }
+
+  return {
+    type: 'Identifier',
+    text: value
+  }
+}
+
 const identifierRule: Rule = text => {
-  const value = getIdentifier(text)
+  const value = makeGetIdentifier(identifierContinueRegex)(text)
   if (value == null) {
     return null
   }
@@ -241,3 +257,5 @@ export const rules: Rule[] = [
   stringValueRule,
   templateLiteralRule
 ]
+
+export const looseRules: Rule[] = rules.with(-3, looseIdentifierRule)

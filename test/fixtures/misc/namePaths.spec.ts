@@ -108,7 +108,6 @@ describe('name paths tests', () => {
       modes: [
         'jsdoc',
         'closure',
-        'typescript'
       ],
       catharsis: {
         jsdoc: 'jsdoc',
@@ -159,8 +158,7 @@ describe('name paths tests', () => {
       },
       modes: [
         'jsdoc',
-        'closure',
-        'typescript'
+        'closure'
       ],
       catharsis: {
         jsdoc: 'jsdoc',
