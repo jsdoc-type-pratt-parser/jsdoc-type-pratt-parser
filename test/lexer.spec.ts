@@ -1,11 +1,9 @@
 import { expect } from 'chai'
 import { Lexer } from '../src/lexer/Lexer.js'
 import type { Token } from '../src/lexer/Token.js'
-import { rules } from '../src/lexer/LexerRules.js'
+import { rules, looseRules } from '../src/lexer/LexerRules.js'
 
-function expectTokens (text: string, tokens: Array<Partial<Token>>): void {
-  let lexer = Lexer.create(rules, text)
-
+function expectTokensBase (lexer: Lexer, text: string, tokens: Array<Partial<Token>>): void {
   let position = 0
 
   while (lexer.current.type !== 'EOF') {
@@ -18,6 +16,16 @@ function expectTokens (text: string, tokens: Array<Partial<Token>>): void {
   }
 
   expect(tokens.length).to.equal(position)
+}
+
+function expectTokens (text: string, tokens: Array<Partial<Token>>): void {
+  const lexer = Lexer.create(rules, text)
+  expectTokensBase(lexer, text, tokens)
+}
+
+function expectTokensLoose (text: string, tokens: Array<Partial<Token>>): void {
+  const lexer = Lexer.create(looseRules, text)
+  expectTokensBase(lexer, text, tokens)
 }
 
 describe('lexer', () => {
@@ -98,7 +106,7 @@ describe('lexer', () => {
       }
     ])
 
-    expectTokens('Infinity', [
+    expectTokensLoose('Infinity', [
       {
         type: 'Number',
         text: 'Infinity'
@@ -107,7 +115,7 @@ describe('lexer', () => {
   })
 
   it('should parse an expression containing multiple numbers', () => {
-    expectTokens('123|-Infinity|Array<NaN>', [
+    expectTokensLoose('123|-Infinity|Array<NaN>', [
       {
         type: 'Number',
         text: '123'
