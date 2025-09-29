@@ -1,3 +1,17 @@
+# [6.0.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v5.9.2...v6.0.0) (2025-09-29)
+
+
+### Bug Fixes
+
+* deliberalize lexer to prohibit hyphens in typescript identifiers ([1f9d50a](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/1f9d50a002bc913cd0f78a52a2812590f13a2c61))
+* deliberalize lexer to prohibit NaN and -?Infinity in TypeScript identifiers ([bcd858b](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/bcd858b09c0d02b057de5aec553fee439aa8ad75))
+
+
+### BREAKING CHANGES
+
+* Prohibits use of NaN and -?Infinity in TypeScript identifiers
+* Prohibits use of hyphens in TypeScript identifiers
+
 ## [5.9.2](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v5.9.1...v5.9.2) (2025-09-28)
 
 
