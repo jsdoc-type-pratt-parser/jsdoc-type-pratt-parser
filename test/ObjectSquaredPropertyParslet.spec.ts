@@ -27,6 +27,10 @@ describe('`ObjectSquaredPropertyParslet`', () => {
   it('throws without `:` or `in`', () => {
     const objectFieldGrammar: Grammar = [
       createNameParslet({
+        module: true,
+        strictMode: true,
+        asyncFunctionBody: true,
+        allowReservedWords: true,
         allowedAdditionalTokens: []
       }),
       objectSquaredPropertyParslet
