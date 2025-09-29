@@ -2,13 +2,19 @@ import { expect } from 'chai'
 
 import { getParameters } from '../src/parslets/FunctionParslet.js'
 import { createNamePathParslet } from '../src/parslets/NamePathParslet.js'
-import { pathGrammar } from '../src/grammars/pathGrammar.js'
+import { createPathGrammars } from '../src/grammars/pathGrammar.js'
 import { Parser } from '../src/Parser.js'
 import { createSpecialNamePathParslet } from '../src/parslets/SpecialNamePathParslet.js'
 import { createNameParslet } from '../src/parslets/NameParslet.js'
 import { specialTypesParslet } from '../src/parslets/SpecialTypesParslet.js'
 import { Lexer } from '../src/lexer/Lexer.js'
 import { rules } from '../src/lexer/LexerRules.js'
+
+const { pathGrammar } = createPathGrammars({
+  module: true,
+  strictMode: true,
+  asyncFunctionBody: true,
+})
 
 describe('API errors', () => {
   describe('`getParameters`', () => {
@@ -55,6 +61,10 @@ describe('API errors', () => {
             // These are all we need here
             namePathParslet,
             createNameParslet({
+              module: true,
+              strictMode: true,
+              asyncFunctionBody: true,
+              allowReservedWords: false,
               allowedAdditionalTokens: []
             })
           ],
@@ -88,6 +98,11 @@ describe('API errors', () => {
             // These are all we need here
             namePathParslet,
             createNameParslet({
+              module: true,
+              strictMode: true,
+              asyncFunctionBody: true,
+              // Todo: Should not be allowed at root here
+              allowReservedWords: true,
               allowedAdditionalTokens: []
             })
           ],
