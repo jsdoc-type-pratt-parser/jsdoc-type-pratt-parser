@@ -223,6 +223,9 @@ const looseNumberRule: Rule = text => {
   }
 }
 
+/**
+ * Will be processed highest precedence first
+ */
 export const rules: Rule[] = [
   eofRule,
   makePunctuationRule('=>'),
