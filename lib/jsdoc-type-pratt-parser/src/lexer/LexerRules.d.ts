@@ -6,4 +6,5 @@ export type Rule = (text: string) => PartialToken | null;
  */
 export declare function getTemplateLiteralLiteral(text: string): string | null;
 export declare const rules: Rule[];
+export declare const looseRules: Rule[];
 export {};
