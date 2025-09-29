@@ -120,10 +120,13 @@ function makeGetIdentifier (
   }
 }
 
-// we are a bit more liberal than TypeScript here and allow `NaN`, `Infinity` and `-Infinity`
-const numberRegex = /^(NaN|-?((\d*\.\d+|\d+)([Ee][+-]?\d+)?|Infinity))/
-function getNumber (text: string): string | null {
-  return numberRegex.exec(text)?.[0] ?? null
+const numberRegex = /^(-?((\d*\.\d+|\d+)([Ee][+-]?\d+)?))/
+const looseNumberRegex = /^(NaN|-?((\d*\.\d+|\d+)([Ee][+-]?\d+)?|Infinity))/
+
+function getGetNumber (numberRegex: RegExp) {
+  return function getNumber (text: string): string | null {
+    return numberRegex.exec(text)?.[0] ?? null
+  }
 }
 
 const looseIdentifierRule: Rule = text => {
@@ -199,7 +202,18 @@ const eofRule: Rule = text => {
 }
 
 const numberRule: Rule = text => {
-  const value = getNumber(text)
+  const value = getGetNumber(numberRegex)(text)
+  if (value === null) {
+    return null
+  }
+  return {
+    type: 'Number',
+    text: value
+  }
+}
+
+const looseNumberRule: Rule = text => {
+  const value = getGetNumber(looseNumberRegex)(text)
   if (value === null) {
     return null
   }
@@ -258,4 +272,6 @@ export const rules: Rule[] = [
   templateLiteralRule
 ]
 
-export const looseRules: Rule[] = rules.with(-3, looseIdentifierRule)
+export const looseRules: Rule[] = rules.toSpliced(
+  -4, 2, looseNumberRule, looseIdentifierRule
+)
