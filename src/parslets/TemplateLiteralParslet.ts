@@ -1,7 +1,7 @@
 import { composeParslet } from './Parslet.js'
 import type { RootResult } from '../result/RootResult.js'
 import { Precedence } from '../Precedence.js'
-import { rules, getTemplateLiteralLiteral } from '../lexer/LexerRules.js'
+import { getTemplateLiteralLiteral } from '../lexer/LexerRules.js'
 import { typescriptGrammar } from '../grammars/typescriptGrammar.js'
 import { Parser } from '../Parser.js'
 import { Lexer } from '../lexer/Lexer.js'
