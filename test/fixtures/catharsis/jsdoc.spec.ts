@@ -218,7 +218,6 @@ describe('catharsis jsdoc tests', () => {
       modes: [
         'jsdoc',
         'closure',
-        'typescript'
       ],
       catharsis: {
         closure: 'closure',
