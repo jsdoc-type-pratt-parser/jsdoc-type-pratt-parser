@@ -1,3 +1,10 @@
+## [6.1.2](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.1.1...v6.1.2) (2025-10-01)
+
+
+### Bug Fixes
+
+* revert "feat: `parseNamePath` and `parseName`; add `parse` options (`strictMode`, `module`, `asyncFunctionBody`)" (proved problematic) ([c95f5a0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/c95f5a0c671308011fc9a84ec301e03edc34ef09))
+
 ## [6.1.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.1.0...v6.1.1) (2025-10-01)
 
 
