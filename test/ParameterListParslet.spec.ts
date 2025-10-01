@@ -22,10 +22,6 @@ describe('ParameterListParslet', () => {
           allowTrailingComma: false
         }),
         createNameParslet({
-          module: true,
-          strictMode: true,
-          asyncFunctionBody: true,
-          allowReservedWords: false,
           allowedAdditionalTokens: []
         }),
         createObjectParslet({

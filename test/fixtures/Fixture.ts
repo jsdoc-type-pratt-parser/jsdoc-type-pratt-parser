@@ -6,7 +6,7 @@ import { parse as espree } from 'espree'
 import { generate } from '@es-joy/escodegen'
 import { jtpTransform } from '../../src/transforms/jtpTransform.js'
 import { simplify } from '../../src/transforms/simplify.js'
-import { catharsisTransform, parse, parseName, parseNamePath, type RootResult, type ParseMode, stringify } from '../../src/index.js'
+import { catharsisTransform, parse, type RootResult, type ParseMode, stringify } from '../../src/index.js'
 
 const { parse: catharsisParse } = catharsis
 
@@ -40,32 +40,17 @@ interface BaseFixture {
   stringified?: string
 }
 
-interface extraParseArgs {
-  module?: boolean,
-  strictMode?: boolean,
-  asyncFunctionBody?: boolean
-}
-
 type SuccessFixture = BaseFixture & {
   /**
    * The {@link ParseMode}s that the expression is expected to get parsed in. In all other modes it is expected to fail.
    */
-  modes: ParseMode[],
-  parseName?: true,
-  extraParseArgs?: extraParseArgs
-  parseNamePath?: true
+  modes: ParseMode[]
 }
 
 type ErrorFixture = BaseFixture & ({
-  error: string,
-  parseName?: true,
-  extraParseArgs?: extraParseArgs,
-  parseNamePath?: true
+  error: string
 } | {
-  errors: Partial<Record<ParseMode, string>>,
-  parseName?: true,
-  extraParseArgs?: extraParseArgs
-  parseNamePath?: true
+  errors: Partial<Record<ParseMode, string>>
 })
 
 export type Fixture = SuccessFixture | ErrorFixture
@@ -76,11 +61,7 @@ function testParser (mode: ParseMode, fixture: Fixture): RootResult | undefined 
   if ('modes' in fixture) {
     if (fixture.modes.includes(mode)) {
       it(`is parsed in '${mode}' mode`, () => {
-        const result = fixture.parseNamePath ? parseNamePath(
-          fixture.input,
-          mode,
-          fixture.extraParseArgs
-        ) : fixture.parseName ? parseName(fixture.input, mode, fixture.extraParseArgs) : parse(
+        const result = parse(
           fixture.input,
           mode,
           fixture.espree !== undefined && fixture.espree ? {
@@ -91,11 +72,7 @@ function testParser (mode: ParseMode, fixture: Fixture): RootResult | undefined 
         expect(result).to.deep.equal(expected)
       })
       try {
-        return fixture.parseNamePath ? parseNamePath(
-          fixture.input,
-          mode,
-          fixture.extraParseArgs
-        ) : fixture.parseName ? parseName(fixture.input, mode, fixture.extraParseArgs) :parse(
+        return parse(
           fixture.input,
           mode,
           fixture.espree !== undefined && fixture.espree ? {
@@ -110,17 +87,7 @@ function testParser (mode: ParseMode, fixture: Fixture): RootResult | undefined 
     } else {
       it(`fails to parse in '${mode}' mode`, () => {
         expect(() => {
-          if (fixture.parseNamePath) {
-            parseNamePath(
-              fixture.input,
-              mode,
-              fixture.extraParseArgs
-            )
-          } else if (fixture.parseName) {
-            parseName(fixture.input, mode, fixture.extraParseArgs)
-          } else {
-            parse(fixture.input, mode)
-          }
+          parse(fixture.input, mode)
         }).to.throw()
       })
     }
@@ -129,17 +96,7 @@ function testParser (mode: ParseMode, fixture: Fixture): RootResult | undefined 
     if (expectedErrorForMode !== undefined) {
       it(`In '${mode}' mode, throws with: ${expectedErrorForMode}`, () => {
         expect(() => {
-          if (fixture.parseNamePath) {
-            parseNamePath(
-              fixture.input,
-              mode,
-              fixture.extraParseArgs
-            )
-          } else if (fixture.parseName) {
-            parseName(fixture.input, mode, fixture.extraParseArgs)
-          } else {
-            parse(fixture.input, mode)
-          }
+          parse(fixture.input, mode)
         }).to.throw(expectedErrorForMode)
       })
     }

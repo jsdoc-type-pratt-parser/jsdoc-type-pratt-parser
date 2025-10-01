@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import { stub, type SinonStub } from 'sinon'
 
-import { createJsdocGrammars } from '../src/grammars/jsdocGrammar.js'
+import { jsdocGrammar } from '../src/grammars/jsdocGrammar.js'
 import { Parser } from '../src/Parser.js'
 import type { Grammar } from '../src/grammars/Grammar.js'
 
@@ -9,12 +9,6 @@ import { createObjectParslet } from '../src/parslets/ObjectParslet.js'
 import type { RootResult } from '../src/result/RootResult.js'
 import { Lexer } from '../src/lexer/Lexer.js'
 import { rules } from '../src/lexer/LexerRules.js'
-
-const { jsdocGrammar } = createJsdocGrammars({
-  module: true,
-  strictMode: true,
-  asyncFunctionBody: true
-})
 
 describe('`ObjectParslet`', () => {
   beforeEach(() => {

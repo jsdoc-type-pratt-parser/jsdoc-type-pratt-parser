@@ -4,6 +4,7 @@ import { Precedence } from '../Precedence.js'
 import { UnexpectedTypeError } from '../errors.js'
 import type { ObjectResult } from '../result/RootResult.js'
 import type { Grammar } from '../grammars/Grammar.js'
+import { typescriptGrammar } from '../grammars/typescriptGrammar.js'
 import { getParameters } from './FunctionParslet.js'
 
 export function createObjectParslet ({ signatureGrammar, objectFieldGrammar, allowKeyTypes }: {
@@ -77,10 +78,11 @@ export function createObjectParslet ({ signatureGrammar, objectFieldGrammar, all
             field.type === 'JsdocTypeConstructorSignature' ||
             field.type === 'JsdocTypeMethodSignature')
           ) {
+
             const signatureParser = new Parser(
               [
                 ...signatureGrammar,
-                ...parser.grammar.flatMap((grammar) => {
+                ...typescriptGrammar.flatMap((grammar) => {
                   // We're supplying our own version
                   if (grammar.name === 'keyValueParslet') {
                     return []
