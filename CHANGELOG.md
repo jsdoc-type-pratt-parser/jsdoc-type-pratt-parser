@@ -1,3 +1,10 @@
+## [6.1.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.1.0...v6.1.1) (2025-10-01)
+
+
+### Bug Fixes
+
+* revert name/namepath addition (proved problematic) ([79a9834](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/79a9834965f7c761b28032bf64b213cd92381819))
+
 ## [6.0.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.0.0...v6.0.1) (2025-09-29)
 
 
