@@ -5,10 +5,7 @@ export type ParseMode = 'closure' | 'jsdoc' | 'typescript';
  * @param expression
  * @param mode
  */
-export declare function parse(expression: string, mode: ParseMode, { computedPropertyParser, module, strictMode, asyncFunctionBody }?: {
-    module?: boolean;
-    strictMode?: boolean;
-    asyncFunctionBody?: boolean;
+export declare function parse(expression: string, mode: ParseMode, { computedPropertyParser }?: {
     computedPropertyParser?: (text: string, options?: any) => unknown;
 }): RootResult;
 /**
@@ -19,23 +16,3 @@ export declare function parse(expression: string, mode: ParseMode, { computedPro
  * @param modes
  */
 export declare function tryParse(expression: string, modes?: ParseMode[]): RootResult;
-/**
- * This function parses the given expression in the given mode and produces a name path.
- * @param expression
- * @param mode
- */
-export declare function parseNamePath(expression: string, mode: ParseMode, { module, strictMode, asyncFunctionBody }?: {
-    module?: boolean;
-    strictMode?: boolean;
-    asyncFunctionBody?: boolean;
-}): RootResult;
-/**
- * This function parses the given expression in the given mode and produces a name.
- * @param expression
- * @param mode
- */
-export declare function parseName(expression: string, mode: ParseMode, { module, strictMode, asyncFunctionBody }?: {
-    module?: boolean;
-    strictMode?: boolean;
-    asyncFunctionBody?: boolean;
-}): RootResult;

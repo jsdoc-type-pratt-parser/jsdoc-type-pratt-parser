@@ -26,30 +26,16 @@ interface BaseFixture {
      */
     stringified?: string;
 }
-interface extraParseArgs {
-    module?: boolean;
-    strictMode?: boolean;
-    asyncFunctionBody?: boolean;
-}
 type SuccessFixture = BaseFixture & {
     /**
      * The {@link ParseMode}s that the expression is expected to get parsed in. In all other modes it is expected to fail.
      */
     modes: ParseMode[];
-    parseName?: true;
-    extraParseArgs?: extraParseArgs;
-    parseNamePath?: true;
 };
 type ErrorFixture = BaseFixture & ({
     error: string;
-    parseName?: true;
-    extraParseArgs?: extraParseArgs;
-    parseNamePath?: true;
 } | {
     errors: Partial<Record<ParseMode, string>>;
-    parseName?: true;
-    extraParseArgs?: extraParseArgs;
-    parseNamePath?: true;
 });
 export type Fixture = SuccessFixture | ErrorFixture;
 /**
