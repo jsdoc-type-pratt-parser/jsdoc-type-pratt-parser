@@ -3,17 +3,9 @@ import { Parser } from '../src/Parser.js'
 
 import type { NoParsletFoundError, EarlyEndOfParseError } from '../src/errors.js'
 
-import { createTypescriptGrammars } from '../src/grammars/typescriptGrammar.js'
+import { typescriptGrammar } from '../src/grammars/typescriptGrammar.js'
 import { Lexer } from '../src/lexer/Lexer.js'
 import { rules } from '../src/lexer/LexerRules.js'
-
-const {
-  typescriptGrammar
-} = createTypescriptGrammars({
-  module: true,
-  strictMode: true,
-  asyncFunctionBody: true
-})
 
 describe('Parser', () => {
   it('should consume an array of tokens', () => {

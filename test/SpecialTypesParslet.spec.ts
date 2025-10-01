@@ -3,17 +3,9 @@ import { expect } from 'chai'
 import { specialTypesParslet } from '../src/parslets/SpecialTypesParslet.js'
 import { Parser } from '../src/Parser.js'
 import { Precedence } from '../src/Precedence.js'
-import { createTypescriptGrammars } from '../src/grammars/typescriptGrammar.js'
+import { typescriptGrammar } from '../src/grammars/typescriptGrammar.js'
 import { Lexer } from '../src/lexer/Lexer.js'
 import { rules } from '../src/lexer/LexerRules.js'
-
-const {
-  typescriptGrammar
-} = createTypescriptGrammars({
-  module: true,
-  strictMode: true,
-  asyncFunctionBody: true
-})
 
 class BadParser extends Parser {
   // eslint-disable-next-line @typescript-eslint/class-methods-use-this -- Testing
