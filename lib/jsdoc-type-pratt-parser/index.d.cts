@@ -369,7 +369,10 @@ type ParseMode = 'closure' | 'jsdoc' | 'typescript';
  * @param expression
  * @param mode
  */
-declare function parse(expression: string, mode: ParseMode, { computedPropertyParser }?: {
+declare function parse(expression: string, mode: ParseMode, { computedPropertyParser, module, strictMode, asyncFunctionBody }?: {
+    module?: boolean;
+    strictMode?: boolean;
+    asyncFunctionBody?: boolean;
     computedPropertyParser?: (text: string, options?: any) => unknown;
 }): RootResult;
 /**
@@ -380,6 +383,26 @@ declare function parse(expression: string, mode: ParseMode, { computedPropertyPa
  * @param modes
  */
 declare function tryParse(expression: string, modes?: ParseMode[]): RootResult;
+/**
+ * This function parses the given expression in the given mode and produces a name path.
+ * @param expression
+ * @param mode
+ */
+declare function parseNamePath(expression: string, mode: ParseMode, { module, strictMode, asyncFunctionBody }?: {
+    module?: boolean;
+    strictMode?: boolean;
+    asyncFunctionBody?: boolean;
+}): RootResult;
+/**
+ * This function parses the given expression in the given mode and produces a name.
+ * @param expression
+ * @param mode
+ */
+declare function parseName(expression: string, mode: ParseMode, { module, strictMode, asyncFunctionBody }?: {
+    module?: boolean;
+    strictMode?: boolean;
+    asyncFunctionBody?: boolean;
+}): RootResult;
 
 type TransformFunction<TransformResult> = (parseResult: NonRootResult) => TransformResult;
 type TransformRule<TransformResult, InputType extends NonRootResult> = (parseResult: InputType, transform: TransformFunction<TransformResult>) => TransformResult;
@@ -594,4 +617,4 @@ type VisitorKeys = {
 };
 declare const visitorKeys: VisitorKeys;
 
-export { type AnyResult, type AssertsPlainResult, type AssertsResult, type CallSignatureResult, type ComputedMethodResult, type ComputedPropertyResult, type ConditionalResult, type ConstructorSignatureResult, type FunctionResult, type GenericResult, type ImportResult, type IndexSignatureResult, type IndexedAccessIndexResult, type IntersectionResult, type JsdocObjectFieldResult, type KeyOfResult, type KeyValueResult, type MappedTypeResult, type MethodSignatureResult, type NamePathResult, type NameResult, type NodeVisitor, type NonRootResult, type NotNullableResult, type NullResult, type NullableResult, type NumberResult, type ObjectFieldResult, type ObjectResult, type OptionalResult, type ParenthesisResult, type ParseMode, type PredicateResult, type PropertyResult, type QuoteStyle, type ReadonlyArrayResult, type RootResult, type SpecialNamePath, type SpecialNamePathType, type StringValueResult, type SymbolResult, type TemplateLiteralResult, type TransformFunction, type TransformRule, type TransformRules, type TupleResult, type TypeOfResult, type TypeParameterResult, type UndefinedResult, type UnionResult, type UnknownResult, type VariadicResult, type VisitorKeys, catharsisTransform, identityTransformRules, jtpTransform, parse, stringify, stringifyRules, transform, traverse, tryParse, visitorKeys };
+export { type AnyResult, type AssertsPlainResult, type AssertsResult, type CallSignatureResult, type ComputedMethodResult, type ComputedPropertyResult, type ConditionalResult, type ConstructorSignatureResult, type FunctionResult, type GenericResult, type ImportResult, type IndexSignatureResult, type IndexedAccessIndexResult, type IntersectionResult, type JsdocObjectFieldResult, type KeyOfResult, type KeyValueResult, type MappedTypeResult, type MethodSignatureResult, type NamePathResult, type NameResult, type NodeVisitor, type NonRootResult, type NotNullableResult, type NullResult, type NullableResult, type NumberResult, type ObjectFieldResult, type ObjectResult, type OptionalResult, type ParenthesisResult, type ParseMode, type PredicateResult, type PropertyResult, type QuoteStyle, type ReadonlyArrayResult, type RootResult, type SpecialNamePath, type SpecialNamePathType, type StringValueResult, type SymbolResult, type TemplateLiteralResult, type TransformFunction, type TransformRule, type TransformRules, type TupleResult, type TypeOfResult, type TypeParameterResult, type UndefinedResult, type UnionResult, type UnknownResult, type VariadicResult, type VisitorKeys, catharsisTransform, identityTransformRules, jtpTransform, parse, parseName, parseNamePath, stringify, stringifyRules, transform, traverse, tryParse, visitorKeys };

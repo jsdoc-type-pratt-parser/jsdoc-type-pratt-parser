@@ -4,3 +4,14 @@ export interface Token {
     text: string;
     startOfLine: boolean;
 }
+export declare const reservedWordsAsTypes: string[];
+export declare const reservedWords: {
+    always: string[];
+    strictMode: string[];
+    moduleOrAsyncFunctionBodies: string[];
+};
+export declare const futureReservedWords: {
+    always: string[];
+    strictMode: string[];
+};
+export declare const strictModeNonIdentifiers: string[];
