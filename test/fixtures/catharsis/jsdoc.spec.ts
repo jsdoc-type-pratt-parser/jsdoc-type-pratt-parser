@@ -239,21 +239,7 @@ describe('catharsis jsdoc tests', () => {
         type: 'JsdocTypeName',
         value: 'this'
       },
-      modes: [
-        'typescript',
-        'jsdoc',
-        'closure'
-      ],
-      catharsis: {
-        closure: 'closure',
-        jsdoc: 'jsdoc'
-      },
-      jtp: {
-        closure: 'closure',
-        jsdoc: 'jsdoc',
-        typescript: 'typescript',
-        permissive: 'closure'
-      }
+      error: 'Unexpected reserved keyword "this"'
     })
   })
 
@@ -1064,19 +1050,10 @@ describe('catharsis jsdoc tests', () => {
         type: 'JsdocTypeName',
         value: 'function'
       },
-      modes: [
-        'jsdoc',
-        'typescript'
-      ],
-      catharsis: {
-        closure: 'fail',
-        jsdoc: 'jsdoc'
-      },
-      jtp: {
-        closure: 'differ',
-        jsdoc: 'jsdoc',
-        typescript: 'typescript',
-        permissive: 'typescript'
+      errors: {
+        closure: 'function is missing parameter list',
+        jsdoc: 'Unexpected reserved keyword "function"',
+        typescript: 'Unexpected reserved keyword "function"'
       }
     })
   })

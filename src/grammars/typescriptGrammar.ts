@@ -106,3 +106,30 @@ export const typescriptGrammar: Grammar = [
   })
 ]
 
+export const typescriptNameGrammar = [
+  createNameParslet({
+    allowedAdditionalTokens: [
+      // Cannot be JavaScript reserved word like `typeof`
+      'module', 'keyof', 'event', 'external',
+      'readonly', 'is'
+    ]
+  })
+]
+
+export const typescriptNamePathGrammar = [
+  createNameParslet({
+    allowedAdditionalTokens: [
+      'typeof', 'in',
+      'module', 'keyof', 'event', 'external',
+      'readonly', 'is'
+    ]
+  }),
+  createNamePathParslet({
+    allowSquareBracketsOnAnyType: true,
+    // Here we actually want JSDoc name paths (even though TS
+    //   in JSDoc namepath positions interpret them differently
+    //   than JSDoc)
+    allowJsdocNamePaths: true,
+    pathGrammar
+  })
+]

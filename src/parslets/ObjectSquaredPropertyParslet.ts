@@ -2,7 +2,6 @@ import { composeParslet } from './Parslet.js'
 import { Parser } from '../Parser.js'
 import type { ObjectFieldResult, ComputedPropertyResult, ComputedMethodResult } from '../result/NonRootResult.js'
 import { Precedence } from '../Precedence.js'
-import { typescriptGrammar } from '../grammars/typescriptGrammar.js'
 import { createKeyValueParslet } from '../parslets/KeyValueParslet.js'
 import type { RootResult } from '../result/RootResult.js'
 import { getParameters } from './FunctionParslet.js'
@@ -169,7 +168,7 @@ export const objectSquaredPropertyParslet = composeParslet({
               allowOptional: true,
               acceptParameterList: true,
             }),
-            ...typescriptGrammar.flatMap((grammar) => {
+            ...parser.baseParser.grammar.flatMap((grammar) => {
               // We're supplying our own version
               if (grammar.name === 'keyValueParslet') {
                 return []
