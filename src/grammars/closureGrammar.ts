@@ -15,6 +15,8 @@ import { createSpecialNamePathParslet } from '../parslets/SpecialNamePathParslet
 import { createNamePathParslet } from '../parslets/NamePathParslet.js'
 import { symbolParslet } from '../parslets/SymbolParslet.js'
 import { createObjectFieldParslet } from '../parslets/ObjectFieldParslet.js'
+import { genericParslet } from '../parslets/GenericParslet.js'
+import { arrayBracketsParslet } from '../parslets/ArrayBracketsParslet.js'
 
 const objectFieldGrammar: Grammar = [
   createNameParslet({
@@ -75,6 +77,8 @@ export const closureGrammar = [
 ]
 
 export const closureNameGrammar = [
+  genericParslet,
+  arrayBracketsParslet,
   createNameParslet({
     allowedAdditionalTokens: [
       'module', 'keyof', 'event', 'external',
@@ -84,6 +88,8 @@ export const closureNameGrammar = [
 ]
 
 export const closureNamePathGrammar = [
+  genericParslet,
+  arrayBracketsParslet,
   createNameParslet({
     allowedAdditionalTokens: [
       'module', 'keyof', 'event', 'external',

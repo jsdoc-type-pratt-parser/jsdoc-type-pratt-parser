@@ -12,6 +12,31 @@ describe('parses simple name', () => {
   })
 });
 
+describe('parses name with generic', () => {
+  testFixture({
+    input: 'foo<T>',
+    modes: ['jsdoc', 'closure', 'typescript'],
+    parseName: true,
+    expected: {
+      elements: [
+        {
+          type: 'JsdocTypeName',
+          value: 'T'
+        }
+      ],
+      left: {
+        type: 'JsdocTypeName',
+        value: 'foo'
+      },
+      meta: {
+        brackets: 'angle',
+        dot: false
+      },
+      type: 'JsdocTypeGeneric'
+    }
+  })
+})
+
 describe('other valid types like namepaths do not pass in name parser', () => {
   testFixture({
     input: 'foo.test',
