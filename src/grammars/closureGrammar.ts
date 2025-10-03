@@ -18,7 +18,9 @@ import { createObjectFieldParslet } from '../parslets/ObjectFieldParslet.js'
 
 const objectFieldGrammar: Grammar = [
   createNameParslet({
-    allowedAdditionalTokens: ['typeof', 'module', 'keyof', 'event', 'external', 'in']
+    allowedAdditionalTokens: [
+      'typeof', 'module', 'keyof', 'event', 'external', 'in'
+    ]
   }),
   nullableParslet,
   optionalParslet,
@@ -70,4 +72,28 @@ export const closureGrammar = [
     allowVariadic: false
   }),
   symbolParslet
+]
+
+export const closureNameGrammar = [
+  createNameParslet({
+    allowedAdditionalTokens: [
+      'module', 'keyof', 'event', 'external',
+      'readonly', 'is'
+    ]
+  })
+]
+
+export const closureNamePathGrammar = [
+  createNameParslet({
+    allowedAdditionalTokens: [
+      'module', 'keyof', 'event', 'external',
+      'readonly', 'is',
+      'typeof', 'in'
+    ]
+  }),
+  createNamePathParslet({
+    allowSquareBracketsOnAnyType: false,
+    allowJsdocNamePaths: true,
+    pathGrammar
+  })
 ]

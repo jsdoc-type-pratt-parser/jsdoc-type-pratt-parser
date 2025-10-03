@@ -51,3 +51,82 @@ export interface Token {
   text: string
   startOfLine: boolean
 }
+
+// May not be needed
+export const reservedWordsAsTypes = [
+  'extends',
+  'false',
+  'import',
+  'in',
+  'new',
+  'null',
+  'this',
+  'true',
+  'typeof',
+  'void'
+]
+
+export const reservedWords = {
+  always: [
+    'break',
+    'case',
+    'catch',
+    'class',
+    'const',
+    'continue',
+    'debugger',
+    'default',
+    'delete',
+    'do',
+    'else',
+    'export',
+    'extends',
+    'false',
+    'finally',
+    'for',
+    'function',
+    'if',
+    'import',
+    'in',
+    'instanceof',
+    'new',
+    'null',
+    'return',
+    'super',
+    'switch',
+    'this',
+    'throw',
+    'true',
+    'try',
+    'typeof',
+    'var',
+    'void',
+    'while',
+    'with'
+  ],
+  strictMode: [
+    'let',
+    'static',
+    'yield'
+  ],
+  moduleOrAsyncFunctionBodies: [
+    'await'
+  ]
+}
+
+export const futureReservedWords = {
+  always: ['enum'],
+  strictMode: [
+    'implements',
+    'interface',
+    'package',
+    'private',
+    'protected',
+    'public'
+  ]
+}
+
+export const strictModeNonIdentifiers = [
+  'arguments',
+  'eval'
+];

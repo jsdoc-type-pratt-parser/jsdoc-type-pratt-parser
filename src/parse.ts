@@ -1,7 +1,8 @@
 import { Parser } from './Parser.js'
-import { jsdocGrammar } from './grammars/jsdocGrammar.js'
-import { closureGrammar } from './grammars/closureGrammar.js'
-import { typescriptGrammar } from './grammars/typescriptGrammar.js'
+import { jsdocGrammar, jsdocNamePathGrammar, jsdocNameGrammar } from './grammars/jsdocGrammar.js'
+import { closureGrammar, closureNamePathGrammar, closureNameGrammar } from './grammars/closureGrammar.js'
+import { typescriptGrammar, typescriptNamePathGrammar, typescriptNameGrammar } from './grammars/typescriptGrammar.js'
+import { assertResultIsNotReservedWord } from './assertTypes.js'
 import type { RootResult } from './result/RootResult.js'
 import { Lexer } from './lexer/Lexer.js'
 import { rules, looseRules } from './lexer/LexerRules.js'
@@ -14,32 +15,58 @@ export type ParseMode = 'closure' | 'jsdoc' | 'typescript'
  * @param mode
  */
 export function parse (
-  expression: string, mode: ParseMode, {
+  expression: string, mode: ParseMode,
+  {
+    module = true,
+    strictMode = true,
+    asyncFunctionBody = true,
     computedPropertyParser
   }: {
+    module?: boolean,
+    strictMode?: boolean,
+    asyncFunctionBody?: boolean,
     computedPropertyParser?: (
       // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Actual API
       text: string, options?: any
     ) => unknown
   } = {}
 ): RootResult {
+  let parser: Parser
   switch (mode) {
     case 'closure':
-      return (new Parser(closureGrammar, Lexer.create(looseRules, expression))).parse()
+      parser = new Parser(closureGrammar, Lexer.create(looseRules, expression), undefined, {
+        module,
+        strictMode,
+        asyncFunctionBody
+      })
+      break
     case 'jsdoc':
-      return (new Parser(jsdocGrammar, Lexer.create(looseRules, expression))).parse()
+      parser = new Parser(jsdocGrammar, Lexer.create(looseRules, expression), undefined, {
+        module,
+        strictMode,
+        asyncFunctionBody
+      })
+      break
     case 'typescript':
-      return (new Parser(
+      parser = new Parser(
         typescriptGrammar,
         Lexer.create(rules, expression),
         undefined,
-        computedPropertyParser === undefined ? undefined : {
+        {
+          module,
+          strictMode,
+          asyncFunctionBody,
           externalParsers: {
             computedPropertyParser
           }
         }
-      )).parse()
+      )
+      break
   }
+
+  const result = parser.parse()
+
+  return assertResultIsNotReservedWord(parser, result)
 }
 
 /**
@@ -49,15 +76,75 @@ export function parse (
  * @param expression
  * @param modes
  */
-export function tryParse (expression: string, modes: ParseMode[] = ['typescript', 'closure', 'jsdoc']): RootResult {
+export function tryParse (
+  expression: string,
+  modes: ParseMode[] = ['typescript', 'closure', 'jsdoc'],
+  {
+    module = true,
+    strictMode = true,
+    asyncFunctionBody = true
+  }: {
+    module?: boolean,
+    strictMode?: boolean,
+    asyncFunctionBody?: boolean
+  } = {}
+): RootResult {
   let error
   for (const mode of modes) {
     try {
-      return parse(expression, mode)
+      return parse(expression, mode, {
+        module,
+        strictMode,
+        asyncFunctionBody,
+      })
     } catch (e) {
       error = e
     }
   }
   // eslint-disable-next-line @typescript-eslint/only-throw-error -- Ok
   throw error
+}
+
+
+/**
+ * This function parses the given expression in the given mode and produces a name path.
+ * @param expression
+ * @param mode
+ */
+export function parseNamePath (
+  expression: string, mode: ParseMode
+): RootResult {
+  switch (mode) {
+    case 'closure':
+      return (new Parser(closureNamePathGrammar, Lexer.create(looseRules, expression))).parse()
+    case 'jsdoc':
+      return (new Parser(jsdocNamePathGrammar, Lexer.create(looseRules, expression))).parse()
+    case 'typescript': {
+      return (new Parser(
+        typescriptNamePathGrammar,
+        Lexer.create(rules, expression)
+      )).parse()
+    }
+  }
+}
+
+/**
+ * This function parses the given expression in the given mode and produces a name.
+ * @param expression
+ * @param mode
+ */
+export function parseName (
+  expression: string, mode: ParseMode
+): RootResult {
+  switch (mode) {
+    case 'closure':
+      return (new Parser(closureNameGrammar, Lexer.create(looseRules, expression))).parse()
+    case 'jsdoc':
+      return (new Parser(jsdocNameGrammar, Lexer.create(looseRules, expression))).parse()
+    case 'typescript':
+      return (new Parser(
+        typescriptNameGrammar,
+        Lexer.create(rules, expression)
+      )).parse()
+  }
 }
