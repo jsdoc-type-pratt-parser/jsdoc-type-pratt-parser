@@ -253,6 +253,28 @@ export function testFixture (fixture: Fixture): void {
 
       expect(stringified).to.equal(fixture.stringified ?? fixture.input)
 
+      if (fixture.parseName) {
+        const reparsed = parseName(
+          stringified,
+          mode
+        )
+
+        expect(simplify(reparsed)).to.deep.equal(simplify(result))
+        return
+      }
+      if (fixture.parseNamePath) {
+        const reparsed = parseNamePath(
+          stringified,
+          mode,
+          {
+            ...fixture.extraParseArgs,
+          }
+        )
+
+        expect(simplify(reparsed)).to.deep.equal(simplify(result))
+        return
+      }
+
       const reparsed = parse(
         stringified,
         mode,

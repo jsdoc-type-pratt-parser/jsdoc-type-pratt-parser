@@ -30,6 +30,7 @@ import { readonlyArrayParslet } from '../parslets/ReadonlyArrayParslet.js'
 import { conditionalParslet } from '../parslets/ConditionalParslet.js'
 import { templateLiteralParslet } from '../parslets/TemplateLiteralParslet.js'
 import { genericParslet } from '../parslets/GenericParslet.js'
+import { baseNameTokens } from '../lexer/Token.js'
 
 const objectFieldGrammar: Grammar = [
   functionPropertyParslet,
@@ -111,11 +112,7 @@ export const typescriptNameGrammar = [
   genericParslet,
   arrayBracketsParslet,
   createNameParslet({
-    allowedAdditionalTokens: [
-      // Cannot be JavaScript reserved word like `typeof`
-      'module', 'keyof', 'event', 'external',
-      'readonly', 'is'
-    ]
+    allowedAdditionalTokens: baseNameTokens
   })
 ]
 
@@ -123,11 +120,7 @@ export const typescriptNamePathGrammar = [
   genericParslet,
   arrayBracketsParslet,
   createNameParslet({
-    allowedAdditionalTokens: [
-      'typeof', 'in',
-      'module', 'keyof', 'event', 'external',
-      'readonly', 'is'
-    ]
+    allowedAdditionalTokens: baseNameTokens
   }),
   createNamePathParslet({
     allowSquareBracketsOnAnyType: true,

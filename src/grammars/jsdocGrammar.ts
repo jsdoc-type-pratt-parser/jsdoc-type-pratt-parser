@@ -13,7 +13,7 @@ import { createObjectParslet } from '../parslets/ObjectParslet.js'
 import { createObjectFieldParslet } from '../parslets/ObjectFieldParslet.js'
 import { createKeyValueParslet } from '../parslets/KeyValueParslet.js'
 import { genericParslet } from '../parslets/GenericParslet.js'
-import type { TokenType } from '../lexer/Token.js'
+import { baseNameTokens } from '../lexer/Token.js'
 
 const jsdocBaseGrammar = [
   ...baseGrammar,
@@ -69,11 +69,6 @@ export const jsdocGrammar: Grammar = [
   })
 ]
 
-const baseNameTokens: TokenType[] = [
-  'module', 'keyof', 'event', 'external',
-  'readonly', 'is'
-]
-
 export const jsdocNameGrammar = [
   genericParslet,
   arrayBracketsParslet,
@@ -86,11 +81,7 @@ export const jsdocNamePathGrammar = [
   genericParslet,
   arrayBracketsParslet,
   createNameParslet({
-    allowedAdditionalTokens: [
-      ...baseNameTokens,
-      // These should really only be allowed as properties
-      'typeof', 'in'
-    ]
+    allowedAdditionalTokens: baseNameTokens
   }),
   createNamePathParslet({
     allowSquareBracketsOnAnyType: false,

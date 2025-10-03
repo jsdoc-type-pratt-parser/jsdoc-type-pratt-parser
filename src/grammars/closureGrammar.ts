@@ -17,6 +17,7 @@ import { symbolParslet } from '../parslets/SymbolParslet.js'
 import { createObjectFieldParslet } from '../parslets/ObjectFieldParslet.js'
 import { genericParslet } from '../parslets/GenericParslet.js'
 import { arrayBracketsParslet } from '../parslets/ArrayBracketsParslet.js'
+import { baseNameTokens } from '../lexer/Token.js'
 
 const objectFieldGrammar: Grammar = [
   createNameParslet({
@@ -80,10 +81,7 @@ export const closureNameGrammar = [
   genericParslet,
   arrayBracketsParslet,
   createNameParslet({
-    allowedAdditionalTokens: [
-      'module', 'keyof', 'event', 'external',
-      'readonly', 'is'
-    ]
+    allowedAdditionalTokens: baseNameTokens
   })
 ]
 
@@ -91,11 +89,7 @@ export const closureNamePathGrammar = [
   genericParslet,
   arrayBracketsParslet,
   createNameParslet({
-    allowedAdditionalTokens: [
-      'module', 'keyof', 'event', 'external',
-      'readonly', 'is',
-      'typeof', 'in'
-    ]
+    allowedAdditionalTokens: baseNameTokens
   }),
   createNamePathParslet({
     allowSquareBracketsOnAnyType: false,

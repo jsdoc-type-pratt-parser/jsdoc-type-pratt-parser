@@ -169,6 +169,47 @@ describe('parses simple name as namepath', () => {
   })
 });
 
+describe('parses reserved word name as namepath', () => {
+  [
+    // JS Keyword
+    'continue',
+
+    // Special namepath-handled TS keywords
+    'null',
+    'undefined',
+
+    // Other TS keywords
+    'function',
+    'this',
+    'new',
+    'module',
+    'event',
+    'extends',
+    'external',
+    'typeof',
+    'keyof',
+    'readonly',
+    'import',
+    'infer',
+    'is',
+    'in',
+    'asserts'
+  ].forEach((keyword) => {
+    testFixture({
+      input: keyword,
+      modes: ['jsdoc', 'closure', 'typescript'],
+      parseNamePath: true,
+      extraParseArgs: {
+        includeSpecial: true
+      },
+      expected: {
+        type: 'JsdocTypeName',
+        value: keyword
+      }
+    })
+  })
+});
+
 describe('other valid types like number do not pass in namePath parser', () => {
   testFixture({
     input: '12345',
