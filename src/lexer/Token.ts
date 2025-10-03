@@ -52,18 +52,22 @@ export interface Token {
   startOfLine: boolean
 }
 
-// May not be needed
-export const reservedWordsAsTypes = [
-  'extends',
+export const reservedWordsAsRootTSTypes = [
   'false',
+  'null',
+  'true',
+  'void'
+]
+
+// May not be needed
+export const reservedWordsAsTSTypes = [
+  ...reservedWordsAsRootTSTypes,
+  'extends',
   'import',
   'in',
   'new',
-  'null',
   'this',
-  'true',
-  'typeof',
-  'void'
+  'typeof'
 ]
 
 export const reservedWords = {

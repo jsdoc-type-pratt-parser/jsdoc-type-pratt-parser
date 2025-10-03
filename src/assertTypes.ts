@@ -4,6 +4,7 @@ import type { NameResult, NumberResult, RootResult, VariadicResult, TupleResult,
 import type { IntermediateResult } from './result/IntermediateResult.js'
 import {
   reservedWords, futureReservedWords, strictModeNonIdentifiers,
+  reservedWordsAsRootTSTypes
 } from './lexer/Token.js'
 import type { Parser } from './Parser.js'
 
@@ -29,7 +30,7 @@ export function assertResultIsNotReservedWord <T extends RootResult|Intermediate
   }
 
 
-  if (reservedWords.always.includes(text)) {
+  if (reservedWords.always.includes(text) && !reservedWordsAsRootTSTypes.includes(text)) {
     throw new Error(`Unexpected reserved keyword "${text}"`)
   }
   if (futureReservedWords.always.includes(text)) {
