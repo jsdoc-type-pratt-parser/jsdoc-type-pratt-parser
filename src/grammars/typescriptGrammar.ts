@@ -29,6 +29,7 @@ import { objectSquaredPropertyParslet } from '../parslets/ObjectSquaredPropertyP
 import { readonlyArrayParslet } from '../parslets/ReadonlyArrayParslet.js'
 import { conditionalParslet } from '../parslets/ConditionalParslet.js'
 import { templateLiteralParslet } from '../parslets/TemplateLiteralParslet.js'
+import { genericParslet } from '../parslets/GenericParslet.js'
 
 const objectFieldGrammar: Grammar = [
   functionPropertyParslet,
@@ -107,6 +108,8 @@ export const typescriptGrammar: Grammar = [
 ]
 
 export const typescriptNameGrammar = [
+  genericParslet,
+  arrayBracketsParslet,
   createNameParslet({
     allowedAdditionalTokens: [
       // Cannot be JavaScript reserved word like `typeof`
@@ -117,6 +120,8 @@ export const typescriptNameGrammar = [
 ]
 
 export const typescriptNamePathGrammar = [
+  genericParslet,
+  arrayBracketsParslet,
   createNameParslet({
     allowedAdditionalTokens: [
       'typeof', 'in',

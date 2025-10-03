@@ -80,6 +80,42 @@ describe('properties with special characters', () => {
   })
 })
 
+describe('parses namepath with array generic', () => {
+  testFixture({
+    input: 'employees[].name',
+    modes: ['jsdoc', 'closure', 'typescript'],
+    parseNamePath: true,
+    expected: {
+      left: {
+        elements: [
+          {
+            type: 'JsdocTypeName',
+            value: 'employees'
+          }
+        ],
+        left: {
+          type: 'JsdocTypeName',
+          value: 'Array'
+        },
+        meta: {
+          brackets: 'square',
+          dot: false
+        },
+        type: 'JsdocTypeGeneric'
+      },
+      pathType: 'property',
+      right: {
+        meta: {
+          quote: undefined
+        },
+        type: 'JsdocTypeProperty',
+        value: 'name'
+      },
+      type: 'JsdocTypeNamePath'
+    }
+  })
+})
+
 describe('parses simple name as namepath', () => {
   testFixture({
     input: 'foo',
