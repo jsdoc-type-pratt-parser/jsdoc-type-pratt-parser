@@ -94,14 +94,24 @@ export const closureNamePathGrammar = [
   createNamePathParslet({
     allowSquareBracketsOnAnyType: false,
     allowJsdocNamePaths: true,
-    pathGrammar
+    pathGrammar: [
+      ...pathGrammar,
+      createNameParslet({
+        allowedAdditionalTokens: baseNameTokens
+      })
+    ]
   })
 ]
 
 export const closureNamePathSpecialGrammar = [
   createSpecialNamePathParslet({
     allowedTypes: ['module'],
-    pathGrammar
+    pathGrammar: [
+      ...pathGrammar,
+      createNameParslet({
+        allowedAdditionalTokens: baseNameTokens
+      })
+    ]
   }),
   ...closureNamePathGrammar
 ]

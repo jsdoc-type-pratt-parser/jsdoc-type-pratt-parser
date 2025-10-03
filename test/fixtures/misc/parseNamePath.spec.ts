@@ -208,7 +208,59 @@ describe('parses reserved word name as namepath', () => {
       }
     })
   })
-});
+})
+
+describe('parses reserve word name in namepath as namepath', () => {
+  [
+    // JS Keyword
+    'continue',
+
+    // Special namepath-handled TS keywords
+    'null',
+    'undefined',
+
+    // Other TS keywords
+    'function',
+    'this',
+    'new',
+    'module',
+    'event',
+    'extends',
+    'external',
+    'typeof',
+    'keyof',
+    'readonly',
+    'import',
+    'infer',
+    'is',
+    'in',
+    'asserts'
+  ].forEach((keyword) => {
+    testFixture({
+      input: `props.${keyword}`,
+      modes: ['jsdoc', 'closure', 'typescript'],
+      parseNamePath: true,
+      extraParseArgs: {
+        includeSpecial: true
+      },
+      expected: {
+        left: {
+          type: 'JsdocTypeName',
+          value: 'props'
+        },
+        pathType: 'property',
+        right: {
+          meta: {
+            quote: undefined
+          },
+          type: 'JsdocTypeProperty',
+          value: keyword
+        },
+        type: 'JsdocTypeNamePath'
+      }
+    })
+  })
+})
 
 describe('other valid types like number do not pass in namePath parser', () => {
   testFixture({
