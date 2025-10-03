@@ -116,6 +116,47 @@ describe('parses namepath with array generic', () => {
   })
 })
 
+describe('parses special namepath', () => {
+  testFixture({
+    input: 'module:abc/def~ghi#jkl',
+    modes: ['jsdoc', 'closure', 'typescript'],
+    parseNamePath: true,
+    extraParseArgs: {
+      includeSpecial: true
+    },
+    expected: {
+      type: 'JsdocTypeNamePath',
+      left: {
+        type: 'JsdocTypeNamePath',
+        left: {
+          type: 'JsdocTypeSpecialNamePath',
+          value: 'abc/def',
+          specialType: 'module',
+          meta: {
+            quote: undefined
+          }
+        },
+        right: {
+          type: 'JsdocTypeProperty',
+          value: 'ghi',
+          meta: {
+            quote: undefined
+          }
+        },
+        pathType: 'inner'
+      },
+      right: {
+        type: 'JsdocTypeProperty',
+        value: 'jkl',
+        meta: {
+          quote: undefined
+        }
+      },
+      pathType: 'instance'
+    }
+  })
+})
+
 describe('parses simple name as namepath', () => {
   testFixture({
     input: 'foo',

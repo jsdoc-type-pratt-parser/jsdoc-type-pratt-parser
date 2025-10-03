@@ -1,7 +1,16 @@
 import { Parser } from './Parser.js'
-import { jsdocGrammar, jsdocNamePathGrammar, jsdocNameGrammar } from './grammars/jsdocGrammar.js'
-import { closureGrammar, closureNamePathGrammar, closureNameGrammar } from './grammars/closureGrammar.js'
-import { typescriptGrammar, typescriptNamePathGrammar, typescriptNameGrammar } from './grammars/typescriptGrammar.js'
+import {
+  jsdocGrammar, jsdocNamePathGrammar,
+  jsdocNamePathSpecialGrammar, jsdocNameGrammar
+} from './grammars/jsdocGrammar.js'
+import {
+  closureGrammar, closureNamePathGrammar,
+  closureNamePathSpecialGrammar, closureNameGrammar
+} from './grammars/closureGrammar.js'
+import {
+  typescriptGrammar, typescriptNamePathGrammar,
+  typescriptNamePathSpecialGrammar, typescriptNameGrammar
+} from './grammars/typescriptGrammar.js'
 import { assertResultIsNotReservedWord } from './assertTypes.js'
 import type { RootResult } from './result/RootResult.js'
 import { Lexer } from './lexer/Lexer.js'
@@ -112,16 +121,26 @@ export function tryParse (
  * @param mode
  */
 export function parseNamePath (
-  expression: string, mode: ParseMode
+  expression: string, mode: ParseMode, {
+    includeSpecial = false
+  }: {
+    includeSpecial?: boolean
+  } = {}
 ): RootResult {
   switch (mode) {
     case 'closure':
-      return (new Parser(closureNamePathGrammar, Lexer.create(looseRules, expression))).parse()
+      return (new Parser(
+        includeSpecial ? closureNamePathSpecialGrammar : closureNamePathGrammar,
+        Lexer.create(looseRules, expression)
+      )).parse()
     case 'jsdoc':
-      return (new Parser(jsdocNamePathGrammar, Lexer.create(looseRules, expression))).parse()
+      return (new Parser(
+        includeSpecial ? jsdocNamePathSpecialGrammar : jsdocNamePathGrammar,
+        Lexer.create(looseRules, expression)
+      )).parse()
     case 'typescript': {
       return (new Parser(
-        typescriptNamePathGrammar,
+        includeSpecial ? typescriptNamePathSpecialGrammar : typescriptNamePathGrammar,
         Lexer.create(rules, expression)
       )).parse()
     }

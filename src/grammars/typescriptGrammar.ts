@@ -138,3 +138,11 @@ export const typescriptNamePathGrammar = [
     pathGrammar
   })
 ]
+
+export const typescriptNamePathSpecialGrammar = [
+  createSpecialNamePathParslet({
+    allowedTypes: ['module'],
+    pathGrammar
+  }),
+  ...typescriptNamePathGrammar
+]

@@ -43,7 +43,8 @@ interface BaseFixture {
 interface extraParseArgs {
   module?: boolean,
   strictMode?: boolean,
-  asyncFunctionBody?: boolean
+  asyncFunctionBody?: boolean,
+  includeSpecial?: boolean
 }
 
 type SuccessFixture = BaseFixture & {
@@ -78,7 +79,10 @@ function testParser (mode: ParseMode, fixture: Fixture): RootResult | undefined 
       it(`is parsed in '${mode}' mode`, () => {
         const result = fixture.parseNamePath ? parseNamePath(
           fixture.input,
-          mode
+          mode,
+          {
+            ...fixture.extraParseArgs
+          }
         ) : fixture.parseName ? parseName(fixture.input, mode) : parse(
           fixture.input,
           mode,
@@ -93,7 +97,10 @@ function testParser (mode: ParseMode, fixture: Fixture): RootResult | undefined 
       try {
         return fixture.parseNamePath ? parseNamePath(
           fixture.input,
-          mode
+          mode,
+          {
+            ...fixture.extraParseArgs
+          }
         ) : fixture.parseName ? parseName(fixture.input, mode) :parse(
           fixture.input,
           mode,
@@ -113,7 +120,10 @@ function testParser (mode: ParseMode, fixture: Fixture): RootResult | undefined 
           if (fixture.parseNamePath) {
             parseNamePath(
               fixture.input,
-              mode
+              mode,
+              {
+                ...fixture.extraParseArgs
+              }
             )
           } else if (fixture.parseName) {
             parseName(fixture.input, mode)
@@ -131,7 +141,10 @@ function testParser (mode: ParseMode, fixture: Fixture): RootResult | undefined 
           if (fixture.parseNamePath) {
             parseNamePath(
               fixture.input,
-              mode
+              mode,
+              {
+                ...fixture.extraParseArgs
+              }
             )
           } else if (fixture.parseName) {
             parseName(fixture.input, mode)
