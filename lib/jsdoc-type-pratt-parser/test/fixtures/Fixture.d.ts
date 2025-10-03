@@ -30,6 +30,7 @@ interface extraParseArgs {
     module?: boolean;
     strictMode?: boolean;
     asyncFunctionBody?: boolean;
+    includeSpecial?: boolean;
 }
 type SuccessFixture = BaseFixture & {
     /**

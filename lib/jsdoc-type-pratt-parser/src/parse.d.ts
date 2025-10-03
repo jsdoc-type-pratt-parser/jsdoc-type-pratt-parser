@@ -28,7 +28,9 @@ export declare function tryParse(expression: string, modes?: ParseMode[], { modu
  * @param expression
  * @param mode
  */
-export declare function parseNamePath(expression: string, mode: ParseMode): RootResult;
+export declare function parseNamePath(expression: string, mode: ParseMode, { includeSpecial }?: {
+    includeSpecial?: boolean;
+}): RootResult;
 /**
  * This function parses the given expression in the given mode and produces a name.
  * @param expression
