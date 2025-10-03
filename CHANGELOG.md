@@ -1,3 +1,16 @@
+# [6.2.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.1.2...v6.2.0) (2025-10-03)
+
+
+### Bug Fixes
+
+* allow reserved words which correspond to valid root TS types ([7cfee47](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/7cfee47c80ee1e70bf95479d55398d8f08127f89))
+
+
+### Features
+
+* add `parseName` and `parseNamePath`; check reserved names ([942f754](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/942f7546287e56e8649675f7cf3affe940d7c3a9))
+* add `parseName` and `parseNamePath`; check reserved names (INCOMPLETE) ([50da564](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/50da564267ef81ee26e044e387b6ac37cbb7de0f))
+
 # [6.2.0-dev.2](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.2.0-dev.1...v6.2.0-dev.2) (2025-10-03)
 
 
