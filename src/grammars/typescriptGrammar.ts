@@ -128,14 +128,24 @@ export const typescriptNamePathGrammar = [
     //   in JSDoc namepath positions interpret them differently
     //   than JSDoc)
     allowJsdocNamePaths: true,
-    pathGrammar
+    pathGrammar: [
+      ...pathGrammar,
+      createNameParslet({
+        allowedAdditionalTokens: baseNameTokens
+      })
+    ]
   })
 ]
 
 export const typescriptNamePathSpecialGrammar = [
   createSpecialNamePathParslet({
     allowedTypes: ['module'],
-    pathGrammar
+    pathGrammar: [
+      ...pathGrammar,
+      createNameParslet({
+        allowedAdditionalTokens: baseNameTokens
+      })
+    ]
   }),
   ...typescriptNamePathGrammar
 ]
