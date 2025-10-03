@@ -102,6 +102,22 @@ describe('doesn\'t err with strict-mode-restricted reserved word when disabled',
   })
 });
 
+describe('doesn\'t err with always reserved word which is also a root type', () => {
+  testFixture({
+    input: 'void',
+    modes: ['jsdoc', 'closure', 'typescript'],
+    extraParseArgs: {
+      module: false,
+      strictMode: false,
+      asyncFunctionBody: false
+    },
+    expected: {
+      type: 'JsdocTypeName',
+      value: 'void'
+    }
+  })
+});
+
 describe('errs with future strict-mode-restricted reserved word', () => {
   testFixture({
     input: 'implements',
