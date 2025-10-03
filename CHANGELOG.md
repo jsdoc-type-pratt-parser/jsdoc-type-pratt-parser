@@ -1,3 +1,10 @@
+# [6.2.0-dev.2](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.2.0-dev.1...v6.2.0-dev.2) (2025-10-03)
+
+
+### Bug Fixes
+
+* allow reserved words which correspond to valid root TS types ([cf0391a](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/cf0391a8949eda3d142ef3874d12e56c3bf731ad))
+
 # [6.2.0-dev.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.1.2...v6.2.0-dev.1) (2025-10-03)
 
 
