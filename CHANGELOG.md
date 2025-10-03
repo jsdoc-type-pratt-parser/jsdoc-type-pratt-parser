@@ -1,3 +1,10 @@
+# [6.2.0-dev.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.1.2...v6.2.0-dev.1) (2025-10-03)
+
+
+### Features
+
+* add `parseName` and `parseNamePath`; check reserved names (INCOMPLETE) ([8114c48](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/8114c48fb72a66b7babc2611382aec1f4a1c5dda))
+
 ## [6.1.2](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.1.1...v6.1.2) (2025-10-01)
 
 
