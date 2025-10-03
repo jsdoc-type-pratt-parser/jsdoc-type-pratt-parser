@@ -1,3 +1,15 @@
+# [6.3.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.2.0...v6.3.0) (2025-10-03)
+
+
+### Bug Fixes
+
+* add generic parsing to name/namepaths ([31b1c69](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/31b1c69fe6360d9e65ec30ad533442cf79c320b6))
+
+
+### Features
+
+* **`parseNamePath`:** allow parsing of special namepaths by option ([b2a34aa](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/b2a34aacb4b0d4665044889ae8fc31b2d46a0451))
+
 # [6.2.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.1.2...v6.2.0) (2025-10-03)
 
 
