@@ -5,7 +5,7 @@ module.exports = {
     // Todo: Requires adjustments
     'catharsis',
 
-    // Peere dependency issues with `eslint-config-love`
+    // Peer dependency issues with `eslint-config-love`
     '@typescript-eslint/eslint-plugin'
   ]
 };
