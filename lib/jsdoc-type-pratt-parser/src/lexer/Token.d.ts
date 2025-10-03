@@ -4,6 +4,7 @@ export interface Token {
     text: string;
     startOfLine: boolean;
 }
+export declare const baseNameTokens: TokenType[];
 export declare const reservedWordsAsRootTSTypes: string[];
 export declare const reservedWordsAsTSTypes: string[];
 export declare const reservedWords: {
