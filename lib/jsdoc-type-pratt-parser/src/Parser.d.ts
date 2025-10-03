@@ -8,9 +8,15 @@ export declare class Parser {
     readonly grammar: Grammar;
     private _lexer;
     readonly baseParser?: Parser;
-    readonly externalParsers?: Record<string, (text: string, options?: any) => unknown>;
-    constructor(grammar: Grammar, lexer: Lexer, baseParser?: Parser, { externalParsers }?: {
-        externalParsers?: Record<string, (text: string, options?: any) => unknown>;
+    readonly externalParsers?: Record<string, ((text: string, options?: any) => unknown) | undefined>;
+    readonly module?: boolean;
+    readonly strictMode?: boolean;
+    readonly asyncFunctionBody?: boolean;
+    constructor(grammar: Grammar, lexer: Lexer, baseParser?: Parser, { module, strictMode, asyncFunctionBody, externalParsers }?: {
+        module?: boolean;
+        strictMode?: boolean;
+        asyncFunctionBody?: boolean;
+        externalParsers?: Record<string, ((text: string, options?: any) => unknown) | undefined>;
     });
     get lexer(): Lexer;
     /**
