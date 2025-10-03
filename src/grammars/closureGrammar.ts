@@ -103,3 +103,11 @@ export const closureNamePathGrammar = [
     pathGrammar
   })
 ]
+
+export const closureNamePathSpecialGrammar = [
+  createSpecialNamePathParslet({
+    allowedTypes: ['module'],
+    pathGrammar
+  }),
+  ...closureNamePathGrammar
+]

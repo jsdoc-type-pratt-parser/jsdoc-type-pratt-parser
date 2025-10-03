@@ -98,3 +98,11 @@ export const jsdocNamePathGrammar = [
     pathGrammar
   })
 ]
+
+export const jsdocNamePathSpecialGrammar = [
+  createSpecialNamePathParslet({
+    allowedTypes: ['module', 'external', 'event'],
+    pathGrammar
+  }),
+  ...jsdocNamePathGrammar
+]
