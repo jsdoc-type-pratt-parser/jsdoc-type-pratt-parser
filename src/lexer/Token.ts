@@ -52,6 +52,14 @@ export interface Token {
   startOfLine: boolean
 }
 
+export const baseNameTokens: TokenType[] = [
+  'module', 'keyof', 'event', 'external',
+  'readonly', 'is',
+  'typeof', 'in',
+  'null', 'undefined', 'function', 'asserts', 'infer',
+  'extends', 'import'
+]
+
 export const reservedWordsAsRootTSTypes = [
   'false',
   'null',
