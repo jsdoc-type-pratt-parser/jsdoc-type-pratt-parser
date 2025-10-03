@@ -1,3 +1,10 @@
+## [6.3.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.3.0...v6.3.1) (2025-10-03)
+
+
+### Bug Fixes
+
+* liberalize names/namepaths to allow more reserved words ([b9eaa95](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/b9eaa95fd42ccfcc72266ebcbff6ab283c243013))
+
 # [6.3.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.2.0...v6.3.0) (2025-10-03)
 
 
