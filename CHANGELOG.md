@@ -1,3 +1,10 @@
+## [6.3.3](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.3.2...v6.3.3) (2025-10-04)
+
+
+### Bug Fixes
+
+* liberalize use of TypeScript keywords in object field and namepaths ([a379125](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/a3791258547fac52ca30c57d48a6e9c6d993a71f))
+
 ## [6.3.2](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.3.1...v6.3.2) (2025-10-03)
 
 
