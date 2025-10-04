@@ -314,6 +314,66 @@ describe('typescript objects tests', () => {
     })
   })
 
+  describe('object type with a property that uses a TypeScript keyword (readonly) as a key', () => {
+    testFixture({
+      input: '{readonly: string}',
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
+        elements: [
+          {
+            type: 'JsdocTypeObjectField',
+            key: 'readonly',
+            meta: {
+              quote: undefined
+            },
+            optional: false,
+            readonly: false,
+            right: {
+              type: 'JsdocTypeName',
+              value: 'string'
+            }
+          }
+        ]
+      },
+      modes: [
+        'typescript'
+      ]
+    })
+  })
+
+  describe('object type with a property that uses a TypeScript keyword (function) as a key', () => {
+    testFixture({
+      input: '{function: string}',
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
+        elements: [
+          {
+            type: 'JsdocTypeObjectField',
+            key: 'function',
+            meta: {
+              quote: undefined
+            },
+            optional: false,
+            readonly: false,
+            right: {
+              type: 'JsdocTypeName',
+              value: 'string'
+            }
+          }
+        ]
+      },
+      modes: [
+        'typescript', 'jsdoc'
+      ]
+    })
+  })
+
   describe('linebreaks can be separators', () => {
     testFixture({
       input:
