@@ -195,6 +195,28 @@ describe('name paths tests', () => {
     })
   })
 
+  describe('property named readonly', () => {
+    testFixture({
+      input: 'foo.readonly',
+      modes: ['jsdoc', 'closure', 'typescript'],
+      expected: {
+        type: 'JsdocTypeNamePath',
+        left: {
+          type: 'JsdocTypeName',
+          value: 'foo'
+        },
+        right: {
+          type: 'JsdocTypeProperty',
+          value: 'readonly',
+          meta: {
+            quote: undefined
+          }
+        },
+        pathType: 'property'
+      }
+    })
+  })
+
   describe('property named external', () => {
     testFixture({
       input: 'foo.external',

@@ -36,7 +36,7 @@ const objectFieldGrammar: Grammar = [
   functionPropertyParslet,
   readonlyPropertyParslet,
   createNameParslet({
-    allowedAdditionalTokens: ['typeof', 'module', 'keyof', 'event', 'external', 'in']
+    allowedAdditionalTokens: baseNameTokens
   }),
   nullableParslet,
   optionalParslet,
@@ -128,24 +128,14 @@ export const typescriptNamePathGrammar = [
     //   in JSDoc namepath positions interpret them differently
     //   than JSDoc)
     allowJsdocNamePaths: true,
-    pathGrammar: [
-      ...pathGrammar,
-      createNameParslet({
-        allowedAdditionalTokens: baseNameTokens
-      })
-    ]
+    pathGrammar
   })
 ]
 
 export const typescriptNamePathSpecialGrammar = [
   createSpecialNamePathParslet({
     allowedTypes: ['module'],
-    pathGrammar: [
-      ...pathGrammar,
-      createNameParslet({
-        allowedAdditionalTokens: baseNameTokens
-      })
-    ]
+    pathGrammar
   }),
   ...typescriptNamePathGrammar
 ]
