@@ -14,7 +14,10 @@
             crossorigin="anonymous"></script>
     <style>
         #output {
-            height: 30em;
+            height: 25em;
+        }
+        #stringified {
+          height: 7em;
         }
 
         textarea {
@@ -92,6 +95,11 @@
                 <label for="output" class="form-label">Parsed</label>
                 <code-input language="json"><textarea id="output" class="form-control" data-code-input-fallback></textarea></code-input>
             </div>
+
+            <div class="form-group">
+                <label for="stringified" class="form-label">Stringified</label>
+                <code-input language="typescript"><textarea id="stringified" class="form-control" data-code-input-fallback></textarea></code-input>
+            </div>
         </div>
     </div>
 </div>
@@ -119,6 +127,7 @@
     const input = document.querySelector('#input')
     const button = document.querySelector('#parse')
     const output = document.querySelector('#output')
+    const stringified = document.querySelector('#stringified')
 
     function getSelected(select) {
         return Array.from(select.querySelectorAll('option')).find(o => o.selected).value
@@ -140,6 +149,7 @@
                 result = jtpp.jtpTransform(result)
             }
             output.value = JSON.stringify(result, null, 2)
+            stringified.value = jtpp.stringify(result)
         } catch (e) {
             output.value = e.toString()
         }
