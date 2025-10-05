@@ -20,13 +20,39 @@
         textarea {
             font-family: monospace;
         }
+
+        /* Style the JSDoc tag name */
+        .token.parameter {
+          color: green;
+        }
+
+        /* prism's stylesheet, by styling pre only, doesn't cover all
+          code elements (outside of scroll view) */
+        code[class*=language-] {
+          background-color: #f5f2f0 !important;
+        }
     </style>
+    <script type="importmap">
+      {
+        "imports": {
+          "prismjs/themes/prism.min.css": "./vendor/prismjs/themes/prism.min.css",
+          "@webcoder49/code-input": "./vendor/@webcoder49/code-input/esm/code-input.mjs",
+          "@webcoder49/code-input/plugins/indent.mjs": "./vendor/@webcoder49/code-input/esm/plugins/indent.mjs",
+          "@webcoder49/code-input/code-input.min.css": "./vendor/@webcoder49/code-input/code-input.min.css"
+        }
+      }
+    </script>
+
+    <!-- Toward getting ESM instead: https://github.com/PrismJS/prism/pull/3704 -->
+    <!-- Toward getting better ESM: https://github.com/WebCoder49/code-input/issues/190 -->
+    <script src="./vendor/prismjs/components/prism-core.js" data-manual></script><!--Remove data-manual if also using Prism normally-->
+    <script src="./vendor/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
 </head>
 <body>
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h1>Jsdoc Type Pratt Parser Tester</h1>
+            <h1>JSDoc Type Pratt Parser Tester</h1>
         </div>
     </div>
     <div class="row">
@@ -34,8 +60,8 @@
             <div class="form-group">
                 <label for="mode" class="form-label">Type Syntax</label>
                 <select id="mode" class="form-control">
-                    <option value="closure">Google Closue</option>
-                    <option value="jsdoc">JsDoc</option>
+                    <option value="closure">Google Closure</option>
+                    <option value="jsdoc">JSDoc</option>
                     <option value="typescript" selected>TypeScript</option>
                 </select>
             </div>
@@ -48,36 +74,66 @@
                 </select>
             </div>
             <div class="form-group">
+                <label for="parsingType" class="form-label">Parsing type</label>
+                <select id="parsingType" class="form-control">
+                    <option value="type" selected>Type</option>
+                    <option value="name">Name</option>
+                    <option value="namepath">Namepath</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="input" class="form-label">Type Expression</label>
-                <textarea id="input" class="form-control"></textarea>
+                <code-input language="typescript"><textarea id="input" class="form-control" data-code-input-fallback>{[key: string]: [abc?, string, () => void]}</textarea></code-input>
             </div>
             <button id="parse" class="btn btn-primary">Parse</button>
         </div>
         <div class="col-6">
             <div class="form-group">
                 <label for="output" class="form-label">Parsed</label>
-                <textarea id="output" class="form-control"></textarea>
+                <code-input language="json"><textarea id="output" class="form-control" data-code-input-fallback></textarea></code-input>
             </div>
         </div>
     </div>
 </div>
 
-<script>
-    var modeSelect = document.querySelector('#mode')
-    var compatModeSelect = document.querySelector('#compatMode')
-    var input = document.querySelector('#input')
-    var button = document.querySelector('#parse')
-    var output = document.querySelector('#output')
+<script type="module">
+    import {registerTemplate, Template} from '@webcoder49/code-input'
+
+    import Indent from '@webcoder49/code-input/plugins/indent.mjs'
+
+    import prismStyles from 'prismjs/themes/prism.min.css' with {type: 'css'}
+
+    import codeInputStyles from
+      '@webcoder49/code-input/code-input.min.css' with {type: 'css'}
+
+    document.adoptedStyleSheets = [prismStyles, codeInputStyles]
+
+    registerTemplate(
+      'syntax-highlighted',
+      new Template(Prism.highlightElement, false, true, false, [new Indent()])
+    )
+
+    const modeSelect = document.querySelector('#mode')
+    const compatModeSelect = document.querySelector('#compatMode')
+    const parsingTypeSelect = document.querySelector('#parsingType')
+    const input = document.querySelector('#input')
+    const button = document.querySelector('#parse')
+    const output = document.querySelector('#output')
 
     function getSelected(select) {
         return Array.from(select.querySelectorAll('option')).find(o => o.selected).value
     }
 
     button.addEventListener('click', function () {
-        var mode = getSelected(modeSelect)
-        var compatMode = getSelected(compatModeSelect)
+        const mode = getSelected(modeSelect)
+        const compatMode = getSelected(compatModeSelect)
+        const parsingType = getSelected(parsingTypeSelect)
         try {
-            var result = jtpp.parse(input.value, mode)
+            let result = parsingType === 'type'
+              ? jtpp.parse(input.value, mode)
+              : parsingType === 'name'
+                ? jtpp.parseName(input.value, mode)
+                : jtpp.parseNamePath(input.value, mode)
             if (compatMode === 'catharsis') {
                 result = jtpp.catharsisTransform(result)
             } else if (compatMode === 'jtp') {

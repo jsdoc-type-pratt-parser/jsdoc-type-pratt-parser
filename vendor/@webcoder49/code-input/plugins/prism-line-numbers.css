@@ -1,0 +1,35 @@
+/**
+ * Allows code-input elements to be used with the Prism.js line-numbers plugin, as long as the code-input element 
+ * or a parent element of it has the CSS class `line-numbers`.
+ * https://prismjs.com/plugins/line-numbers/
+ * Files: prism-line-numbers.css
+ */
+/* Update padding to match line-numbers plugin */
+code-input.line-numbers textarea, code-input.line-numbers.code-input_pre-element-styled pre, code-input.line-numbers:not(.code-input_pre-element-styled) pre code,
+.line-numbers code-input textarea, .line-numbers code-input.code-input_pre-element-styled pre, .line-numbers code-input:not(.code-input_pre-element-styled) pre code {
+  padding-left: max(3.8em, var(--padding-left, 16px))!important;
+}
+
+/* Ensure pre code/textarea just wide enough to give 100% width with line numbers */
+code-input.line-numbers, .line-numbers code-input {
+  grid-template-columns: calc(100% - max(0em, calc(3.8em - var(--padding-left, 16px))));
+}
+/* Despite the above, keep dialog container full width */
+code-input.line-numbers .code-input_dialog-container, .line-numbers code-input .code-input_dialog-container {
+  width: calc(100% + max(0em, calc(3.8em - var(--padding-left, 16px))));
+}
+
+
+/* Override Prism styles so there's no display:inline, relatively-positioned code element which breaks offsetTop, used in FindAndReplace, in Firefox. */
+code-input pre[class*=language-].line-numbers>code {
+  position: static;
+}
+/* Line numbers now positioned relative to the pre element not the code element. */
+code-input .line-numbers .line-numbers-rows {
+  left: max(0em, calc(var(--padding-left, 16px) - 3.8em));
+  top: var(--padding-top);
+}
+/* Things with padding when instructions are present */
+code-input:not(:has(.code-input_keyboard-navigation-instructions:empty)):has(textarea:not([data-code-input-fallback]):focus):not(.code-input_mouse-focused) .line-numbers .line-numbers-rows {
+  top: calc(var(--padding-top) + 3em);
+}

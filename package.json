@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "static -p 8081",
+    "copy": "cp -R node_modules/prismjs/ vendor/prismjs/ && cp -R node_modules/@webcoder49/code-input/ vendor/@webcoder49/code-input/"
+  },
+  "devDependencies": {
+    "@brettz9/node-static": "^0.1.1",
+    "@webcoder49/code-input": "^2.7.1",
+    "prismjs": "^1.30.0"
+  }
+}
