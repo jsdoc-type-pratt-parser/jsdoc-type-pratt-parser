@@ -1,3 +1,15 @@
+# [6.4.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.3.3...v6.4.0) (2025-10-05)
+
+
+### Bug Fixes
+
+* **traverse:** ignore traversing non-Node keys ([8c62ae8](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/8c62ae8962ced9780cbc8a83a89f2da79240a2d7))
+
+
+### Features
+
+* add missing visitor keys for function, import, object field types ([4418e44](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/4418e44359dd3c5b53e24afa83891847a1ad3292))
+
 ## [6.3.3](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.3.2...v6.3.3) (2025-10-04)
 
 
