@@ -8,6 +8,7 @@ import type {
   StringValueResult,
   UnionResult,
   FunctionResult,
+  ObjectFieldResult,
   TupleResult, KeyValueResult
 } from '../src/index.js'
 import { traverse } from '../src/traverse.js'
@@ -64,6 +65,53 @@ describe('traverse', () => {
     expect(onLeave.getCall(0).calledWith(result, undefined, undefined)).to.be.equal(true)
     expect(onEnter.getCall(0).calledBefore(onLeave.getCall(0))).to.be.equal(true)
   })
+
+  it('should traverse an expression while ignoring a primitive value as key', () => {
+    const onEnter = spy()
+    const onLeave = spy()
+
+    const result: RootResult = {
+      type: 'JsdocTypeObject',
+      meta: {
+        separator: 'semicolon'
+      },
+      elements: [
+        {
+          type: 'JsdocTypeObjectField',
+          key: 'object',
+          optional: false,
+          readonly: false,
+          right: {
+            type: 'JsdocTypeName',
+            value: 'string'
+          },
+          meta: {
+            quote: undefined
+          }
+        }
+      ]
+    };
+    traverse(result, onEnter, onLeave)
+
+    expect(onEnter.getCall(0).calledWith(result, undefined, undefined)).to.be.equal(true)
+    expect(onEnter.getCall(1).calledWith(
+      result.elements[0],
+      result,
+      'elements'
+    )).to.be.equal(true)
+    expect(onEnter.getCall(2).calledWith(
+      (result.elements[0] as ObjectFieldResult).right,
+      result.elements[0],
+      'right'
+    )).to.be.equal(true)
+    expect(onEnter.getCall(3)).to.equal(null);
+    expect(onLeave.getCall(0).calledWith(
+      (result.elements[0] as ObjectFieldResult).right,
+      result.elements[0],
+      'right'
+    )).to.be.equal(true)
+    expect(onEnter.getCall(0).calledBefore(onLeave.getCall(0))).to.be.equal(true)
+  });
 
   it('should traverse a simple expression without `onEnter`', () => {
     const onLeave = spy()
