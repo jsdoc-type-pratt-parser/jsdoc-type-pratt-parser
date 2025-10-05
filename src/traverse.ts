@@ -23,7 +23,7 @@ function _traverse<T extends NonRootResult, U extends NonRootResult> (node: T, p
         for (const element of value) {
           _traverse(element as unknown as NonRootResult, node, key, onEnter, onLeave)
         }
-      } else {
+      } else if (value !== null && typeof value === 'object' && 'type' in value) {
         _traverse(value as unknown as NonRootResult, node, key, onEnter, onLeave)
       }
     }
