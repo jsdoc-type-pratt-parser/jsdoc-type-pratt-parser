@@ -133,6 +133,11 @@
         return Array.from(select.querySelectorAll('option')).find(o => o.selected).value
     }
 
+    output.addEventListener('input', function () {
+      const result = JSON.parse(output.value)
+      stringified.value = jtpp.stringify(result)
+    })
+
     button.addEventListener('click', function () {
         const mode = getSelected(modeSelect)
         const compatMode = getSelected(compatModeSelect)
