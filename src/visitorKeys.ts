@@ -6,9 +6,9 @@ export type VisitorKeys = {
 
 export const visitorKeys: VisitorKeys = {
   JsdocTypeAny: [],
-  JsdocTypeFunction: ['parameters', 'returnType'],
+  JsdocTypeFunction: ['typeParameters', 'parameters', 'returnType'],
   JsdocTypeGeneric: ['left', 'elements'],
-  JsdocTypeImport: [],
+  JsdocTypeImport: ['element'],
   JsdocTypeIndexSignature: ['right'],
   JsdocTypeIntersection: ['elements'],
   JsdocTypeKeyof: ['element'],
@@ -21,7 +21,7 @@ export const visitorKeys: VisitorKeys = {
   JsdocTypeNullable: ['element'],
   JsdocTypeNumber: [],
   JsdocTypeObject: ['elements'],
-  JsdocTypeObjectField: ['right'],
+  JsdocTypeObjectField: ['key', 'right'],
   JsdocTypeJsdocObjectField: ['left', 'right'],
   JsdocTypeOptional: ['element'],
   JsdocTypeParenthesis: ['element'],
