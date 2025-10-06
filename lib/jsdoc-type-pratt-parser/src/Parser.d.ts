@@ -12,10 +12,12 @@ export declare class Parser {
     readonly module?: boolean;
     readonly strictMode?: boolean;
     readonly asyncFunctionBody?: boolean;
-    constructor(grammar: Grammar, lexer: Lexer, baseParser?: Parser, { module, strictMode, asyncFunctionBody, externalParsers }?: {
+    readonly classContext?: boolean;
+    constructor(grammar: Grammar, lexer: Lexer, baseParser?: Parser, { module, strictMode, asyncFunctionBody, classContext, externalParsers }?: {
         module?: boolean;
         strictMode?: boolean;
         asyncFunctionBody?: boolean;
+        classContext?: boolean;
         externalParsers?: Record<string, ((text: string, options?: any) => unknown) | undefined>;
     });
     get lexer(): Lexer;
