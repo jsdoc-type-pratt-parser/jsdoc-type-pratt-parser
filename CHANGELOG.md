@@ -1,3 +1,10 @@
+## [6.5.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.5.0...v6.5.1) (2025-10-06)
+
+
+### Bug Fixes
+
+* add `classContext` to `tryParse` ([e69c21b](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/e69c21b2e1dd0794f4443c4b057a088b2569a3b7))
+
 # [6.5.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.4.0...v6.5.0) (2025-10-06)
 
 
