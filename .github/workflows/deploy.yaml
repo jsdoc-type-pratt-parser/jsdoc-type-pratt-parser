@@ -31,3 +31,7 @@ jobs:
           folder: pages
           clean-exclude: |
             index.html
+            .gitignore
+            package-lock.json
+            package.json
+            vendor
