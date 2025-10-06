@@ -44,6 +44,7 @@ interface extraParseArgs {
   module?: boolean,
   strictMode?: boolean,
   asyncFunctionBody?: boolean,
+  classContext?: boolean,
   includeSpecial?: boolean
 }
 

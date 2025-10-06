@@ -235,10 +235,6 @@ describe('catharsis jsdoc tests', () => {
   describe('name expression containing a reserved word', () => {
     testFixture({
       input: 'this',
-      expected: {
-        type: 'JsdocTypeName',
-        value: 'this'
-      },
       error: 'Unexpected reserved keyword "this"'
     })
   })
