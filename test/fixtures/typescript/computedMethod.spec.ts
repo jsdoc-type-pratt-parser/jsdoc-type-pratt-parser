@@ -155,6 +155,283 @@ describe('typescript computed method tests', () => {
     })
   })
 
+  describe('optional computed method object with type parameters', () => {
+    testFixture({
+      input: '{[someType]?<T>(a: T, b: number[]): AnotherType;}',
+      stringified: '{[someType]?<T>(a: T, b: number[]): AnotherType}',
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: {
+          separator: 'semicolon'
+        },
+        elements: [
+          {
+            type: 'JsdocTypeObjectField',
+            key: {
+              type: 'JsdocTypeComputedMethod',
+              optional: true,
+              typeParameters: [
+                {
+                  name: {
+                    type: 'JsdocTypeName',
+                    value: 'T'
+                  },
+                  type: 'JsdocTypeTypeParameter'
+                }
+              ],
+              parameters: [
+                {
+                  key: 'a',
+                  optional: false,
+                  right: {
+                    type: 'JsdocTypeName',
+                    value: 'T'
+                  },
+                  type: 'JsdocTypeKeyValue',
+                  variadic: false
+                },
+                {
+                  key: 'b',
+                  optional: false,
+                  right: {
+                    elements: [
+                      {
+                        type: 'JsdocTypeName',
+                        value: 'number'
+                      }
+                    ],
+                    left: {
+                      type: 'JsdocTypeName',
+                      value: 'Array'
+                    },
+                    meta: {
+                      brackets: 'square',
+                      dot: false
+                    },
+                    type: 'JsdocTypeGeneric'
+                  },
+                  type: 'JsdocTypeKeyValue',
+                  variadic: false
+                }
+              ],
+              value: {
+                type: 'JsdocTypeName',
+                value: 'someType'
+              },
+              returnType: {
+                type: 'JsdocTypeName',
+                value: 'AnotherType'
+              }
+            },
+            optional: false,
+            readonly: false,
+            right: undefined,
+            meta: {
+              quote: undefined
+            }
+          }
+        ]
+      },
+      modes: [
+        'typescript'
+      ]
+    })
+  })
+
+  describe('computed method object with defaulting type parameters', () => {
+    testFixture({
+      input: '{[someType]<T = string>(a: T, b: number[]): AnotherType;}',
+      stringified: '{[someType]<T = string>(a: T, b: number[]): AnotherType}',
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: {
+          separator: 'semicolon'
+        },
+        elements: [
+          {
+            type: 'JsdocTypeObjectField',
+            key: {
+              type: 'JsdocTypeComputedMethod',
+              optional: false,
+              typeParameters: [
+                {
+                  defaultValue: {
+                    type: 'JsdocTypeName',
+                    value: 'string'
+                  },
+                  name: {
+                    type: 'JsdocTypeName',
+                    value: 'T'
+                  },
+                  type: 'JsdocTypeTypeParameter'
+                }
+              ],
+              parameters: [
+                {
+                  key: 'a',
+                  optional: false,
+                  right: {
+                    type: 'JsdocTypeName',
+                    value: 'T'
+                  },
+                  type: 'JsdocTypeKeyValue',
+                  variadic: false
+                },
+                {
+                  key: 'b',
+                  optional: false,
+                  right: {
+                    elements: [
+                      {
+                        type: 'JsdocTypeName',
+                        value: 'number'
+                      }
+                    ],
+                    left: {
+                      type: 'JsdocTypeName',
+                      value: 'Array'
+                    },
+                    meta: {
+                      brackets: 'square',
+                      dot: false
+                    },
+                    type: 'JsdocTypeGeneric'
+                  },
+                  type: 'JsdocTypeKeyValue',
+                  variadic: false
+                }
+              ],
+              value: {
+                type: 'JsdocTypeName',
+                value: 'someType'
+              },
+              returnType: {
+                type: 'JsdocTypeName',
+                value: 'AnotherType'
+              }
+            },
+            optional: false,
+            readonly: false,
+            right: undefined,
+            meta: {
+              quote: undefined
+            }
+          }
+        ]
+      },
+      modes: [
+        'typescript'
+      ]
+    })
+  })
+
+  describe('computed method object with defaulting type parameters', () => {
+    testFixture({
+      input: '{[someType]<123>(a: T, b: number[]): AnotherType;}',
+      errors: {
+        typescript: "Unexpected type: 'JsdocTypeNumber'."
+      }
+    })
+  })
+
+  describe('computed method object with complex type parameters', () => {
+    testFixture({
+      input: '{[someType]<T extends A = string, V>(a: T, b: number[]): AnotherType;}',
+      stringified: '{[someType]<T extends A = string, V>(a: T, b: number[]): AnotherType}',
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: {
+          separator: 'semicolon'
+        },
+        elements: [
+          {
+            type: 'JsdocTypeObjectField',
+            key: {
+              type: 'JsdocTypeComputedMethod',
+              optional: false,
+              typeParameters: [
+                {
+                  constraint: {
+                    type: 'JsdocTypeName',
+                    value: 'A'
+                  },
+                  defaultValue: {
+                    type: 'JsdocTypeName',
+                    value: 'string'
+                  },
+                  name: {
+                    type: 'JsdocTypeName',
+                    value: 'T'
+                  },
+                  type: 'JsdocTypeTypeParameter'
+                },
+                {
+                  name: {
+                    type: 'JsdocTypeName',
+                    value: 'V'
+                  },
+                  type: 'JsdocTypeTypeParameter'
+                }
+              ],
+              parameters: [
+                {
+                  key: 'a',
+                  optional: false,
+                  right: {
+                    type: 'JsdocTypeName',
+                    value: 'T'
+                  },
+                  type: 'JsdocTypeKeyValue',
+                  variadic: false
+                },
+                {
+                  key: 'b',
+                  optional: false,
+                  right: {
+                    elements: [
+                      {
+                        type: 'JsdocTypeName',
+                        value: 'number'
+                      }
+                    ],
+                    left: {
+                      type: 'JsdocTypeName',
+                      value: 'Array'
+                    },
+                    meta: {
+                      brackets: 'square',
+                      dot: false
+                    },
+                    type: 'JsdocTypeGeneric'
+                  },
+                  type: 'JsdocTypeKeyValue',
+                  variadic: false
+                }
+              ],
+              value: {
+                type: 'JsdocTypeName',
+                value: 'someType'
+              },
+              returnType: {
+                type: 'JsdocTypeName',
+                value: 'AnotherType'
+              }
+            },
+            optional: false,
+            readonly: false,
+            right: undefined,
+            meta: {
+              quote: undefined
+            }
+          }
+        ]
+      },
+      modes: [
+        'typescript'
+      ]
+    })
+  })
+
   describe('computed method object with namespaced property', () => {
     testFixture({
       input: '{[SomeObject.someType()](): AnotherType;}',

@@ -289,6 +289,11 @@ export function stringifyRules ({
       if (result.value.type.startsWith('JsdocType')) {
         return `[${transform(result.value as RootResult)}]${
           result.optional ? '?' : ''
+        }${
+          result.typeParameters !== undefined
+            /* c8 ignore next -- Guard */
+            ? `<${result.typeParameters.map(transform).join(', ') ?? ''}>`
+            : ''
         }(${
           result.parameters.map(transform).join(', ')
         }): ${transform(result.returnType)}`

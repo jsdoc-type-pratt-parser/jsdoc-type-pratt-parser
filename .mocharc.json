@@ -2,6 +2,5 @@
   "extensions": ["ts"],
   "loader": "ts-node/esm",
   "es-module-specifier-resolution": "node",
-  "spec": "test/**/*.spec.ts",
-  "require": "ts-node/register"
+  "spec": "test/**/*.spec.ts"
 }
