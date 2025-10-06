@@ -47,5 +47,5 @@ export const visitorKeys: VisitorKeys = {
   JsdocTypeIndexedAccessIndex: ['right'],
   JsdocTypeTemplateLiteral: ['interpolations'],
   JsdocTypeComputedProperty: ['value'],
-  JsdocTypeComputedMethod: ['value', 'parameters', 'returnType']
+  JsdocTypeComputedMethod: ['value', 'typeParameters', 'parameters', 'returnType']
 }

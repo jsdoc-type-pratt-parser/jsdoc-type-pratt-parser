@@ -118,5 +118,6 @@ export interface ComputedMethodResult {
   value: RootResult | Node,
   optional: boolean,
   parameters: Array<RootResult | KeyValueResult>,
-  returnType: RootResult
+  returnType: RootResult,
+  typeParameters?: TypeParameterResult[]
 }
