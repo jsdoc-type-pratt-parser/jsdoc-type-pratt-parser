@@ -112,7 +112,7 @@ describe('Error tests', () => {
       errors: {
         jsdoc: "Unexpected type: 'JsdocTypeGeneric'.",
         closure: "Unterminated record type. Missing '}'",
-        typescript: "Unterminated record type. Missing '}'"
+        typescript: "function property is missing parameter list"
       }
     })
   })

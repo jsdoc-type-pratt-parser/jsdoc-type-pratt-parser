@@ -84,13 +84,15 @@ export interface TypeParameterResult {
 export interface CallSignatureResult {
   type: 'JsdocTypeCallSignature'
   parameters: Array<RootResult | KeyValueResult>
-  returnType: RootResult
+  returnType: RootResult,
+  typeParameters?: TypeParameterResult[]
 }
 
 export interface ConstructorSignatureResult {
   type: 'JsdocTypeConstructorSignature'
   parameters: Array<RootResult | KeyValueResult>
-  returnType: RootResult
+  returnType: RootResult,
+  typeParameters?: TypeParameterResult[]
 }
 
 export interface MethodSignatureResult {
@@ -100,7 +102,8 @@ export interface MethodSignatureResult {
     quote: QuoteStyle | undefined
   }
   parameters: Array<RootResult | KeyValueResult>
-  returnType: RootResult
+  returnType: RootResult,
+  typeParameters?: TypeParameterResult[]
 }
 
 export interface IndexedAccessIndexResult {
