@@ -96,11 +96,13 @@ export function tryParse (
   {
     module = true,
     strictMode = true,
-    asyncFunctionBody = true
+    asyncFunctionBody = true,
+    classContext = false,
   }: {
     module?: boolean,
     strictMode?: boolean,
-    asyncFunctionBody?: boolean
+    asyncFunctionBody?: boolean,
+    classContext?: boolean,
   } = {}
 ): RootResult {
   let error
@@ -110,6 +112,7 @@ export function tryParse (
         module,
         strictMode,
         asyncFunctionBody,
+        classContext
       })
     } catch (e) {
       error = e
