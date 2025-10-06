@@ -1,3 +1,11 @@
+# [6.6.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.5.1...v6.6.0) (2025-10-06)
+
+
+### Features
+
+* add type parameters to call, constructor, and method signatures ([890e444](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/890e444802ba0d3bb5f33df9bc19510d4280b7f7))
+* support type parameters with computed methods ([54e57f3](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/54e57f3ebe973bbff65f7bd27d0d104f56cb305b))
+
 ## [6.5.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.5.0...v6.5.1) (2025-10-06)
 
 
