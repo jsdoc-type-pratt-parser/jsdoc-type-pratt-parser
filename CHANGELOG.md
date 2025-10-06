@@ -1,3 +1,10 @@
+# [6.5.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.4.0...v6.5.0) (2025-10-06)
+
+
+### Features
+
+* **parse:** add `classContext` argument ([e8157f7](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/e8157f70eecdf78e835d436a8582d4c3fe60a621))
+
 # [6.4.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.3.3...v6.4.0) (2025-10-05)
 
 
