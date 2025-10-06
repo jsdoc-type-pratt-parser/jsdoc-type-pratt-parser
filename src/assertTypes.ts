@@ -30,7 +30,8 @@ export function assertResultIsNotReservedWord <T extends RootResult|Intermediate
   }
 
 
-  if (reservedWords.always.includes(text) && !reservedWordsAsRootTSTypes.includes(text)) {
+  if (reservedWords.always.includes(text) && !reservedWordsAsRootTSTypes.includes(text) &&
+    (text !== 'this' || parser.classContext !== true)) {
     throw new Error(`Unexpected reserved keyword "${text}"`)
   }
   if (futureReservedWords.always.includes(text)) {

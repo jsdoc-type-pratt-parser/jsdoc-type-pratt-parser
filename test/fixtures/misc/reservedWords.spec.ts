@@ -165,3 +165,27 @@ describe('errs with (asyncFunctionBody) reserved word in module/async context', 
     error: 'Unexpected reserved keyword "await" for modules or async function bodies'
   })
 });
+
+describe('errs with reserved word `this` outside of class context', () => {
+  testFixture({
+    input: 'this',
+    extraParseArgs: {
+      classContext: false
+    },
+    error: 'Unexpected reserved keyword "this"'
+  })
+});
+
+describe('does not err with reserved word in class context', () => {
+  testFixture({
+    input: 'this',
+    extraParseArgs: {
+      classContext: true
+    },
+    modes: ['jsdoc', 'closure', 'typescript'],
+    expected: {
+      type: 'JsdocTypeName',
+      value: 'this'
+    }
+  })
+});

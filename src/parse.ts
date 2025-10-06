@@ -29,11 +29,13 @@ export function parse (
     module = true,
     strictMode = true,
     asyncFunctionBody = true,
+    classContext = false,
     computedPropertyParser
   }: {
     module?: boolean,
     strictMode?: boolean,
     asyncFunctionBody?: boolean,
+    classContext?: boolean,
     computedPropertyParser?: (
       // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Actual API
       text: string, options?: any
@@ -46,14 +48,16 @@ export function parse (
       parser = new Parser(closureGrammar, Lexer.create(looseRules, expression), undefined, {
         module,
         strictMode,
-        asyncFunctionBody
+        asyncFunctionBody,
+        classContext
       })
       break
     case 'jsdoc':
       parser = new Parser(jsdocGrammar, Lexer.create(looseRules, expression), undefined, {
         module,
         strictMode,
-        asyncFunctionBody
+        asyncFunctionBody,
+        classContext
       })
       break
     case 'typescript':
@@ -65,6 +69,7 @@ export function parse (
           module,
           strictMode,
           asyncFunctionBody,
+          classContext,
           externalParsers: {
             computedPropertyParser
           }

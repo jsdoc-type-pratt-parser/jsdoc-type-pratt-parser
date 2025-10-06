@@ -18,16 +18,19 @@ export class Parser {
   public readonly module?: boolean
   public readonly strictMode?: boolean
   public readonly asyncFunctionBody?: boolean
+  public readonly classContext?: boolean
 
   constructor (grammar: Grammar, lexer: Lexer, baseParser?: Parser, {
     module,
     strictMode,
     asyncFunctionBody,
+    classContext,
     externalParsers
   }: {
     module?: boolean,
     strictMode?: boolean,
     asyncFunctionBody?: boolean,
+    classContext?: boolean,
     externalParsers?: Record<string, ((
       // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Actual API
       text: string, options?: any
@@ -40,6 +43,7 @@ export class Parser {
     this.module = module
     this.strictMode = strictMode
     this.asyncFunctionBody = asyncFunctionBody
+    this.classContext = classContext
   }
 
   get lexer (): Lexer {
