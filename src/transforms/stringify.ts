@@ -232,13 +232,23 @@ export function stringifyRules ({
         result.defaultValue !== undefined ? ` = ${transform(result.defaultValue)}` : ''
       }`,
 
-    JsdocTypeCallSignature: (result, transform) => `(${
+    JsdocTypeCallSignature: (result, transform) => `${
+      result.typeParameters !== undefined
+            /* c8 ignore next -- Guard */
+            ? `<${result.typeParameters.map(transform).join(', ') ?? ''}>`
+            : ''
+    }(${
       result.parameters.map(transform).join(', ')
     }): ${
       transform(result.returnType)
     }`,
 
-    JsdocTypeConstructorSignature: (result, transform) => `new (${
+    JsdocTypeConstructorSignature: (result, transform) => `new ${
+      result.typeParameters !== undefined
+            /* c8 ignore next -- Guard */
+            ? `<${result.typeParameters.map(transform).join(', ') ?? ''}>`
+            : ''
+    }(${
       result.parameters.map(transform).join(', ')
     }): ${
       transform(result.returnType)
@@ -251,7 +261,12 @@ export function stringifyRules ({
           ? "'"
           : '';
 
-      return `${quote}${result.name}${quote}(${
+      return `${quote}${result.name}${quote}${
+        result.typeParameters !== undefined
+            /* c8 ignore next -- Guard */
+            ? `<${result.typeParameters.map(transform).join(', ') ?? ''}>`
+            : ''
+      }(${
         result.parameters.map(transform).join(', ')
       }): ${
         transform(result.returnType)
