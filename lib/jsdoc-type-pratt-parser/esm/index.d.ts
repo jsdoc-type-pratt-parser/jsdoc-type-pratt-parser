@@ -57,11 +57,13 @@ interface CallSignatureResult {
     type: 'JsdocTypeCallSignature';
     parameters: Array<RootResult | KeyValueResult>;
     returnType: RootResult;
+    typeParameters?: TypeParameterResult[];
 }
 interface ConstructorSignatureResult {
     type: 'JsdocTypeConstructorSignature';
     parameters: Array<RootResult | KeyValueResult>;
     returnType: RootResult;
+    typeParameters?: TypeParameterResult[];
 }
 interface MethodSignatureResult {
     type: 'JsdocTypeMethodSignature';
@@ -71,6 +73,7 @@ interface MethodSignatureResult {
     };
     parameters: Array<RootResult | KeyValueResult>;
     returnType: RootResult;
+    typeParameters?: TypeParameterResult[];
 }
 interface IndexedAccessIndexResult {
     type: 'JsdocTypeIndexedAccessIndex';
@@ -86,6 +89,7 @@ interface ComputedMethodResult {
     optional: boolean;
     parameters: Array<RootResult | KeyValueResult>;
     returnType: RootResult;
+    typeParameters?: TypeParameterResult[];
 }
 
 /**
