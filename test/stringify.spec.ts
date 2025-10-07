@@ -3,6 +3,7 @@ import { expect } from 'chai'
 import { stringifyRules, stringify } from '../src/index.js'
 import type { RootResult, ObjectResult, FunctionResult, GenericResult, ParenthesisResult } from '../src/result/RootResult.js'
 import type { KeyValueResult } from '../src/result/NonRootResult.js'
+import { generate } from '@es-joy/escodegen'
 
 describe('`stringifyRules`', () => {
   it('should exist on index export', () => {
@@ -23,7 +24,40 @@ describe('`stringifyRules`', () => {
     expect(result).to.equal(expected)
   })
 
-  it('should transform a function with type parameters and no spacing', () => {
+  it('should transform a non-arrow function type', () => {
+    const expected = 'function(string, boolean) :boolean';
+    const rootResult: FunctionResult = {
+      type: 'JsdocTypeFunction',
+      meta: {
+        parameterSpacing: ' ',
+        preReturnMarkerSpacing: ' ',
+        postReturnMarkerSpacing: '',
+        typeParameterSpacing: ''
+      },
+      parameters: [
+        {
+          type: 'JsdocTypeName',
+          value: 'string'
+        },
+        {
+          type: 'JsdocTypeName',
+          value: 'boolean'
+        }
+      ],
+      returnType: {
+        type: 'JsdocTypeName',
+        value: 'boolean'
+      },
+      arrow: false,
+      constructor: false,
+      parenthesis: true
+    }
+
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  });
+
+  it('should transform a function with type parameters and no default spacing', () => {
     const expected = '<T, U extends V=string, W=string>(x: T) => U';
     const rootResult: FunctionResult = {
       type: 'JsdocTypeFunction',
@@ -93,6 +127,51 @@ describe('`stringifyRules`', () => {
     expect(result).to.equal(expected)
   });
 
+  it('should transform a function with no spacing around parameters and return type marker', () => {
+    const expected = '(x: string,y: number)=>U';
+    const rootResult: FunctionResult = {
+      type: 'JsdocTypeFunction',
+      parameters: [
+        {
+          type: 'JsdocTypeKeyValue',
+          key: 'x',
+          optional: false,
+          variadic: false,
+          right: {
+            type: 'JsdocTypeName',
+            value: 'string'
+          }
+        },
+        {
+          type: 'JsdocTypeKeyValue',
+          key: 'y',
+          optional: false,
+          variadic: false,
+          right: {
+            type: 'JsdocTypeName',
+            value: 'number'
+          }
+        }
+      ],
+      meta: {
+        typeParameterSpacing: '',
+        parameterSpacing: '',
+        preReturnMarkerSpacing: '',
+        postReturnMarkerSpacing: ''
+      },
+      returnType: {
+        type: 'JsdocTypeName',
+        value: 'U'
+      },
+      arrow: true,
+      constructor: false,
+      parenthesis: true
+    };
+
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  });
+
   it('should transform a call signature with spacing', () => {
     const expected = '{<T,U> (a: T, b: U): SomeType}';
     const rootResult: RootResult = {
@@ -120,6 +199,7 @@ describe('`stringifyRules`', () => {
             }
           ],
           meta: {
+            parameterSpacing: ' ',
             postGenericSpacing: ' ',
             typeParameterSpacing: ''
           },
@@ -186,6 +266,7 @@ describe('`stringifyRules`', () => {
           meta: {
             postNewSpacing: '',
             postGenericSpacing: ' ',
+            parameterSpacing: ' ',
             typeParameterSpacing: ''
           },
           parameters: [
@@ -251,6 +332,7 @@ describe('`stringifyRules`', () => {
           ],
           meta: {
             quote: undefined,
+            parameterSpacing: ' ',
             postMethodNameSpacing: ' ',
             postGenericSpacing: ' ',
             typeParameterSpacing: ''
@@ -285,6 +367,93 @@ describe('`stringifyRules`', () => {
       ]
     }
 
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  })
+
+  it('should stringify tuple elements without spacing', function () {
+    const expected = '[it,needs,to,be]'
+    const rootResult: RootResult = {
+      type: 'JsdocTypeTuple',
+      meta: {
+        elementSpacing: ''
+      },
+      elements: [
+        {
+          type: 'JsdocTypeName',
+          value: 'it'
+        },
+        {
+          type: 'JsdocTypeName',
+          value: 'needs'
+        },
+        {
+          type: 'JsdocTypeName',
+          value: 'to'
+        },
+        {
+          type: 'JsdocTypeName',
+          value: 'be'
+        }
+      ]
+    }
+
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  })
+
+  it('should stringify tuple keys with spacing', () => {
+    const expected = '[a ? : string, b :number, ... extra]'
+    const rootResult: RootResult = {
+      type: 'JsdocTypeTuple',
+      elements: [
+        {
+          type: 'JsdocTypeKeyValue',
+          key: 'a',
+          optional: true,
+          variadic: false,
+          meta: {
+            postKeySpacing: ' ',
+            postColonSpacing: ' ',
+            postOptionalSpacing: ' ',
+            postVariadicSpacing: ' '
+          },
+          right: {
+            type: 'JsdocTypeName',
+            value: 'string'
+          }
+        },
+        {
+          type: 'JsdocTypeKeyValue',
+          key: 'b',
+          optional: false,
+          variadic: false,
+          meta: {
+            postKeySpacing: ' ',
+            postColonSpacing: '',
+            postOptionalSpacing: ' ',
+            postVariadicSpacing: ' '
+          },
+          right: {
+            type: 'JsdocTypeName',
+            value: 'number'
+          }
+        },
+        {
+          type: 'JsdocTypeKeyValue',
+          key: 'extra',
+          optional: false,
+          variadic: true,
+          meta: {
+            postKeySpacing: ' ',
+            postColonSpacing: '',
+            postOptionalSpacing: ' ',
+            postVariadicSpacing: ' '
+          },
+          right: undefined
+        }
+      ]
+    }
     const result = stringify(rootResult)
     expect(result).to.equal(expected)
   });
@@ -873,6 +1042,167 @@ describe('`stringifyRules`', () => {
       }
       stringify(rootResult)
     }).to.throw('')
+  })
+
+  it('should stringify a `JsdocTypeComputedMethod`', () => {
+    const expected = '{[someType](a: string,b: number): AnotherType}'
+    const rootResult: ObjectResult = {
+      type: 'JsdocTypeObject',
+      meta: {
+        separator: 'semicolon'
+      },
+      elements: [
+        {
+          type: 'JsdocTypeObjectField',
+          key: {
+            type: 'JsdocTypeComputedMethod',
+            optional: false,
+            parameters: [
+              {
+                key: 'a',
+                optional: false,
+                right: {
+                  type: 'JsdocTypeName',
+                  value: 'string'
+                },
+                type: 'JsdocTypeKeyValue',
+                variadic: false
+              },
+              {
+                key: 'b',
+                optional: false,
+                right: {
+                  type: 'JsdocTypeName',
+                  value: 'number'
+                },
+                type: 'JsdocTypeKeyValue',
+                variadic: false
+              }
+            ],
+            meta: {
+              parameterSpacing: '',
+              typeParameterSpacing: '',
+              postGenericSpacing: ''
+            },
+            value: {
+              type: 'JsdocTypeName',
+              value: 'someType'
+            },
+            returnType: {
+              type: 'JsdocTypeName',
+              value: 'AnotherType'
+            }
+          },
+          optional: false,
+          readonly: false,
+          right: undefined,
+          meta: {
+            quote: undefined
+          }
+        }
+      ]
+    }
+
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  })
+
+  it('should stringify a `JsdocTypeComputedMethod`', () => {
+    const expected = '{[SomeObject.someType()](a: string,b: number): AnotherType}'
+    const rootResult: ObjectResult = {
+      type: 'JsdocTypeObject',
+      meta: {
+        separator: 'semicolon'
+      },
+      elements: [
+        {
+          type: 'JsdocTypeObjectField',
+          key: {
+            type: 'JsdocTypeComputedMethod',
+            optional: false,
+            parameters: [
+              {
+                key: 'a',
+                optional: false,
+                right: {
+                  type: 'JsdocTypeName',
+                  value: 'string'
+                },
+                type: 'JsdocTypeKeyValue',
+                variadic: false
+              },
+              {
+                key: 'b',
+                optional: false,
+                right: {
+                  type: 'JsdocTypeName',
+                  value: 'number'
+                },
+                type: 'JsdocTypeKeyValue',
+                variadic: false
+              }
+            ],
+            meta: {
+              parameterSpacing: '',
+              typeParameterSpacing: '',
+              postGenericSpacing: ''
+            },
+            value: {
+              body: [
+                {
+                  end: 21,
+                  expression: {
+                    arguments: [],
+                    callee: {
+                      computed: false,
+                      end: 19,
+                      object: {
+                        // @ts-expect-error Not the same `Identifier`
+                        end: 10,
+                        name: 'SomeObject',
+                        start: 0,
+                        type: 'Identifier'
+                      },
+                      property: {
+                        // @ts-expect-error Not the same `Identifier`
+                        end: 19,
+                        name: 'someType',
+                        start: 11,
+                        type: 'Identifier'
+                      },
+                      start: 0,
+                      type: 'MemberExpression'
+                    },
+                    end: 21,
+                    start: 0,
+                    type: 'CallExpression'
+                  },
+                  start: 0,
+                  type: 'ExpressionStatement'
+                }
+              ],
+              end: 21,
+              sourceType: 'script',
+              start: 0,
+              type: 'Program'
+            },
+            returnType: {
+              type: 'JsdocTypeName',
+              value: 'AnotherType'
+            }
+          },
+          optional: false,
+          readonly: false,
+          right: undefined,
+          meta: {
+            quote: undefined
+          }
+        }
+      ]
+    }
+
+    const result = stringify(rootResult, generate)
+    expect(result).to.equal(expected)
   })
 
   it('should throw with `JsdocTypeComputedMethod` of non-JSDocType and no custom stringifier', () => {
