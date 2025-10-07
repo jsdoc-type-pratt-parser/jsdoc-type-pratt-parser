@@ -74,6 +74,8 @@ export interface CallSignatureResult {
         parameterSpacing: string;
         typeParameterSpacing: string;
         postGenericSpacing: string;
+        preReturnMarkerSpacing?: string;
+        postReturnMarkerSpacing?: string;
     };
 }
 export interface ConstructorSignatureResult {
@@ -86,6 +88,8 @@ export interface ConstructorSignatureResult {
         typeParameterSpacing: string;
         postNewSpacing: string;
         postGenericSpacing: string;
+        preReturnMarkerSpacing?: string;
+        postReturnMarkerSpacing?: string;
     };
 }
 export interface MethodSignatureResult {
@@ -97,6 +101,8 @@ export interface MethodSignatureResult {
         typeParameterSpacing?: string;
         postMethodNameSpacing?: string;
         postGenericSpacing?: string;
+        preReturnMarkerSpacing?: string;
+        postReturnMarkerSpacing?: string;
     };
     parameters: Array<RootResult | KeyValueResult>;
     returnType: RootResult;
@@ -121,5 +127,7 @@ export interface ComputedMethodResult {
         parameterSpacing: string;
         typeParameterSpacing: string;
         postGenericSpacing: string;
+        preReturnMarkerSpacing?: string;
+        postReturnMarkerSpacing?: string;
     };
 }

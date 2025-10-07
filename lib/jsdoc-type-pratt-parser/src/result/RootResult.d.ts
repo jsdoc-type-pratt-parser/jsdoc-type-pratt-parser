@@ -135,6 +135,7 @@ export interface FunctionResult {
         typeParameterSpacing: string;
         preReturnMarkerSpacing: string;
         postReturnMarkerSpacing: string;
+        postGenericSpacing?: string;
     };
 }
 /**
