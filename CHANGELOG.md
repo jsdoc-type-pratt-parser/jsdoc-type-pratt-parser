@@ -1,3 +1,10 @@
+# [6.7.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.6.0...v6.7.0) (2025-10-07)
+
+
+### Features
+
+* generic element spacing, computed method and signature spacing, parameter spacing ([3ed9f58](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/3ed9f58869fbb125e72fcbe2306a73e03f395198))
+
 # [6.6.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.5.1...v6.6.0) (2025-10-06)
 
 
