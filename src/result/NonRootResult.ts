@@ -32,7 +32,10 @@ export interface ObjectFieldResult {
   optional: boolean
   readonly: boolean
   meta: {
-    quote: QuoteStyle | undefined
+    quote: QuoteStyle | undefined,
+    postColonSpacing?: string
+    postKeySpacing?: string
+    postOptionalSpacing?: string
   }
 }
 
