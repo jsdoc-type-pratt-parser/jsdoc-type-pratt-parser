@@ -119,14 +119,17 @@ export function stringifyRules ({
         text += transform(result.key)
       }
 
+      text += result.meta.postKeySpacing ?? ''
+
       if (!optionalBeforeParentheses && result.optional) {
         text += '?'
+        text += result.meta.postOptionalSpacing ?? ''
       }
 
       if (result.right === undefined) {
         return text
       } else {
-        return text + `: ${transform(result.right)}`
+        return text + `:${result.meta.postColonSpacing ?? ' '}${transform(result.right)}`
       }
     },
 

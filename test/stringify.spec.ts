@@ -458,6 +458,37 @@ describe('`stringifyRules`', () => {
     expect(result).to.equal(expected)
   });
 
+  it('should stringify an object field', () => {
+    const expected = '{a ? :string}'
+    const rootResult: RootResult = {
+      type: 'JsdocTypeObject',
+      elements: [
+        {
+          type: 'JsdocTypeObjectField',
+          key: 'a',
+          optional: true,
+          readonly: false,
+          right: {
+            type: 'JsdocTypeName',
+            value: 'string'
+          },
+          meta: {
+            quote: undefined,
+            postColonSpacing: '',
+            postKeySpacing: ' ',
+            postOptionalSpacing: ' '
+          }
+        }
+      ],
+      meta: {
+        separator: 'comma'
+      }
+    }
+
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  });
+
   it('should stringify `right` undefined `JsdocTypeKeyValue`', () => {
     const expected = 'a'
     const nonRootResult: KeyValueResult = {
