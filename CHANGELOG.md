@@ -1,3 +1,10 @@
+# [6.9.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.8.0...v6.9.0) (2025-10-07)
+
+
+### Features
+
+* **stringify:** add `postColonSpacing`, `postKeySpacing`, and `postOptionalSpacing` options to object fields ([23d5be6](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/23d5be6c2bf03d8988ab1f9a80660f9c7b52edd2))
+
 # [6.8.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.7.0...v6.8.0) (2025-10-07)
 
 
