@@ -131,7 +131,10 @@ export interface FunctionResult {
     parenthesis: boolean;
     typeParameters?: TypeParameterResult[];
     meta?: {
+        parameterSpacing: string;
         typeParameterSpacing: string;
+        preReturnMarkerSpacing: string;
+        postReturnMarkerSpacing: string;
     };
 }
 /**
@@ -206,6 +209,9 @@ export interface ImportResult {
 export interface TupleResult {
     type: 'JsdocTypeTuple';
     elements: RootResult[] | KeyValueResult[];
+    meta?: {
+        elementSpacing: string;
+    };
 }
 /**
  * A type enclosed in parenthesis. Often {@link UnionResult}s ot {@link IntersectionResult}s.

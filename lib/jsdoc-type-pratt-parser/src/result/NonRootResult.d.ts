@@ -36,6 +36,12 @@ export interface KeyValueResult {
     right: RootResult | undefined;
     optional: boolean;
     variadic: boolean;
+    meta?: {
+        postKeySpacing: string;
+        postOptionalSpacing: string;
+        postVariadicSpacing: string;
+        postColonSpacing: string;
+    };
 }
 export interface IndexSignatureResult {
     type: 'JsdocTypeIndexSignature';
@@ -62,6 +68,7 @@ export interface CallSignatureResult {
     returnType: RootResult;
     typeParameters?: TypeParameterResult[];
     meta?: {
+        parameterSpacing: string;
         typeParameterSpacing: string;
         postGenericSpacing: string;
     };
@@ -72,6 +79,7 @@ export interface ConstructorSignatureResult {
     returnType: RootResult;
     typeParameters?: TypeParameterResult[];
     meta?: {
+        parameterSpacing: string;
         typeParameterSpacing: string;
         postNewSpacing: string;
         postGenericSpacing: string;
@@ -82,6 +90,7 @@ export interface MethodSignatureResult {
     name: string;
     meta: {
         quote: QuoteStyle | undefined;
+        parameterSpacing?: string;
         typeParameterSpacing?: string;
         postMethodNameSpacing?: string;
         postGenericSpacing?: string;
@@ -106,6 +115,7 @@ export interface ComputedMethodResult {
     returnType: RootResult;
     typeParameters?: TypeParameterResult[];
     meta?: {
+        parameterSpacing: string;
         typeParameterSpacing: string;
         postGenericSpacing: string;
     };

@@ -36,6 +36,12 @@ interface KeyValueResult {
     right: RootResult | undefined;
     optional: boolean;
     variadic: boolean;
+    meta?: {
+        postKeySpacing: string;
+        postOptionalSpacing: string;
+        postVariadicSpacing: string;
+        postColonSpacing: string;
+    };
 }
 interface IndexSignatureResult {
     type: 'JsdocTypeIndexSignature';
@@ -62,6 +68,7 @@ interface CallSignatureResult {
     returnType: RootResult;
     typeParameters?: TypeParameterResult[];
     meta?: {
+        parameterSpacing: string;
         typeParameterSpacing: string;
         postGenericSpacing: string;
     };
@@ -72,6 +79,7 @@ interface ConstructorSignatureResult {
     returnType: RootResult;
     typeParameters?: TypeParameterResult[];
     meta?: {
+        parameterSpacing: string;
         typeParameterSpacing: string;
         postNewSpacing: string;
         postGenericSpacing: string;
@@ -82,6 +90,7 @@ interface MethodSignatureResult {
     name: string;
     meta: {
         quote: QuoteStyle | undefined;
+        parameterSpacing?: string;
         typeParameterSpacing?: string;
         postMethodNameSpacing?: string;
         postGenericSpacing?: string;
@@ -106,6 +115,7 @@ interface ComputedMethodResult {
     returnType: RootResult;
     typeParameters?: TypeParameterResult[];
     meta?: {
+        parameterSpacing: string;
         typeParameterSpacing: string;
         postGenericSpacing: string;
     };
@@ -243,7 +253,10 @@ interface FunctionResult {
     parenthesis: boolean;
     typeParameters?: TypeParameterResult[];
     meta?: {
+        parameterSpacing: string;
         typeParameterSpacing: string;
+        preReturnMarkerSpacing: string;
+        postReturnMarkerSpacing: string;
     };
 }
 /**
@@ -318,6 +331,9 @@ interface ImportResult {
 interface TupleResult {
     type: 'JsdocTypeTuple';
     elements: RootResult[] | KeyValueResult[];
+    meta?: {
+        elementSpacing: string;
+    };
 }
 /**
  * A type enclosed in parenthesis. Often {@link UnionResult}s ot {@link IntersectionResult}s.
