@@ -23,6 +23,272 @@ describe('`stringifyRules`', () => {
     expect(result).to.equal(expected)
   })
 
+  it('should transform a function with type parameters and no spacing', () => {
+    const expected = '<T, U extends V=string, W=string>(x: T) => U';
+    const rootResult: FunctionResult = {
+      type: 'JsdocTypeFunction',
+      typeParameters: [
+        {
+          type: 'JsdocTypeTypeParameter',
+          name: {
+            type: 'JsdocTypeName',
+            value: 'T'
+          }
+        },
+        {
+          type: 'JsdocTypeTypeParameter',
+          name: {
+            type: 'JsdocTypeName',
+            value: 'U'
+          },
+          constraint: {
+            type: 'JsdocTypeName',
+            value: 'V'
+          },
+          meta: {
+            defaultValueSpacing: ''
+          },
+          defaultValue: {
+            type: 'JsdocTypeName',
+            value: 'string'
+          }
+        },
+        {
+          type: 'JsdocTypeTypeParameter',
+          name: {
+            type: 'JsdocTypeName',
+            value: 'W'
+          },
+          meta: {
+            defaultValueSpacing: ''
+          },
+          defaultValue: {
+            type: 'JsdocTypeName',
+            value: 'string'
+          }
+        }
+      ],
+      parameters: [
+        {
+          type: 'JsdocTypeKeyValue',
+          key: 'x',
+          optional: false,
+          variadic: false,
+          right: {
+            type: 'JsdocTypeName',
+            value: 'T'
+          }
+        }
+      ],
+      returnType: {
+        type: 'JsdocTypeName',
+        value: 'U'
+      },
+      arrow: true,
+      constructor: false,
+      parenthesis: true
+    };
+
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  });
+
+  it('should transform a call signature with spacing', () => {
+    const expected = '{<T,U> (a: T, b: U): SomeType}';
+    const rootResult: RootResult = {
+      type: 'JsdocTypeObject',
+      meta: {
+        separator: 'comma'
+      },
+      elements: [
+        {
+          type: 'JsdocTypeCallSignature',
+          typeParameters: [
+            {
+              type: 'JsdocTypeTypeParameter',
+              name: {
+                type: 'JsdocTypeName',
+                value: 'T'
+              }
+            },
+            {
+              type: 'JsdocTypeTypeParameter',
+              name: {
+                type: 'JsdocTypeName',
+                value: 'U'
+              }
+            }
+          ],
+          meta: {
+            postGenericSpacing: ' ',
+            typeParameterSpacing: ''
+          },
+          parameters: [
+            {
+              type: 'JsdocTypeKeyValue',
+              key: 'a',
+              right: {
+                type: 'JsdocTypeName',
+                value: 'T'
+              },
+              optional: false,
+              variadic: false
+            },
+            {
+              type: 'JsdocTypeKeyValue',
+              key: 'b',
+              right: {
+                type: 'JsdocTypeName',
+                value: 'U'
+              },
+              optional: false,
+              variadic: false
+            }
+          ],
+          returnType: {
+            type: 'JsdocTypeName',
+            value: 'SomeType'
+          }
+        }
+      ]
+    }
+
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  });
+
+  it('should transform a constructor signature with spacing', () => {
+    const expected = '{new<T,U> (a: T, b: U): SomeType}';
+    const rootResult: RootResult = {
+      type: 'JsdocTypeObject',
+      meta: {
+        separator: 'comma'
+      },
+      elements: [
+        {
+          type: 'JsdocTypeConstructorSignature',
+          typeParameters: [
+            {
+              type: 'JsdocTypeTypeParameter',
+              name: {
+                type: 'JsdocTypeName',
+                value: 'T'
+              }
+            },
+            {
+              type: 'JsdocTypeTypeParameter',
+              name: {
+                type: 'JsdocTypeName',
+                value: 'U'
+              }
+            }
+          ],
+          meta: {
+            postNewSpacing: '',
+            postGenericSpacing: ' ',
+            typeParameterSpacing: ''
+          },
+          parameters: [
+            {
+              type: 'JsdocTypeKeyValue',
+              key: 'a',
+              right: {
+                type: 'JsdocTypeName',
+                value: 'T'
+              },
+              optional: false,
+              variadic: false
+            },
+            {
+              type: 'JsdocTypeKeyValue',
+              key: 'b',
+              right: {
+                type: 'JsdocTypeName',
+                value: 'U'
+              },
+              optional: false,
+              variadic: false
+            }
+          ],
+          returnType: {
+            type: 'JsdocTypeName',
+            value: 'SomeType'
+          }
+        }
+      ]
+    }
+
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  });
+
+  it('should transform a method signature with spacing', () => {
+    const expected = '{aMethod <T,U> (a: T, b: U): SomeType}';
+    const rootResult: RootResult = {
+      type: 'JsdocTypeObject',
+      meta: {
+        separator: 'comma'
+      },
+      elements: [
+        {
+          type: 'JsdocTypeMethodSignature',
+          name: 'aMethod',
+          typeParameters: [
+            {
+              type: 'JsdocTypeTypeParameter',
+              name: {
+                type: 'JsdocTypeName',
+                value: 'T'
+              }
+            },
+            {
+              type: 'JsdocTypeTypeParameter',
+              name: {
+                type: 'JsdocTypeName',
+                value: 'U'
+              }
+            }
+          ],
+          meta: {
+            quote: undefined,
+            postMethodNameSpacing: ' ',
+            postGenericSpacing: ' ',
+            typeParameterSpacing: ''
+          },
+          parameters: [
+            {
+              type: 'JsdocTypeKeyValue',
+              key: 'a',
+              right: {
+                type: 'JsdocTypeName',
+                value: 'T'
+              },
+              optional: false,
+              variadic: false
+            },
+            {
+              type: 'JsdocTypeKeyValue',
+              key: 'b',
+              right: {
+                type: 'JsdocTypeName',
+                value: 'U'
+              },
+              optional: false,
+              variadic: false
+            }
+          ],
+          returnType: {
+            type: 'JsdocTypeName',
+            value: 'SomeType'
+          }
+        }
+      ]
+    }
+
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  });
+
   it('should stringify `right` undefined `JsdocTypeKeyValue`', () => {
     const expected = 'a'
     const nonRootResult: KeyValueResult = {
@@ -134,6 +400,34 @@ describe('`stringifyRules`', () => {
       meta: {
         brackets: 'square',
         dot: false
+      }
+    }
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  })
+
+  it('should transform an angled generic', () => {
+    const expected = 'T<string,number>'
+    const rootResult: GenericResult = {
+      type: 'JsdocTypeGeneric',
+      left: {
+        type: 'JsdocTypeName',
+        value: 'T'
+      },
+      elements: [
+        {
+          type: 'JsdocTypeName',
+          value: 'string'
+        },
+        {
+          type: 'JsdocTypeName',
+          value: 'number'
+        }
+      ],
+      meta: {
+        brackets: 'angle',
+        dot: false,
+        elementSpacing: ''
       }
     }
     const result = stringify(rootResult)

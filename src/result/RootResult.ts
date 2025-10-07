@@ -129,7 +129,8 @@ export interface GenericResult {
   infer?: boolean
   meta: {
     brackets: 'angle' | 'square'
-    dot: boolean
+    dot: boolean,
+    elementSpacing?: string
   }
 }
 
@@ -186,6 +187,9 @@ export interface FunctionResult {
   arrow: boolean
   parenthesis: boolean
   typeParameters?: TypeParameterResult[]
+  meta?: {
+    typeParameterSpacing: string
+  }
 }
 
 /**

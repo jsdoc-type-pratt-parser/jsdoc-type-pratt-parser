@@ -47,7 +47,7 @@ export function stringifyRules ({
         let stringified = `${
           result.typeParameters !== undefined
             /* c8 ignore next -- Guard */
-            ? `<${result.typeParameters.map(transform).join(', ') ?? ''}>`
+            ? `<${result.typeParameters.map(transform).join(',' + (result.meta?.typeParameterSpacing ?? ' ')) ?? ''}>`
             : ''
         }(${result.parameters.map(transform).join(', ')}) => ${transform(result.returnType)}`
         if (result.constructor) {
@@ -94,7 +94,7 @@ export function stringifyRules ({
           return `${transformed}[]`
         }
       } else {
-        return `${transform(result.left)}${result.meta.dot ? '.' : ''}<${result.infer === true ? 'infer ' : ''}${result.elements.map(transform).join(', ')}>`
+        return `${transform(result.left)}${result.meta.dot ? '.' : ''}<${result.infer === true ? 'infer ' : ''}${result.elements.map(transform).join(',' + (result.meta.elementSpacing ?? ' ') )}>`
       }
     },
 
@@ -229,25 +229,33 @@ export function stringifyRules ({
       transform(result.name)}${
         result.constraint !== undefined ? ` extends ${transform(result.constraint)}` : ''
       }${
-        result.defaultValue !== undefined ? ` = ${transform(result.defaultValue)}` : ''
+        result.defaultValue !== undefined ? `${
+           result.meta?.defaultValueSpacing ?? ' '
+        }=${
+           result.meta?.defaultValueSpacing ?? ' '
+        }${transform(result.defaultValue)}` : ''
       }`,
 
     JsdocTypeCallSignature: (result, transform) => `${
       result.typeParameters !== undefined
-            /* c8 ignore next -- Guard */
-            ? `<${result.typeParameters.map(transform).join(', ') ?? ''}>`
-            : ''
+        /* c8 ignore next -- Guard */
+        ? `<${result.typeParameters.map(transform).join(',' + (result.meta?.typeParameterSpacing ?? ' ')) ?? ''}>${
+          result.meta?.postGenericSpacing ?? ''
+        }`
+        : ''
     }(${
       result.parameters.map(transform).join(', ')
     }): ${
       transform(result.returnType)
     }`,
 
-    JsdocTypeConstructorSignature: (result, transform) => `new ${
+    JsdocTypeConstructorSignature: (result, transform) => `new${result.meta?.postNewSpacing ?? ' '}${
       result.typeParameters !== undefined
-            /* c8 ignore next -- Guard */
-            ? `<${result.typeParameters.map(transform).join(', ') ?? ''}>`
-            : ''
+        /* c8 ignore next -- Guard */
+        ? `<${result.typeParameters.map(transform).join(',' + (result.meta?.typeParameterSpacing ?? ' ')) ?? ''}>${
+          result.meta?.postGenericSpacing ?? ''
+        }`
+        : ''
     }(${
       result.parameters.map(transform).join(', ')
     }): ${
@@ -262,10 +270,14 @@ export function stringifyRules ({
           : '';
 
       return `${quote}${result.name}${quote}${
+        result.meta.postMethodNameSpacing ?? ''
+      }${
         result.typeParameters !== undefined
-            /* c8 ignore next -- Guard */
-            ? `<${result.typeParameters.map(transform).join(', ') ?? ''}>`
-            : ''
+          /* c8 ignore next -- Guard */
+          ? `<${result.typeParameters.map(transform).join(',' + (result.meta.typeParameterSpacing ?? ' ')) ?? ''}>${
+          result.meta.postGenericSpacing ?? ''
+        }`
+          : ''
       }(${
         result.parameters.map(transform).join(', ')
       }): ${
@@ -307,7 +319,7 @@ export function stringifyRules ({
         }${
           result.typeParameters !== undefined
             /* c8 ignore next -- Guard */
-            ? `<${result.typeParameters.map(transform).join(', ') ?? ''}>`
+            ? `<${result.typeParameters.map(transform).join(',' + (result.meta?.typeParameterSpacing ?? ' ')) ?? ''}>${result.meta?.postGenericSpacing ?? ''}`
             : ''
         }(${
           result.parameters.map(transform).join(', ')
