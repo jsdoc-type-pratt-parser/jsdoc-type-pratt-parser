@@ -12,6 +12,9 @@ export interface ObjectFieldResult {
     readonly: boolean;
     meta: {
         quote: QuoteStyle | undefined;
+        postColonSpacing?: string;
+        postKeySpacing?: string;
+        postOptionalSpacing?: string;
     };
 }
 export interface JsdocObjectFieldResult {
