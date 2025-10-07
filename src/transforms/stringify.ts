@@ -35,9 +35,9 @@ export function stringifyRules ({
         if (!result.parenthesis) {
           return stringified
         }
-        stringified += `(${result.parameters.map(transform).join(', ')})`
+        stringified += `(${result.parameters.map(transform).join(',' + (result.meta?.parameterSpacing ?? ' '))})`
         if (result.returnType !== undefined) {
-          stringified += `: ${transform(result.returnType)}`
+          stringified += `${result.meta?.preReturnMarkerSpacing ?? ''}:${result.meta?.postReturnMarkerSpacing ?? ' '}${transform(result.returnType)}`
         }
         return stringified
       } else {
@@ -49,7 +49,9 @@ export function stringifyRules ({
             /* c8 ignore next -- Guard */
             ? `<${result.typeParameters.map(transform).join(',' + (result.meta?.typeParameterSpacing ?? ' ')) ?? ''}>`
             : ''
-        }(${result.parameters.map(transform).join(', ')}) => ${transform(result.returnType)}`
+        }(${result.parameters.map(transform).join(',' + (result.meta?.parameterSpacing ?? ' '))})${
+          result.meta?.preReturnMarkerSpacing ?? ' '
+        }=>${result.meta?.postReturnMarkerSpacing ?? ' '}${transform(result.returnType)}`
         if (result.constructor) {
           stringified = 'new ' + stringified
         }
@@ -59,7 +61,7 @@ export function stringifyRules ({
 
     JsdocTypeName: result => result.value,
 
-    JsdocTypeTuple: (result, transform) => `[${(result.elements as NonRootResult[]).map(transform).join(', ')}]`,
+    JsdocTypeTuple: (result, transform) => `[${(result.elements as NonRootResult[]).map(transform).join(',' + (result.meta?.elementSpacing ?? ' '))}]`,
 
     JsdocTypeVariadic: (result, transform) => result.meta.position === undefined
       ? '...'
@@ -94,7 +96,7 @@ export function stringifyRules ({
           return `${transformed}[]`
         }
       } else {
-        return `${transform(result.left)}${result.meta.dot ? '.' : ''}<${result.infer === true ? 'infer ' : ''}${result.elements.map(transform).join(',' + (result.meta.elementSpacing ?? ' ') )}>`
+        return `${transform(result.left)}${result.meta.dot ? '.' : ''}<${result.infer === true ? 'infer ' : ''}${result.elements.map(transform).join(',' + (result.meta.elementSpacing ?? ' '))}>`
       }
     },
 
@@ -133,16 +135,17 @@ export function stringifyRules ({
     JsdocTypeKeyValue: (result, transform) => {
       let text = result.key
       if (result.optional) {
-        text += '?'
-      }
-      if (result.variadic) {
-        text = '...' + text
+        text += (result.meta?.postKeySpacing ?? '') + '?' + (result.meta?.postOptionalSpacing ?? '')
+      } else if (result.variadic) {
+        text = '...' + (result.meta?.postVariadicSpacing ?? '') + text
+      } else if (result.right !== undefined) {
+        text += (result.meta?.postKeySpacing ?? '')
       }
 
       if (result.right === undefined) {
         return text
       } else {
-        return text + `: ${transform(result.right)}`
+        return text + `:${(result.meta?.postColonSpacing ?? ' ')}${transform(result.right)}`
       }
     },
 
@@ -244,7 +247,7 @@ export function stringifyRules ({
         }`
         : ''
     }(${
-      result.parameters.map(transform).join(', ')
+      result.parameters.map(transform).join(',' + (result.meta?.parameterSpacing ?? ' '))
     }): ${
       transform(result.returnType)
     }`,
@@ -257,7 +260,7 @@ export function stringifyRules ({
         }`
         : ''
     }(${
-      result.parameters.map(transform).join(', ')
+      result.parameters.map(transform).join(',' + (result.meta?.parameterSpacing ?? ' '))
     }): ${
       transform(result.returnType)
     }`,
@@ -279,7 +282,7 @@ export function stringifyRules ({
         }`
           : ''
       }(${
-        result.parameters.map(transform).join(', ')
+        result.parameters.map(transform).join(',' + (result.meta.parameterSpacing ?? ' '))
       }): ${
         transform(result.returnType)
       }`
@@ -322,7 +325,7 @@ export function stringifyRules ({
             ? `<${result.typeParameters.map(transform).join(',' + (result.meta?.typeParameterSpacing ?? ' ')) ?? ''}>${result.meta?.postGenericSpacing ?? ''}`
             : ''
         }(${
-          result.parameters.map(transform).join(', ')
+          result.parameters.map(transform).join(',' + (result.meta?.parameterSpacing ?? ' '))
         }): ${transform(result.returnType)}`
       } else {
         if (computedPropertyStringifier === undefined) {
@@ -331,7 +334,7 @@ export function stringifyRules ({
         return `[${
           computedPropertyStringifier(result.value as Node).replace(/;$/u, '')
         }](${
-          result.parameters.map(transform).join(', ')
+          result.parameters.map(transform).join(',' + (result.meta?.parameterSpacing ?? ' '))
         }): ${transform(result.returnType)}`
       }
     }

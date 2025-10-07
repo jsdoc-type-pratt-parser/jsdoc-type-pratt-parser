@@ -188,7 +188,10 @@ export interface FunctionResult {
   parenthesis: boolean
   typeParameters?: TypeParameterResult[]
   meta?: {
+    parameterSpacing: string
     typeParameterSpacing: string
+    preReturnMarkerSpacing: string
+    postReturnMarkerSpacing: string
   }
 }
 
@@ -271,7 +274,10 @@ export interface ImportResult {
  */
 export interface TupleResult {
   type: 'JsdocTypeTuple'
-  elements: RootResult[] | KeyValueResult[]
+  elements: RootResult[] | KeyValueResult[],
+  meta?: {
+    elementSpacing: string
+  }
 }
 
 /**
