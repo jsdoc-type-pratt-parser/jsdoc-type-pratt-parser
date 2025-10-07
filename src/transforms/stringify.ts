@@ -46,8 +46,9 @@ export function stringifyRules ({
         }
         let stringified = `${
           result.typeParameters !== undefined
-            /* c8 ignore next -- Guard */
-            ? `<${result.typeParameters.map(transform).join(',' + (result.meta?.typeParameterSpacing ?? ' ')) ?? ''}>`
+            ? `<${result.typeParameters.map(transform).join(',' + (result.meta?.typeParameterSpacing ?? ' '))}>${
+          result.meta?.postGenericSpacing ?? ''
+        }`
             : ''
         }(${result.parameters.map(transform).join(',' + (result.meta?.parameterSpacing ?? ' '))})${
           result.meta?.preReturnMarkerSpacing ?? ' '
@@ -244,8 +245,7 @@ export function stringifyRules ({
 
     JsdocTypeCallSignature: (result, transform) => `${
       result.typeParameters !== undefined
-        /* c8 ignore next -- Guard */
-        ? `<${result.typeParameters.map(transform).join(',' + (result.meta?.typeParameterSpacing ?? ' ')) ?? ''}>${
+        ? `<${result.typeParameters.map(transform).join(',' + (result.meta?.typeParameterSpacing ?? ' '))}>${
           result.meta?.postGenericSpacing ?? ''
         }`
         : ''
@@ -257,8 +257,7 @@ export function stringifyRules ({
 
     JsdocTypeConstructorSignature: (result, transform) => `new${result.meta?.postNewSpacing ?? ' '}${
       result.typeParameters !== undefined
-        /* c8 ignore next -- Guard */
-        ? `<${result.typeParameters.map(transform).join(',' + (result.meta?.typeParameterSpacing ?? ' ')) ?? ''}>${
+        ? `<${result.typeParameters.map(transform).join(',' + (result.meta?.typeParameterSpacing ?? ' '))}>${
           result.meta?.postGenericSpacing ?? ''
         }`
         : ''
@@ -279,8 +278,7 @@ export function stringifyRules ({
         result.meta.postMethodNameSpacing ?? ''
       }${
         result.typeParameters !== undefined
-          /* c8 ignore next -- Guard */
-          ? `<${result.typeParameters.map(transform).join(',' + (result.meta.typeParameterSpacing ?? ' ')) ?? ''}>${
+          ? `<${result.typeParameters.map(transform).join(',' + (result.meta.typeParameterSpacing ?? ' '))}>${
           result.meta.postGenericSpacing ?? ''
         }`
           : ''
@@ -324,8 +322,9 @@ export function stringifyRules ({
           result.optional ? '?' : ''
         }${
           result.typeParameters !== undefined
-            /* c8 ignore next -- Guard */
-            ? `<${result.typeParameters.map(transform).join(',' + (result.meta?.typeParameterSpacing ?? ' ')) ?? ''}>${result.meta?.postGenericSpacing ?? ''}`
+            ? `<${result.typeParameters.map(transform).join(',' + (result.meta?.typeParameterSpacing ?? ' '))}>${
+              result.meta?.postGenericSpacing ?? ''
+            }`
             : ''
         }(${
           result.parameters.map(transform).join(',' + (result.meta?.parameterSpacing ?? ' '))

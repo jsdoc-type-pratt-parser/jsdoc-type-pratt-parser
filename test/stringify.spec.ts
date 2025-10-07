@@ -58,6 +58,83 @@ describe('`stringifyRules`', () => {
   });
 
   it('should transform a function with type parameters and no default spacing', () => {
+    const expected = '<T, U extends V=string, W=string> (x: T) => U';
+    const rootResult: FunctionResult = {
+      type: 'JsdocTypeFunction',
+      meta: {
+        postReturnMarkerSpacing: ' ',
+        parameterSpacing: ' ',
+        preReturnMarkerSpacing: ' ',
+        typeParameterSpacing: ' ',
+        postGenericSpacing: ' '
+      },
+      typeParameters: [
+        {
+          type: 'JsdocTypeTypeParameter',
+          name: {
+            type: 'JsdocTypeName',
+            value: 'T'
+          }
+        },
+        {
+          type: 'JsdocTypeTypeParameter',
+          name: {
+            type: 'JsdocTypeName',
+            value: 'U'
+          },
+          constraint: {
+            type: 'JsdocTypeName',
+            value: 'V'
+          },
+          meta: {
+            defaultValueSpacing: ''
+          },
+          defaultValue: {
+            type: 'JsdocTypeName',
+            value: 'string'
+          }
+        },
+        {
+          type: 'JsdocTypeTypeParameter',
+          name: {
+            type: 'JsdocTypeName',
+            value: 'W'
+          },
+          meta: {
+            defaultValueSpacing: ''
+          },
+          defaultValue: {
+            type: 'JsdocTypeName',
+            value: 'string'
+          }
+        }
+      ],
+      parameters: [
+        {
+          type: 'JsdocTypeKeyValue',
+          key: 'x',
+          optional: false,
+          variadic: false,
+          right: {
+            type: 'JsdocTypeName',
+            value: 'T'
+          }
+        }
+      ],
+      returnType: {
+        type: 'JsdocTypeName',
+        value: 'U'
+      },
+      arrow: true,
+      constructor: false,
+      parenthesis: true
+    };
+
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  });
+
+  it('should transform a function with type parameters (no meta)', () => {
     const expected = '<T, U extends V=string, W=string>(x: T) => U';
     const rootResult: FunctionResult = {
       type: 'JsdocTypeFunction',
@@ -1113,7 +1190,93 @@ describe('`stringifyRules`', () => {
             meta: {
               parameterSpacing: '',
               typeParameterSpacing: '',
-              postGenericSpacing: ''
+              postGenericSpacing: '',
+            },
+            value: {
+              type: 'JsdocTypeName',
+              value: 'someType'
+            },
+            returnType: {
+              type: 'JsdocTypeName',
+              value: 'AnotherType'
+            }
+          },
+          optional: false,
+          readonly: false,
+          right: undefined,
+          meta: {
+            quote: undefined
+          }
+        }
+      ]
+    }
+
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  })
+
+  it('should stringify a `JsdocTypeComputedMethod` with type parameters', () => {
+    const expected = '{[someType]<T=string, U> (a: T, b: U): AnotherType}'
+    const rootResult: ObjectResult = {
+      type: 'JsdocTypeObject',
+      meta: {
+        separator: 'semicolon'
+      },
+      elements: [
+        {
+          type: 'JsdocTypeObjectField',
+          key: {
+            type: 'JsdocTypeComputedMethod',
+            optional: false,
+            typeParameters: [
+              {
+                type: 'JsdocTypeTypeParameter',
+                name: {
+                  type: 'JsdocTypeName',
+                  value: 'T'
+                },
+                meta: {
+                  defaultValueSpacing: ''
+                },
+                defaultValue: {
+                  type: 'JsdocTypeName',
+                  value: 'string'
+                }
+              },
+              {
+                type: 'JsdocTypeTypeParameter',
+                name: {
+                  type: 'JsdocTypeName',
+                  value: 'U'
+                }
+              }
+            ],
+            parameters: [
+              {
+                key: 'a',
+                optional: false,
+                right: {
+                  type: 'JsdocTypeName',
+                  value: 'T'
+                },
+                type: 'JsdocTypeKeyValue',
+                variadic: false
+              },
+              {
+                key: 'b',
+                optional: false,
+                right: {
+                  type: 'JsdocTypeName',
+                  value: 'U'
+                },
+                type: 'JsdocTypeKeyValue',
+                variadic: false
+              }
+            ],
+            meta: {
+              parameterSpacing: ' ',
+              typeParameterSpacing: ' ',
+              postGenericSpacing: ' ',
             },
             value: {
               type: 'JsdocTypeName',
