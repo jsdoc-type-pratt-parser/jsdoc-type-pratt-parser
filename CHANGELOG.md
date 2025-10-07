@@ -1,3 +1,11 @@
+## [6.9.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.9.0...v6.9.1) (2025-10-07)
+
+
+### Bug Fixes
+
+* **stringify:** add `preReturnMarkerSpacing` and `postReturnMarkerSpacing` to signatures and constructed methods ([860b748](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/860b748124694c0b5e3f722b8d1a488c9320646a))
+* **stringify:** add missing `postGenericSpacing` to JsdocTypeFunction ([24f9672](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/24f967286b7acf3726613ed762658607b3b51b17))
+
 # [6.9.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.8.0...v6.9.0) (2025-10-07)
 
 
