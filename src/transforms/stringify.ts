@@ -251,7 +251,7 @@ export function stringifyRules ({
         : ''
     }(${
       result.parameters.map(transform).join(',' + (result.meta?.parameterSpacing ?? ' '))
-    }): ${
+    })${result.meta?.preReturnMarkerSpacing ?? ''}:${result.meta?.postReturnMarkerSpacing ?? ' '}${
       transform(result.returnType)
     }`,
 
@@ -263,7 +263,7 @@ export function stringifyRules ({
         : ''
     }(${
       result.parameters.map(transform).join(',' + (result.meta?.parameterSpacing ?? ' '))
-    }): ${
+    })${result.meta?.preReturnMarkerSpacing ?? ''}:${result.meta?.postReturnMarkerSpacing ?? ' '}${
       transform(result.returnType)
     }`,
 
@@ -284,7 +284,7 @@ export function stringifyRules ({
           : ''
       }(${
         result.parameters.map(transform).join(',' + (result.meta.parameterSpacing ?? ' '))
-      }): ${
+      })${result.meta.preReturnMarkerSpacing ?? ''}:${result.meta.postReturnMarkerSpacing ?? ' '}${
         transform(result.returnType)
       }`
     },
@@ -328,7 +328,7 @@ export function stringifyRules ({
             : ''
         }(${
           result.parameters.map(transform).join(',' + (result.meta?.parameterSpacing ?? ' '))
-        }): ${transform(result.returnType)}`
+        })${result.meta?.preReturnMarkerSpacing ?? ''}:${result.meta?.postReturnMarkerSpacing ?? ' '}${transform(result.returnType)}`
       } else {
         if (computedPropertyStringifier === undefined) {
           throw new Error('Must have a computed property stringifier')
@@ -337,7 +337,7 @@ export function stringifyRules ({
           computedPropertyStringifier(result.value as Node).replace(/;$/u, '')
         }](${
           result.parameters.map(transform).join(',' + (result.meta?.parameterSpacing ?? ' '))
-        }): ${transform(result.returnType)}`
+        })${result.meta?.preReturnMarkerSpacing ?? ''}:${result.meta?.postReturnMarkerSpacing ?? ' '}${transform(result.returnType)}`
       }
     }
   }

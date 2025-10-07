@@ -250,7 +250,7 @@ describe('`stringifyRules`', () => {
   });
 
   it('should transform a call signature with spacing', () => {
-    const expected = '{<T,U> (a: T, b: U): SomeType}';
+    const expected = '{<T,U> (a: T, b: U) :SomeType}';
     const rootResult: RootResult = {
       type: 'JsdocTypeObject',
       meta: {
@@ -278,7 +278,9 @@ describe('`stringifyRules`', () => {
           meta: {
             parameterSpacing: ' ',
             postGenericSpacing: ' ',
-            typeParameterSpacing: ''
+            typeParameterSpacing: '',
+            preReturnMarkerSpacing: ' ',
+            postReturnMarkerSpacing: ''
           },
           parameters: [
             {
@@ -315,7 +317,7 @@ describe('`stringifyRules`', () => {
   });
 
   it('should transform a constructor signature with spacing', () => {
-    const expected = '{new<T,U> (a: T, b: U): SomeType}';
+    const expected = '{new<T,U> (a: T, b: U) :SomeType}';
     const rootResult: RootResult = {
       type: 'JsdocTypeObject',
       meta: {
@@ -344,7 +346,9 @@ describe('`stringifyRules`', () => {
             postNewSpacing: '',
             postGenericSpacing: ' ',
             parameterSpacing: ' ',
-            typeParameterSpacing: ''
+            typeParameterSpacing: '',
+            preReturnMarkerSpacing: ' ',
+            postReturnMarkerSpacing: ''
           },
           parameters: [
             {
@@ -381,7 +385,7 @@ describe('`stringifyRules`', () => {
   });
 
   it('should transform a method signature with spacing', () => {
-    const expected = '{aMethod <T,U> (a: T, b: U): SomeType}';
+    const expected = '{aMethod <T,U> (a: T, b: U) :SomeType}';
     const rootResult: RootResult = {
       type: 'JsdocTypeObject',
       meta: {
@@ -412,7 +416,9 @@ describe('`stringifyRules`', () => {
             parameterSpacing: ' ',
             postMethodNameSpacing: ' ',
             postGenericSpacing: ' ',
-            typeParameterSpacing: ''
+            typeParameterSpacing: '',
+            preReturnMarkerSpacing: ' ',
+            postReturnMarkerSpacing: ''
           },
           parameters: [
             {
@@ -1153,7 +1159,7 @@ describe('`stringifyRules`', () => {
   })
 
   it('should stringify a `JsdocTypeComputedMethod`', () => {
-    const expected = '{[someType](a: string,b: number): AnotherType}'
+    const expected = '{[someType](a: string,b: number) :AnotherType}'
     const rootResult: ObjectResult = {
       type: 'JsdocTypeObject',
       meta: {
@@ -1191,6 +1197,8 @@ describe('`stringifyRules`', () => {
               parameterSpacing: '',
               typeParameterSpacing: '',
               postGenericSpacing: '',
+              preReturnMarkerSpacing: ' ',
+              postReturnMarkerSpacing: ''
             },
             value: {
               type: 'JsdocTypeName',
@@ -1302,7 +1310,7 @@ describe('`stringifyRules`', () => {
   })
 
   it('should stringify a `JsdocTypeComputedMethod`', () => {
-    const expected = '{[SomeObject.someType()](a: string,b: number): AnotherType}'
+    const expected = '{[SomeObject.someType()](a: string,b: number) :AnotherType}'
     const rootResult: ObjectResult = {
       type: 'JsdocTypeObject',
       meta: {
@@ -1339,7 +1347,9 @@ describe('`stringifyRules`', () => {
             meta: {
               parameterSpacing: '',
               typeParameterSpacing: '',
-              postGenericSpacing: ''
+              postGenericSpacing: '',
+              preReturnMarkerSpacing: ' ',
+              postReturnMarkerSpacing: ''
             },
             value: {
               body: [
