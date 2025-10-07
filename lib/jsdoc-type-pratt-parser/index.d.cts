@@ -52,24 +52,39 @@ interface TypeParameterResult {
     defaultValue?: RootResult;
     name: NameResult;
     constraint?: RootResult;
+    meta?: {
+        defaultValueSpacing: string;
+    };
 }
 interface CallSignatureResult {
     type: 'JsdocTypeCallSignature';
     parameters: Array<RootResult | KeyValueResult>;
     returnType: RootResult;
     typeParameters?: TypeParameterResult[];
+    meta?: {
+        typeParameterSpacing: string;
+        postGenericSpacing: string;
+    };
 }
 interface ConstructorSignatureResult {
     type: 'JsdocTypeConstructorSignature';
     parameters: Array<RootResult | KeyValueResult>;
     returnType: RootResult;
     typeParameters?: TypeParameterResult[];
+    meta?: {
+        typeParameterSpacing: string;
+        postNewSpacing: string;
+        postGenericSpacing: string;
+    };
 }
 interface MethodSignatureResult {
     type: 'JsdocTypeMethodSignature';
     name: string;
     meta: {
         quote: QuoteStyle | undefined;
+        typeParameterSpacing?: string;
+        postMethodNameSpacing?: string;
+        postGenericSpacing?: string;
     };
     parameters: Array<RootResult | KeyValueResult>;
     returnType: RootResult;
@@ -90,6 +105,10 @@ interface ComputedMethodResult {
     parameters: Array<RootResult | KeyValueResult>;
     returnType: RootResult;
     typeParameters?: TypeParameterResult[];
+    meta?: {
+        typeParameterSpacing: string;
+        postGenericSpacing: string;
+    };
 }
 
 /**
@@ -172,6 +191,7 @@ interface GenericResult {
     meta: {
         brackets: 'angle' | 'square';
         dot: boolean;
+        elementSpacing?: string;
     };
 }
 /**
@@ -222,6 +242,9 @@ interface FunctionResult {
     arrow: boolean;
     parenthesis: boolean;
     typeParameters?: TypeParameterResult[];
+    meta?: {
+        typeParameterSpacing: string;
+    };
 }
 /**
  * An object type. Contains entries which can be {@link KeyValueResult}s or {@link NameResult}s. In most grammars the

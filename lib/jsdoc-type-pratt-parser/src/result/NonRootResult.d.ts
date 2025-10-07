@@ -52,24 +52,39 @@ export interface TypeParameterResult {
     defaultValue?: RootResult;
     name: NameResult;
     constraint?: RootResult;
+    meta?: {
+        defaultValueSpacing: string;
+    };
 }
 export interface CallSignatureResult {
     type: 'JsdocTypeCallSignature';
     parameters: Array<RootResult | KeyValueResult>;
     returnType: RootResult;
     typeParameters?: TypeParameterResult[];
+    meta?: {
+        typeParameterSpacing: string;
+        postGenericSpacing: string;
+    };
 }
 export interface ConstructorSignatureResult {
     type: 'JsdocTypeConstructorSignature';
     parameters: Array<RootResult | KeyValueResult>;
     returnType: RootResult;
     typeParameters?: TypeParameterResult[];
+    meta?: {
+        typeParameterSpacing: string;
+        postNewSpacing: string;
+        postGenericSpacing: string;
+    };
 }
 export interface MethodSignatureResult {
     type: 'JsdocTypeMethodSignature';
     name: string;
     meta: {
         quote: QuoteStyle | undefined;
+        typeParameterSpacing?: string;
+        postMethodNameSpacing?: string;
+        postGenericSpacing?: string;
     };
     parameters: Array<RootResult | KeyValueResult>;
     returnType: RootResult;
@@ -90,4 +105,8 @@ export interface ComputedMethodResult {
     parameters: Array<RootResult | KeyValueResult>;
     returnType: RootResult;
     typeParameters?: TypeParameterResult[];
+    meta?: {
+        typeParameterSpacing: string;
+        postGenericSpacing: string;
+    };
 }

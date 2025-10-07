@@ -79,6 +79,7 @@ export interface GenericResult {
     meta: {
         brackets: 'angle' | 'square';
         dot: boolean;
+        elementSpacing?: string;
     };
 }
 /**
@@ -129,6 +130,9 @@ export interface FunctionResult {
     arrow: boolean;
     parenthesis: boolean;
     typeParameters?: TypeParameterResult[];
+    meta?: {
+        typeParameterSpacing: string;
+    };
 }
 /**
  * An object type. Contains entries which can be {@link KeyValueResult}s or {@link NameResult}s. In most grammars the
