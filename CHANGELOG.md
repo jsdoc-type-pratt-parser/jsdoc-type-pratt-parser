@@ -1,3 +1,10 @@
+# [6.8.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.7.0...v6.8.0) (2025-10-07)
+
+
+### Features
+
+* **stringify:** make tuple, keyValue, function return type, and parameter spacing configurable ([124a498](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/124a498c3d4b5c01dfba7b18ca18602408bcf5e4))
+
 # [6.7.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.6.0...v6.7.0) (2025-10-07)
 
 
