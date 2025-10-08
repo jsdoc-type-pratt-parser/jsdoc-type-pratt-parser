@@ -1,3 +1,10 @@
+# [6.10.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.9.1...v6.10.0) (2025-10-08)
+
+
+### Features
+
+* **traverse:** report array index to onEnter/onLeave ([25e32f1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/25e32f15d5bbbf9f31c75ede459134a810f78639))
+
 ## [6.9.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.9.0...v6.9.1) (2025-10-07)
 
 
