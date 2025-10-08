@@ -190,18 +190,18 @@ describe('traverse', () => {
     traverse(union, onEnter, onLeave)
 
     expectOrder([
-      [onEnter, [union, undefined, undefined]],
-      [onEnter, [generic, union, 'elements']],
-      [onEnter, [name, generic, 'left']],
-      [onLeave, [name, generic, 'left']],
-      [onEnter, [typeA, generic, 'elements']],
-      [onLeave, [typeA, generic, 'elements']],
-      [onEnter, [typeB, generic, 'elements']],
-      [onLeave, [typeB, generic, 'elements']],
-      [onLeave, [generic, union, 'elements']],
-      [onEnter, [stringVal, union, 'elements']],
-      [onLeave, [stringVal, union, 'elements']],
-      [onLeave, [union, undefined, undefined]]
+      [onEnter, [union, undefined, undefined, undefined]],
+      [onEnter, [generic, union, 'elements', 0]],
+      [onEnter, [name, generic, 'left', undefined]],
+      [onLeave, [name, generic, 'left', undefined]],
+      [onEnter, [typeA, generic, 'elements', 0]],
+      [onLeave, [typeA, generic, 'elements', 0]],
+      [onEnter, [typeB, generic, 'elements', 1]],
+      [onLeave, [typeB, generic, 'elements', 1]],
+      [onLeave, [generic, union, 'elements', 0]],
+      [onEnter, [stringVal, union, 'elements', 1]],
+      [onLeave, [stringVal, union, 'elements', 1]],
+      [onLeave, [union, undefined, undefined, undefined]]
     ])
   })
 
@@ -262,20 +262,20 @@ describe('traverse', () => {
     traverse(functionResult, onEnter, onLeave)
 
     expectOrder([
-      [onEnter, [functionResult, undefined, undefined]],
-      [onEnter, [parameter, functionResult, 'parameters']],
-      [onLeave, [parameter, functionResult, 'parameters']],
-      [onEnter, [tuple, functionResult, 'returnType']],
-      [onEnter, [keyValueA, tuple, 'elements']],
-      [onEnter, [nameA, keyValueA, 'right']],
-      [onLeave, [nameA, keyValueA, 'right']],
-      [onLeave, [keyValueA, tuple, 'elements']],
-      [onEnter, [keyValueB, tuple, 'elements']],
-      [onEnter, [nameB, keyValueB, 'right']],
-      [onLeave, [nameB, keyValueB, 'right']],
-      [onLeave, [keyValueB, tuple, 'elements']],
-      [onLeave, [tuple, functionResult, 'returnType']],
-      [onLeave, [functionResult, undefined, undefined]]
+      [onEnter, [functionResult, undefined, undefined, undefined]],
+      [onEnter, [parameter, functionResult, 'parameters', 0]],
+      [onLeave, [parameter, functionResult, 'parameters', 0]],
+      [onEnter, [tuple, functionResult, 'returnType', undefined]],
+      [onEnter, [keyValueA, tuple, 'elements', 0]],
+      [onEnter, [nameA, keyValueA, 'right', undefined]],
+      [onLeave, [nameA, keyValueA, 'right', undefined]],
+      [onLeave, [keyValueA, tuple, 'elements', 0]],
+      [onEnter, [keyValueB, tuple, 'elements', 1]],
+      [onEnter, [nameB, keyValueB, 'right', undefined]],
+      [onLeave, [nameB, keyValueB, 'right', undefined]],
+      [onLeave, [keyValueB, tuple, 'elements', 1]],
+      [onLeave, [tuple, functionResult, 'returnType', undefined]],
+      [onLeave, [functionResult, undefined, undefined, undefined]]
     ])
   })
 })
