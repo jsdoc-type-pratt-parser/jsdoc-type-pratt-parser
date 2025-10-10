@@ -21,6 +21,11 @@ export class Parser {
   public readonly classContext?: boolean
   private rangeStart: number
   private readonly range: boolean
+  private readonly locStart: {
+    column: number,
+    line: number
+  }
+  private readonly loc: boolean
 
   constructor (grammar: Grammar, lexer: Lexer, baseParser?: Parser, {
     module,
@@ -29,6 +34,11 @@ export class Parser {
     classContext,
     range = false,
     rangeStart = 0,
+    loc = false,
+    locStart = {
+      line: 1,
+      column: 0
+    },
     externalParsers
   }: {
     module?: boolean,
@@ -37,6 +47,11 @@ export class Parser {
     classContext?: boolean,
     range?: boolean,
     rangeStart?: number,
+    loc?: boolean,
+    locStart?: {
+      column: number,
+      line: number
+    },
     externalParsers?: Record<string, ((
       // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Actual API
       text: string, options?: any
@@ -52,6 +67,8 @@ export class Parser {
     this.classContext = classContext
     this.rangeStart = rangeStart
     this.range = range
+    this.locStart = locStart
+    this.loc = loc
   }
 
   get lexer (): Lexer {
@@ -110,14 +127,28 @@ export class Parser {
    */
   private tryParslets (left: IntermediateResult | null, precedence: Precedence): IntermediateResult | null {
     for (const parslet of this.grammar) {
-      const start = this.rangeStart
+      const rangeStart = this.rangeStart
+      const locStartLine = this.locStart.line
+      const locStartColumn = this.locStart.column
       const result = parslet(this, precedence, left)
       if (result !== null) {
         if (this.range) {
           result.range = [
-            start,
+            rangeStart,
             this.rangeStart
           ]
+        }
+        if (this.loc) {
+          result.loc = {
+            end: {
+              line: this.locStart.line,
+              column: this.locStart.column
+            },
+            start: {
+              line: locStartLine,
+              column: locStartColumn
+            }
+          }
         }
         return result
       }
@@ -136,7 +167,15 @@ export class Parser {
 
     if (types.includes(this.lexer.current.type)) {
       if (this.range) {
+        /* c8 ignore next -- Default is for TS */
         this.rangeStart += this.lexer.current?.reduced ?? 0
+      }
+      if (this.loc) {
+        /* c8 ignore next 4 -- Defaults are for TS */
+        this.locStart.line += this.lexer.current?.line ?? 0
+        this.locStart.column = (this.lexer.current?.line ?? 0) > 0
+          ? this.lexer.current?.column ?? 0
+          : this.locStart.column + (this.lexer.current?.column ?? 0)
       }
       this._lexer = this.lexer.advance()
       return true

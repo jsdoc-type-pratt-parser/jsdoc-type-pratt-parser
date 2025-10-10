@@ -28,6 +28,11 @@ export function parse (
   {
     range = false,
     rangeStart,
+    loc = false,
+    locStart = {
+      column: 0,
+      line: 1,
+    },
     module = true,
     strictMode = true,
     asyncFunctionBody = true,
@@ -36,6 +41,11 @@ export function parse (
   }: {
     range?: boolean,
     rangeStart?: number,
+    loc?: boolean,
+    locStart?: {
+      column: number,
+      line: number,
+    },
     module?: boolean,
     strictMode?: boolean,
     asyncFunctionBody?: boolean,
@@ -55,7 +65,9 @@ export function parse (
         asyncFunctionBody,
         classContext,
         range,
-        rangeStart
+        rangeStart,
+        loc,
+        locStart
       })
       break
     case 'jsdoc':
@@ -65,7 +77,9 @@ export function parse (
         asyncFunctionBody,
         classContext,
         range,
-        rangeStart
+        rangeStart,
+        loc,
+        locStart
       })
       break
     case 'typescript':
@@ -80,6 +94,8 @@ export function parse (
           classContext,
           range,
           rangeStart,
+          loc,
+          locStart,
           externalParsers: {
             computedPropertyParser
           }
@@ -109,14 +125,24 @@ export function tryParse (
     asyncFunctionBody = true,
     classContext = false,
     range,
-    rangeStart
+    rangeStart,
+    loc = false,
+    locStart = {
+      column: 0,
+      line: 1,
+    }
   }: {
     module?: boolean,
     strictMode?: boolean,
     asyncFunctionBody?: boolean,
     classContext?: boolean,
     range?: boolean,
-    rangeStart?: number
+    rangeStart?: number,
+    loc?: boolean,
+    locStart?: {
+      column: number,
+      line: number
+    }
   } = {}
 ): RootResult {
   let error
@@ -128,7 +154,9 @@ export function tryParse (
         asyncFunctionBody,
         classContext,
         range,
-        rangeStart
+        rangeStart,
+        loc,
+        locStart
       })
     } catch (e) {
       error = e

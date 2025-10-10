@@ -30,16 +30,25 @@ export class Lexer {
     startOfLine ||= breakingWhitespaceRegex.test(text)
 
     const start = text.length
+    const initialWhitespace = (/^\s+/u).exec(text)?.[0] ?? ''
     text = text.trimStart()
     const trimmed = start - text.length
 
     for (const rule of lexerRules) {
       const partial = rule(text)
       if (partial !== null) {
+        const initialLines = initialWhitespace.split('\n')
+        const currentLines = partial.text.split('\n')
         const token = {
           ...partial,
           startOfLine,
-          reduced: trimmed + partial.text.length
+          reduced: trimmed + partial.text.length,
+          line: initialLines.length + currentLines.length - 2,
+          column: currentLines.length === 1
+            /* c8 ignore next 3 -- Defaults are for TS */
+            ? (initialLines.at(-1)?.length ?? 0) +
+              (currentLines.at(-1)?.length ?? 0)
+            : (currentLines.at(-1)?.length ?? 0)
         }
         text = text.slice(token.text.length)
         return { text, token }

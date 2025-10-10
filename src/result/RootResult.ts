@@ -12,11 +12,24 @@ import type {
   ComputedMethodResult
 } from './NonRootResult.js'
 
+export interface Location {
+  loc?: {
+    end: {
+      column: number,
+      line: number,
+    },
+    start: {
+      column: number,
+      line: number
+    }
+  }
+}
+
 export interface Range {
   range?: [number, number]
 }
 
-export interface BaseNode extends Range {}
+export interface BaseNode extends Range, Location {}
 
 /**
  * A parse result that corresponds to a valid type expression.
