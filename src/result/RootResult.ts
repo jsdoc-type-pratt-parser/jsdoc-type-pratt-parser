@@ -12,6 +12,12 @@ import type {
   ComputedMethodResult
 } from './NonRootResult.js'
 
+export interface Range {
+  range?: [number, number]
+}
+
+export interface BaseNode extends Range {}
+
 /**
  * A parse result that corresponds to a valid type expression.
  */
@@ -52,7 +58,7 @@ export type QuoteStyle = 'single' | 'double'
 /**
  * `element` is optional.
  */
-export interface OptionalResult<T extends RootResult> {
+export interface OptionalResult<T extends RootResult> extends BaseNode {
   type: 'JsdocTypeOptional'
   element: T
   meta: {
@@ -63,7 +69,7 @@ export interface OptionalResult<T extends RootResult> {
 /**
  * A nullable type.
  */
-export interface NullableResult<T extends RootResult> {
+export interface NullableResult<T extends RootResult> extends BaseNode {
   type: 'JsdocTypeNullable'
   element: T
   meta: {
@@ -74,7 +80,7 @@ export interface NullableResult<T extends RootResult> {
 /**
  * A not nullable type.
  */
-export interface NotNullableResult<T extends RootResult> {
+export interface NotNullableResult<T extends RootResult> extends BaseNode {
   type: 'JsdocTypeNotNullable'
   element: T
   meta: {
@@ -87,7 +93,7 @@ export interface NotNullableResult<T extends RootResult> {
  * or it is a spread tuple or object type and can occur inside these. For any mode that is not `jsdoc` this can
  * only occur in position `'suffix'`.
  */
-export interface VariadicResult<T extends RootResult> {
+export interface VariadicResult<T extends RootResult> extends BaseNode {
   type: 'JsdocTypeVariadic'
   element?: T
   meta: {
@@ -99,7 +105,7 @@ export interface VariadicResult<T extends RootResult> {
 /**
  * A type name.
  */
-export interface NameResult {
+export interface NameResult extends BaseNode {
   type: 'JsdocTypeName'
   value: string
 }
@@ -107,7 +113,7 @@ export interface NameResult {
 /**
  * A type union.
  */
-export interface UnionResult {
+export interface UnionResult extends BaseNode {
   type: 'JsdocTypeUnion'
   elements: RootResult[]
   meta?: {
@@ -122,7 +128,7 @@ export interface UnionResult {
  * property
  * `brackets`.
  */
-export interface GenericResult {
+export interface GenericResult extends BaseNode {
   type: 'JsdocTypeGeneric'
   left: RootResult
   elements: RootResult[]
@@ -137,7 +143,7 @@ export interface GenericResult {
 /**
  * A string value as a type.
  */
-export interface StringValueResult {
+export interface StringValueResult extends BaseNode {
   type: 'JsdocTypeStringValue'
   value: string
   meta: {
@@ -148,28 +154,28 @@ export interface StringValueResult {
 /**
  * The `null` type.
  */
-export interface NullResult {
+export interface NullResult extends BaseNode {
   type: 'JsdocTypeNull'
 }
 
 /**
  * The `undefined` type.
  */
-export interface UndefinedResult {
+export interface UndefinedResult extends BaseNode {
   type: 'JsdocTypeUndefined'
 }
 
 /**
  * The `any` type, represented by `*` (`any` is parsed as a name).
  */
-export interface AnyResult {
+export interface AnyResult extends BaseNode {
   type: 'JsdocTypeAny'
 }
 
 /**
  * The unknown type, represented by `?` (`unknown` is parsed as a name).
  */
-export interface UnknownResult {
+export interface UnknownResult extends BaseNode {
   type: 'JsdocTypeUnknown'
 }
 
@@ -179,7 +185,7 @@ export interface UnknownResult {
  * It can be a normal function type or an arrow, which is indicated by `arrow`. If `parenthesis` is false, it is any
  * kind of function without specified parameters or return type.
  */
-export interface FunctionResult {
+export interface FunctionResult extends BaseNode {
   type: 'JsdocTypeFunction'
   parameters: Array<RootResult | KeyValueResult>
   returnType?: RootResult
@@ -201,7 +207,7 @@ export interface FunctionResult {
  * keys need to be {@link NameResult}s. In some grammars it possible that an entry is only a {@link RootResult} or a
  * {@link NumberResult} without a key. The separator is `'comma'` by default.
  */
-export interface ObjectResult {
+export interface ObjectResult extends BaseNode {
   type: 'JsdocTypeObject'
   elements: Array<ObjectFieldResult | JsdocObjectFieldResult | CallSignatureResult | ConstructorSignatureResult | MethodSignatureResult | ComputedPropertyResult | ComputedMethodResult>
   meta: {
@@ -217,7 +223,7 @@ export type SpecialNamePathType = 'module' | 'event' | 'external'
 /**
  * A module type. Often this is a `left` type of {@link NamePathResult}.
  */
-export interface SpecialNamePath<Type extends SpecialNamePathType = SpecialNamePathType> {
+export interface SpecialNamePath<Type extends SpecialNamePathType = SpecialNamePathType> extends BaseNode {
   type: 'JsdocTypeSpecialNamePath'
   value: string
   specialType: Type
@@ -229,7 +235,7 @@ export interface SpecialNamePath<Type extends SpecialNamePathType = SpecialNameP
 /**
  * A name path type. This can be a property path separated by `.` or an inner or static member (`~`, `#`).
  */
-export interface NamePathResult {
+export interface NamePathResult extends BaseNode {
   type: 'JsdocTypeNamePath'
   left: RootResult
   right: PropertyResult | SpecialNamePath<'event'> | IndexedAccessIndexResult
@@ -239,7 +245,7 @@ export interface NamePathResult {
 /**
  * A symbol type. Only available in `jsdoc` mode.
  */
-export interface SymbolResult {
+export interface SymbolResult extends BaseNode {
   type: 'JsdocTypeSymbol'
   value: string
   element?: NumberResult | NameResult | VariadicResult<NameResult>
@@ -248,7 +254,7 @@ export interface SymbolResult {
 /**
  * A typeof type. The `element` normally should be a name.
  */
-export interface TypeOfResult {
+export interface TypeOfResult extends BaseNode {
   type: 'JsdocTypeTypeof'
   element: RootResult
 }
@@ -256,7 +262,7 @@ export interface TypeOfResult {
 /**
  * A keyof type. The `element` normally should be a name.
  */
-export interface KeyOfResult {
+export interface KeyOfResult extends BaseNode {
   type: 'JsdocTypeKeyof'
   element: RootResult
 }
@@ -265,7 +271,7 @@ export interface KeyOfResult {
  * An import type. The `element` is {@link StringValueResult} representing the path. Often the `left` side of an
  * {@link NamePathResult}.
  */
-export interface ImportResult {
+export interface ImportResult extends BaseNode {
   type: 'JsdocTypeImport'
   element: StringValueResult
 }
@@ -273,7 +279,7 @@ export interface ImportResult {
 /**
  * A tuple type containing multiple `elements`.
  */
-export interface TupleResult {
+export interface TupleResult extends BaseNode {
   type: 'JsdocTypeTuple'
   elements: RootResult[] | KeyValueResult[],
   meta?: {
@@ -284,7 +290,7 @@ export interface TupleResult {
 /**
  * A type enclosed in parenthesis. Often {@link UnionResult}s ot {@link IntersectionResult}s.
  */
-export interface ParenthesisResult {
+export interface ParenthesisResult extends BaseNode {
   type: 'JsdocTypeParenthesis'
   element: RootResult
 }
@@ -292,7 +298,7 @@ export interface ParenthesisResult {
 /**
  * An intersection type.
  */
-export interface IntersectionResult {
+export interface IntersectionResult extends BaseNode {
   type: 'JsdocTypeIntersection'
   elements: RootResult[]
 }
@@ -301,7 +307,7 @@ export interface IntersectionResult {
  * A number. Can be the key of an {@link ObjectResult} entry or the parameter of a {@link SymbolResult}.
  * Is a {@link NonRootResult}.
  */
-export interface NumberResult {
+export interface NumberResult extends BaseNode {
   type: 'JsdocTypeNumber'
   value: number
 }
@@ -309,7 +315,7 @@ export interface NumberResult {
 /**
  * A typescript predicate. Is used in return annotations like this: `@return {x is string}`.
  */
-export interface PredicateResult {
+export interface PredicateResult extends BaseNode {
   type: 'JsdocTypePredicate'
   left: NameResult
   right: RootResult
@@ -318,7 +324,7 @@ export interface PredicateResult {
 /**
  * An asserts result. Is used like this: `@return {asserts foo is Bar}`
  */
-export interface AssertsResult {
+export interface AssertsResult extends BaseNode {
   type: 'JsdocTypeAsserts'
   left: NameResult
   right: RootResult
@@ -327,7 +333,7 @@ export interface AssertsResult {
 /**
  * A TypeScript readonly modifier. Is used like this: `readonly string[]`.
  */
-export interface ReadonlyArrayResult {
+export interface ReadonlyArrayResult extends BaseNode {
   type: 'JsdocTypeReadonlyArray'
   element: RootResult
 }
@@ -335,7 +341,7 @@ export interface ReadonlyArrayResult {
 /**
  * An asserts result without `is`. Is used like this: `@return {asserts foo}`
  */
-export interface AssertsPlainResult {
+export interface AssertsPlainResult extends BaseNode {
   type: 'JsdocTypeAssertsPlain'
   element: NameResult
 }
@@ -343,7 +349,7 @@ export interface AssertsPlainResult {
 /**
  * A TypeScript conditional. Is used like this: `A extends B ? C : D`.
  */
-export interface ConditionalResult {
+export interface ConditionalResult extends BaseNode {
   type: 'JsdocTypeConditional'
   checksType: RootResult
   extendsType: RootResult
@@ -354,7 +360,7 @@ export interface ConditionalResult {
 /**
  * A TypeScript template literal. Is used like: `\`someText${someType}\``
  */
-export interface TemplateLiteralResult {
+export interface TemplateLiteralResult extends BaseNode {
   type: 'JsdocTypeTemplateLiteral'
   literals: string[],
   interpolations: RootResult[]

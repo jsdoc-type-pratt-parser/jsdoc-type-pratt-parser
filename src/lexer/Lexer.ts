@@ -28,13 +28,18 @@ export class Lexer {
 
   private static read (lexerRules: Rule[], text: string, startOfLine = false): { text: string, token: Token } {
     startOfLine ||= breakingWhitespaceRegex.test(text)
-    text = text.trim()
+
+    const start = text.length
+    text = text.trimStart()
+    const trimmed = start - text.length
+
     for (const rule of lexerRules) {
       const partial = rule(text)
       if (partial !== null) {
         const token = {
           ...partial,
-          startOfLine
+          startOfLine,
+          reduced: trimmed + partial.text.length
         }
         text = text.slice(token.text.length)
         return { text, token }

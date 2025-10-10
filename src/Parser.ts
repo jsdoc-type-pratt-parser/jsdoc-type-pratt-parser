@@ -19,18 +19,24 @@ export class Parser {
   public readonly strictMode?: boolean
   public readonly asyncFunctionBody?: boolean
   public readonly classContext?: boolean
+  private rangeStart: number
+  private readonly range: boolean
 
   constructor (grammar: Grammar, lexer: Lexer, baseParser?: Parser, {
     module,
     strictMode,
     asyncFunctionBody,
     classContext,
+    range = false,
+    rangeStart = 0,
     externalParsers
   }: {
     module?: boolean,
     strictMode?: boolean,
     asyncFunctionBody?: boolean,
     classContext?: boolean,
+    range?: boolean,
+    rangeStart?: number,
     externalParsers?: Record<string, ((
       // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Actual API
       text: string, options?: any
@@ -44,6 +50,8 @@ export class Parser {
     this.strictMode = strictMode
     this.asyncFunctionBody = asyncFunctionBody
     this.classContext = classContext
+    this.rangeStart = rangeStart
+    this.range = range
   }
 
   get lexer (): Lexer {
@@ -102,8 +110,15 @@ export class Parser {
    */
   private tryParslets (left: IntermediateResult | null, precedence: Precedence): IntermediateResult | null {
     for (const parslet of this.grammar) {
+      const start = this.rangeStart
       const result = parslet(this, precedence, left)
       if (result !== null) {
+        if (this.range) {
+          result.range = [
+            start,
+            this.rangeStart
+          ]
+        }
         return result
       }
     }
@@ -120,6 +135,9 @@ export class Parser {
     }
 
     if (types.includes(this.lexer.current.type)) {
+      if (this.range) {
+        this.rangeStart += this.lexer.current?.reduced ?? 0
+      }
       this._lexer = this.lexer.advance()
       return true
     } else {
