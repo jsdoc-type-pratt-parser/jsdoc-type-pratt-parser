@@ -26,12 +26,16 @@ export type ParseMode = 'closure' | 'jsdoc' | 'typescript'
 export function parse (
   expression: string, mode: ParseMode,
   {
+    range = false,
+    rangeStart,
     module = true,
     strictMode = true,
     asyncFunctionBody = true,
     classContext = false,
     computedPropertyParser
   }: {
+    range?: boolean,
+    rangeStart?: number,
     module?: boolean,
     strictMode?: boolean,
     asyncFunctionBody?: boolean,
@@ -49,7 +53,9 @@ export function parse (
         module,
         strictMode,
         asyncFunctionBody,
-        classContext
+        classContext,
+        range,
+        rangeStart
       })
       break
     case 'jsdoc':
@@ -57,7 +63,9 @@ export function parse (
         module,
         strictMode,
         asyncFunctionBody,
-        classContext
+        classContext,
+        range,
+        rangeStart
       })
       break
     case 'typescript':
@@ -70,6 +78,8 @@ export function parse (
           strictMode,
           asyncFunctionBody,
           classContext,
+          range,
+          rangeStart,
           externalParsers: {
             computedPropertyParser
           }
@@ -98,11 +108,15 @@ export function tryParse (
     strictMode = true,
     asyncFunctionBody = true,
     classContext = false,
+    range,
+    rangeStart
   }: {
     module?: boolean,
     strictMode?: boolean,
     asyncFunctionBody?: boolean,
     classContext?: boolean,
+    range?: boolean,
+    rangeStart?: number
   } = {}
 ): RootResult {
   let error
@@ -112,7 +126,9 @@ export function tryParse (
         module,
         strictMode,
         asyncFunctionBody,
-        classContext
+        classContext,
+        range,
+        rangeStart
       })
     } catch (e) {
       error = e

@@ -36,6 +36,7 @@ describe('Parser', () => {
     const token = (error as NoParsletFoundError).getToken()
 
     expect(token).to.deep.equal({
+      reduced: 0,
       type: 'EOF',
       text: '',
       startOfLine: false
@@ -59,6 +60,7 @@ describe('Parser', () => {
     const token = (error as EarlyEndOfParseError).getToken()
 
     expect(token).to.deep.equal({
+      reduced: 1,
       startOfLine: false,
       type: ']',
       text: ']'
