@@ -37,6 +37,8 @@ describe('Parser', () => {
 
     expect(token).to.deep.equal({
       reduced: 0,
+      column: 0,
+      line: 0,
       type: 'EOF',
       text: '',
       startOfLine: false
@@ -61,6 +63,8 @@ describe('Parser', () => {
 
     expect(token).to.deep.equal({
       reduced: 1,
+      column: 1,
+      line: 0,
       startOfLine: false,
       type: ']',
       text: ']'

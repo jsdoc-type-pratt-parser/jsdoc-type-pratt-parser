@@ -50,6 +50,8 @@ export interface Token {
   type: TokenType
   text: string
   reduced?: number
+  line?: number
+  column?: number
   startOfLine: boolean
 }
 
