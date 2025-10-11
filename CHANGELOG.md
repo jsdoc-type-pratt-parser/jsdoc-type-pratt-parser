@@ -1,3 +1,11 @@
+# [6.11.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.10.0...v6.11.0) (2025-10-11)
+
+
+### Features
+
+* add `loc`; fixes [#134](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/issues/134) ([c4ff6a1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/c4ff6a117780749c6e0d414deeb9bc2af2955fdf))
+* add `range` ([717207c](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/717207c9e01076f338202e96a399fc6a45df1f1e))
+
 # [6.10.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.9.1...v6.10.0) (2025-10-08)
 
 
