@@ -1,3 +1,10 @@
+## [6.11.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.11.0...v6.11.1) (2025-11-07)
+
+
+### Bug Fixes
+
+* **mapped types:** fix precedence so unions can be parsed after `in` ([3ba726d](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/3ba726de65ba6373df656bee974de6aed3bc7ddc))
+
 # [6.11.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.10.0...v6.11.0) (2025-10-11)
 
 
