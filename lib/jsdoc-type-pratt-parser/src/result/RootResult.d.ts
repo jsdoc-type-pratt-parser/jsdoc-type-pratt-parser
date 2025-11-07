@@ -19,7 +19,7 @@ export interface BaseNode extends Range, Location {
 /**
  * A parse result that corresponds to a valid type expression.
  */
-export type RootResult = NameResult | UnionResult | GenericResult | StringValueResult | NullResult | UndefinedResult | AnyResult | UnknownResult | FunctionResult | ObjectResult | NamePathResult | SymbolResult | TypeOfResult | KeyOfResult | ImportResult | TupleResult | SpecialNamePath | OptionalResult<RootResult> | NullableResult<RootResult> | NotNullableResult<RootResult> | VariadicResult<RootResult> | ParenthesisResult | IntersectionResult | NumberResult | PredicateResult | AssertsResult | ReadonlyArrayResult | AssertsPlainResult | ConditionalResult | TemplateLiteralResult;
+export type RootResult = NameResult | InferResult | UnionResult | GenericResult | StringValueResult | NullResult | UndefinedResult | AnyResult | UnknownResult | FunctionResult | ObjectResult | NamePathResult | SymbolResult | TypeOfResult | KeyOfResult | ImportResult | TupleResult | SpecialNamePath | OptionalResult<RootResult> | NullableResult<RootResult> | NotNullableResult<RootResult> | VariadicResult<RootResult> | ParenthesisResult | IntersectionResult | NumberResult | PredicateResult | AssertsResult | ReadonlyArrayResult | AssertsPlainResult | ConditionalResult | TemplateLiteralResult;
 export type QuoteStyle = 'single' | 'double';
 /**
  * `element` is optional.
@@ -72,6 +72,15 @@ export interface NameResult extends BaseNode {
     value: string;
 }
 /**
+ * A TypeScript `infer` type parameter within a generic argument list.
+ * Represents the `infer X` construct when it appears as a generic argument
+ * (e.g. `Map<any, infer V>`) or alongside other parameters.
+ */
+export interface InferResult extends BaseNode {
+    type: 'JsdocTypeInfer';
+    element: NameResult;
+}
+/**
  * A type union.
  */
 export interface UnionResult extends BaseNode {
@@ -92,7 +101,6 @@ export interface GenericResult extends BaseNode {
     type: 'JsdocTypeGeneric';
     left: RootResult;
     elements: RootResult[];
-    infer?: boolean;
     meta: {
         brackets: 'angle' | 'square';
         dot: boolean;
