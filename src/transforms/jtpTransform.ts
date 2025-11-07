@@ -530,6 +530,8 @@ const jtpRules: TransformRules<JtpResult> = {
 
   JsdocTypeIndexSignature: notAvailableTransform,
 
+  JsdocTypeInfer: notAvailableTransform,
+
   JsdocTypeAsserts: notAvailableTransform,
 
   JsdocTypeReadonlyArray: notAvailableTransform,
