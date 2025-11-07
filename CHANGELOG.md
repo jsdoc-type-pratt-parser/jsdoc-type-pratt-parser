@@ -1,3 +1,15 @@
+# [7.0.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.11.1...v7.0.0) (2025-11-07)
+
+
+### Features
+
+* allow `infer` in other positions in generic argument lists ([645bdb1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/645bdb1765bb122f0fc748d60c98b1a1a45ba518))
+
+
+### BREAKING CHANGES
+
+* Removes infer: boolean from generics in favor of a root level InferResult
+
 ## [6.11.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.11.0...v6.11.1) (2025-11-07)
 
 
