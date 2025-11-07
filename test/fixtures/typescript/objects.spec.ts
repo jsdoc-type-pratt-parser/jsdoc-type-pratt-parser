@@ -814,6 +814,137 @@ describe('typescript objects tests', () => {
     })
   })
 
+  describe('mapped type with string literal union keys and function value', () => {
+    testFixture({
+      input: '{[key in "abc"|"def"]?: (node: Node, ...extraArgs: any[]) => void}',
+      stringified: '{[key in "abc" | "def"]?: (node: Node, ...extraArgs: any[]) => void}',
+      modes: ['typescript'],
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: { separator: 'comma' },
+        elements: [
+          {
+            type: 'JsdocTypeObjectField',
+            key: {
+              type: 'JsdocTypeMappedType',
+              key: 'key',
+              right: {
+                type: 'JsdocTypeUnion',
+                elements: [
+                  {
+                    type: 'JsdocTypeStringValue',
+                    value: 'abc',
+                    meta: { quote: 'double' }
+                  },
+                  {
+                    type: 'JsdocTypeStringValue',
+                    value: 'def',
+                    meta: { quote: 'double' }
+                  }
+                ]
+              }
+            },
+            optional: true,
+            readonly: false,
+            right: {
+              type: 'JsdocTypeFunction',
+              parameters: [
+                {
+                  type: 'JsdocTypeKeyValue',
+                  key: 'node',
+                  optional: false,
+                  variadic: false,
+                  right: {
+                    type: 'JsdocTypeName',
+                    value: 'Node'
+                  }
+                },
+                {
+                  type: 'JsdocTypeKeyValue',
+                  key: 'extraArgs',
+                  optional: false,
+                  variadic: true,
+                  right: {
+                    type: 'JsdocTypeGeneric',
+                    left: { type: 'JsdocTypeName', value: 'Array' },
+                    elements: [ { type: 'JsdocTypeName', value: 'any' } ],
+                    meta: { brackets: 'square', dot: false }
+                  }
+                }
+              ],
+              returnType: { type: 'JsdocTypeName', value: 'void' },
+              arrow: true,
+              constructor: false,
+              parenthesis: true
+            },
+            meta: { quote: undefined }
+          }
+        ]
+      }
+    })
+  })
+
+  describe('mapped type with string literal key', () => {
+    testFixture({
+      input: '{[key in "abc"]: number}',
+      modes: ['typescript'],
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: { separator: 'comma' },
+        elements: [
+          {
+            type: 'JsdocTypeObjectField',
+            key: {
+              type: 'JsdocTypeMappedType',
+              key: 'key',
+              right: {
+                type: 'JsdocTypeStringValue',
+                value: 'abc',
+                meta: { quote: 'double' }
+              }
+            },
+            optional: false,
+            readonly: false,
+            right: { type: 'JsdocTypeName', value: 'number' },
+            meta: { quote: undefined }
+          }
+        ]
+      }
+    })
+  })
+
+  describe('mapped type with string literal union keys', () => {
+    testFixture({
+      input: '{[key in "abc"|"def"]: number}',
+      stringified: '{[key in "abc" | "def"]: number}',
+      modes: ['typescript'],
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: { separator: 'comma' },
+        elements: [
+          {
+            type: 'JsdocTypeObjectField',
+            key: {
+              type: 'JsdocTypeMappedType',
+              key: 'key',
+              right: {
+                type: 'JsdocTypeUnion',
+                elements: [
+                  { type: 'JsdocTypeStringValue', value: 'abc', meta: { quote: 'double' } },
+                  { type: 'JsdocTypeStringValue', value: 'def', meta: { quote: 'double' } }
+                ]
+              }
+            },
+            optional: false,
+            readonly: false,
+            right: { type: 'JsdocTypeName', value: 'number' },
+            meta: { quote: undefined }
+          }
+        ]
+      }
+    })
+  })
+
   describe('union in index signature', () => {
     testFixture({
       input: '{[key: string | number]: boolean}',
