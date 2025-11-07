@@ -43,11 +43,13 @@ describe('typescript conditional', () => {
             type: 'JsdocTypeName',
             value: 'B'
           },
-          infer: true,
           elements: [
             {
-              type: 'JsdocTypeName',
-              value: 'b'
+              type: 'JsdocTypeInfer',
+              element: {
+                type: 'JsdocTypeName',
+                value: 'b'
+              }
             }
           ],
           meta: {
@@ -63,6 +65,28 @@ describe('typescript conditional', () => {
           type: 'JsdocTypeName',
           value: 'C'
         }
+      }
+    })
+  })
+
+  describe('should support `infer` in a non-initial generic parameter', () => {
+    testFixture({
+      input: 'T extends Map<any, infer V> ? V : never',
+      modes: ['typescript'],
+      expected: {
+        type: 'JsdocTypeConditional',
+        checksType: { type: 'JsdocTypeName', value: 'T' },
+        extendsType: {
+          type: 'JsdocTypeGeneric',
+          left: { type: 'JsdocTypeName', value: 'Map' },
+          elements: [
+            { type: 'JsdocTypeName', value: 'any' },
+            { type: 'JsdocTypeInfer', element: { type: 'JsdocTypeName', value: 'V' } }
+          ],
+          meta: { brackets: 'angle', dot: false }
+        },
+        trueType: { type: 'JsdocTypeName', value: 'V' },
+        falseType: { type: 'JsdocTypeName', value: 'never' }
       }
     })
   })
@@ -83,11 +107,13 @@ describe('typescript conditional', () => {
             type: 'JsdocTypeName',
             value: 'B'
           },
-          infer: true,
           elements: [
             {
-              type: 'JsdocTypeName',
-              value: 'b'
+              type: 'JsdocTypeInfer',
+              element: {
+                type: 'JsdocTypeName',
+                value: 'b'
+              }
             }
           ],
           meta: {

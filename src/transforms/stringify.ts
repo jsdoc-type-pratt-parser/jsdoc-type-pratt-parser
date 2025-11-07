@@ -62,6 +62,8 @@ export function stringifyRules ({
 
     JsdocTypeName: result => result.value,
 
+    JsdocTypeInfer: (result, transform) => `infer ${transform(result.element)}`,
+
     JsdocTypeTuple: (result, transform) => `[${(result.elements as NonRootResult[]).map(transform).join(',' + (result.meta?.elementSpacing ?? ' '))}]`,
 
     JsdocTypeVariadic: (result, transform) => result.meta.position === undefined
@@ -97,7 +99,7 @@ export function stringifyRules ({
           return `${transformed}[]`
         }
       } else {
-        return `${transform(result.left)}${result.meta.dot ? '.' : ''}<${result.infer === true ? 'infer ' : ''}${result.elements.map(transform).join(',' + (result.meta.elementSpacing ?? ' '))}>`
+        return `${transform(result.left)}${result.meta.dot ? '.' : ''}<${result.elements.map(transform).join(',' + (result.meta.elementSpacing ?? ' '))}>`
       }
     },
 

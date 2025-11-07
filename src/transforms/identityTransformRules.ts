@@ -150,6 +150,11 @@ export function identityTransformRules (): TransformRules<NonRootResult> {
 
     JsdocTypeName: result => result,
 
+    JsdocTypeInfer: (result, transform) => ({
+      type: 'JsdocTypeInfer',
+      element: transform(result.element) as NameResult
+    }),
+
     JsdocTypeFunction: (result, transform) => {
       const transformed: FunctionResult = {
         type: 'JsdocTypeFunction',

@@ -36,6 +36,7 @@ export interface BaseNode extends Range, Location {}
  */
 export type RootResult =
   NameResult
+  | InferResult
   | UnionResult
   | GenericResult
   | StringValueResult
@@ -124,6 +125,16 @@ export interface NameResult extends BaseNode {
 }
 
 /**
+ * A TypeScript `infer` type parameter within a generic argument list.
+ * Represents the `infer X` construct when it appears as a generic argument
+ * (e.g. `Map<any, infer V>`) or alongside other parameters.
+ */
+export interface InferResult extends BaseNode {
+  type: 'JsdocTypeInfer'
+  element: NameResult
+}
+
+/**
  * A type union.
  */
 export interface UnionResult extends BaseNode {
@@ -145,7 +156,6 @@ export interface GenericResult extends BaseNode {
   type: 'JsdocTypeGeneric'
   left: RootResult
   elements: RootResult[]
-  infer?: boolean
   meta: {
     brackets: 'angle' | 'square'
     dot: boolean,
