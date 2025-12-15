@@ -1145,6 +1145,120 @@ describe('`stringifyRules`', () => {
     expect(result).to.equal(expected)
   })
 
+  it('should transform a single object field with bracketSpacing', () => {
+    const expected = `{ range: boolean }`
+    const rootResult: ObjectResult = {
+      type: 'JsdocTypeObject',
+      meta: {
+        separator: 'linebreak',
+        bracketSpacing: ' '
+      },
+      elements: [
+        {
+          type: 'JsdocTypeObjectField',
+          key: 'range',
+          optional: false,
+          readonly: false,
+          right: {
+            type: 'JsdocTypeName',
+            value: 'boolean'
+          },
+          meta: {
+            quote: undefined
+          }
+        }
+      ]
+    }
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  })
+
+  it('should transform multiple object fields with bracketSpacing', () => {
+    const expected = `{ range: boolean, loc: number }`
+    const rootResult: ObjectResult = {
+      type: 'JsdocTypeObject',
+      meta: {
+        separator: 'comma',
+        bracketSpacing: ' '
+      },
+      elements: [
+        {
+          type: 'JsdocTypeObjectField',
+          key: 'range',
+          optional: false,
+          readonly: false,
+          right: {
+            type: 'JsdocTypeName',
+            value: 'boolean'
+          },
+          meta: {
+            quote: undefined
+          }
+        },
+        {
+          type: 'JsdocTypeObjectField',
+          key: 'loc',
+          optional: false,
+          readonly: false,
+          right: {
+            type: 'JsdocTypeName',
+            value: 'number'
+          },
+          meta: {
+            quote: undefined
+          }
+        }
+      ]
+    }
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  })
+
+  it('should ignore bracketSpacing with line breaks', () => {
+    const expected = `{
+  range: boolean,
+  loc: number
+}`
+    const rootResult: ObjectResult = {
+      type: 'JsdocTypeObject',
+      meta: {
+        separator: 'comma-and-linebreak',
+        propertyIndent: '  ',
+        bracketSpacing: ' '
+      },
+      elements: [
+        {
+          type: 'JsdocTypeObjectField',
+          key: 'range',
+          optional: false,
+          readonly: false,
+          right: {
+            type: 'JsdocTypeName',
+            value: 'boolean'
+          },
+          meta: {
+            quote: undefined
+          }
+        },
+        {
+          type: 'JsdocTypeObjectField',
+          key: 'loc',
+          optional: false,
+          readonly: false,
+          right: {
+            type: 'JsdocTypeName',
+            value: 'number'
+          },
+          meta: {
+            quote: undefined
+          }
+        }
+      ]
+    }
+    const result = stringify(rootResult)
+    expect(result).to.equal(expected)
+  })
+
   it('should throw with arrow with no `returnType`', () => {
     expect(() => {
       const rootResult: FunctionResult = {

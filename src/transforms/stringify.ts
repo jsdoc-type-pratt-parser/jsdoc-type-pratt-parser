@@ -177,9 +177,11 @@ export function stringifyRules ({
       const separatorForSingleObjectField = result.meta.separatorForSingleObjectField ?? false
       const trailingPunctuation = result.meta.trailingPunctuation ?? false
 
+      const bracketSpacing = result.meta.bracketSpacing ?? '';
+
       return `{${
       /* c8 ignore next -- Guard */
-      (lbType && (separatorForSingleObjectField || result.elements.length > 1) ? '\n' + (result.meta.propertyIndent ?? '') : '') +
+      (lbType && (separatorForSingleObjectField || result.elements.length > 1) ? '\n' + (result.meta.propertyIndent ?? '') : bracketSpacing) +
       result.elements.map(transform).join(
         (result.meta.separator === 'comma' ? ', ' : lbType
           ? lbEnding +
@@ -196,7 +198,7 @@ export function stringifyRules ({
              ? ';'
              : ''
           : '') +
-      (lbType && result.elements.length > 1 ? '\n' : '')
+      (lbType && result.elements.length > 1 ? '\n' : bracketSpacing)
     }}`
     },
 
