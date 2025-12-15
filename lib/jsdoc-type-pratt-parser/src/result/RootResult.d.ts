@@ -172,6 +172,7 @@ export interface ObjectResult extends BaseNode {
     type: 'JsdocTypeObject';
     elements: Array<ObjectFieldResult | JsdocObjectFieldResult | CallSignatureResult | ConstructorSignatureResult | MethodSignatureResult | ComputedPropertyResult | ComputedMethodResult>;
     meta: {
+        bracketSpacing?: string;
         separator: 'comma' | 'semicolon' | 'linebreak' | 'comma-and-linebreak' | 'semicolon-and-linebreak' | undefined;
         separatorForSingleObjectField?: boolean;
         trailingPunctuation?: boolean;
