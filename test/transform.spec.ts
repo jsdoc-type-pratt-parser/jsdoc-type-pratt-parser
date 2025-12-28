@@ -274,7 +274,7 @@ describe('transform', () => {
     expect(xform).to.deep.equal(expected)
   })
 
-  it('Gets transform for `JsdocTypeComputedMethod` with custom parser', function () {
+  it('Gets transform for `JsdocTypeComputedMethod` with custom parser', () => {
     const expected = {
       type: 'JsdocTypeComputedMethod',
       parameters: [],

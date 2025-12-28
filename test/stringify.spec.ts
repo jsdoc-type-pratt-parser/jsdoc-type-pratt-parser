@@ -454,7 +454,7 @@ describe('`stringifyRules`', () => {
     expect(result).to.equal(expected)
   })
 
-  it('should stringify tuple elements without spacing', function () {
+  it('should stringify tuple elements without spacing', () => {
     const expected = '[it,needs,to,be]'
     const rootResult: RootResult = {
       type: 'JsdocTypeTuple',
