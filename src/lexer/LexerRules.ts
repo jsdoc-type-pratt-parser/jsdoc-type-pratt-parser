@@ -76,7 +76,6 @@ function getTemplateLiteral (text: string): string | null {
  */
 export function getTemplateLiteralLiteral (text: string): string | null {
   let position = 0
-  let char = undefined
   const start = text[0]
   let escaped = false
 
@@ -86,7 +85,7 @@ export function getTemplateLiteralLiteral (text: string): string | null {
 
   while (position < text.length) {
     position++
-    char = text[position]
+    const char = text[position]
     if (!escaped && (char === '`' || (char === '$' && text[position + 1] === '{'))) {
       break
     }
@@ -120,8 +119,8 @@ function makeGetIdentifier (
   }
 }
 
-const numberRegex = /^(-?((\d*\.\d+|\d+)([Ee][+-]?\d+)?))/
-const looseNumberRegex = /^(NaN|-?((\d*\.\d+|\d+)([Ee][+-]?\d+)?|Infinity))/
+const numberRegex = /^(?:-?(?:(?:\d*\.\d+|\d+)(?:[Ee][+-]?\d+)?))/
+const looseNumberRegex = /^(?:NaN|-?(?:(?:\d*\.\d+|\d+)(?:[Ee][+-]?\d+)?|Infinity))/
 
 function getGetNumber (numberRegex: RegExp) {
   return function getNumber (text: string): string | null {
@@ -131,7 +130,7 @@ function getGetNumber (numberRegex: RegExp) {
 
 const looseIdentifierRule: Rule = text => {
   const value = makeGetIdentifier(identifierContinueRegexLoose)(text)
-  if (value == null) {
+  if (value === null) {
     return null
   }
 
@@ -143,7 +142,7 @@ const looseIdentifierRule: Rule = text => {
 
 const identifierRule: Rule = text => {
   const value = makeGetIdentifier(identifierContinueRegex)(text)
-  if (value == null) {
+  if (value === null) {
     return null
   }
 
@@ -171,7 +170,7 @@ function makeKeyWordRule (type: TokenType): Rule {
 
 const stringValueRule: Rule = text => {
   const value = getQuoted(text)
-  if (value == null) {
+  if (value === null) {
     return null
   }
   return {
@@ -182,7 +181,7 @@ const stringValueRule: Rule = text => {
 
 const templateLiteralRule: Rule = text => {
   const value = getTemplateLiteral(text)
-  if (value == null) {
+  if (value === null) {
     return null
   }
   return {
