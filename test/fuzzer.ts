@@ -30,15 +30,15 @@ function choose<T> (arr: T[]): T {
 function makeFixedRule (weight: number, open: string, close?: string): FuzzingRule {
   if (close === undefined) {
     return {
-      getString: () => ' ' + open + ' ',
+      getString: () => ` ${open} `,
       shouldClose: false,
       weight
     }
   } else {
     return {
-      getString: () => ' ' + open + ' ',
+      getString: () => ` ${open} `,
       shouldClose: true,
-      getClosing: () => ' ' + close + ' ',
+      getClosing: () => ` ${close} `,
       weight
     }
   }
@@ -59,7 +59,7 @@ const makeIdentifierRule = (weight: number): NonClosingFuzzingRule => ({
     for (let i = 1; i < STRING_LENGTH; i++) {
       result += choose(identifierContinue)
     }
-    return ' ' + result + ' '
+    return ` ${result} `
   },
   shouldClose: false,
   weight
@@ -76,7 +76,7 @@ const makeStringValueRule = (weight: number): NonClosingFuzzingRule => ({
       result += randomChar()
     }
     const escape = choose(['\'', '"'])
-    return ' ' + escape + result + escape + ' '
+    return ` ${escape}${result}${escape} `
   },
   shouldClose: false,
   weight
@@ -89,7 +89,7 @@ const makeNumberRule = (weight: number): NonClosingFuzzingRule => ({
     for (let i = 0; i < STRING_LENGTH; i++) {
       result += choose(numberChars)
     }
-    return ' ' + result + ' '
+    return ` ${result} `
   },
   shouldClose: false,
   weight

@@ -35,7 +35,7 @@ export function stringifyRules ({
         if (!result.parenthesis) {
           return stringified
         }
-        stringified += `(${result.parameters.map(transform).join(',' + (result.meta?.parameterSpacing ?? ' '))})`
+        stringified += `(${result.parameters.map(transform).join(`,${result.meta?.parameterSpacing ?? ' '}`)})`
         if (result.returnType !== undefined) {
           stringified += `${result.meta?.preReturnMarkerSpacing ?? ''}:${result.meta?.postReturnMarkerSpacing ?? ' '}${transform(result.returnType)}`
         }
@@ -46,15 +46,15 @@ export function stringifyRules ({
         }
         let stringified = `${
           result.typeParameters !== undefined
-            ? `<${result.typeParameters.map(transform).join(',' + (result.meta?.typeParameterSpacing ?? ' '))}>${
+            ? `<${result.typeParameters.map(transform).join(`,${result.meta?.typeParameterSpacing ?? ' '}`)}>${
           result.meta?.postGenericSpacing ?? ''
         }`
             : ''
-        }(${result.parameters.map(transform).join(',' + (result.meta?.parameterSpacing ?? ' '))})${
+        }(${result.parameters.map(transform).join(`,${result.meta?.parameterSpacing ?? ' '}`)})${
           result.meta?.preReturnMarkerSpacing ?? ' '
         }=>${result.meta?.postReturnMarkerSpacing ?? ' '}${transform(result.returnType)}`
         if (result.constructor) {
-          stringified = 'new ' + stringified
+          stringified = `new ${stringified}`
         }
         return stringified
       }
@@ -64,7 +64,7 @@ export function stringifyRules ({
 
     JsdocTypeInfer: (result, transform) => `infer ${transform(result.element)}`,
 
-    JsdocTypeTuple: (result, transform) => `[${(result.elements as NonRootResult[]).map(transform).join(',' + (result.meta?.elementSpacing ?? ' '))}]`,
+    JsdocTypeTuple: (result, transform) => `[${(result.elements as NonRootResult[]).map(transform).join(`,${result.meta?.elementSpacing ?? ' '}`)}]`,
 
     JsdocTypeVariadic: (result, transform) => result.meta.position === undefined
       ? '...'
@@ -99,7 +99,7 @@ export function stringifyRules ({
           return `${transformed}[]`
         }
       } else {
-        return `${transform(result.left)}${result.meta.dot ? '.' : ''}<${result.elements.map(transform).join(',' + (result.meta.elementSpacing ?? ' '))}>`
+        return `${transform(result.left)}${result.meta.dot ? '.' : ''}<${result.elements.map(transform).join(`,${result.meta.elementSpacing ?? ' '}`)}>`
       }
     },
 
@@ -132,7 +132,7 @@ export function stringifyRules ({
       if (result.right === undefined) {
         return text
       } else {
-        return text + `:${result.meta.postColonSpacing ?? ' '}${transform(result.right)}`
+        return `${text}:${result.meta.postColonSpacing ?? ' '}${transform(result.right)}`
       }
     },
 
@@ -141,9 +141,9 @@ export function stringifyRules ({
     JsdocTypeKeyValue: (result, transform) => {
       let text = result.key
       if (result.optional) {
-        text += (result.meta?.postKeySpacing ?? '') + '?' + (result.meta?.postOptionalSpacing ?? '')
+        text += `${result.meta?.postKeySpacing ?? ''}?${result.meta?.postOptionalSpacing ?? ''}`
       } else if (result.variadic) {
-        text = '...' + (result.meta?.postVariadicSpacing ?? '') + text
+        text = `...${result.meta?.postVariadicSpacing ?? ''}${text}`
       } else if (result.right !== undefined) {
         text += (result.meta?.postKeySpacing ?? '')
       }
@@ -151,7 +151,7 @@ export function stringifyRules ({
       if (result.right === undefined) {
         return text
       } else {
-        return text + `:${(result.meta?.postColonSpacing ?? ' ')}${transform(result.right)}`
+        return `${text}:${(result.meta?.postColonSpacing ?? ' ')}${transform(result.right)}`
       }
     },
 
@@ -181,7 +181,7 @@ export function stringifyRules ({
 
       return `{${
       /* c8 ignore next -- Guard */
-      (lbType && (separatorForSingleObjectField || result.elements.length > 1) ? '\n' + (result.meta.propertyIndent ?? '') : bracketSpacing) +
+      (lbType && (separatorForSingleObjectField || result.elements.length > 1) ? `\n${result.meta.propertyIndent ?? ''}` : bracketSpacing) +
       result.elements.map(transform).join(
         (result.meta.separator === 'comma' ? ', ' : lbType
           ? lbEnding +
@@ -249,24 +249,24 @@ export function stringifyRules ({
 
     JsdocTypeCallSignature: (result, transform) => `${
       result.typeParameters !== undefined
-        ? `<${result.typeParameters.map(transform).join(',' + (result.meta?.typeParameterSpacing ?? ' '))}>${
+        ? `<${result.typeParameters.map(transform).join(`,${result.meta?.typeParameterSpacing ?? ' '}`)}>${
           result.meta?.postGenericSpacing ?? ''
         }`
         : ''
     }(${
-      result.parameters.map(transform).join(',' + (result.meta?.parameterSpacing ?? ' '))
+      result.parameters.map(transform).join(`,${result.meta?.parameterSpacing ?? ' '}`)
     })${result.meta?.preReturnMarkerSpacing ?? ''}:${result.meta?.postReturnMarkerSpacing ?? ' '}${
       transform(result.returnType)
     }`,
 
     JsdocTypeConstructorSignature: (result, transform) => `new${result.meta?.postNewSpacing ?? ' '}${
       result.typeParameters !== undefined
-        ? `<${result.typeParameters.map(transform).join(',' + (result.meta?.typeParameterSpacing ?? ' '))}>${
+        ? `<${result.typeParameters.map(transform).join(`,${result.meta?.typeParameterSpacing ?? ' '}`)}>${
           result.meta?.postGenericSpacing ?? ''
         }`
         : ''
     }(${
-      result.parameters.map(transform).join(',' + (result.meta?.parameterSpacing ?? ' '))
+      result.parameters.map(transform).join(`,${result.meta?.parameterSpacing ?? ' '}`)
     })${result.meta?.preReturnMarkerSpacing ?? ''}:${result.meta?.postReturnMarkerSpacing ?? ' '}${
       transform(result.returnType)
     }`,
@@ -282,12 +282,12 @@ export function stringifyRules ({
         result.meta.postMethodNameSpacing ?? ''
       }${
         result.typeParameters !== undefined
-          ? `<${result.typeParameters.map(transform).join(',' + (result.meta.typeParameterSpacing ?? ' '))}>${
+          ? `<${result.typeParameters.map(transform).join(`,${result.meta.typeParameterSpacing ?? ' '}`)}>${
           result.meta.postGenericSpacing ?? ''
         }`
           : ''
       }(${
-        result.parameters.map(transform).join(',' + (result.meta.parameterSpacing ?? ' '))
+        result.parameters.map(transform).join(`,${result.meta.parameterSpacing ?? ' '}`)
       })${result.meta.preReturnMarkerSpacing ?? ''}:${result.meta.postReturnMarkerSpacing ?? ' '}${
         transform(result.returnType)
       }`
@@ -301,8 +301,8 @@ export function stringifyRules ({
       //    (even empty string)
       result.literals.slice(0, -1).map(
         (literal, idx) =>
-          literal.replace(/`/gu, '\\`') + '${' + transform(result.interpolations[idx]) + '}'
-      ).join('') + result.literals.slice(-1)[0].replace(/`/gu, '\\`')
+          `${literal.replace(/`/gv, '\\`')}\${${transform(result.interpolations[idx])}}`
+      ).join('') + result.literals.slice(-1)[0].replace(/`/gv, '\\`')
     }\``),
 
     JsdocTypeComputedProperty: (result, transform) => {
@@ -315,7 +315,7 @@ export function stringifyRules ({
           throw new Error('Must have a computed property stringifier')
         }
         return `[${
-          computedPropertyStringifier(result.value as Node).replace(/;$/u, '')
+          computedPropertyStringifier(result.value as Node).replace(/;$/v, '')
         }]`
       }
     },
@@ -326,21 +326,21 @@ export function stringifyRules ({
           result.optional ? '?' : ''
         }${
           result.typeParameters !== undefined
-            ? `<${result.typeParameters.map(transform).join(',' + (result.meta?.typeParameterSpacing ?? ' '))}>${
+            ? `<${result.typeParameters.map(transform).join(`,${result.meta?.typeParameterSpacing ?? ' '}`)}>${
               result.meta?.postGenericSpacing ?? ''
             }`
             : ''
         }(${
-          result.parameters.map(transform).join(',' + (result.meta?.parameterSpacing ?? ' '))
+          result.parameters.map(transform).join(`,${result.meta?.parameterSpacing ?? ' '}`)
         })${result.meta?.preReturnMarkerSpacing ?? ''}:${result.meta?.postReturnMarkerSpacing ?? ' '}${transform(result.returnType)}`
       } else {
         if (computedPropertyStringifier === undefined) {
           throw new Error('Must have a computed property stringifier')
         }
         return `[${
-          computedPropertyStringifier(result.value as Node).replace(/;$/u, '')
+          computedPropertyStringifier(result.value as Node).replace(/;$/v, '')
         }](${
-          result.parameters.map(transform).join(',' + (result.meta?.parameterSpacing ?? ' '))
+          result.parameters.map(transform).join(`,${result.meta?.parameterSpacing ?? ' '}`)
         })${result.meta?.preReturnMarkerSpacing ?? ''}:${result.meta?.postReturnMarkerSpacing ?? ' '}${transform(result.returnType)}`
       }
     }

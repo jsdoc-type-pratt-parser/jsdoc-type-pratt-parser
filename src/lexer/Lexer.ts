@@ -1,7 +1,7 @@
 import type { Token } from './Token.js'
 import type { Rule } from './LexerRules.js'
 
-const breakingWhitespaceRegex = /^\s*\n\s*/
+const breakingWhitespaceRegex = /^\s*\n\s*/v
 
 export class Lexer {
   private readonly text: string = ''
@@ -30,7 +30,7 @@ export class Lexer {
     startOfLine ||= breakingWhitespaceRegex.test(text)
 
     const start = text.length
-    const initialWhitespace = (/^\s+/u).exec(text)?.[0] ?? ''
+    const initialWhitespace = (/^\s+/v).exec(text)?.[0] ?? ''
     text = text.trimStart()
     const trimmed = start - text.length
 
@@ -54,7 +54,7 @@ export class Lexer {
         return { text, token }
       }
     }
-    throw new Error('Unexpected Token ' + text)
+    throw new Error(`Unexpected Token ${text}`)
   }
 
   remaining (): string {

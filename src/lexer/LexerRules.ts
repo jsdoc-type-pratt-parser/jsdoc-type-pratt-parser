@@ -95,9 +95,9 @@ export function getTemplateLiteralLiteral (text: string): string | null {
   return text.slice(0, position)
 }
 
-const identifierStartRegex = /[$_\p{ID_Start}]|\\u\p{Hex_Digit}{4}|\\u\{0*(?:\p{Hex_Digit}{1,5}|10\p{Hex_Digit}{4})\}/u
-const identifierContinueRegex = /[$\p{ID_Continue}\u200C\u200D]|\\u\p{Hex_Digit}{4}|\\u\{0*(?:\p{Hex_Digit}{1,5}|10\p{Hex_Digit}{4})\}/u
-const identifierContinueRegexLoose = /[$\-\p{ID_Continue}\u200C\u200D]|\\u\p{Hex_Digit}{4}|\\u\{0*(?:\p{Hex_Digit}{1,5}|10\p{Hex_Digit}{4})\}/u
+const identifierStartRegex = /[$_\p{ID_Start}]|\\u\p{Hex_Digit}{4}|\\u\{0*(?:\p{Hex_Digit}{1,5}|10\p{Hex_Digit}{4})\}/v
+const identifierContinueRegex = /[$\p{ID_Continue}\u200C\u200D]|\\u\p{Hex_Digit}{4}|\\u\{0*(?:\p{Hex_Digit}{1,5}|10\p{Hex_Digit}{4})\}/v
+const identifierContinueRegexLoose = /[$\-\p{ID_Continue}\u200C\u200D]|\\u\p{Hex_Digit}{4}|\\u\{0*(?:\p{Hex_Digit}{1,5}|10\p{Hex_Digit}{4})\}/v
 
 function makeGetIdentifier (
   identifierContinueRegex: RegExp
@@ -119,8 +119,8 @@ function makeGetIdentifier (
   }
 }
 
-const numberRegex = /^(?:-?(?:(?:\d*\.\d+|\d+)(?:[Ee][+-]?\d+)?))/
-const looseNumberRegex = /^(?:NaN|-?(?:(?:\d*\.\d+|\d+)(?:[Ee][+-]?\d+)?|Infinity))/
+const numberRegex = /^(?:-?(?:(?:\d*\.\d+|\d+)(?:[Ee][+\-]?\d+)?))/v
+const looseNumberRegex = /^(?:NaN|-?(?:(?:\d*\.\d+|\d+)(?:[Ee][+\-]?\d+)?|Infinity))/v
 
 function getGetNumber (numberRegex: RegExp) {
   return function getNumber (text: string): string | null {
