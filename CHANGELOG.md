@@ -1,3 +1,19 @@
+# [7.1.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v7.0.0...v7.1.0) (2026-01-20)
+
+
+### Bug Fixes
+
+* add id-token permission and drop NPM_TOKEN ([43d2b54](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/43d2b54f84e9aa06e80072678d1f458781de1751))
+* attempt to reutilize NPM_TOKEN ([132f25a](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/132f25a6c1669fae3d7cff8e49da594ff541a99b))
+* avoid conflict with registry-url and NPM_TOKEN ([8fd296f](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/8fd296f5146845bec1b1fb4943729a8a5aa8e25a))
+* remove NPM_TOKEN for OIDC publishing ([7efcf45](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/7efcf4565ba8f3985bbade7a012219fea5b26767))
+* update for trusted publishing release ([dc35f9b](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/dc35f9b5326c993235959df911620e3b82ffd002))
+
+
+### Features
+
+* **stringify:** `bracketSpacing` meta for objects ([c9195e8](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/c9195e8d88125979dce914814f5ec322b7d5c6cc))
+
 # [7.0.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v6.11.1...v7.0.0) (2025-11-07)
 
 
