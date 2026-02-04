@@ -1,3 +1,10 @@
+## [7.1.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v7.1.0...v7.1.1) (2026-02-04)
+
+
+### Bug Fixes
+
+* conditionals with keyof and nullable precedence ([09e5a2a](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/09e5a2abf02fa145d053fd3decd846b6f2e52dfe))
+
 # [7.1.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v7.0.0...v7.1.0) (2026-01-20)
 
 
