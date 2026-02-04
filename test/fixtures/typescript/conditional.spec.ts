@@ -27,6 +27,46 @@ describe('typescript conditional', () => {
     })
   })
 
+  describe('should parse a conditional with keyof', () => {
+    testFixture({
+      input: 'K extends keyof Abc ? Abc[K] : Def',
+      modes: ['typescript'],
+      expected: {
+        type: 'JsdocTypeConditional',
+        checksType: {
+          type: 'JsdocTypeName',
+          value: 'K'
+        },
+        extendsType: {
+          type: 'JsdocTypeKeyof',
+          element: {
+            type: 'JsdocTypeName',
+            value: 'Abc'
+          }
+        },
+        trueType: {
+          type: 'JsdocTypeNamePath',
+          left: {
+            type: 'JsdocTypeName',
+            value: 'Abc'
+          },
+          right: {
+            type: 'JsdocTypeProperty',
+            value: 'K',
+            meta: {
+              quote: undefined
+            }
+          },
+          pathType: 'property-brackets'
+        },
+        falseType: {
+          type: 'JsdocTypeName',
+          value: 'Def'
+        }
+      }
+    })
+  })
+
   describe('should support `infer` within a conditional', () => {
     testFixture({
       input: 'A extends B<infer b> ? b : C',

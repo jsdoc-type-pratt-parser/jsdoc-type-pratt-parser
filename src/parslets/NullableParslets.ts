@@ -8,7 +8,7 @@ export const nullableParslet: ParsletFunction = (parser, precedence, left) => {
   const next = parser.lexer.next.type
 
   const accept = ((left === null) && type === '?' && !isQuestionMarkUnknownType(next)) ||
-    ((left !== null) && type === '?')
+    ((left !== null) && type === '?' && Precedence.NULLABLE > precedence)
 
   if (!accept) {
     return null
