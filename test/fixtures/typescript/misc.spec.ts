@@ -1,6 +1,17 @@
 import { testFixture } from '../Fixture.js'
 
 describe('typescript misc tests', () => {
+  describe('unique symbol', () => {
+    testFixture({
+      input: 'unique symbol',
+      modes: ['typescript'],
+      expected: {
+        type: 'JsdocTypeName',
+        value: 'unique symbol'
+      }
+    })
+  })
+
   describe('function parameter list with trailing comma', () => {
     testFixture({
       input: 'function( TrailingComma, ): string',
