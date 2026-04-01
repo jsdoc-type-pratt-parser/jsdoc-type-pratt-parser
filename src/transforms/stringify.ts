@@ -64,6 +64,8 @@ export function stringifyRules ({
 
     JsdocTypeInfer: (result, transform) => `infer ${transform(result.element)}`,
 
+    JsdocTypeUniqueSymbol: () => 'unique symbol',
+
     JsdocTypeTuple: (result, transform) => `[${(result.elements as NonRootResult[]).map(transform).join(`,${result.meta?.elementSpacing ?? ' '}`)}]`,
 
     JsdocTypeVariadic: (result, transform) => result.meta.position === undefined

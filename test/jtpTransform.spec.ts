@@ -415,4 +415,11 @@ describe('transform', () => {
       jtpTransform(parseResult)
     }).to.throw('Index signatures and mapped types are not supported')
   })
+
+  it('Throws with `JsdocTypeUniqueSymbol`', () => {
+    const parseResult: RootResult = {
+      type: 'JsdocTypeUniqueSymbol'
+    }
+    expect(() => jtpTransform(parseResult)).to.throw('This transform is not available. Are you trying the correct parsing mode?')
+  })
 })

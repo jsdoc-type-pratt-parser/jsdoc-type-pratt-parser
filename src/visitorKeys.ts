@@ -16,6 +16,7 @@ export const visitorKeys: VisitorKeys = {
   JsdocTypeMappedType: ['right'],
   JsdocTypeName: [],
   JsdocTypeInfer: ['element'],
+  JsdocTypeUniqueSymbol: [],
   JsdocTypeNamePath: ['left', 'right'],
   JsdocTypeNotNullable: ['element'],
   JsdocTypeNull: [],

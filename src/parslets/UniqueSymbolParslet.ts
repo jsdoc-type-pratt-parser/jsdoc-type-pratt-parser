@@ -18,7 +18,6 @@ export const uniqueSymbolParslet: ParsletFunction = (parser, _precedence, left) 
   parser.consume('Identifier')
 
   return {
-    type: 'JsdocTypeName',
-    value: 'unique symbol'
+    type: 'JsdocTypeUniqueSymbol'
   }
 }

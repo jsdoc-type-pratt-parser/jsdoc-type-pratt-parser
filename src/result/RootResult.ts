@@ -35,8 +35,9 @@ export interface BaseNode extends Range, Location {}
  * A parse result that corresponds to a valid type expression.
  */
 export type RootResult =
-  NameResult
+  | NameResult
   | InferResult
+  | UniqueSymbolResult
   | UnionResult
   | GenericResult
   | StringValueResult
@@ -132,6 +133,13 @@ export interface NameResult extends BaseNode {
 export interface InferResult extends BaseNode {
   type: 'JsdocTypeInfer'
   element: NameResult
+}
+
+/**
+ * The TypeScript `unique symbol` type.
+ */
+export interface UniqueSymbolResult extends BaseNode {
+  type: 'JsdocTypeUniqueSymbol'
 }
 
 /**

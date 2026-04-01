@@ -170,4 +170,11 @@ describe('transform', () => {
       catharsisTransform(parseResult as RootResult)
     }).to.throw('JsdocTypeIndexedAccessIndex is not supported in catharsis')
   })
+
+  it('Throws with `JsdocTypeUniqueSymbol`', () => {
+    const parseResult: RootResult = {
+      type: 'JsdocTypeUniqueSymbol'
+    }
+    expect(() => catharsisTransform(parseResult)).to.throw('This transform is not available. Are you trying the correct parsing mode?')
+  })
 })
