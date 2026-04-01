@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/strict-void-return -- Temporary disable */
 import { expect, use } from 'chai'
 import { type SinonSpy, spy } from 'sinon'
 import sinonChai from 'sinon-chai'
