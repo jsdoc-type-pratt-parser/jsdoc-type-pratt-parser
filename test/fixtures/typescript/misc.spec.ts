@@ -6,8 +6,17 @@ describe('typescript misc tests', () => {
       input: 'unique symbol',
       modes: ['typescript'],
       expected: {
-        type: 'JsdocTypeName',
-        value: 'unique symbol'
+        type: 'JsdocTypeUniqueSymbol'
+      },
+      catharsis: {
+        closure: 'fail',
+        jsdoc: 'fail'
+      },
+      jtp: {
+        closure: 'fail',
+        jsdoc: 'fail',
+        typescript: 'fail',
+        permissive: 'fail'
       }
     })
   })

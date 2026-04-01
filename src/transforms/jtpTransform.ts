@@ -532,6 +532,8 @@ const jtpRules: TransformRules<JtpResult> = {
 
   JsdocTypeInfer: notAvailableTransform,
 
+  JsdocTypeUniqueSymbol: notAvailableTransform,
+
   JsdocTypeAsserts: notAvailableTransform,
 
   JsdocTypeReadonlyArray: notAvailableTransform,

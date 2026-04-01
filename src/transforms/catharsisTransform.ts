@@ -313,6 +313,7 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
   JsdocTypeMappedType: notAvailableTransform,
   JsdocTypeIndexSignature: notAvailableTransform,
   JsdocTypeInfer: notAvailableTransform,
+  JsdocTypeUniqueSymbol: notAvailableTransform,
   JsdocTypeImport: notAvailableTransform,
   JsdocTypeKeyof: notAvailableTransform,
   JsdocTypeTuple: notAvailableTransform,

@@ -155,6 +155,8 @@ export function identityTransformRules (): TransformRules<NonRootResult> {
       element: transform(result.element) as NameResult
     }),
 
+    JsdocTypeUniqueSymbol: result => result,
+
     JsdocTypeFunction: (result, transform) => {
       const transformed: FunctionResult = {
         type: 'JsdocTypeFunction',
