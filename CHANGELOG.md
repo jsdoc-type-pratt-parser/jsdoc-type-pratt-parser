@@ -1,3 +1,11 @@
+# [7.2.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v7.1.1...v7.2.0) (2026-04-01)
+
+
+### Features
+
+* **typescript:** support unique symbol type ([f7ebf84](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/f7ebf84563772cfba2d781c27a860441532e793e))
+* **typescript:** use dedicated unique symbol node ([7c9dc43](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/7c9dc4382f299c48f084b597f57ec5d61160e5d3))
+
 ## [7.1.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v7.1.0...v7.1.1) (2026-02-04)
 
 
