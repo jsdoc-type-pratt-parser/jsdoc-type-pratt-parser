@@ -19,7 +19,7 @@ export interface BaseNode extends Range, Location {
 /**
  * A parse result that corresponds to a valid type expression.
  */
-export type RootResult = NameResult | InferResult | UniqueSymbolResult | UnionResult | GenericResult | StringValueResult | NullResult | UndefinedResult | AnyResult | UnknownResult | FunctionResult | ObjectResult | NamePathResult | SymbolResult | TypeOfResult | KeyOfResult | ImportResult | TupleResult | SpecialNamePath | OptionalResult<RootResult> | NullableResult<RootResult> | NotNullableResult<RootResult> | VariadicResult<RootResult> | ParenthesisResult | IntersectionResult | NumberResult | PredicateResult | AssertsResult | ReadonlyArrayResult | AssertsPlainResult | ConditionalResult | TemplateLiteralResult;
+export type RootResult = NameResult | InferResult | UniqueSymbolResult | UnionResult | GenericResult | StringValueResult | NullResult | UndefinedResult | AnyResult | UnknownResult | FunctionResult | ObjectResult | NamePathResult | SymbolResult | TypeOfResult | KeyOfResult | ImportResult | TupleResult | SpecialNamePath | OptionalResult<RootResult> | NullableResult<RootResult> | NotNullableResult<RootResult> | VariadicResult<RootResult> | ParenthesisResult | IntersectionResult | NumberResult | BigIntResult | PredicateResult | AssertsResult | ReadonlyArrayResult | AssertsPlainResult | ConditionalResult | TemplateLiteralResult;
 export type QuoteStyle = 'single' | 'double';
 /**
  * `element` is optional.
@@ -267,6 +267,14 @@ export interface IntersectionResult extends BaseNode {
 export interface NumberResult extends BaseNode {
     type: 'JsdocTypeNumber';
     value: number;
+}
+/**
+ * A bigint literal.
+ * Is a {@link NonRootResult}.
+ */
+export interface BigIntResult extends BaseNode {
+    type: 'JsdocTypeBigInt';
+    value: bigint;
 }
 /**
  * A typescript predicate. Is used in return annotations like this: `@return {x is string}`.

@@ -152,7 +152,7 @@ interface BaseNode extends Range, Location {
 /**
  * A parse result that corresponds to a valid type expression.
  */
-type RootResult = NameResult | InferResult | UniqueSymbolResult | UnionResult | GenericResult | StringValueResult | NullResult | UndefinedResult | AnyResult | UnknownResult | FunctionResult | ObjectResult | NamePathResult | SymbolResult | TypeOfResult | KeyOfResult | ImportResult | TupleResult | SpecialNamePath | OptionalResult<RootResult> | NullableResult<RootResult> | NotNullableResult<RootResult> | VariadicResult<RootResult> | ParenthesisResult | IntersectionResult | NumberResult | PredicateResult | AssertsResult | ReadonlyArrayResult | AssertsPlainResult | ConditionalResult | TemplateLiteralResult;
+type RootResult = NameResult | InferResult | UniqueSymbolResult | UnionResult | GenericResult | StringValueResult | NullResult | UndefinedResult | AnyResult | UnknownResult | FunctionResult | ObjectResult | NamePathResult | SymbolResult | TypeOfResult | KeyOfResult | ImportResult | TupleResult | SpecialNamePath | OptionalResult<RootResult> | NullableResult<RootResult> | NotNullableResult<RootResult> | VariadicResult<RootResult> | ParenthesisResult | IntersectionResult | NumberResult | BigIntResult | PredicateResult | AssertsResult | ReadonlyArrayResult | AssertsPlainResult | ConditionalResult | TemplateLiteralResult;
 type QuoteStyle = 'single' | 'double';
 /**
  * `element` is optional.
@@ -400,6 +400,14 @@ interface IntersectionResult extends BaseNode {
 interface NumberResult extends BaseNode {
     type: 'JsdocTypeNumber';
     value: number;
+}
+/**
+ * A bigint literal.
+ * Is a {@link NonRootResult}.
+ */
+interface BigIntResult extends BaseNode {
+    type: 'JsdocTypeBigInt';
+    value: bigint;
 }
 /**
  * A typescript predicate. Is used in return annotations like this: `@return {x is string}`.
@@ -718,4 +726,4 @@ type VisitorKeys = {
 };
 declare const visitorKeys: VisitorKeys;
 
-export { type AnyResult, type AssertsPlainResult, type AssertsResult, type BaseNode, type CallSignatureResult, type ComputedMethodResult, type ComputedPropertyResult, type ConditionalResult, type ConstructorSignatureResult, type FunctionResult, type GenericResult, type ImportResult, type IndexSignatureResult, type IndexedAccessIndexResult, type InferResult, type IntersectionResult, type JsdocObjectFieldResult, type KeyOfResult, type KeyValueResult, type Location, type MappedTypeResult, type MethodSignatureResult, type NamePathResult, type NameResult, type NodeVisitor, type NonRootResult, type NotNullableResult, type NullResult, type NullableResult, type NumberResult, type ObjectFieldResult, type ObjectResult, type OptionalResult, type ParenthesisResult, type ParseMode, type PredicateResult, type PropertyResult, type QuoteStyle, type Range, type ReadonlyArrayResult, type RootResult, type SpecialNamePath, type SpecialNamePathType, type StringValueResult, type SymbolResult, type TemplateLiteralResult, type TransformFunction, type TransformRule, type TransformRules, type TupleResult, type TypeOfResult, type TypeParameterResult, type UndefinedResult, type UnionResult, type UniqueSymbolResult, type UnknownResult, type VariadicResult, type VisitorKeys, catharsisTransform, identityTransformRules, jtpTransform, parse, parseName, parseNamePath, stringify, stringifyRules, transform, traverse, tryParse, visitorKeys };
+export { type AnyResult, type AssertsPlainResult, type AssertsResult, type BaseNode, type BigIntResult, type CallSignatureResult, type ComputedMethodResult, type ComputedPropertyResult, type ConditionalResult, type ConstructorSignatureResult, type FunctionResult, type GenericResult, type ImportResult, type IndexSignatureResult, type IndexedAccessIndexResult, type InferResult, type IntersectionResult, type JsdocObjectFieldResult, type KeyOfResult, type KeyValueResult, type Location, type MappedTypeResult, type MethodSignatureResult, type NamePathResult, type NameResult, type NodeVisitor, type NonRootResult, type NotNullableResult, type NullResult, type NullableResult, type NumberResult, type ObjectFieldResult, type ObjectResult, type OptionalResult, type ParenthesisResult, type ParseMode, type PredicateResult, type PropertyResult, type QuoteStyle, type Range, type ReadonlyArrayResult, type RootResult, type SpecialNamePath, type SpecialNamePathType, type StringValueResult, type SymbolResult, type TemplateLiteralResult, type TransformFunction, type TransformRule, type TransformRules, type TupleResult, type TypeOfResult, type TypeParameterResult, type UndefinedResult, type UnionResult, type UniqueSymbolResult, type UnknownResult, type VariadicResult, type VisitorKeys, catharsisTransform, identityTransformRules, jtpTransform, parse, parseName, parseNamePath, stringify, stringifyRules, transform, traverse, tryParse, visitorKeys };
