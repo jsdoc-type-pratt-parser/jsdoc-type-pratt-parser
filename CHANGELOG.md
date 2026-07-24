@@ -1,3 +1,15 @@
+# [8.0.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v7.3.0...v8.0.0) (2026-07-24)
+
+
+### Bug Fixes
+
+* for JSON-serialization, change bigint value to string representation ([75adfcc](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/75adfcc86f0cfe70fe726b7ea8279dc8c7e73f13))
+
+
+### BREAKING CHANGES
+
+* Changes `value` to be a string instead of a bigint.
+
 # [7.3.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v7.2.0...v7.3.0) (2026-07-24)
 
 
