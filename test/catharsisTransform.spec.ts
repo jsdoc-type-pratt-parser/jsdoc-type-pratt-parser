@@ -101,6 +101,19 @@ describe('transform', () => {
     })
   })
 
+  it('Gets transform for `JsdocTypeName` value `function`', () => {
+    const parseResult: RootResult = {
+      type: 'JsdocTypeName',
+      value: 'function'
+    }
+
+    const xform = catharsisTransform(parseResult)
+    expect(xform).to.deep.equal({
+      type: 'FunctionType',
+      params: []
+    })
+  })
+
   it('Gets transform for `JsdocTypeKeyValue` (undefined `right`)', () => {
     const expected = {
       key: {
