@@ -6,6 +6,10 @@ module.exports = {
     'catharsis',
 
     // Peer dependency issues with `eslint-config-love`
-    '@typescript-eslint/eslint-plugin'
+    '@typescript-eslint/eslint-plugin',
+    'eslint',
+
+    // Peer dependency issue with typedoc
+    'typescript'
   ]
 };
