@@ -407,7 +407,7 @@ interface NumberResult extends BaseNode {
  */
 interface BigIntResult extends BaseNode {
     type: 'JsdocTypeBigInt';
-    value: bigint;
+    value: string;
 }
 /**
  * A typescript predicate. Is used in return annotations like this: `@return {x is string}`.

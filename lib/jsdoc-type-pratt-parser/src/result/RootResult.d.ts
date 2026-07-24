@@ -274,7 +274,7 @@ export interface NumberResult extends BaseNode {
  */
 export interface BigIntResult extends BaseNode {
     type: 'JsdocTypeBigInt';
-    value: bigint;
+    value: string;
 }
 /**
  * A typescript predicate. Is used in return annotations like this: `@return {x is string}`.
