@@ -1,3 +1,10 @@
+# [7.3.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v7.2.0...v7.3.0) (2026-07-24)
+
+
+### Features
+
+* add bigint type; fixes [#251](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/issues/251) ([17ac9b5](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/17ac9b53eb3278b7822bad7e41602956c66f40e9))
+
 # [7.2.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v7.1.1...v7.2.0) (2026-04-01)
 
 
