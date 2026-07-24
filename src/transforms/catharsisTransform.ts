@@ -213,6 +213,8 @@ const catharsisTransformRules: TransformRules<CatharsisParseResult> = {
 
   JsdocTypeNumber: result => makeName(result.value.toString()),
 
+  JsdocTypeBigInt: result => makeName(`${result.value.toString()}n`),
+
   JsdocTypeObject: (result, transform) => {
     const transformed: CatharsisRecordResult = {
       type: 'RecordType',

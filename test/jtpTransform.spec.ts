@@ -180,6 +180,20 @@ describe('transform', () => {
     expect(xform).to.deep.equal(expected)
   })
 
+  it('Gets transform for `JsdocTypeBigInt`', () => {
+    const expected: JtpResult = {
+      type: 'NUMBER_VALUE',
+      number: '123n'
+    }
+    const parseResult: RootResult = {
+      type: 'JsdocTypeBigInt',
+      value: 123n
+    }
+
+    const xform = jtpTransform(parseResult)
+    expect(xform).to.deep.equal(expected)
+  })
+
   it('Gets transform for optional `JsdocTypeKeyValue`', () => {
     const expected: JtpResult = {
       key: 'a',

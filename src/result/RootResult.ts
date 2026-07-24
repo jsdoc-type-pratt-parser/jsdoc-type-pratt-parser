@@ -61,6 +61,7 @@ export type RootResult =
   | ParenthesisResult
   | IntersectionResult
   | NumberResult
+  | BigIntResult
   | PredicateResult
   | AssertsResult
   | ReadonlyArrayResult
@@ -342,6 +343,15 @@ export interface IntersectionResult extends BaseNode {
 export interface NumberResult extends BaseNode {
   type: 'JsdocTypeNumber'
   value: number
+}
+
+/**
+ * A bigint literal.
+ * Is a {@link NonRootResult}.
+ */
+export interface BigIntResult extends BaseNode {
+  type: 'JsdocTypeBigInt'
+  value: bigint
 }
 
 /**

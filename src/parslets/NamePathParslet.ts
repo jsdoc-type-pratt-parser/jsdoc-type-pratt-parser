@@ -71,6 +71,8 @@ export function createNamePathParslet ({ allowSquareBracketsOnAnyType, allowJsdo
           }
         }
         break
+      case 'JsdocTypeBigInt':
+        throw new UnexpectedTypeError(parsed, 'Expecting \'JsdocTypeName\', \'JsdocTypeNumber\', \'JsdocStringValue\' or \'JsdocTypeSpecialNamePath\'')
       case 'JsdocTypeStringValue':
         right = {
           type: 'JsdocTypeProperty',

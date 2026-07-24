@@ -28,7 +28,7 @@ function expectOrder (calls: Array<[SinonSpy, any[]]>): void {
     if (i > 0) {
       const cbBefore = calls[i - 1][0]
       const callBefore = cbBefore.getCall(cbBefore === cb ? count - 1 : (callsCount.get(cbBefore) as number - 1))
-      expect(callBefore, `call ${i} called in correct order`).to.have.been.calledBefore(call as unknown as SinonSpy)
+      expect(callBefore, `call ${i} called in correct order`).to.have.been.calledBefore(call)
     }
     callsCount.set(cb, count + 1)
   }

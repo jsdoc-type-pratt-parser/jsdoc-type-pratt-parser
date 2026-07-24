@@ -94,6 +94,20 @@ describe('transform', () => {
     expect(xform).to.deep.equal(expected)
   })
 
+  it('Gets transform for `JsdocTypeBigInt`', () => {
+    const expected = {
+      type: 'JsdocTypeBigInt',
+      value: 123n
+    }
+    const parseResult = {
+      type: 'JsdocTypeBigInt',
+      value: 123n
+    }
+
+    const xform = transform<NonRootResult>(identityTransformRules(), parseResult as NonRootResult)
+    expect(xform).to.deep.equal(expected)
+  })
+
   it('Gets transform for empty `JsdocTypeVariadic`', () => {
     const expected = {
       type: 'JsdocTypeVariadic',

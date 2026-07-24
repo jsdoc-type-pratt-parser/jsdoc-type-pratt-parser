@@ -520,6 +520,11 @@ const jtpRules: TransformRules<JtpResult> = {
     number: result.value.toString()
   }),
 
+  JsdocTypeBigInt: result => ({
+    type: 'NUMBER_VALUE',
+    number: `${result.value.toString()}n`
+  }),
+
   JsdocTypeSymbol: notAvailableTransform,
 
   JsdocTypeProperty: notAvailableTransform,

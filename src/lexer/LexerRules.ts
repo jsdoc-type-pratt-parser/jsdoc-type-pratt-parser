@@ -119,6 +119,7 @@ function makeGetIdentifier (
   }
 }
 
+const bigintRegex = /^(?:-?\d+n)/v
 const numberRegex = /^(?:-?(?:(?:\d*\.\d+|\d+)(?:[Ee][+\-]?\d+)?))/v
 const looseNumberRegex = /^(?:NaN|-?(?:(?:\d*\.\d+|\d+)(?:[Ee][+\-]?\d+)?|Infinity))/v
 
@@ -201,6 +202,14 @@ const eofRule: Rule = text => {
 }
 
 const numberRule: Rule = text => {
+  const bigintValue = bigintRegex.exec(text)?.[0]
+  if (bigintValue !== undefined) {
+    return {
+      type: 'Number',
+      text: bigintValue
+    }
+  }
+
   const value = getGetNumber(numberRegex)(text)
   if (value === null) {
     return null
@@ -212,6 +221,14 @@ const numberRule: Rule = text => {
 }
 
 const looseNumberRule: Rule = text => {
+  const bigintValue = bigintRegex.exec(text)?.[0]
+  if (bigintValue !== undefined) {
+    return {
+      type: 'Number',
+      text: bigintValue
+    }
+  }
+
   const value = getGetNumber(looseNumberRegex)(text)
   if (value === null) {
     return null

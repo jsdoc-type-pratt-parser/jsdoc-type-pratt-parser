@@ -81,6 +81,8 @@ export function identityTransformRules (): TransformRules<NonRootResult> {
 
     JsdocTypeNumber: result => result,
 
+    JsdocTypeBigInt: result => result,
+
     JsdocTypeNull: result => result,
 
     JsdocTypeNotNullable: (result, transform) => ({

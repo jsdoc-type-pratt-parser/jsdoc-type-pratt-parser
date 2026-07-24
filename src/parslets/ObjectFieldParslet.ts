@@ -27,6 +27,10 @@ export function createObjectFieldParslet ({ allowSquaredProperties, allowKeyType
         left = left.element
       }
 
+      if (left.type === 'JsdocTypeBigInt') {
+        throw new UnexpectedTypeError(left)
+      }
+
       /* c8 ignore next 2 -- Always has base parser? */
       // object parslet uses a special grammar and for the value we want to switch back to the parent
       const parentParser = parser.baseParser ?? parser

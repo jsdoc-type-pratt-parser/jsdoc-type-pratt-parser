@@ -112,6 +112,20 @@ describe('lexer', () => {
         text: 'Infinity'
       }
     ])
+
+    expectTokens('123n', [
+      {
+        type: 'Number',
+        text: '123n'
+      }
+    ])
+
+    expectTokensLoose('123n', [
+      {
+        type: 'Number',
+        text: '123n'
+      }
+    ])
   })
 
   it('should parse an expression containing multiple numbers', () => {
