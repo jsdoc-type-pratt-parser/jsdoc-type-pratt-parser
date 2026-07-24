@@ -167,7 +167,7 @@ export function stringifyRules ({
 
     JsdocTypeNumber: result => result.value.toString(),
 
-    JsdocTypeBigInt: result => `${result.value.toString()}n`,
+    JsdocTypeBigInt: result => `${result.value}n`,
 
     JsdocTypeObject: (result, transform) => {
       /* c8 ignore next -- Guard */

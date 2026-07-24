@@ -522,7 +522,7 @@ const jtpRules: TransformRules<JtpResult> = {
 
   JsdocTypeBigInt: result => ({
     type: 'NUMBER_VALUE',
-    number: `${result.value.toString()}n`
+    number: `${result.value}n`
   }),
 
   JsdocTypeSymbol: notAvailableTransform,

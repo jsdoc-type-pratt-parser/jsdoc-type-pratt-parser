@@ -97,11 +97,11 @@ describe('transform', () => {
   it('Gets transform for `JsdocTypeBigInt`', () => {
     const expected = {
       type: 'JsdocTypeBigInt',
-      value: 123n
+      value: '123'
     }
     const parseResult = {
       type: 'JsdocTypeBigInt',
-      value: 123n
+      value: '123'
     }
 
     const xform = transform<NonRootResult>(identityTransformRules(), parseResult as NonRootResult)

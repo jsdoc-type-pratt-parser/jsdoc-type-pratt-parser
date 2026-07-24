@@ -351,7 +351,7 @@ export interface NumberResult extends BaseNode {
  */
 export interface BigIntResult extends BaseNode {
   type: 'JsdocTypeBigInt'
-  value: bigint
+  value: string
 }
 
 /**

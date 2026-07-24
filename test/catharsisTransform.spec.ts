@@ -91,7 +91,7 @@ describe('transform', () => {
   it('Gets transform for `JsdocTypeBigInt`', () => {
     const parseResult: RootResult = {
       type: 'JsdocTypeBigInt',
-      value: 123n
+      value: '123'
     }
 
     const xform = catharsisTransform(parseResult)

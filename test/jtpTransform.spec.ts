@@ -187,7 +187,7 @@ describe('transform', () => {
     }
     const parseResult: RootResult = {
       type: 'JsdocTypeBigInt',
-      value: 123n
+      value: '123'
     }
 
     const xform = jtpTransform(parseResult)
