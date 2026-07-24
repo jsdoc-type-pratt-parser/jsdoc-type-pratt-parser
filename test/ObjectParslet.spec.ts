@@ -42,7 +42,7 @@ describe('`ObjectParslet`', () => {
     const parseIntermediateType = Parser.prototype.parseIntermediateType;
 
     (parseIntermediateType as SinonStub).callThrough().onSecondCall().returns(
-      ret as RootResult
+      ret
     )
 
     const rootResult = parser.parse()

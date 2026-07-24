@@ -4,11 +4,18 @@ export const numberParslet = composeParslet({
   name: 'numberParslet',
   accept: type => type === 'Number',
   parsePrefix: parser => {
-    const value = parseFloat(parser.lexer.current.text)
+    const text = parser.lexer.current.text
     parser.consume('Number')
+    if (text.endsWith('n')) {
+      return {
+        type: 'JsdocTypeBigInt',
+        value: BigInt(text.slice(0, -1))
+      }
+    }
+
     return {
       type: 'JsdocTypeNumber',
-      value
+      value: parseFloat(text)
     }
   }
 })

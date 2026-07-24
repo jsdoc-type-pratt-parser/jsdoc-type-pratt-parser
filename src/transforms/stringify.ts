@@ -167,6 +167,8 @@ export function stringifyRules ({
 
     JsdocTypeNumber: result => result.value.toString(),
 
+    JsdocTypeBigInt: result => `${result.value.toString()}n`,
+
     JsdocTypeObject: (result, transform) => {
       /* c8 ignore next -- Guard */
       const lbType = (result.meta.separator ?? '').endsWith('linebreak')

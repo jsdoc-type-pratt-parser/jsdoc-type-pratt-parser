@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import 'mocha'
 import type { RootResult } from '../src/result/RootResult.js'
-import { parse } from '../src/parse.js'
+import { parse, parseNamePath } from '../src/parse.js'
 
 describe('basics', () => {
   it('should parse names', () => {
@@ -63,5 +63,25 @@ describe('basics', () => {
 
     const result = parse(typeString, 'typescript')
     expect(result).to.deep.equal(expected)
+  })
+
+  it('should parse bigint literals', () => {
+    const typeString = '123n'
+    const expected: RootResult = {
+      type: 'JsdocTypeBigInt',
+      value: 123n
+    }
+
+    const result = parse(typeString, 'typescript')
+    expect(result).to.deep.equal(expected)
+  })
+
+  it('should reject bigint literals in typescript namepaths', () => {
+    expect(() => parseNamePath('Foo[1n]', 'typescript')).to.throw()
+  })
+
+  it('should reject bigint literals as typescript object keys', () => {
+    expect(() => parse('{123n: string}', 'typescript')).to.throw("Unexpected type: 'JsdocTypeBigInt'.")
+    expect(() => parse('{123n}', 'typescript')).to.throw("Unexpected type: 'JsdocTypeBigInt'.")
   })
 })

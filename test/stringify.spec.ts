@@ -134,6 +134,16 @@ describe('`stringifyRules`', () => {
     expect(result).to.equal(expected)
   });
 
+  it('should stringify bigint literals', () => {
+    const rootResult: RootResult = {
+      type: 'JsdocTypeBigInt',
+      value: 123n
+    }
+
+    const result = stringify(rootResult)
+    expect(result).to.equal('123n')
+  })
+
   it('should transform a function with type parameters (no meta)', () => {
     const expected = '<T, U extends V=string, W=string>(x: T) => U';
     const rootResult: FunctionResult = {

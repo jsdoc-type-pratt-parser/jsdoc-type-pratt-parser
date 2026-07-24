@@ -96,5 +96,26 @@ describe('API errors', () => {
         parser.parse()
       }).to.throw("Unexpected type: 'JsdocTypeNull'. Message: Expecting 'JsdocTypeName', 'JsdocTypeNumber', 'JsdocStringValue' or 'JsdocTypeSpecialNamePath")
     })
+
+    it('Throws with bigint path component', () => {
+      expect(() => {
+        const namePathParslet = createNamePathParslet({
+          allowSquareBracketsOnAnyType: false,
+          allowJsdocNamePaths: true,
+          pathGrammar
+        })
+        const parser = new Parser(
+          [
+            namePathParslet,
+            createNameParslet({
+              allowedAdditionalTokens: []
+            })
+          ],
+          Lexer.create(rules, 'aaa.1n')
+        )
+
+        parser.parse()
+      }).to.throw("Unexpected type: 'JsdocTypeBigInt'. Message: Expecting 'JsdocTypeName', 'JsdocTypeNumber', 'JsdocStringValue' or 'JsdocTypeSpecialNamePath'")
+    })
   })
 })

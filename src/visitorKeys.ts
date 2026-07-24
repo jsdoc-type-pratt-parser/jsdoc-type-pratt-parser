@@ -6,6 +6,7 @@ export type VisitorKeys = {
 
 export const visitorKeys: VisitorKeys = {
   JsdocTypeAny: [],
+  JsdocTypeBigInt: [],
   JsdocTypeFunction: ['typeParameters', 'parameters', 'returnType'],
   JsdocTypeGeneric: ['left', 'elements'],
   JsdocTypeImport: ['element'],

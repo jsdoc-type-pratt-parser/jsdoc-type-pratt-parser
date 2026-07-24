@@ -88,6 +88,19 @@ describe('transform', () => {
     expect(xform).to.deep.equal(expected)
   })
 
+  it('Gets transform for `JsdocTypeBigInt`', () => {
+    const parseResult: RootResult = {
+      type: 'JsdocTypeBigInt',
+      value: 123n
+    }
+
+    const xform = catharsisTransform(parseResult)
+    expect(xform).to.deep.equal({
+      name: '123n',
+      type: 'NameExpression'
+    })
+  })
+
   it('Gets transform for `JsdocTypeKeyValue` (undefined `right`)', () => {
     const expected = {
       key: {

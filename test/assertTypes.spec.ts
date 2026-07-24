@@ -87,4 +87,13 @@ describe('assertTypes', () => {
       })
     }).to.throw("Unexpected type: 'JsdocTypeNull'.")
   })
+
+  it('should see `assertNumberOrVariadicNameResult` throw with bigint literals', () => {
+    expect(() => {
+      assertNumberOrVariadicNameResult({
+        type: 'JsdocTypeBigInt',
+        value: 1n
+      })
+    }).to.throw("Unexpected type: 'JsdocTypeBigInt'.")
+  })
 })
