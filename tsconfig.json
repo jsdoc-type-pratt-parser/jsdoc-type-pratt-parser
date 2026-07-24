@@ -3,11 +3,12 @@
     /* Basic Options */
     "target": "ES2024",                       /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018' or 'ESNEXT'. */
     "module": "nodenext",                     /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
-    "lib": ["es2024"],
+    "lib": ["es2024", "dom"],
 //    "lib": ["es2015", "dom", "webworker"],                 /* Specify library files to be included in the compilation. */
 //    "allowJs": true,                          /* Allow javascript files to be compiled. */
 //    "checkJs": true,                          /* Report errors in .js files. */
     "skipLibCheck": true,
+    "ignoreDeprecations": "6.0", // For tsup: https://github.com/egoist/tsup/issues/1389
     "declaration": true,                   /* Generates corresponding '.d.ts' file. */
     // "sourceMap": true,                     /* Generates corresponding '.map' file. */
     // "outFile": "./",                       /* Concatenate and emit output to single file. */
@@ -35,7 +36,7 @@
     // "paths": {},                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
     // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
     // "typeRoots": [],                       /* List of folders to include type definitions from. */
-//    "types": ["decs.d.ts"],                        /* Type declaration files to be included in compilation. */
+    "types": ["node"],                        /* Type declaration files to be included in compilation. */
     // "preserveSymlinks": true,              /* Do not resolve the real path of symlinks. */
 
     /* Source Map Options */
