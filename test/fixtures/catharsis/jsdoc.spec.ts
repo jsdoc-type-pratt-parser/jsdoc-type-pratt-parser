@@ -620,10 +620,6 @@ describe('catharsis jsdoc tests', () => {
         'typescript',
         'jsdoc'
       ],
-      catharsis: {
-        closure: 'fail',
-        jsdoc: 'jsdoc'
-      },
       jtp: {
         closure: 'fail',
         jsdoc: 'jsdoc',
@@ -657,10 +653,6 @@ describe('catharsis jsdoc tests', () => {
         'jsdoc',
         'typescript'
       ],
-      catharsis: {
-        closure: 'fail',
-        jsdoc: 'jsdoc'
-      },
       jtp: {
         closure: 'fail',
         jsdoc: 'jsdoc',
@@ -707,10 +699,6 @@ describe('catharsis jsdoc tests', () => {
         'typescript',
         'jsdoc'
       ],
-      catharsis: {
-        closure: 'fail',
-        jsdoc: 'jsdoc'
-      },
       jtp: {
         closure: 'fail',
         jsdoc: 'jsdoc',
@@ -770,10 +758,6 @@ describe('catharsis jsdoc tests', () => {
         'typescript',
         'jsdoc'
       ],
-      catharsis: {
-        closure: 'fail',
-        jsdoc: 'jsdoc'
-      },
       jtp: {
         closure: 'fail',
         jsdoc: 'jsdoc',
