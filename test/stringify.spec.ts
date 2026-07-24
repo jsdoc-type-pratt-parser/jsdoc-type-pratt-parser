@@ -137,7 +137,7 @@ describe('`stringifyRules`', () => {
   it('should stringify bigint literals', () => {
     const rootResult: RootResult = {
       type: 'JsdocTypeBigInt',
-      value: 123n
+      value: '123'
     }
 
     const result = stringify(rootResult)

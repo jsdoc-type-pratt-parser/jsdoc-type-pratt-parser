@@ -69,7 +69,7 @@ describe('basics', () => {
     const typeString = '123n'
     const expected: RootResult = {
       type: 'JsdocTypeBigInt',
-      value: 123n
+      value: '123'
     }
 
     const result = parse(typeString, 'typescript')

@@ -92,7 +92,7 @@ describe('assertTypes', () => {
     expect(() => {
       assertNumberOrVariadicNameResult({
         type: 'JsdocTypeBigInt',
-        value: 1n
+        value: '1'
       })
     }).to.throw("Unexpected type: 'JsdocTypeBigInt'.")
   })

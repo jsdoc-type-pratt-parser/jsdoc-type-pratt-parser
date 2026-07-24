@@ -7,9 +7,10 @@ export const numberParslet = composeParslet({
     const text = parser.lexer.current.text
     parser.consume('Number')
     if (text.endsWith('n')) {
+      const bigintText = text.slice(0, -1)
       return {
         type: 'JsdocTypeBigInt',
-        value: BigInt(text.slice(0, -1))
+        value: BigInt(bigintText).toString()
       }
     }
 
