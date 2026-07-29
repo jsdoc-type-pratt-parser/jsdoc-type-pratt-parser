@@ -8,7 +8,7 @@
 //    "allowJs": true,                          /* Allow javascript files to be compiled. */
 //    "checkJs": true,                          /* Report errors in .js files. */
     "skipLibCheck": true,
-    "ignoreDeprecations": "6.0", // For tsup: https://github.com/egoist/tsup/issues/1389
+    "ignoreDeprecations": "6.0",
     "declaration": true,                   /* Generates corresponding '.d.ts' file. */
     // "sourceMap": true,                     /* Generates corresponding '.map' file. */
     // "outFile": "./",                       /* Concatenate and emit output to single file. */
