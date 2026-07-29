@@ -1,6 +1,6 @@
 import Benchmark from 'benchmark'
 import catharsisParse from 'catharsis'
-import { parse as jtppParse } from '../dist/esm/index.js'
+import { parse as jtppParse } from '../dist/index.mjs'
 import jtpParse from 'jsdoctypeparser'
 
 Benchmark.options.minSamples = 1000
