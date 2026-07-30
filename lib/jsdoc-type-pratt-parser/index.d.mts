@@ -1,154 +1,154 @@
-import { Node } from 'estree';
-
+import { Node } from "estree";
+//#region src/result/NonRootResult.d.ts
 /**
  * A parse sub result that might not be a valid type expression on its own.
  */
 type NonRootResult = RootResult | PropertyResult | ObjectFieldResult | JsdocObjectFieldResult | KeyValueResult | MappedTypeResult | IndexSignatureResult | TypeParameterResult | CallSignatureResult | ConstructorSignatureResult | MethodSignatureResult | IndexedAccessIndexResult | ComputedPropertyResult | ComputedMethodResult;
 interface ObjectFieldResult extends BaseNode {
-    type: 'JsdocTypeObjectField';
-    key: string | MappedTypeResult | IndexSignatureResult | ComputedPropertyResult | ComputedMethodResult;
-    right: RootResult | undefined;
-    optional: boolean;
-    readonly: boolean;
-    meta: {
-        quote: QuoteStyle | undefined;
-        postColonSpacing?: string;
-        postKeySpacing?: string;
-        postOptionalSpacing?: string;
-    };
+  type: 'JsdocTypeObjectField';
+  key: string | MappedTypeResult | IndexSignatureResult | ComputedPropertyResult | ComputedMethodResult;
+  right: RootResult | undefined;
+  optional: boolean;
+  readonly: boolean;
+  meta: {
+    quote: QuoteStyle | undefined;
+    postColonSpacing?: string;
+    postKeySpacing?: string;
+    postOptionalSpacing?: string;
+  };
 }
 interface JsdocObjectFieldResult extends BaseNode {
-    type: 'JsdocTypeJsdocObjectField';
-    left: RootResult;
-    right: RootResult;
+  type: 'JsdocTypeJsdocObjectField';
+  left: RootResult;
+  right: RootResult;
 }
 interface PropertyResult extends BaseNode {
-    type: 'JsdocTypeProperty';
-    value: string;
-    meta: {
-        quote: QuoteStyle | undefined;
-    };
+  type: 'JsdocTypeProperty';
+  value: string;
+  meta: {
+    quote: QuoteStyle | undefined;
+  };
 }
 /**
  * A key value pair represented by a `:`. Can occur as a named parameter of a {@link FunctionResult} or as an entry for
  * an {@link TupleResult}. Is a {@link NonRootResult}.
  */
 interface KeyValueResult extends BaseNode {
-    type: 'JsdocTypeKeyValue';
-    key: string;
-    right: RootResult | undefined;
-    optional: boolean;
-    variadic: boolean;
-    meta?: {
-        postKeySpacing: string;
-        postOptionalSpacing: string;
-        postVariadicSpacing: string;
-        postColonSpacing: string;
-    };
+  type: 'JsdocTypeKeyValue';
+  key: string;
+  right: RootResult | undefined;
+  optional: boolean;
+  variadic: boolean;
+  meta?: {
+    postKeySpacing: string;
+    postOptionalSpacing: string;
+    postVariadicSpacing: string;
+    postColonSpacing: string;
+  };
 }
 interface IndexSignatureResult extends BaseNode {
-    type: 'JsdocTypeIndexSignature';
-    key: string;
-    right: RootResult;
+  type: 'JsdocTypeIndexSignature';
+  key: string;
+  right: RootResult;
 }
 interface MappedTypeResult extends BaseNode {
-    type: 'JsdocTypeMappedType';
-    key: string;
-    right: RootResult;
+  type: 'JsdocTypeMappedType';
+  key: string;
+  right: RootResult;
 }
 interface TypeParameterResult extends BaseNode {
-    type: 'JsdocTypeTypeParameter';
-    defaultValue?: RootResult;
-    name: NameResult;
-    constraint?: RootResult;
-    meta?: {
-        defaultValueSpacing: string;
-    };
+  type: 'JsdocTypeTypeParameter';
+  defaultValue?: RootResult;
+  name: NameResult;
+  constraint?: RootResult;
+  meta?: {
+    defaultValueSpacing: string;
+  };
 }
 interface CallSignatureResult extends BaseNode {
-    type: 'JsdocTypeCallSignature';
-    parameters: Array<RootResult | KeyValueResult>;
-    returnType: RootResult;
-    typeParameters?: TypeParameterResult[];
-    meta?: {
-        parameterSpacing: string;
-        typeParameterSpacing: string;
-        postGenericSpacing: string;
-        preReturnMarkerSpacing?: string;
-        postReturnMarkerSpacing?: string;
-    };
+  type: 'JsdocTypeCallSignature';
+  parameters: Array<RootResult | KeyValueResult>;
+  returnType: RootResult;
+  typeParameters?: TypeParameterResult[];
+  meta?: {
+    parameterSpacing: string;
+    typeParameterSpacing: string;
+    postGenericSpacing: string;
+    preReturnMarkerSpacing?: string;
+    postReturnMarkerSpacing?: string;
+  };
 }
 interface ConstructorSignatureResult extends BaseNode {
-    type: 'JsdocTypeConstructorSignature';
-    parameters: Array<RootResult | KeyValueResult>;
-    returnType: RootResult;
-    typeParameters?: TypeParameterResult[];
-    meta?: {
-        parameterSpacing: string;
-        typeParameterSpacing: string;
-        postNewSpacing: string;
-        postGenericSpacing: string;
-        preReturnMarkerSpacing?: string;
-        postReturnMarkerSpacing?: string;
-    };
+  type: 'JsdocTypeConstructorSignature';
+  parameters: Array<RootResult | KeyValueResult>;
+  returnType: RootResult;
+  typeParameters?: TypeParameterResult[];
+  meta?: {
+    parameterSpacing: string;
+    typeParameterSpacing: string;
+    postNewSpacing: string;
+    postGenericSpacing: string;
+    preReturnMarkerSpacing?: string;
+    postReturnMarkerSpacing?: string;
+  };
 }
 interface MethodSignatureResult extends BaseNode {
-    type: 'JsdocTypeMethodSignature';
-    name: string;
-    meta: {
-        quote: QuoteStyle | undefined;
-        parameterSpacing?: string;
-        typeParameterSpacing?: string;
-        postMethodNameSpacing?: string;
-        postGenericSpacing?: string;
-        preReturnMarkerSpacing?: string;
-        postReturnMarkerSpacing?: string;
-    };
-    parameters: Array<RootResult | KeyValueResult>;
-    returnType: RootResult;
-    typeParameters?: TypeParameterResult[];
+  type: 'JsdocTypeMethodSignature';
+  name: string;
+  meta: {
+    quote: QuoteStyle | undefined;
+    parameterSpacing?: string;
+    typeParameterSpacing?: string;
+    postMethodNameSpacing?: string;
+    postGenericSpacing?: string;
+    preReturnMarkerSpacing?: string;
+    postReturnMarkerSpacing?: string;
+  };
+  parameters: Array<RootResult | KeyValueResult>;
+  returnType: RootResult;
+  typeParameters?: TypeParameterResult[];
 }
 interface IndexedAccessIndexResult extends BaseNode {
-    type: 'JsdocTypeIndexedAccessIndex';
-    right: RootResult;
+  type: 'JsdocTypeIndexedAccessIndex';
+  right: RootResult;
 }
 interface ComputedPropertyResult extends BaseNode {
-    type: 'JsdocTypeComputedProperty';
-    value: RootResult | Node;
+  type: 'JsdocTypeComputedProperty';
+  value: RootResult | Node;
 }
 interface ComputedMethodResult extends BaseNode {
-    type: 'JsdocTypeComputedMethod';
-    value: RootResult | Node;
-    optional: boolean;
-    parameters: Array<RootResult | KeyValueResult>;
-    returnType: RootResult;
-    typeParameters?: TypeParameterResult[];
-    meta?: {
-        parameterSpacing: string;
-        typeParameterSpacing: string;
-        postGenericSpacing: string;
-        preReturnMarkerSpacing?: string;
-        postReturnMarkerSpacing?: string;
-    };
+  type: 'JsdocTypeComputedMethod';
+  value: RootResult | Node;
+  optional: boolean;
+  parameters: Array<RootResult | KeyValueResult>;
+  returnType: RootResult;
+  typeParameters?: TypeParameterResult[];
+  meta?: {
+    parameterSpacing: string;
+    typeParameterSpacing: string;
+    postGenericSpacing: string;
+    preReturnMarkerSpacing?: string;
+    postReturnMarkerSpacing?: string;
+  };
 }
-
+//#endregion
+//#region src/result/RootResult.d.ts
 interface Location {
-    loc?: {
-        end: {
-            column: number;
-            line: number;
-        };
-        start: {
-            column: number;
-            line: number;
-        };
+  loc?: {
+    end: {
+      column: number;
+      line: number;
     };
+    start: {
+      column: number;
+      line: number;
+    };
+  };
 }
 interface Range {
-    range?: [number, number];
+  range?: [number, number];
 }
-interface BaseNode extends Range, Location {
-}
+interface BaseNode extends Range, Location {}
 /**
  * A parse result that corresponds to a valid type expression.
  */
@@ -158,31 +158,31 @@ type QuoteStyle = 'single' | 'double';
  * `element` is optional.
  */
 interface OptionalResult<T extends RootResult> extends BaseNode {
-    type: 'JsdocTypeOptional';
-    element: T;
-    meta: {
-        position: 'prefix' | 'suffix';
-    };
+  type: 'JsdocTypeOptional';
+  element: T;
+  meta: {
+    position: 'prefix' | 'suffix';
+  };
 }
 /**
  * A nullable type.
  */
 interface NullableResult<T extends RootResult> extends BaseNode {
-    type: 'JsdocTypeNullable';
-    element: T;
-    meta: {
-        position: 'prefix' | 'suffix';
-    };
+  type: 'JsdocTypeNullable';
+  element: T;
+  meta: {
+    position: 'prefix' | 'suffix';
+  };
 }
 /**
  * A not nullable type.
  */
 interface NotNullableResult<T extends RootResult> extends BaseNode {
-    type: 'JsdocTypeNotNullable';
-    element: T;
-    meta: {
-        position: 'prefix' | 'suffix';
-    };
+  type: 'JsdocTypeNotNullable';
+  element: T;
+  meta: {
+    position: 'prefix' | 'suffix';
+  };
 }
 /**
  * A rest or spread parameter. It can either occur in `@param` tags or as last parameter of a function,
@@ -190,19 +190,19 @@ interface NotNullableResult<T extends RootResult> extends BaseNode {
  * only occur in position `'suffix'`.
  */
 interface VariadicResult<T extends RootResult> extends BaseNode {
-    type: 'JsdocTypeVariadic';
-    element?: T;
-    meta: {
-        position: 'prefix' | 'suffix' | undefined;
-        squareBrackets: boolean;
-    };
+  type: 'JsdocTypeVariadic';
+  element?: T;
+  meta: {
+    position: 'prefix' | 'suffix' | undefined;
+    squareBrackets: boolean;
+  };
 }
 /**
  * A type name.
  */
 interface NameResult extends BaseNode {
-    type: 'JsdocTypeName';
-    value: string;
+  type: 'JsdocTypeName';
+  value: string;
 }
 /**
  * A TypeScript `infer` type parameter within a generic argument list.
@@ -210,24 +210,24 @@ interface NameResult extends BaseNode {
  * (e.g. `Map<any, infer V>`) or alongside other parameters.
  */
 interface InferResult extends BaseNode {
-    type: 'JsdocTypeInfer';
-    element: NameResult;
+  type: 'JsdocTypeInfer';
+  element: NameResult;
 }
 /**
  * The TypeScript `unique symbol` type.
  */
 interface UniqueSymbolResult extends BaseNode {
-    type: 'JsdocTypeUniqueSymbol';
+  type: 'JsdocTypeUniqueSymbol';
 }
 /**
  * A type union.
  */
 interface UnionResult extends BaseNode {
-    type: 'JsdocTypeUnion';
-    elements: RootResult[];
-    meta?: {
-        spacing: string;
-    };
+  type: 'JsdocTypeUnion';
+  elements: RootResult[];
+  meta?: {
+    spacing: string;
+  };
 }
 /**
  * A generic type. The property `left` is the generic type that has `elements` as type values for its type parameters.
@@ -237,48 +237,48 @@ interface UnionResult extends BaseNode {
  * `brackets`.
  */
 interface GenericResult extends BaseNode {
-    type: 'JsdocTypeGeneric';
-    left: RootResult;
-    elements: RootResult[];
-    meta: {
-        brackets: 'angle' | 'square';
-        dot: boolean;
-        elementSpacing?: string;
-    };
+  type: 'JsdocTypeGeneric';
+  left: RootResult;
+  elements: RootResult[];
+  meta: {
+    brackets: 'angle' | 'square';
+    dot: boolean;
+    elementSpacing?: string;
+  };
 }
 /**
  * A string value as a type.
  */
 interface StringValueResult extends BaseNode {
-    type: 'JsdocTypeStringValue';
-    value: string;
-    meta: {
-        quote: QuoteStyle;
-    };
+  type: 'JsdocTypeStringValue';
+  value: string;
+  meta: {
+    quote: QuoteStyle;
+  };
 }
 /**
  * The `null` type.
  */
 interface NullResult extends BaseNode {
-    type: 'JsdocTypeNull';
+  type: 'JsdocTypeNull';
 }
 /**
  * The `undefined` type.
  */
 interface UndefinedResult extends BaseNode {
-    type: 'JsdocTypeUndefined';
+  type: 'JsdocTypeUndefined';
 }
 /**
  * The `any` type, represented by `*` (`any` is parsed as a name).
  */
 interface AnyResult extends BaseNode {
-    type: 'JsdocTypeAny';
+  type: 'JsdocTypeAny';
 }
 /**
  * The unknown type, represented by `?` (`unknown` is parsed as a name).
  */
 interface UnknownResult extends BaseNode {
-    type: 'JsdocTypeUnknown';
+  type: 'JsdocTypeUnknown';
 }
 /**
  * A function type. Has `parameters` which can be named, if the grammar supports it. Some grammars only allow named
@@ -287,20 +287,20 @@ interface UnknownResult extends BaseNode {
  * kind of function without specified parameters or return type.
  */
 interface FunctionResult extends BaseNode {
-    type: 'JsdocTypeFunction';
-    parameters: Array<RootResult | KeyValueResult>;
-    returnType?: RootResult;
-    constructor: boolean;
-    arrow: boolean;
-    parenthesis: boolean;
-    typeParameters?: TypeParameterResult[];
-    meta?: {
-        parameterSpacing: string;
-        typeParameterSpacing: string;
-        preReturnMarkerSpacing: string;
-        postReturnMarkerSpacing: string;
-        postGenericSpacing?: string;
-    };
+  type: 'JsdocTypeFunction';
+  parameters: Array<RootResult | KeyValueResult>;
+  returnType?: RootResult;
+  constructor: boolean;
+  arrow: boolean;
+  parenthesis: boolean;
+  typeParameters?: TypeParameterResult[];
+  meta?: {
+    parameterSpacing: string;
+    typeParameterSpacing: string;
+    preReturnMarkerSpacing: string;
+    postReturnMarkerSpacing: string;
+    postGenericSpacing?: string;
+  };
 }
 /**
  * An object type. Contains entries which can be {@link KeyValueResult}s or {@link NameResult}s. In most grammars the
@@ -308,156 +308,157 @@ interface FunctionResult extends BaseNode {
  * {@link NumberResult} without a key. The separator is `'comma'` by default.
  */
 interface ObjectResult extends BaseNode {
-    type: 'JsdocTypeObject';
-    elements: Array<ObjectFieldResult | JsdocObjectFieldResult | CallSignatureResult | ConstructorSignatureResult | MethodSignatureResult | ComputedPropertyResult | ComputedMethodResult>;
-    meta: {
-        bracketSpacing?: string;
-        separator: 'comma' | 'semicolon' | 'linebreak' | 'comma-and-linebreak' | 'semicolon-and-linebreak' | undefined;
-        separatorForSingleObjectField?: boolean;
-        trailingPunctuation?: boolean;
-        propertyIndent?: string;
-    };
+  type: 'JsdocTypeObject';
+  elements: Array<ObjectFieldResult | JsdocObjectFieldResult | CallSignatureResult | ConstructorSignatureResult | MethodSignatureResult | ComputedPropertyResult | ComputedMethodResult>;
+  meta: {
+    bracketSpacing?: string;
+    separator: 'comma' | 'semicolon' | 'linebreak' | 'comma-and-linebreak' | 'semicolon-and-linebreak' | undefined;
+    separatorForSingleObjectField?: boolean;
+    trailingPunctuation?: boolean;
+    propertyIndent?: string;
+  };
 }
 type SpecialNamePathType = 'module' | 'event' | 'external';
 /**
  * A module type. Often this is a `left` type of {@link NamePathResult}.
  */
 interface SpecialNamePath<Type extends SpecialNamePathType = SpecialNamePathType> extends BaseNode {
-    type: 'JsdocTypeSpecialNamePath';
-    value: string;
-    specialType: Type;
-    meta: {
-        quote: QuoteStyle | undefined;
-    };
+  type: 'JsdocTypeSpecialNamePath';
+  value: string;
+  specialType: Type;
+  meta: {
+    quote: QuoteStyle | undefined;
+  };
 }
 /**
  * A name path type. This can be a property path separated by `.` or an inner or static member (`~`, `#`).
  */
 interface NamePathResult extends BaseNode {
-    type: 'JsdocTypeNamePath';
-    left: RootResult;
-    right: PropertyResult | SpecialNamePath<'event'> | IndexedAccessIndexResult;
-    pathType: 'inner' | 'instance' | 'property' | 'property-brackets';
+  type: 'JsdocTypeNamePath';
+  left: RootResult;
+  right: PropertyResult | SpecialNamePath<'event'> | IndexedAccessIndexResult;
+  pathType: 'inner' | 'instance' | 'property' | 'property-brackets';
 }
 /**
  * A symbol type. Only available in `jsdoc` mode.
  */
 interface SymbolResult extends BaseNode {
-    type: 'JsdocTypeSymbol';
-    value: string;
-    element?: NumberResult | NameResult | VariadicResult<NameResult>;
+  type: 'JsdocTypeSymbol';
+  value: string;
+  element?: NumberResult | NameResult | VariadicResult<NameResult>;
 }
 /**
  * A typeof type. The `element` normally should be a name.
  */
 interface TypeOfResult extends BaseNode {
-    type: 'JsdocTypeTypeof';
-    element: RootResult;
+  type: 'JsdocTypeTypeof';
+  element: RootResult;
 }
 /**
  * A keyof type. The `element` normally should be a name.
  */
 interface KeyOfResult extends BaseNode {
-    type: 'JsdocTypeKeyof';
-    element: RootResult;
+  type: 'JsdocTypeKeyof';
+  element: RootResult;
 }
 /**
  * An import type. The `element` is {@link StringValueResult} representing the path. Often the `left` side of an
  * {@link NamePathResult}.
  */
 interface ImportResult extends BaseNode {
-    type: 'JsdocTypeImport';
-    element: StringValueResult;
+  type: 'JsdocTypeImport';
+  element: StringValueResult;
 }
 /**
  * A tuple type containing multiple `elements`.
  */
 interface TupleResult extends BaseNode {
-    type: 'JsdocTypeTuple';
-    elements: RootResult[] | KeyValueResult[];
-    meta?: {
-        elementSpacing: string;
-    };
+  type: 'JsdocTypeTuple';
+  elements: RootResult[] | KeyValueResult[];
+  meta?: {
+    elementSpacing: string;
+  };
 }
 /**
  * A type enclosed in parenthesis. Often {@link UnionResult}s ot {@link IntersectionResult}s.
  */
 interface ParenthesisResult extends BaseNode {
-    type: 'JsdocTypeParenthesis';
-    element: RootResult;
+  type: 'JsdocTypeParenthesis';
+  element: RootResult;
 }
 /**
  * An intersection type.
  */
 interface IntersectionResult extends BaseNode {
-    type: 'JsdocTypeIntersection';
-    elements: RootResult[];
+  type: 'JsdocTypeIntersection';
+  elements: RootResult[];
 }
 /**
  * A number. Can be the key of an {@link ObjectResult} entry or the parameter of a {@link SymbolResult}.
  * Is a {@link NonRootResult}.
  */
 interface NumberResult extends BaseNode {
-    type: 'JsdocTypeNumber';
-    value: number;
+  type: 'JsdocTypeNumber';
+  value: number;
 }
 /**
  * A bigint literal.
  * Is a {@link NonRootResult}.
  */
 interface BigIntResult extends BaseNode {
-    type: 'JsdocTypeBigInt';
-    value: string;
+  type: 'JsdocTypeBigInt';
+  value: string;
 }
 /**
  * A typescript predicate. Is used in return annotations like this: `@return {x is string}`.
  */
 interface PredicateResult extends BaseNode {
-    type: 'JsdocTypePredicate';
-    left: NameResult;
-    right: RootResult;
+  type: 'JsdocTypePredicate';
+  left: NameResult;
+  right: RootResult;
 }
 /**
  * An asserts result. Is used like this: `@return {asserts foo is Bar}`
  */
 interface AssertsResult extends BaseNode {
-    type: 'JsdocTypeAsserts';
-    left: NameResult;
-    right: RootResult;
+  type: 'JsdocTypeAsserts';
+  left: NameResult;
+  right: RootResult;
 }
 /**
  * A TypeScript readonly modifier. Is used like this: `readonly string[]`.
  */
 interface ReadonlyArrayResult extends BaseNode {
-    type: 'JsdocTypeReadonlyArray';
-    element: RootResult;
+  type: 'JsdocTypeReadonlyArray';
+  element: RootResult;
 }
 /**
  * An asserts result without `is`. Is used like this: `@return {asserts foo}`
  */
 interface AssertsPlainResult extends BaseNode {
-    type: 'JsdocTypeAssertsPlain';
-    element: NameResult;
+  type: 'JsdocTypeAssertsPlain';
+  element: NameResult;
 }
 /**
  * A TypeScript conditional. Is used like this: `A extends B ? C : D`.
  */
 interface ConditionalResult extends BaseNode {
-    type: 'JsdocTypeConditional';
-    checksType: RootResult;
-    extendsType: RootResult;
-    trueType: RootResult;
-    falseType: RootResult;
+  type: 'JsdocTypeConditional';
+  checksType: RootResult;
+  extendsType: RootResult;
+  trueType: RootResult;
+  falseType: RootResult;
 }
 /**
  * A TypeScript template literal. Is used like: `\`someText${someType}\``
  */
 interface TemplateLiteralResult extends BaseNode {
-    type: 'JsdocTypeTemplateLiteral';
-    literals: string[];
-    interpolations: RootResult[];
+  type: 'JsdocTypeTemplateLiteral';
+  literals: string[];
+  interpolations: RootResult[];
 }
-
+//#endregion
+//#region src/parse.d.ts
 type ParseMode = 'closure' | 'jsdoc' | 'typescript';
 /**
  * This function parses the given expression in the given mode and produces a {@link RootResult}.
@@ -465,18 +466,18 @@ type ParseMode = 'closure' | 'jsdoc' | 'typescript';
  * @param mode
  */
 declare function parse(expression: string, mode: ParseMode, { range, rangeStart, loc, locStart, module, strictMode, asyncFunctionBody, classContext, computedPropertyParser }?: {
-    range?: boolean;
-    rangeStart?: number;
-    loc?: boolean;
-    locStart?: {
-        column: number;
-        line: number;
-    };
-    module?: boolean;
-    strictMode?: boolean;
-    asyncFunctionBody?: boolean;
-    classContext?: boolean;
-    computedPropertyParser?: (text: string, options?: any) => unknown;
+  range?: boolean;
+  rangeStart?: number;
+  loc?: boolean;
+  locStart?: {
+    column: number;
+    line: number;
+  };
+  module?: boolean;
+  strictMode?: boolean;
+  asyncFunctionBody?: boolean;
+  classContext?: boolean;
+  computedPropertyParser?: (text: string, options?: any) => unknown;
 }): RootResult;
 /**
  * This function tries to parse the given expression in multiple modes and returns the first successful
@@ -486,17 +487,17 @@ declare function parse(expression: string, mode: ParseMode, { range, rangeStart,
  * @param modes
  */
 declare function tryParse(expression: string, modes?: ParseMode[], { module, strictMode, asyncFunctionBody, classContext, range, rangeStart, loc, locStart }?: {
-    module?: boolean;
-    strictMode?: boolean;
-    asyncFunctionBody?: boolean;
-    classContext?: boolean;
-    range?: boolean;
-    rangeStart?: number;
-    loc?: boolean;
-    locStart?: {
-        column: number;
-        line: number;
-    };
+  module?: boolean;
+  strictMode?: boolean;
+  asyncFunctionBody?: boolean;
+  classContext?: boolean;
+  range?: boolean;
+  rangeStart?: number;
+  loc?: boolean;
+  locStart?: {
+    column: number;
+    line: number;
+  };
 }): RootResult;
 /**
  * This function parses the given expression in the given mode and produces a name path.
@@ -504,7 +505,7 @@ declare function tryParse(expression: string, modes?: ParseMode[], { module, str
  * @param mode
  */
 declare function parseNamePath(expression: string, mode: ParseMode, { includeSpecial }?: {
-    includeSpecial?: boolean;
+  includeSpecial?: boolean;
 }): RootResult;
 /**
  * This function parses the given expression in the given mode and produces a name.
@@ -512,199 +513,203 @@ declare function parseNamePath(expression: string, mode: ParseMode, { includeSpe
  * @param mode
  */
 declare function parseName(expression: string, mode: ParseMode): RootResult;
-
+//#endregion
+//#region src/transforms/transform.d.ts
 type TransformFunction<TransformResult> = (parseResult: NonRootResult) => TransformResult;
 type TransformRule<TransformResult, InputType extends NonRootResult> = (parseResult: InputType, transform: TransformFunction<TransformResult>) => TransformResult;
-type TransformRules<TransformResult> = {
-    [P in NonRootResult as P['type']]: TransformRule<TransformResult, P>;
-};
+type TransformRules<TransformResult> = { [P in NonRootResult as P['type']]: TransformRule<TransformResult, P>; };
 declare function transform<TransformResult>(rules: TransformRules<TransformResult>, parseResult: NonRootResult): TransformResult;
-
+//#endregion
+//#region src/transforms/catharsisTransform.d.ts
 interface ModifiableResult {
-    optional?: boolean;
-    nullable?: boolean;
-    repeatable?: boolean;
+  optional?: boolean;
+  nullable?: boolean;
+  repeatable?: boolean;
 }
 type CatharsisParseResult = CatharsisNameResult | CatharsisUnionResult | CatharsisGenericResult | CatharsisNullResult | CatharsisUndefinedResult | CatharsisAllResult | CatharsisUnknownResult | CatharsisFunctionResult | CatharsisRecordResult | CatharsisFieldResult;
 type CatharsisNameResult = ModifiableResult & {
-    type: 'NameExpression';
-    name: string;
-    reservedWord?: boolean;
+  type: 'NameExpression';
+  name: string;
+  reservedWord?: boolean;
 };
 type CatharsisUnionResult = ModifiableResult & {
-    type: 'TypeUnion';
-    elements: CatharsisParseResult[];
+  type: 'TypeUnion';
+  elements: CatharsisParseResult[];
 };
 type CatharsisGenericResult = ModifiableResult & {
-    type: 'TypeApplication';
-    expression: CatharsisParseResult;
-    applications: CatharsisParseResult[];
+  type: 'TypeApplication';
+  expression: CatharsisParseResult;
+  applications: CatharsisParseResult[];
 };
 type CatharsisNullResult = ModifiableResult & {
-    type: 'NullLiteral';
+  type: 'NullLiteral';
 };
 type CatharsisUndefinedResult = ModifiableResult & {
-    type: 'UndefinedLiteral';
+  type: 'UndefinedLiteral';
 };
 type CatharsisAllResult = ModifiableResult & {
-    type: 'AllLiteral';
+  type: 'AllLiteral';
 };
 type CatharsisUnknownResult = ModifiableResult & {
-    type: 'UnknownLiteral';
+  type: 'UnknownLiteral';
 };
 type CatharsisFunctionResult = ModifiableResult & {
-    type: 'FunctionType';
-    params: CatharsisParseResult[];
-    result?: CatharsisParseResult;
-    this?: CatharsisParseResult;
-    new?: CatharsisParseResult;
+  type: 'FunctionType';
+  params: CatharsisParseResult[];
+  result?: CatharsisParseResult;
+  this?: CatharsisParseResult;
+  new?: CatharsisParseResult;
 };
 type CatharsisFieldResult = ModifiableResult & {
-    type: 'FieldType';
-    key: CatharsisParseResult;
-    value: CatharsisParseResult | undefined;
+  type: 'FieldType';
+  key: CatharsisParseResult;
+  value: CatharsisParseResult | undefined;
 };
 type CatharsisRecordResult = ModifiableResult & {
-    type: 'RecordType';
-    fields: CatharsisFieldResult[];
+  type: 'RecordType';
+  fields: CatharsisFieldResult[];
 };
 declare function catharsisTransform(result: RootResult): CatharsisParseResult;
-
+//#endregion
+//#region src/transforms/jtpTransform.d.ts
 type JtpResult = JtpNameResult | JtpNullableResult | JtpNotNullableResult | JtpOptionalResult | JtpVariadicResult | JtpTypeOfResult | JtpTupleResult | JtpKeyOfResult | JtpStringValueResult | JtpImportResult | JtpAnyResult | JtpUnknownResult | JtpFunctionResult | JtpGenericResult | JtpRecordEntryResult | JtpRecordResult | JtpMemberResult | JtpUnionResult | JtpParenthesisResult | JtpNamedParameterResult | JtpModuleResult | JtpFilePath | JtpIntersectionResult | JtpNumberResult;
 type JtpQuoteStyle = 'single' | 'double' | 'none';
 interface JtpNullableResult {
-    type: 'NULLABLE';
-    value: JtpResult;
-    meta: {
-        syntax: 'PREFIX_QUESTION_MARK' | 'SUFFIX_QUESTION_MARK';
-    };
+  type: 'NULLABLE';
+  value: JtpResult;
+  meta: {
+    syntax: 'PREFIX_QUESTION_MARK' | 'SUFFIX_QUESTION_MARK';
+  };
 }
 interface JtpNotNullableResult {
-    type: 'NOT_NULLABLE';
-    value: JtpResult;
-    meta: {
-        syntax: 'PREFIX_BANG' | 'SUFFIX_BANG';
-    };
+  type: 'NOT_NULLABLE';
+  value: JtpResult;
+  meta: {
+    syntax: 'PREFIX_BANG' | 'SUFFIX_BANG';
+  };
 }
 interface JtpOptionalResult {
-    type: 'OPTIONAL';
-    value: JtpResult;
-    meta: {
-        syntax: 'PREFIX_EQUAL_SIGN' | 'SUFFIX_EQUALS_SIGN' | 'SUFFIX_KEY_QUESTION_MARK';
-    };
+  type: 'OPTIONAL';
+  value: JtpResult;
+  meta: {
+    syntax: 'PREFIX_EQUAL_SIGN' | 'SUFFIX_EQUALS_SIGN' | 'SUFFIX_KEY_QUESTION_MARK';
+  };
 }
 interface JtpVariadicResult {
-    type: 'VARIADIC';
-    value?: JtpResult;
-    meta: {
-        syntax: 'PREFIX_DOTS' | 'SUFFIX_DOTS' | 'ONLY_DOTS';
-    };
+  type: 'VARIADIC';
+  value?: JtpResult;
+  meta: {
+    syntax: 'PREFIX_DOTS' | 'SUFFIX_DOTS' | 'ONLY_DOTS';
+  };
 }
 interface JtpNameResult {
-    type: 'NAME';
-    name: string;
+  type: 'NAME';
+  name: string;
 }
 interface JtpTypeOfResult {
-    type: 'TYPE_QUERY';
-    name?: JtpResult;
+  type: 'TYPE_QUERY';
+  name?: JtpResult;
 }
 interface JtpKeyOfResult {
-    type: 'KEY_QUERY';
-    value?: JtpResult;
+  type: 'KEY_QUERY';
+  value?: JtpResult;
 }
 interface JtpTupleResult {
-    type: 'TUPLE';
-    entries: JtpResult[];
+  type: 'TUPLE';
+  entries: JtpResult[];
 }
 interface JtpStringValueResult {
-    type: 'STRING_VALUE';
-    quoteStyle: JtpQuoteStyle;
-    string: string;
+  type: 'STRING_VALUE';
+  quoteStyle: JtpQuoteStyle;
+  string: string;
 }
 interface JtpImportResult {
-    type: 'IMPORT';
-    path: JtpStringValueResult;
+  type: 'IMPORT';
+  path: JtpStringValueResult;
 }
 interface JtpAnyResult {
-    type: 'ANY';
+  type: 'ANY';
 }
 interface JtpUnknownResult {
-    type: 'UNKNOWN';
+  type: 'UNKNOWN';
 }
 interface JtpFunctionResult {
-    type: 'FUNCTION' | 'ARROW';
-    params: JtpResult[];
-    returns: JtpResult | null;
-    new: JtpResult | null;
-    this?: JtpResult | null;
+  type: 'FUNCTION' | 'ARROW';
+  params: JtpResult[];
+  returns: JtpResult | null;
+  new: JtpResult | null;
+  this?: JtpResult | null;
 }
 interface JtpGenericResult {
-    type: 'GENERIC';
-    subject: JtpResult;
-    objects: JtpResult[];
-    meta: {
-        syntax: 'ANGLE_BRACKET' | 'ANGLE_BRACKET_WITH_DOT' | 'SQUARE_BRACKET';
-    };
+  type: 'GENERIC';
+  subject: JtpResult;
+  objects: JtpResult[];
+  meta: {
+    syntax: 'ANGLE_BRACKET' | 'ANGLE_BRACKET_WITH_DOT' | 'SQUARE_BRACKET';
+  };
 }
 interface JtpRecordEntryResult {
-    type: 'RECORD_ENTRY';
-    key: string;
-    quoteStyle: JtpQuoteStyle;
-    value: JtpResult | null;
-    readonly: false;
+  type: 'RECORD_ENTRY';
+  key: string;
+  quoteStyle: JtpQuoteStyle;
+  value: JtpResult | null;
+  readonly: false;
 }
 interface JtpRecordResult {
-    type: 'RECORD';
-    entries: JtpRecordEntryResult[];
+  type: 'RECORD';
+  entries: JtpRecordEntryResult[];
 }
 interface JtpMemberResult {
-    type: 'MEMBER' | 'INNER_MEMBER' | 'INSTANCE_MEMBER';
-    owner: JtpResult;
-    name: string;
-    quoteStyle: JtpQuoteStyle;
-    hasEventPrefix: boolean;
+  type: 'MEMBER' | 'INNER_MEMBER' | 'INSTANCE_MEMBER';
+  owner: JtpResult;
+  name: string;
+  quoteStyle: JtpQuoteStyle;
+  hasEventPrefix: boolean;
 }
 interface JtpUnionResult {
-    type: 'UNION';
-    left: JtpResult;
-    right: JtpResult;
+  type: 'UNION';
+  left: JtpResult;
+  right: JtpResult;
 }
 interface JtpIntersectionResult {
-    type: 'INTERSECTION';
-    left: JtpResult;
-    right: JtpResult;
+  type: 'INTERSECTION';
+  left: JtpResult;
+  right: JtpResult;
 }
 interface JtpParenthesisResult {
-    type: 'PARENTHESIS';
-    value: JtpResult;
+  type: 'PARENTHESIS';
+  value: JtpResult;
 }
 interface JtpNamedParameterResult {
-    type: 'NAMED_PARAMETER';
-    name: string;
-    typeName: JtpResult;
+  type: 'NAMED_PARAMETER';
+  name: string;
+  typeName: JtpResult;
 }
 interface JtpModuleResult {
-    type: 'MODULE';
-    value: JtpResult;
+  type: 'MODULE';
+  value: JtpResult;
 }
 interface JtpFilePath {
-    type: 'FILE_PATH';
-    quoteStyle: JtpQuoteStyle;
-    path: string;
+  type: 'FILE_PATH';
+  quoteStyle: JtpQuoteStyle;
+  path: string;
 }
 interface JtpNumberResult {
-    type: 'NUMBER_VALUE';
-    number: string;
+  type: 'NUMBER_VALUE';
+  number: string;
 }
 declare function jtpTransform(result: RootResult): JtpResult;
-
+//#endregion
+//#region src/transforms/stringify.d.ts
 declare function stringifyRules({ computedPropertyStringifier }?: {
-    computedPropertyStringifier?: (node: Node, options?: any) => string;
+  computedPropertyStringifier?: (node: Node, options?: any) => string;
 }): TransformRules<string>;
 declare function stringify(result: RootResult, stringificationRules?: TransformRules<string> | ((node: Node, options?: any) => string)): string;
-
+//#endregion
+//#region src/transforms/identityTransformRules.d.ts
 declare function identityTransformRules(): TransformRules<NonRootResult>;
-
+//#endregion
+//#region src/traverse.d.ts
 /**
  * A node visitor function.
  * @param node the visited node.
@@ -720,10 +725,9 @@ type NodeVisitor = (node: NonRootResult, parentNode?: NonRootResult, property?: 
  * @param onLeave node visitor function that will be called on leaving the node. This corresponds to postorder traversing.
  */
 declare function traverse(node: RootResult, onEnter?: NodeVisitor, onLeave?: NodeVisitor): void;
-
-type VisitorKeys = {
-    [P in NonRootResult as P['type']]: Array<keyof P>;
-};
+//#endregion
+//#region src/visitorKeys.d.ts
+type VisitorKeys = { [P in NonRootResult as P['type']]: Array<keyof P>; };
 declare const visitorKeys: VisitorKeys;
-
-export { type AnyResult, type AssertsPlainResult, type AssertsResult, type BaseNode, type BigIntResult, type CallSignatureResult, type ComputedMethodResult, type ComputedPropertyResult, type ConditionalResult, type ConstructorSignatureResult, type FunctionResult, type GenericResult, type ImportResult, type IndexSignatureResult, type IndexedAccessIndexResult, type InferResult, type IntersectionResult, type JsdocObjectFieldResult, type KeyOfResult, type KeyValueResult, type Location, type MappedTypeResult, type MethodSignatureResult, type NamePathResult, type NameResult, type NodeVisitor, type NonRootResult, type NotNullableResult, type NullResult, type NullableResult, type NumberResult, type ObjectFieldResult, type ObjectResult, type OptionalResult, type ParenthesisResult, type ParseMode, type PredicateResult, type PropertyResult, type QuoteStyle, type Range, type ReadonlyArrayResult, type RootResult, type SpecialNamePath, type SpecialNamePathType, type StringValueResult, type SymbolResult, type TemplateLiteralResult, type TransformFunction, type TransformRule, type TransformRules, type TupleResult, type TypeOfResult, type TypeParameterResult, type UndefinedResult, type UnionResult, type UniqueSymbolResult, type UnknownResult, type VariadicResult, type VisitorKeys, catharsisTransform, identityTransformRules, jtpTransform, parse, parseName, parseNamePath, stringify, stringifyRules, transform, traverse, tryParse, visitorKeys };
+//#endregion
+export { type AnyResult, type AssertsPlainResult, type AssertsResult, type BaseNode, type BigIntResult, type CallSignatureResult, type ComputedMethodResult, type ComputedPropertyResult, type ConditionalResult, type ConstructorSignatureResult, type FunctionResult, type GenericResult, type ImportResult, type IndexSignatureResult, type IndexedAccessIndexResult, type InferResult, type IntersectionResult, type JsdocObjectFieldResult, type KeyOfResult, type KeyValueResult, type Location, type MappedTypeResult, type MethodSignatureResult, type NamePathResult, type NameResult, NodeVisitor, type NonRootResult, type NotNullableResult, type NullResult, type NullableResult, type NumberResult, type ObjectFieldResult, type ObjectResult, type OptionalResult, type ParenthesisResult, ParseMode, type PredicateResult, type PropertyResult, type QuoteStyle, type Range, type ReadonlyArrayResult, type RootResult, type SpecialNamePath, type SpecialNamePathType, type StringValueResult, type SymbolResult, type TemplateLiteralResult, type TransformFunction, type TransformRule, type TransformRules, type TupleResult, type TypeOfResult, type TypeParameterResult, type UndefinedResult, type UnionResult, type UniqueSymbolResult, type UnknownResult, type VariadicResult, VisitorKeys, catharsisTransform, identityTransformRules, jtpTransform, parse, parseName, parseNamePath, stringify, stringifyRules, transform, traverse, tryParse, visitorKeys };
