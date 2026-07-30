@@ -33,7 +33,7 @@
   ],
   "license": "MIT",
   "engines": {
-    "node": "^22.13.0 || >=24.0.0"
+    "node": "^22.22.2 || >=24.15.0"
   },
   "dependencies": {
     "@types/estree": "^1.0.9"
@@ -45,7 +45,7 @@
     "@semantic-release/git": "^11.0.1",
     "@types/chai": "^5.2.3",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^26.1.1",
+    "@types/node": "^26.1.2",
     "@types/sinon": "^22.0.0",
     "@types/sinon-chai": "^4.0.0",
     "@typescript-eslint/eslint-plugin": "^8.42.0",
