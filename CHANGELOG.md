@@ -1,3 +1,15 @@
+# [9.0.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v8.0.0...v9.0.0) (2026-07-30)
+
+
+### chore
+
+* update engines and devDeps ([05bb175](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/05bb175aeba790fa38f33ddb9f9132c6570a9037))
+
+
+### BREAKING CHANGES
+
+* Triggering release for ESM build change in recent commits
+
 # [8.0.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v7.3.0...v8.0.0) (2026-07-24)
 
 
