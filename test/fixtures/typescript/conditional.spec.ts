@@ -131,6 +131,92 @@ describe('typescript conditional', () => {
     })
   })
 
+  describe('should parse nested indexed access in the true branch', () => {
+    testFixture({
+      input: 'T extends [keyof HTMLElementTagNameMap, any?, any?, any?] ? HTMLElementTagNameMap[T[0]] : JamilihReturn',
+      modes: ['typescript'],
+      expected: {
+        type: 'JsdocTypeConditional',
+        checksType: {
+          type: 'JsdocTypeName',
+          value: 'T'
+        },
+        extendsType: {
+          type: 'JsdocTypeTuple',
+          elements: [
+            {
+              type: 'JsdocTypeKeyof',
+              element: {
+                type: 'JsdocTypeName',
+                value: 'HTMLElementTagNameMap'
+              }
+            },
+            {
+              type: 'JsdocTypeNullable',
+              element: {
+                type: 'JsdocTypeName',
+                value: 'any'
+              },
+              meta: {
+                position: 'suffix'
+              }
+            },
+            {
+              type: 'JsdocTypeNullable',
+              element: {
+                type: 'JsdocTypeName',
+                value: 'any'
+              },
+              meta: {
+                position: 'suffix'
+              }
+            },
+            {
+              type: 'JsdocTypeNullable',
+              element: {
+                type: 'JsdocTypeName',
+                value: 'any'
+              },
+              meta: {
+                position: 'suffix'
+              }
+            }
+          ]
+        },
+        trueType: {
+          type: 'JsdocTypeNamePath',
+          left: {
+            type: 'JsdocTypeName',
+            value: 'HTMLElementTagNameMap'
+          },
+          right: {
+            type: 'JsdocTypeIndexedAccessIndex',
+            right: {
+              type: 'JsdocTypeNamePath',
+              left: {
+                type: 'JsdocTypeName',
+                value: 'T'
+              },
+              right: {
+                type: 'JsdocTypeProperty',
+                value: '0',
+                meta: {
+                  quote: undefined
+                }
+              },
+              pathType: 'property-brackets'
+            }
+          },
+          pathType: 'property-brackets'
+        },
+        falseType: {
+          type: 'JsdocTypeName',
+          value: 'JamilihReturn'
+        }
+      }
+    })
+  })
+
   describe('should throw with bad `infer` within a conditional', () => {
     testFixture({
       input: 'A extends B<infer 5> ? b : C',
