@@ -48,7 +48,11 @@ export function createNamePathParslet ({ allowSquareBracketsOnAnyType, allowJsdo
         ? new Parser(pathGrammar, parser.lexer, parser)
         : parser
 
-    const parsed = pathParser.parseType(Precedence.NAME_PATH)
+    const parsed = pathParser.parseType(
+      brackets && allowSquareBracketsOnAnyType
+        ? Precedence.ALL
+        : Precedence.NAME_PATH
+    )
     parser.acceptLexerState(pathParser)
     let right: PropertyResult | SpecialNamePath<'event'> | IndexedAccessIndexResult
 
