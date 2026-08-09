@@ -16,7 +16,7 @@ export const genericParslet = composeParslet({
 
     do {
       if (parser.consume('infer')) {
-        const name = parser.parseIntermediateType(Precedence.SYMBOL)
+        const name = parser.parseIntermediateType(Precedence.NULLABLE)
         if (name.type !== 'JsdocTypeName') {
           throw new UnexpectedTypeError(name, 'A typescript infer always has to have a name.')
         }

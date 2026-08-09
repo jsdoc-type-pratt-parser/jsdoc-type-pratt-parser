@@ -814,6 +814,145 @@ describe('typescript objects tests', () => {
     })
   })
 
+  describe('mapped type conditionals with infer function clauses', () => {
+    testFixture({
+      input: '{[K in keyof C]: C[K] extends (...args: infer A) => infer R ? ((this: E & C, ...args: A) => R) : C[K]}',
+      modes: ['typescript'],
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
+        elements: [
+          {
+            type: 'JsdocTypeObjectField',
+            key: {
+              type: 'JsdocTypeMappedType',
+              key: 'K',
+              right: {
+                type: 'JsdocTypeKeyof',
+                element: {
+                  type: 'JsdocTypeName',
+                  value: 'C'
+                }
+              }
+            },
+            optional: false,
+            readonly: false,
+            right: {
+              type: 'JsdocTypeConditional',
+              checksType: {
+                type: 'JsdocTypeNamePath',
+                left: {
+                  type: 'JsdocTypeName',
+                  value: 'C'
+                },
+                right: {
+                  type: 'JsdocTypeProperty',
+                  value: 'K',
+                  meta: {
+                    quote: undefined
+                  }
+                },
+                pathType: 'property-brackets'
+              },
+              extendsType: {
+                type: 'JsdocTypeFunction',
+                parameters: [
+                  {
+                    type: 'JsdocTypeKeyValue',
+                    key: 'args',
+                    optional: false,
+                    variadic: true,
+                    right: {
+                      type: 'JsdocTypeInfer',
+                      element: {
+                        type: 'JsdocTypeName',
+                        value: 'A'
+                      }
+                    }
+                  }
+                ],
+                returnType: {
+                  type: 'JsdocTypeInfer',
+                  element: {
+                    type: 'JsdocTypeName',
+                    value: 'R'
+                  }
+                },
+                arrow: true,
+                constructor: false,
+                parenthesis: true
+              },
+              trueType: {
+                type: 'JsdocTypeParenthesis',
+                element: {
+                  type: 'JsdocTypeFunction',
+                  parameters: [
+                    {
+                      type: 'JsdocTypeKeyValue',
+                      key: 'this',
+                      optional: false,
+                      variadic: false,
+                      right: {
+                        type: 'JsdocTypeIntersection',
+                        elements: [
+                          {
+                            type: 'JsdocTypeName',
+                            value: 'E'
+                          },
+                          {
+                            type: 'JsdocTypeName',
+                            value: 'C'
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      type: 'JsdocTypeKeyValue',
+                      key: 'args',
+                      optional: false,
+                      variadic: true,
+                      right: {
+                        type: 'JsdocTypeName',
+                        value: 'A'
+                      }
+                    }
+                  ],
+                  returnType: {
+                    type: 'JsdocTypeName',
+                    value: 'R'
+                  },
+                  arrow: true,
+                  constructor: false,
+                  parenthesis: true
+                }
+              },
+              falseType: {
+                type: 'JsdocTypeNamePath',
+                left: {
+                  type: 'JsdocTypeName',
+                  value: 'C'
+                },
+                right: {
+                  type: 'JsdocTypeProperty',
+                  value: 'K',
+                  meta: {
+                    quote: undefined
+                  }
+                },
+                pathType: 'property-brackets'
+              }
+            },
+            meta: {
+              quote: undefined
+            }
+          }
+        ]
+      }
+    })
+  })
+
   describe('mapped type with string literal union keys and function value', () => {
     testFixture({
       input: '{[key in "abc"|"def"]?: (node: Node, ...extraArgs: any[]) => void}',
