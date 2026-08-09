@@ -1,3 +1,10 @@
+# [9.1.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v9.0.1...v9.1.0) (2026-08-09)
+
+
+### Features
+
+* **typescript:** parse infer in mapped conditional function types ([54af4ed](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/54af4edd671db1a8cfca18cd3393aa38bbb9a8d4))
+
 ## [9.0.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v9.0.0...v9.0.1) (2026-08-09)
 
 
