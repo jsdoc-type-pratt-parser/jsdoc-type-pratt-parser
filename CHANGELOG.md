@@ -1,3 +1,10 @@
+## [9.0.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v9.0.0...v9.0.1) (2026-08-09)
+
+
+### Bug Fixes
+
+* parse nested indexed access in TypeScript conditional and name-path expressions ([9464701](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/94647019a23d1e032d88e156c2f24d1442e92294))
+
 # [9.0.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v8.0.0...v9.0.0) (2026-07-30)
 
 
