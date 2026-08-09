@@ -16,16 +16,16 @@ You can find some more information about pratt parsers here:
 * https://matklad.github.io/2020/04/13/simple-but-powerful-pratt-parsing.html
 
 ## Table of Contents
-* [Live Demo](#live-demo)
-* [Getting Started](#getting-started)
-* [API Documentation](#api-documentation)
-* [Available Grammars](#available-grammars)
-* [Transforms](#transforms)
-* [Traverse](#traverse)
-* [Custom Parsers and Stringifiers](#custom-parsers-and-stringifiers)
-* [Tests Status](#tests-status)
-* [Performance](#performance)
-* [Development](#development)
+- [Live Demo](#live-demo)
+- [Getting Started](#getting-started)
+- [API Documentation](#api-documentation)
+- [Available Grammars](#available-grammars)
+- [Transforms](#transforms)
+- [Traverse](#traverse)
+- [Custom Parsers and Stringifiers](#custom-parsers-and-stringifiers)
+- [Tests Status](#tests-status)
+- [Performance](#performance)
+- [Development](#development)
 
 ## Live Demo
 
