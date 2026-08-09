@@ -14,6 +14,7 @@ import { createTupleParslet } from '../parslets/TupleParslet.js'
 import { createVariadicParslet } from '../parslets/VariadicParslet.js'
 import { typeOfParslet } from '../parslets/TypeOfParslet.js'
 import { keyOfParslet } from '../parslets/KeyOfParslet.js'
+import { inferParslet } from '../parslets/InferParslet.js'
 import { importParslet } from '../parslets/ImportParslet.js'
 import { createSpecialNamePathParslet } from '../parslets/SpecialNamePathParslet.js'
 import { readonlyPropertyParslet } from '../parslets/ReadonlyPropertyParslet.js'
@@ -68,6 +69,7 @@ export const typescriptGrammar: Grammar = [
   readonlyArrayParslet,
   typeOfParslet,
   keyOfParslet,
+  inferParslet,
   importParslet,
   stringValueParslet,
   createFunctionParslet({

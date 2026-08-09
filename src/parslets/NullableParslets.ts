@@ -6,9 +6,10 @@ import { assertRootResult } from '../assertTypes.js'
 export const nullableParslet: ParsletFunction = (parser, precedence, left) => {
   const type = parser.lexer.current.type
   const next = parser.lexer.next.type
+  const inferSuffix = left?.type === 'JsdocTypeInfer'
 
   const accept = ((left === null) && type === '?' && !isQuestionMarkUnknownType(next)) ||
-    ((left !== null) && type === '?' && Precedence.NULLABLE > precedence)
+    ((left !== null) && !inferSuffix && type === '?' && Precedence.NULLABLE > precedence)
 
   if (!accept) {
     return null

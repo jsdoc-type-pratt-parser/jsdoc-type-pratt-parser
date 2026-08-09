@@ -84,4 +84,5 @@ describe('basics', () => {
     expect(() => parse('{123n: string}', 'typescript')).to.throw("Unexpected type: 'JsdocTypeBigInt'.")
     expect(() => parse('{123n}', 'typescript')).to.throw("Unexpected type: 'JsdocTypeBigInt'.")
   })
+
 })
