@@ -1,3 +1,10 @@
+## [9.1.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v9.1.0...v9.1.1) (2026-08-10)
+
+
+### Bug Fixes
+
+* support `{readonly?: boolean}` with reserved words ([55e888e](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/55e888edc7462e995d13698c4f142b9962ec288b))
+
 # [9.1.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v9.0.1...v9.1.0) (2026-08-09)
 
 
