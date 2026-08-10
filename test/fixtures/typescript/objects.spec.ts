@@ -344,6 +344,36 @@ describe('typescript objects tests', () => {
     })
   })
 
+  describe('optional object property named readonly', () => {
+    testFixture({
+      input: '{readonly?: boolean}',
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
+        elements: [
+          {
+            type: 'JsdocTypeObjectField',
+            key: 'readonly',
+            meta: {
+              quote: undefined
+            },
+            optional: true,
+            readonly: false,
+            right: {
+              type: 'JsdocTypeName',
+              value: 'boolean'
+            }
+          }
+        ]
+      },
+      modes: [
+        'typescript'
+      ]
+    })
+  })
+
   describe('object type with a property that uses a TypeScript keyword (function) as a key', () => {
     testFixture({
       input: '{function: string}',
