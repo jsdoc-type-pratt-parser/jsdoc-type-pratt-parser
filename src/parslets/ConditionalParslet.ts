@@ -14,7 +14,7 @@ export const conditionalParslet = composeParslet({
 
     parser.consume('?')
 
-    const trueType = parser.parseType(Precedence.INFIX)
+    const trueType = parser.parseType(Precedence.KEY_VALUE)
 
     parser.consume(':')
 

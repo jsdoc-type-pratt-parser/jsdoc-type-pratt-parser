@@ -1,4 +1,6 @@
+import { expect } from 'chai'
 import { testFixture } from '../Fixture.js'
+import { parse } from '../../../src/index.js'
 
 describe('typescript conditional', () => {
   describe('should parse a conditional', () => {
@@ -131,6 +133,19 @@ describe('typescript conditional', () => {
     })
   })
 
+  it('should parse an intersection in a nested conditional true branch', () => {
+    const result = parse(`A extends {$custom: infer C}
+      ? (C extends object
+        ? Omit<A, '$custom'> & {$custom?: C & ThisType<E & C>}
+        : A)
+      : A`, 'typescript')
+
+    expect(result).to.have.nested.property(
+      'trueType.element.trueType.type',
+      'JsdocTypeIntersection'
+    )
+  })
+
   describe('should parse nested indexed access in the true branch', () => {
     testFixture({
       input: 'T extends [keyof HTMLElementTagNameMap, any?, any?, any?] ? HTMLElementTagNameMap[T[0]] : JamilihReturn',
@@ -218,6 +233,14 @@ describe('typescript conditional', () => {
   })
 
   describe('should throw with bad `infer` within a conditional', () => {
+    it('throws the TypeScript-specific error', () => {
+      expect(() => {
+        parse('A extends B<infer 5> ? b : C', 'typescript')
+      }).to.throw(
+        "Unexpected type: 'JsdocTypeNumber'. Message: A typescript infer always has to have a name."
+      )
+    })
+
     testFixture({
       input: 'A extends B<infer 5> ? b : C',
       modes: [],
