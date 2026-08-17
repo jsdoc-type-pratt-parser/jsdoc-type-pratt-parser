@@ -1,3 +1,10 @@
+## [9.1.2](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v9.1.1...v9.1.2) (2026-08-17)
+
+
+### Bug Fixes
+
+* **conditional parslet:** fix precedence ([97c0045](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/97c0045f82c36126e16fed373b345927b5aaa0f9))
+
 ## [9.1.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v9.1.0...v9.1.1) (2026-08-10)
 
 
