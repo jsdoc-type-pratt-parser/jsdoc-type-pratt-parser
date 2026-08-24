@@ -486,11 +486,12 @@ declare function parse(expression: string, mode: ParseMode, { range, rangeStart,
  * @param expression
  * @param modes
  */
-declare function tryParse(expression: string, modes?: ParseMode[], { module, strictMode, asyncFunctionBody, classContext, range, rangeStart, loc, locStart }?: {
+declare function tryParse(expression: string, modes?: ParseMode[], { module, strictMode, asyncFunctionBody, classContext, computedPropertyParser, range, rangeStart, loc, locStart }?: {
   module?: boolean;
   strictMode?: boolean;
   asyncFunctionBody?: boolean;
   classContext?: boolean;
+  computedPropertyParser?: (text: string, options?: any) => unknown;
   range?: boolean;
   rangeStart?: number;
   loc?: boolean;
