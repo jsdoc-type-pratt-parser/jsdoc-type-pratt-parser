@@ -4,7 +4,7 @@
   "scripts": {
     "start": "static -p 8081",
     "build": "rollup -c",
-    "copy": "cp -R node_modules/prismjs/ vendor/prismjs/ && cp -R node_modules/@webcoder49/code-input/ vendor/@webcoder49/code-input/ && cp -R node_modules/espree vendor/espree && cp -R node_modules/eslint-visitor-keys vendor/eslint-visitor-keys && cp -R node_modules/acorn vendor/acorn && cp -R node_modules/@es-joy/escodegen vendor/@es-joy/escodegen"
+    "copy": "cp -R node_modules/prismjs/ vendor/prismjs/ && cp -R node_modules/@webcoder49/code-input/ vendor/@webcoder49/code-input/ && cp -R node_modules/espree/ vendor/espree/ && cp -R node_modules/eslint-visitor-keys/ vendor/eslint-visitor-keys/ && cp -R node_modules/acorn/ vendor/acorn/ && cp -R node_modules/@es-joy/escodegen/ vendor/@es-joy/escodegen/"
   },
   "devDependencies": {
     "@es-joy/escodegen": "^4.2.0",
