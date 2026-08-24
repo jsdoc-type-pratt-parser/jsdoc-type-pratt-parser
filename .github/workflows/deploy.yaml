@@ -33,6 +33,8 @@ jobs:
             index.html
             index.js
             .gitignore
+            .editorconfig
             package-lock.json
             package.json
+            rollup.config.js
             vendor
