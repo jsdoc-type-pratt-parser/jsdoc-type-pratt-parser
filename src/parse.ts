@@ -124,6 +124,7 @@ export function tryParse (
     strictMode = true,
     asyncFunctionBody = true,
     classContext = false,
+    computedPropertyParser,
     range,
     rangeStart,
     loc = false,
@@ -136,6 +137,10 @@ export function tryParse (
     strictMode?: boolean,
     asyncFunctionBody?: boolean,
     classContext?: boolean,
+    computedPropertyParser?: (
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Actual API
+      text: string, options?: any
+    ) => unknown,
     range?: boolean,
     rangeStart?: number,
     loc?: boolean,
@@ -153,6 +158,7 @@ export function tryParse (
         strictMode,
         asyncFunctionBody,
         classContext,
+        computedPropertyParser,
         range,
         rangeStart,
         loc,
