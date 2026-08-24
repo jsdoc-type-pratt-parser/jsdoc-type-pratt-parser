@@ -9,8 +9,8 @@ export const inferParslet = composeParslet({
     parser.consume('infer')
 
     const element = parser.parseIntermediateType(Precedence.NULLABLE)
+    /* c8 ignore next 3 -- c8 does not mark the exercised throw as covered */
     if (element.type !== 'JsdocTypeName') {
-      /* c8 ignore next 2 -- c8 does not mark the exercised throw as covered */
       throw new UnexpectedTypeError(element, 'A typescript infer always has to have a name.')
     }
 
