@@ -1,3 +1,10 @@
+# [9.2.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v9.1.2...v9.2.0) (2026-08-24)
+
+
+### Features
+
+* add `computedPropertyParser` option to `tryParse` ([f196486](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/f196486283c15fdd01c9be2f17fc62f0e166ac04))
+
 ## [9.1.2](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v9.1.1...v9.1.2) (2026-08-17)
 
 
