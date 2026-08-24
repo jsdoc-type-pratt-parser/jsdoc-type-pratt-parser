@@ -1,12 +1,22 @@
 {
   "private": true,
+  "type": "module",
   "scripts": {
     "start": "static -p 8081",
-    "copy": "cp -R node_modules/prismjs/ vendor/prismjs/ && cp -R node_modules/@webcoder49/code-input/ vendor/@webcoder49/code-input/"
+    "build": "rollup -c",
+    "copy": "cp -R node_modules/prismjs/ vendor/prismjs/ && cp -R node_modules/@webcoder49/code-input/ vendor/@webcoder49/code-input/ && cp -R node_modules/espree vendor/espree && cp -R node_modules/eslint-visitor-keys vendor/eslint-visitor-keys && cp -R node_modules/acorn vendor/acorn && cp -R node_modules/@es-joy/escodegen vendor/@es-joy/escodegen"
   },
   "devDependencies": {
-    "@brettz9/node-static": "^0.1.1",
+    "@es-joy/escodegen": "^4.2.0",
+    "@node-static/node-static": "^0.9.0",
+    "@rollup/plugin-commonjs": "^29.0.3",
     "@webcoder49/code-input": "^2.8.3",
-    "prismjs": "^1.30.0"
+    "espree": "^11.2.0",
+    "prismjs": "^1.30.0",
+    "rollup": "^4.62.5"
+  },
+  "allowScripts": {
+    "is-hidden-file@1.1.2": true,
+    "fsevents@2.3.3": true
   }
 }

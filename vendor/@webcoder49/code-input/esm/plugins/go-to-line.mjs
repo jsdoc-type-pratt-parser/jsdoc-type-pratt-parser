@@ -3,7 +3,7 @@
 import { Plugin } from "../code-input.mjs";
 const plugins = {};
 /**
- * Add basic Go-To-Line (Ctrl+G by default) functionality to the code editor.
+ * Add Go-To-Line (Ctrl/Cmd+G by default) functionality to the code editor.
  * Files: go-to-line.js / go-to-line.css
  */
 "use strict";
@@ -22,9 +22,9 @@ plugins.GoToLine = class extends Plugin {
     };
 
     /**
-     * Create a go-to-line command plugin to pass into a template
-     * @param {boolean} useCtrlG Should Ctrl+G be overriden for go-to-line functionality? Either way, you can trigger it yourself using (instance of this plugin)`.showPrompt(code-input element)`.
-     * @param {Object} instructionTranslations: user interface string keys mapped to translated versions for localisation. Look at the go-to-line.js source code for the available keys and English text.
+     * Create a go-to-line command plugin to pass into a template.
+     * @param {boolean} useCtrlG Should Ctrl/Cmd+G be overridden for go-to-line functionality? Either way, you can trigger it yourself using (instance of this plugin)`.showPrompt(code-input element)`.
+     * @param {Object} instructionTranslations: user interface string keys mapped to translated versions for localisation. Look at the go-to-line.js source code for the English text.
      */
     constructor(useCtrlG = true, instructionTranslations = {}) {
         super([]); // No observed attributes
@@ -85,8 +85,9 @@ plugins.GoToLine = class extends Plugin {
                 }
             }
         } else {
-            // No value
+            // No value, so no message or error
             dialog.guidance.textContent = "";
+            dialog.input.classList.remove('code-input_go-to-line_error');
         }
 
         if (event.key == 'Enter') {

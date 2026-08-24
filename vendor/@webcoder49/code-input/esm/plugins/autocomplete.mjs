@@ -69,7 +69,7 @@ plugins.Autocomplete = class extends Plugin {
                 // Hasn't saved text in test pre to find pos
                 // Need to regenerate text in test pre
                 return this.getCaretCoordinates(codeInput, textarea, charIndex, false);
-            } 
+            }
             afterSpan = spans[1];
         } else {
             /* Inspired by https://github.com/component/textarea-caret-position */
@@ -78,7 +78,8 @@ plugins.Autocomplete = class extends Plugin {
             let beforeSpan = document.createElement("span");
             beforeSpan.textContent = textarea.value.substring(0, charIndex);
             afterSpan = document.createElement("span");
-            afterSpan.textContent = "."; // Placeholder
+            afterSpan.textContent = ""; // Text here would potentially make the
+            // invisible pre and thus the autogrowing code-input element wider
 
             // Clear test pre - https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild
             while (testPosElem.firstChild) {

@@ -1,3 +1,5 @@
+import * as espree from 'espree'
+import {generate} from '@es-joy/escodegen'
 import {registerTemplate, Template} from '@webcoder49/code-input'
 
 import Indent from '@webcoder49/code-input/plugins/indent.mjs'
@@ -37,9 +39,12 @@ button.addEventListener('click', function () {
   const mode = getSelected(modeSelect)
   const compatMode = getSelected(compatModeSelect)
   const parsingType = getSelected(parsingTypeSelect)
+
   try {
     let result = parsingType === 'type'
-      ? jtpp.parse(input.value, mode)
+      ? jtpp.parse(input.value, mode, {
+        computedPropertyParser: espree.parse
+      })
       : parsingType === 'name'
         ? jtpp.parseName(input.value, mode)
         : jtpp.parseNamePath(input.value, mode)
@@ -48,8 +53,9 @@ button.addEventListener('click', function () {
     } else if (compatMode === 'jtp') {
       result = jtpp.jtpTransform(result)
     }
+
     output.value = JSON.stringify(result, null, 2)
-    stringified.value = jtpp.stringify(result)
+    stringified.value = jtpp.stringify(result, generate)
   } catch (e) {
     output.value = e.toString()
   }
