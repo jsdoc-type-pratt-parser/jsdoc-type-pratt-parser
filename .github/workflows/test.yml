@@ -29,6 +29,12 @@ jobs:
     # Using `npm i` instead of `npm ci` due to necessarily removed lock file
     - run: rm -f package-lock.json
     - run: rm -Rf node_modules
-    - run: npm i
+    # Older bundled npm versions (e.g. npm 10.x on Node 22) can crash with
+    # "Cannot read properties of null (reading 'edgesOut')" while building
+    # the ideal tree for this peer-dependency graph; newer npm does not.
+    # Using `npx npm@latest` rather than `npm install -g npm@latest` avoids
+    # a separate npm self-upgrade race (it can delete its own in-use files
+    # mid-upgrade and crash with "Cannot find module 'promise-retry'").
+    - run: npx --yes npm@latest i
     - run: npm run build --if-present
     - run: npm test
