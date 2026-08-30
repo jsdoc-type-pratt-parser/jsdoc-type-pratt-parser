@@ -12,12 +12,13 @@
     "test": "test"
   },
   "scripts": {
-    "test": "npm run typecheck && npm run lint && npm run test:spec",
+    "test": "npm run tsc && npm run lint && npm run test:spec",
     "test:spec": "mocha",
     "test:coverage": "c8 --all npm run test:spec",
     "test:coveralls": "c8 report --reporter=lcov && coveralls",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit",
+    "tsc": "tsc --noEmit",
+    "tsc:ts7": "npx -y -p typescript@^7 -c \"tsc\"",
     "attw": "attw --pack . --profile esm-only",
     "build": "tsdown && npm run attw",
     "apidoc": "typedoc --options typedoc.json",
@@ -36,7 +37,8 @@
     "node": "^22.22.2 || >=24.15.0"
   },
   "dependencies": {
-    "@types/estree": "^1.0.9"
+    "@types/estree": "^1.0.9",
+    "@types/node": "^26.4.0"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.5",
@@ -45,7 +47,6 @@
     "@semantic-release/git": "^11.0.1",
     "@types/chai": "^5.2.3",
     "@types/mocha": "^10.0.10",
-    "@types/node": "^26.2.0",
     "@types/sinon": "^22.0.0",
     "@types/sinon-chai": "^4.0.0",
     "@typescript-eslint/eslint-plugin": "^8.42.0",
