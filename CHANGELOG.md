@@ -1,3 +1,10 @@
+## [9.2.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v9.2.0...v9.2.1) (2026-08-30)
+
+
+### Bug Fixes
+
+* **types:** include types/node ([579bd70](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/579bd70e61e48d6dbad57c2aac05eeb4e6f67e36))
+
 # [9.2.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v9.1.2...v9.2.0) (2026-08-24)
 
 
