@@ -62,7 +62,7 @@
     "eslint-plugin-promise": "^7.3.0",
     "espree": "^11.2.0",
     "jsdoctypeparser": "^9.0.0",
-    "mocha": "^11.8.0",
+    "mocha": "^12.0.0",
     "npm-upgrade": "^3.3.0",
     "patch-package": "^8.0.1",
     "semantic-release": "^25.0.9",
