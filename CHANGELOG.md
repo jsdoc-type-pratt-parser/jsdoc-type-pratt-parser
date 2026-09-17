@@ -1,3 +1,10 @@
+## [9.2.2](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v9.2.1...v9.2.2) (2026-09-17)
+
+
+### Bug Fixes
+
+* greedy `computedPropertyParser` ([4823afc](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/4823afc7100f18734cf58d984e7e2cf10f3af899))
+
 ## [9.2.1](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v9.2.0...v9.2.1) (2026-08-30)
 
 
