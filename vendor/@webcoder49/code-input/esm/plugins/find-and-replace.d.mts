@@ -1,11 +1,11 @@
 // NOTICE: This code is @generated from code outside the esm directory. Please do not edit it to contribute!
 
-import { Plugin, CodeInput } from "../code-input.d.mts";
+import type { Plugin, CodeInput } from "../code-input.d.mts";
   /**
    * Add Find-and-Replace (Ctrl/Cmd+F for find, Ctrl+H for replace by default) functionality to the code editor.
    * Files: find-and-replace.js / find-and-replace.css
    */
-  export default class FindAndReplace extends Plugin {
+  declare class FindAndReplace extends Plugin {
     /**
      * Create a find-and-replace command plugin to pass into a template. To ensure keyboard shortcuts remain intuitive, set the alwaysCtrl parameter to false.
      * @param {boolean} useCtrlF Should Ctrl/Cmd+F be overridden for find-and-replace find functionality? Either way, you can also trigger it yourself using (instance of this plugin)`.showPrompt(code-input element, false)`.
@@ -43,3 +43,4 @@ import { Plugin, CodeInput } from "../code-input.d.mts";
      */
     showPrompt(codeInputElement: CodeInput, replacePartExpanded: boolean): void;
   }
+export default FindAndReplace;

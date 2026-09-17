@@ -1,7 +1,7 @@
 // NOTICE: This code is @generated from code outside the esm directory. Please do not edit it to contribute!
 
 import { Plugin } from "../code-input.mjs";
-const plugins = {};
+let plugins = {};
 /**
  * Render special characters and control characters as a symbol with their hex code.
  * Files: special-chars.js, special-chars.css

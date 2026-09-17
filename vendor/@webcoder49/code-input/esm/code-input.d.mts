@@ -109,7 +109,7 @@ export class CodeInput extends HTMLTextAreaElement { // Tries to implement texta
   /**
    * When the code-input's template is registered, this contains its codeInput.Template object.
    */
-  templateObject?: readonly Template
+  /*readonly*/ templateObject?: Template // `readonly` commented for backwards compatibility
   /**
    * Exposed child textarea element for user to input code in; in this version of code-input you shouldn't need to access
    * it because most textarea functionality is present on the code-input element itself.
@@ -151,4 +151,27 @@ export class CodeInput extends HTMLTextAreaElement { // Tries to implement texta
  * @param {Object} template - a Template object instance - see `codeInput.templates`  
  */
 export function registerTemplate(templateName: string, template: Template): void;
-export default { Plugin, Template, CodeInput, registerTemplate };
+
+
+    // Prepare the default export:
+
+    // Values under the default export
+    declare const _default: {
+        Plugin: typeof Plugin;
+        Template: typeof Template;
+        CodeInput: typeof CodeInput;
+        registerTemplate: typeof registerTemplate;
+    }
+
+    // Type aliases to prevent ambiguous 'Plugin = Plugin'
+    declare type _Plugin = Plugin;
+    declare type _Template = Template;
+    declare type _CodeInput = CodeInput;
+    // Types under the default export
+    declare namespace _default {
+        export type Plugin = _Plugin;
+        export type Template = _Template;
+        export type CodeInput = _CodeInput;
+    }
+
+    export default _default;

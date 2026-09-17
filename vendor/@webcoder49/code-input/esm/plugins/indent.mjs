@@ -1,7 +1,7 @@
 // NOTICE: This code is @generated from code outside the esm directory. Please do not edit it to contribute!
 
 import { Plugin } from "../code-input.mjs";
-const plugins = {};
+let plugins = {};
 /**
  * Add indentation using the `Tab` key, and auto-indents after a newline, as well as making it 
  * possible to indent/unindent multiple lines using Tab/Shift+Tab

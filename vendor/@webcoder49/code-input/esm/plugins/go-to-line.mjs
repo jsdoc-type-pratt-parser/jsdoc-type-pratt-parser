@@ -1,7 +1,7 @@
 // NOTICE: This code is @generated from code outside the esm directory. Please do not edit it to contribute!
 
 import { Plugin } from "../code-input.mjs";
-const plugins = {};
+let plugins = {};
 /**
  * Add Go-To-Line (Ctrl/Cmd+G by default) functionality to the code editor.
  * Files: go-to-line.js / go-to-line.css

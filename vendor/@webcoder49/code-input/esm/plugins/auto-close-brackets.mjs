@@ -1,7 +1,7 @@
 // NOTICE: This code is @generated from code outside the esm directory. Please do not edit it to contribute!
 
 import { Plugin } from "../code-input.mjs";
-const plugins = {};
+let plugins = {};
 /**
  * Automatically close pairs of brackets/quotes/other syntaxes in code, but also optionally choose the brackets this
  * is activated for.

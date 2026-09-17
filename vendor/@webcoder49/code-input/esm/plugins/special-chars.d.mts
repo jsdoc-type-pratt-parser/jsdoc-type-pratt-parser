@@ -1,6 +1,6 @@
 // NOTICE: This code is @generated from code outside the esm directory. Please do not edit it to contribute!
 
-import { Plugin, CodeInput } from "../code-input.d.mts";
+import type { Plugin, CodeInput } from "../code-input.d.mts";
   /**
    * Render special characters and control characters as a symbol with their hex code.
    * Files: special-chars.js, special-chars.css
@@ -13,7 +13,7 @@ import { Plugin, CodeInput } from "../code-input.d.mts";
    *
    * See https://github.com/WebCoder49/code-input/issues?q=is%3Aissue%20state%3Aopen%20specialchars
    */
-  export default class SpecialChars extends Plugin {
+  declare class SpecialChars extends Plugin {
     /**
      * Create a special characters plugin instance.
      * Default = covers many non-renderable ASCII characters.
@@ -23,3 +23,4 @@ import { Plugin, CodeInput } from "../code-input.d.mts";
      */
     constructor(colorInSpecialChars?: boolean, inheritTextColor?: boolean, specialCharRegExp?: RegExp);
   }
+export default SpecialChars;

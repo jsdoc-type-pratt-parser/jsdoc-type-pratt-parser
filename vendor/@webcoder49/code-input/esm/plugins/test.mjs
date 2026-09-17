@@ -1,7 +1,7 @@
 // NOTICE: This code is @generated from code outside the esm directory. Please do not edit it to contribute!
 
 import { Plugin } from "../code-input.mjs";
-const plugins = {};
+let plugins = {};
 /**
  * Copy this to create a plugin, which brings extra,
  * non-central optional functionality to code-input.

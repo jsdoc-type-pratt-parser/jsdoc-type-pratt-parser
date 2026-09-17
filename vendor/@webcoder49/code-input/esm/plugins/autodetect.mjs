@@ -1,7 +1,7 @@
 // NOTICE: This code is @generated from code outside the esm directory. Please do not edit it to contribute!
 
 import { Plugin } from "../code-input.mjs";
-const plugins = {};
+let plugins = {};
 /**
  * Autodetect the language live and change the `lang` attribute using the syntax highlighter's 
  * autodetect capabilities. Works with highlight.js only.

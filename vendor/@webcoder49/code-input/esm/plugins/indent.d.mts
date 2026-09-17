@@ -1,12 +1,12 @@
 // NOTICE: This code is @generated from code outside the esm directory. Please do not edit it to contribute!
 
-import { Plugin, CodeInput } from "../code-input.d.mts";
+import type { Plugin, CodeInput } from "../code-input.d.mts";
   /**
    * Adds indentation using the `Tab` key, and auto-indents after a newline, as well as making it 
    * possible to indent/unindent multiple lines using Tab/Shift+Tab
    * Files: indent.js
    */
-  export default class Indent extends Plugin {
+  declare class Indent extends Plugin {
     /**
      * Create an indentation plugin to pass into a template
      * @param {boolean} defaultSpaces Should the Tab key enter spaces rather than tabs? Defaults to false.
@@ -20,3 +20,4 @@ import { Plugin, CodeInput } from "../code-input.d.mts";
       tabForNavigation?: string;
     });
   }
+export default Indent;

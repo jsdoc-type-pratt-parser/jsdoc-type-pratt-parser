@@ -1,6 +1,6 @@
 // NOTICE: This code is @generated from code outside the esm directory. Please do not edit it to contribute!
 
-import { Template, Plugin } from "../code-input.d.mts";
+import type { Template, Plugin } from "../code-input.d.mts";
   /**
    * A template that uses Prism.js syntax highlighting (https://prismjs.com/).
    */

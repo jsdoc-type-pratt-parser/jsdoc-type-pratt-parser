@@ -1,7 +1,7 @@
 // NOTICE: This code is @generated from code outside the esm directory. Please do not edit it to contribute!
 
 import { Plugin } from "../code-input.mjs";
-const plugins = {};
+let plugins = {};
 /**
  * Make tokens in the <pre><code> element that are included within the selected text of the <code-input>
  * gain a CSS class while selected, or trigger JavaScript callbacks.

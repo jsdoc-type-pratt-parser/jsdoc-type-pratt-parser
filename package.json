@@ -8,12 +8,12 @@
   },
   "devDependencies": {
     "@es-joy/escodegen": "^4.2.0",
-    "@node-static/node-static": "^0.9.0",
+    "@node-static/node-static": "^0.9.2",
     "@rollup/plugin-commonjs": "^29.0.3",
-    "@webcoder49/code-input": "^2.8.3",
+    "@webcoder49/code-input": "^2.8.4",
     "espree": "^11.2.0",
     "prismjs": "^1.30.0",
-    "rollup": "^4.62.5"
+    "rollup": "^4.63.3"
   },
   "allowScripts": {
     "is-hidden-file@1.1.2": true,

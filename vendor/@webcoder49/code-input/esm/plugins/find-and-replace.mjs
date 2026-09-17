@@ -1,7 +1,7 @@
 // NOTICE: This code is @generated from code outside the esm directory. Please do not edit it to contribute!
 
 import { Plugin } from "../code-input.mjs";
-const plugins = {};
+let plugins = {};
 /**
  * Add Find-and-Replace (Ctrl/Cmd+F for find, Ctrl+H for replace by default) functionality to the code editor.
  * Files: find-and-replace.js / find-and-replace.css

@@ -1,11 +1,11 @@
 // NOTICE: This code is @generated from code outside the esm directory. Please do not edit it to contribute!
 
-import { Plugin, CodeInput } from "../code-input.d.mts";
+import type { Plugin, CodeInput } from "../code-input.d.mts";
   /**
    * Add Go-To-Line (Ctrl/Cmd+G by default) functionality to the code editor.
    * Files: go-to-line.js / go-to-line.css
    */
-  export default class GoToLine extends Plugin {
+  declare class GoToLine extends Plugin {
     /**
      * Create a go-to-line command plugin to pass into a template.
      * @param {boolean} useCtrlG Should Ctrl/Cmd+G be overridden for go-to-line functionality? Either way, you can trigger it yourself using (instance of this plugin)`.showPrompt(code-input element)`.
@@ -28,3 +28,4 @@ import { Plugin, CodeInput } from "../code-input.d.mts";
     */
     showPrompt(codeInput: CodeInput): void;
   }
+export default GoToLine;

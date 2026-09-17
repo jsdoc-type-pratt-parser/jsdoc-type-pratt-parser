@@ -1,7 +1,7 @@
 // NOTICE: This code is @generated from code outside the esm directory. Please do not edit it to contribute!
 
 import { Plugin } from "../code-input.mjs";
-const plugins = {};
+let plugins = {};
 /**
  * Display a popup under the caret using the text in the code-input element. This works well with autocomplete suggestions.
  * Files: autocomplete.js / autocomplete.css
