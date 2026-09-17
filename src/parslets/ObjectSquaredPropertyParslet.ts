@@ -18,8 +18,32 @@ export const objectSquaredPropertyParslet = composeParslet({
     parser.consume('[')
 
     let innerBracketType;
+    let isIndexSignatureOrMappedType = false;
 
-    if (parser.externalParsers?.computedPropertyParser === undefined) {
+    if (parser.externalParsers?.computedPropertyParser !== undefined) {
+      try {
+        const tryLexer = parser.lexer.clone();
+        const tryParser = new Parser(parser.grammar, tryLexer, parser.baseParser, {
+          externalParsers: parser.externalParsers
+        });
+        const parsedType = tryParser.parseIntermediateType(Precedence.OBJECT);
+        const isMapped = parsedType?.type === 'JsdocTypeName' && tryParser.consume('in');
+        if (
+          (parsedType?.type === 'JsdocTypeObjectField' &&
+           typeof parsedType.key === 'string' &&
+           !parsedType.optional &&
+           !parsedType.readonly &&
+           parsedType.right !== undefined) ||
+          isMapped
+        ) {
+          isIndexSignatureOrMappedType = true;
+        }
+      } catch (err) {
+        // Ignore errors during speculative parsing
+      }
+    }
+
+    if (isIndexSignatureOrMappedType || parser.externalParsers?.computedPropertyParser === undefined) {
       try {
         innerBracketType = parser.parseIntermediateType(Precedence.OBJECT)
       } catch (err) {
@@ -233,7 +257,11 @@ export const objectSquaredPropertyParslet = composeParslet({
 
         checkMiddle()
         parser.consume(':')
-        const nextValue = parser.parseType(Precedence.INDEX_BRACKETS)
+
+        const parentParser = parser.baseParser
+        parentParser.acceptLexerState(parser)
+        const nextValue = parentParser.parseType(Precedence.INDEX_BRACKETS)
+        parser.acceptLexerState(parentParser)
 
         key = {
           type,
@@ -253,7 +281,11 @@ export const objectSquaredPropertyParslet = composeParslet({
           throw new Error('Incomplete computed property: missing colon')
         }
 
-        right = parser.parseType(Precedence.INDEX_BRACKETS)
+        const parentParser = parser.baseParser
+        parentParser.acceptLexerState(parser)
+        right = parentParser.parseType(Precedence.INDEX_BRACKETS)
+        parser.acceptLexerState(parentParser)
+
         key = {
           type,
           value: innerBracketType as RootResult,

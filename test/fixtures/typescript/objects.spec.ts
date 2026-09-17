@@ -702,6 +702,116 @@ describe('typescript objects tests', () => {
         ]
       }
     })
+
+    describe('index signatures (with espree)', () => {
+      testFixture({
+        input: '{[key: string]: number}',
+        modes: ['typescript'],
+        espree: true,
+        expected: {
+          type: 'JsdocTypeObject',
+          meta: {
+            separator: 'comma'
+          },
+          elements: [
+            {
+              type: 'JsdocTypeObjectField',
+              key: {
+                type: 'JsdocTypeIndexSignature',
+                key: 'key',
+                right: {
+                  type: 'JsdocTypeName',
+                  value: 'string'
+                }
+              },
+              optional: false,
+              readonly: false,
+              right: {
+                type: 'JsdocTypeName',
+                value: 'number'
+              },
+              meta: {
+                quote: undefined
+              }
+            }
+          ]
+        }
+      })
+    })
+
+    testFixture({
+      input: '{[key: string]: [abc?, string?, (() => void)?]}',
+      modes: ['typescript'],
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
+        elements: [
+          {
+            type: 'JsdocTypeObjectField',
+            key: {
+              type: 'JsdocTypeIndexSignature',
+              key: 'key',
+              right: {
+                type: 'JsdocTypeName',
+                value: 'string'
+              }
+            },
+            optional: false,
+            readonly: false,
+            right: {
+              elements: [
+                {
+                  element: {
+                    "type": "JsdocTypeName",
+                    "value": "abc"
+                  },
+                  meta: {
+                    position: "suffix"
+                  },
+                  type: "JsdocTypeNullable"
+                },
+                {
+                  element: {
+                    type: "JsdocTypeName",
+                    value: "string"
+                  },
+                  meta: {
+                    position: "suffix"
+                  },
+                  type: "JsdocTypeNullable"
+                },
+                {
+                  element: {
+                    element: {
+                      arrow: true,
+                      constructor: false,
+                      parameters: [],
+                      parenthesis: true,
+                      returnType: {
+                        type: "JsdocTypeName",
+                        value: "void"
+                      },
+                      type: "JsdocTypeFunction"
+                    },
+                    type: "JsdocTypeParenthesis"
+                  },
+                  meta: {
+                    position: "suffix"
+                  },
+                  type: "JsdocTypeNullable"
+                }
+              ],
+              type: "JsdocTypeTuple"
+            },
+            meta: {
+              quote: undefined
+            }
+          }
+        ]
+      }
+    })
   })
 
   describe('mapped type clauses', () => {
@@ -1079,6 +1189,45 @@ describe('typescript objects tests', () => {
           }
         ]
       }
+    })
+  })
+
+  describe('Mapped type', () => {
+    testFixture({
+      input: '{[key in abc]: string;}',
+      espree: true,
+      stringified: '{[key in abc]: string}',
+      expected: {
+        type: 'JsdocTypeObject',
+        elements: [
+          {
+            type: 'JsdocTypeObjectField',
+            optional: false,
+            readonly: false,
+            meta: {
+              quote: undefined
+            },
+            key: {
+              type: 'JsdocTypeMappedType',
+              key: 'key',
+              right: {
+                type: 'JsdocTypeName',
+                value: 'abc'
+              }
+            },
+            right: {
+              type: 'JsdocTypeName',
+              value: 'string'
+            }
+          }
+        ],
+        meta: {
+          separator: 'semicolon'
+        }
+      },
+      modes: [
+        'typescript'
+      ]
     })
   })
 

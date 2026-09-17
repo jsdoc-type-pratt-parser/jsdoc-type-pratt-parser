@@ -22,4 +22,12 @@ describe('tryParse', () => {
       })
     }).not.to.throw()
   })
+
+  it('should throw with an incomplete computed property', () => {
+    expect(() => {
+      tryParse('{[', ['typescript'], {
+        computedPropertyParser: espree
+      })
+    }).to.throw()
+  })
 })

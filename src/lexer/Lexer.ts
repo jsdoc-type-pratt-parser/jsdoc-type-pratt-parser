@@ -67,4 +67,8 @@ export class Lexer {
       this.lexerRules, next.text, this.current, this.next, next.token
     )
   }
+
+  clone (): Lexer {
+    return new Lexer(this.lexerRules, this.text, this.previous, this.current, this.next)
+  }
 }
