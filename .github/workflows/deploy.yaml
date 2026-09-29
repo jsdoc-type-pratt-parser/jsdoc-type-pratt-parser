@@ -9,16 +9,20 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
           node-version: 22
       - name: Dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
       - name: Build
         run: |
-          npm run build
-          npm run apidoc
+          pnpm run build
+          pnpm run apidoc
       - name: Assemble
         run: |
           mkdir -p pages/lib/jsdoc-type-pratt-parser/
