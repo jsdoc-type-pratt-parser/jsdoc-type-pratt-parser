@@ -459,13 +459,13 @@ interface TemplateLiteralResult extends BaseNode {
 }
 //#endregion
 //#region src/parse.d.ts
-type ParseMode = 'closure' | 'jsdoc' | 'typescript';
+export type ParseMode = 'closure' | 'jsdoc' | 'typescript';
 /**
  * This function parses the given expression in the given mode and produces a {@link RootResult}.
  * @param expression
  * @param mode
  */
-declare function parse(expression: string, mode: ParseMode, { range, rangeStart, loc, locStart, module, strictMode, asyncFunctionBody, classContext, computedPropertyParser }?: {
+export declare function parse(expression: string, mode: ParseMode, { range, rangeStart, loc, locStart, module, strictMode, asyncFunctionBody, classContext, computedPropertyParser }?: {
   range?: boolean;
   rangeStart?: number;
   loc?: boolean;
@@ -486,7 +486,7 @@ declare function parse(expression: string, mode: ParseMode, { range, rangeStart,
  * @param expression
  * @param modes
  */
-declare function tryParse(expression: string, modes?: ParseMode[], { module, strictMode, asyncFunctionBody, classContext, computedPropertyParser, range, rangeStart, loc, locStart }?: {
+export declare function tryParse(expression: string, modes?: ParseMode[], { module, strictMode, asyncFunctionBody, classContext, computedPropertyParser, range, rangeStart, loc, locStart }?: {
   module?: boolean;
   strictMode?: boolean;
   asyncFunctionBody?: boolean;
@@ -505,7 +505,7 @@ declare function tryParse(expression: string, modes?: ParseMode[], { module, str
  * @param expression
  * @param mode
  */
-declare function parseNamePath(expression: string, mode: ParseMode, { includeSpecial }?: {
+export declare function parseNamePath(expression: string, mode: ParseMode, { includeSpecial }?: {
   includeSpecial?: boolean;
 }): RootResult;
 /**
@@ -513,13 +513,13 @@ declare function parseNamePath(expression: string, mode: ParseMode, { includeSpe
  * @param expression
  * @param mode
  */
-declare function parseName(expression: string, mode: ParseMode): RootResult;
+export declare function parseName(expression: string, mode: ParseMode): RootResult;
 //#endregion
 //#region src/transforms/transform.d.ts
 type TransformFunction<TransformResult> = (parseResult: NonRootResult) => TransformResult;
 type TransformRule<TransformResult, InputType extends NonRootResult> = (parseResult: InputType, transform: TransformFunction<TransformResult>) => TransformResult;
 type TransformRules<TransformResult> = { [P in NonRootResult as P['type']]: TransformRule<TransformResult, P>; };
-declare function transform<TransformResult>(rules: TransformRules<TransformResult>, parseResult: NonRootResult): TransformResult;
+export declare function transform<TransformResult>(rules: TransformRules<TransformResult>, parseResult: NonRootResult): TransformResult;
 //#endregion
 //#region src/transforms/catharsisTransform.d.ts
 interface ModifiableResult {
@@ -570,7 +570,7 @@ type CatharsisRecordResult = ModifiableResult & {
   type: 'RecordType';
   fields: CatharsisFieldResult[];
 };
-declare function catharsisTransform(result: RootResult): CatharsisParseResult;
+export declare function catharsisTransform(result: RootResult): CatharsisParseResult;
 //#endregion
 //#region src/transforms/jtpTransform.d.ts
 type JtpResult = JtpNameResult | JtpNullableResult | JtpNotNullableResult | JtpOptionalResult | JtpVariadicResult | JtpTypeOfResult | JtpTupleResult | JtpKeyOfResult | JtpStringValueResult | JtpImportResult | JtpAnyResult | JtpUnknownResult | JtpFunctionResult | JtpGenericResult | JtpRecordEntryResult | JtpRecordResult | JtpMemberResult | JtpUnionResult | JtpParenthesisResult | JtpNamedParameterResult | JtpModuleResult | JtpFilePath | JtpIntersectionResult | JtpNumberResult;
@@ -699,16 +699,16 @@ interface JtpNumberResult {
   type: 'NUMBER_VALUE';
   number: string;
 }
-declare function jtpTransform(result: RootResult): JtpResult;
+export declare function jtpTransform(result: RootResult): JtpResult;
 //#endregion
 //#region src/transforms/stringify.d.ts
-declare function stringifyRules({ computedPropertyStringifier }?: {
+export declare function stringifyRules({ computedPropertyStringifier }?: {
   computedPropertyStringifier?: (node: Node, options?: any) => string;
 }): TransformRules<string>;
-declare function stringify(result: RootResult, stringificationRules?: TransformRules<string> | ((node: Node, options?: any) => string)): string;
+export declare function stringify(result: RootResult, stringificationRules?: TransformRules<string> | ((node: Node, options?: any) => string)): string;
 //#endregion
 //#region src/transforms/identityTransformRules.d.ts
-declare function identityTransformRules(): TransformRules<NonRootResult>;
+export declare function identityTransformRules(): TransformRules<NonRootResult>;
 //#endregion
 //#region src/traverse.d.ts
 /**
@@ -718,17 +718,17 @@ declare function identityTransformRules(): TransformRules<NonRootResult>;
  * @param property the property on the parent node that contains the visited node. It can be the node itself or
  *  an array of nodes.
  */
-type NodeVisitor = (node: NonRootResult, parentNode?: NonRootResult, property?: string, index?: number) => void;
+export type NodeVisitor = (node: NonRootResult, parentNode?: NonRootResult, property?: string, index?: number) => void;
 /**
  * A function to traverse an AST. It traverses it depth first.
  * @param node the node to start traversing at.
  * @param onEnter node visitor function that will be called on entering the node. This corresponds to preorder traversing.
  * @param onLeave node visitor function that will be called on leaving the node. This corresponds to postorder traversing.
  */
-declare function traverse(node: RootResult, onEnter?: NodeVisitor, onLeave?: NodeVisitor): void;
+export declare function traverse(node: RootResult, onEnter?: NodeVisitor, onLeave?: NodeVisitor): void;
 //#endregion
 //#region src/visitorKeys.d.ts
-type VisitorKeys = { [P in NonRootResult as P['type']]: Array<keyof P>; };
-declare const visitorKeys: VisitorKeys;
+export type VisitorKeys = { [P in NonRootResult as P['type']]: Array<keyof P>; };
+export declare const visitorKeys: VisitorKeys;
 //#endregion
-export { type AnyResult, type AssertsPlainResult, type AssertsResult, type BaseNode, type BigIntResult, type CallSignatureResult, type ComputedMethodResult, type ComputedPropertyResult, type ConditionalResult, type ConstructorSignatureResult, type FunctionResult, type GenericResult, type ImportResult, type IndexSignatureResult, type IndexedAccessIndexResult, type InferResult, type IntersectionResult, type JsdocObjectFieldResult, type KeyOfResult, type KeyValueResult, type Location, type MappedTypeResult, type MethodSignatureResult, type NamePathResult, type NameResult, NodeVisitor, type NonRootResult, type NotNullableResult, type NullResult, type NullableResult, type NumberResult, type ObjectFieldResult, type ObjectResult, type OptionalResult, type ParenthesisResult, ParseMode, type PredicateResult, type PropertyResult, type QuoteStyle, type Range, type ReadonlyArrayResult, type RootResult, type SpecialNamePath, type SpecialNamePathType, type StringValueResult, type SymbolResult, type TemplateLiteralResult, type TransformFunction, type TransformRule, type TransformRules, type TupleResult, type TypeOfResult, type TypeParameterResult, type UndefinedResult, type UnionResult, type UniqueSymbolResult, type UnknownResult, type VariadicResult, VisitorKeys, catharsisTransform, identityTransformRules, jtpTransform, parse, parseName, parseNamePath, stringify, stringifyRules, transform, traverse, tryParse, visitorKeys };
+export type { AnyResult, AssertsPlainResult, AssertsResult, BaseNode, BigIntResult, CallSignatureResult, ComputedMethodResult, ComputedPropertyResult, ConditionalResult, ConstructorSignatureResult, FunctionResult, GenericResult, ImportResult, IndexSignatureResult, IndexedAccessIndexResult, InferResult, IntersectionResult, JsdocObjectFieldResult, KeyOfResult, KeyValueResult, Location, MappedTypeResult, MethodSignatureResult, NamePathResult, NameResult, NonRootResult, NotNullableResult, NullResult, NullableResult, NumberResult, ObjectFieldResult, ObjectResult, OptionalResult, ParenthesisResult, PredicateResult, PropertyResult, QuoteStyle, Range, ReadonlyArrayResult, RootResult, SpecialNamePath, SpecialNamePathType, StringValueResult, SymbolResult, TemplateLiteralResult, TransformFunction, TransformRule, TransformRules, TupleResult, TypeOfResult, TypeParameterResult, UndefinedResult, UnionResult, UniqueSymbolResult, UnknownResult, VariadicResult };
