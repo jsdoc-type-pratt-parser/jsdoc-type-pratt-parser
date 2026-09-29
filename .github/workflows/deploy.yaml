@@ -39,6 +39,7 @@ jobs:
             .gitignore
             .editorconfig
             pnpm-lock.yaml
+            pnpm-workspace.yaml
             package.json
             rollup.config.js
             vendor
