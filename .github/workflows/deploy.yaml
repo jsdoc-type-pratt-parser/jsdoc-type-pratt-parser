@@ -38,7 +38,7 @@ jobs:
             index.js
             .gitignore
             .editorconfig
-            package-lock.json
+            pnpm-lock.yaml
             package.json
             rollup.config.js
             vendor
