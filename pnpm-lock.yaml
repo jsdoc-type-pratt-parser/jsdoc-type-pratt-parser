@@ -11,9 +11,6 @@ importers:
       '@types/estree':
         specifier: ^1.0.9
         version: 1.0.9
-      '@types/node':
-        specifier: ^26.6.3
-        version: 26.6.3
     devDependencies:
       '@arethetypeswrong/cli':
         specifier: ^0.18.5
@@ -33,6 +30,9 @@ importers:
       '@types/mocha':
         specifier: ^10.0.10
         version: 10.0.10
+      '@types/node':
+        specifier: ^26.6.3
+        version: 26.6.3
       '@types/sinon':
         specifier: ^22.0.0
         version: 22.0.0
