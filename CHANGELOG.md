@@ -1,3 +1,10 @@
+## [9.2.3](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v9.2.2...v9.2.3) (2026-10-13)
+
+
+### Bug Fixes
+
+* **types:** move @types/node back to devDependencies ([fe1bc96](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/fe1bc9680ab2f99ca70dc9bb18a6e12538d4eccd))
+
 ## [9.2.2](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v9.2.1...v9.2.2) (2026-09-17)
 
 
