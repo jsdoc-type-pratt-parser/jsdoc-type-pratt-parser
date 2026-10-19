@@ -14,7 +14,7 @@
 <section class="tsd-panel">
 <ul class="tsd-signatures">
 <li class="">
-<div class="tsd-signature tsd-anchor-link" id="traverse"><span class="tsd-kind-call-signature">traverse</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">node</span><span class="tsd-signature-symbol">:</span> <a href="../types/src.RootResult.html" class="tsd-signature-type tsd-kind-type-alias">RootResult</a><span class="tsd-signature-symbol">,</span> <span class="tsd-kind-parameter">onEnter</span><span class="tsd-signature-symbol">?:</span> <a href="../types/src.NodeVisitor.html" class="tsd-signature-type tsd-kind-type-alias">NodeVisitor</a><span class="tsd-signature-symbol">,</span> <span class="tsd-kind-parameter">onLeave</span><span class="tsd-signature-symbol">?:</span> <a href="../types/src.NodeVisitor.html" class="tsd-signature-type tsd-kind-type-alias">NodeVisitor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#traverse" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
+<div class="tsd-signature tsd-anchor-link" id="traverse"><span class="tsd-kind-call-signature">traverse</span><span class="tsd-signature-symbol">(</span><br/>    <span class="tsd-kind-parameter">node</span><span class="tsd-signature-symbol">:</span> <a href="../types/src.RootResult.html" class="tsd-signature-type tsd-kind-type-alias">RootResult</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">onEnter</span><span class="tsd-signature-symbol">?:</span> <a href="../types/src.NodeVisitor.html" class="tsd-signature-type tsd-kind-type-alias">NodeVisitor</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">onLeave</span><span class="tsd-signature-symbol">?:</span> <a href="../types/src.NodeVisitor.html" class="tsd-signature-type tsd-kind-type-alias">NodeVisitor</a><span class="tsd-signature-symbol">,</span><br/>    <span class="tsd-kind-parameter">customVisitorKeys</span><span class="tsd-signature-symbol">?:</span> <a href="../types/src.CustomVisitorKeys.html" class="tsd-signature-type tsd-kind-type-alias">CustomVisitorKeys</a><span class="tsd-signature-symbol">,</span><br/><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">void</span><a href="#traverse" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></div>
 <div class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>A function to traverse an AST. It traverses it depth first.</p>
 </div>
@@ -29,10 +29,13 @@
 </div></li>
 <li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">onLeave</span>: <a href="../types/src.NodeVisitor.html" class="tsd-signature-type tsd-kind-type-alias">NodeVisitor</a></span>
 <div class="tsd-comment tsd-typography"><p>node visitor function that will be called on leaving the node. This corresponds to postorder traversing.</p>
+</div></li>
+<li><span><code class="tsd-tag">Optional</code><span class="tsd-kind-parameter">customVisitorKeys</span>: <a href="../types/src.CustomVisitorKeys.html" class="tsd-signature-type tsd-kind-type-alias">CustomVisitorKeys</a></span>
+<div class="tsd-comment tsd-typography"><p>optional visitor keys by node type, checked before the built-in <code>visitorKeys</code>.</p>
 </div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/blob/dfa48cd2cc36d8db7b7674cbf0f9ddf180d49516/src/traverse.ts#L41">src/traverse.ts:41</a></li></ul></aside></div></li></ul></section></div>
+<li>Defined in <a href="https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/blob/259e4b58e1be1f8ad49637b8e48e7825eeee4572/src/traverse.ts#L50">src/traverse.ts:50</a></li></ul></aside></div></li></ul></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">

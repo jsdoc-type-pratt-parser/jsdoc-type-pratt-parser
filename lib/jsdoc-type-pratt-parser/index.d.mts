@@ -720,12 +720,20 @@ export declare function identityTransformRules(): TransformRules<NonRootResult>;
  */
 export type NodeVisitor = (node: NonRootResult, parentNode?: NonRootResult, property?: string, index?: number) => void;
 /**
+ * Custom visitor keys, keyed by node `type`. These take precedence over
+ * the built-in `visitorKeys`, so they can be used to traverse
+ * arbitrary structures (e.g., the ASTs of computed properties) or to alter the
+ * keys visited for built-in types.
+ */
+export type CustomVisitorKeys = Record<string, readonly string[]>;
+/**
  * A function to traverse an AST. It traverses it depth first.
  * @param node the node to start traversing at.
  * @param onEnter node visitor function that will be called on entering the node. This corresponds to preorder traversing.
  * @param onLeave node visitor function that will be called on leaving the node. This corresponds to postorder traversing.
+ * @param customVisitorKeys optional visitor keys by node type, checked before the built-in `visitorKeys`.
  */
-export declare function traverse(node: RootResult, onEnter?: NodeVisitor, onLeave?: NodeVisitor): void;
+export declare function traverse(node: RootResult, onEnter?: NodeVisitor, onLeave?: NodeVisitor, customVisitorKeys?: CustomVisitorKeys): void;
 //#endregion
 //#region src/visitorKeys.d.ts
 export type VisitorKeys = { [P in NonRootResult as P['type']]: Array<keyof P>; };
