@@ -1,3 +1,10 @@
+# [9.3.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v9.2.3...v9.3.0) (2026-10-19)
+
+
+### Features
+
+* **traverse:** allow custom visitor keys ([63cf64d](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/63cf64dd5f76e00f099aa83005a743aa9666bd97))
+
 ## [9.2.3](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v9.2.2...v9.2.3) (2026-10-13)
 
 
