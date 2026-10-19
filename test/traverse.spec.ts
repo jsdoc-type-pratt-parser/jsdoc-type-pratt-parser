@@ -279,4 +279,22 @@ describe('traverse', () => {
       [onLeave, [functionResult, undefined, undefined, undefined]]
     ])
   })
+
+  it('should visit custom visitor keys', () => {
+    const inner = { type: 'Custom', child: { type: 'JsdocTypeName', value: 'x' } }
+    const root = { type: 'JsdocTypeKeyValue', key: 'a', right: inner } as unknown as RootResult
+    const types: string[] = []
+    traverse(root, (node) => types.push(node.type), undefined, {
+      Custom: ['child'],
+      JsdocTypeKeyValue: ['right']
+    })
+    expect(types).to.deep.equal(['JsdocTypeKeyValue', 'Custom', 'JsdocTypeName'])
+  })
+
+  it('should visit but not descend into unknown node types without keys', () => {
+    const root = { type: 'JsdocTypeKeyValue', key: 'a', right: { type: 'Unknown', child: { type: 'JsdocTypeName', value: 'x' } } } as unknown as RootResult
+    const types: string[] = []
+    traverse(root, (node) => types.push(node.type), undefined, { JsdocTypeKeyValue: ['right'] })
+    expect(types).to.deep.equal(['JsdocTypeKeyValue', 'Unknown'])
+  })
 })
