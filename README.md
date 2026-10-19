@@ -128,6 +128,19 @@ function onEnter(node, parent, property) {
 traverse({ type: 'JsdocTypeName', value: 'name'}, onEnter, console.log)
 ```
 
+Custom visitor keys (by node `type`) can be supplied as a fourth argument. They
+take precedence over the built-in `visitorKeys`, which is useful for nodes whose
+structure is not known to this package (e.g., the ASTs of computed properties):
+
+```js
+traverse(ast, onEnter, onLeave, {
+  // Visit the `expression` property of a custom node type
+  MyCustomNode: ['expression'],
+  // Nodes of unknown type are visited only if keys are given for them
+  Identifier: []
+})
+```
+
 ## Custom Parsers and Stringifiers
 
 For TypeScript's computed property and methods, access to JavaScript
