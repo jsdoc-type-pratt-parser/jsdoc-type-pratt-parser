@@ -126,6 +126,7 @@ export interface ConstructorSignatureResult extends BaseNode {
 export interface MethodSignatureResult extends BaseNode {
   type: 'JsdocTypeMethodSignature'
   name: string
+  optional?: boolean
   meta: {
     quote: QuoteStyle | undefined,
     parameterSpacing?: string,

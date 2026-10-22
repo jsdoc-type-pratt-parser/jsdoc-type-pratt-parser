@@ -4,6 +4,8 @@ import { Precedence } from '../Precedence.js'
 import { UnexpectedTypeError } from '../errors.js'
 import type { ObjectResult } from '../result/RootResult.js'
 import type { Grammar } from '../grammars/Grammar.js'
+import type { MethodSignatureResult } from '../result/NonRootResult.js'
+import { parseTypeParameters } from './FunctionPropertyParslet.js'
 import { getParameters } from './FunctionParslet.js'
 
 export function createObjectParslet ({ signatureGrammar, objectFieldGrammar, allowKeyTypes }: {
@@ -53,6 +55,25 @@ export function createObjectParslet ({ signatureGrammar, objectFieldGrammar, all
           if (field.type === 'JsdocTypeNullable') {
             optional = true
             field = field.element
+          }
+
+          if (
+            signatureGrammar !== undefined && optional &&
+            (field.type === 'JsdocTypeName' || field.type === 'JsdocTypeStringValue') &&
+            (parser.lexer.current.type === '(' || parser.lexer.current.type === '<')
+          ) {
+            const method: MethodSignatureResult = {
+              type: 'JsdocTypeMethodSignature',
+              name: field.value,
+              optional: true,
+              meta: {
+                quote: field.type === 'JsdocTypeStringValue' ? field.meta.quote : undefined
+              },
+              parameters: [],
+              returnType: { type: 'JsdocTypeName', value: 'void' }
+            }
+            parseTypeParameters(parser, method)
+            field = method
           }
 
           if (field.type === 'JsdocTypeNumber' || field.type === 'JsdocTypeName' || field.type === 'JsdocTypeStringValue') {
