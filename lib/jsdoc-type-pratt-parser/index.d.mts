@@ -95,6 +95,7 @@ interface ConstructorSignatureResult extends BaseNode {
 interface MethodSignatureResult extends BaseNode {
   type: 'JsdocTypeMethodSignature';
   name: string;
+  optional?: boolean;
   meta: {
     quote: QuoteStyle | undefined;
     parameterSpacing?: string;
