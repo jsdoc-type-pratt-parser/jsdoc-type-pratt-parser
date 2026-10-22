@@ -1,8 +1,59 @@
 import { composeParslet } from './Parslet.js'
 import type { TypeParameterResult, CallSignatureResult, ConstructorSignatureResult, MethodSignatureResult } from '../result/NonRootResult.js'
 import type { NameResult } from '../result/RootResult.js'
+import type { Parser } from '../Parser.js'
 import { Precedence } from '../Precedence.js'
 import { UnexpectedTypeError } from '../errors.js'
+
+export function parseTypeParameters (
+  parser: Parser,
+  result: CallSignatureResult | ConstructorSignatureResult | MethodSignatureResult
+): void {
+  const typeParameters: TypeParameterResult[] = []
+  if (parser.consume('<')) {
+    do {
+      let defaultValue = undefined
+      let name = parser.parseIntermediateType(Precedence.SYMBOL)
+      if (name.type === 'JsdocTypeOptional') {
+        name = name.element
+        defaultValue = parser.parseType(Precedence.SYMBOL)
+      }
+      if (name.type !== 'JsdocTypeName') {
+        throw new UnexpectedTypeError(name)
+      }
+      let constraint = undefined
+      if (parser.consume('extends')) {
+        constraint = parser.parseType(Precedence.SYMBOL)
+        // Got an equal sign
+        if (constraint.type === 'JsdocTypeOptional') {
+          constraint = constraint.element
+          defaultValue = parser.parseType(Precedence.SYMBOL)
+        }
+      }
+
+      const typeParameter: TypeParameterResult = {
+        type: 'JsdocTypeTypeParameter',
+        name
+      }
+
+      if (constraint !== undefined) {
+        typeParameter.constraint = constraint
+      }
+
+      if (defaultValue !== undefined) {
+        typeParameter.defaultValue = defaultValue
+      }
+
+      typeParameters.push(typeParameter)
+
+      if (parser.consume('>')) {
+        break
+      }
+    } while (parser.consume(','))
+
+    result.typeParameters = typeParameters
+  }
+}
 
 // (optional new or optionally quoted other optional name) +
 //    (...args) + ":" + return value
@@ -65,50 +116,7 @@ export const functionPropertyParslet = composeParslet({
       }
     }
 
-    const typeParameters: TypeParameterResult[] = []
-    if (parser.consume('<')) {
-      do {
-        let defaultValue = undefined
-        let name = parser.parseIntermediateType(Precedence.SYMBOL)
-        if (name.type === 'JsdocTypeOptional') {
-          name = name.element
-          defaultValue = parser.parseType(Precedence.SYMBOL)
-        }
-        if (name.type !== 'JsdocTypeName') {
-          throw new UnexpectedTypeError(name)
-        }
-        let constraint = undefined
-        if (parser.consume('extends')) {
-          constraint = parser.parseType(Precedence.SYMBOL)
-          // Got an equal sign
-          if (constraint.type === 'JsdocTypeOptional') {
-            constraint = constraint.element
-            defaultValue = parser.parseType(Precedence.SYMBOL)
-          }
-        }
-
-        const typeParameter: TypeParameterResult = {
-          type: 'JsdocTypeTypeParameter',
-          name
-        }
-
-        if (constraint !== undefined) {
-          typeParameter.constraint = constraint
-        }
-
-        if (defaultValue !== undefined) {
-          typeParameter.defaultValue = defaultValue
-        }
-
-        typeParameters.push(typeParameter)
-
-        if (parser.consume('>')) {
-          break
-        }
-      } while (parser.consume(','))
-
-      result.typeParameters = typeParameters
-    }
+    parseTypeParameters(parser, result)
 
     const hasParenthesis = parser.lexer.current.type === '('
 

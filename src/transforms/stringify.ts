@@ -283,6 +283,8 @@ export function stringifyRules ({
           : '';
 
       return `${quote}${result.name}${quote}${
+        result.optional === true ? '?' : ''
+      }${
         result.meta.postMethodNameSpacing ?? ''
       }${
         result.typeParameters !== undefined

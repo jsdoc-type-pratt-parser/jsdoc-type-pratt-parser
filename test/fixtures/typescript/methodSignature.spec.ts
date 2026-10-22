@@ -206,4 +206,80 @@ describe('typescript method signatures', () => {
       }
     })
   })
+
+  describe('should parse an optional method signature', () => {
+    testFixture({
+      input: '{a?(): void}',
+      modes: ['typescript'],
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
+        elements: [
+          {
+            type: 'JsdocTypeMethodSignature',
+            name: 'a',
+            optional: true,
+            meta: {
+              quote: undefined
+            },
+            parameters: [],
+            returnType: {
+              type: 'JsdocTypeName',
+              value: 'void'
+            }
+          }
+        ]
+      }
+    })
+  })
+
+  describe('should parse an optional quoted method signature with type parameters', () => {
+    testFixture({
+      input: '{"a"?<T>(x: T): void}',
+      modes: ['typescript'],
+      expected: {
+        type: 'JsdocTypeObject',
+        meta: {
+          separator: 'comma'
+        },
+        elements: [
+          {
+            type: 'JsdocTypeMethodSignature',
+            name: 'a',
+            optional: true,
+            meta: {
+              quote: 'double'
+            },
+            typeParameters: [
+              {
+                type: 'JsdocTypeTypeParameter',
+                name: {
+                  type: 'JsdocTypeName',
+                  value: 'T'
+                }
+              }
+            ],
+            parameters: [
+              {
+                type: 'JsdocTypeKeyValue',
+                key: 'x',
+                right: {
+                  type: 'JsdocTypeName',
+                  value: 'T'
+                },
+                optional: false,
+                variadic: false
+              }
+            ],
+            returnType: {
+              type: 'JsdocTypeName',
+              value: 'void'
+            }
+          }
+        ]
+      }
+    })
+  })
 })
