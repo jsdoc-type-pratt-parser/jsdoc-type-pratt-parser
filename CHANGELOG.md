@@ -1,3 +1,10 @@
+# [9.4.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v9.3.0...v9.4.0) (2026-10-22)
+
+
+### Features
+
+* **typescript): support optional method signatures (`{a?(:** void}`) ([d5d8f8e](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/d5d8f8e5791f4008cb1ec9423737871e68de4497))
+
 # [9.3.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v9.2.3...v9.3.0) (2026-10-19)
 
 
