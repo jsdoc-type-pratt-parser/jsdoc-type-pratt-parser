@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/strict-void-return -- Temporary disable */
 import { expect, use } from 'chai'
-import { type SinonSpy, spy } from 'sinon'
+import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
 import type {
   GenericResult,
@@ -17,8 +17,8 @@ import { traverse } from '../src/traverse.js'
 use(sinonChai)
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Testing
-function expectOrder (calls: Array<[SinonSpy, any[]]>): void {
-  const callsCount: Map<SinonSpy, number> = new Map<SinonSpy, number>()
+function expectOrder (calls: Array<[sinon.SinonSpy, any[]]>): void {
+  const callsCount: Map<sinon.SinonSpy, number> = new Map<sinon.SinonSpy, number>()
   for (let i = 0; i < calls.length; i++) {
     const [cb, args] = calls[i]
     const count = (callsCount.has(cb) ? callsCount.get(cb) : 0) as number
@@ -36,8 +36,8 @@ function expectOrder (calls: Array<[SinonSpy, any[]]>): void {
 
 describe('traverse', () => {
   it('should traverse a simple expression', () => {
-    const onEnter = spy()
-    const onLeave = spy()
+    const onEnter = sinon.spy()
+    const onLeave = sinon.spy()
 
     const result: RootResult = {
       type: 'JsdocTypeName',
@@ -52,8 +52,8 @@ describe('traverse', () => {
   })
 
   it('should traverse a simple expression without an expected key', () => {
-    const onEnter = spy()
-    const onLeave = spy()
+    const onEnter = sinon.spy()
+    const onLeave = sinon.spy()
 
     // eslint-disable-next-line @typescript-eslint/consistent-type-assertions -- Force missing key
     const result: RootResult = {
@@ -68,8 +68,8 @@ describe('traverse', () => {
   })
 
   it('should traverse an expression while ignoring a primitive value as key', () => {
-    const onEnter = spy()
-    const onLeave = spy()
+    const onEnter = sinon.spy()
+    const onLeave = sinon.spy()
 
     const result: RootResult = {
       type: 'JsdocTypeObject',
@@ -115,7 +115,7 @@ describe('traverse', () => {
   });
 
   it('should traverse a simple expression without `onEnter`', () => {
-    const onLeave = spy()
+    const onLeave = sinon.spy()
 
     const result: RootResult = {
       type: 'JsdocTypeName',
@@ -128,7 +128,7 @@ describe('traverse', () => {
   })
 
   it('should traverse a simple expression without `onLeave`', () => {
-    const onEnter = spy()
+    const onEnter = sinon.spy()
 
     const result: RootResult = {
       type: 'JsdocTypeName',
@@ -141,8 +141,8 @@ describe('traverse', () => {
   })
 
   it('should traverse a nested expression with union and generic', () => {
-    const onEnter = spy()
-    const onLeave = spy()
+    const onEnter = sinon.spy()
+    const onLeave = sinon.spy()
 
     const name: NameResult = {
       type: 'JsdocTypeName',
@@ -207,8 +207,8 @@ describe('traverse', () => {
   })
 
   it('should traverse a nested expression with function and tuple', () => {
-    const onEnter = spy()
-    const onLeave = spy()
+    const onEnter = sinon.spy()
+    const onLeave = sinon.spy()
 
     const nameA: NameResult = {
       type: 'JsdocTypeName',

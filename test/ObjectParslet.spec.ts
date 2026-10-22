@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { stub, type SinonStub } from 'sinon'
+import sinon from 'sinon'
 
 import { jsdocGrammar } from '../src/grammars/jsdocGrammar.js'
 import { Parser } from '../src/Parser.js'
@@ -12,10 +12,10 @@ import { rules } from '../src/lexer/LexerRules.js'
 
 describe('`ObjectParslet`', () => {
   beforeEach(() => {
-    stub(Parser.prototype, 'parseIntermediateType')
+    sinon.stub(Parser.prototype, 'parseIntermediateType')
   })
   afterEach(() => {
-    (Parser.prototype.parseIntermediateType as SinonStub).restore()
+    (Parser.prototype.parseIntermediateType as sinon.SinonStub).restore()
   })
   it('Recovers after failing first intermediate parsing with `allowKeyTypes`', () => {
     // Limit the field grammar so it mostly fails
@@ -41,7 +41,7 @@ describe('`ObjectParslet`', () => {
     // eslint-disable-next-line @typescript-eslint/unbound-method -- Ok here
     const parseIntermediateType = Parser.prototype.parseIntermediateType;
 
-    (parseIntermediateType as SinonStub).callThrough().onSecondCall().returns(
+    (parseIntermediateType as sinon.SinonStub).callThrough().onSecondCall().returns(
       ret
     )
 
