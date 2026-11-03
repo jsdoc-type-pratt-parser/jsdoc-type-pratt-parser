@@ -14,7 +14,7 @@ import {
 import { assertResultIsNotReservedWord } from './assertTypes.js'
 import type { RootResult } from './result/RootResult.js'
 import { Lexer } from './lexer/Lexer.js'
-import { rules, looseRules } from './lexer/LexerRules.js'
+import { rules, looseRules, typescriptNameRules } from './lexer/LexerRules.js'
 
 export type ParseMode = 'closure' | 'jsdoc' | 'typescript'
 
@@ -180,9 +180,17 @@ export function tryParse (
  */
 export function parseNamePath (
   expression: string, mode: ParseMode, {
-    includeSpecial = false
+    includeSpecial = false,
+    jsdocContext = false
   }: {
     includeSpecial?: boolean
+    /**
+     * Indicates the name is being checked in a JSDoc tag context (e.g.,
+     * `@property`), where, in TypeScript mode, unquoted hyphens are
+     * tolerated (as TypeScript intellisense does) rather than requiring
+     * quotes. Has no effect in other modes.
+     */
+    jsdocContext?: boolean
   } = {}
 ): RootResult {
   switch (mode) {
@@ -199,7 +207,7 @@ export function parseNamePath (
     case 'typescript': {
       return (new Parser(
         includeSpecial ? typescriptNamePathSpecialGrammar : typescriptNamePathGrammar,
-        Lexer.create(rules, expression)
+        Lexer.create(jsdocContext ? typescriptNameRules : rules, expression)
       )).parse()
     }
   }
