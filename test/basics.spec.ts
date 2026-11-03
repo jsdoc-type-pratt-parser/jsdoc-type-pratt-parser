@@ -80,6 +80,12 @@ describe('basics', () => {
     expect(() => parseNamePath('Foo[1n]', 'typescript')).to.throw()
   })
 
+  it('should only allow unquoted hyphens in typescript namepaths in a jsdoc context', () => {
+    expect(() => parseNamePath('is-hyphenated', 'typescript')).to.throw()
+    expect(parseNamePath('is-hyphenated', 'typescript', { jsdocContext: true })).to.deep.include({ type: 'JsdocTypeName', value: 'is-hyphenated' })
+    expect(() => parse('is-hyphenated', 'typescript')).to.throw()
+  })
+
   it('should reject bigint literals as typescript object keys', () => {
     expect(() => parse('{123n: string}', 'typescript')).to.throw("Unexpected type: 'JsdocTypeBigInt'.")
     expect(() => parse('{123n}', 'typescript')).to.throw("Unexpected type: 'JsdocTypeBigInt'.")

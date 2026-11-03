@@ -294,3 +294,22 @@ export const rules: Rule[] = [
 export const looseRules: Rule[] = rules.toSpliced(
   -4, 2, looseNumberRule, looseIdentifierRule
 )
+
+/**
+ * Matches only identifiers containing a hyphen, so that keywords
+ * (e.g., `is-hyphenated`) do not pre-empt them.
+ */
+const hyphenatedIdentifierRule: Rule = text => {
+  const result = looseIdentifierRule(text)
+  return result?.text.includes('-') === true ? result : null
+}
+
+/**
+ * For TypeScript name/namepath parsing only, where property names may
+ * contain hyphens (e.g., `@property is-hyphenated`).
+ */
+export const typescriptNameRules: Rule[] = [
+  eofRule,
+  hyphenatedIdentifierRule,
+  ...rules.slice(1)
+]
