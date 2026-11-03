@@ -506,8 +506,15 @@ export declare function tryParse(expression: string, modes?: ParseMode[], { modu
  * @param expression
  * @param mode
  */
-export declare function parseNamePath(expression: string, mode: ParseMode, { includeSpecial }?: {
+export declare function parseNamePath(expression: string, mode: ParseMode, { includeSpecial, jsdocContext }?: {
   includeSpecial?: boolean;
+  /**
+   * Indicates the name is being checked in a JSDoc tag context (e.g.,
+   * `@property`), where, in TypeScript mode, unquoted hyphens are
+   * tolerated (as TypeScript intellisense does) rather than requiring
+   * quotes. Has no effect in other modes.
+   */
+  jsdocContext?: boolean;
 }): RootResult;
 /**
  * This function parses the given expression in the given mode and produces a name.
