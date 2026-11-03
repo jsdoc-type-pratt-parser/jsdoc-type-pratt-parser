@@ -1,3 +1,10 @@
+# [9.5.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v9.4.0...v9.5.0) (2026-11-03)
+
+
+### Features
+
+* add `jsdocContext` boolean option to `parseNamepath` (e.g., to allow hyphens in [@property](https://github.com/property)); fixes [#277](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/issues/277) ([33d3abd](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/commit/33d3abdb0dae079582da49c76ca533eaee0517a0))
+
 # [9.4.0](https://github.com/jsdoc-type-pratt-parser/jsdoc-type-pratt-parser/compare/v9.3.0...v9.4.0) (2026-10-22)
 
 
